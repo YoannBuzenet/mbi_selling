@@ -7,3 +7,4 @@ Allowing each user to update its stock in a few clicks, for a few bucks
 Let users connect and synd their account.<br />
 Bill for each script.
 
+Let the API win !
