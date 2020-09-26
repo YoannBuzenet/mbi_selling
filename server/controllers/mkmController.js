@@ -2,10 +2,10 @@ const axios = require("axios");
 const MkmAPI = require("../services/MkmAPI");
 const fs = require("fs");
 
+/* ********** */
+// Get MKM stock from user and register it on server
+/* ********** */
 function getShopStock(shopInfo) {
-  //regarder si on un stock de moins de 12h si le param est à false
-  //Choper le stock et l'enregistrer
-
   const header = MkmAPI.buildOAuthHeader(
     "GET",
     MkmAPI.URL_MKM_GET_STOCK,
@@ -113,7 +113,7 @@ function getShopStock(shopInfo) {
     .catch((err) => console.log(err));
 }
 
-function getFileToDB(pathFile) {
+function registerStockFileIntoDB(pathFile) {
   console.log(
     "parse the CSV/Json file // put it in memory // write it in mysql"
   );
