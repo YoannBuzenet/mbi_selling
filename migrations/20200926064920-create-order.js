@@ -17,6 +17,18 @@ module.exports = {
       wasMadeAt: {
         type: Sequelize.DATE,
       },
+      idCustomerMKM: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "customers",
+          key: "idCustomerMKM",
+        },
+      },
+      idOrderMKM: {
+        type: Sequelize.INTEGER,
+        unique: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
