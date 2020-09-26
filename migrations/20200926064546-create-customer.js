@@ -14,8 +14,9 @@ module.exports = {
       idShop: {
         type: Sequelize.INTEGER,
       },
-      idMKM: {
-        type: Sequelize.STRING,
+      idCustomerMKM: {
+        type: Sequelize.INTEGER,
+        unique: true,
       },
       createdAt: {
         allowNull: false,

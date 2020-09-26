@@ -35,6 +35,14 @@ module.exports = {
       isProduct: {
         type: Sequelize.INTEGER,
       },
+      idOrder: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "orders",
+          key: "idOrderMKM",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
