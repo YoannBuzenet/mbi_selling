@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Order.init(
     {
-      idMKM: DataTypes.STRING,
+      idOrderMKM: DataTypes.INTEGER,
+      amount: DataTypes.INTEGER,
+      wasMadeAt: DataTypes.DATETIME, //Todo check if it exists
+      idCustomerMKM: DataTypes.INTEGER,
     },
     {
       sequelize,

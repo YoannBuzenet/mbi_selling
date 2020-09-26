@@ -1,30 +1,26 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Orders", {
+    await queryInterface.createTable("PUT_Requests", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      amount: {
+      shopId: {
         type: Sequelize.INTEGER,
       },
-      wasMadeAt: {
-        type: Sequelize.DATE,
+      batchId: {
+        type: Sequelize.INTEGER,
       },
-      idCustomerMKM: {
+      snapShotParamId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "customers",
-          key: "idCustomerMKM",
+          model: "snapshot_params",
+          key: "id",
         },
-      },
-      idOrderMKM: {
-        type: Sequelize.INTEGER,
-        unique: true,
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Orders");
+    await queryInterface.dropTable("PUT_Requests");
   },
 };

@@ -29,12 +29,6 @@ module.exports = {
       isPlayset: {
         type: Sequelize.INTEGER,
       },
-      isOrder: {
-        type: Sequelize.INTEGER,
-      },
-      isProduct: {
-        type: Sequelize.INTEGER,
-      },
       idOrder: {
         type: Sequelize.INTEGER,
         allowNull: false,
