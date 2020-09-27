@@ -18,8 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       priceRangeFrom: DataTypes.INTEGER,
       priceRangeTo: DataTypes.INTEGER,
       priceRangeValueToSet: DataTypes.INTEGER,
-      priceRangeIsUserValueToSet: DataTypes.INTEGER,
+      behaviour: DataTypes.STRING,
       priceRangePercentageFromMkm: DataTypes.INTEGER,
+      isForFoils: DataTypes.INTEGER,
+      isForSigned: DataTypes.INTEGER,
+      isForPlaysets: DataTypes.INTEGER,
     },
     {
       sequelize,
