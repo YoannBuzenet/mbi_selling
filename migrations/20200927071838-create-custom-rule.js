@@ -20,13 +20,23 @@ module.exports = {
       ruleType: {
         type: Sequelize.STRING,
       },
+      isForFoils: {
+        type: Sequelize.INTEGER,
+      },
+      isForSigned: {
+        type: Sequelize.INTEGER,
+      },
+      isForPlaysets: {
+        type: Sequelize.INTEGER,
+      },
       priceRangeFrom: {
         type: Sequelize.INTEGER,
       },
       priceRangeTo: {
         type: Sequelize.INTEGER,
       },
-      priceRangeIsUserValueToSet: {
+      //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, exclude ?
+      behaviour: {
         type: Sequelize.STRING,
       },
       priceRangeValueToSet: {
