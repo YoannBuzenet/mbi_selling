@@ -49,7 +49,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "priceguides",
+          model: "priceguideDefinitions",
           key: "id",
         },
       },
