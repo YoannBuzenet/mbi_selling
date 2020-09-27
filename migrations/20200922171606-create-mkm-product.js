@@ -25,6 +25,11 @@ module.exports = {
         // },
         idProduct: {
           type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: "productlegalities",
+            key: "idProduct",
+          },
         },
         englishName: {
           type: Sequelize.STRING,
