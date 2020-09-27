@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Custom_Rules", {
+    await queryInterface.createTable("put_memories", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,42 +16,32 @@ module.exports = {
           key: "id",
         },
       },
-      //Can be "Price Range"
-      ruleType: {
+      idProduct: {
+        type: Sequelize.INTEGER,
+      },
+      oldPrice: {
+        type: Sequelize.INTEGER,
+      },
+      newPrice: {
+        type: Sequelize.INTEGER,
+      },
+      condition: {
+        type: Sequelize.INTEGER,
+      },
+      lang: {
+        type: Sequelize.INTEGER,
+      },
+      isFoil: {
+        type: Sequelize.INTEGER,
+      },
+      isSigned: {
+        type: Sequelize.INTEGER,
+      },
+      isPlayset: {
+        type: Sequelize.INTEGER,
+      },
+      ruleUsed: {
         type: Sequelize.STRING,
-      },
-      isForFoils: {
-        type: Sequelize.INTEGER,
-      },
-      isForSigned: {
-        type: Sequelize.INTEGER,
-      },
-      isForPlaysets: {
-        type: Sequelize.INTEGER,
-      },
-      priceRangeFrom: {
-        type: Sequelize.INTEGER,
-      },
-      priceRangeTo: {
-        type: Sequelize.INTEGER,
-      },
-      //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, Exclude
-      behaviour: {
-        type: Sequelize.STRING,
-      },
-      priceRangeValueToSet: {
-        type: Sequelize.INTEGER,
-      },
-      priceRangePercentageFromMkm: {
-        type: Sequelize.INTEGER,
-      },
-      mkmPriceGuideReference: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "priceguides",
-          key: "id",
-        },
       },
       createdAt: {
         allowNull: false,
@@ -64,6 +54,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Custom_Rules");
+    await queryInterface.dropTable("put_memories");
   },
 };
