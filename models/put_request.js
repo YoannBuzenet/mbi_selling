@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class PUT_Request extends Model {
     /**
@@ -12,13 +10,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  PUT_Request.init({
-    shopId: DataTypes.INTEGER,
-    batchId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'PUT_Request',
-  });
+  }
+  PUT_Request.init(
+    {
+      shopId: DataTypes.INTEGER,
+      batchId: DataTypes.INTEGER,
+      snapShotParamId: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "PUT_Request",
+    }
+  );
   return PUT_Request;
 };
