@@ -40,8 +40,13 @@ module.exports = {
       isPlayset: {
         type: Sequelize.INTEGER,
       },
-      ruleUsed: {
-        type: Sequelize.STRING,
+      idCustomRuleUsed: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "snapshot_custom_rules",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
