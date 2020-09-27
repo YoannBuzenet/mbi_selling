@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface
-      .createTable("PriceGuides", {
+      .createTable("PriceGuideDefinitions", {
         id: {
           allowNull: false,
           autoIncrement: true,
@@ -22,7 +22,8 @@ module.exports = {
         },
       })
       .then(function () {
-        queryInterface.bulkInsert("priceguides", [
+        queryInterface.bulkInsert("priceguidesdefinition", [
+          //todo insert all columns of priceguide
           {
             name: "commander",
             createdAt: new Date(),
@@ -92,6 +93,6 @@ module.exports = {
       });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("PriceGuides");
+    await queryInterface.dropTable("PriceGuideDefinitions");
   },
 };
