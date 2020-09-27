@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       isFoil: DataTypes.INTEGER,
       isSigned: DataTypes.INTEGER,
       isPlayset: DataTypes.INTEGER,
-      ruleUsed: DataTypes.STRING,
+      idCustomRuleUsed: DataTypes.INTEGER,
     },
     {
       sequelize,

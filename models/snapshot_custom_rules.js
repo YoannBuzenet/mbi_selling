@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class snapshop_custom_rules extends Model {
+  class snapshot_custom_rules extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  snapshop_custom_rules.init(
+  snapshot_custom_rules.init(
     {
       idScript: DataTypes.INTEGER,
       ruleType: DataTypes.STRING,
@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "snapshop_custom_rules",
+      modelName: "snapshot_custom_rules",
     }
   );
-  return snapshop_custom_rules;
+  return snapshot_custom_rules;
 };
