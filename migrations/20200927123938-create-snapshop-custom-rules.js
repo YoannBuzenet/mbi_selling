@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Custom_Rules", {
+    await queryInterface.createTable("snapshop_custom_rules", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -64,6 +64,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Custom_Rules");
+    await queryInterface.dropTable("snapshop_custom_rules");
   },
 };
