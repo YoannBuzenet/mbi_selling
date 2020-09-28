@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      put_memory.belongsTo(models.PUT_Request);
     }
   }
   put_memory.init(

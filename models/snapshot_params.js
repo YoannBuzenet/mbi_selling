@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      snapshot_params.belongsTo(models.PUT_Request);
     }
   }
   snapshot_params.init(

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      snapshot_custom_rules.belongsTo(models.PUT_Request);
     }
   }
   snapshot_custom_rules.init(
