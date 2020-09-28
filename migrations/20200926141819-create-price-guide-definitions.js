@@ -25,67 +25,77 @@ module.exports = {
         queryInterface.bulkInsert("priceguidesdefinition", [
           //todo insert all columns of priceguide
           {
-            name: "commander",
+            name: "AvgSellPrice",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "duel",
+            name: "lowPrice",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "legacy",
+            name: "trendPrice",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "modern",
+            name: "germanProLow",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "vintage",
+            name: "suggestedPrice",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "penny",
+            name: "foilSell",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "pauper",
+            name: "foilLow",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "historic",
+            name: "foilTrend",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "pioneer",
+            name: "lowPriceEx",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "brawl",
+            name: "avg1",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "future",
+            name: "avg7",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "standard",
+            name: "avg30",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "oldschool",
+            name: "foilAvg1",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
+          {
+            name: "foilAvg7",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
+          {
+            name: "foilAvg30",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
