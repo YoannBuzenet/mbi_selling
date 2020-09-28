@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.MkmProduct);
       User.hasMany(models.Order);
     }
-    shop_params;
   }
   User.init(
     {

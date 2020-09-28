@@ -10,7 +10,7 @@ const securityCheckAPI = require("./services/securityCheckAPI");
 const fs = require("fs");
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "../build")));
+// app.use(express.static(path.join(__dirname, "../build")));
 
 //Parse each call
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -101,6 +101,7 @@ app.get("/", (req, res) => {
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../build/index.html"));
+  // res.status(200).json("HomePage for SSR2");
 });
 
 const port = process.env.PORT || 3000;
