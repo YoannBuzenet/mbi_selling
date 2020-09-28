@@ -58,7 +58,7 @@ const LoginPage = ({ history, eraseAuthContext, renewJWTToken }) => {
       });
 
       if (userData.user.roles.includes("ROLE_SHOP")) {
-        history.replace("/shopadmin/sell_requests");
+        history.replace("/dashboard");
       } else {
         history.goBack();
       }

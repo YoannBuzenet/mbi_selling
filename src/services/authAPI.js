@@ -12,6 +12,7 @@ function authenticate(credentials) {
     .post(process.env.REACT_APP_MTGAPI_URL + "/login", credentials)
     .then((response) => {
       console.log(response);
+      //pinger express pour choper la data et l'ajouter à la data de MTG API
       return response.data;
     })
     .then((data) => {
