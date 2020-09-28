@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      PUT_Request.hasMany(models.put_memory);
+      PUT_Request.hasMany(models.snapshot_custom_rules);
+      PUT_Request.hasOne(models.snapshot_params);
     }
   }
   PUT_Request.init(

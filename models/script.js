@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Script.hasMany(models.Custom_Rule);
+      Script.belongsTo(models.User);
     }
   }
   Script.init(

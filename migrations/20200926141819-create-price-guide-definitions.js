@@ -22,7 +22,7 @@ module.exports = {
         },
       })
       .then(function () {
-        queryInterface.bulkInsert("priceguidesdefinition", [
+        queryInterface.bulkInsert("PriceGuideDefinitions", [
           //todo insert all columns of priceguide
           {
             name: "AvgSellPrice",
