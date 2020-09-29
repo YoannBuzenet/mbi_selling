@@ -22,6 +22,10 @@ import LoginRenewOrLogOutContext from "./context/logAutoRenewOrLogout";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+
+//Components
+import Navbar from "./components/Navbar";
 
 function App() {
   // STATE Creating the Authentication state
@@ -136,6 +140,8 @@ function App() {
     });
     AuthAPI.logout();
   };
+  const NavbarWithRouter = withRouter(Navbar);
+
   return (
     <div
       className="App"
@@ -149,6 +155,7 @@ function App() {
             position="bottom-left"
             hideProgressBar={true}
           />
+          <NavbarWithRouter />
           <Switch>
             <Route
               path="/login"
@@ -163,6 +170,7 @@ function App() {
                 </LoginRenewOrLogOutContext.Provider>
               )}
             />
+            <Route path="/register" component={RegisterPage} />
           </Switch>
         </Router>
       </AuthContext.Provider>
