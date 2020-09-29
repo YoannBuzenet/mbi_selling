@@ -176,6 +176,7 @@ function App() {
               )}
             />
 
+            {/* TODO protect by logged access */}
             <Route path="/dashboard" component={Dashboard} />
 
             <Route path="/register" component={RegisterPage} />
