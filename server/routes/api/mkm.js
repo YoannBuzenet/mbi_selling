@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 //Update Set Prices on MKM
+//TODO : Finish this function, now it just get stock from MKM
 router.get("/updateSetPrice", async (req, res) => {
   // Check 1 : Params
   // Checking params are OK
