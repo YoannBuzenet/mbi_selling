@@ -56,7 +56,7 @@ const Navbar = ({ history }) => {
       <nav className="navbar">
         <div className="container">
           <div className="menu-links-left">
-            <Link to="/dashboard" className="logo-shop-link">
+            <Link to="/stats" className="logo-shop-link">
               <img src="/shopLogo.png" />
             </Link>
             {/* <Link to="/" className="classic-links big-screen-info">
@@ -70,10 +70,10 @@ const Navbar = ({ history }) => {
             <div className="my_options">
               <BurgerMenu history={history} />
               <div className="desktop_menu_options">
-                <Link className="classic-links nav-element" to="/dashboard">
+                <Link className="classic-links nav-element" to="/stats">
                   <FormattedMessage
-                    id="app.navbar.dashboard"
-                    defaultMessage={`Dashboard`}
+                    id="app.navbar.stats"
+                    defaultMessage={`Stats`}
                   />
                 </Link>
                 <div className="toggle-menu-container">
@@ -89,28 +89,39 @@ const Navbar = ({ history }) => {
                   </p>
                   {toggleMenu && (
                     <ul className="toggle-menu">
-                      {/* <Link
-                        to="/my_account"
+                      <Link
+                        to="/create-script"
                         className="toggle-menu-links"
                         onClick={() => setToggleMenu(!toggleMenu)}
                       >
                         <li>
                           <FormattedMessage
-                            id="app.navbar.myAccount"
-                            defaultMessage={`My Account`}
+                            id="app.navbar.create-script"
+                            defaultMessage={`Create a script`}
                           />
                         </li>
-                      </Link> */}
-
+                      </Link>
                       <Link
-                        to="/dashboard"
+                        to="/my-scripts"
                         className="toggle-menu-links"
                         onClick={() => setToggleMenu(!toggleMenu)}
                       >
                         <li>
                           <FormattedMessage
-                            id="app.navbar.dashboard"
-                            defaultMessage={`Dashboard`}
+                            id="app.navbar.my-scripts"
+                            defaultMessage={`My Scripts`}
+                          />
+                        </li>
+                      </Link>
+                      <Link
+                        to="/stats"
+                        className="toggle-menu-links"
+                        onClick={() => setToggleMenu(!toggleMenu)}
+                      >
+                        <li>
+                          <FormattedMessage
+                            id="app.navbar.stats"
+                            defaultMessage={`Stats`}
                           />
                         </li>
                       </Link>
@@ -146,10 +157,10 @@ const Navbar = ({ history }) => {
               <BurgerMenu history={history} />
 
               <div className="connect">
-                <Link className="classic-links nav-element" to="/dashboard">
+                <Link className="classic-links nav-element" to="/stats">
                   <FormattedMessage
-                    id="app.navbar.dashboard"
-                    defaultMessage={`Dashboard`}
+                    id="app.navbar.stats"
+                    defaultMessage={`Stats`}
                   />
                 </Link>
                 <Link className="classic-links" to="/register">

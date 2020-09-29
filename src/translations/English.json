@@ -9,6 +9,9 @@
   "app.navbar.register": "Register",
   "app.navbar.connect": "Connect",
   "app.navbar.dashboard": "Dashboard",
+  "app.navbar.stats": "Stats",
+  "app.navbar.create-script": "Create a script",
+  "app.navbar.my-scripts": "My Scripts",
 
   "app.footer.legalClauses": "Legal Clauses",
 
