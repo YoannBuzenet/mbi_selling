@@ -2,8 +2,6 @@ import React, { useState, useCallback, useEffect } from "react";
 
 import "./App.css";
 
-import { ToastContainer } from "react-toastify";
-
 //API
 import AuthAPI from "./services/authAPI";
 import config from "./services/config";
@@ -15,6 +13,8 @@ import {
   Route,
   withRouter,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //CONTEXTS
 import AuthContext from "./context/authContext";
@@ -27,6 +27,9 @@ import RegisterPage from "./pages/RegisterPage";
 //Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ResetMail from "./components/ResetMail";
+import SetNewPassword from "./components/SetNewPassword";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   // STATE Creating the Authentication state
@@ -172,7 +175,18 @@ function App() {
                 </LoginRenewOrLogOutContext.Provider>
               )}
             />
+
+            <Route path="/dashboard" component={Dashboard} />
+
             <Route path="/register" component={RegisterPage} />
+
+            <Route path="/usermail/reset" component={ResetMail} />
+            <Route
+              path="/usermail/setNewPassword/:challenge?"
+              render={({ match, history }) => (
+                <SetNewPassword match={match} history={history} />
+              )}
+            />
           </Switch>
         </Router>
       </AuthContext.Provider>

@@ -56,7 +56,7 @@ const Navbar = ({ history }) => {
       <nav className="navbar">
         <div className="container">
           <div className="menu-links-left">
-            <Link to="/" className="logo-shop-link">
+            <Link to="/dashboard" className="logo-shop-link">
               <img src="/shopLogo.png" />
             </Link>
             {/* <Link to="/" className="classic-links big-screen-info">
@@ -70,13 +70,10 @@ const Navbar = ({ history }) => {
             <div className="my_options">
               <BurgerMenu history={history} />
               <div className="desktop_menu_options">
-                <Link
-                  className="classic-links nav-element"
-                  to="/my_selling_basket"
-                >
+                <Link className="classic-links nav-element" to="/dashboard">
                   <FormattedMessage
-                    id="app.navbar.mySellRequest"
-                    defaultMessage={`Sell Request`}
+                    id="app.navbar.dashboard"
+                    defaultMessage={`Dashboard`}
                   />
                 </Link>
                 <div className="toggle-menu-container">
@@ -92,7 +89,7 @@ const Navbar = ({ history }) => {
                   </p>
                   {toggleMenu && (
                     <ul className="toggle-menu">
-                      <Link
+                      {/* <Link
                         to="/my_account"
                         className="toggle-menu-links"
                         onClick={() => setToggleMenu(!toggleMenu)}
@@ -103,17 +100,17 @@ const Navbar = ({ history }) => {
                             defaultMessage={`My Account`}
                           />
                         </li>
-                      </Link>
+                      </Link> */}
 
                       <Link
-                        to="/my_sell_requests"
+                        to="/dashboard"
                         className="toggle-menu-links"
                         onClick={() => setToggleMenu(!toggleMenu)}
                       >
                         <li>
                           <FormattedMessage
-                            id="app.navbar.mySellRequests"
-                            defaultMessage={`My Sell Requests`}
+                            id="app.navbar.dashboard"
+                            defaultMessage={`Dashboard`}
                           />
                         </li>
                       </Link>
@@ -149,13 +146,10 @@ const Navbar = ({ history }) => {
               <BurgerMenu history={history} />
 
               <div className="connect">
-                <Link
-                  className="classic-links nav-element"
-                  to="/my_selling_basket"
-                >
+                <Link className="classic-links nav-element" to="/dashboard">
                   <FormattedMessage
-                    id="app.navbar.mySellRequest"
-                    defaultMessage={`My Sell Request`}
+                    id="app.navbar.dashboard"
+                    defaultMessage={`Dashboard`}
                   />
                 </Link>
                 <Link className="classic-links" to="/register">

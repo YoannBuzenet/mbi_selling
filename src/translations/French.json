@@ -8,6 +8,9 @@
   "app.navbar.logOut": "Déconnexion",
   "app.navbar.register": "S'inscrire",
   "app.navbar.connect": "Se connecter",
+  "app.navbar.dashboard": "Dashboard",
+
+  "app.footer.legalClauses": "Mentions Légales",
 
   "app.myAccountPage.title": "Mon compte",
   "app.myAccountPage.myEmail": "Email : ",
