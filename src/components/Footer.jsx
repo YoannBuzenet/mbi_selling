@@ -12,8 +12,8 @@ const Footer = () => {
             <p>
               <Link to="/buyingClauses">
                 <FormattedMessage
-                  id="app.footer.legalBuyingClauses"
-                  defaultMessage={`Buying Clauses`}
+                  id="app.footer.legalClauses"
+                  defaultMessage={`Legal Clauses`}
                 />
               </Link>
             </p>
