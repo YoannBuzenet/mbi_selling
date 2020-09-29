@@ -1,12 +1,9 @@
 import React from "react";
-import shopInfoContext from "../context/publicShopInfoContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 
 const Footer = () => {
-  const { shopInfos } = useContext(shopInfoContext);
-
   return (
     <>
       <footer className="footer">
@@ -22,19 +19,11 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <p>{shopInfos.legalName}</p>
-            <p className="small-text">{shopInfos.adress}</p>
-            <p className="small-text">
-              {shopInfos.postalCode} {shopInfos.town}
-            </p>
+            <p className="small-text"></p>
           </div>
           <div>
-            <p>
-              <a href={`tel:${shopInfos.tel}`}>{shopInfos.tel}</a>
-            </p>
-            <p>
-              <a href={`mailto:${shopInfos.email}`}>{shopInfos.email}</a>
-            </p>
+            <p>{/* <a href={`tel:${shopInfos.tel}`}>{shopInfos.tel}</a> */}</p>
+            <p>{/* <a href={`mailto:`}>{shopInfos.email}</a> */}</p>
           </div>
         </div>
       </footer>

@@ -1,4 +1,375 @@
 /**************************
+********GENERAL************
+**************************/
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-bg-color: coral;
+  --main-bg-color-darker: hsl(16, 90%, 66%);
+  --main-bg-color-almost: rgba(255, 127, 80, 0.9);
+  --main-bg-color-more: rgba(255, 127, 80, 0.7);
+  --main-bg-color-medium: rgba(255, 127, 80, 0.5);
+  --main-bg-color-weak: rgba(255, 127, 80, 0.3);
+  --background-color: #f9f9f9;
+  --border-radius-form-field: 8px;
+  --back-office-back-color: rgba(173, 216, 230, 0.8);
+}
+
+html {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.container-table-responsive {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+#root {
+  background-color: var(--background-color);
+}
+
+.center-text {
+  text-align: center;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+p,
+ul,
+li,
+div,
+td {
+  font-size: 1.6rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.classic-links {
+  margin: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 50px;
+}
+
+.classic-links:hover {
+  background-color: var(--main-bg-color);
+  cursor: pointer;
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.subInfos {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+#root {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 120px; /* height of the footer */
+}
+
+.small-text {
+  font-size: 1.2rem;
+}
+
+.margin-top-2rem {
+  margin-top: 2rem;
+}
+
+.transparent-div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.blackDiv {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0);
+  opacity: 0.5;
+  animation: blackDivAppearing 0.5s;
+}
+@keyframes blackDivAppearing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.loading-loop {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+.loading-loop:after {
+  content: " ";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  border-radius: 50%;
+  border: 3px solid #000;
+  border-color: #000 transparent #000 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #root {
+    padding-bottom: 220px;
+    min-height: 1000px;
+  }
+  .container-table-responsive {
+    max-width: 100%;
+  }
+
+  .loading-loop {
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .loading-loop:after {
+    content: " ";
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    border-radius: 50%;
+    border: 2px solid #000;
+    border-color: #000 transparent #000 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+@media only screen and (max-width: 850px) {
+  #root {
+    padding-bottom: 320px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .container {
+    max-width: 95%;
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .loading-loop {
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .loading-loop:after {
+    content: " ";
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    border-radius: 50%;
+    border: 4px solid #000;
+    border-color: #000 transparent #000 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/**************************
+********ICONS************
+**************************/
+
+.featherIcon {
+  color: black;
+}
+
+.downsize-icon {
+  margin-bottom: -5px;
+}
+
+/**************************
+********LOADERS************
+**************************/
+
+.one-line-loader {
+  margin-bottom: -7px;
+}
+
+.margin-top-negative-loader {
+  margin-top: 5px;
+  margin-left: 0;
+  text-align: left;
+}
+.lds-roller {
+  margin-top: -15px;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/**************************
 *********LOGIN PAGE********
 **************************/
 
@@ -110,6 +481,32 @@ form.reset-password-form button {
 **************************/
 .RegisterLoader {
   margin-top: 30px;
+}
+
+/**************************
+********MY ACCOUNT*******
+**************************/
+.my-account input,
+.my-account textarea {
+  margin: 0.5rem auto;
+  display: block;
+  border-radius: var(--border-radius-form-field);
+  border: 1px solid lightgrey;
+  padding: 1.8rem;
+  font-size: 2rem;
+  text-align: center;
+  width: 30%;
+}
+
+.my-account button {
+  margin-top: 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .my-account input,
+  .my-account textarea {
+    width: 80%;
+  }
 }
 
 /**************************
@@ -245,6 +642,28 @@ div.connect p {
   position: relative;
   width: 40px;
   outline: none;
+}
+
+.flag-drop-down {
+  cursor: pointer;
+  padding: 3px;
+  background-color: var(--background-color);
+}
+
+.set-lang-choosing {
+  position: absolute;
+  top: 28px;
+  right: 8px;
+  left: 0;
+  box-shadow: 1px 1px 1px black;
+  z-index: 2;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.set-lang-choosing .flag-drop-down:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .current-app-lang img {
@@ -473,5 +892,47 @@ div.lang-select-applevel {
 
   to {
     right: 0;
+  }
+}
+
+/**************************
+*********FOOTER***********
+**************************/
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100px;
+  border-top: 1px solid lightgrey;
+  z-index: 1;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 1000px) {
+  .footer {
+    height: 200px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .footer {
+    height: 300px;
+  }
+  .footer-container {
+    flex-direction: column;
   }
 }
