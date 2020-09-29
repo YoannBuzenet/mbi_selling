@@ -2,6 +2,13 @@
   "app.generics.yes": "Oui",
   "app.generics.no": "Non",
 
+  "app.navbar.logOut.toast.success": "Vous êtes bien déconnecté.",
+  "app.navbar.myAccount": "Mon Compte",
+  "app.navbar.settings": "Paramètres",
+  "app.navbar.logOut": "Déconnexion",
+  "app.navbar.register": "S'inscrire",
+  "app.navbar.connect": "Se connecter",
+
   "app.myAccountPage.title": "Mon compte",
   "app.myAccountPage.myEmail": "Email : ",
   "app.myAccountPage.FirstName": "Prénom",
