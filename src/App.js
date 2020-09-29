@@ -26,6 +26,7 @@ import RegisterPage from "./pages/RegisterPage";
 
 //Components
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   // STATE Creating the Authentication state
@@ -156,6 +157,7 @@ function App() {
             hideProgressBar={true}
           />
           <NavbarWithRouter />
+          <Footer />
           <Switch>
             <Route
               path="/login"
