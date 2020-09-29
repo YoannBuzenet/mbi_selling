@@ -2,6 +2,13 @@
   "app.generics.yes": "Yes",
   "app.generics.no": "No",
 
+  "app.navbar.logOut.toast.success": "You logged out successfully.",
+  "app.navbar.myAccount": "My Account",
+  "app.navbar.settings": "Settings",
+  "app.navbar.logOut": "Log out",
+  "app.navbar.register": "Register",
+  "app.navbar.connect": "Connect",
+
   "app.myAccountPage.title": "My Account",
   "app.myAccountPage.myEmail": "Email : ",
   "app.myAccountPage.FirstName": "First Name",
