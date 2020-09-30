@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   productLegalities.init(
     {
-      idProduct: DataTypes.INTEGER,
+      idProduct: { type: DataTypes.INTEGER, unique: true },
       isLegalCommander: DataTypes.INTEGER,
       isLegalDuel: DataTypes.INTEGER,
       isLegalLegacy: DataTypes.INTEGER,

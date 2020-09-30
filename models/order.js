@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       idOrderMKM: DataTypes.INTEGER,
       amount: DataTypes.INTEGER,
-      wasMadeAt: DataTypes.DATETIME, //Todo check if it exists
+      wasMadeAt: DataTypes.DATETIME,
       idCustomerMKM: DataTypes.INTEGER,
     },
     {
