@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //Removing security check that can block in localhost (it blocks if https is missing)
-if (process.env.NODE_ENV === "dev") {
+if (process.env.NODE_ENV === "development") {
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 }
 

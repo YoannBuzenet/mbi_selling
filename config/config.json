@@ -4,20 +4,29 @@
     "password": "Musk1977!",
     "database": "mbi_selling_database_development",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "use_env_variable": "DATABASE_URL_DEV",
+    "pool": {
+      "max": 20,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "mbi_selling_database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "use_env_variable": "mbi_selling_database_test"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "mbi_selling_database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "use_env_variable": "mbi_selling_database_production"
   }
 }
