@@ -1,41 +1,38 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const axios = require("axios");
 const productLegalitiesModel = require("../../models/productlegalities");
+const db = require("../../models/index");
+const { config } = require("../../config/config");
 
-const sequelize = new Sequelize(
-  "mbi_selling_database_development",
-  "root",
-  "Musk1977!",
-  {
-    host: "localhost",
-    dialect: "mysql",
-    pool: {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
-  }
-);
+//TODO ajout controle  security level ?
 
 function getAllMcmIdAndLegalities(jwt) {
-  axios.defaults.headers["Authorization"] = "Bearer " + jwt;
+  axios.defaults.headers["Authorization"] = jwt;
+
+  //for each format
+  const format = 1;
+
   axios
-    .get(process.env.REACT_APP_MTGAPI_URL + "/cards")
+    .get(process.env.REACT_APP_MTGAPI_URL + "/formats/" + format)
     .then((resp) => {
-      console.log(resp.data);
-      console.log("register first page into DB");
-      console.log("call X fois pour le nombre de page et upsert");
+      // console.log(resp.data);
+      // console.log("register first page into DB");
+      // console.log("call X fois pour le nombre de page et upsert");
+      // console.log("nombre délement", resp.data.legalities);
+      console.log("go");
+      resp.data.legalities.map((card) => {
+        if (card.status === "Legal") {
+          db.productLegalities.upsert({
+            idProduct: card.cards.mcmid,
+            [`isLegal${config.formatDefinition[format]}`]: 1,
+          });
+        }
+      });
     })
     .catch((error) => {
       console.log("we're in error");
-      // console.log("Here is the error", error);
+      console.log("Here is the error", error);
     });
-
-  const mockProductLegality = { idProduct: 54 };
-
-  const productLegalities = productLegalitiesModel(sequelize, Sequelize);
-  productLegalities.create(mockProductLegality);
 }
 
 module.exports = { getAllMcmIdAndLegalities };

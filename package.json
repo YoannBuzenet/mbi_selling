@@ -36,8 +36,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:server": "NODE_ENV=dev node server/serverWrapper.js",
-    "start:server:windows": "SET NODE_ENV=dev& node server/server.js"
+    "start:server": "NODE_ENV=development node server/serverWrapper.js",
+    "start:server:windows": "SET NODE_ENV=development& node server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

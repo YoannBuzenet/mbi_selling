@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       idOrderMKM: DataTypes.INTEGER,
       amount: DataTypes.INTEGER,
-      wasMadeAt: DataTypes.DATETIME,
+      wasMadeAt: DataTypes.DATE,
       idCustomerMKM: DataTypes.INTEGER,
     },
     {
