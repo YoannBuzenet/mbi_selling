@@ -7,10 +7,10 @@
     "dialect": "mysql",
     "use_env_variable": "DATABASE_URL_DEV",
     "pool": {
-      "max": 20,
+      "max": 50,
       "min": 0,
-      "acquire": 30000,
-      "idle": 10000
+      "idle": 10000,
+      "acquire": 500000
     }
   },
   "test": {
@@ -19,7 +19,7 @@
     "database": "mbi_selling_database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "use_env_variable": "mbi_selling_database_test"
+    "use_env_variable": "NOM ENV VARIABLE"
   },
   "production": {
     "username": "root",
@@ -27,6 +27,6 @@
     "database": "mbi_selling_database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "use_env_variable": "mbi_selling_database_production"
+    "use_env_variable": "NOM ENV VARIABLE"
   }
 }

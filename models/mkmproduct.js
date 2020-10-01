@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   MkmProduct.init(
     {
-      idProduct: DataTypes.INTEGER,
       idArticle: { type: DataTypes.INTEGER, unique: true },
+      idProduct: DataTypes.INTEGER,
       englishName: DataTypes.STRING,
       localName: DataTypes.STRING,
       Exp: DataTypes.STRING,
