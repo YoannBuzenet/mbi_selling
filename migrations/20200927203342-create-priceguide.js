@@ -10,6 +10,11 @@ module.exports = {
       },
       idProduct: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "productlegalities",
+          key: "idProduct",
+        },
       },
       avgSellPrice: {
         type: Sequelize.INTEGER,
