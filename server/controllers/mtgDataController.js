@@ -5,6 +5,7 @@ const db = require("../../models/index");
 const { config } = require("../../config/config");
 
 //TODO ajout controle  security level ?
+//TODO handle 401
 
 //Getting all formats from API
 async function getAllFormatDefinition(jwt) {
@@ -16,7 +17,9 @@ async function getAllFormatDefinition(jwt) {
       //On each formats we are going to ask all the cards
 
       for (let i = 1; i <= resp.data["hydra:totalItems"]; i++) {
+        console.log("iteration AVANT FUNCTION", i);
         let dataToClear = await getAllMcmIdAndLegalitiesFromOneFormat(jwt, i);
+        console.log("iteration APRES FUNCTION", i);
         dataToClear = null;
       }
     });
@@ -30,15 +33,16 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
   return await axios
     .get(process.env.REACT_APP_MTGAPI_URL + "/formats/" + idFormat)
     .then(async (resp) => {
-      console.log("did request one format - before .map on result");
+      console.log("did request one format - before for loop on result");
 
-      resp.data.legalities.map(async (card) => {
+      for (let i = 0; i < resp.data.legalities.length; i++) {
         console.log("go");
 
-        if (card.status === "Legal") {
+        if (resp.data.legalities[i].status === "Legal") {
+          console.log("idProduct:", resp.data.legalities[i].cards.mcmid);
           await db.productLegalities.upsert(
             {
-              idProduct: card.cards.mcmid,
+              idProduct: resp.data.legalities[i].cards.mcmid,
               [`isLegal${config.formatDefinition[idFormat]}`]: 1,
               updatedAt: Date.now(),
             },
@@ -52,7 +56,7 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
         } else {
           console.log("card not legal");
         }
-      });
+      }
     })
     .catch((error) => {
       console.log("we're in error");
