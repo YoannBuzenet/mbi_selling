@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.shop_params);
-      User.hasMany(models.Script);
+      User.hasMany(models.Script, { foreignKey: "idShop" });
       User.hasMany(models.PUT_Request);
       User.hasMany(models.MkmProduct);
       User.hasMany(models.Order);
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      idShop: DataTypes.INTEGER,
+      idShop: { type: DataTypes.INTEGER, unique: true },
     },
     {
       sequelize,

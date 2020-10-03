@@ -11,6 +11,7 @@ module.exports = {
       },
       idShop: {
         type: Sequelize.INTEGER,
+        unique: true,
       },
       createdAt: {
         allowNull: false,
