@@ -67,23 +67,8 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
     });
 }
 
-//This is a test function
-//Storing all data in RAM to check if it's the source of memory problem
-async function getAllDatasInRAM(jwt) {
-  axios.defaults.headers["Authorization"] = jwt;
-  await axios
-    .get(process.env.REACT_APP_MTGAPI_URL + "/formats")
-    .then(async (resp) => {
-      console.log("getting all formats");
-      //On each formats we are going to ask all the cards
-      let format = {};
-      for (let i = 1; i <= resp.data["hydra:totalItems"]; i++) {
-        format[i] = await axios.get(
-          process.env.REACT_APP_MTGAPI_URL + "/formats/" + i
-        );
-      }
-      console.log("fini");
-    });
+async function addIdSetToProductLegalities() {
+  //ajouter le set au productLegality dictionnary
 }
 
 module.exports = {

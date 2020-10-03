@@ -12,6 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         unique: true,
       },
+      idSet: {
+        type: Sequelize.INTEGER,
+      },
       isLegalCommander: {
         type: Sequelize.INTEGER,
       },
