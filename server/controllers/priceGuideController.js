@@ -1,7 +1,7 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const axios = require("axios");
 const db = require("../../models/index");
-const { config } = require("../../config/config");
+const { config } = require("../../config/configApp");
 
 async function getAllPrices(jwt) {
   axios.defaults.headers["Authorization"] = jwt;

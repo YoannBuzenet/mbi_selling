@@ -11,7 +11,8 @@
       "min": 0,
       "idle": 10000,
       "acquire": 500000
-    }
+    },
+    "url": "mysql://root:Musk1977!@localhost:3306/mbi_selling_database_development"
   },
   "test": {
     "username": "root",
