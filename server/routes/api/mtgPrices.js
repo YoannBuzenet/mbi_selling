@@ -6,9 +6,8 @@ router.get("/", async (req, res) => {
   const jwt = req.headers.authorization;
   const { getAllPrices } = require("../../controllers/priceGuideController");
 
-  // getAllMcmIdAndLegalities(jwt);
   getAllPrices(jwt);
-  res.json("getting MTG data EN MASSE !");
+  res.json("getting MTG prices EN MASSE !");
 });
 
 module.exports = router;

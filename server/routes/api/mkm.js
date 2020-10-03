@@ -1,9 +1,12 @@
 var express = require("express");
 var router = express.Router();
+const mkmController = require("../../controllers/mkmController");
+const securityCheckAPI = require("../../services/securityCheckAPI");
+const axios = require("axios");
 
 //Update Set Prices on MKM
 //TODO : Finish this function, now it just get stock from MKM
-router.get("/updateSetPrice", async (req, res) => {
+router.get("/refreshMKMStock", async (req, res) => {
   // Check 1 : Params
   // Checking params are OK
   let idShop = parseInt(req.query.idShop);
@@ -60,13 +63,16 @@ router.get("/updateSetPrice", async (req, res) => {
     res.status(404).json("Set doesn't exist.");
   }
 
-  //if everything is there ( set and shop and admin access), call the core function
-  const mkmController = require("./controllers/mkmController");
-
   // getShopStock(shopData.data, setData.data, false);
-  const { pathFile } = mkmController.getShopStock(shopData.data);
+  mkmController.getShopStock(shopData.data);
 
   res.status(200).json("OK");
+});
+
+router.get("/testopenAndLogCSV", async (req, res) => {
+  const data = mkmController.registerStockFileIntoDB("LaBoutique", 1);
+
+  res.status(200).json("CSV should be stored in DB now");
 });
 
 module.exports = router;

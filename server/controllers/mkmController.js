@@ -1,6 +1,9 @@
 const axios = require("axios");
 const MkmAPI = require("../services/MkmAPI");
 const fs = require("fs");
+var slugify = require("slugify");
+const csv = require("csvtojson");
+const db = require("../../models/index");
 
 /* ********** */
 // Get MKM stock from user and register it on server
@@ -41,7 +44,7 @@ function getShopStock(shopInfo) {
         /* ******************* */
         //Save the file
         /* ******************* */
-        var slugify = require("slugify");
+
         const shopNameSlugified = slugify(shopInfo.legalName, "_");
         /* ******************* */
         //Creating folder if it doesn't exist
@@ -82,6 +85,8 @@ function getShopStock(shopInfo) {
               }
 
               const pathFile = "./shopStock/" + shopNameSlugified + "/test.csv";
+              const pathFileWithoutExtension =
+                "./shopStock/" + shopNameSlugified + "/test";
 
               console.log(fileUnzipped);
               fs.writeFile(
@@ -96,13 +101,18 @@ function getShopStock(shopInfo) {
                   /* ******************* */
                   // Deleting the gzip file
                   /* ******************* */
-                  fs.unlink(pathFile, (err, success) => {
-                    if (err) {
-                      return console.log("err", err);
+                  fs.unlink(
+                    pathFileWithoutExtension + ".gzip",
+                    (err, success) => {
+                      if (err) {
+                        return console.log("err", err);
+                      }
+                      console.log(
+                        "The GZIP was deleted! CSV is ready to be read in another function."
+                      );
+                      return true;
                     }
-                    console.log("The CSV was deleted!");
-                    return { pathFile: pathFile };
-                  });
+                  );
                 }
               );
             });
@@ -113,10 +123,68 @@ function getShopStock(shopInfo) {
     .catch((err) => console.log(err));
 }
 
-function registerStockFileIntoDB(pathFile) {
+async function registerStockFileIntoDB(shopName, shopId) {
   console.log(
     "parse the CSV/Json file // put it in memory // write it in mysql"
   );
+
+  console.log("we're looking for the stock of : ", shopName);
+
+  const shopNameSlugified = slugify(shopName, "_");
+  const path = "./shopStock/" + shopNameSlugified + "/test.csv";
+
+  //Parameters customized for our CSV : separator is ; and there are dots in columns names that we don't want to interpret
+  csv({ delimiter: ";", flatKeys: true })
+    .fromFile(path)
+    .then(async (arrayOfCards) => {
+      console.log(arrayOfCards);
+
+      for (let i = 0; i < arrayOfCards.length; i++) {
+        await db.MkmProduct.upsert(
+          {
+            idArticle: arrayOfCards[i].idArticle,
+            idProduct: arrayOfCards[i].idProduct,
+            englishName: arrayOfCards[i]["English Name"],
+            localName: arrayOfCards[i]["Local Name"],
+            Exp: arrayOfCards[i]["Exp."],
+            expName: arrayOfCards[i]["Exp. Name"],
+            price: arrayOfCards[i].Price,
+            language: arrayOfCards[i].Language,
+            condition: arrayOfCards[i].Condition,
+            isFoil: arrayOfCards[i]["Foil?"] || 0,
+            isSigned: arrayOfCards[i]["Signed?"] || 0,
+            isPlayset: arrayOfCards[i]["Playset?"] || 0,
+            isAltered: arrayOfCards[i]["Altered?"] || 0,
+            comments: arrayOfCards[i].Comments || 0,
+            amount: arrayOfCards[i].Amount,
+            onSale: arrayOfCards[i].onSale,
+            idCurrency: arrayOfCards[i].idCurrency,
+            currencyCode: arrayOfCards[i]["Currency Code"],
+            idShop: shopId,
+          },
+          {
+            field: [
+              "Price",
+              "Condition",
+              "Foil?",
+              "Signed?",
+              "Playset?",
+              "Altered?",
+              "Comments",
+            ],
+          }
+        );
+      }
+    });
+
+  // file is in //shopStock/shopName
+  // find it, read it, parse it
+  // register it into db
 }
 
-module.exports = { getShopStock };
+//Delete the shop from shop X
+function deleteStockShopInLocalDB(shopId) {
+  console.log("Deleting local stock of shop ", shopId);
+}
+
+module.exports = { getShopStock, registerStockFileIntoDB };
