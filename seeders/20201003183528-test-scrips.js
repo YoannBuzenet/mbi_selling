@@ -11,6 +11,12 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          idShop: 1,
+          name: "Le second script",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
