@@ -1,6 +1,5 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const axios = require("axios");
-const productLegalitiesModel = require("../../models/productlegalities");
 const db = require("../../models/index");
 const { config } = require("../../config/config");
 
