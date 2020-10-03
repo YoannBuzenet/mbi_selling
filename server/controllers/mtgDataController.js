@@ -1,7 +1,7 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const axios = require("axios");
 const db = require("../../models/index");
-const { config } = require("../../config/config");
+const { config } = require("../../config/configApp");
 
 //TODO ajout controle  security level ?
 //TODO handle 401
