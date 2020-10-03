@@ -4,15 +4,14 @@ const mkmController = require("../../controllers/mkmController");
 const securityCheckAPI = require("../../services/securityCheckAPI");
 const axios = require("axios");
 
-//Update Set Prices on MKM
-//TODO : Finish this function, now it just get stock from MKM
-router.get("/refreshMKMStock", async (req, res) => {
+//Refresh MKM stock on local DB
+router.get("/getMKMStockInCSV", async (req, res) => {
   // Check 1 : Params
   // Checking params are OK
   let idShop = parseInt(req.query.idShop);
   let idSet = parseInt(req.query.idSet);
 
-  if (isNaN(idShop) || isNaN(idSet)) {
+  if (isNaN(idShop)) {
     res.status(406).json("idShop or idSet is missing");
   }
   // Check 2 : Headers
@@ -46,21 +45,6 @@ router.get("/refreshMKMStock", async (req, res) => {
 
   if (!shopData) {
     res.status(404).json("Shop doesn't exist.");
-  }
-
-  //Check 5 : Set
-  //Getting priceguide for the set + check set exist
-  let setData = await axios
-    .get(process.env.REACT_APP_MTGAPI_URL + "/sets/" + idSet, {
-      authorization: "Bearer " + jwt,
-    })
-    .catch((error) => {
-      // console.log(error);
-      return false;
-    });
-
-  if (!setData) {
-    res.status(404).json("Set doesn't exist.");
   }
 
   // getShopStock(shopData.data, setData.data, false);
