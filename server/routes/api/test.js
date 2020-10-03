@@ -11,9 +11,20 @@ router.get("/", async (req, res) => {
       idShop: 1,
     },
   });
-  console.log(awesomeUser);
+  console.log("user ", awesomeUser);
 
   awesomeUser.getScripts().then((script) => console.log(script));
+
+  const awesomeScript = await db.Script.findOne({
+    where: {
+      id: 1,
+    },
+  });
+
+  console.log(awesomeScript);
+
+  awesomeScript.getCustom_Rules().then((C_rules) => console.log(C_rules));
+
   res.json("test endpoint !");
 });
 

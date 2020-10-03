@@ -46,12 +46,8 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       mkmPriceGuideReference: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
-        references: {
-          model: "priceguideDefinitions",
-          key: "id",
-        },
       },
       createdAt: {
         allowNull: false,

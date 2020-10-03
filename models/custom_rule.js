@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Custom_Rule.belongsTo(models.Script);
+      Custom_Rule.belongsTo(models.Script, { foreignKey: "id" });
     }
   }
   Custom_Rule.init(
