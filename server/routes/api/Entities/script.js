@@ -123,4 +123,48 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.delete("/:id", async (req, res) => {
+  console.log("on delete !");
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+
+  securityCheckAPI.checkIsJWTThere(req, res);
+
+  securityCheckAPI.checkQueryParams(req, res, "idUser");
+
+  if (req.params.id === undefined) {
+    res.status(406).json("Script ID is mandatory for deleting it.");
+    return;
+  }
+
+  //Check the id of this custom rule exist
+  const existingScript = await db.Script.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (existingScript === null) {
+    res
+      .status(406)
+      .json("Script id " + req.params.id + "rule could not be found.");
+    return;
+  }
+
+  //Delete
+  existingScript
+    .destroy()
+    .then((resp) => {
+      res.status(200).json(resp.dataValues);
+      console.log("test");
+      return;
+    })
+    .catch((err) => {
+      console.log("while deleting", err);
+      res.status(500).json(err);
+      return;
+    });
+});
+
 module.exports = router;

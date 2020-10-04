@@ -298,7 +298,7 @@ router.delete("/:id", async (req, res) => {
   securityCheckAPI.checkQueryParams(req, res, "idUser");
 
   if (req.params.id === undefined) {
-    res.status(406).json("Custom rule ID is mandatory for updating it.");
+    res.status(406).json("Custom rule ID is mandatory for deleting it.");
     return;
   }
 
