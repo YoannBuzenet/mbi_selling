@@ -16,14 +16,35 @@ module.exports = (sequelize, DataTypes) => {
     {
       idScript: DataTypes.INTEGER,
       ruleType: DataTypes.STRING,
-      priceRangeFrom: DataTypes.INTEGER,
-      priceRangeTo: DataTypes.INTEGER,
-      priceRangeValueToSet: DataTypes.INTEGER,
+      priceRangeFrom: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      priceRangeTo: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      priceRangeValueToSet: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       behaviour: DataTypes.STRING,
-      priceRangePercentageFromMkm: DataTypes.INTEGER,
-      isForFoils: DataTypes.INTEGER,
-      isForSigned: DataTypes.INTEGER,
-      isForPlaysets: DataTypes.INTEGER,
+      priceRangePercentageFromMkm: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isForFoils: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isForSigned: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isForPlaysets: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       mkmPriceGuideReference: DataTypes.STRING,
     },
     {

@@ -14,25 +14,62 @@ module.exports = (sequelize, DataTypes) => {
   }
   MkmProduct.init(
     {
-      idArticle: { type: DataTypes.INTEGER, unique: true },
-      idProduct: DataTypes.INTEGER,
+      idArticle: {
+        type: DataTypes.INTEGER,
+        unique: true,
+        validate: { isNumeric: true },
+      },
+      idProduct: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       englishName: DataTypes.STRING,
       localName: DataTypes.STRING,
       Exp: DataTypes.STRING,
       expName: DataTypes.STRING,
-      price: DataTypes.INTEGER,
-      language: DataTypes.INTEGER,
+      price: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      language: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       condition: DataTypes.STRING,
-      isFoil: DataTypes.INTEGER,
-      isSigned: DataTypes.INTEGER,
-      isPlayset: DataTypes.INTEGER,
-      isAltered: DataTypes.INTEGER,
+      isFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isSigned: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isPlayset: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isAltered: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       comments: DataTypes.STRING,
-      amount: DataTypes.INTEGER,
-      onSale: DataTypes.INTEGER,
-      idCurrency: DataTypes.INTEGER,
+      amount: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      onSale: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      idCurrency: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       currencyCode: DataTypes.STRING,
-      idShop: DataTypes.INTEGER,
+      idShop: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

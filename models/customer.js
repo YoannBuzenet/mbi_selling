@@ -16,7 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       country: DataTypes.STRING,
       idShop: DataTypes.INTEGER,
-      idCustomerMKM: DataTypes.INTEGER,
+      idCustomerMKM: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

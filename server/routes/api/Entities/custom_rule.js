@@ -70,18 +70,22 @@ router.post(
     // Payload custom check for this endpoint
     if (Object.keys(req.body).length === 0) {
       res.status(406).json("Custom Rules payload is missing.");
+      return;
     }
     console.log("red body :", req.body);
     if (req.body.id !== undefined) {
       res
         .status(406)
         .json("Custom Rules payload shouldn't have an id in POST requests.");
+      return;
     }
     if (req.body.ruleType === undefined) {
       res.status(406).json("Custom Rules ruleType is mandatory.");
+      return;
     }
     if (req.body.behaviour === undefined) {
       res.status(406).json("Custom Rules behaviour is mandatory.");
+      return;
     }
     if (
       req.body.isForFoils === undefined ||
@@ -93,6 +97,7 @@ router.post(
         .json(
           "Custom Rules isForFoils criteria, or isForSigned, or isForPlaysets is missing."
         );
+      return;
     }
     if (req.body.ruleType === "priceRange") {
       if (
@@ -105,6 +110,7 @@ router.post(
           .json(
             "For Price Range rules, priceRangeFrom, priceRangeTo, priceRangeValueToSet are mandatory."
           );
+        return;
       }
     }
 
@@ -116,6 +122,7 @@ router.post(
     console.log("has user right to access", userHasRightToAccess);
     if (!userHasRightToAccess) {
       res.status(401).json("User does not have access do this ressource.");
+      return;
     }
 
     //Check that there is a script for this user
@@ -125,8 +132,11 @@ router.post(
       },
     });
 
+    console.log(isThereAScriptForThisUser);
+
     if (isThereAScriptForThisUser === null) {
       res.status(401).json("User does not have access do this ressource.");
+      return;
     }
     next();
   },
@@ -151,10 +161,11 @@ router.post(
       isForPlaysets: req.body.isForPlaysets,
       mkmPriceGuideReference: req.body.mkmPriceGuideReference,
     })
-      .then((resp) => console.log("what do we have here ?", resp))
+      .then((resp) => {
+        console.log("what do we have here ?", resp);
+        res.status(200).json(resp.dataValues);
+      })
       .catch((err) => console.log("didnt work bro", err));
-
-    res.json("posted a custom rule ! here it is :");
   }
 );
 

@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Invoice.init(
     {
-      idShop: DataTypes.INTEGER,
+      idShop: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

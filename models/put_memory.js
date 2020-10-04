@@ -14,16 +14,43 @@ module.exports = (sequelize, DataTypes) => {
   }
   put_memory.init(
     {
-      idScript: DataTypes.INTEGER,
+      idScript: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       idProduct: DataTypes.STRING,
-      oldPrice: DataTypes.INTEGER,
-      newPrice: DataTypes.INTEGER,
-      condition: DataTypes.INTEGER,
-      lang: DataTypes.INTEGER,
-      isFoil: DataTypes.INTEGER,
-      isSigned: DataTypes.INTEGER,
-      isPlayset: DataTypes.INTEGER,
-      idCustomRuleUsed: DataTypes.INTEGER,
+      oldPrice: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      newPrice: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      condition: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      lang: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isSigned: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isPlayset: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      idCustomRuleUsed: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

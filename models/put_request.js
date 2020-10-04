@@ -16,9 +16,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   PUT_Request.init(
     {
-      shopId: DataTypes.INTEGER,
-      batchId: DataTypes.INTEGER,
-      snapShotParamId: DataTypes.INTEGER,
+      shopId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      batchId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      snapShotParamId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

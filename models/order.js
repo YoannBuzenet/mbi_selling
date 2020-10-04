@@ -16,10 +16,19 @@ module.exports = (sequelize, DataTypes) => {
   }
   Order.init(
     {
-      idOrderMKM: DataTypes.INTEGER,
-      amount: DataTypes.INTEGER,
+      idOrderMKM: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      amount: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       wasMadeAt: DataTypes.DATE,
-      idCustomerMKM: DataTypes.INTEGER,
+      idCustomerMKM: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

@@ -14,31 +14,106 @@ module.exports = (sequelize, DataTypes) => {
   }
   snapshot_params.init(
     {
-      shopId: DataTypes.INTEGER,
-      percentPerSigned: DataTypes.INTEGER,
-      percentPerMintRegular: DataTypes.INTEGER,
-      percentPerNearMintRegular: DataTypes.INTEGER,
-      percentPerGoodRegular: DataTypes.INTEGER,
-      percentPerLightPlayedRegular: DataTypes.INTEGER,
-      percentPerPlayedRegular: DataTypes.INTEGER,
-      percentPerPoorRegular: DataTypes.INTEGER,
-      percentPerMintFoil: DataTypes.INTEGER,
-      percentPerNearMintFoil: DataTypes.INTEGER,
-      percentPerGoodFoil: DataTypes.INTEGER,
-      percentPerLightPlayedFoil: DataTypes.INTEGER,
-      percentPerPlayedFoil: DataTypes.INTEGER,
-      percentPerPoorFoil: DataTypes.INTEGER,
-      percentPerLangGerman: DataTypes.INTEGER,
-      percentPerLangSpanish: DataTypes.INTEGER,
-      percentPerLangFrench: DataTypes.INTEGER,
-      percentPerLangItalian: DataTypes.INTEGER,
-      percentPerLangJapanese: DataTypes.INTEGER,
-      percentPerLangPortuguese: DataTypes.INTEGER,
-      percentPerLangRussian: DataTypes.INTEGER,
-      percentPerLangSimplifiedChinese: DataTypes.INTEGER,
-      percentPerLangEnglish: DataTypes.INTEGER,
-      percentPerLangKorean: DataTypes.INTEGER,
-      percentPerLangTraditionalChinese: DataTypes.INTEGER,
+      shopId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerSigned: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerMintRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerNearMintRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerGoodRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLightPlayedRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerPlayedRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerPoorRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerMintFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerNearMintFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerGoodFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLightPlayedFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerPlayedFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerPoorFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangGerman: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangSpanish: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangFrench: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangItalian: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangJapanese: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangPortuguese: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangRussian: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangSimplifiedChinese: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangEnglish: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangKorean: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerLangTraditionalChinese: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

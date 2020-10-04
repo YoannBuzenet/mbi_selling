@@ -15,7 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Script.init(
     {
-      idShop: DataTypes.INTEGER,
+      idShop: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       name: DataTypes.STRING,
     },
     {
