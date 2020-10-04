@@ -39,7 +39,7 @@ router.get("/getMKMStockInCSV", async (req, res) => {
       authorization: "Bearer " + jwt,
     })
     .catch((error) => {
-      // console.log(error);
+      console.log(error);
       return false;
     });
 
@@ -54,6 +54,7 @@ router.get("/getMKMStockInCSV", async (req, res) => {
 });
 
 router.get("/testopenAndLogCSV", async (req, res) => {
+  //TODO pass this as dynamic
   const data = mkmController.registerStockFileIntoDB("LaBoutique", 1);
 
   res.status(200).json("CSV should be stored in DB now");
