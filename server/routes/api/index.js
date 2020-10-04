@@ -21,6 +21,7 @@ router.use("/mtgData", mtgDataRoutes);
 router.use("/mtgPrices", mtgPricesRoutes);
 router.use("/test", testRoutes);
 
+// Entities Routes
 router.use("/customRules", customRulesRoutes);
 
 module.exports = router;

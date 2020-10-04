@@ -44,4 +44,33 @@ async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   return false;
 }
 
-module.exports = { checkIfUserIsAdmin, checkIfUserIsThisOneOrAdmin };
+function checkIsJWTThere(req, res) {
+  let jwt = req.headers.authorization;
+  if (jwt === undefined) {
+    res.status(406).json("Auth Header is missing !");
+  }
+}
+
+//For now the function only check query param as int
+//Should be able to do more
+function checkQueryParams(req, res, queryParams) {
+  //If it's an array, check each of them
+  if (Array.isArray(queryParams)) {
+    for (let i = 0; i < queryParams.length; i++) {
+      if (isNaN(parseInt(req.query[queryParams[i]]))) {
+        res.status(406).json(`${queryParams[i]} is missing`);
+      }
+    }
+  } else {
+    if (isNaN(parseInt(req.query.queryParams))) {
+      res.status(406).json(`${queryParams} is missing`);
+    }
+  }
+}
+
+module.exports = {
+  checkIfUserIsAdmin,
+  checkIfUserIsThisOneOrAdmin,
+  checkIsJWTThere,
+  checkQueryParams,
+};
