@@ -14,20 +14,62 @@ module.exports = (sequelize, DataTypes) => {
   productLegalities.init(
     {
       idProduct: { type: DataTypes.INTEGER, unique: true },
-      idSet: DataTypes.INTEGER,
-      isLegalCommander: DataTypes.INTEGER,
-      isLegalDuel: DataTypes.INTEGER,
-      isLegalLegacy: DataTypes.INTEGER,
-      isLegalModern: DataTypes.INTEGER,
-      isLegalVintage: DataTypes.INTEGER,
-      isLegalPenny: DataTypes.INTEGER,
-      isLegalPauper: DataTypes.INTEGER,
-      isLegalHistoric: DataTypes.INTEGER,
-      isLegalPioneer: DataTypes.INTEGER,
-      isLegalBrawl: DataTypes.INTEGER,
-      isLegalFuture: DataTypes.INTEGER,
-      isLegalStandard: DataTypes.INTEGER,
-      isLegalOldSchool: DataTypes.INTEGER,
+      idSet: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalCommander: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalDuel: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalLegacy: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalModern: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalVintage: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalPenny: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalPauper: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalHistoric: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalPioneer: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalBrawl: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalFuture: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalStandard: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isLegalOldSchool: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

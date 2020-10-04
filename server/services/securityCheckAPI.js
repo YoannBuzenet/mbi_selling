@@ -32,14 +32,14 @@ async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   //Removing invisible space that was created by .env
   normalURL = normalURL.replace(/[\u200B-\u200D\uFEFF]/g, "");
 
-  console.log("url length", normalURL.length);
+  // console.log("url length", normalURL.length);
 
   const respServ = await axios.get(normalURL).catch((error) => {
     console.log("error when getting admin data from api", error);
     false;
   });
 
-  console.log("resp after check auth", respServ);
+  // console.log("resp after check auth", respServ);
 
   if (respServ) {
     // console.log("true", respServ);

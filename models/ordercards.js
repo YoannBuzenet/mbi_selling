@@ -14,14 +14,35 @@ module.exports = (sequelize, DataTypes) => {
   }
   OrderCards.init(
     {
-      amount: DataTypes.INTEGER,
+      amount: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       condition: DataTypes.STRING,
-      lang: DataTypes.INTEGER,
-      isFoil: DataTypes.INTEGER,
-      isSigned: DataTypes.INTEGER,
-      isAltered: DataTypes.INTEGER,
-      isPlayset: DataTypes.INTEGER,
-      idOrder: DataTypes.INTEGER, //TODO check si les relations s'écrivent comme ça
+      lang: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isSigned: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isAltered: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      isPlayset: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      idOrderMKM: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,

@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      idShop: { type: DataTypes.INTEGER, unique: true },
+      idShop: {
+        type: DataTypes.INTEGER,
+        unique: true,
+        validate: { isNumeric: true },
+      },
     },
     {
       sequelize,
