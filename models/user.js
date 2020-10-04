@@ -9,11 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.shop_params);
+      User.hasMany(models.shop_params, { foreignKey: "idShop" });
       User.hasMany(models.Script, { foreignKey: "idShop" });
-      User.hasMany(models.PUT_Request);
-      User.hasMany(models.MkmProduct);
-      User.hasMany(models.Order);
+      User.hasMany(models.PUT_Request, { foreignKey: "idShop" });
+      User.hasMany(models.MkmProduct, { foreignKey: "idShop" });
+      User.hasMany(models.Order, { foreignKey: "idShop" });
+      User.hasMany(models.Invoice, { foreignKey: "idShop" });
     }
   }
   User.init(
