@@ -27,14 +27,19 @@ async function checkIfUserIsAdmin(jwt) {
 async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   axios.defaults.headers["Authorization"] = jwt;
 
-  const respServ = await axios
-    .get(process.env.REACT_APP_MTGAPI_URL + "/users/" + idShop)
-    .catch((error) => {
-      // console.log("error when getting admin data from api", error);
-      false;
-    });
+  let normalURL = process.env.REACT_APP_MTGAPI_URL + "/users/" + idShop;
 
-  console.log(respServ);
+  //Removing invisible space that was created by .env
+  normalURL = normalURL.replace(/[\u200B-\u200D\uFEFF]/g, "");
+
+  console.log("url length", normalURL.length);
+
+  const respServ = await axios.get(normalURL).catch((error) => {
+    console.log("error when getting admin data from api", error);
+    false;
+  });
+
+  console.log("resp after check auth", respServ);
 
   if (respServ) {
     // console.log("true", respServ);

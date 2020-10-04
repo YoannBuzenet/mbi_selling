@@ -6,13 +6,13 @@ module.exports = {
       "Scripts",
       [
         {
-          idShop: 1,
+          idShop: 4,
           name: "Le premier script",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          idShop: 1,
+          idShop: 4,
           name: "Le second script",
           createdAt: new Date(),
           updatedAt: new Date(),

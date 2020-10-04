@@ -7,7 +7,7 @@ module.exports = {
       "Users",
       [
         {
-          idShop: 1,
+          idShop: 4,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
