@@ -123,6 +123,73 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.patch("/:id", async (req, res) => {
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+
+  securityCheckAPI.checkIsJWTThere(req, res);
+
+  securityCheckAPI.checkQueryParams(req, res, "idUser");
+
+  if (req.params.id === undefined) {
+    res.status(406).json("Script ID is mandatory for updating it.");
+    return;
+  }
+
+  //Check the id of this script exists
+  const existingScript = await db.Script.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (existingScript === null) {
+    res
+      .status(406)
+      .json("Script with id " + req.params.id + " could not be found.");
+    return;
+  }
+
+  /* ************************** */
+  /* ******PAYLOAD CHECK****** */
+  /* ************************ */
+  // Payload custom check for this endpoint
+  if (Object.keys(req.body).length === 0) {
+    res.status(406).json("Script payload is missing.");
+    return;
+  }
+
+  //Check that the requester is who he sayts he is OR is admin
+  const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
+    req.headers.authorization,
+    req.query.idUser
+  );
+  console.log("has user right to access", userHasRightToAccess);
+  if (!userHasRightToAccess) {
+    res.status(401).json("User does not have access do this ressource.");
+    return;
+  }
+
+  /* ********************* */
+  /* *****PROCESS******** */
+  /* ******************* */
+  //Register Rule
+  //Send it back with its id !
+  existingScript.name = req.body.name;
+  existingScript
+    .save()
+    .then((resp) => {
+      console.log("what do we have here ? IN PUT : ", resp);
+      res.status(200).json(resp.dataValues);
+    })
+    .catch((err) => {
+      console.log("didnt work bro", err);
+      res.status(500).json(err);
+      return;
+    });
+});
+
 router.delete("/:id", async (req, res) => {
   console.log("on delete !");
   /* ************************** */
