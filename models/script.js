@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       idShop: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+        allowNull: false,
       },
       name: DataTypes.STRING,
     },

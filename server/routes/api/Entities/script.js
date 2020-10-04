@@ -37,6 +37,7 @@ router.get("/getByUserId", async (req, res) => {
   res.status(200).json(userScripts);
 });
 
+//Get a script by Id
 router.get("/getById/:id", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
@@ -76,6 +77,50 @@ router.get("/getById/:id", async (req, res) => {
 
   res.status(200).json(userScripts);
   return;
+});
+
+//Create a script
+router.post("/", async (req, res) => {
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+
+  securityCheckAPI.checkIsJWTThere(req, res);
+
+  securityCheckAPI.checkQueryParams(req, res, "idUser");
+
+  //check payload for name criteria presence
+  // Payload custom check for this endpoint
+  if (Object.keys(req.body).length === 0) {
+    res.status(406).json("Script payload is missing.");
+    return;
+  }
+
+  if (req.body.name === undefined) {
+    res.status(406).json("Script Name is mandatory.");
+    return;
+  }
+
+  //Check that the requester is who he sayts he is OR is admin
+  const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
+    req.headers.authorization,
+    req.query.idUser
+  );
+  console.log("user has the right to access : ", userHasRightToAccess);
+  if (!userHasRightToAccess) {
+    res.status(401).json("User does not have access do this ressource.");
+    return;
+  }
+
+  db.Script.create({ name: req.body.name, idShop: req.query.idUser })
+    .then((resp) => {
+      console.log(resp);
+      res.status(200).json(resp);
+    })
+    .catch((err) => {
+      console.log("error when creating a script", err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
