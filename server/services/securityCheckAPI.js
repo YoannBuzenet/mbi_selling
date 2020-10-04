@@ -24,4 +24,24 @@ async function checkIfUserIsAdmin(jwt) {
   return false;
 }
 
-module.exports = { checkIfUserIsAdmin };
+async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
+  axios.defaults.headers["Authorization"] = jwt;
+
+  const respServ = await axios
+    .get(process.env.REACT_APP_MTGAPI_URL + "/users/" + idShop)
+    .catch((error) => {
+      // console.log("error when getting admin data from api", error);
+      false;
+    });
+
+  console.log(respServ);
+
+  if (respServ) {
+    // console.log("true", respServ);
+    return true;
+  }
+  //   console.log("false", respServ);
+  return false;
+}
+
+module.exports = { checkIfUserIsAdmin, checkIfUserIsThisOneOrAdmin };
