@@ -73,9 +73,20 @@ function checkQueryParams(req, res, queryParams) {
   }
 }
 
+function checkType(param, type) {
+  //Checking number
+  if (type === "number") {
+    if (isNaN(parseInt(param))) {
+      res.status(406).json(`${param} should be a number.`);
+      return;
+    }
+  }
+}
+
 module.exports = {
   checkIfUserIsAdmin,
   checkIfUserIsThisOneOrAdmin,
   checkIsJWTThere,
   checkQueryParams,
+  checkType,
 };

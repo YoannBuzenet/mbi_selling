@@ -52,6 +52,7 @@ router.get(
     });
 
     res.status(200).json(custom_rules);
+    return;
   }
 );
 
