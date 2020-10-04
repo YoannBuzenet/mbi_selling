@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       isForFoils: DataTypes.INTEGER,
       isForSigned: DataTypes.INTEGER,
       isForPlaysets: DataTypes.INTEGER,
+      mkmPriceGuideReference: DataTypes.STRING,
     },
     {
       sequelize,
