@@ -10,6 +10,7 @@ const testRoutes = require("./test");
 
 //Routes by Entities
 const customRulesRoutes = require("./Entities/custom_rule");
+const scriptRoutes = require("./Entities/script");
 
 //Connecting to DB when arriving in /api
 const { connect } = require("../../../database/connect");
@@ -23,5 +24,6 @@ router.use("/test", testRoutes);
 
 // Entities Routes
 router.use("/customRules", customRulesRoutes);
+router.use("/script", scriptRoutes);
 
 module.exports = router;

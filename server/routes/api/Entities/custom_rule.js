@@ -19,9 +19,10 @@ router.get(
       req.headers.authorization,
       req.query.idUser
     );
-    console.log(userHasRightToAccess);
+    console.log("has user right to access", userHasRightToAccess);
     if (!userHasRightToAccess) {
       res.status(401).json("User does not have access do this ressource.");
+      return;
     }
 
     //Check that there is a script for this user
@@ -31,8 +32,9 @@ router.get(
       },
     });
 
-    if (isThereAScriptForThisUser.length === 0) {
+    if (isThereAScriptForThisUser === null) {
       res.status(401).json("User does not have access do this ressource.");
+      return;
     }
 
     next();
@@ -49,7 +51,7 @@ router.get(
       },
     });
 
-    res.json(custom_rules);
+    res.status(200).json(custom_rules);
   }
 );
 
