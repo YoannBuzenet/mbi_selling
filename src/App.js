@@ -30,7 +30,7 @@ import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
 import SetNewPassword from "./components/SetNewPassword";
 import Dashboard from "./pages/Dashboard";
-import CreateMyScript from "./components/userCoreComponents/CreateMyScript";
+import CreateMyScript from "./components/userCoreComponents/CreateMyScript/CreateMyScript";
 
 function App() {
   // STATE Creating the Authentication state

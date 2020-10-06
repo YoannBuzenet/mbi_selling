@@ -1,0 +1,71 @@
+:root {
+  --height-between-2-rules: 150px;
+  --size-CTA: 70px;
+  --size-CTA-hovered: 80px;
+}
+
+/**************************
+*****CREATE SCRIPT*********
+**************************/
+
+.parts-container {
+  display: flex;
+  justify-content: center;
+}
+
+.parts-container > .left-part,
+.parts-container > .right-part {
+  width: 50%;
+}
+
+.left-part > .left-schema,
+.right-part > .right-schema {
+  width: 80%;
+  margin: auto;
+}
+
+/* *** */
+/* RULE */
+/* *** */
+
+.ruleContainer {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 300px;
+  height: 200px;
+}
+
+.belowRule-CTA {
+  position: relative;
+}
+
+/* .belowRule-CTA > .colored-link {
+  position: absolute;
+  background-color: blue;
+  width: 4px;
+  height: var(--height-between-2-rules);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+svg.add-icon {
+  background-color: red;
+  height: var(--size-CTA);
+  width: var(--size-CTA);
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+@keyframes moveBuddy {
+  0% {
+    width: var(--size-CTA);
+    height: var(--size-CTA);
+  }
+  100% {
+    width: var(--size-CTA-hovered);
+    height: var(--size-CTA-hovered);
+  }
+}
