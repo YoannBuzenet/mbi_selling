@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./createMyScript.css";
 
 import AddRuleButton from "./AddRuleButton";
 
 const CreateMyScript = () => {
+  const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
+    regularCustomRules: [],
+    foilCustomRules: [],
+  });
+
   const [arrayRegularRulesMock, setArrayRegularRulesMock] = useState([
     { name: "test1" },
     { name: "test2" },
@@ -15,9 +20,11 @@ const CreateMyScript = () => {
     { name: "foil4" },
   ]);
 
+  useEffect(() => {
+    console.log("getting custom rules");
+  }, []);
+
   const addACustomRule = (position, FoilOrRegular) => {
-    console.log("we add a rule");
-    console.log(position, FoilOrRegular);
     if (FoilOrRegular === "Regular") {
       arrayRegularRulesMock.splice(position, 0, {
         name: "created programatically",
@@ -63,6 +70,10 @@ const CreateMyScript = () => {
               </>
             ))}
           </div>
+          <p>Regles génériques</p>
+          <p>Les signées ne sont pas traitées.</p>
+          <p>Les altérées ne sont pas traitées.</p>
+          <p>Les playsets ne sont pas traités.</p>
         </div>
         <div className="right-part">
           <div className="right-schema">
