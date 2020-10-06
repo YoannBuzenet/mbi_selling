@@ -157,6 +157,7 @@ const Navbar = ({ history }) => {
               <BurgerMenu history={history} />
 
               <div className="connect">
+                {/* We let this link to show to free users what can be done with this amazing software */}
                 <Link className="classic-links nav-element" to="/stats">
                   <FormattedMessage
                     id="app.navbar.stats"

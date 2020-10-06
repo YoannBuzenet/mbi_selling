@@ -30,6 +30,7 @@ import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
 import SetNewPassword from "./components/SetNewPassword";
 import Dashboard from "./pages/Dashboard";
+import CreateMyScript from "./components/userCoreComponents/CreateMyScript";
 
 function App() {
   // STATE Creating the Authentication state
@@ -177,7 +178,7 @@ function App() {
             />
 
             {/* TODO protect by logged access */}
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/create-script" component={CreateMyScript} />
 
             <Route path="/register" component={RegisterPage} />
 
