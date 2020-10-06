@@ -1,19 +1,1 @@
-/**************************
-*****CREATE SCRIPT*********
-**************************/
 
-.parts-container {
-  display: flex;
-  justify-content: center;
-}
-
-.parts-container > .left-part,
-.parts-container > .right-part {
-  width: 50%;
-}
-
-.left-part > .left-schema,
-.right-part > .right-schema {
-  width: 80%;
-  margin: auto;
-}
