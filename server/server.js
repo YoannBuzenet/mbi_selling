@@ -9,9 +9,6 @@ const axios = require("axios");
 const securityCheckAPI = require("./services/securityCheckAPI");
 const fs = require("fs");
 
-// Serve the static files from the React app
-// app.use(express.static(path.join(__dirname, "../build")));
-
 //Parse each call
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,6 +23,9 @@ app.use("/api", require("./routes/api/index.js"));
 app.get("/", (req, res) => {
   res.status(200).json("HomePage for SSR");
 });
+
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, "../build")));
 
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
