@@ -7,14 +7,14 @@ import CustomRule from "./CustomRule";
 const CreateMyScript = () => {
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
     regularCustomRules: [
-      { from: 0, to: 1, hasIncoherence: false },
-      { from: 1, to: 2, hasIncoherence: false },
+      { id: 485, from: 0, to: 1, hasIncoherence: false },
+      { id: 15, from: 1, to: 2, hasIncoherence: false },
     ],
     foilCustomRules: [
-      { from: 0, to: 1, hasIncoherence: false },
-      { from: 2, to: 3, hasIncoherence: false },
-      { from: 3, to: 4, hasIncoherence: false },
-      { from: 4, to: 5, hasIncoherence: false },
+      { id: 55, from: 0, to: 1, hasIncoherence: false },
+      { id: 4, from: 2, to: 3, hasIncoherence: false },
+      { id: 1485, from: 3, to: 4, hasIncoherence: false },
+      { id: 85, from: 4, to: 5, hasIncoherence: false },
     ],
   });
 
@@ -65,6 +65,8 @@ const CreateMyScript = () => {
     if (FoilOrRegular === "Regular") {
       customRulesGlobalState.regularCustomRules.splice(position, 0, {
         name: "created programatically",
+        wasCreatedHere: true,
+        temporaryId: Math.random(),
       });
       setCustomRulesGlobalState({
         ...customRulesGlobalState,
@@ -72,6 +74,8 @@ const CreateMyScript = () => {
     } else {
       customRulesGlobalState.foilCustomRules.splice(position, 0, {
         name: "created programatically",
+        wasCreatedHere: true,
+        temporaryId: Math.random(),
       });
       setCustomRulesGlobalState({
         ...customRulesGlobalState,
@@ -145,6 +149,7 @@ const CreateMyScript = () => {
                     FoilOrRegular="Regular"
                     addACustomRule={addACustomRule}
                     deleteACustomRule={deleteACustomRule}
+                    key={"" + rule.id + "" + rule.temporaryId + "" + "Regular"}
                   />
                 );
               })}
@@ -172,6 +177,7 @@ const CreateMyScript = () => {
                   FoilOrRegular="Foil"
                   addACustomRule={addACustomRule}
                   deleteACustomRule={deleteACustomRule}
+                  key={"" + rule.id + "" + rule.temporaryId + "" + "Regular"}
                 />
               ))}
           </div>
