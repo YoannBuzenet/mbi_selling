@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./createMyScript.css";
 
 import AddRuleButton from "./AddRuleButton";
@@ -18,6 +18,25 @@ const CreateMyScript = () => {
     ],
   });
 
+  //Keep track of the last state
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+
+  const previousStateStringified = usePrevious(
+    JSON.stringify(customRulesGlobalState)
+  );
+  console.log("previous state", previousStateStringified);
+  console.log("current state", customRulesGlobalState);
+  console.log(
+    "comparison between 2 states - are they similar ? ",
+    previousStateStringified === customRulesGlobalState
+  );
+
   //THE SCRIPT IS RESPONSIBLE FOR CHECKING COHERENCE
 
   useEffect(() => {
@@ -26,6 +45,21 @@ const CreateMyScript = () => {
     //Parse it, split it into 2 array of regular/foil, tidy it, add a "isCoherent : true" property
     //This prop is checked and updated a each function and the rule moved it css depending on it
   }, []);
+
+  useEffect(() => {
+    if (
+      (customRulesGlobalState.hasOwnProperty("regularCustomRules") &&
+        Array.isArray(customRulesGlobalState.regularCustomRules)) ||
+      (customRulesGlobalState.hasOwnProperty("foilCustomRules") &&
+        Array.isArray(customRulesGlobalState.foilCustomRules))
+    ) {
+      // Compare previous state and current state - if it changed, do compare them again
+      if (JSON.stringify(customRulesGlobalState) !== previousStateStringified) {
+        setCustomRulesGlobalState({ ...customRulesGlobalState });
+      }
+      console.log("checking custom rules coherence");
+    }
+  }, [setCustomRulesGlobalState, customRulesGlobalState]);
 
   const addACustomRule = (position, FoilOrRegular) => {
     if (FoilOrRegular === "Regular") {
