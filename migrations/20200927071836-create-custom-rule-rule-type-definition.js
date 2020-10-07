@@ -24,7 +24,7 @@ module.exports = {
       .then(function () {
         queryInterface.bulkInsert("customRule_ruleType_definitions", [
           {
-            name: "priceRange",
+            name: "setValue",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
