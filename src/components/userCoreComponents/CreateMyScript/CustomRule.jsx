@@ -1,5 +1,7 @@
 import React from "react";
 import AddRuleButton from "./AddRuleButton";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import { IconButton } from "@material-ui/core";
 
 const CustomRule = ({
   rule,
@@ -7,14 +9,25 @@ const CustomRule = ({
   parentArrayLength,
   FoilOrRegular,
   addACustomRule,
+  deleteACustomRule,
 }) => {
   const handleChange = (e) => {
     console.log("update parent");
   };
 
+  //TODO : first rule must start from0. if not, has incoherenceStartingPoint = true
+
+  let classNameFirstDiv = "div1left";
+  let classNameSecondDiv = "div2right";
+
   return (
     <>
       <div className="ruleContainer">
+        <div className="deleteButton">
+          <IconButton onClick={(e) => deleteACustomRule(index, FoilOrRegular)}>
+            <HighlightOffIcon color="secondary" />
+          </IconButton>
+        </div>
         DE
         <input
           className="inputValueNumber"
@@ -34,8 +47,8 @@ const CustomRule = ({
         {/* Colored Link between rules */}
         {index !== parentArrayLength - 1 && (
           <div className="twoBlocksContainer">
-            <div className="div1left"></div>
-            <div className="div2right"></div>
+            <div className={classNameFirstDiv}></div>
+            <div className={classNameSecondDiv}></div>
             <AddRuleButton
               position={index + 1}
               FoilOrRegular={FoilOrRegular}
