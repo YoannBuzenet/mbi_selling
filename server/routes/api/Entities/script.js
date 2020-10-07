@@ -4,6 +4,7 @@ const db = require("../../../../models/index");
 const securityCheckAPI = require("../../../services/securityCheckAPI");
 
 //Get all scripts for one user
+/* Logged Route */
 router.get("/getByUserId", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
@@ -38,6 +39,7 @@ router.get("/getByUserId", async (req, res) => {
 });
 
 //Get a script by Id
+/* Logged Route */
 router.get("/getById/:id", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
@@ -80,6 +82,7 @@ router.get("/getById/:id", async (req, res) => {
 });
 
 //Create a script
+/* Logged Route */
 router.post("/", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
@@ -123,6 +126,7 @@ router.post("/", async (req, res) => {
     });
 });
 
+/* Logged Route */
 router.patch("/:id", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
@@ -190,6 +194,7 @@ router.patch("/:id", async (req, res) => {
     });
 });
 
+/* Logged Route */
 router.delete("/:id", async (req, res) => {
   console.log("on delete !");
   /* ************************** */
