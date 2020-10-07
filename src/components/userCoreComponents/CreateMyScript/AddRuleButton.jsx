@@ -4,16 +4,30 @@ import "./createMyScript.css";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import IconButton from "@material-ui/core/IconButton";
 
-const AddRuleButton = ({ position, FoilOrRegular, handleClick }) => {
+const AddRuleButton = ({
+  position,
+  FoilOrRegular,
+  handleClick,
+  classToAdd,
+}) => {
   console.log(".");
+
+  let classToImplement;
+  if (classToAdd) {
+    classToImplement = classToAdd;
+  }
   return (
-    <IconButton
-      onClick={(e) => handleClick(position, FoilOrRegular)}
-      size={"medium"}
-      color="primary"
-    >
-      <AddCircleIcon className="add-icon" fontSize="large" color="primary" />
-    </IconButton>
+    <>
+      <div className="whiteDivFillMuiIcon" />
+      <IconButton
+        onClick={(e) => handleClick(position, FoilOrRegular)}
+        size={"medium"}
+        color="primary"
+        className={classToImplement}
+      >
+        <AddCircleIcon className="add-icon" fontSize="large" color="primary" />
+      </IconButton>
+    </>
   );
 };
 
