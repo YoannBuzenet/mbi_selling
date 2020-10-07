@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./createMyScript.css";
 
 import AddRuleButton from "./AddRuleButton";
+import CustomRule from "./CustomRule";
 
 const CreateMyScript = () => {
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
@@ -10,15 +11,17 @@ const CreateMyScript = () => {
   });
 
   const [arrayRegularRulesMock, setArrayRegularRulesMock] = useState([
-    { name: "test1" },
-    { name: "test2" },
+    { from: 0, to: 1 },
+    { from: 1, to: 2 },
   ]);
   const [arrayFoilsRulesMock, setArrayFoilsRulesMock] = useState([
-    { name: "foil" },
-    { name: "foil2" },
-    { name: "foil3" },
-    { name: "foil4" },
+    { from: 0, to: 1 },
+    { from: 2, to: 3 },
+    { from: 3, to: 4 },
+    { from: 4, to: 5 },
   ]);
+
+  //THE SCRIPT IS RESPONSIBLE FOR COHERENCE
 
   useEffect(() => {
     console.log("getting custom rules");
@@ -38,6 +41,10 @@ const CreateMyScript = () => {
     }
   };
 
+  const handleChange = (e) => {
+    console.log("ça écrit !");
+  };
+
   return (
     <div className="create-my-script-container">
       Create my script
@@ -50,25 +57,18 @@ const CreateMyScript = () => {
               FoilOrRegular="Regular"
               handleClick={addACustomRule}
             />
-            {arrayRegularRulesMock.map((rule, index) => (
-              <>
-                <div className="ruleContainer">
-                  Rule n°{index}
-                  <div>name : {rule.name}</div>
-                </div>
-                <div className="belowRule-CTA">
-                  {/* Colored Link between rules */}
-                  {index !== arrayRegularRulesMock.length - 1 && (
-                    <div className="colored-link"></div>
-                  )}
-                  <AddRuleButton
-                    position={index + 1}
-                    FoilOrRegular="Regular"
-                    handleClick={addACustomRule}
-                  />
-                </div>
-              </>
-            ))}
+            {arrayRegularRulesMock.map((rule, index) => {
+              console.log(rule);
+              return (
+                <CustomRule
+                  rule={rule}
+                  index={index}
+                  parentArrayLength={arrayRegularRulesMock.length}
+                  FoilOrRegular="Regular"
+                  addACustomRule={addACustomRule}
+                />
+              );
+            })}
           </div>
           <p>Regles génériques</p>
           <p>Les signées ne sont pas traitées.</p>
@@ -83,23 +83,13 @@ const CreateMyScript = () => {
               handleClick={addACustomRule}
             />
             {arrayFoilsRulesMock.map((rule, index) => (
-              <>
-                <div className="ruleContainer">
-                  Rule n°{index}
-                  <div>name : {rule.name}</div>
-                </div>
-                <div className="belowRule-CTA">
-                  {/* Colored Link between rules */}
-                  {index !== arrayFoilsRulesMock.length - 1 && (
-                    <div className="colored-link"></div>
-                  )}
-                  <AddRuleButton
-                    position={index + 1}
-                    FoilOrRegular="Foil"
-                    handleClick={addACustomRule}
-                  />
-                </div>
-              </>
+              <CustomRule
+                rule={rule}
+                index={index}
+                parentArrayLength={arrayFoilsRulesMock.length}
+                FoilOrRegular="Foil"
+                addACustomRule={addACustomRule}
+              />
             ))}
           </div>
         </div>
