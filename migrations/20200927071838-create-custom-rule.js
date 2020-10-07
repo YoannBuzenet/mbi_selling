@@ -17,8 +17,13 @@ module.exports = {
         },
       },
       //Can be "Price Range"
-      ruleType: {
-        type: Sequelize.STRING,
+      ruleTypeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "customRule_ruleType_definitions",
+          key: "id",
+        },
       },
       isForFoils: {
         type: Sequelize.INTEGER,
@@ -36,7 +41,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, Exclude
-      behaviour: {
+      behaviourId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

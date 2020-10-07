@@ -15,7 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   Custom_Rule.init(
     {
       idScript: DataTypes.INTEGER,
-      ruleType: DataTypes.STRING,
+      ruleTypeId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       priceRangeFrom: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
@@ -28,7 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      behaviour: DataTypes.STRING,
+      behaviourId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       priceRangePercentageFromMkm: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
