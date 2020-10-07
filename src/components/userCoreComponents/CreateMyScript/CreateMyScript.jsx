@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./createMyScript.css";
 
 import AddRuleButton from "./AddRuleButton";
 import CustomRule from "./CustomRule";
+import DefinitionContext from "../../../context/definitionsContext";
 
 const CreateMyScript = () => {
+  const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+  console.log("definitions", allDefinitions);
+  console.log("setAllDefinitions", setAllDefinitions);
+
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
     regularCustomRules: [
       { id: 485, from: 0, to: 1, hasIncoherence: false },

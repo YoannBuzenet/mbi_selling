@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 //CONTEXTS
 import AuthContext from "./context/authContext";
 import LoginRenewOrLogOutContext from "./context/logAutoRenewOrLogout";
+import DefinitionsContext from "./context/definitionsContext";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -31,6 +32,7 @@ import ResetMail from "./components/ResetMail";
 import SetNewPassword from "./components/SetNewPassword";
 import Dashboard from "./pages/Dashboard";
 import CreateMyScript from "./components/userCoreComponents/CreateMyScript/CreateMyScript";
+import definitionsAPI from "./services/definitionsAPI";
 
 function App() {
   // STATE Creating the Authentication state
@@ -56,8 +58,25 @@ function App() {
     }
   }, []);
 
+  //APP INITIALIZATION USE EFFECT
+  useEffect(() => {
+    const allRuleTypes = definitionsAPI.getCustomRuleRuleTypeDefinitions();
+    const allRuleBehaviours = definitionsAPI.getCustomRuleRuleBehaviourDefinitions();
+    Promise.all([allRuleTypes, allRuleBehaviours]).then(
+      ([allRuleTypes, allRuleBehaviours]) => {
+        setAllDefinitions({
+          ruleTypes: allRuleTypes,
+          ruleBehaviours: allRuleBehaviours,
+        });
+      }
+    );
+  }, []);
+
   //STATE - Auto Renew LogIn or Auto Log Out
   const [timers, setTimers] = useState({ autoRenew: "", autoLogOut: "" });
+
+  //STATE - Definitions
+  const [allDefinitions, setAllDefinitions] = useState({});
 
   //CONTEXT - Auto login/LogOut
   const ContextloginLogOut = {
@@ -69,6 +88,12 @@ function App() {
   const contextValue = {
     authenticationInfos: authenticationInfos,
     setAuthenticationInfos: setAuthenticationInfos,
+  };
+
+  //CONTEXT CREATION Passing Definitions
+  const contextDefinitions = {
+    allDefinitions: allDefinitions,
+    setAllDefinitions: setAllDefinitions,
   };
 
   /******************************************/
@@ -154,43 +179,47 @@ function App() {
       onTouchMove={() => delayedQuery()}
     >
       <AuthContext.Provider value={contextValue}>
-        <Router>
-          <ToastContainer
-            autoClose={3000}
-            position="bottom-left"
-            hideProgressBar={true}
-          />
-          <NavbarWithRouter />
-          <Footer />
-          <Switch>
-            <Route
-              path="/login"
-              render={({ match, history }) => (
-                <LoginRenewOrLogOutContext.Provider value={ContextloginLogOut}>
-                  <LoginPage
-                    match={match}
-                    history={history}
-                    eraseAuthContext={eraseAuthContext}
-                    renewJWTToken={renewJWTToken}
-                  />
-                </LoginRenewOrLogOutContext.Provider>
-              )}
+        <DefinitionsContext.Provider value={contextDefinitions}>
+          <Router>
+            <ToastContainer
+              autoClose={3000}
+              position="bottom-left"
+              hideProgressBar={true}
             />
+            <NavbarWithRouter />
+            <Footer />
+            <Switch>
+              <Route
+                path="/login"
+                render={({ match, history }) => (
+                  <LoginRenewOrLogOutContext.Provider
+                    value={ContextloginLogOut}
+                  >
+                    <LoginPage
+                      match={match}
+                      history={history}
+                      eraseAuthContext={eraseAuthContext}
+                      renewJWTToken={renewJWTToken}
+                    />
+                  </LoginRenewOrLogOutContext.Provider>
+                )}
+              />
 
-            {/* TODO protect by logged access */}
-            <Route path="/create-script" component={CreateMyScript} />
+              {/* TODO protect by logged access */}
+              <Route path="/create-script" component={CreateMyScript} />
 
-            <Route path="/register" component={RegisterPage} />
+              <Route path="/register" component={RegisterPage} />
 
-            <Route path="/usermail/reset" component={ResetMail} />
-            <Route
-              path="/usermail/setNewPassword/:challenge?"
-              render={({ match, history }) => (
-                <SetNewPassword match={match} history={history} />
-              )}
-            />
-          </Switch>
-        </Router>
+              <Route path="/usermail/reset" component={ResetMail} />
+              <Route
+                path="/usermail/setNewPassword/:challenge?"
+                render={({ match, history }) => (
+                  <SetNewPassword match={match} history={history} />
+                )}
+              />
+            </Switch>
+          </Router>
+        </DefinitionsContext.Provider>
       </AuthContext.Provider>
     </div>
   );
