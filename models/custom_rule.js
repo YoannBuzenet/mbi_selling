@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Custom_Rule.belongsTo(models.Script, { foreignKey: "id" });
+      Custom_Rule.belongsTo(models.customRule_ruleType_definition, {
+        foreignKey: "id",
+      });
+      Custom_Rule.belongsTo(models.customRule_behaviour_definition, {
+        foreignKey: "id",
+      });
     }
   }
   Custom_Rule.init(

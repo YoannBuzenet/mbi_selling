@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class customRule_behaviour_definition extends Model {
     /**
@@ -11,13 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      customRule_behaviour_definition.hasOne(models.Custom_Rule, {
+        foreignKey: "id",
+      });
     }
-  };
-  customRule_behaviour_definition.init({
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'customRule_behaviour_definition',
-  });
+  }
+  customRule_behaviour_definition.init(
+    {
+      name: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "customRule_behaviour_definition",
+    }
+  );
   return customRule_behaviour_definition;
 };
