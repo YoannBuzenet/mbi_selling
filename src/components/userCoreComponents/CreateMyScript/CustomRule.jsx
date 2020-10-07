@@ -15,14 +15,14 @@ const CustomRule = ({
   return (
     <>
       <div className="ruleContainer">
-        DE{" "}
+        DE
         <input
           className="inputValueNumber"
           value={typeof rule.from === "number" ? rule.from : ""}
           name={"from_" + index + "_" + "Regular"}
           onChange={(e) => handleChange(e)}
-        />{" "}
-        A{" "}
+        />
+        A
         <input
           className="inputValueNumber"
           value={typeof rule.from === "number" ? rule.to : ""}
