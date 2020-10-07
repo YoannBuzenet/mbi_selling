@@ -23,7 +23,6 @@ module.exports = {
       })
       .then(function () {
         queryInterface.bulkInsert("customRule_behaviour_definitions", [
-          //todo insert all columns of priceguide
           {
             name: "roundUp0.5",
             createdAt: new Date(),
@@ -69,6 +68,7 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
           },
+          // TODO Ajouter les autre règles (roundDown, exlure...)
         ]);
       });
   },

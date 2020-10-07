@@ -7,11 +7,11 @@ module.exports = {
       [
         {
           idScript: 1,
-          ruleType: "mkmRef",
+          ruleTypeId: 1,
           priceRangeFrom: 0,
           priceRangeTo: 1,
           priceRangeValueToSet: null,
-          behaviour: 2,
+          behaviourId: 2,
           priceRangePercentageFromMkm: null,
           mkmPriceGuideReference: "",
           isForFoils: 0,
@@ -22,11 +22,11 @@ module.exports = {
         },
         {
           idScript: 1,
-          ruleType: "mkmRef",
+          ruleTypeId: 1,
           priceRangeFrom: 1,
           priceRangeTo: 2,
           priceRangeValueToSet: null,
-          behaviour: 1,
+          behaviourId: 1,
           priceRangePercentageFromMkm: null,
           mkmPriceGuideReference: "",
           isForFoils: 0,
