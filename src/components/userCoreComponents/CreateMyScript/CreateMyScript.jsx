@@ -213,10 +213,27 @@ const CreateMyScript = () => {
     }
   };
 
-  const canStateBeSaved = (customRulesGlobalState) => {
-    //return bool
-    console.log("browse the state, check if there is one error");
+  //Checks if there is at least one error in the state. IF so, returns false.
+  const canStateBeSaved = (currentState) => {
+    return (
+      currentState.foil.filter(
+        (rule) =>
+          rule.hasEmptyInput ||
+          rule.hasIncoherentFollowingPrices ||
+          rule.hasIncoherentOrderInFromTo ||
+          rule.hasIncoherentStartingPrice
+      ).length === 0 &&
+      currentState.regular.filter(
+        (rule) =>
+          rule.hasEmptyInput ||
+          rule.hasIncoherentFollowingPrices ||
+          rule.hasIncoherentOrderInFromTo ||
+          rule.hasIncoherentStartingPrice
+      ).length === 0
+    );
   };
+
+  console.log(canStateBeSaved(customRulesGlobalState));
 
   const saveScriptAndCustomRules = () => {
     //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
@@ -237,6 +254,7 @@ const CreateMyScript = () => {
     <div className="create-my-script-container">
       Create my script
       <p>SCRIPT NAME</p>
+      <button onClick={(e) => saveScriptAndCustomRules}>Save</button>
       <div className="parts-container">
         <div className="left-part">
           REGULAR
