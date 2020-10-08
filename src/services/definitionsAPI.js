@@ -12,7 +12,14 @@ function getCustomRuleRuleBehaviourDefinitions() {
     .then((resp) => resp.data);
 }
 
+function getPriceGuideDefinitions() {
+  return axios
+    .get("/api/priceguideDefinition/getDefinitions")
+    .then((resp) => resp.data);
+}
+
 export default {
   getCustomRuleRuleTypeDefinitions,
   getCustomRuleRuleBehaviourDefinitions,
+  getPriceGuideDefinitions,
 };

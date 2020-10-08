@@ -21,7 +21,9 @@ router.get(
     );
     console.log("has user right to access", userHasRightToAccess);
     if (!userHasRightToAccess) {
-      res.status(401).json("User does not have access do this ressource.");
+      res
+        .status(401)
+        .json("User does not have access do this ressource or doesn't exist.");
       return;
     }
 
@@ -47,7 +49,7 @@ router.get(
 
     const custom_rules = await db.Custom_Rule.findAll({
       where: {
-        idScript: idScript,
+        idScript: req.query.idScript,
       },
     });
 
