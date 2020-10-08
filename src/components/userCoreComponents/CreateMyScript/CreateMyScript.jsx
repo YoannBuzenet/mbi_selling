@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import "./createMyScript.css";
-
+import axios from "axios";
 import AddRuleButton from "./AddRuleButton";
 import CustomRule from "./CustomRule";
 import DefinitionContext from "../../../context/definitionsContext";
@@ -9,11 +9,11 @@ const CreateMyScript = () => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
 
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
-    regularCustomRules: [
+    regular: [
       { id: 485, from: 2, to: 1 },
       { id: 15, from: 1, to: 2 },
     ],
-    foilCustomRules: [
+    foil: [
       { id: 55, from: 0, to: 1 },
       { id: 4, from: 2, to: 6 },
       { id: 1485, from: 3, to: 4 },
@@ -51,9 +51,9 @@ const CreateMyScript = () => {
   useEffect(() => {
     if (
       (customRulesGlobalState.hasOwnProperty("regularCustomRules") &&
-        Array.isArray(customRulesGlobalState.regularCustomRules)) ||
+        Array.isArray(customRulesGlobalState.regular)) ||
       (customRulesGlobalState.hasOwnProperty("foilCustomRules") &&
-        Array.isArray(customRulesGlobalState.foilCustomRules))
+        Array.isArray(customRulesGlobalState.foil))
     ) {
       // Compare previous state and current state - if it changed, do compare them again
       if (JSON.stringify(customRulesGlobalState) !== previousStateStringified) {
@@ -70,8 +70,8 @@ const CreateMyScript = () => {
   }, [setCustomRulesGlobalState, customRulesGlobalState]);
 
   const addACustomRule = (position, FoilOrRegular) => {
-    if (FoilOrRegular === "Regular") {
-      customRulesGlobalState.regularCustomRules.splice(position, 0, {
+    if (FoilOrRegular === "regular") {
+      customRulesGlobalState.regular.splice(position, 0, {
         name: "created programatically",
         wasCreatedHere: true,
         temporaryId: Math.random(),
@@ -80,7 +80,7 @@ const CreateMyScript = () => {
         ...customRulesGlobalState,
       });
     } else {
-      customRulesGlobalState.foilCustomRules.splice(position, 0, {
+      customRulesGlobalState.foil.splice(position, 0, {
         name: "created programatically",
         wasCreatedHere: true,
         temporaryId: Math.random(),
@@ -99,15 +99,34 @@ const CreateMyScript = () => {
       FoilOrRegular
     );
 
-    if (FoilOrRegular === "Regular") {
-      customRulesGlobalState.regularCustomRules.splice(position, 1);
+    //Remove it from state
+    let removedElement;
+    if (FoilOrRegular === "regular") {
+      removedElement = customRulesGlobalState.regular.splice(position, 1);
       setCustomRulesGlobalState({
         ...customRulesGlobalState,
       });
     } else {
-      customRulesGlobalState.foilCustomRules.splice(position, 1);
+      removedElement = customRulesGlobalState.foil.splice(position, 1);
       setCustomRulesGlobalState({
         ...customRulesGlobalState,
+      });
+    }
+    console.log("the removed element", removedElement);
+
+    //If rule has an id, we delete it from DB
+    if (removedElement[0].hasOwnProperty("id")) {
+      axios.delete("/api/customRules/" + removedElement[0].id).catch((err) => {
+        customRulesGlobalState[FoilOrRegular].splice(
+          position,
+          0,
+          removedElement[0]
+        );
+        setCustomRulesGlobalState({
+          ...customRulesGlobalState,
+        });
+        console.log("put it back in state and notify user");
+        console.log("yeah");
       });
     }
   };
@@ -121,26 +140,14 @@ const CreateMyScript = () => {
         value = parseInt(value);
       }
     }
-    if (FoilOrRegular === "Regular") {
-      mutatedState.regularCustomRules[position][name] = value;
+    if (FoilOrRegular === "regular") {
+      mutatedState.regular[position][name] = value;
+      mutatedState.regular[position].isToBeSaved = true;
     } else {
-      mutatedState.foilCustomRules[position][name] = value;
+      mutatedState.foil[position][name] = value;
+      mutatedState.foil[position].isToBeSaved = true;
     }
     setCustomRulesGlobalState(mutatedState);
-  };
-
-  const saveScriptAndCustomRules = () => {
-    console.log("saved !");
-  };
-
-  const launchTest = () => {
-    //check if there is a one of the numerous "has incoherence" flag and notify if yes
-    console.log("test !");
-  };
-
-  const launchScript = () => {
-    //check if there is a one of the numerous "has incoherence" flag and notify if yes
-    console.log("Launch !");
   };
 
   // Browse the state, return a mutated state with the "incoherent" markets up to date.
@@ -149,12 +156,12 @@ const CreateMyScript = () => {
     let mutatedState = { ...state };
 
     //Browsing Regular Array
-    if (Array.isArray(mutatedState.regularCustomRules)) {
-      checkArrayIncoherence(mutatedState.regularCustomRules);
+    if (Array.isArray(mutatedState.regular)) {
+      checkArrayIncoherence(mutatedState.regular);
     }
     //Browsing Foil Array
-    if (Array.isArray(mutatedState.foilCustomRules)) {
-      checkArrayIncoherence(mutatedState.foilCustomRules);
+    if (Array.isArray(mutatedState.foil)) {
+      checkArrayIncoherence(mutatedState.foil);
     }
 
     return mutatedState;
@@ -206,6 +213,26 @@ const CreateMyScript = () => {
     }
   };
 
+  const canStateBeSaved = (customRulesGlobalState) => {
+    //return bool
+    console.log("browse the state, check if there is one error");
+  };
+
+  const saveScriptAndCustomRules = () => {
+    //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
+    console.log("saved !");
+  };
+
+  const launchTest = () => {
+    //check if there is a one of the numerous "has incoherence" flag and notify if yes
+    console.log("test !");
+  };
+
+  const launchScript = () => {
+    //check if there is a one of the numerous "has incoherence" flag and notify if yes
+    console.log("Launch !");
+  };
+
   return (
     <div className="create-my-script-container">
       Create my script
@@ -215,23 +242,21 @@ const CreateMyScript = () => {
           <div className="left-schema">
             <AddRuleButton
               position={0}
-              FoilOrRegular="Regular"
+              FoilOrRegular="regular"
               handleClick={addACustomRule}
             />
-            {Array.isArray(customRulesGlobalState.regularCustomRules) &&
-              customRulesGlobalState.regularCustomRules.map((rule, index) => {
+            {Array.isArray(customRulesGlobalState.regular) &&
+              customRulesGlobalState.regular.map((rule, index) => {
                 console.log(rule);
                 return (
                   <CustomRule
                     rule={rule}
                     index={index}
-                    parentArrayLength={
-                      customRulesGlobalState.regularCustomRules.length
-                    }
-                    FoilOrRegular="Regular"
+                    parentArrayLength={customRulesGlobalState.regular.length}
+                    FoilOrRegular="regular"
                     addACustomRule={addACustomRule}
                     deleteACustomRule={deleteACustomRule}
-                    key={"" + rule.id + "" + rule.temporaryId + "" + "Regular"}
+                    key={"" + rule.id + "" + rule.temporaryId + "" + "regular"}
                     updateACustomRule={updateACustomRule}
                   />
                 );
@@ -246,21 +271,19 @@ const CreateMyScript = () => {
           <div className="right-schema">
             <AddRuleButton
               position={0}
-              FoilOrRegular="Foil"
+              FoilOrRegular="foil"
               handleClick={addACustomRule}
             />
-            {Array.isArray(customRulesGlobalState.foilCustomRules) &&
-              customRulesGlobalState.foilCustomRules.map((rule, index) => (
+            {Array.isArray(customRulesGlobalState.foil) &&
+              customRulesGlobalState.foil.map((rule, index) => (
                 <CustomRule
                   rule={rule}
                   index={index}
-                  parentArrayLength={
-                    customRulesGlobalState.foilCustomRules.length
-                  }
-                  FoilOrRegular="Foil"
+                  parentArrayLength={customRulesGlobalState.foil.length}
+                  FoilOrRegular="foil"
                   addACustomRule={addACustomRule}
                   deleteACustomRule={deleteACustomRule}
-                  key={"" + rule.id + "" + rule.temporaryId + "" + "Regular"}
+                  key={"" + rule.id + "" + rule.temporaryId + "" + "regular"}
                   updateACustomRule={updateACustomRule}
                 />
               ))}
