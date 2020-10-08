@@ -4,9 +4,11 @@ import axios from "axios";
 import AddRuleButton from "./AddRuleButton";
 import CustomRule from "./CustomRule";
 import DefinitionContext from "../../../context/definitionsContext";
+import { toast } from "react-toastify";
 
 const CreateMyScript = () => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+  console.log("definitions", allDefinitions);
 
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
     regular: [
@@ -50,9 +52,9 @@ const CreateMyScript = () => {
   // Automatic coherence check at each render
   useEffect(() => {
     if (
-      (customRulesGlobalState.hasOwnProperty("regularCustomRules") &&
+      (customRulesGlobalState.hasOwnProperty("regular") &&
         Array.isArray(customRulesGlobalState.regular)) ||
-      (customRulesGlobalState.hasOwnProperty("foilCustomRules") &&
+      (customRulesGlobalState.hasOwnProperty("foil") &&
         Array.isArray(customRulesGlobalState.foil))
     ) {
       // Compare previous state and current state - if it changed, do compare them again
@@ -70,25 +72,15 @@ const CreateMyScript = () => {
   }, [setCustomRulesGlobalState, customRulesGlobalState]);
 
   const addACustomRule = (position, FoilOrRegular) => {
-    if (FoilOrRegular === "regular") {
-      customRulesGlobalState.regular.splice(position, 0, {
-        name: "created programatically",
-        wasCreatedHere: true,
-        temporaryId: Math.random(),
-      });
-      setCustomRulesGlobalState({
-        ...customRulesGlobalState,
-      });
-    } else {
-      customRulesGlobalState.foil.splice(position, 0, {
-        name: "created programatically",
-        wasCreatedHere: true,
-        temporaryId: Math.random(),
-      });
-      setCustomRulesGlobalState({
-        ...customRulesGlobalState,
-      });
-    }
+    customRulesGlobalState[FoilOrRegular].splice(position, 0, {
+      name: "created programatically",
+      ruleTypeId: 1,
+      wasCreatedHere: true,
+      temporaryId: Math.random(),
+    });
+    setCustomRulesGlobalState({
+      ...customRulesGlobalState,
+    });
   };
 
   const deleteACustomRule = (position, FoilOrRegular) => {
@@ -126,7 +118,7 @@ const CreateMyScript = () => {
           ...customRulesGlobalState,
         });
         console.log("put it back in state and notify user");
-        console.log("yeah");
+        toast.error("sorry bro");
       });
     }
   };
@@ -135,18 +127,21 @@ const CreateMyScript = () => {
     let mutatedState = { ...customRulesGlobalState };
     const { name } = event.target;
     let { value } = event.target;
-    if (name === "from" || name === "to") {
+    console.log(name, value);
+    if (
+      name === "from" ||
+      name === "to" ||
+      name === "ruleTypeId" ||
+      name == "priceRangeValueToSet"
+    ) {
       if (value !== "") {
         value = parseInt(value);
       }
     }
-    if (FoilOrRegular === "regular") {
-      mutatedState.regular[position][name] = value;
-      mutatedState.regular[position].isToBeSaved = true;
-    } else {
-      mutatedState.foil[position][name] = value;
-      mutatedState.foil[position].isToBeSaved = true;
-    }
+
+    mutatedState[FoilOrRegular][position][name] = value;
+    mutatedState[FoilOrRegular][position].isToBeSaved = true;
+
     setCustomRulesGlobalState(mutatedState);
   };
 
@@ -239,6 +234,7 @@ const CreateMyScript = () => {
       <p>SCRIPT NAME</p>
       <div className="parts-container">
         <div className="left-part">
+          REGULAR
           <div className="left-schema">
             <AddRuleButton
               position={0}
@@ -268,6 +264,7 @@ const CreateMyScript = () => {
           <p>Les playsets ne sont pas traités.</p>
         </div>
         <div className="right-part">
+          FOIL
           <div className="right-schema">
             <AddRuleButton
               position={0}

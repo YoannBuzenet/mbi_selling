@@ -89,6 +89,9 @@ button.onSeparatedDivButton {
   z-index: 3;
 }
 
+.ruleType-choice {
+}
+
 .whiteDivFillMuiIcon {
   position: absolute;
   background-color: white;

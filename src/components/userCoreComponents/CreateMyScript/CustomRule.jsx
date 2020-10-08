@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import AddRuleButton from "./AddRuleButton";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { IconButton, Typography } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
+import DefinitionContext from "../../../context/definitionsContext";
 
 const CustomRule = ({
   rule,
@@ -13,6 +14,9 @@ const CustomRule = ({
   deleteACustomRule,
   updateACustomRule,
 }) => {
+  const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+  console.log("definitions from the rule level", allDefinitions);
+
   const [isZoomed, setIsZoomed] = useState(!rule.wasCreatedHere || true);
 
   useEffect(() => {
@@ -59,6 +63,46 @@ const CustomRule = ({
               name={"to"}
               onChange={(e) => handleChange(e)}
             />
+            €
+            <div className="ruleType-choice">
+              Que faire ?
+              <div>
+                {Array.isArray(allDefinitions.ruleTypes) && (
+                  <select
+                    onChange={(e) => handleChange(e)}
+                    name="ruleTypeId"
+                    value={rule.ruleTypeId || 1}
+                  >
+                    {allDefinitions.ruleTypes.map((ruleType) => (
+                      <option value={ruleType.id}>{ruleType.name}</option>
+                    ))}
+                  </select>
+                )}
+                {rule.ruleTypeId === 1 && (
+                  <p>
+                    A
+                    <input
+                      className="inputValueNumber"
+                      value={
+                        typeof rule.from === "number"
+                          ? rule.priceRangeValueToSet
+                          : ""
+                      }
+                      name={"priceRangeValueToSet"}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </p>
+                )}
+
+                {/* TODO REPRENDRE LA AVEC TOUTES LES LIGNES DU PRICEGUIDE */}
+                {rule.ruleTypeId === 2 && (
+                  <p>
+                    <select></select>
+                  </p>
+                )}
+                {rule.ruleTypeId === 3 && <p>3</p>}
+              </div>
+            </div>
             <div>
               {rule.hasEmptyInput && (
                 <p className="error-rule-explaination">

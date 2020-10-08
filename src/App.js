@@ -62,14 +62,18 @@ function App() {
   useEffect(() => {
     const allRuleTypes = definitionsAPI.getCustomRuleRuleTypeDefinitions();
     const allRuleBehaviours = definitionsAPI.getCustomRuleRuleBehaviourDefinitions();
-    Promise.all([allRuleTypes, allRuleBehaviours]).then(
-      ([allRuleTypes, allRuleBehaviours]) => {
-        setAllDefinitions({
-          ruleTypes: allRuleTypes,
-          ruleBehaviours: allRuleBehaviours,
-        });
-      }
-    );
+    const allPriceGuidePossibilities = definitionsAPI.getPriceGuideDefinitions();
+    Promise.all([
+      allRuleTypes,
+      allRuleBehaviours,
+      allPriceGuidePossibilities,
+    ]).then(([allRuleTypes, allRuleBehaviours, allPriceGuidePossibilities]) => {
+      setAllDefinitions({
+        ruleTypes: allRuleTypes,
+        ruleBehaviours: allRuleBehaviours,
+        priceGuidePossibilities: allPriceGuidePossibilities,
+      });
+    });
   }, []);
 
   //STATE - Auto Renew LogIn or Auto Log Out
