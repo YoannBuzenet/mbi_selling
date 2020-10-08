@@ -64,10 +64,23 @@ input.inputValueNumber {
   height: 50px;
   border-right: 1px solid blue;
 }
+
 .twoBlocksContainer .div2right {
   width: 50%;
   height: 50px;
   border-left: 1px solid blue;
+}
+
+.twoBlocksContainer .div1left.hasErrors {
+  border-right: 2px solid red;
+}
+
+.twoBlocksContainer .div2right.hasErrors {
+  border-left: 2px solid red;
+}
+
+.error-rule-explaination {
+  color: red;
 }
 
 button.onSeparatedDivButton {

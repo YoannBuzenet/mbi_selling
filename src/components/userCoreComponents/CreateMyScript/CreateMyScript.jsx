@@ -7,19 +7,17 @@ import DefinitionContext from "../../../context/definitionsContext";
 
 const CreateMyScript = () => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
-  console.log("definitions", allDefinitions);
-  console.log("setAllDefinitions", setAllDefinitions);
 
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
     regularCustomRules: [
-      { id: 485, from: 0, to: 1, hasIncoherence: false },
-      { id: 15, from: 1, to: 2, hasIncoherence: false },
+      { id: 485, from: 2, to: 1 },
+      { id: 15, from: 1, to: 2 },
     ],
     foilCustomRules: [
-      { id: 55, from: 0, to: 1, hasIncoherence: false },
-      { id: 4, from: 2, to: 3, hasIncoherence: false },
-      { id: 1485, from: 3, to: 4, hasIncoherence: false },
-      { id: 85, from: 4, to: 5, hasIncoherence: false },
+      { id: 55, from: 0, to: 1 },
+      { id: 4, from: 2, to: 6 },
+      { id: 1485, from: 3, to: 4 },
+      { id: 85, from: 4, to: 5 },
     ],
   });
 
@@ -42,8 +40,6 @@ const CreateMyScript = () => {
     previousStateStringified === customRulesGlobalState
   );
 
-  //THE SCRIPT IS RESPONSIBLE FOR CHECKING COHERENCE
-
   useEffect(() => {
     console.log("getting custom rules");
     //We ge an array of rules
@@ -51,6 +47,7 @@ const CreateMyScript = () => {
     //This prop is checked and updated a each function and the rule moved it css depending on it
   }, []);
 
+  // Automatic coherence check at each render
   useEffect(() => {
     if (
       (customRulesGlobalState.hasOwnProperty("regularCustomRules") &&
@@ -60,9 +57,15 @@ const CreateMyScript = () => {
     ) {
       // Compare previous state and current state - if it changed, do compare them again
       if (JSON.stringify(customRulesGlobalState) !== previousStateStringified) {
-        setCustomRulesGlobalState({ ...customRulesGlobalState });
+        console.log("checking custom rules coherence");
+        console.log(
+          "corrected state is :",
+          browseScriptAndMarkIncoherence(customRulesGlobalState)
+        );
+        setCustomRulesGlobalState({
+          ...browseScriptAndMarkIncoherence(customRulesGlobalState),
+        });
       }
-      console.log("checking custom rules coherence");
     }
   }, [setCustomRulesGlobalState, customRulesGlobalState]);
 
@@ -109,7 +112,22 @@ const CreateMyScript = () => {
     }
   };
 
-  const updateACustomRule = (position, FoilOrRegular) => {};
+  const updateACustomRule = (event, position, FoilOrRegular) => {
+    let mutatedState = { ...customRulesGlobalState };
+    const { name } = event.target;
+    let { value } = event.target;
+    if (name === "from" || name === "to") {
+      if (value !== "") {
+        value = parseInt(value);
+      }
+    }
+    if (FoilOrRegular === "Regular") {
+      mutatedState.regularCustomRules[position][name] = value;
+    } else {
+      mutatedState.foilCustomRules[position][name] = value;
+    }
+    setCustomRulesGlobalState(mutatedState);
+  };
 
   const saveScriptAndCustomRules = () => {
     console.log("saved !");
@@ -125,8 +143,67 @@ const CreateMyScript = () => {
     console.log("Launch !");
   };
 
-  const checkCoherence = (FoilOrRegularArray) => {
+  // Browse the state, return a mutated state with the "incoherent" markets up to date.
+  const browseScriptAndMarkIncoherence = (state) => {
     console.log("search for incoherence");
+    let mutatedState = { ...state };
+
+    //Browsing Regular Array
+    if (Array.isArray(mutatedState.regularCustomRules)) {
+      checkArrayIncoherence(mutatedState.regularCustomRules);
+    }
+    //Browsing Foil Array
+    if (Array.isArray(mutatedState.foilCustomRules)) {
+      checkArrayIncoherence(mutatedState.foilCustomRules);
+    }
+
+    return mutatedState;
+  };
+
+  //We compare each rule to its next one and
+  //1 Check that first price of the rule is inferior to the second price
+  // 2. check if the number of sticking, thus creating no holes in the rule coverture
+  const checkArrayIncoherence = (arrayOfCustomRules) => {
+    if (Array.isArray(arrayOfCustomRules)) {
+      for (let i = 0; i < arrayOfCustomRules.length; i++) {
+        //Check if starting value is 0
+        if (i === 0 && arrayOfCustomRules[i].from !== 0) {
+          arrayOfCustomRules[i].hasIncoherentStartingPrice = true;
+        } else {
+          arrayOfCustomRules[i].hasIncoherentStartingPrice = false;
+        }
+
+        //We check if price are defined or if there is an empty place
+        if (
+          isNaN(parseInt(arrayOfCustomRules[i].from)) ||
+          isNaN(parseInt(arrayOfCustomRules[i].to))
+        ) {
+          arrayOfCustomRules[i].hasEmptyInput = true;
+        } else {
+          //If price are defined
+          arrayOfCustomRules[i].hasEmptyInput = false;
+          if (arrayOfCustomRules[i].from >= arrayOfCustomRules[i].to) {
+            //Universal check : are price coherent (from < to) ?
+            arrayOfCustomRules[i].hasIncoherentOrderInFromTo = true;
+          } else {
+            arrayOfCustomRules[i].hasIncoherentOrderInFromTo = false;
+          }
+        }
+
+        //We do this comparison only if it's not the last element of the array (because the next element doesn't exist, yeah !)
+        if (i !== arrayOfCustomRules.length - 1) {
+          if (arrayOfCustomRules[i].to !== arrayOfCustomRules[i + 1].from) {
+            arrayOfCustomRules[i].hasIncoherentFollowingPrices = true;
+          } else {
+            arrayOfCustomRules[i].hasIncoherentFollowingPrices = false;
+          }
+        }
+      }
+      console.log("treated array", arrayOfCustomRules);
+      return arrayOfCustomRules;
+    } else {
+      throw new Error("Param received is not of type Array.");
+    }
   };
 
   return (
@@ -155,6 +232,7 @@ const CreateMyScript = () => {
                     addACustomRule={addACustomRule}
                     deleteACustomRule={deleteACustomRule}
                     key={"" + rule.id + "" + rule.temporaryId + "" + "Regular"}
+                    updateACustomRule={updateACustomRule}
                   />
                 );
               })}
@@ -183,6 +261,7 @@ const CreateMyScript = () => {
                   addACustomRule={addACustomRule}
                   deleteACustomRule={deleteACustomRule}
                   key={"" + rule.id + "" + rule.temporaryId + "" + "Regular"}
+                  updateACustomRule={updateACustomRule}
                 />
               ))}
           </div>

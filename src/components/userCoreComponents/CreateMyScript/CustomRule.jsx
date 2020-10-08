@@ -11,6 +11,7 @@ const CustomRule = ({
   FoilOrRegular,
   addACustomRule,
   deleteACustomRule,
+  updateACustomRule,
 }) => {
   const [isZoomed, setIsZoomed] = useState(!rule.wasCreatedHere || true);
 
@@ -21,14 +22,17 @@ const CustomRule = ({
   }, []);
 
   const handleChange = (e) => {
-    console.log("update parent");
+    updateACustomRule(e, index, FoilOrRegular);
   };
 
   //TODO : first rule must start from0. if not, has incoherenceStartingPoint = true
 
   let classNameFirstDiv = "div1left";
   let classNameSecondDiv = "div2right";
-
+  if (rule.hasIncoherentFollowingPrices) {
+    classNameFirstDiv = "div1left hasErrors";
+    classNameSecondDiv = "div2right hasErrors";
+  }
   return (
     <>
       <Zoom in={isZoomed}>
@@ -45,16 +49,39 @@ const CustomRule = ({
             <input
               className="inputValueNumber"
               value={typeof rule.from === "number" ? rule.from : ""}
-              name={"from_" + index + "_" + "Regular"}
+              name={"from"}
               onChange={(e) => handleChange(e)}
             />
             A
             <input
               className="inputValueNumber"
               value={typeof rule.from === "number" ? rule.to : ""}
-              name={"to" + index + "_" + "Regular"}
+              name={"to"}
               onChange={(e) => handleChange(e)}
             />
+            <div>
+              {rule.hasEmptyInput && (
+                <p className="error-rule-explaination">
+                  Les deux prix d'une règle doivent être renseignés.
+                </p>
+              )}
+              {rule.hasIncoherentFollowingPrices && (
+                <p className="error-rule-explaination">
+                  Le prix de cette règle ne colle pas avec celui de la suivante.
+                </p>
+              )}
+              {rule.hasIncoherentOrderInFromTo && (
+                <p className="error-rule-explaination">
+                  Le prix de départ de cette règle est supérieur ou égal au prix
+                  d'arrivée.
+                </p>
+              )}
+              {rule.hasIncoherentStartingPrice && (
+                <p className="error-rule-explaination">
+                  La première règle doit commencer à 0 euro.
+                </p>
+              )}
+            </div>
           </div>
           <div className="belowRule-CTA">
             {/* Colored Link between rules */}
