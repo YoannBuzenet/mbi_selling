@@ -97,10 +97,36 @@ const CustomRule = ({
                 {/* TODO REPRENDRE LA AVEC TOUTES LES LIGNES DU PRICEGUIDE */}
                 {rule.ruleTypeId === 2 && (
                   <p>
-                    <select></select>
+                    {Array.isArray(allDefinitions.priceGuidePossibilities) && (
+                      <select
+                        onChange={(e) => handleChange(e)}
+                        name="priceGuidePossibility"
+                        value={rule.priceGuidePossibilities || 1}
+                      >
+                        {allDefinitions.priceGuidePossibilities.map(
+                          (priceGuidePossibility) => (
+                            <option value={priceGuidePossibility.id}>
+                              {priceGuidePossibility.name}
+                            </option>
+                          )
+                        )}
+                      </select>
+                    )}
+                    {Array.isArray(allDefinitions.ruleBehaviours) && (
+                      <select
+                        onChange={(e) => handleChange(e)}
+                        name="ruleBehaviours"
+                        value={rule.ruleBehaviours || 1}
+                      >
+                        {allDefinitions.ruleBehaviours.map((ruleBehaviour) => (
+                          <option value={ruleBehaviour.id}>
+                            {ruleBehaviour.name}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </p>
                 )}
-                {rule.ruleTypeId === 3 && <p>3</p>}
               </div>
             </div>
             <div>

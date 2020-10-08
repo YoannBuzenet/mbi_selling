@@ -12,14 +12,14 @@ const CreateMyScript = () => {
 
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
     regular: [
-      { id: 485, from: 2, to: 1 },
-      { id: 15, from: 1, to: 2 },
+      { id: 485, from: 2, to: 1, ruleTypeId: 1 },
+      { id: 15, from: 1, to: 2, ruleTypeId: 1 },
     ],
     foil: [
-      { id: 55, from: 0, to: 1 },
-      { id: 4, from: 2, to: 6 },
-      { id: 1485, from: 3, to: 4 },
-      { id: 85, from: 4, to: 5 },
+      { id: 55, from: 0, to: 1, ruleTypeId: 1 },
+      { id: 4, from: 2, to: 6, ruleTypeId: 1 },
+      { id: 1485, from: 3, to: 4, ruleTypeId: 1 },
+      { id: 85, from: 4, to: 5, ruleTypeId: 1 },
     ],
   });
 
@@ -104,7 +104,7 @@ const CreateMyScript = () => {
         ...customRulesGlobalState,
       });
     }
-    console.log("the removed element", removedElement);
+    // console.log("the removed element", removedElement);
 
     //If rule has an id, we delete it from DB
     if (removedElement[0].hasOwnProperty("id")) {
@@ -132,10 +132,15 @@ const CreateMyScript = () => {
       name === "from" ||
       name === "to" ||
       name === "ruleTypeId" ||
-      name == "priceRangeValueToSet"
+      name == "priceRangeValueToSet" ||
+      name === "priceGuidePossibility" ||
+      name === "ruleBehaviours"
     ) {
-      if (value !== "") {
+      if (value !== "" && !isNaN(parseInt(value))) {
         value = parseInt(value);
+      } else if (value == "") {
+      } else {
+        value = 0;
       }
     }
 
