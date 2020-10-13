@@ -52,15 +52,21 @@ const CustomRule = ({
             DE
             <input
               className="inputValueNumber"
-              value={typeof rule.from === "number" ? rule.from : ""}
-              name={"from"}
+              value={
+                typeof rule.priceRangeFrom === "number"
+                  ? rule.priceRangeFrom
+                  : ""
+              }
+              name={"priceRangeFrom"}
               onChange={(e) => handleChange(e)}
             />
             A
             <input
               className="inputValueNumber"
-              value={typeof rule.from === "number" ? rule.to : ""}
-              name={"to"}
+              value={
+                typeof rule.priceRangeTo === "number" ? rule.priceRangeTo : ""
+              }
+              name={"priceRangeTo"}
               onChange={(e) => handleChange(e)}
             />
             €
