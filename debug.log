@@ -1,0 +1,2 @@
+[1009/170937.811:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Yoann\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\9c1e15a7-ee4a-4b13-b47c-44030b9a7539: Le chemin d’accès spécifié est introuvable. (0x3)
+[1009/170937.812:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
