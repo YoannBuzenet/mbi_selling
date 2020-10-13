@@ -10,8 +10,6 @@ const AddRuleButton = ({
   handleClick,
   classToAdd,
 }) => {
-  console.log(".");
-
   let classToImplement;
   if (classToAdd) {
     classToImplement = classToAdd;

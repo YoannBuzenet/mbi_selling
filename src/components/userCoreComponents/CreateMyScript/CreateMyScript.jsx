@@ -3,10 +3,17 @@ import "./createMyScript.css";
 import axios from "axios";
 import AddRuleButton from "./AddRuleButton";
 import CustomRule from "./CustomRule";
-import DefinitionContext from "../../../context/definitionsContext";
 import { toast } from "react-toastify";
 
+import AuthContext from "../../../context/authContext";
+import DefinitionContext from "../../../context/definitionsContext";
+
 const CreateMyScript = () => {
+  const { authenticationInfos, setAuthenticationInfos } = useContext(
+    AuthContext
+  );
+  console.log("auth from create script", authenticationInfos);
+
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   console.log("definitions", allDefinitions);
 
