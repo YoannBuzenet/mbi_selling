@@ -4,15 +4,27 @@ import axios from "axios";
 import AddRuleButton from "./AddRuleButton";
 import CustomRule from "./CustomRule";
 import { toast } from "react-toastify";
+import { matchPath } from "react-router";
 
 import AuthContext from "../../../context/authContext";
 import DefinitionContext from "../../../context/definitionsContext";
 
-const CreateMyScript = () => {
+const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
+
+  //Getting id param on edition mode (with /manage-script/ route)
+  const match = matchPath(history.location.pathname, {
+    path: "/edit-script/:id",
+    exact: true,
+    strict: false,
+  });
+
   console.log("auth from create script", authenticationInfos);
+
+  // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
+  const isCreationMode = match?.params?.id ? true : false;
 
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   console.log("definitions", allDefinitions);
@@ -29,6 +41,27 @@ const CreateMyScript = () => {
       { id: 85, from: 4, to: 5, ruleTypeId: 1 },
     ],
   });
+
+  //TODO : pouvoir Charger un script : le get, et trier les règles et les passer en state
+  // TO DO : permettre la création from scracth egélaement
+  useEffect(() => {
+    console.log("getting custom rules");
+    //If we are in edit mode, get the data from the script
+    if (!isCreationMode) {
+      axios
+        .get(
+          `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match.params.id}`
+        )
+        .then((resp) => {
+          console.log(resp);
+          console.log("test");
+        });
+    }
+
+    //We ge an array of rules
+    //Parse it, split it into 2 array of regular/foil, tidy it, add a "isCoherent : true" property
+    //This prop is checked and updated a each function and the rule moved it css depending on it
+  }, []);
 
   //Keep track of the last state
   function usePrevious(value) {
@@ -48,13 +81,6 @@ const CreateMyScript = () => {
     "comparison between 2 states - are they similar ? ",
     previousStateStringified === customRulesGlobalState
   );
-
-  useEffect(() => {
-    console.log("getting custom rules");
-    //We ge an array of rules
-    //Parse it, split it into 2 array of regular/foil, tidy it, add a "isCoherent : true" property
-    //This prop is checked and updated a each function and the rule moved it css depending on it
-  }, []);
 
   // Automatic coherence check at each render
   useEffect(() => {
@@ -125,7 +151,7 @@ const CreateMyScript = () => {
           ...customRulesGlobalState,
         });
         console.log("put it back in state and notify user");
-        toast.error("sorry bro");
+        toast.error("pas pu la retirer en DB ! hardcoded ?");
       });
     }
   };

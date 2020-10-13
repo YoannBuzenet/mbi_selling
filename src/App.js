@@ -26,7 +26,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
 //Components
-import LoggedRoute from "./components/LoggedRoute";
+import LoggedRouteRender from "./components/LoggedRouteRender";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
@@ -220,7 +220,14 @@ function App() {
                 )}
               />
 
-              <LoggedRoute path="/create-script" component={CreateMyScript} />
+              <LoggedRouteRender
+                path="/edit-script/:id"
+                component={CreateMyScript}
+              />
+              <LoggedRouteRender
+                path="/create-script"
+                component={CreateMyScript}
+              />
             </Switch>
           </Router>
         </DefinitionsContext.Provider>
