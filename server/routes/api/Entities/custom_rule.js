@@ -84,11 +84,11 @@ router.post(
         .json("Custom Rules payload shouldn't have an id in POST requests.");
       return;
     }
-    if (req.body.ruleType === undefined) {
+    if (req.body.ruleTypeId === undefined) {
       res.status(406).json("Custom Rules ruleType is mandatory.");
       return;
     }
-    if (req.body.behaviour === undefined) {
+    if (req.body.behaviourId === undefined) {
       res.status(406).json("Custom Rules behaviour is mandatory.");
       return;
     }
@@ -104,7 +104,7 @@ router.post(
         );
       return;
     }
-    if (req.body.ruleType === "priceRange") {
+    if (req.body.ruleTypeId === 1) {
       if (
         req.body.priceRangeFrom === undefined ||
         req.body.priceRangeTo === undefined ||
@@ -155,11 +155,11 @@ router.post(
     //Send it back with its id !
     db.Custom_Rule.create({
       idScript: req.query.idScript,
-      ruleType: req.body.ruleType,
+      ruleTypeId: req.body.ruleTypeId,
       priceRangeFrom: req.body.priceRangeFrom || null,
       priceRangeTo: req.body.priceRangeTo || null,
       priceRangeValueToSet: req.body.priceRangeValueToSet || null,
-      behaviour: req.body.behaviour,
+      behaviourId: req.body.behaviourId,
       priceRangePercentageFromMkm: req.body.priceRangePercentageFromMkm,
       isForFoils: req.body.isForFoils,
       isForSigned: req.body.isForSigned,

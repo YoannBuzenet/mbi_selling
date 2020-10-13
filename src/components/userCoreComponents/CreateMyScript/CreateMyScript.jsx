@@ -56,15 +56,47 @@ const CreateMyScript = ({ history }) => {
           `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match?.params?.id}`
         )
         .then((resp) => {
-          console.log(resp);
+          console.log(resp.data);
           console.log("test");
-        });
+          setCustomRulesGlobalState(prepareStateFromArrayOfRules(resp.data));
+        })
+        .catch((err) =>
+          console.log("error when calling custom rules for this script", err)
+        );
+    }
+  }, []);
+
+  //Returns an object ready to be passed in state
+  function prepareStateFromArrayOfRules(arrayOfCustomRules) {
+    //Separing foil rules from regular rules
+    let arrayOfRegularCustomRules = arrayOfCustomRules.filter(
+      (rule) => rule.isForFoils === 0
+    );
+    let arrayOfFoilCustomRules = arrayOfCustomRules.filter(
+      (rule) => rule.isForFoils === 1
+    );
+
+    function compare(a, b) {
+      if (a.priceRangeTo < b.priceRangeTo) {
+        return -1;
+      }
+      if (a.priceRangeTo > b.priceRangeTo) {
+        return 1;
+      }
+      return 0;
     }
 
-    //We ge an array of rules
-    //Parse it, split it into 2 array of regular/foil, tidy it, add a "isCoherent : true" property
-    //This prop is checked and updated a each function and the rule moved it css depending on it
-  }, []);
+    arrayOfRegularCustomRules.sort(compare);
+    arrayOfFoilCustomRules.sort(compare);
+
+    const objectToReturn = {
+      regular: arrayOfRegularCustomRules,
+      foil: arrayOfFoilCustomRules,
+    };
+
+    console.log("here is the result", objectToReturn);
+    return objectToReturn;
+  }
 
   //Keep track of the last state
   function usePrevious(value) {
@@ -165,8 +197,8 @@ const CreateMyScript = ({ history }) => {
     let { value } = event.target;
     console.log(name, value);
     if (
-      name === "from" ||
-      name === "to" ||
+      name === "priceRangeFrom" ||
+      name === "priceRangeTo" ||
       name === "ruleTypeId" ||
       name == "priceRangeValueToSet" ||
       name === "priceGuidePossibility" ||
