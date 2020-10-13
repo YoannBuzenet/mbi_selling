@@ -233,9 +233,24 @@ const CreateMyScript = () => {
     );
   };
 
-  console.log(canStateBeSaved(customRulesGlobalState));
-
   const saveScriptAndCustomRules = () => {
+    //.map array regular
+    let regularRules = customRulesGlobalState.regular.map((rule) => {
+      //si pas d'id
+      //POST
+      //si id et isToBeSaved = tru
+      //PUT
+    });
+    //.map array foil
+
+    let foilRules = customRulesGlobalState.foil.map((rule) => {
+      //si pas d'id
+      //POST
+      //si id et isToBeSaved = tru
+      //PUT
+    });
+    //promises.all
+
     //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
     console.log("saved !");
   };

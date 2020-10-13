@@ -26,6 +26,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
 //Components
+import LoggedRoute from "./components/LoggedRoute";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
@@ -209,9 +210,6 @@ function App() {
                 )}
               />
 
-              {/* TODO protect by logged access */}
-              <Route path="/create-script" component={CreateMyScript} />
-
               <Route path="/register" component={RegisterPage} />
 
               <Route path="/usermail/reset" component={ResetMail} />
@@ -221,6 +219,8 @@ function App() {
                   <SetNewPassword match={match} history={history} />
                 )}
               />
+
+              <LoggedRoute path="/create-script" component={CreateMyScript} />
             </Switch>
           </Router>
         </DefinitionsContext.Provider>
