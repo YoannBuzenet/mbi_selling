@@ -24,7 +24,9 @@ const CreateMyScript = ({ history }) => {
   console.log("auth from create script", authenticationInfos);
 
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
-  const isCreationMode = match?.params?.id ? true : false;
+  const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";
+
+  console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
 
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   console.log("definitions", allDefinitions);
@@ -47,10 +49,11 @@ const CreateMyScript = ({ history }) => {
   useEffect(() => {
     console.log("getting custom rules");
     //If we are in edit mode, get the data from the script
-    if (!isCreationMode) {
+    if (isCreationOrEditionMode === "Edition") {
+      console.log("the call for charging custom rules has started !");
       axios
         .get(
-          `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match.params.id}`
+          `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match?.params?.id}`
         )
         .then((resp) => {
           console.log(resp);
