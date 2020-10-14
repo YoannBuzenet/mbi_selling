@@ -35,53 +35,75 @@ const CreateMyScript = ({ history }) => {
     regular: [
       {
         temporaryId: 485,
-        priceRangeFrom: 2,
+        priceRangeFrom: 0,
         priceRangeTo: 1,
-        ruleTypeId: 1,
-        behaviourId: 2,
-        priceRangeValueToSet: 0,
+        ruleTypeId: 2,
+        behaviourId: 13,
       },
       {
         temporaryId: 15,
         priceRangeFrom: 1,
-        priceRangeTo: 2,
-        ruleTypeId: 1,
-        behaviourId: 2,
-        priceRangeValueToSet: 0,
+        priceRangeTo: 10,
+        ruleTypeId: 2,
+        behaviourId: 14,
+      },
+      {
+        temporaryId: 15,
+        priceRangeFrom: 10,
+        priceRangeTo: 30,
+        ruleTypeId: 2,
+        behaviourId: 15,
+      },
+      {
+        temporaryId: 15,
+        priceRangeFrom: 30,
+        priceRangeTo: 100,
+        ruleTypeId: 2,
+        behaviourId: 16,
+      },
+      {
+        temporaryId: 15,
+        priceRangeFrom: 100,
+        priceRangeTo: 500,
+        ruleTypeId: 2,
+        behaviourId: 19,
       },
     ],
     foil: [
       {
-        temporaryId: 55,
+        temporaryId: 485,
         priceRangeFrom: 0,
         priceRangeTo: 1,
-        ruleTypeId: 1,
-        behaviourId: 2,
-        priceRangeValueToSet: 0,
+        ruleTypeId: 2,
+        behaviourId: 13,
       },
       {
-        temporaryId: 4,
-        priceRangeFrom: 2,
-        priceRangeTo: 6,
-        ruleTypeId: 1,
-        behaviourId: 2,
-        priceRangeValueToSet: 0,
+        temporaryId: 15,
+        priceRangeFrom: 1,
+        priceRangeTo: 10,
+        ruleTypeId: 2,
+        behaviourId: 14,
       },
       {
-        temporaryId: 1485,
-        priceRangeFrom: 3,
-        priceRangeTo: 4,
-        ruleTypeId: 1,
-        behaviourId: 2,
-        priceRangeValueToSet: 0,
+        temporaryId: 15,
+        priceRangeFrom: 10,
+        priceRangeTo: 30,
+        ruleTypeId: 2,
+        behaviourId: 15,
       },
       {
-        temporaryId: 85,
-        priceRangeFrom: 4,
-        priceRangeTo: 5,
-        ruleTypeId: 1,
-        behaviourId: 2,
-        priceRangeValueToSet: 0,
+        temporaryId: 15,
+        priceRangeFrom: 30,
+        priceRangeTo: 100,
+        ruleTypeId: 2,
+        behaviourId: 16,
+      },
+      {
+        temporaryId: 15,
+        priceRangeFrom: 100,
+        priceRangeTo: 500,
+        ruleTypeId: 2,
+        behaviourId: 19,
       },
     ],
   };
@@ -290,7 +312,7 @@ const CreateMyScript = ({ history }) => {
     if (Array.isArray(arrayOfCustomRules)) {
       for (let i = 0; i < arrayOfCustomRules.length; i++) {
         //Check if starting value is 0
-        if (i === 0 && arrayOfCustomRules[i].from !== 0) {
+        if (i === 0 && arrayOfCustomRules[i].priceRangeFrom !== 0) {
           arrayOfCustomRules[i].hasIncoherentStartingPrice = true;
         } else {
           arrayOfCustomRules[i].hasIncoherentStartingPrice = false;
@@ -298,24 +320,39 @@ const CreateMyScript = ({ history }) => {
 
         //We check if price are defined or if there is an empty place
         if (
-          isNaN(parseInt(arrayOfCustomRules[i].from)) ||
-          isNaN(parseInt(arrayOfCustomRules[i].to))
+          isNaN(parseInt(arrayOfCustomRules[i].priceRangeFrom)) ||
+          isNaN(parseInt(arrayOfCustomRules[i].priceRangeTo))
         ) {
           arrayOfCustomRules[i].hasEmptyInput = true;
         } else {
           //If price are defined
           arrayOfCustomRules[i].hasEmptyInput = false;
-          if (arrayOfCustomRules[i].from >= arrayOfCustomRules[i].to) {
+          if (
+            arrayOfCustomRules[i].priceRangeFrom >=
+            arrayOfCustomRules[i].priceRangeTo
+          ) {
             //Universal check : are price coherent (from < to) ?
             arrayOfCustomRules[i].hasIncoherentOrderInFromTo = true;
           } else {
             arrayOfCustomRules[i].hasIncoherentOrderInFromTo = false;
           }
+          //Checking, if rule expect a price to sell, if this price is precised
+          if (
+            arrayOfCustomRules[i].ruleTypeId === 1 &&
+            !Boolean(arrayOfCustomRules[i].priceRangeValueToSet)
+          ) {
+            arrayOfCustomRules[i].isMissingSellingPrice = true;
+          } else {
+            arrayOfCustomRules[i].isMissingSellingPrice = false;
+          }
         }
 
         //We do this comparison only if it's not the last element of the array (because the next element doesn't exist, yeah !)
         if (i !== arrayOfCustomRules.length - 1) {
-          if (arrayOfCustomRules[i].to !== arrayOfCustomRules[i + 1].from) {
+          if (
+            arrayOfCustomRules[i].priceRangeTo !==
+            arrayOfCustomRules[i + 1].priceRangeFrom
+          ) {
             arrayOfCustomRules[i].hasIncoherentFollowingPrices = true;
           } else {
             arrayOfCustomRules[i].hasIncoherentFollowingPrices = false;
@@ -337,14 +374,16 @@ const CreateMyScript = ({ history }) => {
           rule.hasEmptyInput ||
           rule.hasIncoherentFollowingPrices ||
           rule.hasIncoherentOrderInFromTo ||
-          rule.hasIncoherentStartingPrice
+          rule.hasIncoherentStartingPrice ||
+          rule.isMissingSellingPrice
       ).length === 0 &&
       currentState.regular.filter(
         (rule) =>
           rule.hasEmptyInput ||
           rule.hasIncoherentFollowingPrices ||
           rule.hasIncoherentOrderInFromTo ||
-          rule.hasIncoherentStartingPrice
+          rule.hasIncoherentStartingPrice ||
+          rule.isMissingSellingPrice
       ).length === 0
     );
   };

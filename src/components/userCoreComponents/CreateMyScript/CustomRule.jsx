@@ -90,7 +90,7 @@ const CustomRule = ({
                     <input
                       className="inputValueNumber"
                       value={
-                        typeof rule.from === "number"
+                        typeof rule.priceRangeFrom === "number"
                           ? rule.priceRangeValueToSet
                           : ""
                       }
@@ -155,6 +155,11 @@ const CustomRule = ({
               {rule.hasIncoherentStartingPrice && (
                 <p className="error-rule-explaination">
                   La première règle doit commencer à 0 euro.
+                </p>
+              )}
+              {rule.isMissingSellingPrice && (
+                <p className="error-rule-explaination">
+                  Cette règle attend un prix de vente.
                 </p>
               )}
             </div>
