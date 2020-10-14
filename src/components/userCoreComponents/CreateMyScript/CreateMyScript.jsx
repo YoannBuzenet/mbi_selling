@@ -31,18 +31,66 @@ const CreateMyScript = ({ history }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   console.log("definitions", allDefinitions);
 
-  const [customRulesGlobalState, setCustomRulesGlobalState] = useState({
+  const defaultCreationState = {
     regular: [
-      { id: 485, from: 2, to: 1, ruleTypeId: 1 },
-      { id: 15, from: 1, to: 2, ruleTypeId: 1 },
+      {
+        temporaryId: 485,
+        priceRangeFrom: 2,
+        priceRangeTo: 1,
+        ruleTypeId: 1,
+        behaviourId: 2,
+        priceRangeValueToSet: 0,
+      },
+      {
+        temporaryId: 15,
+        priceRangeFrom: 1,
+        priceRangeTo: 2,
+        ruleTypeId: 1,
+        behaviourId: 2,
+        priceRangeValueToSet: 0,
+      },
     ],
     foil: [
-      { id: 55, from: 0, to: 1, ruleTypeId: 1 },
-      { id: 4, from: 2, to: 6, ruleTypeId: 1 },
-      { id: 1485, from: 3, to: 4, ruleTypeId: 1 },
-      { id: 85, from: 4, to: 5, ruleTypeId: 1 },
+      {
+        temporaryId: 55,
+        priceRangeFrom: 0,
+        priceRangeTo: 1,
+        ruleTypeId: 1,
+        behaviourId: 2,
+        priceRangeValueToSet: 0,
+      },
+      {
+        temporaryId: 4,
+        priceRangeFrom: 2,
+        priceRangeTo: 6,
+        ruleTypeId: 1,
+        behaviourId: 2,
+        priceRangeValueToSet: 0,
+      },
+      {
+        temporaryId: 1485,
+        priceRangeFrom: 3,
+        priceRangeTo: 4,
+        ruleTypeId: 1,
+        behaviourId: 2,
+        priceRangeValueToSet: 0,
+      },
+      {
+        temporaryId: 85,
+        priceRangeFrom: 4,
+        priceRangeTo: 5,
+        ruleTypeId: 1,
+        behaviourId: 2,
+        priceRangeValueToSet: 0,
+      },
     ],
-  });
+  };
+
+  const [customRulesGlobalState, setCustomRulesGlobalState] = useState(
+    isCreationOrEditionMode === "Creation"
+      ? defaultCreationState
+      : { regular: [], foil: [] }
+  );
 
   //TODO : pouvoir Charger un script : le get, et trier les règles et les passer en state
   // TO DO : permettre la création from scracth egélaement

@@ -31,8 +31,14 @@ router.get(
     const isThereAScriptForThisUser = await db.Script.findOne({
       where: {
         idShop: req.query.idUser,
+        id: req.query.idScript,
       },
     });
+
+    console.log(
+      "has user access to that script ? whats inside the call ?",
+      isThereAScriptForThisUser
+    );
 
     if (isThereAScriptForThisUser === null) {
       res.status(401).json("User does not have access do this ressource.");
@@ -137,7 +143,10 @@ router.post(
       },
     });
 
-    console.log(isThereAScriptForThisUser);
+    console.log(
+      "is there a script for this user ? ",
+      isThereAScriptForThisUser
+    );
 
     if (isThereAScriptForThisUser === null) {
       res.status(401).json("User does not have access do this ressource.");
