@@ -39,71 +39,81 @@ const CreateMyScript = ({ history }) => {
         priceRangeTo: 1,
         ruleTypeId: 2,
         behaviourId: 13,
+        isForFoils: 0,
       },
       {
-        temporaryId: 15,
+        temporaryId: 16,
         priceRangeFrom: 1,
         priceRangeTo: 10,
         ruleTypeId: 2,
         behaviourId: 14,
+        isForFoils: 0,
       },
       {
-        temporaryId: 15,
+        temporaryId: 17,
         priceRangeFrom: 10,
         priceRangeTo: 30,
         ruleTypeId: 2,
         behaviourId: 15,
+        isForFoils: 0,
       },
       {
-        temporaryId: 15,
+        temporaryId: 18,
         priceRangeFrom: 30,
         priceRangeTo: 100,
         ruleTypeId: 2,
         behaviourId: 16,
+        isForFoils: 0,
       },
       {
-        temporaryId: 15,
+        temporaryId: 19,
         priceRangeFrom: 100,
         priceRangeTo: 500,
         ruleTypeId: 2,
         behaviourId: 19,
+        isForFoils: 0,
       },
     ],
     foil: [
       {
-        temporaryId: 485,
+        temporaryId: 486,
         priceRangeFrom: 0,
         priceRangeTo: 1,
         ruleTypeId: 2,
         behaviourId: 13,
+        isForFoils: 1,
       },
       {
-        temporaryId: 15,
+        temporaryId: 20,
         priceRangeFrom: 1,
         priceRangeTo: 10,
         ruleTypeId: 2,
         behaviourId: 14,
+        isForFoils: 1,
       },
       {
-        temporaryId: 15,
+        temporaryId: 21,
         priceRangeFrom: 10,
         priceRangeTo: 30,
         ruleTypeId: 2,
         behaviourId: 15,
+        isForFoils: 1,
       },
       {
-        temporaryId: 15,
+        temporaryId: 22,
         priceRangeFrom: 30,
         priceRangeTo: 100,
         ruleTypeId: 2,
         behaviourId: 16,
+        isForFoils: 1,
       },
       {
-        temporaryId: 15,
+        temporaryId: 23,
         priceRangeFrom: 100,
         priceRangeTo: 500,
         ruleTypeId: 2,
         behaviourId: 19,
+        isForFoils: 1,
       },
     ],
   };
@@ -293,10 +303,12 @@ const CreateMyScript = ({ history }) => {
     console.log("search for incoherence");
     let mutatedState = { ...state };
 
+    console.log("search for incoherence in regular array");
     //Browsing Regular Array
     if (Array.isArray(mutatedState.regular)) {
       checkArrayIncoherence(mutatedState.regular);
     }
+    console.log("search for incoherence in foil array");
     //Browsing Foil Array
     if (Array.isArray(mutatedState.foil)) {
       checkArrayIncoherence(mutatedState.foil);
@@ -311,6 +323,11 @@ const CreateMyScript = ({ history }) => {
   const checkArrayIncoherence = (arrayOfCustomRules) => {
     if (Array.isArray(arrayOfCustomRules)) {
       for (let i = 0; i < arrayOfCustomRules.length; i++) {
+        console.log(
+          "here is the rule we are working on",
+          arrayOfCustomRules[i]
+        );
+
         //Check if starting value is 0
         if (i === 0 && arrayOfCustomRules[i].priceRangeFrom !== 0) {
           arrayOfCustomRules[i].hasIncoherentStartingPrice = true;
@@ -389,25 +406,58 @@ const CreateMyScript = ({ history }) => {
   };
 
   const saveScriptAndCustomRules = () => {
-    //.map array regular
-    let regularRules = customRulesGlobalState.regular.map((rule) => {
-      //si pas d'id
-      //POST
-      //si id et isToBeSaved = tru
-      //PUT
-    });
-    //.map array foil
+    if (canStateBeSaved(customRulesGlobalState) === false) {
+      toast.error("Ya une merde dans le state bro");
+    } else {
+      //.map array regular
+      let regularRules = customRulesGlobalState.regular.map(async (rule) => {
+        if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
+          //si id et isToBeSaved = tru
+          //PUT
+          console.log("PUT");
+        } else if (rule.hasOwnProperty("temporaryId")) {
+          //si pas d'id
+          //POST
+          console.log("POST");
+        }
+        return rule;
+      });
 
-    let foilRules = customRulesGlobalState.foil.map((rule) => {
-      //si pas d'id
-      //POST
-      //si id et isToBeSaved = tru
-      //PUT
-    });
-    //promises.all
+      //.map array foils
+      let foilRules = customRulesGlobalState.foil.map(async (rule) => {
+        if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
+          //si id et isToBeSaved = tru
+          //PUT
+          console.log("PUT");
+        } else if (rule.hasOwnProperty("temporaryId")) {
+          //si pas d'id
+          //POST
+          console.log("POST");
+        }
+        return rule;
+      });
 
-    //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
-    console.log("saved !");
+      Promise.all([...regularRules, ...foilRules])
+        .then((resp) => {
+          console.log(resp);
+          console.log("everything was saved");
+          toast.success("Script sauvegardé FDP");
+          //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
+          //removing IsToBeSaved prop from each table
+          const allNewRules = resp.map((rule) => {
+            return { ...rule, isToBeSaved: false };
+          });
+
+          console.log("all our news rules", allNewRules);
+
+          setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
+          console.log("saved !");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("erreur lors de la sauvegarde");
+        });
+    }
   };
 
   const launchTest = () => {
@@ -424,7 +474,9 @@ const CreateMyScript = ({ history }) => {
     <div className="create-my-script-container">
       Create my script
       <p>SCRIPT NAME</p>
-      <button onClick={(e) => saveScriptAndCustomRules}>Save</button>
+      <button onClick={(e) => saveScriptAndCustomRules(e)} type="button">
+        Save
+      </button>
       <div className="parts-container">
         <div className="left-part">
           REGULAR
