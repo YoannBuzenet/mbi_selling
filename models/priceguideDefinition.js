@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      PriceGuideDefinitions.hasOne(models.Custom_Rule, {
+        foreignKey: "id",
+      });
     }
   }
   PriceGuideDefinitions.init(

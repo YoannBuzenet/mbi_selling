@@ -493,13 +493,26 @@ const CreateMyScript = ({ history }) => {
       //.map array foils
       let foilRules = customRulesGlobalState.foil.map(async (rule) => {
         if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
-          //si id et isToBeSaved = tru
-          //PUT
-          console.log("PUT");
+          //PATCH
+          console.log("PATCH", rule);
+          return axios.patch(
+            "/api/customRules/" +
+              rule.id +
+              "?idUser=" +
+              authenticationInfos.user.id,
+            rule
+          );
         } else if (rule.hasOwnProperty("temporaryId")) {
-          //si pas d'id
-          //POST
-          console.log("POST");
+          console.log("POST", rule);
+          //yo
+          return axios.post(
+            "/api/customRules/" +
+              "?idUser=" +
+              authenticationInfos.user.id +
+              "&idScript=" +
+              newScriptId || idScript,
+            rule
+          );
         }
         return rule;
       });
@@ -512,7 +525,11 @@ const CreateMyScript = ({ history }) => {
         //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
         //removing IsToBeSaved prop from each table
         const allNewRules = respServ.map((rule) => {
-          return { ...rule, isToBeSaved: false };
+          if (rule.hasOwnProperty("data")) {
+            return { ...rule.data, isToBeSaved: false };
+          } else {
+            return rule;
+          }
         });
 
         console.log("all our news rules", allNewRules);
@@ -590,18 +607,21 @@ const CreateMyScript = ({ history }) => {
               handleClick={addACustomRule}
             />
             {Array.isArray(customRulesGlobalState.foil) &&
-              customRulesGlobalState.foil.map((rule, index) => (
-                <CustomRule
-                  rule={rule}
-                  index={index}
-                  parentArrayLength={customRulesGlobalState.foil.length}
-                  FoilOrRegular="foil"
-                  addACustomRule={addACustomRule}
-                  deleteACustomRule={deleteACustomRule}
-                  key={"" + rule.id + "" + rule.temporaryId + "" + "regular"}
-                  updateACustomRule={updateACustomRule}
-                />
-              ))}
+              customRulesGlobalState.foil.map((rule, index) => {
+                console.log("foil rule", rule);
+                return (
+                  <CustomRule
+                    rule={rule}
+                    index={index}
+                    parentArrayLength={customRulesGlobalState.foil.length}
+                    FoilOrRegular="foil"
+                    addACustomRule={addACustomRule}
+                    deleteACustomRule={deleteACustomRule}
+                    key={"" + rule.id + "" + rule.temporaryId + "" + "regular"}
+                    updateACustomRule={updateACustomRule}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>
