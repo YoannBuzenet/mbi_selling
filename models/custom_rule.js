@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       Custom_Rule.belongsTo(models.customRule_behaviour_definition, {
         foreignKey: "id",
       });
+      Custom_Rule.belongsTo(models.PriceGuideDefinitions, {
+        foreignKey: "id",
+      });
     }
   }
   Custom_Rule.init(
@@ -53,7 +56,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      mkmPriceGuideReference: DataTypes.STRING,
+      mkmPriceGuideReference: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+        defaultValue: 1,
+      },
     },
     {
       sequelize,

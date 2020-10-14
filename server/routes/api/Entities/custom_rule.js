@@ -160,12 +160,18 @@ router.post(
     /* *****PROCESS******** */
     /* ******************* */
 
+    //Custom check on priceRangeFrom Rule because OR comparison works badly when it compares 0 with null (0 || null gives null, null || 0 gives 0. Not stable.)
+    let numberPriceRangeFrom = null;
+    if (typeof req.body.priceRangeFrom === "number") {
+      numberPriceRangeFrom = req.body.priceRangeFrom;
+    }
+
     //Register Rule
     //Send it back with its id !
     db.Custom_Rule.create({
       idScript: req.query.idScript,
       ruleTypeId: req.body.ruleTypeId,
-      priceRangeFrom: req.body.priceRangeFrom || null,
+      priceRangeFrom: numberPriceRangeFrom,
       priceRangeTo: req.body.priceRangeTo || null,
       priceRangeValueToSet: req.body.priceRangeValueToSet || null,
       behaviourId: req.body.behaviourId,
@@ -274,11 +280,11 @@ router.patch("/:id", async (req, res) => {
   /* ******************* */
   //Register Rule
   //Send it back with its id !
-  existingCustomRule.ruleType = req.body.ruleType;
+  existingCustomRule.ruleTypeId = req.body.ruleTypeId;
   existingCustomRule.priceRangeFrom = req.body.priceRangeFrom;
   existingCustomRule.priceRangeTo = req.body.priceRangeTo;
   existingCustomRule.priceRangeValueToSet = req.body.priceRangeValueToSet;
-  existingCustomRule.behaviour = req.body.behaviour;
+  existingCustomRule.behaviourId = req.body.behaviourId;
   existingCustomRule.priceRangePercentageFromMkm =
     req.body.priceRangePercentageFromMkm;
   existingCustomRule.isForFoils = req.body.isForFoils;
