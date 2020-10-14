@@ -271,8 +271,8 @@ const CreateMyScript = ({ history }) => {
       name === "priceRangeTo" ||
       name === "ruleTypeId" ||
       name == "priceRangeValueToSet" ||
-      name === "priceGuidePossibility" ||
-      name === "ruleBehaviours"
+      name === "mkmPriceGuideReference" ||
+      name === "behaviourId"
     ) {
       if (value !== "" && !isNaN(parseInt(value))) {
         value = parseInt(value);
@@ -455,6 +455,10 @@ const CreateMyScript = ({ history }) => {
           <p>Les signées ne sont pas traitées.</p>
           <p>Les altérées ne sont pas traitées.</p>
           <p>Les playsets ne sont pas traités.</p>
+          <p>
+            Les cartes aux prix supérieur aux prix mentionnés ne sont pas
+            traitées.
+          </p>
         </div>
         <div className="right-part">
           FOIL

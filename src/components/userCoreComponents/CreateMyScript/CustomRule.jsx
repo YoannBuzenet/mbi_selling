@@ -106,8 +106,8 @@ const CustomRule = ({
                     {Array.isArray(allDefinitions.priceGuidePossibilities) && (
                       <select
                         onChange={(e) => handleChange(e)}
-                        name="priceGuidePossibility"
-                        value={rule.priceGuidePossibilities || 1}
+                        name="mkmPriceGuideReference"
+                        value={rule.mkmPriceGuideReference || 1}
                       >
                         {allDefinitions.priceGuidePossibilities.map(
                           (priceGuidePossibility) => (
@@ -121,8 +121,8 @@ const CustomRule = ({
                     {Array.isArray(allDefinitions.ruleBehaviours) && (
                       <select
                         onChange={(e) => handleChange(e)}
-                        name="ruleBehaviours"
-                        value={rule.ruleBehaviours || 1}
+                        name="behaviourId"
+                        value={rule.behaviourId || 1}
                       >
                         {allDefinitions.ruleBehaviours.map((ruleBehaviour) => (
                           <option value={ruleBehaviour.id}>
