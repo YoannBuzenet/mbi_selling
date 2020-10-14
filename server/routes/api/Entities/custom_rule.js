@@ -223,11 +223,11 @@ router.patch("/:id", async (req, res) => {
     return;
   }
 
-  if (req.body.ruleType === undefined) {
+  if (req.body.ruleTypeId === undefined) {
     res.status(406).json("Custom Rules ruleType is mandatory.");
     return;
   }
-  if (req.body.behaviour === undefined) {
+  if (req.body.behaviourId === undefined) {
     res.status(406).json("Custom Rules behaviour is mandatory.");
     return;
   }
@@ -243,7 +243,7 @@ router.patch("/:id", async (req, res) => {
       );
     return;
   }
-  if (req.body.ruleType === "priceRange") {
+  if (req.body.ruleTypeId === 1) {
     if (
       req.body.priceRangeFrom === undefined ||
       req.body.priceRangeTo === undefined ||

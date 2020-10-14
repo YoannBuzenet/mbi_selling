@@ -21,7 +21,7 @@ const CreateMyScript = ({ history }) => {
     strict: false,
   });
 
-  console.log("auth from create script", authenticationInfos);
+  // console.log("auth from create script", authenticationInfos);
 
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
   const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";
@@ -29,7 +29,7 @@ const CreateMyScript = ({ history }) => {
   console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
 
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
-  console.log("definitions", allDefinitions);
+  // console.log("definitions", allDefinitions);
 
   const defaultCreationState = {
     regular: [
@@ -40,6 +40,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 13,
         isForFoils: 0,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 16,
@@ -48,6 +50,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 14,
         isForFoils: 0,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 17,
@@ -56,6 +60,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 15,
         isForFoils: 0,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 18,
@@ -64,6 +70,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 16,
         isForFoils: 0,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 19,
@@ -72,6 +80,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 19,
         isForFoils: 0,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
     ],
     foil: [
@@ -82,6 +92,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 13,
         isForFoils: 1,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 20,
@@ -90,6 +102,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 14,
         isForFoils: 1,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 21,
@@ -98,6 +112,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 15,
         isForFoils: 1,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 22,
@@ -106,6 +122,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 16,
         isForFoils: 1,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
       {
         temporaryId: 23,
@@ -114,6 +132,8 @@ const CreateMyScript = ({ history }) => {
         ruleTypeId: 2,
         behaviourId: 19,
         isForFoils: 1,
+        isForSigned: 0,
+        isForPlaysets: 0,
       },
     ],
   };
@@ -123,6 +143,10 @@ const CreateMyScript = ({ history }) => {
       ? defaultCreationState
       : { regular: [], foil: [] }
   );
+
+  //This value is kept in state for creation mode, where we will need to set it before sending our rules.
+  //With this we have this potential ID always in the same variable.
+  const [idScript, setIdScript] = useState(match?.params?.id);
 
   //TODO : pouvoir Charger un script : le get, et trier les règles et les passer en state
   // TO DO : permettre la création from scracth egélaement
@@ -136,8 +160,8 @@ const CreateMyScript = ({ history }) => {
           `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match?.params?.id}`
         )
         .then((resp) => {
-          console.log(resp.data);
-          console.log("test");
+          // console.log(resp.data);
+
           setCustomRulesGlobalState(prepareStateFromArrayOfRules(resp.data));
         })
         .catch((err) =>
@@ -174,7 +198,7 @@ const CreateMyScript = ({ history }) => {
       foil: arrayOfFoilCustomRules,
     };
 
-    console.log("here is the result", objectToReturn);
+    // console.log("here is the result", objectToReturn);
     return objectToReturn;
   }
 
@@ -187,15 +211,16 @@ const CreateMyScript = ({ history }) => {
     return ref.current;
   }
 
+  const previousState = usePrevious(customRulesGlobalState);
   const previousStateStringified = usePrevious(
     JSON.stringify(customRulesGlobalState)
   );
-  console.log("previous state", previousStateStringified);
-  console.log("current state", customRulesGlobalState);
-  console.log(
-    "comparison between 2 states - are they similar ? ",
-    previousStateStringified === customRulesGlobalState
-  );
+  // console.log("previous state", previousStateStringified);
+  // console.log("current state", customRulesGlobalState);
+  // console.log(
+  //   "comparison between 2 states - are they similar ? ",
+  //   previousStateStringified === customRulesGlobalState
+  // );
 
   // Automatic coherence check at each render
   useEffect(() => {
@@ -222,9 +247,15 @@ const CreateMyScript = ({ history }) => {
   const addACustomRule = (position, FoilOrRegular) => {
     customRulesGlobalState[FoilOrRegular].splice(position, 0, {
       name: "created programatically",
-      ruleTypeId: 1,
       wasCreatedHere: true,
       temporaryId: Math.random(),
+      priceRangeFrom: 0,
+      priceRangeTo: 1,
+      ruleTypeId: 2,
+      behaviourId: 1,
+      isForFoils: FoilOrRegular === "foil",
+      isForSigned: 0,
+      isForPlaysets: 0,
     });
     setCustomRulesGlobalState({
       ...customRulesGlobalState,
@@ -265,7 +296,7 @@ const CreateMyScript = ({ history }) => {
         setCustomRulesGlobalState({
           ...customRulesGlobalState,
         });
-        console.log("put it back in state and notify user");
+        // console.log("put it back in state and notify user");
         toast.error("pas pu la retirer en DB ! hardcoded ?");
       });
     }
@@ -300,15 +331,15 @@ const CreateMyScript = ({ history }) => {
 
   // Browse the state, return a mutated state with the "incoherent" markets up to date.
   const browseScriptAndMarkIncoherence = (state) => {
-    console.log("search for incoherence");
+    // console.log("search for incoherence");
     let mutatedState = { ...state };
 
-    console.log("search for incoherence in regular array");
+    // console.log("search for incoherence in regular array");
     //Browsing Regular Array
     if (Array.isArray(mutatedState.regular)) {
       checkArrayIncoherence(mutatedState.regular);
     }
-    console.log("search for incoherence in foil array");
+    // console.log("search for incoherence in foil array");
     //Browsing Foil Array
     if (Array.isArray(mutatedState.foil)) {
       checkArrayIncoherence(mutatedState.foil);
@@ -405,20 +436,56 @@ const CreateMyScript = ({ history }) => {
     );
   };
 
-  const saveScriptAndCustomRules = () => {
+  const saveScriptAndCustomRules = async () => {
     if (canStateBeSaved(customRulesGlobalState) === false) {
-      toast.error("Ya une merde dans le state bro");
+      toast.error("there's something in the state bro");
     } else {
+      //POST SCRIPT IF IT HAS NO ID
+      //GET DATA BACK PASS IT IN STATE
+      let newScriptId = null;
+      if (Boolean(idScript) === false) {
+        console.log("no script, must create one");
+        try {
+          const scriptCreated = await axios.post(
+            "/api/script?idUser=" + authenticationInfos.user.id,
+            {
+              name: "this script will be managed in state :''''(",
+            }
+          );
+          console.log("data arrived : ", scriptCreated);
+          setIdScript(scriptCreated.data.id);
+          newScriptId = scriptCreated.data.id;
+        } catch (e) {
+          console.log("creation script", e);
+          toast.error("error when creating script");
+          return;
+        }
+      }
+
+      console.log("starting to POST/PATCH");
       //.map array regular
       let regularRules = customRulesGlobalState.regular.map(async (rule) => {
         if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
-          //si id et isToBeSaved = tru
-          //PUT
-          console.log("PUT");
+          //PATCH
+          console.log("PATCH", rule);
+          return axios.patch(
+            "/api/customRules/" +
+              rule.id +
+              "?idUser=" +
+              authenticationInfos.user.id,
+            rule
+          );
         } else if (rule.hasOwnProperty("temporaryId")) {
-          //si pas d'id
-          //POST
-          console.log("POST");
+          console.log("POST", rule);
+          //yo
+          return axios.post(
+            "/api/customRules/" +
+              "?idUser=" +
+              authenticationInfos.user.id +
+              "&idScript=" +
+              newScriptId || idScript,
+            rule
+          );
         }
         return rule;
       });
@@ -437,26 +504,28 @@ const CreateMyScript = ({ history }) => {
         return rule;
       });
 
-      Promise.all([...regularRules, ...foilRules])
-        .then((resp) => {
-          console.log(resp);
-          console.log("everything was saved");
-          toast.success("Script sauvegardé FDP");
-          //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
-          //removing IsToBeSaved prop from each table
-          const allNewRules = resp.map((rule) => {
-            return { ...rule, isToBeSaved: false };
-          });
+      const respServ = await Promise.all([...regularRules, ...foilRules]);
 
-          console.log("all our news rules", allNewRules);
-
-          setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
-          console.log("saved !");
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("erreur lors de la sauvegarde");
+      try {
+        console.log("serv resp", respServ);
+        toast.success("Script saved babe");
+        //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
+        //removing IsToBeSaved prop from each table
+        const allNewRules = respServ.map((rule) => {
+          return { ...rule, isToBeSaved: false };
         });
+
+        console.log("all our news rules", allNewRules);
+
+        setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
+        console.log("saved !");
+      } catch (e) {
+        console.log(e);
+        toast.error("error when saving");
+        //Set l'ancien state - NOT TRIED
+        console.log(previousState);
+        setCustomRulesGlobalState(previousState);
+      }
     }
   };
 
