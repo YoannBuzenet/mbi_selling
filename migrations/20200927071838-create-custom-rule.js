@@ -52,9 +52,6 @@ module.exports = {
       priceRangeValueToSet: {
         type: Sequelize.INTEGER,
       },
-      priceRangePercentageFromMkm: {
-        type: Sequelize.INTEGER,
-      },
       mkmPriceGuideReference: {
         type: Sequelize.STRING,
         allowNull: false,

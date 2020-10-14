@@ -41,10 +41,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      priceRangePercentageFromMkm: {
-        type: DataTypes.INTEGER,
-        validate: { isNumeric: true },
-      },
       isForFoils: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
