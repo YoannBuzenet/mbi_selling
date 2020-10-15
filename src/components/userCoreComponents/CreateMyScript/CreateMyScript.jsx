@@ -615,6 +615,13 @@ const CreateMyScript = ({ history }) => {
         } else {
           scriptId = parseInt(idScript);
         }
+
+        //We will pass it into localStorage also
+        //Depending on creation or edition mode, as for the state, we will save it differently in state
+        let localStorageUserData = JSON.parse(
+          window.localStorage.getItem("userInfos")
+        );
+
         //Creating it in state
         if (
           authenticationInfos?.shop?.userScripts.filter(
@@ -631,6 +638,10 @@ const CreateMyScript = ({ history }) => {
               ],
             },
           });
+          localStorageUserData.userScripts = [
+            ...authenticationInfos.shop.userScripts,
+            { id: scriptId, name: scriptName },
+          ];
         }
         //Refreshing only the relevant one in state
         else {
@@ -641,7 +652,14 @@ const CreateMyScript = ({ history }) => {
             indexScriptToUpdate
           ].name = scriptName;
           setAuthenticationInfos({ ...authenticationInfos });
+          localStorageUserData.userScripts =
+            authenticationInfos.shop.userScripts;
         }
+
+        window.localStorage.setItem(
+          "userInfos",
+          JSON.stringify(localStorageUserData)
+        );
 
         //removing IsToBeSaved prop from each table
         const allNewRules = respServ.map((rule) => {
