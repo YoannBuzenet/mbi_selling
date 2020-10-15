@@ -173,7 +173,21 @@ const CreateMyScript = ({ history }) => {
         );
 
       //GETTING SCRIPT NAME
-      //yo
+      axios
+        .get(
+          "/api/script//getById/" +
+            idScript +
+            "?idUser=" +
+            authenticationInfos.user.id
+        )
+        .then((resp) => {
+          console.log("pass script name in state");
+          setScriptName(resp.data.name);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("erreur dans le get script name");
+        });
     }
   }, []);
 
