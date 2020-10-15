@@ -22,12 +22,12 @@ const CreateMyScript = ({ history }) => {
     strict: false,
   });
 
-  console.log("auth from create script", authenticationInfos);
+  // console.log("auth from create script", authenticationInfos);
 
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
   const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";
 
-  console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
+  // console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
 
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   // console.log("definitions", allDefinitions);
@@ -339,17 +339,31 @@ const CreateMyScript = ({ history }) => {
     let mutatedState = { ...customRulesGlobalState };
     const { name } = event.target;
     let { value } = event.target;
-    console.log(name, value);
+    console.log("new input", name, value);
     if (
-      name === "priceRangeFrom" ||
-      name === "priceRangeTo" ||
       name === "ruleTypeId" ||
-      name == "priceRangeValueToSet" ||
       name === "mkmPriceGuideReference" ||
       name === "behaviourId"
     ) {
+      console.log("parseInt if");
       if (value !== "" && !isNaN(parseInt(value))) {
         value = parseInt(value);
+      } else if (value == "") {
+      } else {
+        value = 0;
+      }
+      //Allowing floats for price input
+    } else if (
+      name === "priceRangeFrom" ||
+      name === "priceRangeTo" ||
+      name == "priceRangeValueToSet"
+    ) {
+      console.log("parseFloat if");
+      //If it lasts by a period, let it, it means user is entering a float number
+      if (value[value.length - 1] === ".") {
+        console.log("let the period happen");
+      } else if (value !== "" && !isNaN(parseFloat(value))) {
+        value = parseFloat(value);
       } else if (value == "") {
       } else {
         value = 0;
@@ -387,10 +401,10 @@ const CreateMyScript = ({ history }) => {
   const checkArrayIncoherence = (arrayOfCustomRules) => {
     if (Array.isArray(arrayOfCustomRules)) {
       for (let i = 0; i < arrayOfCustomRules.length; i++) {
-        console.log(
-          "here is the rule we are working on",
-          arrayOfCustomRules[i]
-        );
+        // console.log(
+        //   "here is the rule we are working on",
+        //   arrayOfCustomRules[i]
+        // );
 
         //Check if starting value is 0
         if (i === 0 && arrayOfCustomRules[i].priceRangeFrom !== 0) {
@@ -440,7 +454,7 @@ const CreateMyScript = ({ history }) => {
           }
         }
       }
-      console.log("treated array", arrayOfCustomRules);
+      // console.log("treated array", arrayOfCustomRules);
       return arrayOfCustomRules;
     } else {
       throw new Error("Param received is not of type Array.");
@@ -647,7 +661,7 @@ const CreateMyScript = ({ history }) => {
             />
             {Array.isArray(customRulesGlobalState.regular) &&
               customRulesGlobalState.regular.map((rule, index) => {
-                console.log(rule);
+                // console.log(rule);
                 return (
                   <CustomRule
                     rule={rule}
@@ -681,7 +695,7 @@ const CreateMyScript = ({ history }) => {
             />
             {Array.isArray(customRulesGlobalState.foil) &&
               customRulesGlobalState.foil.map((rule, index) => {
-                console.log("foil rule", rule);
+                // console.log("foil rule", rule);
                 return (
                   <CustomRule
                     rule={rule}

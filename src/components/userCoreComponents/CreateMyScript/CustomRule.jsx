@@ -15,7 +15,7 @@ const CustomRule = ({
   updateACustomRule,
 }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
-  console.log("definitions from the rule level", allDefinitions);
+  // console.log("definitions from the rule level", allDefinitions);
 
   const [isZoomed, setIsZoomed] = useState(!rule.wasCreatedHere || true);
 
@@ -53,9 +53,7 @@ const CustomRule = ({
             <input
               className="inputValueNumber"
               value={
-                typeof rule.priceRangeFrom === "number"
-                  ? rule.priceRangeFrom
-                  : ""
+                rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
               }
               name={"priceRangeFrom"}
               onChange={(e) => handleChange(e)}
@@ -63,9 +61,7 @@ const CustomRule = ({
             A
             <input
               className="inputValueNumber"
-              value={
-                typeof rule.priceRangeTo === "number" ? rule.priceRangeTo : ""
-              }
+              value={rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""}
               name={"priceRangeTo"}
               onChange={(e) => handleChange(e)}
             />
@@ -90,7 +86,7 @@ const CustomRule = ({
                     <input
                       className="inputValueNumber"
                       value={
-                        typeof rule.priceRangeFrom === "number"
+                        rule.priceRangeFrom !== undefined
                           ? rule.priceRangeValueToSet
                           : ""
                       }
@@ -100,7 +96,6 @@ const CustomRule = ({
                   </p>
                 )}
 
-                {/* TODO REPRENDRE LA AVEC TOUTES LES LIGNES DU PRICEGUIDE */}
                 {rule.ruleTypeId === 2 && (
                   <p>
                     {Array.isArray(allDefinitions.priceGuidePossibilities) && (
