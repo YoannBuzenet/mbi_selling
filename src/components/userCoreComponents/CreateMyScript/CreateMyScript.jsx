@@ -31,6 +31,8 @@ const CreateMyScript = ({ history }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   // console.log("definitions", allDefinitions);
 
+  const defaultScriptName = "Nouveau Script à traduire";
+
   const defaultCreationState = {
     regular: [
       {
@@ -144,19 +146,19 @@ const CreateMyScript = ({ history }) => {
       : { regular: [], foil: [] }
   );
 
+  const [scriptName, setScriptName] = useState(
+    isCreationOrEditionMode === "Creation" ? defaultScriptName : ""
+  );
+
   //This value is kept in state for creation mode, where we will need to set it before sending our rules.
   //With this we have this potential ID always in the same variable.
   const [idScript, setIdScript] = useState(match?.params?.id);
 
-  console.log("notre id script est" + idScript);
-
-  //TODO : pouvoir Charger un script : le get, et trier les règles et les passer en state
-  // TO DO : permettre la création from scracth egélaement
   useEffect(() => {
     console.log("getting custom rules");
     //If we are in edit mode, get the data from the script
     if (isCreationOrEditionMode === "Edition") {
-      console.log("the call for charging custom rules has started !");
+      //GETTING CUSTOM RULES
       axios
         .get(
           `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match?.params?.id}`
@@ -169,6 +171,9 @@ const CreateMyScript = ({ history }) => {
         .catch((err) =>
           console.log("error when calling custom rules for this script", err)
         );
+
+      //GETTING SCRIPT NAME
+      //yo
     }
   }, []);
 
@@ -458,7 +463,7 @@ const CreateMyScript = ({ history }) => {
           const scriptCreated = await axios.post(
             "/api/script?idUser=" + authenticationInfos.user.id,
             {
-              name: "this script will be managed in state :''''(",
+              name: scriptName,
             }
           );
           console.log("data arrived : ", scriptCreated);
@@ -469,6 +474,25 @@ const CreateMyScript = ({ history }) => {
           toast.error("error when creating script");
           return;
         }
+      } else {
+        //WE PATCH THE SCRIPT NAME
+        axios
+          .patch(
+            "/api/script/" +
+              idScript +
+              "?idUser=" +
+              authenticationInfos.user.id,
+            {
+              name: scriptName,
+            }
+          )
+          .then((resp) => {
+            console.log("ce .then sert à rien nan ?");
+          })
+          .catch((err) => {
+            console.log(err);
+            console.log("erreur lors du patch script");
+          });
       }
 
       console.log("starting to POST/PATCH");
@@ -569,6 +593,10 @@ const CreateMyScript = ({ history }) => {
     }
   };
 
+  const handleChangeScriptName = (event) => {
+    setScriptName(event.target.value);
+  };
+
   const launchTest = () => {
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
     console.log("test !");
@@ -582,7 +610,7 @@ const CreateMyScript = ({ history }) => {
   return (
     <div className="create-my-script-container">
       Create my script
-      <p>SCRIPT NAME</p>
+      <input type="text" value={scriptName} onChange={handleChangeScriptName} />
       <button onClick={(e) => saveScriptAndCustomRules(e)} type="button">
         Save
       </button>
