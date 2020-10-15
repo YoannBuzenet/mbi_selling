@@ -4,7 +4,7 @@ var router = express.Router();
 //General Routes
 const loginRoutes = require("./authentication");
 
-//Connecting to DB when arriving in /api
+//Connecting to DB when arriving in
 const { connect } = require("../../../database/connect");
 connect();
 
