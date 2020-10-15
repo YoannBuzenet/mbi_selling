@@ -56,7 +56,7 @@ const Navbar = ({ history }) => {
       <nav className="navbar">
         <div className="container">
           <div className="menu-links-left">
-            <Link to="/stats" className="logo-shop-link">
+            <Link to="/" className="logo-shop-link">
               <img src="/shopLogo.png" />
             </Link>
             {/* <Link to="/" className="classic-links big-screen-info">
@@ -70,12 +70,12 @@ const Navbar = ({ history }) => {
             <div className="my_options">
               <BurgerMenu history={history} />
               <div className="desktop_menu_options">
-                <Link className="classic-links nav-element" to="/stats">
+                {/* <Link className="classic-links nav-element" to="/stats">
                   <FormattedMessage
                     id="app.navbar.stats"
                     defaultMessage={`Stats`}
                   />
-                </Link>
+                </Link> */}
                 <div className="toggle-menu-container">
                   <p
                     className="unselectable display-inline-block nav-element pointer"
@@ -113,7 +113,7 @@ const Navbar = ({ history }) => {
                           />
                         </li>
                       </Link>
-                      <Link
+                      {/* <Link
                         to="/stats"
                         className="toggle-menu-links"
                         onClick={() => setToggleMenu(!toggleMenu)}
@@ -124,7 +124,7 @@ const Navbar = ({ history }) => {
                             defaultMessage={`Stats`}
                           />
                         </li>
-                      </Link>
+                      </Link> */}
                       <Link
                         to="/settings"
                         className="toggle-menu-links"
@@ -157,13 +157,13 @@ const Navbar = ({ history }) => {
               <BurgerMenu history={history} />
 
               <div className="connect">
-                {/* We let this link to show to free users what can be done with this amazing software */}
-                <Link className="classic-links nav-element" to="/stats">
+                {/* We WILL let this link to show to free users what can be done with this amazing software */}
+                {/* <Link className="classic-links nav-element" to="/stats">
                   <FormattedMessage
                     id="app.navbar.stats"
                     defaultMessage={`Stats`}
                   />
-                </Link>
+                </Link> */}
                 <Link className="classic-links" to="/register">
                   <FormattedMessage
                     id="app.navbar.register"

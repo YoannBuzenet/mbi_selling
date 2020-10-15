@@ -634,6 +634,8 @@ div.connect p {
   z-index: 3;
   width: 100%;
   background-color: white;
+  min-height: 40px;
+  line-height: 40px;
 }
 
 .navbar input[type="search"] {
