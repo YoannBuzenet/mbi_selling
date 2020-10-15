@@ -477,6 +477,13 @@ form.reset-password-form button {
 }
 
 /**************************
+******ALL MY SCRIPTS*******
+**************************/
+.all-my-scripts table {
+  margin: 0 auto;
+}
+
+/**************************
 *******REGISTER PAGE*******
 **************************/
 .RegisterLoader {
