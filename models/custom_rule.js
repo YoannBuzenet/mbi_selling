@@ -29,15 +29,15 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       priceRangeFrom: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       priceRangeTo: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       priceRangeValueToSet: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       behaviourId: {

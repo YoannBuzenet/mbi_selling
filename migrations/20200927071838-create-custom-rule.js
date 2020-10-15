@@ -35,10 +35,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       priceRangeFrom: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       priceRangeTo: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, Exclude
       behaviourId: {
@@ -50,7 +50,7 @@ module.exports = {
         },
       },
       priceRangeValueToSet: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       mkmPriceGuideReference: {
         type: Sequelize.INTEGER,

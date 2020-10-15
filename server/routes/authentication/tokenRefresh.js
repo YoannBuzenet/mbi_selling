@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
+var axios = require("axios");
+const db = require("../../../models/index");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   //Checking payload
   if (req.body.refresh_token === undefined) {
     res.status(406).json("Parameters are missing for token refresh.");
@@ -23,14 +25,14 @@ router.get("/", async (req, res) => {
       },
     });
 
-    console.log("user scripts to be added :", userScripts);
+    // console.log("user scripts to be added :", userScripts);
 
     const overloadedResponse = { ...refreskTokenOnMTGAPI.data, userScripts };
 
     res.json(overloadedResponse);
   } catch (error) {
-    console.log(error);
-    res.status(401).json("Access Denied.");
+    console.log("error when adding data to refresh token", error);
+    res.status(401).json(error);
     return;
   }
 });
