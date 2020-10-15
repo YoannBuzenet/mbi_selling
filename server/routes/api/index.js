@@ -6,7 +6,6 @@ const mkmRoutes = require("./mkm");
 const dbRoutes = require("./db");
 const mtgDataRoutes = require("./mtgData");
 const mtgPricesRoutes = require("./mtgPrices");
-const testRoutes = require("./test");
 
 //Routes by Entities
 const customRulesRoutes = require("./Entities/custom_rule");
@@ -23,7 +22,6 @@ router.use("/mkm", mkmRoutes);
 router.use("/testConnection", dbRoutes);
 router.use("/mtgData", mtgDataRoutes);
 router.use("/mtgPrices", mtgPricesRoutes);
-router.use("/test", testRoutes);
 
 // Entities Routes
 router.use("/customRules", customRulesRoutes);
