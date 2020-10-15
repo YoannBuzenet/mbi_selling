@@ -8,6 +8,7 @@ import { matchPath } from "react-router";
 
 import AuthContext from "../../../context/authContext";
 import DefinitionContext from "../../../context/definitionsContext";
+import errorHandlingAPI from "../../../services/errorHandlingAPI";
 
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -168,9 +169,10 @@ const CreateMyScript = ({ history }) => {
 
           setCustomRulesGlobalState(prepareStateFromArrayOfRules(resp.data));
         })
-        .catch((err) =>
-          console.log("error when calling custom rules for this script", err)
-        );
+        .catch((err) => {
+          console.log("error when calling custom rules for this script", err);
+          errorHandlingAPI.checkErrorStatus(err);
+        });
 
       //GETTING SCRIPT NAME
       axios
@@ -187,6 +189,7 @@ const CreateMyScript = ({ history }) => {
         .catch((err) => {
           console.log(err);
           console.log("erreur dans le get script name");
+          errorHandlingAPI.checkErrorStatus(err);
         });
     }
   }, []);
@@ -324,8 +327,7 @@ const CreateMyScript = ({ history }) => {
           setCustomRulesGlobalState({
             ...customRulesGlobalState,
           });
-          // console.log("put it back in state and notify user");
-          toast.error("pas pu la retirer en DB ! hardcoded ?");
+          errorHandlingAPI.checkErrorStatus(err);
         });
     }
   };
@@ -485,6 +487,7 @@ const CreateMyScript = ({ history }) => {
           newScriptId = scriptCreated.data.id;
         } catch (e) {
           console.log("creation script", e);
+          errorHandlingAPI.checkErrorStatus(e);
           toast.error("error when creating script");
           return;
         }
@@ -506,6 +509,7 @@ const CreateMyScript = ({ history }) => {
           .catch((err) => {
             console.log(err);
             console.log("erreur lors du patch script");
+            errorHandlingAPI.checkErrorStatus(err);
           });
       }
 
@@ -598,6 +602,7 @@ const CreateMyScript = ({ history }) => {
         setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
         console.log("saved !");
       } catch (e) {
+        errorHandlingAPI.checkErrorStatus(e);
         console.log(e);
         toast.error("error when saving");
         //Set l'ancien state - NOT TRIED
