@@ -148,6 +148,8 @@ const CreateMyScript = ({ history }) => {
   //With this we have this potential ID always in the same variable.
   const [idScript, setIdScript] = useState(match?.params?.id);
 
+  console.log("notre id script est" + idScript);
+
   //TODO : pouvoir Charger un script : le get, et trier les règles et les passer en state
   // TO DO : permettre la création from scracth egélaement
   useEffect(() => {
@@ -253,7 +255,7 @@ const CreateMyScript = ({ history }) => {
       priceRangeTo: 1,
       ruleTypeId: 2,
       behaviourId: 1,
-      isForFoils: FoilOrRegular === "foil",
+      isForFoils: FoilOrRegular === "foil" ? 1 : 0,
       isForSigned: 0,
       isForPlaysets: 0,
     });
@@ -287,18 +289,25 @@ const CreateMyScript = ({ history }) => {
 
     //If rule has an id, we delete it from DB
     if (removedElement[0].hasOwnProperty("id")) {
-      axios.delete("/api/customRules/" + removedElement[0].id).catch((err) => {
-        customRulesGlobalState[FoilOrRegular].splice(
-          position,
-          0,
-          removedElement[0]
-        );
-        setCustomRulesGlobalState({
-          ...customRulesGlobalState,
+      axios
+        .delete(
+          "/api/customRules/" +
+            removedElement[0].id +
+            "?idUser=" +
+            authenticationInfos.user.id
+        )
+        .catch((err) => {
+          customRulesGlobalState[FoilOrRegular].splice(
+            position,
+            0,
+            removedElement[0]
+          );
+          setCustomRulesGlobalState({
+            ...customRulesGlobalState,
+          });
+          // console.log("put it back in state and notify user");
+          toast.error("pas pu la retirer en DB ! hardcoded ?");
         });
-        // console.log("put it back in state and notify user");
-        toast.error("pas pu la retirer en DB ! hardcoded ?");
-      });
     }
   };
 
@@ -477,13 +486,20 @@ const CreateMyScript = ({ history }) => {
           );
         } else if (rule.hasOwnProperty("temporaryId")) {
           console.log("POST", rule);
-          //yo
+          //We use the right script variable
+          let scriptId;
+          if (newScriptId !== null) {
+            scriptId = newScriptId;
+          } else {
+            scriptId = idScript;
+          }
+
           return axios.post(
             "/api/customRules/" +
               "?idUser=" +
               authenticationInfos.user.id +
               "&idScript=" +
-              newScriptId || idScript,
+              scriptId,
             rule
           );
         }
@@ -504,13 +520,20 @@ const CreateMyScript = ({ history }) => {
           );
         } else if (rule.hasOwnProperty("temporaryId")) {
           console.log("POST", rule);
-          //yo
+          //We use the right script variable
+          let scriptId;
+          if (newScriptId !== null) {
+            scriptId = newScriptId;
+          } else {
+            scriptId = idScript;
+          }
+
           return axios.post(
             "/api/customRules/" +
               "?idUser=" +
               authenticationInfos.user.id +
               "&idScript=" +
-              newScriptId || idScript,
+              scriptId,
             rule
           );
         }
