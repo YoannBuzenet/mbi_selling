@@ -1,13 +1,37 @@
 var express = require("express");
 var router = express.Router();
+var axios = require("axios");
 
 router.get("/", async (req, res) => {
-  //TODO : LOGIN
-  // PUIS SURCHARGER AVEC NOTRE DATA
-  // GERER LES ERREURS
-  const jwt = req.headers.authorization;
+  //Checking payload
+  if (req.body.email === undefined || req.body.password === undefined) {
+    res.status(406).json("Parameters are missing for connection.");
+    return;
+  }
 
-  res.json("la réponse surchargée !");
+  //We can add additional check at this step if necessary
+  const credentials = {
+    email: req.body.email,
+    password: req.body.password,
+  };
+
+  try {
+    const loginOnMTGAPI = await axios.post(
+      process.env.REACT_APP_MTGAPI_URL + "/login",
+      credentials
+    );
+    console.log(loginOnMTGAPI);
+
+    //TODO : LOGIN
+    // PUIS SURCHARGER AVEC NOTRE DATA
+    // GERER LES ERREURS
+
+    res.json("la réponse surchargée !");
+  } catch (error) {
+    console.log(error);
+    res.status(401).json("Access Denied.");
+    return;
+  }
 });
 
 module.exports = router;
