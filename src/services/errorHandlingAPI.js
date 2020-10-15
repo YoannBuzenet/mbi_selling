@@ -22,16 +22,16 @@ function checkErrorStatus(error) {
       );
       return true;
     }
-    } else if (error.response.status === 500) {
-      toast.error(
-        <FormattedMessage
-          id="app.error500.toast.failure"
-          defaultMessage={`There has been an error. Please try again later.`}
-        />
-      );
-      return true;
-    }
+  } else if (error.response.status === 500) {
+    toast.error(
+      <FormattedMessage
+        id="app.error500.toast.failure"
+        defaultMessage={`There has been an error. Please try again later.`}
+      />
+    );
+    return true;
   }
+
   return false;
 }
 

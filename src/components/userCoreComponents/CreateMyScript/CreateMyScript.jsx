@@ -172,6 +172,9 @@ const CreateMyScript = ({ history }) => {
         .catch((err) => {
           console.log("error when calling custom rules for this script", err);
           errorHandlingAPI.checkErrorStatus(err);
+          if (err?.response?.status === 403) {
+            history.replace("/my-scripts");
+          }
         });
 
       //GETTING SCRIPT NAME
