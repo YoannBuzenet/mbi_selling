@@ -3,7 +3,8 @@ var router = express.Router();
 var axios = require("axios");
 const db = require("../../../models/index");
 
-router.get("/", async (req, res) => {
+/* Login Route */
+router.post("/", async (req, res) => {
   //Checking payload
   if (req.body.email === undefined || req.body.password === undefined) {
     res.status(406).json("Parameters are missing for connection.");
@@ -30,6 +31,8 @@ router.get("/", async (req, res) => {
         idShop: loginOnMTGAPI.data.user.id,
       },
     });
+
+    console.log("user scripts to be added :", userScripts);
 
     const overloadedResponse = { ...loginOnMTGAPI.data, userScripts };
 

@@ -22,7 +22,7 @@ const CreateMyScript = ({ history }) => {
     strict: false,
   });
 
-  // console.log("auth from create script", authenticationInfos);
+  console.log("auth from create script", authenticationInfos);
 
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
   const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";

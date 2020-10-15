@@ -1,7 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import localStorageAPI from "./localStorageAPI";
-import config from "./config";
 
 //When an user logins, if the credentials are rights, we send back data to identify him.
 //DATA structure in browser memory : customer, hasShop
@@ -12,7 +11,7 @@ function authenticate(credentials) {
     axios
       //yo
       //intercepter ici
-      .post(process.env.REACT_APP_MTGAPI_URL + "/login", credentials)
+      .post("/authentication/login", credentials)
       .then((response) => {
         console.log(response);
         //pinger express pour choper la data et l'ajouter à la data de MTG API
@@ -118,20 +117,20 @@ function updateUserInfosLocalStorage(allUserInfos) {
 function refreshTokenAndInfos(refresh_token) {
   let object_refresh_token = { refresh_token: refresh_token };
 
-  return axios
-    .post(
-      process.env.REACT_APP_MTGAPI_URL + "/token/refresh",
-      object_refresh_token
-    )
-    .then((data) => {
-      //Saving the new JWT token in localStorage
-      window.localStorage.setItem("authToken", data.data.token);
+  return (
+    axios
+      //ping l'app express
+      .post("authentication/token/refresh", object_refresh_token)
+      .then((data) => {
+        //Saving the new JWT token in localStorage
+        window.localStorage.setItem("authToken", data.data.token);
 
-      //Puting token into axios bearer
-      axios.defaults.headers["Authorization"] = "Bearer " + data.data.token;
+        //Puting token into axios bearer
+        axios.defaults.headers["Authorization"] = "Bearer " + data.data.token;
 
-      return data;
-    });
+        return data;
+      })
+  );
 }
 
 function transformAPIdataIntoAppData(data) {
@@ -193,6 +192,7 @@ function transformAPIdataIntoAppData(data) {
       accessSecret: data.shop ? data.shop.accessSecret : null,
       ExpirationMkmToken: data.shop ? data.shop.ExpirationMkmToken : null,
       sellRequests: data?.shop?.SellRequests,
+      userScripts: data?.userScripts || [],
     },
   };
 }

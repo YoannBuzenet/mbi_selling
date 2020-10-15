@@ -31,7 +31,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
 import SetNewPassword from "./components/SetNewPassword";
-import Dashboard from "./pages/Dashboard";
+
 import CreateMyScript from "./components/userCoreComponents/CreateMyScript/CreateMyScript";
 import definitionsAPI from "./services/definitionsAPI";
 import AllMyScripts from "./pages/AllMyScripts";
