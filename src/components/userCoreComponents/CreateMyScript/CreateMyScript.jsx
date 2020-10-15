@@ -24,10 +24,12 @@ const CreateMyScript = ({ history }) => {
 
   console.log("auth from create script", authenticationInfos);
 
+  console.log("le path :", history.location.pathname);
+
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
   const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";
 
-  // console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
+  console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
 
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   // console.log("definitions", allDefinitions);
@@ -194,8 +196,12 @@ const CreateMyScript = ({ history }) => {
           console.log("erreur dans le get script name");
           errorHandlingAPI.checkErrorStatus(err);
         });
+    } else if (isCreationOrEditionMode === "Creation") {
+      console.log("on trigger le use Effect en creation");
+      setCustomRulesGlobalState(defaultCreationState);
+      setScriptName("Nouveau nom exprès");
     }
-  }, []);
+  }, [history.location.pathname]);
 
   //Returns an object ready to be passed in state
   function prepareStateFromArrayOfRules(arrayOfCustomRules) {
@@ -269,7 +275,11 @@ const CreateMyScript = ({ history }) => {
         });
       }
     }
-  }, [setCustomRulesGlobalState, customRulesGlobalState]);
+  }, [
+    setCustomRulesGlobalState,
+    customRulesGlobalState,
+    history.location.pathname,
+  ]);
 
   const addACustomRule = (position, FoilOrRegular) => {
     customRulesGlobalState[FoilOrRegular].splice(position, 0, {
