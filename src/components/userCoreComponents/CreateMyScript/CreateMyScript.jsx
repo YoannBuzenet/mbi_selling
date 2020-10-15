@@ -22,7 +22,7 @@ const CreateMyScript = ({ history }) => {
     strict: false,
   });
 
-  // console.log("auth from create script", authenticationInfos);
+  console.log("auth from create script", authenticationInfos);
 
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
   const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";
@@ -604,7 +604,45 @@ const CreateMyScript = ({ history }) => {
       try {
         console.log("serv resp", respServ);
         toast.success("Script saved babe");
-        //Bien penser à retirer tous les IsToBeSaved de chaque element de l'array
+
+        //Saving the new script id/name in current auth state
+        //We check if it exsists already : if yes, we update it, if no we add a new one in the array of scripts
+
+        //We use the right script variable
+        let scriptId;
+        if (newScriptId !== null) {
+          scriptId = parseInt(newScriptId);
+        } else {
+          scriptId = parseInt(idScript);
+        }
+        //Creating it in state
+        if (
+          authenticationInfos?.shop?.userScripts.filter(
+            (script) => script.id === scriptId
+          ).length === 0
+        ) {
+          setAuthenticationInfos({
+            ...authenticationInfos,
+            shop: {
+              ...authenticationInfos.shop,
+              userScripts: [
+                ...authenticationInfos.shop.userScripts,
+                { id: scriptId, name: scriptName },
+              ],
+            },
+          });
+        }
+        //Refreshing only the relevant one in state
+        else {
+          const indexScriptToUpdate = authenticationInfos?.shop?.userScripts.findIndex(
+            (script) => script.id === scriptId
+          );
+          authenticationInfos.shop.userScripts[
+            indexScriptToUpdate
+          ].name = scriptName;
+          setAuthenticationInfos({ ...authenticationInfos });
+        }
+
         //removing IsToBeSaved prop from each table
         const allNewRules = respServ.map((rule) => {
           if (rule.hasOwnProperty("data")) {
