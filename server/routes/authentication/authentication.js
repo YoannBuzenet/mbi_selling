@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var axios = require("axios");
+const db = require("../../../models/index");
 
 router.get("/", async (req, res) => {
   //Checking payload
@@ -20,13 +21,19 @@ router.get("/", async (req, res) => {
       process.env.REACT_APP_MTGAPI_URL + "/login",
       credentials
     );
-    console.log(loginOnMTGAPI);
+    console.log(loginOnMTGAPI.data);
 
-    //TODO : LOGIN
-    // PUIS SURCHARGER AVEC NOTRE DATA
-    // GERER LES ERREURS
+    //Getting all scripts for this user and adding them to the API response
 
-    res.json("la réponse surchargée !");
+    const userScripts = await db.Script.findAll({
+      where: {
+        idShop: loginOnMTGAPI.data.user.id,
+      },
+    });
+
+    const overloadedResponse = { ...loginOnMTGAPI.data, userScripts };
+
+    res.json(overloadedResponse);
   } catch (error) {
     console.log(error);
     res.status(401).json("Access Denied.");
