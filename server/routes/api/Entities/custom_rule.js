@@ -41,7 +41,7 @@ router.get(
     );
 
     if (isThereAScriptForThisUser === null) {
-      res.status(401).json("User does not have access do this ressource.");
+      res.status(403).json("User does not have access do this ressource.");
       return;
     }
 

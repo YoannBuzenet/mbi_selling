@@ -100,5 +100,9 @@
   "config.definition.lang.simplifiedChinese": "Simplified Chinese",
   "config.definition.lang.english": "English",
   "config.definition.lang.korean": "Korean",
-  "config.definition.lang.traditionnalChinese": "Traditionnal Chinese"
+  "config.definition.lang.traditionnalChinese": "Traditionnal Chinese",
+
+  "app.error401.toast.failure": "You are not logged anymore. Please log again.",
+  "app.error403.toast.failure": "You don't have access to this ressource.",
+  "app.error500.toast.failure": "There has been an error. Please try again later."
 }
