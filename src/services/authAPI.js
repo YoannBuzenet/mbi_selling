@@ -8,27 +8,31 @@ import config from "./config";
 //Data strcture in local storage : API like : client, client.hasShop, isShop
 //Then we store data into local storage.
 function authenticate(credentials) {
-  return axios
-    .post(process.env.REACT_APP_MTGAPI_URL + "/login", credentials)
-    .then((response) => {
-      console.log(response);
-      //pinger express pour choper la data et l'ajouter à la data de MTG API
-      return response.data;
-    })
-    .then((data) => {
-      // console.log(data);
-      //Stocking in local storage
-      window.localStorage.setItem("authToken", data.token);
-      window.localStorage.setItem("refreshToken", data.refresh_token);
+  return (
+    axios
+      //yo
+      //intercepter ici
+      .post(process.env.REACT_APP_MTGAPI_URL + "/login", credentials)
+      .then((response) => {
+        console.log(response);
+        //pinger express pour choper la data et l'ajouter à la data de MTG API
+        return response.data;
+      })
+      .then((data) => {
+        // console.log(data);
+        //Stocking in local storage
+        window.localStorage.setItem("authToken", data.token);
+        window.localStorage.setItem("refreshToken", data.refresh_token);
 
-      window.localStorage.setItem("userInfos", JSON.stringify(data));
+        window.localStorage.setItem("userInfos", JSON.stringify(data));
 
-      //Puting token into axios bearer
-      axios.defaults.headers["Authorization"] = "Bearer " + data.token;
+        //Puting token into axios bearer
+        axios.defaults.headers["Authorization"] = "Bearer " + data.token;
 
-      //We return an object containing all data relevant to the current user : is he logged, who is he. Of course, every access is checked on the server.
-      return transformAPIdataIntoAppData(data);
-    });
+        //We return an object containing all data relevant to the current user : is he logged, who is he. Of course, every access is checked on the server.
+        return transformAPIdataIntoAppData(data);
+      })
+  );
 }
 
 function logout() {
