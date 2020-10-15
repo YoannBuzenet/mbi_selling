@@ -34,6 +34,7 @@ import SetNewPassword from "./components/SetNewPassword";
 import Dashboard from "./pages/Dashboard";
 import CreateMyScript from "./components/userCoreComponents/CreateMyScript/CreateMyScript";
 import definitionsAPI from "./services/definitionsAPI";
+import AllMyScripts from "./pages/AllMyScripts";
 
 function App() {
   // STATE Creating the Authentication state
@@ -220,6 +221,7 @@ function App() {
                 )}
               />
 
+              <LoggedRouteRender path="/my-scripts/" component={AllMyScripts} />
               <LoggedRouteRender
                 path="/edit-script/:id"
                 component={CreateMyScript}
