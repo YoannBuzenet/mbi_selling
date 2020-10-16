@@ -49,7 +49,13 @@ const CustomRule = ({
           <div className="ruleContainer">
             <div className="deleteButton">
               <IconButton
-                onClick={(e) => deleteACustomRule(index, FoilOrRegular)}
+                onClick={(e) => {
+                  setIsZoomed(false);
+                  setTimeout(
+                    () => deleteACustomRule(index, FoilOrRegular),
+                    300
+                  );
+                }}
               >
                 <HighlightOffIcon color="secondary" />
               </IconButton>

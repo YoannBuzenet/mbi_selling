@@ -39,6 +39,11 @@
   box-shadow: 1px 1px 1px black;
 }
 
+.ruleContainer:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 1px black;
+}
+
 .deleteButton {
   position: absolute;
   top: -5px;
