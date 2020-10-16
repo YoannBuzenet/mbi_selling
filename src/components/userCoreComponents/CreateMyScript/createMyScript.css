@@ -32,8 +32,8 @@
   position: relative;
   border: 1px solid black;
   margin: 0 auto;
-  width: 300px;
-  height: 100px;
+  width: 400px;
+  min-height: 100px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 1px 1px 1px black;
@@ -47,6 +47,24 @@
 
 input.inputValueNumber {
   width: 30px;
+}
+
+.error-custom-rule {
+  background-color: #ff3434ab;
+}
+
+.error-custom-rule p,
+.error-custom-rule ul {
+  margin-bottom: 0;
+}
+
+.error-rule-explaination {
+  color: #750000;
+  font-weight: bold;
+  font-size: 12px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
 }
 
 /* ************ */
@@ -77,10 +95,6 @@ input.inputValueNumber {
 
 .twoBlocksContainer .div2right.hasErrors {
   border-left: 2px solid red;
-}
-
-.error-rule-explaination {
-  color: red;
 }
 
 button.onSeparatedDivButton {

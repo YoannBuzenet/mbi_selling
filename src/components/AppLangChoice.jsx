@@ -2,7 +2,13 @@ import React, { useContext, useState } from "react";
 import SelectAppLangContext from "../context/selectedAppLang";
 import config from "../services/config";
 
-const AppLangChoice = () => {
+const AppLangChoice = ({
+  top = "22",
+  topArrowMenu = "8",
+  marginLeft = "0",
+  lineHeightSelectAppLang = "25",
+  topSelectAppLangFlags = "22",
+}) => {
   const { currentLang, setCurrentLang } = useContext(SelectAppLangContext);
 
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
@@ -31,16 +37,26 @@ const AppLangChoice = () => {
       <div className="current-app-lang">
         <div
           className="current-lang-flag"
+          style={{ top: top + "px", marginLeft: marginLeft + "px" }}
           onClick={(e) => handleClickDisplayFlags(e)}
         >
           <img
             src={"/flags/25X13/" + currentLang.picture + ".png"}
             alt={currentLang.picture + " flag"}
           />
-          <span className="arrow-menu arrow-app-lang"></span>
+          <span
+            className="arrow-menu arrow-app-lang"
+            style={{ top: topArrowMenu + "px" }}
+          ></span>
 
           {areFlagsDisplayed && (
-            <div className={"set-lang-choosing lang-select-applevel"}>
+            <div
+              className={"set-lang-choosing lang-select-applevel"}
+              style={{
+                lineHeight: lineHeightSelectAppLang + "px",
+                top: topSelectAppLangFlags + "px",
+              }}
+            >
               {config.websiteDefaultLanguageArrayLangAvailables.map(
                 (lang, index) => (
                   <div

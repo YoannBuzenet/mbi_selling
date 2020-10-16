@@ -82,7 +82,30 @@ const defaultSellingPercents = {
   7: 0.4,
 };
 
-module.exports = {
+const mkmPriceGuideDictionnary = {
+  ["en-US"]: {},
+  ["fr-FR"]: {},
+};
+
+const BehaviourDictionnary = {
+  ["en-US"]: {},
+  ["fr-FR"]: {},
+};
+
+const ruleTypesDictionnary = {
+  ["en-US"]: {
+    setValue: "Set Value",
+    basedOnMKM: "Based on MKM",
+    exclude: "Exclude",
+  },
+  ["fr-FR"]: {
+    setValue: "Prix fixé",
+    basedOnMKM: "Se baser sur MKM",
+    exclude: "Exclure",
+  },
+};
+
+export default {
   langDefinition,
   TIME_TO_LOG_OUT,
   TIME_JWT_RENEW,
@@ -94,4 +117,7 @@ module.exports = {
   iconSizeDesktop,
   defaultSellingPercents,
   conditionDefinition,
+  mkmPriceGuideDictionnary,
+  BehaviourDictionnary,
+  ruleTypesDictionnary,
 };

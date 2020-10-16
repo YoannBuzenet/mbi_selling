@@ -4,6 +4,8 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { IconButton, Typography } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import DefinitionContext from "../../../context/definitionsContext";
+import SelectAppLangContext from "../../../context/selectedAppLang";
+import config from "../../../services/config";
 
 const CustomRule = ({
   rule,
@@ -15,6 +17,9 @@ const CustomRule = ({
   updateACustomRule,
 }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+  // console.log("definitions from the rule level", allDefinitions);
+
+  const { currentLang } = useContext(SelectAppLangContext);
   // console.log("definitions from the rule level", allDefinitions);
 
   const [isZoomed, setIsZoomed] = useState(!rule.wasCreatedHere || true);
@@ -76,7 +81,13 @@ const CustomRule = ({
                     value={rule.ruleTypeId || 1}
                   >
                     {allDefinitions.ruleTypes.map((ruleType) => (
-                      <option value={ruleType.id}>{ruleType.name}</option>
+                      <option value={ruleType.id}>
+                        {
+                          config?.ruleTypesDictionnary?.[currentLang.locale]?.[
+                            ruleType.name
+                          ]
+                        }
+                      </option>
                     ))}
                   </select>
                 )}
@@ -130,33 +141,36 @@ const CustomRule = ({
                 )}
               </div>
             </div>
-            <div>
-              {rule.hasEmptyInput && (
-                <p className="error-rule-explaination">
-                  Les deux prix d'une règle doivent être renseignés.
-                </p>
-              )}
-              {rule.hasIncoherentFollowingPrices && (
-                <p className="error-rule-explaination">
-                  Le prix de cette règle ne colle pas avec celui de la suivante.
-                </p>
-              )}
-              {rule.hasIncoherentOrderInFromTo && (
-                <p className="error-rule-explaination">
-                  Le prix de départ de cette règle est supérieur ou égal au prix
-                  d'arrivée.
-                </p>
-              )}
-              {rule.hasIncoherentStartingPrice && (
-                <p className="error-rule-explaination">
-                  La première règle doit commencer à 0 euro.
-                </p>
-              )}
-              {rule.isMissingSellingPrice && (
-                <p className="error-rule-explaination">
-                  Cette règle attend un prix de vente.
-                </p>
-              )}
+            <div className="error-custom-rule">
+              <ul>
+                {rule.hasEmptyInput && (
+                  <li className="error-rule-explaination">
+                    Les deux prix d'une règle doivent être renseignés.
+                  </li>
+                )}
+                {rule.hasIncoherentFollowingPrices && (
+                  <li className="error-rule-explaination">
+                    Le prix de cette règle ne colle pas avec celui de la
+                    suivante.
+                  </li>
+                )}
+                {rule.hasIncoherentOrderInFromTo && (
+                  <li className="error-rule-explaination">
+                    Le prix de départ de cette règle est supérieur ou égal au
+                    prix d'arrivée.
+                  </li>
+                )}
+                {rule.hasIncoherentStartingPrice && (
+                  <li className="error-rule-explaination">
+                    La première règle doit commencer à 0 euro.
+                  </li>
+                )}
+                {rule.isMissingSellingPrice && (
+                  <li className="error-rule-explaination">
+                    Cette règle attend un prix de vente.
+                  </li>
+                )}
+              </ul>
             </div>
           </div>
           <div className="belowRule-CTA">

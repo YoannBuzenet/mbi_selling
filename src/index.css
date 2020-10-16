@@ -688,7 +688,6 @@ div.connect p {
 
 .current-lang-flag {
   position: absolute;
-  top: 22px;
   cursor: pointer;
   padding-right: 1rem;
 }
@@ -696,7 +695,6 @@ div.connect p {
 .arrow-app-lang {
   position: absolute;
   right: 0px;
-  top: 8px;
 }
 
 div.lang-select-applevel {
