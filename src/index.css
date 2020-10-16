@@ -483,6 +483,18 @@ form.reset-password-form button {
   margin: 0 auto;
 }
 
+.all-my-scripts table a {
+  text-decoration: none;
+  color: black;
+}
+.all-my-scripts table a:hover {
+  text-decoration: underline;
+}
+
+.all-my-scripts-link-to-script {
+  text-align: left;
+}
+
 /**************************
 *******REGISTER PAGE*******
 **************************/
