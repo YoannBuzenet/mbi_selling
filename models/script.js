@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Script.hasMany(models.Custom_Rule, { foreignKey: "id" });
       Script.belongsTo(models.User, { foreignKey: "idShop" });
+      Script.belongsToMany(models.Format, { through: models.Scripts_Formats });
     }
   }
   Script.init(
@@ -21,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       name: DataTypes.STRING,
+      idFormat: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
       sequelize,
