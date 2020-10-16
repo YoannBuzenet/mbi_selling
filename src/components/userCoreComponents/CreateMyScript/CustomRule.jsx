@@ -59,6 +59,21 @@ const CustomRule = ({
         width: "25ch",
       },
     },
+    formControlSelect: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      maxWidth: 300,
+    },
+    chips: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    chip: {
+      margin: 2,
+    },
+    noLabel: {
+      marginTop: theme.spacing(3),
+    },
   }));
 
   const classes = useStyles();
@@ -149,7 +164,7 @@ const CustomRule = ({
                 )}
 
                 {rule.ruleTypeId === 1 && (
-                  <p>
+                  <div className="setValueFixPrice">
                     <p className="fromToText">VENDRE A</p>
 
                     <TextField
@@ -166,7 +181,7 @@ const CustomRule = ({
                       }
                     />
                     <p className="fromToText">€</p>
-                  </p>
+                  </div>
                 )}
 
                 {rule.ruleTypeId === 2 && (

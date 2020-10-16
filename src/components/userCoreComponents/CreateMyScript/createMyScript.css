@@ -117,13 +117,19 @@ button.button-second-navbar {
 }
 
 div.inputValueNumber {
-  width: 50px;
+  width: 60px;
   background-color: white;
 }
 
 input.MuiInputBase-input.MuiOutlinedInput-input {
   text-align: center;
   height: 0;
+}
+
+.setValueFixPrice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .error-custom-rule {
