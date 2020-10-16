@@ -118,7 +118,11 @@ const CustomRule = ({
                         {allDefinitions.priceGuidePossibilities.map(
                           (priceGuidePossibility) => (
                             <option value={priceGuidePossibility.id}>
-                              {priceGuidePossibility.name}
+                              {
+                                config?.mkmPriceGuideDictionnary?.[
+                                  currentLang.locale
+                                ]?.[priceGuidePossibility.name]
+                              }
                             </option>
                           )
                         )}
@@ -132,7 +136,11 @@ const CustomRule = ({
                       >
                         {allDefinitions.ruleBehaviours.map((ruleBehaviour) => (
                           <option value={ruleBehaviour.id}>
-                            {ruleBehaviour.name}
+                            {
+                              config?.BehaviourDictionnary?.[
+                                currentLang.locale
+                              ]?.[ruleBehaviour.name]
+                            }
                           </option>
                         ))}
                       </select>
