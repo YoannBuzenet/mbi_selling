@@ -9,7 +9,7 @@
 **************************/
 
 .create-my-script-container {
-  margin-top: 61px;
+  margin-top: 131px;
 }
 
 .second-menu-scripts {
@@ -17,10 +17,27 @@
   top: 61px;
   height: 61px;
   width: 100%;
-  background-color: white;
+  background-color: #f9f9f9;
+  z-index: 5;
+  border-top: 1px solid black;
+}
+
+.column-definitions {
+  position: fixed;
+  top: 122px;
+  height: 30px;
+  width: 100%;
+  background-color: #f9f9f9;
   z-index: 5;
   border-top: 1px solid black;
   box-shadow: 1px 1px 1px black;
+  display: flex;
+  justify-content: center;
+}
+
+.column-definitions p {
+  margin: 0;
+  width: 50%;
 }
 
 .parts-container {
