@@ -45,6 +45,10 @@ const Navbar = ({ history }) => {
     );
   };
 
+  const adjustestyle = authenticationInfos.isAuthenticated
+    ? { lineHeight: "61px" }
+    : null;
+
   return (
     <>
       {toggleMenu && (
@@ -53,7 +57,7 @@ const Navbar = ({ history }) => {
           onClick={() => setToggleMenu(!toggleMenu)}
         ></div>
       )}
-      <nav className="navbar">
+      <nav className="navbar" style={adjustestyle}>
         <div className="container">
           <div className="menu-links-left">
             <Link to="/" className="logo-shop-link">
