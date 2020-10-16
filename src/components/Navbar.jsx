@@ -80,6 +80,7 @@ const Navbar = ({ history }) => {
                     defaultMessage={`Stats`}
                   />
                 </Link> */}
+
                 <div className="toggle-menu-container">
                   <p
                     className="unselectable display-inline-block nav-element pointer"
@@ -151,6 +152,13 @@ const Navbar = ({ history }) => {
                     </ul>
                   )}
                 </div>
+                <AppLangChoice
+                  top="-30"
+                  topArrowMenu="30"
+                  marginLeft="10"
+                  lineHeightSelectAppLang="25"
+                  topSelectAppLangFlags="42"
+                />
               </div>
             </div>
           ) : (
