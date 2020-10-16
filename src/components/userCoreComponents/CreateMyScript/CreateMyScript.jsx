@@ -452,7 +452,7 @@ const CreateMyScript = ({ history }) => {
           }
         }
 
-        //We do this comparison only if it's not the last element of the array (because the next element doesn't exist, yeah !)
+        //We do this comparison only if it's NOT the last element of the array (because the next element doesn't exist, yeah !)
         if (i !== arrayOfCustomRules.length - 1) {
           if (
             arrayOfCustomRules[i].priceRangeTo !==

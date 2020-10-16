@@ -6,6 +6,12 @@ import Zoom from "@material-ui/core/Zoom";
 import DefinitionContext from "../../../context/definitionsContext";
 import SelectAppLangContext from "../../../context/selectedAppLang";
 import config from "../../../services/config";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import { makeStyles } from "@material-ui/core/styles";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 const CustomRule = ({
   rule,
@@ -34,7 +40,21 @@ const CustomRule = ({
     updateACustomRule(e, index, FoilOrRegular);
   };
 
-  //TODO : first rule must start from0. if not, has incoherenceStartingPoint = true
+  const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: "480px",
+      backgroundColor: "white",
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    menuItem: {
+      fontSize: "14px",
+    },
+  }));
+
+  const classes = useStyles();
 
   let classNameFirstDiv = "div1left";
   let classNameSecondDiv = "div2right";
@@ -42,6 +62,7 @@ const CustomRule = ({
     classNameFirstDiv = "div1left hasErrors";
     classNameSecondDiv = "div2right hasErrors";
   }
+
   return (
     <>
       <Zoom in={isZoomed}>
@@ -78,25 +99,40 @@ const CustomRule = ({
             />
             €
             <div className="ruleType-choice">
-              Que faire ?
               <div>
                 {Array.isArray(allDefinitions.ruleTypes) && (
-                  <select
-                    onChange={(e) => handleChange(e)}
-                    name="ruleTypeId"
-                    value={rule.ruleTypeId || 1}
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
                   >
-                    {allDefinitions.ruleTypes.map((ruleType) => (
-                      <option value={ruleType.id}>
-                        {
-                          config?.ruleTypesDictionnary?.[currentLang.locale]?.[
-                            ruleType.name
-                          ]
-                        }
-                      </option>
-                    ))}
-                  </select>
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Que faire ?
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      onChange={(e) => handleChange(e)}
+                      name="ruleTypeId"
+                      value={rule.ruleTypeId || 1}
+                      label="TestToTranslate"
+                      labelWidth="100px"
+                    >
+                      {allDefinitions.ruleTypes.map((ruleType) => (
+                        <MenuItem
+                          value={ruleType.id}
+                          className={classes.menuItem}
+                        >
+                          {
+                            config?.ruleTypesDictionnary?.[
+                              currentLang.locale
+                            ]?.[ruleType.name]
+                          }
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 )}
+
                 {rule.ruleTypeId === 1 && (
                   <p>
                     A
@@ -116,40 +152,71 @@ const CustomRule = ({
                 {rule.ruleTypeId === 2 && (
                   <p>
                     {Array.isArray(allDefinitions.priceGuidePossibilities) && (
-                      <select
-                        onChange={(e) => handleChange(e)}
-                        name="mkmPriceGuideReference"
-                        value={rule.mkmPriceGuideReference || 1}
+                      <FormControl
+                        variant="outlined"
+                        className={classes.formControl}
                       >
-                        {allDefinitions.priceGuidePossibilities.map(
-                          (priceGuidePossibility) => (
-                            <option value={priceGuidePossibility.id}>
-                              {
-                                config?.mkmPriceGuideDictionnary?.[
-                                  currentLang.locale
-                                ]?.[priceGuidePossibility.name]
-                              }
-                            </option>
-                          )
-                        )}
-                      </select>
+                        <InputLabel id="demo-simple-select-outlined-label-2">
+                          Quel prix MKM ?
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-outlined-label-2"
+                          id="demo-simple-select-outlined-2"
+                          onChange={(e) => handleChange(e)}
+                          name="mkmPriceGuideReference"
+                          value={rule.mkmPriceGuideReference || 1}
+                          label="TestToTranslate"
+                        >
+                          {allDefinitions.priceGuidePossibilities.map(
+                            (priceGuidePossibility) => (
+                              <MenuItem
+                                value={priceGuidePossibility.id}
+                                className={classes.menuItem}
+                              >
+                                {
+                                  config?.mkmPriceGuideDictionnary?.[
+                                    currentLang.locale
+                                  ]?.[priceGuidePossibility.name]
+                                }
+                              </MenuItem>
+                            )
+                          )}
+                        </Select>
+                      </FormControl>
                     )}
+
                     {Array.isArray(allDefinitions.ruleBehaviours) && (
-                      <select
-                        onChange={(e) => handleChange(e)}
-                        name="behaviourId"
-                        value={rule.behaviourId || 1}
+                      <FormControl
+                        variant="outlined"
+                        className={classes.formControl}
                       >
-                        {allDefinitions.ruleBehaviours.map((ruleBehaviour) => (
-                          <option value={ruleBehaviour.id}>
-                            {
-                              config?.BehaviourDictionnary?.[
-                                currentLang.locale
-                              ]?.[ruleBehaviour.name]
-                            }
-                          </option>
-                        ))}
-                      </select>
+                        <InputLabel id="demo-simple-select-outlined-label-3">
+                          Quelle règle ?
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-outlined-label-3"
+                          id="demo-simple-select-outlined-3"
+                          onChange={(e) => handleChange(e)}
+                          name="behaviourId"
+                          value={rule.behaviourId || 1}
+                          label="TestToTranslate"
+                        >
+                          {allDefinitions.ruleBehaviours.map(
+                            (ruleBehaviour) => (
+                              <MenuItem
+                                value={ruleBehaviour.id}
+                                className={classes.menuItem}
+                              >
+                                {
+                                  config?.BehaviourDictionnary?.[
+                                    currentLang.locale
+                                  ]?.[ruleBehaviour.name]
+                                }
+                              </MenuItem>
+                            )
+                          )}
+                        </Select>
+                      </FormControl>
                     )}
                   </p>
                 )}

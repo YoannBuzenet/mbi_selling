@@ -32,15 +32,15 @@
   position: relative;
   border: 1px solid black;
   margin: 0 auto;
-  width: 400px;
+  width: 500px;
   min-height: 100px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.05);
   box-shadow: 1px 1px 1px black;
 }
 
 .ruleContainer:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 1px black;
 }
 
@@ -119,6 +119,19 @@ button.onSeparatedDivButton {
   z-index: 2;
   height: 10px;
   width: 10px;
+}
+
+/********************/
+/*********MUI*******/
+/********************/
+/* Text on select options */
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl {
+  font-size: 16px;
+}
+
+/* Label on grey that acts like placeholder */
+.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-shrink.MuiInputLabel-outlined.MuiFormLabel-filled {
+  font-size: 20px;
 }
 
 @keyframes moveBuddy {
