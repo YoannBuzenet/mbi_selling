@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
 
 const CustomRule = ({
   rule,
@@ -52,6 +53,12 @@ const CustomRule = ({
     menuItem: {
       fontSize: "14px",
     },
+    root: {
+      "& .MuiTextField-root": {
+        margin: theme.spacing(1),
+        width: "25ch",
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -81,23 +88,31 @@ const CustomRule = ({
                 <HighlightOffIcon color="secondary" />
               </IconButton>
             </div>
-            DE
-            <input
-              className="inputValueNumber"
-              value={
-                rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
-              }
-              name={"priceRangeFrom"}
-              onChange={(e) => handleChange(e)}
-            />
-            A
-            <input
-              className="inputValueNumber"
-              value={rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""}
-              name={"priceRangeTo"}
-              onChange={(e) => handleChange(e)}
-            />
-            €
+            <div className="top-zone">
+              <p className="fromToText">DE</p>
+              <TextField
+                id="outlined-from"
+                defaultValue=""
+                variant="outlined"
+                name={"priceRangeFrom"}
+                onChange={(e) => handleChange(e)}
+                className="inputValueNumber"
+                value={
+                  rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
+                }
+              />
+              <p className="fromToText">A</p>
+              <TextField
+                id="outlined-from"
+                defaultValue=""
+                variant="outlined"
+                name={"priceRangeTo"}
+                onChange={(e) => handleChange(e)}
+                className="inputValueNumber"
+                value={rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""}
+              />
+              <p className="fromToText">€</p>
+            </div>
             <div className="ruleType-choice">
               <div>
                 {Array.isArray(allDefinitions.ruleTypes) && (
@@ -135,22 +150,27 @@ const CustomRule = ({
 
                 {rule.ruleTypeId === 1 && (
                   <p>
-                    A
-                    <input
+                    <p className="fromToText">VENDRE A</p>
+
+                    <TextField
+                      id="outlined-from"
+                      defaultValue=""
+                      variant="outlined"
+                      name={"priceRangeValueToSet"}
+                      onChange={(e) => handleChange(e)}
                       className="inputValueNumber"
                       value={
                         rule.priceRangeFrom !== undefined
                           ? rule.priceRangeValueToSet
                           : ""
                       }
-                      name={"priceRangeValueToSet"}
-                      onChange={(e) => handleChange(e)}
                     />
+                    <p className="fromToText">€</p>
                   </p>
                 )}
 
                 {rule.ruleTypeId === 2 && (
-                  <p>
+                  <div>
                     {Array.isArray(allDefinitions.priceGuidePossibilities) && (
                       <FormControl
                         variant="outlined"
@@ -218,7 +238,7 @@ const CustomRule = ({
                         </Select>
                       </FormControl>
                     )}
-                  </p>
+                  </div>
                 )}
               </div>
             </div>
