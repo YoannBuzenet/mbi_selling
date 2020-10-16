@@ -18,6 +18,13 @@ module.exports = {
           key: "idShop",
         },
       },
+      idFormat: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "formats",
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

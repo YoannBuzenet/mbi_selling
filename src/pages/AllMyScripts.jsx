@@ -35,6 +35,7 @@ const AllMyScripts = ({ history }) => {
       "&:hover": {
         background: "rgb(103, 128, 159)",
       },
+      width: "82px",
     },
   }));
 
@@ -68,7 +69,7 @@ const AllMyScripts = ({ history }) => {
                       <Button
                         variant="contained"
                         color="primary"
-                        className={"button-second-navbar " + classes.seeButton}
+                        className={classes.seeButton}
                         size="large"
                         onClick={(e) =>
                           history.push("/edit-script/" + script.id)
@@ -81,7 +82,7 @@ const AllMyScripts = ({ history }) => {
                       <Button
                         variant="contained"
                         color="primary"
-                        className={"button-second-navbar " + classes.testButton}
+                        className={classes.testButton}
                         size="large"
                       >
                         TESTER
@@ -91,9 +92,7 @@ const AllMyScripts = ({ history }) => {
                       <Button
                         variant="contained"
                         color="primary"
-                        className={
-                          "button-second-navbar " + classes.launchButton
-                        }
+                        className={classes.launchButton}
                         size="large"
                       >
                         LANCER
