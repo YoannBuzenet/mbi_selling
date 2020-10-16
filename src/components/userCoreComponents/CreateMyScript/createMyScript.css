@@ -8,6 +8,21 @@
 *****CREATE SCRIPT*********
 **************************/
 
+.create-my-script-container {
+  margin-top: 61px;
+}
+
+.second-menu-scripts {
+  position: fixed;
+  top: 61px;
+  height: 61px;
+  width: 100%;
+  background-color: white;
+  z-index: 5;
+  border-top: 1px solid black;
+  box-shadow: 1px 1px 1px black;
+}
+
 .parts-container {
   display: flex;
   justify-content: center;
