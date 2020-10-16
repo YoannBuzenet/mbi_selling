@@ -13,6 +13,9 @@
 }
 
 .second-menu-scripts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 61px;
   height: 61px;
@@ -33,6 +36,24 @@
   box-shadow: 1px 1px 1px black;
   display: flex;
   justify-content: center;
+}
+
+.scriptNameEdition {
+  background-color: white;
+  margin-left: 20px;
+}
+
+.scriptNameEdition input.MuiInputBase-input.MuiOutlinedInput-input {
+  height: 0;
+  text-align: left;
+}
+
+.buttons-right-menu {
+  margin-left: 50px;
+}
+
+button.button-second-navbar {
+  margin-left: 30px;
 }
 
 .column-definitions p {
@@ -78,6 +99,9 @@
 
 .ruleContainer .top-zone {
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .deleteButton {
@@ -99,6 +123,7 @@ div.inputValueNumber {
 
 input.MuiInputBase-input.MuiOutlinedInput-input {
   text-align: center;
+  height: 0;
 }
 
 .error-custom-rule {
