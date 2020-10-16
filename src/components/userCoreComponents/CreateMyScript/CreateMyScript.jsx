@@ -10,6 +10,8 @@ import AuthContext from "../../../context/authContext";
 import DefinitionContext from "../../../context/definitionsContext";
 import errorHandlingAPI from "../../../services/errorHandlingAPI";
 
+import TextField from "@material-ui/core/TextField";
+
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
@@ -710,75 +712,91 @@ const CreateMyScript = ({ history }) => {
   };
 
   return (
-    <div className="create-my-script-container">
-      Create my script
-      <input type="text" value={scriptName} onChange={handleChangeScriptName} />
-      <button onClick={(e) => saveScriptAndCustomRules(e)} type="button">
-        Save
-      </button>
-      <div className="parts-container">
-        <div className="left-part">
-          REGULAR
-          <div className="left-schema">
-            <AddRuleButton
-              position={0}
-              FoilOrRegular="regular"
-              handleClick={addACustomRule}
-            />
-            {Array.isArray(customRulesGlobalState.regular) &&
-              customRulesGlobalState.regular.map((rule, index) => {
-                // console.log(rule);
-                return (
-                  <CustomRule
-                    rule={rule}
-                    index={index}
-                    parentArrayLength={customRulesGlobalState.regular.length}
-                    FoilOrRegular="regular"
-                    addACustomRule={addACustomRule}
-                    deleteACustomRule={deleteACustomRule}
-                    key={"" + rule.id + "" + rule.temporaryId + "" + "regular"}
-                    updateACustomRule={updateACustomRule}
-                  />
-                );
-              })}
+    <>
+      <div className="second-menu-scripts">
+        Create my script
+        <TextField
+          id="outlined-from"
+          variant="outlined"
+          name={"priceRangeValueToSet"}
+          onChange={handleChangeScriptName}
+          className="scriptNameEdition"
+          value={scriptName}
+        />
+        <button onClick={(e) => saveScriptAndCustomRules(e)} type="button">
+          Save
+        </button>
+        TESTER LANCER
+      </div>
+      <div className="create-my-script-container">
+        <div className="parts-container">
+          <div className="left-part">
+            REGULAR
+            <div className="left-schema">
+              <AddRuleButton
+                position={0}
+                FoilOrRegular="regular"
+                handleClick={addACustomRule}
+              />
+              {Array.isArray(customRulesGlobalState.regular) &&
+                customRulesGlobalState.regular.map((rule, index) => {
+                  // console.log(rule);
+                  return (
+                    <CustomRule
+                      rule={rule}
+                      index={index}
+                      parentArrayLength={customRulesGlobalState.regular.length}
+                      FoilOrRegular="regular"
+                      addACustomRule={addACustomRule}
+                      deleteACustomRule={deleteACustomRule}
+                      key={
+                        "" + rule.id + "" + rule.temporaryId + "" + "regular"
+                      }
+                      updateACustomRule={updateACustomRule}
+                    />
+                  );
+                })}
+            </div>
+            <p>Regles génériques</p>
+            <p>Les signées ne sont pas traitées.</p>
+            <p>Les altérées ne sont pas traitées.</p>
+            <p>Les playsets ne sont pas traités.</p>
+            <p>
+              Les cartes aux prix supérieur aux prix mentionnés ne sont pas
+              traitées.
+            </p>
           </div>
-          <p>Regles génériques</p>
-          <p>Les signées ne sont pas traitées.</p>
-          <p>Les altérées ne sont pas traitées.</p>
-          <p>Les playsets ne sont pas traités.</p>
-          <p>
-            Les cartes aux prix supérieur aux prix mentionnés ne sont pas
-            traitées.
-          </p>
-        </div>
-        <div className="right-part">
-          FOIL
-          <div className="right-schema">
-            <AddRuleButton
-              position={0}
-              FoilOrRegular="foil"
-              handleClick={addACustomRule}
-            />
-            {Array.isArray(customRulesGlobalState.foil) &&
-              customRulesGlobalState.foil.map((rule, index) => {
-                // console.log("foil rule", rule);
-                return (
-                  <CustomRule
-                    rule={rule}
-                    index={index}
-                    parentArrayLength={customRulesGlobalState.foil.length}
-                    FoilOrRegular="foil"
-                    addACustomRule={addACustomRule}
-                    deleteACustomRule={deleteACustomRule}
-                    key={"" + rule.id + "" + rule.temporaryId + "" + "regular"}
-                    updateACustomRule={updateACustomRule}
-                  />
-                );
-              })}
+          <div className="right-part">
+            FOIL
+            <div className="right-schema">
+              <AddRuleButton
+                position={0}
+                FoilOrRegular="foil"
+                handleClick={addACustomRule}
+              />
+              {Array.isArray(customRulesGlobalState.foil) &&
+                customRulesGlobalState.foil.map((rule, index) => {
+                  // console.log("foil rule", rule);
+                  return (
+                    <CustomRule
+                      rule={rule}
+                      index={index}
+                      parentArrayLength={customRulesGlobalState.foil.length}
+                      FoilOrRegular="foil"
+                      addACustomRule={addACustomRule}
+                      deleteACustomRule={deleteACustomRule}
+                      key={
+                        "" + rule.id + "" + rule.temporaryId + "" + "regular"
+                      }
+                      updateACustomRule={updateACustomRule}
+                    />
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

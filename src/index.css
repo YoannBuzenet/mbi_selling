@@ -580,7 +580,7 @@ div.connect p {
 .toggle-menu {
   margin: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 6;
   top: 55px;
   width: 140px;
   border-radius: 5px;
