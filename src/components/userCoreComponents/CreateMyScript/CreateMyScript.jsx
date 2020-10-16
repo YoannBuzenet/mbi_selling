@@ -11,6 +11,8 @@ import DefinitionContext from "../../../context/definitionsContext";
 import errorHandlingAPI from "../../../services/errorHandlingAPI";
 
 import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -711,10 +713,33 @@ const CreateMyScript = ({ history }) => {
     console.log("Launch !");
   };
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+    saveButton: {
+      backgroundColor: "rgb(0, 177, 106)",
+      "&:hover": {
+        background: "rgb(123, 239, 178)",
+      },
+    },
+
+    launchButton: {
+      backgroundColor: "rgb(247, 202, 24)",
+      "&:hover": {
+        background: "rgb(250, 216, 89)",
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <>
       <div className="second-menu-scripts">
-        Create my script
+        <p style={{ margin: "0 20px" }}>Script Name</p>
         <TextField
           id="outlined-from"
           variant="outlined"
@@ -723,14 +748,38 @@ const CreateMyScript = ({ history }) => {
           className="scriptNameEdition"
           value={scriptName}
         />
-        <button onClick={(e) => saveScriptAndCustomRules(e)} type="button">
-          Save
-        </button>
-        TESTER LANCER FORMATS :
-      </div>
-      <div className="column-definitions">
-        <p>REGULAR</p>
-        <p>FOIL</p>
+        <div className="buttons-right-menu">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => saveScriptAndCustomRules(e)}
+            className={"button-second-navbar " + classes.saveButton}
+            size="large"
+          >
+            SAVE
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={"button-second-navbar " + classes.testButton}
+            size="large"
+          >
+            TESTER
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={"button-second-navbar " + classes.launchButton}
+            size="large"
+          >
+            LANCER
+          </Button>
+          FORMATS :
+        </div>
+        <div className="column-definitions">
+          <p>REGULAR</p>
+          <p>FOIL</p>
+        </div>
       </div>
       <div className="create-my-script-container">
         <div className="parts-container">
