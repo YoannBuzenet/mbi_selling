@@ -726,7 +726,11 @@ const CreateMyScript = ({ history }) => {
         <button onClick={(e) => saveScriptAndCustomRules(e)} type="button">
           Save
         </button>
-        TESTER LANCER
+        TESTER LANCER FORMATS :
+      </div>
+      <div className="column-definitions">
+        <p>REGULAR</p>
+        <p>FOIL</p>
       </div>
       <div className="create-my-script-container">
         <div className="parts-container">
