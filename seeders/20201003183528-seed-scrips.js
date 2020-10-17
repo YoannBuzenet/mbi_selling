@@ -7,14 +7,12 @@ module.exports = {
       [
         {
           idShop: 4,
-          idFormat: 1,
           name: "Le premier script",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           idShop: 4,
-          idFormat: 12,
           name: "Le second script",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -22,6 +20,18 @@ module.exports = {
       ],
       {}
     );
+
+    // const db = require("../models/index");
+
+    //   //write here to give formats
+
+    //   const script = await db.Script.findOne({
+    //     where: {
+    //       idShop: 4,
+    //     },
+    //   });
+
+    //   console.log(script);
   },
 
   down: async (queryInterface, Sequelize) => {
