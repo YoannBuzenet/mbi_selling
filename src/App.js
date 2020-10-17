@@ -65,24 +65,39 @@ function App() {
     const allRuleTypes = definitionsAPI.getCustomRuleRuleTypeDefinitions();
     const allRuleBehaviours = definitionsAPI.getCustomRuleRuleBehaviourDefinitions();
     const allPriceGuidePossibilities = definitionsAPI.getPriceGuideDefinitions();
+    const allFormats = definitionsAPI.getFormatsDefinitions();
     Promise.all([
       allRuleTypes,
       allRuleBehaviours,
       allPriceGuidePossibilities,
-    ]).then(([allRuleTypes, allRuleBehaviours, allPriceGuidePossibilities]) => {
-      setAllDefinitions({
-        ruleTypes: allRuleTypes,
-        ruleBehaviours: allRuleBehaviours,
-        priceGuidePossibilities: allPriceGuidePossibilities,
-      });
-    });
+      allFormats,
+    ]).then(
+      ([
+        allRuleTypes,
+        allRuleBehaviours,
+        allPriceGuidePossibilities,
+        allFormats,
+      ]) => {
+        setAllDefinitions({
+          ruleTypes: allRuleTypes,
+          ruleBehaviours: allRuleBehaviours,
+          priceGuidePossibilities: allPriceGuidePossibilities,
+          allFormats: allFormats,
+        });
+      }
+    );
   }, []);
 
   //STATE - Auto Renew LogIn or Auto Log Out
   const [timers, setTimers] = useState({ autoRenew: "", autoLogOut: "" });
 
   //STATE - Definitions
-  const [allDefinitions, setAllDefinitions] = useState({});
+  const [allDefinitions, setAllDefinitions] = useState({
+    allRuleTypes: [],
+    allRuleBehaviours: [],
+    allPriceGuidePossibilities: [],
+    allFormats: [],
+  });
 
   //CONTEXT - Auto login/LogOut
   const ContextloginLogOut = {
