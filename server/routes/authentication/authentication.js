@@ -26,11 +26,16 @@ router.post("/", async (req, res) => {
 
     //Getting all scripts for this user and adding them to the API response
 
-    const userScripts = await db.Script.findAll({
+    let userScripts = await db.Script.findAll({
       where: {
         idShop: loginOnMTGAPI.data.user.id,
       },
     });
+
+    for (let i = 0; i < userScripts.length; i++) {
+      const scriptFormats = await userScripts[i].getFormats();
+      userScripts[i].dataValues.formats = { ...scriptFormats };
+    }
 
     console.log("user scripts to be added :", userScripts);
 

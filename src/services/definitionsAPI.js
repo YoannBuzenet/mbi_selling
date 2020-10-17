@@ -17,9 +17,13 @@ function getPriceGuideDefinitions() {
     .get("/api/priceguideDefinition/getDefinitions")
     .then((resp) => resp.data);
 }
+function getFormatsDefinitions() {
+  return axios.get("/api/formats/getDefinitions").then((resp) => resp.data);
+}
 
 export default {
   getCustomRuleRuleTypeDefinitions,
   getCustomRuleRuleBehaviourDefinitions,
   getPriceGuideDefinitions,
+  getFormatsDefinitions,
 };

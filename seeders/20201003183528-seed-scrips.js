@@ -21,17 +21,8 @@ module.exports = {
       {}
     );
 
-    // const db = require("../models/index");
-
-    //   //write here to give formats
-
-    //   const script = await db.Script.findOne({
-    //     where: {
-    //       idShop: 4,
-    //     },
-    //   });
-
-    //   console.log(script);
+    //TODO
+    // ADD N formats to N scripts
   },
 
   down: async (queryInterface, Sequelize) => {
