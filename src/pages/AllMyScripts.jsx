@@ -28,10 +28,11 @@ const AllMyScripts = ({ history }) => {
               <Th></Th>
               <Th></Th>
               <Th></Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
-            {authenticationInfos.shop.userScripts.map((script, index) => {
+            {authenticationInfos.userScripts.map((script, index) => {
               return (
                 <>
                   <ScriptLine script={script} history={history} index={index} />

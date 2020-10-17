@@ -189,8 +189,8 @@ function transformAPIdataIntoAppData(data) {
       accessSecret: data.shop ? data.shop.accessSecret : null,
       ExpirationMkmToken: data.shop ? data.shop.ExpirationMkmToken : null,
       sellRequests: data?.shop?.SellRequests,
-      userScripts: data?.userScripts || [],
     },
+    userScripts: data?.userScripts || [],
   };
 }
 
