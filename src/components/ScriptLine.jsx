@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Tr, Td } from "react-super-responsive-table";
 import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -24,14 +24,7 @@ const ScriptLine = ({ script, history, index }) => {
     script.formats.map((format) => format.id)
   );
 
-  console.log("le script depuis les props", script);
-
-  console.log(
-    "le résultat de notre .map :",
-    script.formats.map((format) => format.id)
-  );
-
-  console.log("lindex de notre script", index);
+  console.log("authenticationInfos", authenticationInfos);
 
   console.log("selected formats", selectedFormats);
 
@@ -52,6 +45,20 @@ const ScriptLine = ({ script, history, index }) => {
     //update parent sur l'etat de sauvegarde pour loading true
     //update parent sur l'etat de sauvegarde pour loading false
   };
+
+  //Sync auth data
+  useEffect(() => {
+    if (selectedFormats === undefined) {
+      return;
+    }
+    let authCopy = { ...authenticationInfos };
+    authCopy.userScripts[index].formats = selectedFormats.map((IDformat) =>
+      allDefinitions.allFormats.find(
+        (definitionFormat) => definitionFormat.id === IDformat
+      )
+    );
+    setAuthenticationInfos(authCopy);
+  }, [selectedFormats]);
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -173,6 +180,7 @@ const ScriptLine = ({ script, history, index }) => {
           </Select>
         </FormControl>
       </Td>
+      <Td></Td>
     </Tr>
   );
 };
