@@ -22,6 +22,11 @@ const ScriptLine = ({ script, history }) => {
 
   const handleChangeSelect = (event) => {
     console.log(event);
+    console.log(event.target.value);
+    //ajouter dans selectedFormats
+
+    //update parent sur l'etat de sauvegarde pour loading true
+    //update parent sur l'etat de sauvegarde pour loading false
   };
 
   const ITEM_HEIGHT = 48;
@@ -131,10 +136,10 @@ const ScriptLine = ({ script, history }) => {
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
           >
-            {allDefinitions.allFormats.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={selectedFormats.indexOf(name) > -1} />
-                <ListItemText primary={name} />
+            {allDefinitions.allFormats.map((format) => (
+              <MenuItem key={format.name} value={format.id}>
+                <Checkbox checked={selectedFormats.indexOf(format.name) > -1} />
+                <ListItemText primary={format.name} className="format-select" />
               </MenuItem>
             ))}
           </Select>
