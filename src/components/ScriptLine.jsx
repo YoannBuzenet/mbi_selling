@@ -24,6 +24,15 @@ const ScriptLine = ({ script, history, index }) => {
     script.formats.map((format) => format.id)
   );
 
+  console.log("le script depuis les props", script);
+
+  console.log(
+    "le résultat de notre .map :",
+    script.formats.map((format) => format.id)
+  );
+
+  console.log("lindex de notre script", index);
+
   console.log("selected formats", selectedFormats);
 
   const handleChangeSelect = (event) => {
