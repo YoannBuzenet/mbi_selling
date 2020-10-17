@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Format extends Model {
+  class ScriptsFormats extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,20 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Format.belongsToMany(models.Script, {
-        through: models.ScriptsFormats,
-        foreignKey: "format_id",
-      });
     }
   }
-  Format.init(
+  ScriptsFormats.init(
     {
-      name: DataTypes.STRING,
+      format_id: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+        allowNull: false,
+      },
+      script_id: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+        allowNull: false,
+      },
     },
     {
       sequelize,
-      modelName: "Format",
+      modelName: "ScriptsFormats",
     }
   );
-  return Format;
+  return ScriptsFormats;
 };
