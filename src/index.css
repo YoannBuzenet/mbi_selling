@@ -495,6 +495,10 @@ form.reset-password-form button {
   text-align: left;
 }
 
+/* div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+  top: 110px !important;
+} */
+
 .MuiListItemText-root.format-select
   .MuiTypography-root.MuiListItemText-primary.MuiTypography-body1.MuiTypography-displayBlock {
   font-size: 16px;
