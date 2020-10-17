@@ -31,10 +31,10 @@ const AllMyScripts = ({ history }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {authenticationInfos.shop.userScripts.map((script) => {
+            {authenticationInfos.shop.userScripts.map((script, index) => {
               return (
                 <>
-                  <ScriptLine script={script} history={history} />
+                  <ScriptLine script={script} history={history} index={index} />
                 </>
               );
             })}

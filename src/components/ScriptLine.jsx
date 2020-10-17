@@ -13,17 +13,32 @@ import { Link } from "react-router-dom";
 import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
 
-const ScriptLine = ({ script, history }) => {
+const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
 
+  const [selectedFormats, setSelectedFormats] = useState(
+    script.formats.map((format) => format.id)
+  );
+
+  console.log("selected formats", selectedFormats);
+
   const handleChangeSelect = (event) => {
-    console.log(event);
-    console.log(event.target.value);
-    //ajouter dans selectedFormats
+    let idFormat = parseInt(event.target.value[0]);
+
+    //ajouter ou retirer dans selectedFormats
+    if (selectedFormats.includes(idFormat)) {
+      console.log("already included");
+      setSelectedFormats(
+        selectedFormats.filter((formatSelected) => formatSelected !== idFormat)
+      );
+    } else {
+      console.log("not included");
+      setSelectedFormats([...selectedFormats, idFormat]);
+    }
 
     //update parent sur l'etat de sauvegarde pour loading true
     //update parent sur l'etat de sauvegarde pour loading false
@@ -37,10 +52,11 @@ const ScriptLine = ({ script, history }) => {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
         width: 250,
       },
+      style: {
+        top: 500,
+      },
     },
   };
-
-  const [selectedFormats, setSelectedFormats] = useState([]);
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -125,7 +141,7 @@ const ScriptLine = ({ script, history }) => {
       </Td>
       <Td>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+          <InputLabel id="demo-mutiple-checkbox-label">Formats(T)</InputLabel>
           <Select
             labelId="demo-mutiple-checkbox-label"
             id="demo-mutiple-checkbox"
@@ -137,8 +153,11 @@ const ScriptLine = ({ script, history }) => {
             MenuProps={MenuProps}
           >
             {allDefinitions.allFormats.map((format) => (
-              <MenuItem key={format.name} value={format.id}>
-                <Checkbox checked={selectedFormats.indexOf(format.name) > -1} />
+              <MenuItem key={format.id} value={format.id}>
+                <Checkbox
+                  size="medium"
+                  checked={selectedFormats.indexOf(format.id) > -1}
+                />
                 <ListItemText primary={format.name} className="format-select" />
               </MenuItem>
             ))}
