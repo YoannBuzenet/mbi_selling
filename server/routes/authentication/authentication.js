@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
 
     for (let i = 0; i < userScripts.length; i++) {
       const scriptFormats = await userScripts[i].getFormats();
-      userScripts[i].dataValues.formats = { ...scriptFormats };
+      userScripts[i].dataValues.formats = [...scriptFormats];
     }
 
     console.log("user scripts to be added :", userScripts);
