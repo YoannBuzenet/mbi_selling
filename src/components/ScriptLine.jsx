@@ -14,6 +14,7 @@ import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import authAPI from "../services/authAPI";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -92,6 +93,9 @@ const ScriptLine = ({ script, history, index }) => {
           .then((resp) => {
             console.log(resp);
             console.log("2");
+            authAPI.transformAuthContextIntoLocalStorageFormat(
+              authenticationInfos
+            );
             setSavingState("saved");
             setTimeout(() => {
               setSavingState(null);
@@ -229,6 +233,15 @@ const ScriptLine = ({ script, history, index }) => {
       <Td>
         {savingState === "saving" && <span>Saving...</span>}
         {savingState === "saved" && <span>Saved !</span>}
+        {!savingState && (
+          <>
+            <span> </span>
+            <span> </span>
+            <span> </span>
+            <span> </span>
+            <span> </span>
+          </>
+        )}
       </Td>
     </Tr>
   );
