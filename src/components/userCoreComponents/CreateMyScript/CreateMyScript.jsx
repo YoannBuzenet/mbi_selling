@@ -520,6 +520,7 @@ const CreateMyScript = ({ history }) => {
             "/api/script?idUser=" + authenticationInfos.user.id,
             {
               name: scriptName,
+              formats: selectedFormats,
             }
           );
           console.log("data arrived : ", scriptCreated);
@@ -541,6 +542,7 @@ const CreateMyScript = ({ history }) => {
               authenticationInfos.user.id,
             {
               name: scriptName,
+              formats: selectedFormats,
             }
           )
           .then((resp) => {
