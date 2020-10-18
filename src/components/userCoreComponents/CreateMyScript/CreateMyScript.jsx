@@ -13,11 +13,20 @@ import errorHandlingAPI from "../../../services/errorHandlingAPI";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import ListItemText from "@material-ui/core/ListItemText";
+import Checkbox from "@material-ui/core/Checkbox";
+import Input from "@material-ui/core/Input";
 
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
+
+  const [selectedFormats, setSelectedFormats] = useState([]);
 
   //Getting id param on edition mode (with /manage-script/ route)
   const match = matchPath(history.location.pathname, {
@@ -28,7 +37,7 @@ const CreateMyScript = ({ history }) => {
 
   console.log("auth from create script", authenticationInfos);
 
-  console.log("le path :", history.location.pathname);
+  // console.log("le path :", history.location.pathname);
 
   // If we have an id param, that means we are editing a script. Otherwise, we are creating a brand new one !
   const isCreationOrEditionMode = match?.params?.id ? "Edition" : "Creation";
@@ -703,6 +712,29 @@ const CreateMyScript = ({ history }) => {
     setScriptName(event.target.value);
   };
 
+  const handleChangeSelect = (event) => {
+    let idFormat = parseInt(event.target.value[0]);
+
+    //Immediate state-of-the-app
+    let copySelectedFormatsUpToDate;
+
+    //Should we add or remove from selected elements ?
+    if (selectedFormats.includes(idFormat)) {
+      console.log("already included");
+      setSelectedFormats(
+        selectedFormats.filter((formatSelected) => formatSelected !== idFormat)
+      );
+      //We keep a copy to save in DB
+      copySelectedFormatsUpToDate = selectedFormats.filter(
+        (formatSelected) => formatSelected !== idFormat
+      );
+    } else {
+      console.log("not included");
+      setSelectedFormats([...selectedFormats, idFormat]);
+      copySelectedFormatsUpToDate = [...selectedFormats, idFormat];
+    }
+  };
+
   const launchTest = () => {
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
     console.log("test !");
@@ -711,6 +743,20 @@ const CreateMyScript = ({ history }) => {
   const launchScript = () => {
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
     console.log("Launch !");
+  };
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+      style: {
+        top: 500,
+      },
+    },
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -731,6 +777,21 @@ const CreateMyScript = ({ history }) => {
       "&:hover": {
         background: "rgb(250, 216, 89)",
       },
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      maxWidth: 300,
+    },
+    chips: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    chip: {
+      margin: 2,
+    },
+    noLabel: {
+      marginTop: theme.spacing(3),
     },
   }));
 
@@ -774,7 +835,32 @@ const CreateMyScript = ({ history }) => {
           >
             LANCER
           </Button>
-          FORMATS :
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-mutiple-checkbox-label">Formats(T)</InputLabel>
+            <Select
+              labelId="demo-mutiple-checkbox-label"
+              id="demo-mutiple-checkbox"
+              multiple
+              value={[]}
+              onChange={handleChangeSelect}
+              input={<Input />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={MenuProps}
+            >
+              {allDefinitions.allFormats.map((format) => (
+                <MenuItem key={format.id} value={format.id}>
+                  <Checkbox
+                    size="medium"
+                    checked={selectedFormats.indexOf(format.id) > -1}
+                  />
+                  <ListItemText
+                    primary={format.name}
+                    className="format-select"
+                  />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className="column-definitions">
           <p>REGULAR</p>

@@ -23,7 +23,7 @@ const ScriptLine = ({ script, history, index }) => {
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
 
-  const WAIT_INTERVAL = 5000;
+  const WAIT_INTERVAL = 2000;
 
   const [timer, setTimer] = useState(null);
 
@@ -33,11 +33,14 @@ const ScriptLine = ({ script, history, index }) => {
 
   const [savingState, setSavingState] = useState(null);
 
+  console.log("saving state", savingState);
+
   console.log("authenticationInfos", authenticationInfos);
 
   console.log("selected formats", selectedFormats);
 
   const handleChangeSelect = (event) => {
+    setSavingState("saving");
     setTimer(clearTimeout(timer));
 
     let idFormat = parseInt(event.target.value[0]);
@@ -77,9 +80,6 @@ const ScriptLine = ({ script, history, index }) => {
       setTimeout(() => {
         console.log("fonction 2");
         console.log("api saving", index);
-        setSavingState("saving");
-        //TO DO update parent sur l'etat de sauvegarde pour loading true
-        //patch
         axios
           .patch(
             "/api/script/" +
@@ -233,15 +233,7 @@ const ScriptLine = ({ script, history, index }) => {
       <Td>
         {savingState === "saving" && <span>Saving...</span>}
         {savingState === "saved" && <span>Saved !</span>}
-        {!savingState && (
-          <>
-            <span> </span>
-            <span> </span>
-            <span> </span>
-            <span> </span>
-            <span> </span>
-          </>
-        )}
+        {!savingState && "Up To date"}
       </Td>
     </Tr>
   );

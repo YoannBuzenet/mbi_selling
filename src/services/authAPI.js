@@ -130,10 +130,12 @@ function refreshTokenAndInfos(refresh_token) {
     });
 }
 
+//MTGAPI holds data in different format than the react app, we have two function to translate in one sense and another.
+//When data is stored in local storage, it is done in the MTGAPI format.
 function transformAPIdataIntoAppData(data) {
   const token = window.localStorage.getItem("authToken");
 
-  //Vérifier si la date d'exp du token est bonne, si oui on considère que connecté ( le serveur fait le vrai check derrière)
+  //Check if expiration date is OK, if yes we consider user as connected (server will check anyway)
   if (token) {
     var jwtData = jwtDecode(token);
   }
@@ -194,6 +196,7 @@ function transformAPIdataIntoAppData(data) {
   };
 }
 
+//Transform App data into localstorage at the MTGAPI format directly.
 function transformAuthContextIntoLocalStorageFormat(authContext) {
   const newDataToInsertInLocalStorage = {
     token: authContext.token,
