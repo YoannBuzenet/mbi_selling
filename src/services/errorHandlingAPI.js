@@ -3,8 +3,9 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 
 function checkErrorStatus(error) {
+  console.log("error from error handling :", error);
   if (error.response) {
-    console.log(error.response);
+    console.log("error.response", error.response);
     if (error.response.status === 401) {
       toast.error(
         <FormattedMessage

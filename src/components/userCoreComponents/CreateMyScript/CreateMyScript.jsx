@@ -26,7 +26,17 @@ const CreateMyScript = ({ history }) => {
     AuthContext
   );
 
-  const [selectedFormats, setSelectedFormats] = useState([]);
+  const [selectedFormats, setSelectedFormats] = useState(() => {
+    //If we are in edition mode, we start from the formats aldready stored in the script
+    if (match?.params?.id) {
+      return [];
+      //TODO FIND THE RIGHT VALUE HERE
+    }
+    //If we are in creation mode, starting value is empty array
+    else if (!match?.params?.id) {
+      return [];
+    }
+  });
 
   //Getting id param on edition mode (with /manage-script/ route)
   const match = matchPath(history.location.pathname, {
@@ -192,10 +202,10 @@ const CreateMyScript = ({ history }) => {
           }
         });
 
-      //GETTING SCRIPT NAME
+      //GETTING SCRIPT NAME AND FORMATS
       axios
         .get(
-          "/api/script//getById/" +
+          "/api/script/getById/" +
             idScript +
             "?idUser=" +
             authenticationInfos.user.id
@@ -203,6 +213,9 @@ const CreateMyScript = ({ history }) => {
         .then((resp) => {
           console.log("pass script name in state");
           setScriptName(resp.data.name);
+          setSelectedFormats(
+            resp.data.scriptFormats.map((format) => format.id)
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -649,36 +662,35 @@ const CreateMyScript = ({ history }) => {
 
         //Creating it in state
         if (
-          authenticationInfos?.shop?.userScripts.filter(
+          authenticationInfos?.userScripts.filter(
             (script) => script.id === scriptId
           ).length === 0
         ) {
           setAuthenticationInfos({
             ...authenticationInfos,
-            shop: {
-              ...authenticationInfos.shop,
-              userScripts: [
-                ...authenticationInfos.shop.userScripts,
-                { id: scriptId, name: scriptName },
-              ],
-            },
+            userScripts: [
+              ...authenticationInfos.userScripts,
+              { id: scriptId, name: scriptName, formats: selectedFormats },
+            ],
           });
           localStorageUserData.userScripts = [
-            ...authenticationInfos.shop.userScripts,
-            { id: scriptId, name: scriptName },
+            ...authenticationInfos.userScripts,
+            { id: scriptId, name: scriptName, formats: selectedFormats },
           ];
         }
         //Refreshing only the relevant one in state
         else {
-          const indexScriptToUpdate = authenticationInfos?.shop?.userScripts.findIndex(
+          const indexScriptToUpdate = authenticationInfos?.userScripts.findIndex(
             (script) => script.id === scriptId
           );
-          authenticationInfos.shop.userScripts[
+          authenticationInfos.userScripts[
             indexScriptToUpdate
           ].name = scriptName;
+          authenticationInfos.userScripts[
+            indexScriptToUpdate
+          ].formats = selectedFormats;
           setAuthenticationInfos({ ...authenticationInfos });
-          localStorageUserData.userScripts =
-            authenticationInfos.shop.userScripts;
+          localStorageUserData.userScripts = authenticationInfos.userScripts;
         }
 
         window.localStorage.setItem(
