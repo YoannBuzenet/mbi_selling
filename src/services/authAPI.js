@@ -194,6 +194,31 @@ function transformAPIdataIntoAppData(data) {
   };
 }
 
+function transformAuthContextIntoLocalStorageFormat(authContext) {
+  const newDataToInsertInLocalStorage = {
+    token: authContext.token,
+    refresh_token: authContext.refresh_token,
+    user: {
+      ...authContext.user,
+    },
+    client: {
+      ...authContext.customer,
+      shop: {
+        ...authContext.shop,
+      },
+    },
+    shop: {
+      ...authContext.shop,
+    },
+    userScripts: authContext.userScripts,
+  };
+
+  window.localStorage.setItem(
+    "userInfos",
+    JSON.stringify(newDataToInsertInLocalStorage)
+  );
+}
+
 export default {
   authenticate,
   logout,
@@ -202,4 +227,5 @@ export default {
   updateUserInfosLocalStorage,
   refreshTokenAndInfos,
   transformAPIdataIntoAppData,
+  transformAuthContextIntoLocalStorageFormat,
 };
