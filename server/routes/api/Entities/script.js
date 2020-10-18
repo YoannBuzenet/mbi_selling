@@ -115,15 +115,25 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  db.Script.create({ name: req.body.name, idShop: req.query.idUser })
-    .then((resp) => {
-      console.log(resp);
-      res.status(200).json(resp);
-    })
-    .catch((err) => {
-      console.log("error when creating a script", err);
-      res.status(500).json(err);
+  try {
+    const newScript = await db.Script.create({
+      name: req.body.name,
+      idShop: req.query.idUser,
     });
+
+    if (req.body.formats) {
+      console.log("they are formats to set");
+      await newScript.setFormats(req.body.formats);
+      newScript.save();
+    }
+
+    console.log(newScript);
+
+    res.status(200).json(newScript);
+  } catch (err) {
+    console.log("error when creating a script", err);
+    res.status(500).json(err);
+  }
 });
 
 /* Logged Route */
