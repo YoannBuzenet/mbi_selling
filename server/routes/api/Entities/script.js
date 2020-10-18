@@ -77,7 +77,11 @@ router.get("/getById/:id", async (req, res) => {
     return;
   }
 
-  res.status(200).json(userScripts);
+  const scriptFormats = await userScripts.getFormats();
+
+  const finalReponse = { ...userScripts.dataValues, scriptFormats };
+
+  res.status(200).json(finalReponse);
   return;
 });
 
