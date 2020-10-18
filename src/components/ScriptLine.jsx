@@ -16,6 +16,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import authAPI from "../services/authAPI";
 import { FormattedMessage, useIntl } from "react-intl";
+import { isMobile } from "react-device-detect";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -185,7 +186,7 @@ const ScriptLine = ({ script, history, index }) => {
       <Td className="all-my-scripts-link-to-script">
         <Link to={"/edit-script/" + script.id}>{script.name}</Link>
       </Td>
-      <Td>
+      <Td className={isMobile && "marginHeight20px"}>
         <Button
           variant="contained"
           color="primary"
@@ -196,7 +197,7 @@ const ScriptLine = ({ script, history, index }) => {
           <FormattedMessage id="scriptLine.buttons.see" defaultMessage="See" />
         </Button>
       </Td>
-      <Td>
+      <Td className={isMobile && "marginHeight20px"}>
         <Button
           variant="contained"
           color="primary"
@@ -209,7 +210,7 @@ const ScriptLine = ({ script, history, index }) => {
           />
         </Button>
       </Td>
-      <Td>
+      <Td className={isMobile && "marginHeight20px"}>
         <Button
           variant="contained"
           color="primary"
@@ -249,7 +250,7 @@ const ScriptLine = ({ script, history, index }) => {
           </Select>
         </FormControl>
       </Td>
-      <Td>
+      <Td className={isMobile && "marginHeight20px"}>
         {savingState === "saving" && (
           <span>
             <FormattedMessage

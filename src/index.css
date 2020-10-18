@@ -504,6 +504,10 @@ form.reset-password-form button {
   font-size: 16px;
 }
 
+.marginHeight20px {
+  margin: 20px 0;
+}
+
 /**************************
 *******REGISTER PAGE*******
 **************************/
