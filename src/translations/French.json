@@ -104,5 +104,13 @@
 
   "app.error401.toast.failure": "Vous n'êtes plus connecté. Merci de vous reconnecter.",
   "app.error403.toast.failure": "Vous n'avez pas accès à cette ressource.",
-  "app.error500.toast.failure": "Une erreur est survenue. Merci de réeesayer plus tard."
+  "app.error500.toast.failure": "Une erreur est survenue. Merci de réeesayer plus tard.",
+
+  "scriptLine.buttons.see": "Voir",
+  "scriptLine.buttons.test": "Tester",
+  "scriptLine.buttons.launch": "Lancer",
+  "scriptLine.buttons.saving": "Sauvegarde...",
+  "scriptLine.buttons.saved": "Sauvegardé !",
+  "scriptLine.buttons.upToDate": "A jour",
+  "scriptline.select.formats.title": "Formats"
 }

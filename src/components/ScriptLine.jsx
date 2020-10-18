@@ -15,6 +15,7 @@ import AuthContext from "../context/authContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import authAPI from "../services/authAPI";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -169,6 +170,16 @@ const ScriptLine = ({ script, history, index }) => {
 
   const classes = useStyles();
 
+  /* ****************** */
+  /* ***TRANSLATIONS*** */
+  /* ****************** */
+  const intl = useIntl();
+
+  const formatSelectTitle = intl.formatMessage({
+    id: "scriptline.select.formats.title",
+    defaultMessage: "Formats",
+  });
+
   return (
     <Tr>
       <Td className="all-my-scripts-link-to-script">
@@ -182,7 +193,7 @@ const ScriptLine = ({ script, history, index }) => {
           size="large"
           onClick={(e) => history.push("/edit-script/" + script.id)}
         >
-          VOIR
+          <FormattedMessage id="scriptLine.buttons.see" defaultMessage="See" />
         </Button>
       </Td>
       <Td>
@@ -192,7 +203,10 @@ const ScriptLine = ({ script, history, index }) => {
           className={classes.testButton}
           size="large"
         >
-          TESTER
+          <FormattedMessage
+            id="scriptLine.buttons.test"
+            defaultMessage="Test"
+          />
         </Button>
       </Td>
       <Td>
@@ -202,12 +216,17 @@ const ScriptLine = ({ script, history, index }) => {
           className={classes.launchButton}
           size="large"
         >
-          LANCER
+          <FormattedMessage
+            id="scriptLine.buttons.launch"
+            defaultMessage="Launch"
+          />
         </Button>
       </Td>
       <Td>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-mutiple-checkbox-label">Formats(T)</InputLabel>
+          <InputLabel id="demo-mutiple-checkbox-label">
+            {formatSelectTitle}
+          </InputLabel>
           <Select
             labelId="demo-mutiple-checkbox-label"
             id="demo-mutiple-checkbox"
@@ -231,9 +250,28 @@ const ScriptLine = ({ script, history, index }) => {
         </FormControl>
       </Td>
       <Td>
-        {savingState === "saving" && <span>Saving...</span>}
-        {savingState === "saved" && <span>Saved !</span>}
-        {!savingState && "Up To date"}
+        {savingState === "saving" && (
+          <span>
+            <FormattedMessage
+              id="scriptLine.buttons.saving"
+              defaultMessage="Saving..."
+            />
+          </span>
+        )}
+        {savingState === "saved" && (
+          <span>
+            <FormattedMessage
+              id="scriptLine.buttons.saved"
+              defaultMessage="Saved !"
+            />
+          </span>
+        )}
+        {!savingState && (
+          <FormattedMessage
+            id="scriptLine.buttons.upToDate"
+            defaultMessage="Up to date"
+          />
+        )}
       </Td>
     </Tr>
   );
