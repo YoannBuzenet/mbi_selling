@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
+import axios from "axios";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -19,6 +20,10 @@ const ScriptLine = ({ script, history, index }) => {
   );
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
+
+  const WAIT_INTERVAL = 5000;
+
+  const [timer, setTimer] = useState(null);
 
   const [selectedFormats, setSelectedFormats] = useState(
     script.formats.map((format) => format.id)
@@ -29,7 +34,12 @@ const ScriptLine = ({ script, history, index }) => {
   console.log("selected formats", selectedFormats);
 
   const handleChangeSelect = (event) => {
+    setTimer(clearTimeout(timer));
+
     let idFormat = parseInt(event.target.value[0]);
+
+    //Creating an immediate copy that will be available before the state has been updated
+    let copySelectedFormatsUpToDate;
 
     //ajouter ou retirer dans selectedFormats
     if (selectedFormats.includes(idFormat)) {
@@ -37,20 +47,17 @@ const ScriptLine = ({ script, history, index }) => {
       setSelectedFormats(
         selectedFormats.filter((formatSelected) => formatSelected !== idFormat)
       );
+      //We keep a copy to save in DB
+      copySelectedFormatsUpToDate = selectedFormats.filter(
+        (formatSelected) => formatSelected !== idFormat
+      );
     } else {
       console.log("not included");
       setSelectedFormats([...selectedFormats, idFormat]);
+      copySelectedFormatsUpToDate = [...selectedFormats, idFormat];
     }
 
-    //update parent sur l'etat de sauvegarde pour loading true
-    //update parent sur l'etat de sauvegarde pour loading false
-  };
-
-  //Sync auth data
-  useEffect(() => {
-    if (selectedFormats === undefined) {
-      return;
-    }
+    //sync data
     let authCopy = { ...authenticationInfos };
     authCopy.userScripts[index].formats = selectedFormats.map((IDformat) =>
       allDefinitions.allFormats.find(
@@ -58,7 +65,26 @@ const ScriptLine = ({ script, history, index }) => {
       )
     );
     setAuthenticationInfos(authCopy);
-  }, [selectedFormats]);
+
+    setTimer(
+      setTimeout(() => {
+        console.log("fonction 2");
+        console.log("api saving", index);
+      }, WAIT_INTERVAL)
+    );
+
+    //TO DO update parent sur l'etat de sauvegarde pour loading true
+    //patch
+    axios.patch(
+      "/api/script/" + script.id + "?idUser=" + authenticationInfos.user.id,
+      {
+        formats: copySelectedFormatsUpToDate,
+      }
+    );
+    //update parent sur l'etat de sauvegarde pour loading false
+
+    //in case of catch, roll back
+  };
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
