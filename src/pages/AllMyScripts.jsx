@@ -27,8 +27,8 @@ const AllMyScripts = ({ history }) => {
               <Th></Th>
               <Th></Th>
               <Th></Th>
-              <Th></Th>
-              <Th></Th>
+              <Th>Formats</Th>
+              <Th>Status</Th>
             </Tr>
           </Thead>
           <Tbody>

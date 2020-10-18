@@ -50,6 +50,17 @@
 
 .buttons-right-menu {
   margin-left: 50px;
+  display: flex;
+  max-height: 30px;
+  align-items: center;
+}
+
+.buttons-right-menu div.MuiFormControl-root {
+  margin-left: 30px;
+}
+
+label + .MuiInput-formControl {
+  margin-bottom: 16px;
 }
 
 button.button-second-navbar {
