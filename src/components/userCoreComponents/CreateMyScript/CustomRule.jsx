@@ -13,6 +13,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const CustomRule = ({
   rule,
@@ -85,6 +86,24 @@ const CustomRule = ({
     classNameSecondDiv = "div2right hasErrors";
   }
 
+  /* ****************** */
+  /* ***TRANSLATIONS*** */
+  /* ****************** */
+  const intl = useIntl();
+
+  const userChoice = intl.formatMessage({
+    id: "customRules.select.title.userChoice",
+    defaultMessage: "Do",
+  });
+  const userMKMChoice = intl.formatMessage({
+    id: "customRules.select.title.mkmPossibilityToChoose",
+    defaultMessage: "Which MKM price ?",
+  });
+  const userBehaviourChoice = intl.formatMessage({
+    id: "customRules.select.title.behaviour",
+    defaultMessage: "Rule to apply",
+  });
+
   return (
     <>
       <Zoom in={isZoomed}>
@@ -104,7 +123,12 @@ const CustomRule = ({
               </IconButton>
             </div>
             <div className="top-zone">
-              <p className="fromToText">DE</p>
+              <p className="fromToText">
+                <FormattedMessage
+                  id="customRules.price.from"
+                  defaultMessage="From"
+                />
+              </p>
               <TextField
                 id="outlined-from"
                 defaultValue=""
@@ -116,7 +140,12 @@ const CustomRule = ({
                   rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
                 }
               />
-              <p className="fromToText">A</p>
+              <p className="fromToText">
+                <FormattedMessage
+                  id="customRules.price.to"
+                  defaultMessage="To"
+                />
+              </p>
               <TextField
                 id="outlined-from"
                 defaultValue=""
@@ -136,7 +165,7 @@ const CustomRule = ({
                     className={classes.formControl}
                   >
                     <InputLabel id="demo-simple-select-outlined-label">
-                      Que faire ?
+                      {userChoice}
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-outlined-label"
@@ -165,7 +194,12 @@ const CustomRule = ({
 
                 {rule.ruleTypeId === 1 && (
                   <div className="setValueFixPrice">
-                    <p className="fromToText">VENDRE A</p>
+                    <p className="fromToText">
+                      <FormattedMessage
+                        id="customRules.price.setFixedPrice.SellFor"
+                        defaultMessage="Sell for"
+                      />
+                    </p>
 
                     <TextField
                       id="outlined-from"
@@ -192,7 +226,7 @@ const CustomRule = ({
                         className={classes.formControl}
                       >
                         <InputLabel id="demo-simple-select-outlined-label-2">
-                          Quel prix MKM ?
+                          {userMKMChoice}
                         </InputLabel>
                         <Select
                           labelId="demo-simple-select-outlined-label-2"
@@ -226,7 +260,7 @@ const CustomRule = ({
                         className={classes.formControl}
                       >
                         <InputLabel id="demo-simple-select-outlined-label-3">
-                          Quelle règle ?
+                          {userBehaviourChoice}
                         </InputLabel>
                         <Select
                           labelId="demo-simple-select-outlined-label-3"
@@ -261,29 +295,42 @@ const CustomRule = ({
               <ul>
                 {rule.hasEmptyInput && (
                   <li className="error-rule-explaination">
-                    Les deux prix d'une règle doivent être renseignés.
+                    <FormattedMessage
+                      id="customRules.price.errorRule.twoPricesMustBeIndicated"
+                      defaultMessage="Both prices of a rule should be filled in."
+                    />
                   </li>
                 )}
                 {rule.hasIncoherentFollowingPrices && (
                   <li className="error-rule-explaination">
-                    Le prix de cette règle ne colle pas avec celui de la
-                    suivante.
+                    <FormattedMessage
+                      id="customRules.price.errorRule.priceshouldBeCoherentWithNextRule"
+                      defaultMessage="Price of this rule is not coherent with the next rule price."
+                    />
                   </li>
                 )}
                 {rule.hasIncoherentOrderInFromTo && (
                   <li className="error-rule-explaination">
-                    Le prix de départ de cette règle est supérieur ou égal au
-                    prix d'arrivée.
+                    <FormattedMessage
+                      id="customRules.price.errorRule.priceFromShouldInferiortoPriceTo"
+                      defaultMessage="'From' Price must be inferior to 'To' price."
+                    />
                   </li>
                 )}
                 {rule.hasIncoherentStartingPrice && (
                   <li className="error-rule-explaination">
-                    La première règle doit commencer à 0 euro.
+                    <FormattedMessage
+                      id="customRules.price.errorRule.firstRuleMustStartAt0euros"
+                      defaultMessage="'From' Price must be inferior to 'To' price."
+                    />
                   </li>
                 )}
                 {rule.isMissingSellingPrice && (
                   <li className="error-rule-explaination">
-                    Cette règle attend un prix de vente.
+                    <FormattedMessage
+                      id="customRules.price.errorRule.setFixedValueMustHaveASellingPrice"
+                      defaultMessage="This rule expects a selling price."
+                    />
                   </li>
                 )}
               </ul>
