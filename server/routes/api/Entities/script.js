@@ -181,10 +181,17 @@ router.patch("/:id", async (req, res) => {
   //Register Rule
   //Send it back with its id !
   existingScript.name = req.body.name;
+
+  //Check if we are setting formats from the script
+  if (req.body.formats) {
+    console.log("they are formats to set");
+    existingScript.setFormats(req.body.formats);
+  }
+
   existingScript
     .save()
     .then((resp) => {
-      console.log("what do we have here ? IN PUT : ", resp);
+      console.log("what do we have here ? IN PATCH : ", resp);
       res.status(200).json(resp.dataValues);
     })
     .catch((err) => {
