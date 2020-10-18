@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -29,6 +30,8 @@ const ScriptLine = ({ script, history, index }) => {
     script.formats.map((format) => format.id)
   );
 
+  const [savingState, setSavingState] = useState(null);
+
   console.log("authenticationInfos", authenticationInfos);
 
   console.log("selected formats", selectedFormats);
@@ -40,6 +43,9 @@ const ScriptLine = ({ script, history, index }) => {
 
     //Creating an immediate copy that will be available before the state has been updated
     let copySelectedFormatsUpToDate;
+
+    //Copy of current auth context to take in back in case
+    let copyAuthContext = { ...authenticationInfos };
 
     //ajouter ou retirer dans selectedFormats
     if (selectedFormats.includes(idFormat)) {
@@ -70,20 +76,34 @@ const ScriptLine = ({ script, history, index }) => {
       setTimeout(() => {
         console.log("fonction 2");
         console.log("api saving", index);
+        setSavingState("saving");
+        //TO DO update parent sur l'etat de sauvegarde pour loading true
+        //patch
+        axios
+          .patch(
+            "/api/script/" +
+              script.id +
+              "?idUser=" +
+              authenticationInfos.user.id,
+            {
+              formats: copySelectedFormatsUpToDate,
+            }
+          )
+          .then((resp) => {
+            console.log(resp);
+            console.log("2");
+            setSavingState("saved");
+            setTimeout(() => {
+              setSavingState(null);
+            }, 2000);
+          })
+          .catch((err) => {
+            console.log(err);
+            setAuthenticationInfos(copyAuthContext);
+            toast.error("Probleme dans la save A TRADUIRE");
+          });
       }, WAIT_INTERVAL)
     );
-
-    //TO DO update parent sur l'etat de sauvegarde pour loading true
-    //patch
-    axios.patch(
-      "/api/script/" + script.id + "?idUser=" + authenticationInfos.user.id,
-      {
-        formats: copySelectedFormatsUpToDate,
-      }
-    );
-    //update parent sur l'etat de sauvegarde pour loading false
-
-    //in case of catch, roll back
   };
 
   const ITEM_HEIGHT = 48;
@@ -206,7 +226,10 @@ const ScriptLine = ({ script, history, index }) => {
           </Select>
         </FormControl>
       </Td>
-      <Td></Td>
+      <Td>
+        {savingState === "saving" && <span>Saving...</span>}
+        {savingState === "saved" && <span>Saved !</span>}
+      </Td>
     </Tr>
   );
 };
