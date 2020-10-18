@@ -21,6 +21,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
 
+import { FormattedMessage, useIntl } from "react-intl";
+
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
@@ -811,10 +813,26 @@ const CreateMyScript = ({ history }) => {
 
   const classes = useStyles();
 
+  /* ******************** */
+  /* *** TRANSLATIONS *** */
+  /* ******************** */
+
+  const intl = useIntl();
+
+  const formatSelectTitle = intl.formatMessage({
+    id: "createMyScript.select.formats.title",
+    defaultMessage: "Formats",
+  });
+
   return (
     <>
       <div className="second-menu-scripts">
-        <p style={{ margin: "0 20px" }}>Script Name</p>
+        <p style={{ margin: "0 20px" }}>
+          <FormattedMessage
+            id="createMyScript.title.scriptname"
+            defaultMessage="Script Name"
+          />
+        </p>
         <TextField
           id="outlined-from"
           variant="outlined"
@@ -831,7 +849,10 @@ const CreateMyScript = ({ history }) => {
             className={"button-second-navbar " + classes.saveButton}
             size="large"
           >
-            SAVE
+            <FormattedMessage
+              id="createMyScript.buttons.save"
+              defaultMessage="Save"
+            />
           </Button>
           <Button
             variant="contained"
@@ -839,7 +860,10 @@ const CreateMyScript = ({ history }) => {
             className={"button-second-navbar " + classes.testButton}
             size="large"
           >
-            TESTER
+            <FormattedMessage
+              id="createMyScript.buttons.test"
+              defaultMessage="Test"
+            />
           </Button>
           <Button
             variant="contained"
@@ -847,10 +871,15 @@ const CreateMyScript = ({ history }) => {
             className={"button-second-navbar " + classes.launchButton}
             size="large"
           >
-            LANCER
+            <FormattedMessage
+              id="createMyScript.buttons.launch"
+              defaultMessage="Lancer"
+            />
           </Button>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-mutiple-checkbox-label">Formats(T)</InputLabel>
+            <InputLabel id="demo-mutiple-checkbox-label">
+              {formatSelectTitle}
+            </InputLabel>
             <Select
               labelId="demo-mutiple-checkbox-label"
               id="demo-mutiple-checkbox"
@@ -877,14 +906,23 @@ const CreateMyScript = ({ history }) => {
           </FormControl>
         </div>
         <div className="column-definitions">
-          <p>REGULAR</p>
-          <p>FOIL</p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.columnTitles.regular"
+              defaultMessage="Regular"
+            />
+          </p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.columnTitles.foil"
+              defaultMessage="Foil"
+            />
+          </p>
         </div>
       </div>
       <div className="create-my-script-container">
         <div className="parts-container">
           <div className="left-part">
-            REGULAR
             <div className="left-schema">
               <AddRuleButton
                 position={0}
@@ -910,17 +948,8 @@ const CreateMyScript = ({ history }) => {
                   );
                 })}
             </div>
-            <p>Regles génériques</p>
-            <p>Les signées ne sont pas traitées.</p>
-            <p>Les altérées ne sont pas traitées.</p>
-            <p>Les playsets ne sont pas traités.</p>
-            <p>
-              Les cartes aux prix supérieur aux prix mentionnés ne sont pas
-              traitées.
-            </p>
           </div>
           <div className="right-part">
-            FOIL
             <div className="right-schema">
               <AddRuleButton
                 position={0}
@@ -947,6 +976,38 @@ const CreateMyScript = ({ history }) => {
                 })}
             </div>
           </div>
+        </div>
+        <div>
+          <p>
+            <FormattedMessage
+              id="createMyScript.genericRules.title"
+              defaultMessage="Generic Rules"
+            />
+          </p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.genericRules.signedCardAreNotTreated"
+              defaultMessage="Signed cards are not processed."
+            />
+          </p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.genericRules.alteredCardAreNotTreated"
+              defaultMessage="Altered cards are not processed."
+            />
+          </p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.genericRules.playsetsAreNotTreated"
+              defaultMessage="Playsets are not processed."
+            />
+          </p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated"
+              defaultMessage="Cards with superior prices to these mentionned here are not processed."
+            />
+          </p>
         </div>
       </div>
     </>

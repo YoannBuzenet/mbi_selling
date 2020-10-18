@@ -112,5 +112,30 @@
   "scriptLine.buttons.saving": "Sauvegarde...",
   "scriptLine.buttons.saved": "Sauvegardé !",
   "scriptLine.buttons.upToDate": "A jour",
-  "scriptline.select.formats.title": "Formats"
+  "scriptline.select.formats.title": "Formats",
+
+  "createMyScript.title.scriptname": "Nom du script",
+  "createMyScript.buttons.save": "Sauvegarder",
+  "createMyScript.buttons.test": "Tester",
+  "createMyScript.buttons.launch": "Lancer",
+  "createMyScript.select.formats.title": "Formats",
+  "createMyScript.columnTitles.regular": "Regular",
+  "createMyScript.columnTitles.foil": "Foil",
+  "createMyScript.genericRules.title": "Regles génériques",
+  "createMyScript.genericRules.signedCardAreNotTreated": "Les cartes signées ne sont pas traitées.",
+  "createMyScript.genericRules.alteredCardAreNotTreated": "Les cartes altérées ne sont pas traitées.",
+  "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",
+  "createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated": "Les cartes aux prix supérieur aux prix mentionnés ne sont pas traitées.",
+
+  "customRules.price.from": "De",
+  "customRules.price.to": "A",
+  "customRules.select.title.userChoice": "Que faire ?",
+  "customRules.price.setFixedPrice.SellFor": "Vendre à",
+  "customRules.select.title.mkmPossibilityToChoose": "Quel prix MKM ?",
+  "customRules.select.title.behaviour": "Quelle règle appliquer ?",
+  "customRules.price.errorRule.twoPricesMustBeIndicated": "Les deux prix d'une règle doivent être renseignés.",
+  "customRules.price.errorRule.priceshouldBeCoherentWithNextRule": "Le prix de cette règle ne colle pas avec celui de la suivante.",
+  "customRules.price.errorRule.priceFromShouldInferiortoPriceTo": "Le prix de départ de cette règle doit être inférieur au prix d'arrivée.",
+  "customRules.price.errorRule.firstRuleMustStartAt0euros": "La première règle doit commencer à 0 euro.",
+  "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "Cette règle attend un prix de vente."
 }
