@@ -1,0 +1,16 @@
+.navbar-settings {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 61px;
+  height: 61px;
+  align-items: center;
+  width: 100%;
+  background-color: #f9f9f9;
+  z-index: 5;
+  box-shadow: 1px 1px 1px #d3d3d3;
+}
+
+.settings-container {
+  margin-top: 141px;
+}
