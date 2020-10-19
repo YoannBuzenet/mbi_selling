@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import TextField from "@material-ui/core/TextField";
 import AuthContext from "../../../context/authContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Settings = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -25,9 +27,73 @@ const Settings = () => {
   });
 
   const handleChange = (event, category, idstate, key) => {
+    let value;
+    if (event.target.value === "") {
+      value = "";
+    } else {
+      value = parseInt(event.target.value);
+    }
+
     let stateCopy = { ...pageState };
-    stateCopy[category][idstate][key] = event.target.value;
+    stateCopy[category][idstate][key] = value;
+    setShouldStateBeSaved(true);
     setPageState(stateCopy);
+  };
+
+  const save = async () => {
+    //TODO
+    //Check if a param is empty, if yes, display error and return
+
+    console.log(
+      "on save, si ça marche on MAJ le contexte + disable le bouton, sinon message derreur et on laisse le bouton"
+    );
+
+    try {
+      for (const percentObj in pageState.PercentPerConditionFoils) {
+        axios.put(
+          process.env.REACT_APP_MTGAPI_URL +
+            "/percent_per_condition_foils/" +
+            pageState.PercentPerConditionFoils[percentObj].id,
+          {
+            percent:
+              pageState.PercentPerConditionFoils[percentObj]
+                .percentPercondition,
+          }
+        );
+      }
+      for (const percentObj in pageState.PercentPerConditions) {
+        axios.put(
+          process.env.REACT_APP_MTGAPI_URL +
+            "/percent_per_conditions/" +
+            pageState.PercentPerConditions[percentObj].id,
+          {
+            percent:
+              pageState.PercentPerConditions[percentObj].percentPercondition,
+          }
+        );
+      }
+      for (const percentObj in pageState.PercentPerLangs) {
+        axios.put(
+          process.env.REACT_APP_MTGAPI_URL +
+            "/percent_per_langs/" +
+            pageState.PercentPerLangs[percentObj].id,
+          {
+            percent: pageState.PercentPerLangs[percentObj].percentPerlanguage,
+          }
+        );
+      }
+
+      //set en auth context
+
+      //set en local storage
+
+      setShouldStateBeSaved(false);
+
+      toast.success("ok bro");
+    } catch (e) {
+      console.log(e);
+      toast.error("shit bro");
+    }
   };
 
   console.log(pageState);
@@ -58,7 +124,7 @@ const Settings = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={(e) => console.log(e)}
+          onClick={(e) => save(e)}
           className={"button-second-navbar " + classes.saveButton}
           size="large"
           disabled={!shouldStateBeSaved}
