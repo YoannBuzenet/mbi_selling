@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import AuthContext from "../../../context/authContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import authAPI from "../../../services/authAPI";
 
 const Settings = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -83,9 +84,33 @@ const Settings = () => {
         );
       }
 
-      //set en auth context
+      //Update authentication context
+      setAuthenticationInfos({
+        ...authenticationInfos,
+        shop: {
+          ...authenticationInfos.shop,
+          shopData: {
+            ...authenticationInfos.shop.shopData,
+            PercentPerConditionFoils: pageState.PercentPerConditionFoils,
+            PercentPerConditions: pageState.PercentPerConditions,
+            PercentPerLangs: pageState.PercentPerLangs,
+          },
+        },
+      });
 
-      //set en local storage
+      //Update local storage
+      authAPI.transformAuthContextIntoLocalStorageFormat({
+        ...authenticationInfos,
+        shop: {
+          ...authenticationInfos.shop,
+          shopData: {
+            ...authenticationInfos.shop.shopData,
+            PercentPerConditionFoils: pageState.PercentPerConditionFoils,
+            PercentPerConditions: pageState.PercentPerConditions,
+            PercentPerLangs: pageState.PercentPerLangs,
+          },
+        },
+      });
 
       setShouldStateBeSaved(false);
 

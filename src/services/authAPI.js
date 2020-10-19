@@ -205,6 +205,8 @@ function transformAPIdataIntoAppData(data) {
 
 //Transform App data into localstorage at the MTGAPI format directly.
 function transformAuthContextIntoLocalStorageFormat(authContext) {
+  // console.log("received :", authContext);
+
   const newDataToInsertInLocalStorage = {
     token: authContext.token,
     refresh_token: authContext.refresh_token,
