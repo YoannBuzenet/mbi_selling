@@ -3,6 +3,8 @@ import "./style.css";
 import Button from "@material-ui/core/Button";
 import { FormattedMessage, useIntl } from "react-intl";
 import { makeStyles } from "@material-ui/core/styles";
+import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
+import "../super-responsive-table.css";
 
 const Settings = () => {
   const [shouldStateBeSaved, setShouldStateBeSaved] = useState(false);
@@ -40,7 +42,55 @@ const Settings = () => {
           />
         </Button>
       </div>
-      <div className="settings-container">Settings</div>
+      <div className="settings-container">
+        <header>
+          <h1>Manage your prices</h1>
+          Quelle décôte voulez-vous appliquer en fonction des différents états
+          des cartes et de leur langue ?
+        </header>
+        <div>
+          REGULAR
+          <div>
+            <Table>
+              <Thead>
+                <Th>Condition</Th>
+                <Th>Percentage To Apply</Th>
+              </Thead>
+              <Tbody>
+                <Td></Td>
+              </Tbody>
+            </Table>
+          </div>
+        </div>
+        <div>
+          FOIL
+          <div>
+            <Table>
+              <Thead>
+                <Th>Condition</Th>
+                <Th>Percentage To Apply</Th>
+              </Thead>
+              <Tbody>
+                <Td></Td>
+              </Tbody>
+            </Table>
+          </div>
+        </div>
+        <div>
+          LANGUE
+          <div>
+            <Table>
+              <Thead>
+                <Th>Language</Th>
+                <Th>Percentage To Apply</Th>
+              </Thead>
+              <Tbody>
+                <Td></Td>
+              </Tbody>
+            </Table>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
