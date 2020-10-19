@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { FormattedMessage, useIntl } from "react-intl";
 import { makeStyles } from "@material-ui/core/styles";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import TextField from "@material-ui/core/TextField";
 
 const Settings = () => {
   const [shouldStateBeSaved, setShouldStateBeSaved] = useState(false);
@@ -12,6 +13,10 @@ const Settings = () => {
     root: {
       "& > *": {
         margin: theme.spacing(1),
+      },
+      "& .MuiTextField-root": {
+        margin: theme.spacing(1),
+        width: "25ch",
       },
     },
     saveButton: {
@@ -61,31 +66,80 @@ const Settings = () => {
                 <Tbody>
                   <Tr>
                     <Td>Mint</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Near-Mint</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Excellent</Td>
-                    <Td>90%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Good</Td>
-                    <Td>80%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Light-Played</Td>
-                    <Td>70%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Played</Td>
-                    <Td>60%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Poor</Td>
-                    <Td>50%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                 </Tbody>
               </Table>
@@ -104,31 +158,80 @@ const Settings = () => {
                 <Tbody>
                   <Tr>
                     <Td>Mint</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Near-Mint</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Excellent</Td>
-                    <Td>90%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Good</Td>
-                    <Td>80%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Light-Played</Td>
-                    <Td>70%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Played</Td>
-                    <Td>60%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Poor</Td>
-                    <Td>50%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                 </Tbody>
               </Table>
@@ -147,47 +250,124 @@ const Settings = () => {
                 <Tbody>
                   <Tr>
                     <Td>German</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Spanish</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>French</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Italian</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Japanese</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Portuguese(Brazil)</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Russian</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Chinese Simplified</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>English</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Korean</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Chinese Traditional</Td>
-                    <Td>100%</Td>
+                    <Td>
+                      <TextField
+                        className="input-percents"
+                        id="filled-required"
+                        variant="outlined"
+                      />
+                      %
+                    </Td>
                   </Tr>
                 </Tbody>
               </Table>
