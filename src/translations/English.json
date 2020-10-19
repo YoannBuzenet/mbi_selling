@@ -1,6 +1,25 @@
 {
   "app.generics.yes": "Yes",
   "app.generics.no": "No",
+  "app.generics.condition": "Condition",
+  "app.generics.mint": "Mint",
+  "app.generics.near-mint": "Near-Mint",
+  "app.generics.excellent": "Excellent",
+  "app.generics.good": "Good",
+  "app.generics.light-played": "Light-Played",
+  "app.generics.played": "Played",
+  "app.generics.poor": "Poor",
+  "app.generics.german": "German",
+  "app.generics.spanish": "Spanish",
+  "app.generics.french": "French",
+  "app.generics.italian": "Italian",
+  "app.generics.japanese": "Japanese",
+  "app.generics.portugueseBrazil": "Portuguese(Brazil)",
+  "app.generics.russian": "Russian",
+  "app.generics.chineseSimplified": "Chinese Simplified",
+  "app.generics.english": "English",
+  "app.generics.korean": "Korean",
+  "app.generics.chineseTraditional": "Chinese Traditional",
 
   "app.navbar.logOut.toast.success": "You logged out successfully.",
   "app.navbar.myAccount": "My Account",
@@ -137,5 +156,16 @@
   "customRules.price.errorRule.priceshouldBeCoherentWithNextRule": "Price of this rule is not coherent with the next rule price.",
   "customRules.price.errorRule.priceFromShouldInferiortoPriceTo": "'From' Price must be inferior to 'To' price.",
   "customRules.price.errorRule.firstRuleMustStartAt0euros": "First Rule must start at 0 euro.",
-  "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "This rule expects a selling price."
+  "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "This rule expects a selling price.",
+
+  "settings.save.check.error.missingField": "One of the fields seems to be missing.",
+  "settings.save.success": "Your settings have been updated.",
+  "settings.save.failure": "There has been an error. Please try again later. If this problem occurs again, please mail us immediately.",
+  "settings.title": "Manage your prices",
+  "settings.subtitle.explaination": "Compared to Mint, which percentage do you want to apply following the card condition and / or language ?",
+  "settings.category.regular": "Regular",
+  "settings.category.foil": "Foil",
+  "settings.percentageToApply": "Percentage to apply",
+  "settings.languages": "Languages",
+  "settings.language": "Language"
 }

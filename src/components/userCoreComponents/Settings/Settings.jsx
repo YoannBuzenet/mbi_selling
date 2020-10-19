@@ -64,12 +64,15 @@ const Settings = () => {
   };
 
   const save = async () => {
-    //TODO
     //Check if a param is empty, if yes, display error and return
-
     let shouldContinue = checkIfAllFieldsAreFilled();
     if (!shouldContinue) {
-      toast.error("manque un champs gros");
+      toast.error(
+        <FormattedMessage
+          id="settings.save.check.error.missingField"
+          defaultMessage="One of the fields seems to be missing."
+        />
+      );
       return;
     }
 
@@ -138,13 +141,21 @@ const Settings = () => {
 
       setShouldStateBeSaved(false);
 
-      toast.success("ok bro");
+      toast.success(
+        <FormattedMessage
+          id="settings.save.success"
+          defaultMessage="Your settings have been updated."
+        />
+      );
     } catch (e) {
       console.log(e);
-      console.log(
-        "on save, si ça marche on MAJ le contexte + disable le bouton, sinon message derreur et on laisse le bouton"
+
+      toast.error(
+        <FormattedMessage
+          id="settings.save.failure"
+          defaultMessage="There has been an error. Please try again later. If this problem occurs again, please mail us immediately."
+        />
       );
-      toast.error("shit bro");
     }
   };
 
@@ -189,24 +200,51 @@ const Settings = () => {
       </div>
       <div className="settings-container">
         <header>
-          <h1>Manage your prices</h1>
-          Quelle décôte voulez-vous appliquer en fonction des différents états
-          des cartes et de leur langue ?
+          <h1>
+            <FormattedMessage
+              id="settings.title"
+              defaultMessage="Manage your prices"
+            />
+          </h1>
+          <FormattedMessage
+            id="settings.subtitle.explaination"
+            defaultMessage="Compared to Mint, which percentage do you want to apply following the card condition and / or language ?"
+          />
         </header>
         <div>
           <div>
-            <h2>REGULAR</h2>
+            <h2>
+              <FormattedMessage
+                id="settings.category.regular"
+                defaultMessage="Regular"
+              />
+            </h2>
             <div>
               <Table className="settings-table regular zebra-table">
                 <Thead>
                   <Tr>
-                    <Th>Condition</Th>
-                    <Th>Percentage To Apply</Th>
+                    <Th>
+                      <FormattedMessage
+                        id="app.generics.condition"
+                        defaultMessage="Condition"
+                      />
+                    </Th>
+                    <Th>
+                      <FormattedMessage
+                        id="settings.percentageToApply"
+                        defaultMessage="Percentage to Apply"
+                      />
+                    </Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   <Tr>
-                    <Td>Mint</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.mint"
+                        defaultMessage="Mint"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -229,7 +267,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Near-Mint</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.near-mint"
+                        defaultMessage="Near-Mint"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -252,7 +295,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Excellent</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.excellent"
+                        defaultMessage="Excellent"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -275,7 +323,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Good</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.good"
+                        defaultMessage="Good"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -298,7 +351,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Light-Played</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.light-played"
+                        defaultMessage="Light-Played"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -321,7 +379,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Played</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.played"
+                        defaultMessage="Played"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -344,7 +407,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Poor</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.poor"
+                        defaultMessage="Poor"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -371,18 +439,38 @@ const Settings = () => {
             </div>
           </div>
           <div>
-            <h2>FOIL</h2>
+            <h2>
+              <FormattedMessage
+                id="settings.category.foil"
+                defaultMessage="Foil"
+              />
+            </h2>
             <div>
               <Table className="settings-table foil zebra-table">
                 <Thead>
                   <Tr>
-                    <Th>Condition</Th>
-                    <Th>Percentage To Apply</Th>
+                    <Th>
+                      <FormattedMessage
+                        id="app.generics.condition"
+                        defaultMessage="Condition"
+                      />
+                    </Th>
+                    <Th>
+                      <FormattedMessage
+                        id="settings.percentageToApply"
+                        defaultMessage="Percentage to Apply"
+                      />
+                    </Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   <Tr>
-                    <Td>Mint</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.mint"
+                        defaultMessage="Mint"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -405,7 +493,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Near-Mint</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.near-mint"
+                        defaultMessage="Near-Mint"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -428,7 +521,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Excellent</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.excellent"
+                        defaultMessage="Excellent"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -451,7 +549,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Good</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.good"
+                        defaultMessage="Good"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -474,7 +577,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Light-Played</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.light-played"
+                        defaultMessage="Light-Played"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -497,7 +605,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Played</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.played"
+                        defaultMessage="Played"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -520,7 +633,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Poor</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.poor"
+                        defaultMessage="Poor"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -547,18 +665,38 @@ const Settings = () => {
             </div>
           </div>
           <div>
-            <h2>LANGUE</h2>
+            <h2>
+              <FormattedMessage
+                id="settings.languages"
+                defaultMessage="Languages"
+              />
+            </h2>
             <div>
               <Table className="settings-table language zebra-table">
                 <Thead>
                   <Tr>
-                    <Th>Language</Th>
-                    <Th>Percentage To Apply</Th>
+                    <Th>
+                      <FormattedMessage
+                        id="settings.language"
+                        defaultMessage="Language"
+                      />
+                    </Th>
+                    <Th>
+                      <FormattedMessage
+                        id="settings.percentageToApply"
+                        defaultMessage="Percentage to Apply"
+                      />
+                    </Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   <Tr>
-                    <Td>German</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.german"
+                        defaultMessage="German"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -580,7 +718,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Spanish</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.spanish"
+                        defaultMessage="Spanish"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -602,7 +745,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>French</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.french"
+                        defaultMessage="French"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -624,7 +772,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Italian</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.italian"
+                        defaultMessage="Italian"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -646,7 +799,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Japanese</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.japanese"
+                        defaultMessage="Japanese"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -668,7 +826,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Portuguese(Brazil)</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.portugueseBrazil"
+                        defaultMessage="Portuguese(Brazil)"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -690,7 +853,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Russian</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.russian"
+                        defaultMessage="Russian"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -712,7 +880,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Chinese Simplified</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.chineseSimplified"
+                        defaultMessage="Chinese Simplified"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -734,7 +907,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>English</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.english"
+                        defaultMessage="English"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -756,7 +934,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Korean</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.korean"
+                        defaultMessage="Korean"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"
@@ -778,7 +961,12 @@ const Settings = () => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Chinese Traditional</Td>
+                    <Td>
+                      <FormattedMessage
+                        id="app.generics.chineseTraditional"
+                        defaultMessage="Chinese Traditional"
+                      />
+                    </Td>
                     <Td>
                       <TextField
                         className="input-percents"

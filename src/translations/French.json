@@ -1,6 +1,24 @@
 {
   "app.generics.yes": "Oui",
   "app.generics.no": "Non",
+  "app.generics.mint": "Mint",
+  "app.generics.near-mint": "Near-Mint",
+  "app.generics.excellent": "Excellent",
+  "app.generics.good": "Good",
+  "app.generics.light-played": "Light-Played",
+  "app.generics.played": "Played",
+  "app.generics.poor": "Poor",
+  "app.generics.german": "Allemand",
+  "app.generics.spanish": "Espagnol",
+  "app.generics.french": "Français",
+  "app.generics.italian": "Italien",
+  "app.generics.japanese": "Japonais",
+  "app.generics.portugueseBrazil": "Portugais (Brésil)",
+  "app.generics.russian": "Russe",
+  "app.generics.chineseSimplified": "Chinois Simplifié",
+  "app.generics.english": "Anglais",
+  "app.generics.korean": "Coréen",
+  "app.generics.chineseTraditional": "Chinois Traditionel",
 
   "app.navbar.logOut.toast.success": "Vous êtes bien déconnecté.",
   "app.navbar.myAccount": "Mon Compte",
@@ -137,5 +155,16 @@
   "customRules.price.errorRule.priceshouldBeCoherentWithNextRule": "Le prix de cette règle ne colle pas avec celui de la suivante.",
   "customRules.price.errorRule.priceFromShouldInferiortoPriceTo": "Le prix de départ de cette règle doit être inférieur au prix d'arrivée.",
   "customRules.price.errorRule.firstRuleMustStartAt0euros": "La première règle doit commencer à 0 euro.",
-  "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "Cette règle attend un prix de vente."
+  "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "Cette règle attend un prix de vente.",
+
+  "settings.save.check.error.missingField": "L'un des champs n'a pas été rempli.",
+  "settings.save.success": "Vos paramètres ont bien été mis à jour.",
+  "settings.save.failure": "Il y a eu une erreur. Si le problème persiste, merci de nous contacter.",
+  "settings.title": "Gérez vos prix",
+  "settings.subtitle.explaination": "Par rapport au Mint, à quel pourcentage voulez-vous vendre en fonction des différents états des cartes et de leur langue ?",
+  "settings.category.regular": "Regular",
+  "settings.category.foil": "Foil",
+  "settings.percentageToApply": "Pourcentage à appliquer",
+  "settings.languages": "Langues",
+  "settings.language": "Langue"
 }
