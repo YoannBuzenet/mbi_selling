@@ -41,13 +41,37 @@ const Settings = () => {
     setPageState(stateCopy);
   };
 
+  //Browe each fields to check if it's filled or empty.
+  //Return false if at least one of the fields is empty.
+  const checkIfAllFieldsAreFilled = () => {
+    let canStateBeSaved = true;
+    for (const prop in pageState.PercentPerConditions) {
+      if (pageState.PercentPerConditions[prop].percentPercondition === "") {
+        canStateBeSaved = false;
+      }
+    }
+    for (const prop in pageState.PercentPerConditions) {
+      if (pageState.PercentPerConditionFoils[prop].percentPercondition === "") {
+        canStateBeSaved = false;
+      }
+    }
+    for (const prop in pageState.percentPerlanguage) {
+      if (pageState.PercentPerLangs[prop].PercentPerLangs === "") {
+        canStateBeSaved = false;
+      }
+    }
+    return canStateBeSaved;
+  };
+
   const save = async () => {
     //TODO
     //Check if a param is empty, if yes, display error and return
 
-    console.log(
-      "on save, si ça marche on MAJ le contexte + disable le bouton, sinon message derreur et on laisse le bouton"
-    );
+    let shouldContinue = checkIfAllFieldsAreFilled();
+    if (!shouldContinue) {
+      toast.error("manque un champs gros");
+      return;
+    }
 
     try {
       for (const percentObj in pageState.PercentPerConditionFoils) {
@@ -117,6 +141,9 @@ const Settings = () => {
       toast.success("ok bro");
     } catch (e) {
       console.log(e);
+      console.log(
+        "on save, si ça marche on MAJ le contexte + disable le bouton, sinon message derreur et on laisse le bouton"
+      );
       toast.error("shit bro");
     }
   };
