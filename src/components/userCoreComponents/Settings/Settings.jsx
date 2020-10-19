@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./style.css";
 import Button from "@material-ui/core/Button";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -17,14 +17,42 @@ const Settings = () => {
 
   const [shouldStateBeSaved, setShouldStateBeSaved] = useState(false);
 
-  const [pageState, setPageState] = useState({
-    PercentPerConditionFoils: {
-      ...authenticationInfos.shop.shopData.PercentPerConditionFoils,
-    },
-    PercentPerConditions: {
-      ...authenticationInfos.shop.shopData.PercentPerConditions,
-    },
-    PercentPerLangs: { ...authenticationInfos.shop.shopData.PercentPerLangs },
+  const [pageState, setPageState] = useState(() => {
+    if (authenticationInfos?.shop?.shopData?.PercentPerConditionFoils) {
+      return {
+        PercentPerConditionFoils: {
+          ...authenticationInfos.shop.shopData.PercentPerConditionFoils,
+        },
+        PercentPerConditions: {
+          ...authenticationInfos.shop.shopData.PercentPerConditions,
+        },
+        PercentPerLangs: {
+          ...authenticationInfos.shop.shopData.PercentPerLangs,
+        },
+      };
+    } else {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    if (
+      authenticationInfos?.shop?.shopData?.PercentPerConditionFoils !==
+        undefined &&
+      !pageState.hasOwnProperty("PercentPerConditionFoils")
+    ) {
+      setPageState({
+        PercentPerConditionFoils: {
+          ...authenticationInfos.shop.shopData.PercentPerConditionFoils,
+        },
+        PercentPerConditions: {
+          ...authenticationInfos.shop.shopData.PercentPerConditions,
+        },
+        PercentPerLangs: {
+          ...authenticationInfos.shop.shopData.PercentPerLangs,
+        },
+      });
+    }
   });
 
   const handleChange = (event, category, idstate, key) => {
@@ -158,8 +186,6 @@ const Settings = () => {
       );
     }
   };
-
-  console.log(pageState);
 
   const useStyles = makeStyles((theme) => ({
     root: {
