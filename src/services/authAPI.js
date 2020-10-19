@@ -177,10 +177,17 @@ function transformAPIdataIntoAppData(data) {
         ? {
             baseLang: data.shop.baseLang,
             PercentPerLangs: localStorageAPI.transformPercentPerLangArrayIntoObject(
-              data.shop.PercentPerLangs
+              data.shop.PercentPerLangs,
+              "language"
             ),
-            PercentPerConditions: data.shop.PercentPerConditions,
-            PercentPerConditionFoils: data.shop.PercentPerConditionFoils,
+            PercentPerConditions: localStorageAPI.transformPercentPerLangArrayIntoObject(
+              data.shop.PercentPerConditions,
+              "condition"
+            ),
+            PercentPerConditionFoils: localStorageAPI.transformPercentPerLangArrayIntoObject(
+              data.shop.PercentPerConditionFoils,
+              "condition"
+            ),
             PercentPerSigned: data.shop.percentPerSigned,
           }
         : null,
