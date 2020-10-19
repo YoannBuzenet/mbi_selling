@@ -49,9 +49,9 @@ const Settings = () => {
         </header>
         <div>
           <div>
-            REGULAR
+            <h2>REGULAR</h2>
             <div>
-              <Table className="settings-table regular">
+              <Table className="settings-table regular zebra-table">
                 <Thead>
                   <Tr>
                     <Th>Condition</Th>
@@ -92,9 +92,9 @@ const Settings = () => {
             </div>
           </div>
           <div>
-            FOIL
+            <h2>FOIL</h2>
             <div>
-              <Table className="settings-table foil">
+              <Table className="settings-table foil zebra-table">
                 <Thead>
                   <Tr>
                     <Th>Condition</Th>
@@ -135,9 +135,9 @@ const Settings = () => {
             </div>
           </div>
           <div>
-            LANGUE
+            <h2>LANGUE</h2>
             <div>
-              <Table className="settings-table language">
+              <Table className="settings-table language zebra-table">
                 <Thead>
                   <Tr>
                     <Th>Language</Th>
