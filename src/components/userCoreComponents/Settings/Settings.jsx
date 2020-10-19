@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import Button from "@material-ui/core/Button";
 import { FormattedMessage, useIntl } from "react-intl";
 import { makeStyles } from "@material-ui/core/styles";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import TextField from "@material-ui/core/TextField";
+import AuthContext from "../../../context/authContext";
 
 const Settings = () => {
+  const { authenticationInfos, setAuthenticationInfos } = useContext(
+    AuthContext
+  );
+
   const [shouldStateBeSaved, setShouldStateBeSaved] = useState(false);
+
+  const [pageState, setPageState] = useState({
+    PercentPerConditionFoils: {
+      ...authenticationInfos.shop.shopData.PercentPerConditionFoils,
+    },
+    PercentPerConditions: {
+      ...authenticationInfos.shop.shopData.PercentPerConditions,
+    },
+    PercentPerLangs: { ...authenticationInfos.shop.shopData.PercentPerLangs },
+  });
+
+  const handleChange = (event, category, idstate, key) => {
+    let stateCopy = { ...pageState };
+    stateCopy[category][idstate][key] = event.target.value;
+    setPageState(stateCopy);
+  };
+
+  console.log(pageState);
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -71,6 +94,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "1",
+                            "percentPercondition"
+                          )
+                        }
+                        value={
+                          pageState.PercentPerConditions["1"]
+                            .percentPercondition
+                        }
                       />
                       %
                     </Td>
@@ -82,6 +117,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditions["2"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "2",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -93,6 +140,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditions["3"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "3",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -104,6 +163,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditions["4"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "4",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -115,6 +186,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditions["5"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "5",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -126,6 +209,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditions["6"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "6",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -137,6 +232,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditions["7"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditions",
+                            "7",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -163,6 +270,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["1"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "1",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -174,6 +293,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["2"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "2",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -185,6 +316,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["3"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "3",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -196,6 +339,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["4"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "4",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -207,6 +362,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["5"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "5",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -218,6 +385,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["6"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "6",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -229,6 +408,18 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerConditionFoils["7"]
+                            .percentPercondition
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerConditionFoils",
+                            "7",
+                            "percentPercondition"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -255,6 +446,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["1"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "1",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -266,6 +468,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["2"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "2",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -277,6 +490,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["3"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "3",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -288,6 +512,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["4"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "4",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -299,6 +534,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["5"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "5",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -310,6 +556,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["6"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "6",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -321,6 +578,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["7"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "7",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -332,6 +600,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["8"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "8",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -343,6 +622,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["9"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "9",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -354,6 +644,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["10"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "10",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
@@ -365,6 +666,17 @@ const Settings = () => {
                         className="input-percents"
                         id="filled-required"
                         variant="outlined"
+                        value={
+                          pageState.PercentPerLangs["11"].percentPerlanguage
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            "PercentPerLangs",
+                            "11",
+                            "percentPerlanguage"
+                          )
+                        }
                       />
                       %
                     </Td>
