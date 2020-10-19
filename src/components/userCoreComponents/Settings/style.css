@@ -12,5 +12,11 @@
 }
 
 .settings-container {
-  margin-top: 141px;
+  width: 70%;
+  margin: 141px auto 0;
+}
+
+.settings-table tr > th:first-child,
+.settings-table tr > td:first-child {
+  width: 70%;
 }
