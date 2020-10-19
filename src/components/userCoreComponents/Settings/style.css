@@ -21,24 +21,26 @@
   width: 70%;
 }
 
-.zebra-table tbody tr {
-  height: 50px;
-}
-
 .zebra-table tbody tr:nth-child(odd) {
   background-color: hsla(0, 0%, 0%, 0.09);
 }
 
 .zebra-table tbody tr:hover {
-  background-color: #3f51b5;
+  background-color: #8f9ada;
+}
+
+.input-percents {
+  width: 60px;
+  background-color: white;
 }
 
 @media only screen and (max-width: 768px) {
   .zebra-table tr {
-    height: 100px;
+    height: 120px;
   }
   .settings-table tr > th:first-child,
   .settings-table tr > td:first-child {
     width: 100%;
+    margin-bottom: 20px;
   }
 }
