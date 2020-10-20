@@ -15,11 +15,11 @@ const MKMConnexionIndicator = () => {
 
   const mkmConnexionStateCalculator = (expirationToken) => {
     const timeStampOfNow = new Date().getTime();
-    const timeLeftInMilliSeconds = timeStampOfNow / 1000 - expirationToken;
+    const timeLeftInMilliSeconds = expirationToken * 1000 - timeStampOfNow;
 
-    console.log("timeStampOfNow", timeStampOfNow);
-    console.log("expirationToken", expirationToken);
-    console.log("time left in MS", timeLeftInMilliSeconds);
+    // console.log("timeStampOfNow", timeStampOfNow);
+    // console.log("expirationToken", expirationToken * 1000);
+    // console.log("time left in MS", timeLeftInMilliSeconds);
 
     // If timestamp left more than 23h58, it means we are connected since less than 2 minutes
     if (timeLeftInMilliSeconds > 86280000) {
@@ -27,18 +27,18 @@ const MKMConnexionIndicator = () => {
     }
     //Between 23h58 and 2 hours - normal connected
     else if (
-      timeLeftInMilliSeconds < 86280000 &&
+      timeLeftInMilliSeconds <= 86280000 &&
       timeLeftInMilliSeconds > 7200000
     ) {
       return "Connected";
     }
     // Below 2 hours and 10 minutes left
     else if (
-      timeLeftInMilliSeconds < 7200000 &&
+      timeLeftInMilliSeconds <= 7200000 &&
       timeLeftInMilliSeconds > 600000
     ) {
       return "SoonToUnlog";
-    } else if (timeLeftInMilliSeconds < 600000) {
+    } else if (timeLeftInMilliSeconds <= 600000 && timeLeftInMilliSeconds > 0) {
       return "JustSoonToUnlog";
     }
     //Below 0 and above -2 minutes
@@ -53,7 +53,7 @@ const MKMConnexionIndicator = () => {
     authenticationInfos?.shop?.ExpirationMkmToken || 121000
   );
 
-  console.log(connexionStatus);
+  //   console.log(connexionStatus);
 
   const useStyles = makeStyles((theme) => ({
     root: {
