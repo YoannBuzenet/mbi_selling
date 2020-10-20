@@ -149,6 +149,8 @@
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Status",
 
+  "mkmConnectionIndicator.title": "MKM Connection",
+
   "customRules.price.from": "From",
   "customRules.price.to": "To",
   "customRules.select.title.userChoice": "Do",
