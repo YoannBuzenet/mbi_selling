@@ -1,16 +1,24 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import MKM_ModalContext from "../context/mkmModalConnectionContext";
 import AuthContext from "../context/authContext";
 import authAPI from "../services/authAPI";
 import BurgerMenu from "./BurgerMenu";
 import { toast } from "react-toastify";
 import { FormattedMessage } from "react-intl";
 import AppLangChoice from "./AppLangChoice";
+import { makeStyles } from "@material-ui/core/styles";
+import MKMConnexionIndicator from "./MKMConnexionIndicator";
 
 const Navbar = ({ history }) => {
   //Current Authentication
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
+  );
+
+  //MKM Context
+  const { isMKMModalDisplayed, setIsMKMModalDisplayed } = useContext(
+    MKM_ModalContext
   );
 
   //Current toggle menu state.
@@ -49,6 +57,17 @@ const Navbar = ({ history }) => {
     ? { lineHeight: "61px" }
     : null;
 
+  const useStyles = makeStyles((theme) => ({
+    mkmConnected: {
+      color: "green",
+    },
+    mkmNONConnected: {
+      color: "red",
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <>
       {toggleMenu && (
@@ -80,7 +99,7 @@ const Navbar = ({ history }) => {
                     defaultMessage={`Stats`}
                   />
                 </Link> */}
-                <span>MKM Connection</span>
+                <MKMConnexionIndicator />
                 <div className="toggle-menu-container">
                   <p
                     className="unselectable display-inline-block nav-element pointer"

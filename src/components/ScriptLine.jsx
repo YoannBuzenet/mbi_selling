@@ -35,11 +35,11 @@ const ScriptLine = ({ script, history, index }) => {
 
   const [savingState, setSavingState] = useState(null);
 
-  console.log("saving state", savingState);
+  // console.log("saving state", savingState);
 
-  console.log("authenticationInfos", authenticationInfos);
+  // console.log("authenticationInfos", authenticationInfos);
 
-  console.log("selected formats", selectedFormats);
+  // console.log("selected formats", selectedFormats);
 
   const handleChangeSelect = (event) => {
     setSavingState("saving");
