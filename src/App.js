@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AuthContext from "./context/authContext";
 import LoginRenewOrLogOutContext from "./context/logAutoRenewOrLogout";
 import DefinitionsContext from "./context/definitionsContext";
+import MKMModalContext from "./context/mkmModalConnectionContext";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -31,6 +32,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
 import SetNewPassword from "./components/SetNewPassword";
+import MKMConnectModal from "./components/MKMConnectModal";
 
 import CreateMyScript from "./components/userCoreComponents/CreateMyScript/CreateMyScript";
 import definitionsAPI from "./services/definitionsAPI";
@@ -100,6 +102,9 @@ function App() {
     allFormats: [],
   });
 
+  //STATE - is MKM Connection Modal Displayed ?
+  const [isMKMModalDisplayed, setIsMKMModalDisplayed] = useState("deactivated");
+
   //CONTEXT - Auto login/LogOut
   const ContextloginLogOut = {
     timers: timers,
@@ -116,6 +121,12 @@ function App() {
   const contextDefinitions = {
     allDefinitions: allDefinitions,
     setAllDefinitions: setAllDefinitions,
+  };
+
+  //CONTEXT - MKM Connection Modal
+  const contextMKMConnectionModal = {
+    isMKMModalDisplayed: isMKMModalDisplayed,
+    setIsMKMModalDisplayed: setIsMKMModalDisplayed,
   };
 
   /******************************************/
@@ -202,53 +213,59 @@ function App() {
     >
       <AuthContext.Provider value={contextValue}>
         <DefinitionsContext.Provider value={contextDefinitions}>
-          <Router>
-            <ToastContainer
-              autoClose={3000}
-              position="bottom-left"
-              hideProgressBar={true}
-            />
-            <NavbarWithRouter />
-            <Footer />
-            <Switch>
-              <Route
-                path="/login"
-                render={({ match, history }) => (
-                  <LoginRenewOrLogOutContext.Provider
-                    value={ContextloginLogOut}
-                  >
-                    <LoginPage
-                      match={match}
-                      history={history}
-                      eraseAuthContext={eraseAuthContext}
-                      renewJWTToken={renewJWTToken}
-                    />
-                  </LoginRenewOrLogOutContext.Provider>
-                )}
+          <MKMModalContext.Provider value={contextMKMConnectionModal}>
+            <Router>
+              {isMKMModalDisplayed === "activated" && <MKMConnectModal />}
+              <ToastContainer
+                autoClose={3000}
+                position="bottom-left"
+                hideProgressBar={true}
               />
+              <NavbarWithRouter />
+              <Footer />
+              <Switch>
+                <Route
+                  path="/login"
+                  render={({ match, history }) => (
+                    <LoginRenewOrLogOutContext.Provider
+                      value={ContextloginLogOut}
+                    >
+                      <LoginPage
+                        match={match}
+                        history={history}
+                        eraseAuthContext={eraseAuthContext}
+                        renewJWTToken={renewJWTToken}
+                      />
+                    </LoginRenewOrLogOutContext.Provider>
+                  )}
+                />
 
-              <Route path="/register" component={RegisterPage} />
+                <Route path="/register" component={RegisterPage} />
 
-              <Route path="/usermail/reset" component={ResetMail} />
-              <Route
-                path="/usermail/setNewPassword/:challenge?"
-                render={({ match, history }) => (
-                  <SetNewPassword match={match} history={history} />
-                )}
-              />
+                <Route path="/usermail/reset" component={ResetMail} />
+                <Route
+                  path="/usermail/setNewPassword/:challenge?"
+                  render={({ match, history }) => (
+                    <SetNewPassword match={match} history={history} />
+                  )}
+                />
 
-              <LoggedRouteRender path="/my-scripts/" component={AllMyScripts} />
-              <LoggedRouteRender
-                path="/edit-script/:id"
-                component={CreateMyScript}
-              />
-              <LoggedRouteRender
-                path="/create-script"
-                component={CreateMyScript}
-              />
-              <LoggedRouteRender path="/settings" component={Settings} />
-            </Switch>
-          </Router>
+                <LoggedRouteRender
+                  path="/my-scripts/"
+                  component={AllMyScripts}
+                />
+                <LoggedRouteRender
+                  path="/edit-script/:id"
+                  component={CreateMyScript}
+                />
+                <LoggedRouteRender
+                  path="/create-script"
+                  component={CreateMyScript}
+                />
+                <LoggedRouteRender path="/settings" component={Settings} />
+              </Switch>
+            </Router>
+          </MKMModalContext.Provider>
         </DefinitionsContext.Provider>
       </AuthContext.Provider>
     </div>

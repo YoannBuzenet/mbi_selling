@@ -33,7 +33,7 @@ const Settings = () => {
     } else {
       return {};
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (

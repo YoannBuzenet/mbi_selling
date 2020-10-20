@@ -80,7 +80,7 @@ const Navbar = ({ history }) => {
                     defaultMessage={`Stats`}
                   />
                 </Link> */}
-
+                <span>MKM Connection</span>
                 <div className="toggle-menu-container">
                   <p
                     className="unselectable display-inline-block nav-element pointer"
@@ -152,6 +152,7 @@ const Navbar = ({ history }) => {
                     </ul>
                   )}
                 </div>
+
                 <AppLangChoice
                   top="-30"
                   topArrowMenu="30"
