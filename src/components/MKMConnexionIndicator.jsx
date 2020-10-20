@@ -15,7 +15,12 @@ const MKMConnexionIndicator = () => {
 
   const mkmConnexionStateCalculator = (expirationToken) => {
     const timeStampOfNow = new Date().getTime();
-    const timeLeftInMilliSeconds = timeStampOfNow - expirationToken;
+    const timeLeftInMilliSeconds = timeStampOfNow / 1000 - expirationToken;
+
+    console.log("timeStampOfNow", timeStampOfNow);
+    console.log("expirationToken", expirationToken);
+    console.log("time left in MS", timeLeftInMilliSeconds);
+
     // If timestamp left more than 23h58, it means we are connected since less than 2 minutes
     if (timeLeftInMilliSeconds > 86280000) {
       return "JustConnected";
@@ -37,12 +42,18 @@ const MKMConnexionIndicator = () => {
       return "JustSoonToUnlog";
     }
     //Below 0 and above -2 minutes
-    else if (timeLeftInMilliSeconds < 0 && timeLeftInMilliSeconds > -120000) {
+    else if (timeLeftInMilliSeconds < 0 && timeLeftInMilliSeconds < -120000) {
       return "JustUnlogged";
     } else {
       return "Unlogged";
     }
   };
+
+  const connexionStatus = mkmConnexionStateCalculator(
+    authenticationInfos?.shop?.ExpirationMkmToken || 121000
+  );
+
+  console.log(connexionStatus);
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,6 +67,19 @@ const MKMConnexionIndicator = () => {
 
   console.log("auth context in mkm connexion indicator", authenticationInfos);
 
+  console.log(
+    "positive",
+    connexionStatus === "JustConnected" || connexionStatus === "Connected"
+  );
+  console.log(
+    "intermediary",
+    connexionStatus === "SoonToUnlog" || connexionStatus === "JustSoonToUnlog"
+  );
+  console.log(
+    "negative",
+    connexionStatus === "JustUnlogged" || connexionStatus === "Unlogged"
+  );
+
   return (
     <div className="mkm-connexion-indicator ">
       <Button variant="outlined" color="default" className={classes.root}>
@@ -65,7 +89,24 @@ const MKMConnexionIndicator = () => {
             default="MKM Connection"
           />
         </span>
-        <status-indicator positive pulse></status-indicator>
+        {connexionStatus === "JustConnected" && (
+          <status-indicator positive active></status-indicator>
+        )}
+        {connexionStatus === "Connected" && (
+          <status-indicator positive></status-indicator>
+        )}
+        {connexionStatus === "JustSoonToUnlog" && (
+          <status-indicator intermediary active></status-indicator>
+        )}
+        {connexionStatus === "SoonToUnlog" && (
+          <status-indicator intermediary></status-indicator>
+        )}
+        {connexionStatus === "Unlogged" && (
+          <status-indicator negative></status-indicator>
+        )}
+        {connexionStatus === "JustUnlogged" && (
+          <status-indicator negative active></status-indicator>
+        )}
       </Button>
     </div>
   );
