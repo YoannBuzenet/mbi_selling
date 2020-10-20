@@ -4,6 +4,7 @@ import "../super-responsive-table.css";
 import AuthContext from "../context/authContext";
 import AllDefinitionsContext from "../context/definitionsContext";
 import ScriptLine from "../components/ScriptLine";
+import { FormattedMessage } from "react-intl";
 
 const AllMyScripts = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -27,8 +28,18 @@ const AllMyScripts = ({ history }) => {
               <Th></Th>
               <Th></Th>
               <Th></Th>
-              <Th>Formats</Th>
-              <Th>Status</Th>
+              <Th>
+                <FormattedMessage
+                  id="allMyScripts.formats"
+                  defaultMessage="Formats"
+                />
+              </Th>
+              <Th>
+                <FormattedMessage
+                  id="allMyScripts.status"
+                  defaultMessage="Status"
+                />
+              </Th>
             </Tr>
           </Thead>
           <Tbody>

@@ -145,6 +145,9 @@
   "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",
   "createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated": "Les cartes aux prix supérieur aux prix mentionnés ne sont pas traitées.",
 
+  "allMyScripts.formats": "Formats",
+  "allMyScripts.status": "Statut",
+
   "customRules.price.from": "De",
   "customRules.price.to": "A",
   "customRules.select.title.userChoice": "Que faire ?",
