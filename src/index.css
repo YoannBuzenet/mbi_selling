@@ -1096,6 +1096,31 @@ div.lang-select-applevel {
 }
 
 /**************************
+**MKM Connexion Indicator**
+**************************/
+.mkm-connexion-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+status-indicator {
+  margin-left: 10px;
+  margin-bottom: 2px;
+  cursor: default;
+}
+
+.connexion-text {
+  font-size: 10px;
+}
+
+.mkm-connexion-indicator .MuiButton-label {
+  margin: 5px;
+}
+
+/**************************
 *********FOOTER***********
 **************************/
 
