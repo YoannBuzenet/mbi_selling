@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MKMAPI from "../services/MKMAPI";
 import AuthContext from "../context/authContext";
 import authAPI from "../services/authAPI";
@@ -14,10 +14,25 @@ const MKMConnectModal = () => {
     AuthContext
   );
 
+  const [classModal, setClassModal] = useState(
+    "MKM_modal_Connection transition-on"
+  );
+
+  const [
+    isConnectedAnDisplayingConnectionText,
+    setIsConnectedAnDisplayingConnectionText,
+  ] = useState(false);
+
   const isUserConnectedToMKM =
     authenticationInfos?.shop?.ExpirationMkmToken * 1000 -
       new Date().getTime() >
     0;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setClassModal("MKM_modal_Connection");
+    }, 100);
+  }, []);
 
   console.log("is user connected to mkm ?", isUserConnectedToMKM);
 
@@ -31,7 +46,17 @@ const MKMConnectModal = () => {
 
   const handleClick = () => {};
 
-  return <div className="MKM_modal"></div>;
+  return (
+    <div className={classModal} id="mkm_modal">
+      {isUserConnectedToMKM && !isConnectedAnDisplayingConnectionText && (
+        <p>Vous êtes connectés</p>
+      )}
+      {isUserConnectedToMKM && isConnectedAnDisplayingConnectionText && (
+        <p>On rafraichit</p>
+      )}
+      {!isUserConnectedToMKM && <p>On se connecte</p>}
+    </div>
+  );
 };
 
 export default MKMConnectModal;

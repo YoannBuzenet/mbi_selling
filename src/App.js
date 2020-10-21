@@ -103,7 +103,7 @@ function App() {
   });
 
   //STATE - is MKM Connection Modal Displayed ?
-  const [isMKMModalDisplayed, setIsMKMModalDisplayed] = useState("deactivated");
+  const [isMKMModalDisplayed, setIsMKMModalDisplayed] = useState();
 
   //CONTEXT - Auto login/LogOut
   const ContextloginLogOut = {
@@ -215,7 +215,6 @@ function App() {
         <DefinitionsContext.Provider value={contextDefinitions}>
           <MKMModalContext.Provider value={contextMKMConnectionModal}>
             <Router>
-              {isMKMModalDisplayed === "activated" && <MKMConnectModal />}
               <ToastContainer
                 autoClose={3000}
                 position="bottom-left"

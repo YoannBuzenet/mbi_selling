@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import "status-indicator/styles.css";
 import AuthContext from "../context/authContext";
+import MKM_ModalContext from "../context/mkmModalConnectionContext";
 import { FormattedMessage } from "react-intl";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import MKMAPI from "../services/MKMAPI";
+import MKMConnectModal from "./MKMConnectModal";
 
 const MKMConnexionIndicator = () => {
   //Current Authentication
@@ -14,6 +16,11 @@ const MKMConnexionIndicator = () => {
 
   const connexionStatus = MKMAPI.mkmConnexionStateCalculator(
     authenticationInfos?.shop?.ExpirationMkmToken || 121000
+  );
+
+  //MKM Modal Control
+  const { isMKMModalDisplayed, setIsMKMModalDisplayed } = useContext(
+    MKM_ModalContext
   );
 
   //   console.log(connexionStatus);
@@ -30,7 +37,21 @@ const MKMConnexionIndicator = () => {
 
   return (
     <div className="mkm-connexion-indicator ">
-      <Button variant="outlined" color="default" className={classes.root}>
+      <Button
+        variant="outlined"
+        color="default"
+        className={classes.root}
+        onClick={(e) => {
+          if (document.getElementById("mkm_modal")) {
+            document.getElementById("mkm_modal").classList.add("transition-on");
+            setTimeout(() => {
+              setIsMKMModalDisplayed(!isMKMModalDisplayed);
+            }, 300);
+          } else {
+            setIsMKMModalDisplayed(!isMKMModalDisplayed);
+          }
+        }}
+      >
         <span className="connexion-text">
           <FormattedMessage
             id="mkmConnectionIndicator.title"
@@ -56,6 +77,7 @@ const MKMConnexionIndicator = () => {
           <status-indicator negative active></status-indicator>
         )}
       </Button>
+      {isMKMModalDisplayed && <MKMConnectModal />}
     </div>
   );
 };
