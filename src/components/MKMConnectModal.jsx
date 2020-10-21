@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import MKM_ModalContext from "../context/mkmModalConnectionContext";
 import BlackDivContext from "../context/blackDivModalContext";
 import CSSLoaderWaitingSpiral from "../components/loaders/CSSLoaderWaitingSpiral";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedDate, FormattedTime } from "react-intl";
 
 const MKMConnectModal = () => {
   //Current Authentication
@@ -49,12 +49,45 @@ const MKMConnectModal = () => {
   return (
     <div className={classModal} id="mkm_modal">
       {isUserConnectedToMKM && !isConnectedAnDisplayingConnectionText && (
-        <p>Vous êtes connectés</p>
+        <>
+          <p>
+            Vous êtes connecté jusqu'au
+            <FormattedDate
+              value={
+                new Date(authenticationInfos?.shop?.ExpirationMkmToken * 1000)
+              }
+              year="numeric"
+              month="long"
+              day="2-digit"
+            />
+            <FormattedTime value={new Date(1459832991883)} />
+          </p>
+          <p>Rafraichir de 24h</p>
+        </>
       )}
       {isUserConnectedToMKM && isConnectedAnDisplayingConnectionText && (
-        <p>On rafraichit</p>
+        <p>
+          <ol>
+            <li>Synchro MKM</li>
+            <li>Sychro MTG Interface</li>
+            <li>Synchro here</li>
+          </ol>
+        </p>
       )}
-      {!isUserConnectedToMKM && <p>On se connecte</p>}
+      {!isUserConnectedToMKM && (
+        <>
+          <p className="notConnectedToMKMReminder">
+            Vous n'êtes pas connecté à MKM.
+          </p>
+          <p>
+            <ol>
+              <li>Synchro MKM</li>
+              <li>Sychro MTG Interface</li>
+              <li>Synchro here</li>
+            </ol>
+          </p>
+        </>
+      )}
     </div>
   );
 };
