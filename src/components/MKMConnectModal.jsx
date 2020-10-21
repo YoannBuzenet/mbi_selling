@@ -36,6 +36,13 @@ const MKMConnectModal = () => {
     }, 100);
   }, []);
 
+  const closeWithAnimation = () => {
+    document.getElementById("mkm_modal").classList.add("transition-on");
+    setTimeout(() => {
+      setIsMKMModalDisplayed(false);
+    }, 300);
+  };
+
   console.log("is user connected to mkm ?", isUserConnectedToMKM);
 
   //MKM Modal Control
@@ -47,6 +54,36 @@ const MKMConnectModal = () => {
   // console.log(authenticationInfos);
 
   const handleClick = () => {};
+
+  const handleRefresh = (event) => {
+    authAPI
+      .refreshTokenAndInfos(authenticationInfos.refresh_token)
+      .then((resp) => {
+        if (resp.data.shop.ExpirationMkmToken > new Date().getTime() / 1000) {
+          //Connection did succeed
+          const authenticationInfoCopy = { ...authenticationInfos };
+          authenticationInfoCopy.shop.ExpirationMkmToken =
+            resp.data.shop.ExpirationMkmToken;
+          setAuthenticationInfos(authenticationInfoCopy);
+
+          toast.success(
+            <FormattedMessage
+              id="app.shop.MKMConnect.toast.success"
+              defaultMessage={`You logged succesfully to MCM.`}
+            />
+          );
+          closeWithAnimation();
+        } else {
+          //Connection didn't succeed
+          toast.error(
+            <FormattedMessage
+              id="app.shop.MKMConnect.shouldConnect.toast.failure"
+              defaultMessage={`Data seems to not be up to date. Please try again.`}
+            />
+          );
+        }
+      });
+  };
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -90,7 +127,13 @@ const MKMConnectModal = () => {
             />
             <FormattedTime value={new Date(1459832991883)} />
           </p>
-          <p>Rafraichir de 24h</p>
+          <Button
+            variant="contained"
+            className={classes.Sync}
+            onClick={(e) => setIsConnectedAnDisplayingConnectionText(true)}
+          >
+            Rafraichir
+          </Button>
         </>
       )}
       {isUserConnectedToMKM && isConnectedAnDisplayingConnectionText && (
@@ -116,7 +159,11 @@ const MKMConnectModal = () => {
               <span>Log on MTG Interface</span>
             </li>
             <li>
-              <Button variant="contained" className={classes.Sync}>
+              <Button
+                variant="contained"
+                className={classes.Sync}
+                onClick={handleRefresh}
+              >
                 Sync !
               </Button>
             </li>
@@ -150,7 +197,11 @@ const MKMConnectModal = () => {
                 <span>Log on MTG Interface</span>
               </li>
               <li>
-                <Button variant="contained" className={classes.Sync}>
+                <Button
+                  variant="contained"
+                  className={classes.Sync}
+                  onClick={handleRefresh}
+                >
                   Sync !
                 </Button>
               </li>

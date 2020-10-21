@@ -150,6 +150,9 @@
 
   "mkmConnectionIndicator.title": "Connexion MKM",
 
+  "app.shop.MKMConnect.toast.success": "Vous êtes bien connecté à MKM.",
+  "app.shop.MKMConnect.shouldConnect.toast.failure": "Les données ne sont pas à jour. Merci de bien suivre les étapes.",
+
   "customRules.price.from": "De",
   "customRules.price.to": "A",
   "customRules.select.title.userChoice": "Que faire ?",
