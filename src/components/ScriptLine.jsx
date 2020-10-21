@@ -12,11 +12,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
+import MKMModalContext from "../context/mkmModalConnectionContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import authAPI from "../services/authAPI";
 import { FormattedMessage, useIntl } from "react-intl";
 import { isMobile } from "react-device-detect";
+import MKMAPI from "../services/MKMAPI";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -24,6 +26,9 @@ const ScriptLine = ({ script, history, index }) => {
   );
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
+
+  //MKM Modal Control
+  const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
 
   const WAIT_INTERVAL = 2000;
 
@@ -126,6 +131,23 @@ const ScriptLine = ({ script, history, index }) => {
     },
   };
 
+  const launchScript = () => {
+    //Check if user is connected to MKM
+    if (!MKMAPI.isUserConnectedToMKM()) {
+      setIsMKMModalDisplayed(true);
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkMKMConnection.failture"
+          defaultMessage="You are not connected to MKM. Please connect in order to launch a script."
+        />
+      );
+      return;
+    }
+
+    //check if there is a one of the numerous "has incoherence" flag and notify if yes
+    console.log("Launch !");
+  };
+
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
@@ -216,6 +238,7 @@ const ScriptLine = ({ script, history, index }) => {
           color="primary"
           className={classes.launchButton}
           size="large"
+          onClick={launchScript}
         >
           <FormattedMessage
             id="scriptLine.buttons.launch"

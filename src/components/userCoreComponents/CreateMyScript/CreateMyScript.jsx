@@ -9,6 +9,7 @@ import { matchPath } from "react-router";
 import AuthContext from "../../../context/authContext";
 import DefinitionContext from "../../../context/definitionsContext";
 import errorHandlingAPI from "../../../services/errorHandlingAPI";
+import MKMModalContext from "../../../context/mkmModalConnectionContext";
 
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,17 +23,21 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
 
 import { FormattedMessage, useIntl } from "react-intl";
+import MKMAPI from "../../../services/MKMAPI";
 
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
 
+  //MKM Modal Control
+  const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
+
   const [selectedFormats, setSelectedFormats] = useState(() => {
     //If we are in edition mode, we start from the formats aldready stored in the script
     if (match?.params?.id) {
       return [];
-      //TODO FIND THE RIGHT VALUE HERE
+      //They're updated thanks to an useEffect
     }
     //If we are in creation mode, starting value is empty array
     else if (!match?.params?.id) {
@@ -757,6 +762,22 @@ const CreateMyScript = ({ history }) => {
   };
 
   const launchScript = () => {
+    //Check if user is connected to MKM
+    if (
+      !MKMAPI.isUserConnectedToMKM(
+        authenticationInfos?.shop?.ExpirationMkmToken
+      )
+    ) {
+      setIsMKMModalDisplayed(true);
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkMKMConnection.failture"
+          defaultMessage="You are not connected to MKM. Please connect in order to launch a script."
+        />
+      );
+      return;
+    }
+
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
     console.log("Launch !");
   };
@@ -859,6 +880,7 @@ const CreateMyScript = ({ history }) => {
             color="primary"
             className={"button-second-navbar " + classes.testButton}
             size="large"
+            onClick={launchTest}
           >
             <FormattedMessage
               id="createMyScript.buttons.test"
@@ -870,6 +892,7 @@ const CreateMyScript = ({ history }) => {
             color="primary"
             className={"button-second-navbar " + classes.launchButton}
             size="large"
+            onClick={launchScript}
           >
             <FormattedMessage
               id="createMyScript.buttons.launch"

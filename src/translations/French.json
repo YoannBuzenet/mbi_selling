@@ -144,14 +144,21 @@
   "createMyScript.genericRules.alteredCardAreNotTreated": "Les cartes altérées ne sont pas traitées.",
   "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",
   "createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated": "Les cartes aux prix supérieur aux prix mentionnés ne sont pas traitées.",
+  "createMyScript.checkMKMConnection.failture": "Vous n'êtes pas connecté à MKM. Merci de vous y connecter afin de pouvoir lancer le script.",
 
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Statut",
 
   "mkmConnectionIndicator.title": "Connexion MKM",
 
-  "app.shop.MKMConnect.toast.success": "Vous êtes bien connecté à MKM.",
-  "app.shop.MKMConnect.shouldConnect.toast.failure": "Les données ne sont pas à jour. Merci de bien suivre les étapes.",
+  "app.MKMConnect.toast.success": "Vous êtes bien connecté à MKM.",
+  "app.MKMConnect.shouldConnect.toast.failure": "Les données ne sont pas à jour. Merci de bien suivre les étapes.",
+  "app.MKMConnect.connected.until": "Vous êtes connecté jusqu'au ",
+  "app.MKMConnect.connected.refresh": "Rafraîchir",
+  "app.MKMConnect.connected.logMKM": "Se co à MKM",
+  "app.MKMConnect.connected.logMtgInterface": "Connexion à MTG Interface",
+  "app.MKMConnect.connected.sync": "Synchro",
+  "app.MKMConnect.connected.notConnectedToMKM": "Vous n'êtes pas connecté à MKM.",
 
   "customRules.price.from": "De",
   "customRules.price.to": "A",

@@ -227,6 +227,7 @@ function App() {
           <MKMModalContext.Provider value={contextMKMConnectionModal}>
             <TransparentDivContext.Provider value={ContextTransparentDiv}>
               <Router>
+                {isTransparentDivDisplayed && <TransparentDiv />}
                 <ToastContainer
                   autoClose={3000}
                   position="bottom-left"
@@ -235,7 +236,6 @@ function App() {
                 <NavbarWithRouter />
                 <Footer />
                 <Switch>
-                  {isTransparentDivDisplayed && <TransparentDiv />}
                   <Route
                     path="/login"
                     render={({ match, history }) => (

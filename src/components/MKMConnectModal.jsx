@@ -25,10 +25,9 @@ const MKMConnectModal = () => {
     setIsConnectedAnDisplayingConnectionText,
   ] = useState(false);
 
-  const isUserConnectedToMKM =
-    authenticationInfos?.shop?.ExpirationMkmToken * 1000 -
-      new Date().getTime() >
-    0;
+  const isUserConnectedToMKM = MKMAPI.isUserConnectedToMKM(
+    authenticationInfos?.shop?.ExpirationMkmToken
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -68,7 +67,7 @@ const MKMConnectModal = () => {
 
           toast.success(
             <FormattedMessage
-              id="app.shop.MKMConnect.toast.success"
+              id="app.MKMConnect.toast.success"
               defaultMessage={`You logged succesfully to MCM.`}
             />
           );
@@ -77,7 +76,7 @@ const MKMConnectModal = () => {
           //Connection didn't succeed
           toast.error(
             <FormattedMessage
-              id="app.shop.MKMConnect.shouldConnect.toast.failure"
+              id="app.MKMConnect.shouldConnect.toast.failure"
               defaultMessage={`Data seems to not be up to date. Please try again.`}
             />
           );
@@ -100,6 +99,7 @@ const MKMConnectModal = () => {
       },
     },
     Sync: {
+      marginLeft: "15px",
       backgroundColor: "rgb(0, 230, 64)",
       "&:hover": {
         backgroundColor: "#26a65b",
@@ -116,7 +116,10 @@ const MKMConnectModal = () => {
       {isUserConnectedToMKM && !isConnectedAnDisplayingConnectionText && (
         <>
           <p>
-            Vous êtes connecté jusqu'au
+            <FormattedMessage
+              id="app.MKMConnect.connected.until"
+              defaultMessage={`You are connected until `}
+            />
             <FormattedDate
               value={
                 new Date(authenticationInfos?.shop?.ExpirationMkmToken * 1000)
@@ -132,7 +135,10 @@ const MKMConnectModal = () => {
             className={classes.Sync}
             onClick={(e) => setIsConnectedAnDisplayingConnectionText(true)}
           >
-            Rafraichir
+            <FormattedMessage
+              id="app.MKMConnect.connected.refresh"
+              defaultMessage={`Refresh`}
+            />
           </Button>
         </>
       )}
@@ -150,13 +156,21 @@ const MKMConnectModal = () => {
                   rel="noopener noreferrer"
                 >
                   <Button variant="contained" className={classes.logMKM}>
-                    Log MKM
+                    <FormattedMessage
+                      id="app.MKMConnect.connected.logMKM"
+                      defaultMessage={`Log to MKM`}
+                    />
                   </Button>
                 </a>
               </span>
             </li>
             <li>
-              <span>Log on MTG Interface</span>
+              <span>
+                <FormattedMessage
+                  id="app.MKMConnect.connected.logMtgInterface"
+                  defaultMessage={`Log on MTG Interface`}
+                />
+              </span>
             </li>
             <li>
               <Button
@@ -164,7 +178,10 @@ const MKMConnectModal = () => {
                 className={classes.Sync}
                 onClick={handleRefresh}
               >
-                Sync !
+                <FormattedMessage
+                  id="app.MKMConnect.connected.sync"
+                  defaultMessage={`Sync !`}
+                />
               </Button>
             </li>
           </ol>
@@ -173,7 +190,10 @@ const MKMConnectModal = () => {
       {!isUserConnectedToMKM && (
         <>
           <p className="notConnectedToMKMReminder">
-            Vous n'êtes pas connecté à MKM.
+            <FormattedMessage
+              id="app.MKMConnect.connected.notConnectedToMKM"
+              defaultMessage={`You are not connected to MKM.`}
+            />
           </p>
           <p>
             <ol>
@@ -188,13 +208,21 @@ const MKMConnectModal = () => {
                     rel="noopener noreferrer"
                   >
                     <Button variant="contained" className={classes.logMKM}>
-                      Log MKM
+                      <FormattedMessage
+                        id="app.MKMConnect.connected.logMKM"
+                        defaultMessage={`Log to MKM`}
+                      />
                     </Button>
                   </a>
                 </span>
               </li>
               <li>
-                <span>Log on MTG Interface</span>
+                <span>
+                  <FormattedMessage
+                    id="app.MKMConnect.connected.logMtgInterface"
+                    defaultMessage={`Log on MTG Interface`}
+                  />
+                </span>
               </li>
               <li>
                 <Button
@@ -202,7 +230,10 @@ const MKMConnectModal = () => {
                   className={classes.Sync}
                   onClick={handleRefresh}
                 >
-                  Sync !
+                  <FormattedMessage
+                    id="app.MKMConnect.connected.sync"
+                    defaultMessage={`Sync !`}
+                  />
                 </Button>
               </li>
             </ol>
