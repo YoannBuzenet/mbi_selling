@@ -937,26 +937,32 @@ div.lang-select-applevel {
 *********MKM MODAL***********
 **************************/
 
-@media only screen and (max-width: 1000px) {
-}
-@media only screen and (max-width: 900px) {
-}
-@media only screen and (max-width: 800px) {
-}
-@media only screen and (max-width: 700px) {
+.MKM_modal_Connection {
+  position: absolute;
+  top: 50px;
+  background-color: #fff;
+  width: 151.9px;
+  height: 100px;
+  opacity: 1;
+  border-radius: 4px;
+  transition: opacity 0.25s, top 0.25s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  cursor: default;
 }
 
-@media only screen and (max-width: 600px) {
+.transition-on {
+  top: 30px;
+  opacity: 0;
 }
-@media only screen and (max-width: 500px) {
-}
-@media only screen and (max-width: 400px) {
+
+@media only screen and (max-width: 1000px) {
 }
 
 /**************************
 **MKM Connexion Indicator**
 **************************/
 .mkm-connexion-indicator {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
