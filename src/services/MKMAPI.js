@@ -281,6 +281,10 @@ function mkmConnexionStateCalculator(expirationToken) {
   }
 }
 
+function isUserConnectedToMKM(ExpirationMkmToken) {
+  return ExpirationMkmToken * 1000 - new Date().getTime() > 0;
+}
+
 export default {
   URL_MKM_ADD_STOCK,
   URL_MKM_SANDBOX_ADD_STOCK,
@@ -289,4 +293,5 @@ export default {
   transformSellRequestIntoXML,
   buildOAuthHeader,
   mkmConnexionStateCalculator,
+  isUserConnectedToMKM,
 };
