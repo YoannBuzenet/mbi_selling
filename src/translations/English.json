@@ -151,6 +151,9 @@
 
   "mkmConnectionIndicator.title": "MKM Connection",
 
+  "app.shop.MKMConnect.toast.success": "You logged succesfully to MCM.",
+  "app.shop.MKMConnect.shouldConnect.toast.failure": "Data seems to not be up to date. Please try again.",
+
   "customRules.price.from": "From",
   "customRules.price.to": "To",
   "customRules.select.title.userChoice": "Do",
