@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
 import MKMModalContext from "../context/mkmModalConnectionContext";
+import transparentDivContext from "../context/transparentDivContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import authAPI from "../services/authAPI";
@@ -29,6 +30,12 @@ const ScriptLine = ({ script, history, index }) => {
 
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
+
+  //Transparent Div Context
+  const {
+    isTransparentDivDisplayed,
+    setIsTransparentDivDisplayed,
+  } = useContext(transparentDivContext);
 
   const WAIT_INTERVAL = 2000;
 
@@ -135,6 +142,7 @@ const ScriptLine = ({ script, history, index }) => {
     //Check if user is connected to MKM
     if (!MKMAPI.isUserConnectedToMKM()) {
       setIsMKMModalDisplayed(true);
+      setIsTransparentDivDisplayed(true);
       toast.error(
         <FormattedMessage
           id="createMyScript.checkMKMConnection.failture"
