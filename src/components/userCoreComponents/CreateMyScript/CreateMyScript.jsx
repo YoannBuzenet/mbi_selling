@@ -10,6 +10,7 @@ import AuthContext from "../../../context/authContext";
 import DefinitionContext from "../../../context/definitionsContext";
 import errorHandlingAPI from "../../../services/errorHandlingAPI";
 import MKMModalContext from "../../../context/mkmModalConnectionContext";
+import transparentDivContext from "../../../context/transparentDivContext";
 
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,6 +33,12 @@ const CreateMyScript = ({ history }) => {
 
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
+
+  //Transparent Div Context
+  const {
+    isTransparentDivDisplayed,
+    setIsTransparentDivDisplayed,
+  } = useContext(transparentDivContext);
 
   const [selectedFormats, setSelectedFormats] = useState(() => {
     //If we are in edition mode, we start from the formats aldready stored in the script
@@ -769,6 +776,7 @@ const CreateMyScript = ({ history }) => {
       )
     ) {
       setIsMKMModalDisplayed(true);
+      setIsTransparentDivDisplayed(true);
       toast.error(
         <FormattedMessage
           id="createMyScript.checkMKMConnection.failture"
