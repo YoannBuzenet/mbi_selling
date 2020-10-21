@@ -937,162 +937,20 @@ div.lang-select-applevel {
 *********MKM MODAL***********
 **************************/
 
-.MKM-connection-modal {
-  position: fixed;
-  left: 10%;
-  right: 10%;
-  top: 10%;
-  bottom: 25%;
-  padding: 6rem;
-  /* background-color: var(--background-color); */
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 2px 2px 3px black;
-  z-index: 2;
-}
-
-.mkm-modal-container {
-  padding: 0 25rem;
-}
-
-.MKM-connection-modal > div h2 {
-  margin-bottom: 4rem;
-}
-
-.MKM-rule {
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-start;
-  margin-bottom: 3rem;
-}
-
-.MKM-rule p {
-  margin: 0;
-  text-align: left;
-}
-
-.MKM-connection-modal > div .styled-ol-number {
-  font-size: 2rem;
-  margin-right: 10px;
-}
-
-.MKM-connection-modal .mkm_link_auth {
-  width: 300px;
-  padding: 1rem;
-  margin: 0 auto;
-  cursor: pointer;
-  background-color: lightgreen;
-  border-radius: 8px;
-  box-shadow: 1px 1px 3px black;
-  height: 70px;
-  overflow: hidden;
-}
-
-.MKM-connection-modal > div .syncronization-button {
-  width: 300px;
-  padding: 1rem;
-  margin: 0 auto;
-  cursor: pointer;
-  background-color: lightgreen;
-  border-radius: 8px;
-  box-shadow: 1px 1px 3px black;
-  height: 70px;
-  overflow: hidden;
-}
-
-.CSS-Loader-MKM {
-}
-
-.MKM-connection-modal > div .syncronization-button:hover {
-  background-color: lawngreen;
-  color: white;
-}
-.MKM-connection-modal > div .syncronization-button:active {
-  box-shadow: 1px 1px 1px black;
-}
-
-.mkm_link_auth {
-  margin-top: -10px;
-}
-.mkm_link_auth a {
-  text-decoration: none;
-  color: black;
-}
-.mkm_link_auth a:hover {
-  text-decoration: underline;
-}
-
-.MKM-connection-modal > div .syncronization-button .sync-symbol {
-  display: block;
-  margin-top: -10px;
-  font-size: 3rem;
-}
-
-@media only screen and (max-width: 1200px) {
-  .MKM-connection-modal {
-    padding: 5rem;
-  }
-  .mkm-modal-container {
-    padding: 0 10rem;
-  }
-}
-
 @media only screen and (max-width: 1000px) {
-  .MKM-connection-modal {
-    padding: 5rem;
-  }
-  .mkm-modal-container {
-    padding: 0 10rem;
-  }
-  .edition-modal p {
-    font-size: 1.4rem;
-  }
 }
 @media only screen and (max-width: 900px) {
-  .MKM-connection-modal {
-    padding: 4rem;
-  }
-  .mkm-modal-container {
-    padding: 0 8rem;
-  }
 }
 @media only screen and (max-width: 800px) {
-  .mkm-modal-container {
-    padding: 0rem;
-  }
 }
 @media only screen and (max-width: 700px) {
-  .mkm-modal-container {
-    padding: 0 5rem;
-  }
-  .MKM-connection-modal {
-    bottom: 20%;
-  }
 }
 
 @media only screen and (max-width: 600px) {
-  .MKM-connection-modal {
-    padding: 3rem;
-  }
-  .mkm-modal-container {
-    padding: 0 2rem;
-  }
-  .MKM-connection-modal {
-    bottom: 15%;
-  }
 }
 @media only screen and (max-width: 500px) {
-  .MKM-connection-modal > div .syncronization-button {
-    width: 250px;
-  }
 }
 @media only screen and (max-width: 400px) {
-  .MKM-connection-modal > div .syncronization-button {
-    width: 200px;
-  }
-  .MKM-connection-modal {
-    bottom: 10%;
-  }
 }
 
 /**************************
@@ -1109,7 +967,7 @@ div.lang-select-applevel {
 status-indicator {
   margin-left: 10px;
   margin-bottom: 2px;
-  cursor: default;
+  cursor: pointer;
 }
 
 .connexion-text {
