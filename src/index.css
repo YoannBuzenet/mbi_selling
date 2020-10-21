@@ -966,6 +966,18 @@ div.lang-select-applevel {
 }
 .MKM_modal_Connection ol {
   padding-left: 30px;
+  text-align: left;
+}
+
+.MKM_modal_Connection ol li {
+  margin-bottom: 3px;
+}
+.MKM_modal_Connection ol li span {
+  margin-left: 5px;
+}
+
+.MKM_modal_Connection a {
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "status-indicator/styles.css";
 import AuthContext from "../context/authContext";
 import MKM_ModalContext from "../context/mkmModalConnectionContext";
+import TransparentDivContext from "../context/transparentDivContext";
 import { FormattedMessage } from "react-intl";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -13,6 +14,12 @@ const MKMConnexionIndicator = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
+
+  //Transparent Div Context
+  const {
+    isTransparentDivDisplayed,
+    setIsTransparentDivDisplayed,
+  } = useContext(TransparentDivContext);
 
   const connexionStatus = MKMAPI.mkmConnexionStateCalculator(
     authenticationInfos?.shop?.ExpirationMkmToken || 121000
@@ -45,10 +52,11 @@ const MKMConnexionIndicator = () => {
           if (document.getElementById("mkm_modal")) {
             document.getElementById("mkm_modal").classList.add("transition-on");
             setTimeout(() => {
-              setIsMKMModalDisplayed(!isMKMModalDisplayed);
+              setIsMKMModalDisplayed(false);
             }, 300);
           } else {
-            setIsMKMModalDisplayed(!isMKMModalDisplayed);
+            setIsMKMModalDisplayed(true);
+            setIsTransparentDivDisplayed(true);
           }
         }}
       >

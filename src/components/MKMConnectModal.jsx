@@ -7,6 +7,8 @@ import MKM_ModalContext from "../context/mkmModalConnectionContext";
 import BlackDivContext from "../context/blackDivModalContext";
 import CSSLoaderWaitingSpiral from "../components/loaders/CSSLoaderWaitingSpiral";
 import { FormattedMessage, FormattedDate, FormattedTime } from "react-intl";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const MKMConnectModal = () => {
   //Current Authentication
@@ -46,6 +48,32 @@ const MKMConnectModal = () => {
 
   const handleClick = () => {};
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+    logMKM: {
+      backgroundColor: "rgb(232, 126, 4)",
+      "&:hover": {
+        backgroundColor: "#f9bf3b",
+        borderColor: "#0062cc",
+        boxShadow: "none",
+      },
+    },
+    Sync: {
+      backgroundColor: "rgb(0, 230, 64)",
+      "&:hover": {
+        backgroundColor: "#26a65b",
+        borderColor: "#26a65b",
+        boxShadow: "none",
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div className={classModal} id="mkm_modal">
       {isUserConnectedToMKM && !isConnectedAnDisplayingConnectionText && (
@@ -68,9 +96,30 @@ const MKMConnectModal = () => {
       {isUserConnectedToMKM && isConnectedAnDisplayingConnectionText && (
         <p>
           <ol>
-            <li>Synchro MKM</li>
-            <li>Sychro MTG Interface</li>
-            <li>Synchro here</li>
+            <li>
+              <span>
+                <a
+                  href={
+                    MKMAPI.MKM_AUTHENTICATION_URL_BASE +
+                    authenticationInfos?.shop?.appToken
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="contained" className={classes.logMKM}>
+                    Log MKM
+                  </Button>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>Log on MTG Interface</span>
+            </li>
+            <li>
+              <Button variant="contained" className={classes.Sync}>
+                Sync !
+              </Button>
+            </li>
           </ol>
         </p>
       )}
@@ -81,9 +130,30 @@ const MKMConnectModal = () => {
           </p>
           <p>
             <ol>
-              <li>Synchro MKM</li>
-              <li>Sychro MTG Interface</li>
-              <li>Synchro here</li>
+              <li>
+                <span>
+                  <a
+                    href={
+                      MKMAPI.MKM_AUTHENTICATION_URL_BASE +
+                      authenticationInfos?.shop?.appToken
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="contained" className={classes.logMKM}>
+                      Log MKM
+                    </Button>
+                  </a>
+                </span>
+              </li>
+              <li>
+                <span>Log on MTG Interface</span>
+              </li>
+              <li>
+                <Button variant="contained" className={classes.Sync}>
+                  Sync !
+                </Button>
+              </li>
             </ol>
           </p>
         </>
