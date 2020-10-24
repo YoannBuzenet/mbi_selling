@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-async function returnAdminJWT() {
+async function retrieveAsAdmin(url, method, parameters) {
   const credentials = {
     email: process.env.LOG_SHOP_ADMIN,
     password: process.env.LOG_SHOP_PWD,
@@ -11,12 +11,19 @@ async function returnAdminJWT() {
       credentials
     );
 
-    return servResp.data.token;
+    let temporaryHeader = {
+      headers: {
+        Authorization: servResp.data.token,
+      },
+    };
+
+    const action = await axios[method](url, parameters, temporaryHeader);
+    return action;
   } catch (error) {
-    console.log("error during admin login");
+    console.log("error during admin login and retriving as admin");
   }
 }
 
 module.exports = {
-  returnAdminJWT,
+  retrieveAsAdmin,
 };
