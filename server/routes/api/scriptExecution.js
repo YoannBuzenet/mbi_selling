@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/", async (req, res) => {
+  //TODO - construction de l'ednpoint
+
   const jwt = req.headers.authorization;
 
   if (jwt === undefined) {
@@ -19,14 +21,11 @@ router.get("/", async (req, res) => {
     res.status(401).json("You don't have access to this ressource.");
   }
 
-  const {
-    getAllDatasInRAM,
-    getAllFormatDefinition,
-  } = require("../../controllers/mtgDataController");
+  //Logique
+  // Test si user a accès au script
+  // Besoin d'id user, id script
 
-  // getAllMcmIdAndLegalities(jwt);
-  getAllFormatDefinition(jwt);
-  res.json("Core MTG data dictionnary has been updated.");
+  res.json("Script executed");
 });
 
 module.exports = router;
