@@ -47,14 +47,34 @@ router.get("/getMKMStockInCSV", async (req, res) => {
     res.status(404).json("Shop doesn't exist.");
   }
 
-  // getShopStock(shopData.data, setData.data, false);
   mkmController.getShopStock(shopData.data);
 
   res.status(200).json("OK");
 });
 
 router.get("/testopenAndLogCSV", async (req, res) => {
-  //TODO pass this as dynamic
+  const jwt = req.headers.authorization;
+
+  if (jwt === undefined) {
+    res.status(406).json("Auth Header is missing !");
+  } else {
+    //If there is a token, we remove the "Bearer" part
+    jwt = jwt.split(" ");
+    jwt = jwt[1];
+  }
+
+  // Check 1 : Params
+  // Checking params are OK
+  let idShop = parseInt(req.query.idShop);
+
+  if (isNaN(idShop)) {
+    res.status(406).json("idShop is missing");
+  }
+
+  // TO DO - vérifier que ça soit bien fait et que ça soit pas un endpoint spammé
+  //Get shop name
+  // Get shop ID
+
   const data = mkmController.registerStockFileIntoDB("LaBoutique", 1);
 
   res.status(200).json("CSV should be stored in DB now");

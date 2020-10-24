@@ -2,8 +2,6 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/", async (req, res) => {
-  //TODO : AJOUTER CONTROLE
-
   const jwt = req.headers.authorization;
 
   if (jwt === undefined) {
