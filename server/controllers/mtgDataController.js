@@ -3,9 +3,6 @@ const axios = require("axios");
 const db = require("../../models/index");
 const { config } = require("../../config/configApp");
 
-//TODO ajout controle  security level ?
-//TODO handle 401
-
 //Getting all formats from API
 async function getAllFormatDefinition(jwt) {
   axios.defaults.headers["Authorization"] = jwt;
