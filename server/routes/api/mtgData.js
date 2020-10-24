@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+/* ADMIN ENDPOINT */
 router.get("/", async (req, res) => {
   const jwt = req.headers.authorization;
 

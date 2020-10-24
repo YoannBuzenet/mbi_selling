@@ -8,7 +8,7 @@ const db = require("../../models/index");
 /* ********** */
 // Get MKM stock from user and register it on server
 /* ********** */
-function getShopStock(shopInfo) {
+function getShopStock(shopInfo, idShop) {
   const header = MkmAPI.buildOAuthHeader(
     "GET",
     MkmAPI.URL_MKM_GET_STOCK,
@@ -45,16 +45,15 @@ function getShopStock(shopInfo) {
         //Save the file
         /* ******************* */
 
-        const shopNameSlugified = slugify(shopInfo.legalName, "_");
         /* ******************* */
         //Creating folder if it doesn't exist
         /* ******************* */
-        if (!fs.existsSync("./shopStock/" + shopNameSlugified)) {
-          fs.mkdirSync("./shopStock/" + shopNameSlugified);
+        if (!fs.existsSync("./shopStock/" + idShop)) {
+          fs.mkdirSync("./shopStock/" + idShop);
         }
 
         fs.writeFile(
-          "./shopStock/" + shopNameSlugified + "/test.gzip",
+          "./shopStock/" + idShop + "/stock.gzip",
           binaryFile,
           { encoding: "binary" },
           function (err) {
@@ -68,56 +67,52 @@ function getShopStock(shopInfo) {
         /* ******************* */
         //Read the file to get buffer
         /* ******************* */
-        fs.readFile(
-          "./shopStock/" + shopNameSlugified + "/test.gzip",
-          (error, data) => {
+        fs.readFile("./shopStock/" + idShop + "/stock.gzip", (error, data) => {
+          if (error) {
+            console.log(error);
+          }
+
+          /* ******************* */
+          //Transforming the GZIP into CSV
+          /* ******************* */
+          const zlib = require("zlib");
+          zlib.gunzip(data, (error, fileUnzipped) => {
             if (error) {
               console.log(error);
             }
 
-            /* ******************* */
-            //Transforming the GZIP into CSV
-            /* ******************* */
-            const zlib = require("zlib");
-            zlib.gunzip(data, (error, fileUnzipped) => {
-              if (error) {
-                console.log(error);
-              }
+            const pathFile = "./shopStock/" + idShop + "/stock.csv";
+            const pathFileWithoutExtension = "./shopStock/" + idShop + "/test";
 
-              const pathFile = "./shopStock/" + shopNameSlugified + "/test.csv";
-              const pathFileWithoutExtension =
-                "./shopStock/" + shopNameSlugified + "/test";
-
-              console.log(fileUnzipped);
-              fs.writeFile(
-                pathFile,
-                fileUnzipped,
-                { encoding: "binary" },
-                function (err) {
-                  if (err) {
-                    return console.log("err", err);
-                  }
-                  console.log("The file was saved!");
-                  /* ******************* */
-                  // Deleting the gzip file
-                  /* ******************* */
-                  fs.unlink(
-                    pathFileWithoutExtension + ".gzip",
-                    (err, success) => {
-                      if (err) {
-                        return console.log("err", err);
-                      }
-                      console.log(
-                        "The GZIP was deleted! CSV is ready to be read in another function."
-                      );
-                      return true;
-                    }
-                  );
+            console.log(fileUnzipped);
+            fs.writeFile(
+              pathFile,
+              fileUnzipped,
+              { encoding: "binary" },
+              function (err) {
+                if (err) {
+                  return console.log("err", err);
                 }
-              );
-            });
-          }
-        );
+                console.log("The file was saved!");
+                /* ******************* */
+                // Deleting the gzip file
+                /* ******************* */
+                fs.unlink(
+                  pathFileWithoutExtension + ".gzip",
+                  (err, success) => {
+                    if (err) {
+                      return console.log("err", err);
+                    }
+                    console.log(
+                      "The GZIP was deleted! CSV is ready to be read in another function."
+                    );
+                    return true;
+                  }
+                );
+              }
+            );
+          });
+        });
       });
     })
     .catch((err) => console.log(err));

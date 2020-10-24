@@ -14,7 +14,7 @@ router.get(
 
     securityCheckAPI.checkQueryParams(req, res, ["idUser", "idScript"]);
 
-    //Check that the requester is who he sayts he is OR is admin
+    //Check that the requester is who he says he is OR is admin
     const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
       req.headers.authorization,
       req.query.idUser

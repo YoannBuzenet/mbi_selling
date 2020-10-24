@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+/* ADMIN ENDPOINT */
 router.get("/", async (req, res) => {
   const jwt = req.headers.authorization;
 
@@ -12,7 +13,6 @@ router.get("/", async (req, res) => {
     jwt = jwt[1];
   }
 
-  // Check 3 : JWT
   // Auth delegation - checking if the account is a ROLE_ADMIN
   const isAdmin = await securityCheckAPI.checkIfUserIsAdmin(jwt);
   if (!isAdmin) {

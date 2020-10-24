@@ -25,9 +25,15 @@ async function checkIfUserIsAdmin(jwt) {
 }
 
 async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
+  if (idShop === undefined) {
+    throw "idShop is missing in checkIfUserIsThisOneOrAdmin function";
+  }
+
+  let idShopInt = parseInt(idShop);
+
   axios.defaults.headers["Authorization"] = jwt;
 
-  let normalURL = process.env.REACT_APP_MTGAPI_URL + "/users/" + idShop;
+  let normalURL = process.env.REACT_APP_MTGAPI_URL + "/users/" + idShopInt;
 
   //Removing invisible space that was created by .env
   normalURL = normalURL.replace(/[\u200B-\u200D\uFEFF]/g, "");
@@ -42,9 +48,11 @@ async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   // console.log("resp after check auth", respServ);
 
   if (respServ) {
+    // User has access
     // console.log("true", respServ);
     return true;
   }
+  //User doesn't have access or doesnt exist
   //   console.log("false", respServ);
   return false;
 }
