@@ -5,8 +5,9 @@ const securityCheckAPI = require("../../services/securityCheckAPI");
 const axios = require("axios");
 const db = require("../../../models/index");
 
-
 //TODO SHOP ENDPOINT NOT ADMIN
+// serveur login ?
+
 //Refresh MKM stock on local DB
 router.get("/getMKMStockInCSV", async (req, res) => {
   // Check 1 : Params
@@ -89,10 +90,6 @@ router.get("/openAndRegisterCSV", async (req, res) => {
   //TODO TODO TODO
   // TO DO - vérifier que ça soit bien fait et que ça soit pas un endpoint spammé
   //Get shop name
-
- const shopPublicInfo
-
-  
 
   // const data = mkmController.registerStockFileIntoDB("LaBoutique", idShop);
 
