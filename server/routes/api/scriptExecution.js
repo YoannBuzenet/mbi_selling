@@ -57,11 +57,17 @@ router.get("/", async (req, res) => {
       idShop: idShop,
     },
   });
-  //No cards in stock, will return null
-  console.log(
-    `one card at random from stock, from the user ${idShop}`,
-    oneCardAtRandomFromStock
-  );
+
+  if (
+    oneCardAtRandomFromStock === null ||
+    new Date(oneCardAtRandomFromStock.updatedAt).getTime() +
+      process.env.TIME_TO_EXPIRE_STOCK <
+      new Date().getTime()
+  ) {
+    //on get le stock
+  }
+
+  //On continue la logique
 
   res.json("Script executed");
 });
