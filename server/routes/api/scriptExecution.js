@@ -1,23 +1,23 @@
 var express = require("express");
 var router = express.Router();
+const db = require("../../../models/index");
+const securityCheckAPI = require("../../services/securityCheckAPI");
 
 router.get("/", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
   /* ************************ */
 
-  securityCheckAPI.checkQueryParams(req, res, ["idShop"]);
+  securityCheckAPI.checkQueryParams(req, res, ["idShop", "idScript"]);
 
   let idShop = req.query.idShop;
+  let idScript = req.query.idScript;
 
-  const jwt = req.headers.authorization;
+  let jwt = req.headers.authorization;
 
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
-  } else {
-    //If there is a token, we remove the "Bearer" part
-    jwt = jwt.split(" ");
-    jwt = jwt[1];
+    return;
   }
 
   // Check 3 : JWT
@@ -28,11 +28,27 @@ router.get("/", async (req, res) => {
   );
   if (!isAdmin) {
     res.status(401).json("You don't have access to this ressource.");
+    return;
   }
 
   //Logique
-  // Test si user a accès au script
-  // Besoin d'id user, id script
+
+  const scriptToCheck = await db.Script.findOne({
+    where: {
+      id: idScript,
+    },
+  });
+
+  if (scriptToCheck === null) {
+    res
+      .status(401)
+      .json("Script doesnt exist, or you don't have access to it.");
+    return;
+  }
+
+  /* ************************** */
+  /* ********* LOGIC ********** */
+  /* ************************** */
 
   res.json("Script executed");
 });

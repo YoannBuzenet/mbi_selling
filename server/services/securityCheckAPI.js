@@ -72,11 +72,13 @@ function checkQueryParams(req, res, queryParams) {
     for (let i = 0; i < queryParams.length; i++) {
       if (isNaN(parseInt(req.query[queryParams[i]]))) {
         res.status(406).json(`${queryParams[i]} is missing`);
+        return;
       }
     }
   } else {
     if (isNaN(parseInt(req.query[queryParams]))) {
       res.status(406).json(`${queryParams} is missing`);
+      return;
     }
   }
 }
