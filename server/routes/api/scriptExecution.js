@@ -2,7 +2,13 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/", async (req, res) => {
-  //TODO - construction de l'ednpoint
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+
+  securityCheckAPI.checkQueryParams(req, res, ["idShop"]);
+
+  let idShop = req.query.idShop;
 
   const jwt = req.headers.authorization;
 
@@ -16,7 +22,10 @@ router.get("/", async (req, res) => {
 
   // Check 3 : JWT
   // Auth delegation - checking if the account is a ROLE_ADMIN
-  const isAdmin = await securityCheckAPI.checkIfUserIsAdmin(jwt);
+  const isAdmin = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
+    jwt,
+    idShop
+  );
   if (!isAdmin) {
     res.status(401).json("You don't have access to this ressource.");
   }
