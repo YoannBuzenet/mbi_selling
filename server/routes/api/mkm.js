@@ -5,9 +5,7 @@ const securityCheckAPI = require("../../services/securityCheckAPI");
 const axios = require("axios");
 const db = require("../../../models/index");
 
-//TODO SHOP ENDPOINT NOT ADMIN
-// serveur login ?
-
+/* Shop Access */
 //Refresh MKM stock on local DB
 router.get("/getMKMStockInCSV", async (req, res) => {
   // Check 1 : Params
@@ -55,15 +53,12 @@ router.get("/getMKMStockInCSV", async (req, res) => {
   res.status(200).json("OK");
 });
 
+/* Shop Access */
 router.get("/openAndRegisterCSV", async (req, res) => {
   let jwt = req.headers.authorization;
 
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
-  } else {
-    //If there is a token, we remove the "Bearer" part
-    jwt = jwt.split(" ");
-    jwt = jwt[1];
   }
 
   // Check 1 : Params
@@ -87,12 +82,26 @@ router.get("/openAndRegisterCSV", async (req, res) => {
     return;
   }
 
-  //TODO TODO TODO
-  //Est-ce que le shop a accès a sa propre data ? Si oui, on a besoin de son nom pour appeler la requete pour save en DB !
+  //Getting shop data if needed (works)
+  // const axiosConfigShopHeader = {
+  //   headers: {
+  //     Authorization: req.headers.authorization,
+  //   },
+  // };
+
+  // const shopData = await axios
+  //   .get(
+  //     process.env.REACT_APP_MTGAPI_URL + "/shops/" + idShop,
+  //     axiosConfigShopHeader
+  //   )
+  //   .catch((err) => {
+  //     console.log("error when trying to get shopdata", err);
+  //   });
+
   // TO DO - vérifier que ça soit bien fait et que ça soit pas un endpoint spammé
 
   //Get shop name and put it here and uncomment
-  // const data = mkmController.registerStockFileIntoDB("LaBoutique", idShop);
+  const data = await mkmController.registerStockFileIntoDB(idShop);
 
   res.status(200).json("CSV has been stored in DB.");
 });

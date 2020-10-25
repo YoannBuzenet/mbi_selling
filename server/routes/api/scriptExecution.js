@@ -64,7 +64,7 @@ router.get("/", async (req, res) => {
       process.env.TIME_TO_EXPIRE_STOCK <
       new Date().getTime()
   ) {
-    //on get le stock
+    //on get le stock via MKM
   }
 
   //On continue la logique

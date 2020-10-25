@@ -118,15 +118,14 @@ function getShopStock(shopInfo, idShop) {
     .catch((err) => console.log(err));
 }
 
-async function registerStockFileIntoDB(shopName, shopId) {
+async function registerStockFileIntoDB(shopId) {
   console.log(
     "parse the CSV/Json file // put it in memory // write it in mysql"
   );
 
-  console.log("we're looking for the stock of : ", shopName);
+  console.log("we're looking for the stock of shop id: ", shopId);
 
-  const shopNameSlugified = slugify(shopName, "_");
-  const path = "./shopStock/" + shopNameSlugified + "/test.csv";
+  const path = "./shopStock/" + shopId + "/stock.csv";
 
   //Parameters customized for our CSV : separator is ; and there are dots in columns names that we don't want to interpret
   csv({ delimiter: ";", flatKeys: true })
