@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
     return;
   }
 
-  //Logique
+  //Logic
 
   const scriptToCheck = await db.Script.findOne({
     where: {
@@ -49,6 +49,19 @@ router.get("/", async (req, res) => {
   /* ************************** */
   /* ********* LOGIC ********** */
   /* ************************** */
+
+  //Do we have already a stock for this user, and if yes, is it older than 24 hours ?
+
+  const oneCardAtRandomFromStock = await db.MkmProduct.findOne({
+    where: {
+      idShop: idShop,
+    },
+  });
+  //No cards in stock, will return null
+  console.log(
+    `one card at random from stock, from the user ${idShop}`,
+    oneCardAtRandomFromStock
+  );
 
   res.json("Script executed");
 });

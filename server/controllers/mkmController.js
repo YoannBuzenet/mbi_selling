@@ -171,10 +171,6 @@ async function registerStockFileIntoDB(shopName, shopId) {
         );
       }
     });
-
-  // file is in //shopStock/shopName
-  // find it, read it, parse it
-  // register it into db
 }
 
 //Delete the shop from shop X

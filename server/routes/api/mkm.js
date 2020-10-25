@@ -88,9 +88,10 @@ router.get("/openAndRegisterCSV", async (req, res) => {
   }
 
   //TODO TODO TODO
+  //Est-ce que le shop a accès a sa propre data ? Si oui, on a besoin de son nom pour appeler la requete pour save en DB !
   // TO DO - vérifier que ça soit bien fait et que ça soit pas un endpoint spammé
-  //Get shop name
 
+  //Get shop name and put it here and uncomment
   // const data = mkmController.registerStockFileIntoDB("LaBoutique", idShop);
 
   res.status(200).json("CSV has been stored in DB.");

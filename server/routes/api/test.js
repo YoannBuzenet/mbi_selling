@@ -3,7 +3,7 @@ var router = express.Router();
 const db = require("../../../models/index");
 
 router.get("/", async (req, res) => {
-  //TODO : DO IT !
+  //Old test to try many to many relations
   const jwt = req.headers.authorization;
 
   console.log(db.Script);
@@ -21,6 +21,32 @@ router.get("/", async (req, res) => {
   script.setFormats([2, 3]);
 
   res.json(script);
+});
+
+router.post("/createOneCardInStock", async (req, res) => {
+  const oneCard = await db.MkmProduct.create({
+    idArticle: 3,
+    idProduct: 2,
+    englishName: "ok",
+    localName: "ok",
+    Exp: 5,
+    expName: "ok",
+    price: 5,
+    language: 6,
+    condition: 7,
+    isFoil: 0,
+    isSigned: 0,
+    isPlayset: 0,
+    isAltered: 0,
+    comments: 0,
+    amount: 10,
+    onSale: 0,
+    idCurrency: 1,
+    currencyCode: "EUR",
+    idShop: 4,
+  });
+
+  res.status(200).json(oneCard);
 });
 
 module.exports = router;
