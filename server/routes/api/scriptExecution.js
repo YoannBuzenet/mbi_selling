@@ -29,6 +29,10 @@ router.post("/", async (req, res) => {
     res.status(406).json("Formats are mandatory to launch a Script Execution.");
     return;
   }
+  if (!Array.isArray(req.body.formats)) {
+    res.status(406).json("Formats must be an array.");
+    return;
+  }
 
   // Check 3 : JWT
   // Auth delegation - checking if the account is a ROLE_ADMIN
@@ -41,8 +45,7 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  //Logic
-
+  //Script Existence Verification
   const scriptToCheck = await db.Script.findOne({
     where: {
       id: idScript,
@@ -76,6 +79,13 @@ router.post("/", async (req, res) => {
   ) {
     //on get le stock via MKM
   }
+
+  // on compte le nombre de cartes dans le format voulu
+  const numberOfCardsToHandle = await db.MkmProduct.findAll({where {
+    idShop : req.body.idShop,
+    //isLegal via l'association productLegality
+  }})
+  // on en déduit le nombre de requetes qu'on va devoir effectuer
 
   //On continue la logique
 
