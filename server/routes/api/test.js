@@ -22,6 +22,17 @@ router.get("/", async (req, res) => {
 
   res.json(script);
 });
+router.get("/GetTransformedArrayOfAllFormats", async (req, res) => {
+  const allFormats = await db.Format.findAll();
+  const reducer = (accumulator, currentValue) => [
+    ...accumulator,
+    currentValue.id,
+  ];
+  const arrayOfFormatId = allFormats.reduce(reducer, []);
+  console.log(arrayOfFormatId);
+
+  res.json(arrayOfFormatId);
+});
 
 router.post("/createOneCardInStock", async (req, res) => {
   const oneCard = await db.MkmProduct.create({
