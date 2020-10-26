@@ -33,14 +33,28 @@ router.post("/", async (req, res) => {
     res.status(406).json("Formats must be an array.");
     return;
   }
-  //Does the format exist ? If yes, create a dictionnary that will help us later
+
+  //Dictionnary of formats
   const allFormats = await db.Format.findAll();
   const reducer = (accumulator, currentValue) => [
     ...accumulator,
     currentValue.id,
   ];
   const arrayOfFormatId = allFormats.reduce(reducer, []);
-  console.log(arrayOfFormatId);
+
+  //Does the formats passed in payload exist ? Let's check'em !
+  for (let i = 0; i < req.body.formats.length; i++) {
+    if (!arrayOfFormatId.indludes(req.body.formats[i])) {
+      res.status(406).json(`Formats n°${req.body.formats[i]} doesn't exist.`);
+      return;
+    }
+    if (isNaN(parseInt(req.body.formats[i]))) {
+      res
+        .status(406)
+        .json(`Formats n°${req.body.formats[i]} must be an integer.`);
+      return;
+    }
+  }
 
   // Check 3 : JWT
   // Auth delegation - checking if the account is a ROLE_ADMIN
