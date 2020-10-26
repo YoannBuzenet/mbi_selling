@@ -33,6 +33,14 @@ router.post("/", async (req, res) => {
     res.status(406).json("Formats must be an array.");
     return;
   }
+  //Does the format exist ? If yes, create a dictionnary that will help us later
+  const allFormats = await db.Format.findAll();
+  const reducer = (accumulator, currentValue) => [
+    ...accumulator,
+    currentValue.id,
+  ];
+  const arrayOfFormatId = allFormats.reduce(reducer, []);
+  console.log(arrayOfFormatId);
 
   // Check 3 : JWT
   // Auth delegation - checking if the account is a ROLE_ADMIN
@@ -81,10 +89,13 @@ router.post("/", async (req, res) => {
   }
 
   // on compte le nombre de cartes dans le format voulu
-  const numberOfCardsToHandle = await db.MkmProduct.findAll({where {
-    idShop : req.body.idShop,
-    //isLegal via l'association productLegality
-  }})
+  const numberOfCardsToHandle = await db.MkmProduct.findAll({
+    where: {
+      idShop: req.body.idShop,
+      formats: "TODO",
+      //isLegal via l'association productLegality
+    },
+  });
   // on en déduit le nombre de requetes qu'on va devoir effectuer
 
   //On continue la logique
