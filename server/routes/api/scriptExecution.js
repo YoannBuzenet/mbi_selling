@@ -3,7 +3,7 @@ var router = express.Router();
 const db = require("../../../models/index");
 const securityCheckAPI = require("../../services/securityCheckAPI");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
   /* ************************ */
@@ -17,6 +17,16 @@ router.get("/", async (req, res) => {
 
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
+    return;
+  }
+
+  //Check payload
+  if (Object.keys(req.body).length === 0) {
+    res.status(406).json("Script Execution payload is missing.");
+    return;
+  }
+  if (req.body.formats === undefined) {
+    res.status(406).json("Formats are mandatory to launch a Script Execution.");
     return;
   }
 
