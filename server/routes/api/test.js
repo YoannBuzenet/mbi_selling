@@ -33,6 +33,20 @@ router.get("/GetTransformedArrayOfAllFormats", async (req, res) => {
 
   res.json(arrayOfFormatId);
 });
+router.post("/GetCardsWithFormatPayload", async (req, res) => {
+  const numberOfCardsToHandle = await db.MkmProduct.findAll({
+    where: {
+      idShop: req.body.idShop,
+      [Op.or]: {
+        [isLegal + "Commander"]: 1,
+        [isLegal + "Legacy"]: 1,
+      },
+      //isLegal via l'association productLegality
+    },
+  });
+
+  console.log(numberOfCardsToHandle);
+});
 
 router.post("/createOneCardInStock", async (req, res) => {
   const oneCard = await db.MkmProduct.create({
