@@ -1,7 +1,9 @@
 "use strict";
+// const path = require("path");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    const db = require("../models/index");
     return queryInterface.bulkInsert(
       "MkmProducts",
       [
