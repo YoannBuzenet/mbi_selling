@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       MkmProduct.belongsTo(models.User, { foreignKey: "idShop" });
-      MkmProduct.belongsToMany(models.productLegalities, {
-        through: models.ProductLegalitiesMkmProducts,
+      MkmProduct.hasOne(models.productLegalities, {
         foreignKey: "MkmProduct_id",
       });
     }
