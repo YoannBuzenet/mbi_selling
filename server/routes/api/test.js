@@ -37,18 +37,25 @@ router.get("/GetTransformedArrayOfAllFormats", async (req, res) => {
 router.post("/GetCardsWithFormatPayload", async (req, res) => {
   const Op = Sequelize.Op;
   const numberOfCardsToHandle = await db.MkmProduct.findAll({
-    include: db.productLegalities,
+    include: [
+      {
+        model: db.productLegalities,
+        where: {
+          [Op.or]: {
+            isLegalCommander: 1,
+            isLegalLegacy: 1,
+          },
+        },
+      },
+    ],
     where: {
       idShop: 4,
-      [Op.or]: {
-        isLegalCommander: 1,
-        isLegalLegacy: 1,
-      },
-      //isLegal via l'association productLegality
     },
+    //isLegal via l'association productLegality
   });
 
-  console.log(numberOfCardsToHandle);
+  console.log("here is the result", numberOfCardsToHandle);
+  res.status(200).json(numberOfCardsToHandle);
 });
 
 router.post("/createOneCardInStock", async (req, res) => {

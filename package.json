@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "db-test": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db-test": "SET DATABASE_URL_DEV= mysql://root:Musk1977!@localhost:3306/mbi_selling_database_development& npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "db-clean": "npx sequelize-cli db:migrate:undo:all",
     "start:server": "NODE_ENV=development node server/serverWrapper.js",
     "start:server:windows": "SET NODE_ENV=development& node server/server.js"
