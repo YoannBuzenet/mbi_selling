@@ -48,12 +48,6 @@ router.post("/", async (req, res) => {
       res.status(406).json(`Formats n°${req.body.formats[i]} doesn't exist.`);
       return;
     }
-    if (isNaN(parseInt(req.body.formats[i]))) {
-      res
-        .status(406)
-        .json(`Formats n°${req.body.formats[i]} must be an integer.`);
-      return;
-    }
   }
 
   // Check 3 : JWT
@@ -102,15 +96,23 @@ router.post("/", async (req, res) => {
     //on get le stock via MKM
   }
 
-  // on compte le nombre de cartes dans le format voulu
+  // Counting the number of cards concerned by this script
+
+  let orConditionOnFormats = arrayOfFormatId.map((formatId) => ({
+    [isLegal + "Commander"]: 1,
+  }));
+
   const numberOfCardsToHandle = await db.MkmProduct.findAll({
     where: {
       idShop: req.body.idShop,
-      formats: "TODO",
+      [Op.or]: orConditionOnFormats,
       //isLegal via l'association productLegality
     },
   });
-  // on en déduit le nombre de requetes qu'on va devoir effectuer
+
+  console.log(numberOfCardsToHandle);
+
+  // on en déduit le nombre de requetes qu'on va devoir effectuer grace à la taille du chunk
 
   //On continue la logique
 
