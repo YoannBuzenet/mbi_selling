@@ -10,7 +10,7 @@ module.exports = {
           idSet: 1,
           isLegalCommander: 1,
           isLegalDuel: 0,
-          isLegalLegacy: 0,
+          isLegalLegacy: 1,
           isLegalModern: 0,
           isLegalVintage: 0,
           isLegalPenny: 0,

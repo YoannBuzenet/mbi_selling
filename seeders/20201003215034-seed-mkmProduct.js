@@ -27,22 +27,13 @@ module.exports = {
           idCurrency: 1,
           currencyCode: "EUR",
           idShop: 4,
-          // productLegalities: [{ idProduct: 1 }],
+          productLegalities: [{ idProduct: 1 }],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-      ],
-      {
-        include: [db.productLegalities],
-      }
-    );
-
-    return queryInterface.bulkInsert(
-      "MkmProducts",
-      [
         {
           idArticle: 1767,
-          idProduct: 1,
+          idProduct: 105,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
@@ -58,11 +49,21 @@ module.exports = {
           amount: 10,
           onSale: 0,
           idCurrency: 1,
+          productLegalities: [{ idProduct: 105 }],
           currencyCode: "EUR",
           idShop: 4,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+      ],
+      {
+        include: [db.productLegalities],
+      }
+    );
+
+    return queryInterface.bulkInsert(
+      "MkmProducts",
+      [
         {
           idArticle: 1,
           idProduct: 1,
