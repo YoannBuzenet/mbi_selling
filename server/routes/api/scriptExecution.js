@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  //Dictionnary of formats
+  //Dictionnary of formats ID
   const allFormats = await db.Format.findAll();
   const reducer = (accumulator, currentValue) => [
     ...accumulator,
@@ -123,23 +123,34 @@ router.post("/", async (req, res) => {
   // Counting the number of cards concerned by this script
 
   const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
-  console.log("format dictionnary", formatDictionnary);
-  //yo -> .map
-  let orConditionOnFormats = arrayOfFormatId.map((formatId) => ({
-    ["isLegal" + formatDictionnary[formatId]]: 1,
-  }));
+  // console.log("format dictionnary", formatDictionnary);
 
-  console.log("islegal formats : ", orConditionOnFormats);
+  let formatFilter = {};
 
-  const numberOfCardsToHandle = await db.MkmProduct.findAll({
-    where: {
-      idShop: idShop,
-      [Op.or]: orConditionOnFormats,
-      //isLegal via l'association productLegality
+  for (let i = 0; i < req.body.formats.length; i++) {
+    formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
+  }
+
+  console.log("format filter", formatFilter);
+
+  const numberOfCardsToHandle = await db.MkmProduct.findAll(
+    {
+      include: [
+        {
+          model: db.productLegalities,
+          where: {
+            [Op.or]: formatFilter,
+          },
+        },
+      ],
+      where: {
+        idShop: idShop,
+      },
     },
-  });
+    {}
+  );
 
-  console.log(numberOfCardsToHandle);
+  console.log("number of cards to handle", numberOfCardsToHandle);
 
   // on en déduit le nombre de requetes qu'on va devoir effectuer grace à la taille du chunk
 

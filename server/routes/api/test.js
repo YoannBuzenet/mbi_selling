@@ -35,6 +35,7 @@ router.get("/GetTransformedArrayOfAllFormats", async (req, res) => {
   res.json(arrayOfFormatId);
 });
 router.post("/GetCardsWithFormatPayload", async (req, res) => {
+  //isLegal via l'association productLegality
   const Op = Sequelize.Op;
   const numberOfCardsToHandle = await db.MkmProduct.findAll({
     include: [
@@ -51,7 +52,6 @@ router.post("/GetCardsWithFormatPayload", async (req, res) => {
     where: {
       idShop: 4,
     },
-    //isLegal via l'association productLegality
   });
 
   console.log("here is the result", numberOfCardsToHandle);

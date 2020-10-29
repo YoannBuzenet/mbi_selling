@@ -241,7 +241,7 @@ module.exports = {
         },
         {
           idArticle: 10,
-          idProduct: 111,
+          idProduct: 1,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
@@ -258,7 +258,7 @@ module.exports = {
           onSale: 0,
           idCurrency: 1,
           currencyCode: "EUR",
-          idShop: 4,
+          idShop: 7,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
