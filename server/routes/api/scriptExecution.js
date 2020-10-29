@@ -94,6 +94,10 @@ router.post("/", async (req, res) => {
     },
   });
 
+  /* **************************************** */
+  /* *****Refreshing the stock if needed ******/
+  /* **************************************** */
+
   if (
     oneCardAtRandomFromStock === null ||
     new Date(oneCardAtRandomFromStock.updatedAt).getTime() +
@@ -120,10 +124,28 @@ router.post("/", async (req, res) => {
 
   console.log("we passed the stock refresh step");
 
+  /* ******************************************* */
+  /* Loading custom rules for the current Script */
+  /* ******************************************* */
+
+  const allCustomRules = await db.Custom_Rule.findAll({
+    where: {
+      idScript: idScript,
+    },
+  });
+  // console.log("all custom rules", allCustomRules);
+
+  // TO DO
+
+  //Les ranger & Vérifier leur cohérences
+
+  /* **************************************** */
+  /* ********** Chunk Management ***********/
+  /* **************************************** */
+
   // Counting the number of cards concerned by this script
 
   const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
-  // console.log("format dictionnary", formatDictionnary);
 
   let formatFilter = {};
 
@@ -133,7 +155,7 @@ router.post("/", async (req, res) => {
 
   console.log("format filter", formatFilter);
 
-  const numberOfCardsToHandle = await db.MkmProduct.findAll(
+  const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
     {
       include: [
         {
@@ -150,11 +172,12 @@ router.post("/", async (req, res) => {
     {}
   );
 
-  console.log("number of cards to handle", numberOfCardsToHandle);
+  // Saving by chunks
+  const chunkSize = 100;
 
-  // on en déduit le nombre de requetes qu'on va devoir effectuer grace à la taille du chunk
+  //TO DO -> passer dans les custom rules en log(n) et enregistrer dans put memory
 
-  //On continue la logique
+  //Envoi Mail TO DO
 
   res.json("Script executed");
 });
