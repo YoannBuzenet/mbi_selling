@@ -18,7 +18,7 @@ function getShopStock(shopInfo, idShop) {
     shopInfo.accessSecret
   );
 
-  axios
+  return axios
     .get(MkmAPI.URL_MKM_GET_STOCK, {
       headers: {
         Authorization: header,
@@ -115,7 +115,7 @@ function getShopStock(shopInfo, idShop) {
         });
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log("error when loggin to MKM", err));
 }
 
 async function registerStockFileIntoDB(shopId) {

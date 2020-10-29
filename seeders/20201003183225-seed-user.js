@@ -11,6 +11,11 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          idShop: 7,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
