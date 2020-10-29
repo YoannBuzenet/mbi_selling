@@ -4,6 +4,9 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const db = require("../../../models/index");
 const securityCheckAPI = require("../../services/securityCheckAPI");
+const axios = require("axios");
+const mkmController = require("../../controllers/mkmController");
+const definitionsAPI = require("../../../src/services/definitionsAPI");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -44,9 +47,11 @@ router.post("/", async (req, res) => {
   ];
   const arrayOfFormatId = allFormats.reduce(reducer, []);
 
+  // console.log("arrayOfFormatId", arrayOfFormatId);
+
   //Does the formats passed in payload exist ? Let's check'em !
   for (let i = 0; i < req.body.formats.length; i++) {
-    if (!arrayOfFormatId.indludes(req.body.formats[i])) {
+    if (!arrayOfFormatId.includes(req.body.formats[i])) {
       res.status(406).json(`Formats n°${req.body.formats[i]} doesn't exist.`);
       return;
     }
@@ -95,18 +100,40 @@ router.post("/", async (req, res) => {
       process.env.TIME_TO_EXPIRE_STOCK <
       new Date().getTime()
   ) {
+    console.log("We refresh the shop stock");
+    let axiosConfig = {
+      headers: {
+        Authorization: req.headers.authorization,
+      },
+    };
+    // on choppe les shopinfo sur mtgapi avec le jwt
+    const shopdataRequest = await axios
+      .get(process.env.REACT_APP_MTGAPI_URL + "/shops/" + idShop, axiosConfig)
+      .catch((err) =>
+        console.log("error when trying to get shop data from mtgAPI", err)
+      );
+    // console.log("shopdata from axios call", shopdataRequest);
+
     //on get le stock via MKM
+    await mkmController.getShopStock(shopdataRequest.data, idShop);
   }
+
+  console.log("we passed the stock refresh step");
 
   // Counting the number of cards concerned by this script
 
+  const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
+  console.log("format dictionnary", formatDictionnary);
+  //yo -> .map
   let orConditionOnFormats = arrayOfFormatId.map((formatId) => ({
-    [isLegal + "Commander"]: 1,
+    ["isLegal" + formatDictionnary[formatId]]: 1,
   }));
+
+  console.log("islegal formats : ", orConditionOnFormats);
 
   const numberOfCardsToHandle = await db.MkmProduct.findAll({
     where: {
-      idShop: req.body.idShop,
+      idShop: idShop,
       [Op.or]: orConditionOnFormats,
       //isLegal via l'association productLegality
     },
