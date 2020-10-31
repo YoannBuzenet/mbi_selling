@@ -8,6 +8,7 @@ const axios = require("axios");
 const mkmController = require("../../controllers/mkmController");
 const definitionsAPI = require("../../../src/services/definitionsAPI");
 const { prepareStateFromArrayOfRules } = require("../../services/utils");
+const utils = require("../../services/utils");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -312,8 +313,10 @@ router.post("/", async (req, res) => {
     );
 
     // We take a snapshot of the params
-    //TODO snapshot params
 
+    //TODO snapshot params
+    //yo
+    await utils.snapshotShopParams(idShop);
     //Put Request creation - we get an ID that we will use in every put memory
     put_request = await db.PUT_Request.create({
       shopId: idShop,

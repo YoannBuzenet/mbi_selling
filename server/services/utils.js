@@ -1,3 +1,5 @@
+const db = require("../../models/index");
+
 //Returns an object ready to be passed in state
 function prepareStateFromArrayOfRules(arrayOfCustomRules) {
   //Separing foil rules from regular rules
@@ -30,4 +32,14 @@ function prepareStateFromArrayOfRules(arrayOfCustomRules) {
   return objectToReturn;
 }
 
-module.exports = { prepareStateFromArrayOfRules };
+async function snapshotShopParams(idShop) {
+  currentShopParams = await db.shop_params.findOne({
+    where: {
+      idShop: idShop,
+    },
+  });
+  console.log("les shops params : ", currentShopParams);
+  return currentShopParams;
+}
+
+module.exports = { prepareStateFromArrayOfRules, snapshotShopParams };
