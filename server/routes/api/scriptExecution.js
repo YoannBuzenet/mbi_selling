@@ -306,10 +306,12 @@ router.post("/", async (req, res) => {
 
     // Saving by chunks
     const chunkSize = 100;
-    const numberOfIterations = Math.ceil(numberOfCardsToHandle / chunkSize);
+    const numberOfIterations = Math.ceil(
+      numberOfCardsToHandle.count / chunkSize
+    );
 
     console.log(
-      `with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
+      `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
     );
 
     //Snapshot shop params for the current PUT Request
@@ -320,10 +322,6 @@ router.post("/", async (req, res) => {
       shopId: idShop,
       snapShotParamId: snapShop_Shop_Param.dataValues.id,
     });
-
-    console.log("la put_request id est :", put_request.dataValues.id);
-
-    let offset = 0;
 
     for (let i = 0; i < numberOfIterations; i++) {
       //choper les 100 premières cartes (en ajusant offset à chaque iteration )
@@ -344,8 +342,10 @@ router.post("/", async (req, res) => {
         { offset: i * chunkSize, limit: chunkSize }
       );
 
+      console.log("chunk of cards to .map on", chunkOfCards);
+
       //et pour chacune
-      chunkOfCards.dataValues.map((card) => console.log("card", card));
+      chunkOfCards.map((card) => console.log("card", card));
       // passer la carte dans les regles et la passer dans put memory
     }
 
