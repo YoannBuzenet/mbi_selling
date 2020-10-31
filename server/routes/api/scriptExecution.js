@@ -315,17 +315,38 @@ router.post("/", async (req, res) => {
     //Snapshot shop params for the current PUT Request
     const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
 
-    console.log(snapShop_Shop_Param);
-
     //Put Request creation - we get an ID that we will use in every put memory
     put_request = await db.PUT_Request.create({
       shopId: idShop,
-      snapShotParamId: 0,
+      snapShotParamId: snapShop_Shop_Param.dataValues.id,
     });
 
+    console.log("la put_request id est :", put_request.dataValues.id);
+
+    let offset = 0;
+
     for (let i = 0; i < numberOfIterations; i++) {
-      //On a besoin d'un id de put request
-      // Ecrire dans put_memory
+      //choper les 100 premières cartes (en ajusant offset à chaque iteration )
+      const chunkOfCards = await db.MkmProduct.findAll(
+        {
+          include: [
+            {
+              model: db.productLegalities,
+              where: {
+                [Op.or]: formatFilter,
+              },
+            },
+          ],
+          where: {
+            idShop: idShop,
+          },
+        },
+        { offset: i * chunkSize, limit: chunkSize }
+      );
+
+      //et pour chacune
+      chunkOfCards.dataValues.map((card) => console.log("card", card));
+      // passer la carte dans les regles et la passer dans put memory
     }
 
     //TO DO -> passer dans les custom rules en log(n) et enregistrer dans put memory
