@@ -11,9 +11,9 @@ module.exports = {
       shopId: {
         type: Sequelize.INTEGER,
       },
-      batchId: {
-        type: Sequelize.INTEGER,
-      },
+      // batchId: {
+      //   type: Sequelize.INTEGER,
+      // },
       snapShotParamId: {
         type: Sequelize.INTEGER,
         allowNull: false,

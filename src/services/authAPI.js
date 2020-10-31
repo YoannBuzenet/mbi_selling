@@ -144,7 +144,7 @@ function transformAPIdataIntoAppData(data) {
     refresh_token: data.refresh_token,
     token: data.token,
     user: {
-      id: data.user.id,
+      id: data.shop.id,
       email: data.user.email,
       roles: data.user.roles,
     },
