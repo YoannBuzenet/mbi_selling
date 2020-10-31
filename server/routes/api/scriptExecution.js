@@ -342,14 +342,13 @@ router.post("/", async (req, res) => {
         { offset: i * chunkSize, limit: chunkSize }
       );
 
-      console.log("chunk of cards to .map on", chunkOfCards);
-
-      //et pour chacune
-      chunkOfCards.map((card) => console.log("card", card));
-      // passer la carte dans les regles et la passer dans put memory
+      for (let j = 0; j < chunkOfCards.length; j++) {
+        const card = chunkOfCards[i].dataValues;
+        //yo
+        //TO DO -> passer dans les custom rules en log(n)
+        // enregistrer dans put memory
+      }
     }
-
-    //TO DO -> passer dans les custom rules en log(n) et enregistrer dans put memory
 
     //Envoi Mail TO DO
 
