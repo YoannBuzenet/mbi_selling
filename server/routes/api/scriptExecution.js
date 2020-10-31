@@ -312,11 +312,11 @@ router.post("/", async (req, res) => {
       `with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
     );
 
-    // We take a snapshot of the params
+    //Snapshot shop params for the current PUT Request
+    const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
 
-    //TODO snapshot params
-    //yo
-    await utils.snapshotShopParams(idShop);
+    console.log(snapShop_Shop_Param);
+
     //Put Request creation - we get an ID that we will use in every put memory
     put_request = await db.PUT_Request.create({
       shopId: idShop,
