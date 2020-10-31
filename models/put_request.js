@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      batchId: {
-        type: DataTypes.INTEGER,
-        validate: { isNumeric: true },
-      },
+      // batchId: {
+      //   type: DataTypes.INTEGER,
+      //   validate: { isNumeric: true },
+      // },
       snapShotParamId: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },

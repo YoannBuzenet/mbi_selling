@@ -201,7 +201,7 @@ const CreateMyScript = ({ history }) => {
       //GETTING CUSTOM RULES
       axios
         .get(
-          `/api/customRules?idUser=${authenticationInfos.user.id}&idScript=${match?.params?.id}`
+          `/api/customRules?idUser=${authenticationInfos.shop.id}&idScript=${match?.params?.id}`
         )
         .then((resp) => {
           // console.log(resp.data);

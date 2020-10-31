@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
 
     let userScripts = await db.Script.findAll({
       where: {
-        idShop: loginOnMTGAPI.data.user.id,
+        idShop: loginOnMTGAPI.data.shop.id,
       },
     });
 

@@ -7,6 +7,7 @@ const securityCheckAPI = require("../../services/securityCheckAPI");
 const axios = require("axios");
 const mkmController = require("../../controllers/mkmController");
 const definitionsAPI = require("../../../src/services/definitionsAPI");
+const { prepareStateFromArrayOfRules } = require("../../services/utils");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -133,53 +134,203 @@ router.post("/", async (req, res) => {
       idScript: idScript,
     },
   });
-  // console.log("all custom rules", allCustomRules);
+  console.log("all custom rules", allCustomRules);
 
   // TO DO
 
-  //Les ranger & Vérifier leur cohérences
+  //Ordering rules by price and foil/non Foil
+  let orderedCustoMRules = prepareStateFromArrayOfRules(
+    allCustomRules.map((customRule) => customRule.dataValues)
+  );
+  // console.log("ordered rules", orderedCustoMRules);
 
-  /* **************************************** */
-  /* ********** Chunk Management ***********/
-  /* **************************************** */
+  // Check rule coherence : do rule price follow each other, if ruleType = X, is there a price
+  // Browse the state, return a mutated state with the "incoherent" markets up to date.
+  const browseScriptAndMarkIncoherence = (state) => {
+    // console.log("search for incoherence");
+    let mutatedState = { ...state };
 
-  // Counting the number of cards concerned by this script
+    // console.log("search for incoherence in regular array");
+    //Browsing Regular Array
+    if (Array.isArray(mutatedState.regular)) {
+      checkArrayIncoherence(mutatedState.regular);
+    }
+    // console.log("search for incoherence in foil array");
+    //Browsing Foil Array
+    if (Array.isArray(mutatedState.foil)) {
+      checkArrayIncoherence(mutatedState.foil);
+    }
 
-  const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
+    return mutatedState;
+  };
 
-  let formatFilter = {};
+  //We compare each rule to its next one and
+  //1 Check that first price of the rule is inferior to the second price
+  // 2. check if the number of sticking, thus creating no holes in the rule coverture
+  const checkArrayIncoherence = (arrayOfCustomRules) => {
+    if (Array.isArray(arrayOfCustomRules)) {
+      for (let i = 0; i < arrayOfCustomRules.length; i++) {
+        // console.log(
+        //   "here is the rule we are working on",
+        //   arrayOfCustomRules[i]
+        // );
 
-  for (let i = 0; i < req.body.formats.length; i++) {
-    formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
-  }
+        //Check if starting value is 0
+        if (i === 0 && arrayOfCustomRules[i].priceRangeFrom !== 0) {
+          arrayOfCustomRules[i].hasIncoherentStartingPrice = true;
+        } else {
+          arrayOfCustomRules[i].hasIncoherentStartingPrice = false;
+        }
 
-  console.log("format filter", formatFilter);
+        //We check if price are defined or if there is an empty place
+        if (
+          isNaN(parseInt(arrayOfCustomRules[i].priceRangeFrom)) ||
+          isNaN(parseInt(arrayOfCustomRules[i].priceRangeTo))
+        ) {
+          arrayOfCustomRules[i].hasEmptyInput = true;
+        } else {
+          //If price are defined
+          arrayOfCustomRules[i].hasEmptyInput = false;
+          if (
+            arrayOfCustomRules[i].priceRangeFrom >=
+            arrayOfCustomRules[i].priceRangeTo
+          ) {
+            //Universal check : are price coherent (from < to) ?
+            arrayOfCustomRules[i].hasIncoherentOrderInFromTo = true;
+          } else {
+            arrayOfCustomRules[i].hasIncoherentOrderInFromTo = false;
+          }
+          //Checking, if rule expect a price to sell, if this price is precised
+          if (
+            arrayOfCustomRules[i].ruleTypeId === 1 &&
+            !Boolean(arrayOfCustomRules[i].priceRangeValueToSet)
+          ) {
+            arrayOfCustomRules[i].isMissingSellingPrice = true;
+          } else {
+            arrayOfCustomRules[i].isMissingSellingPrice = false;
+          }
+        }
 
-  const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
-    {
-      include: [
-        {
-          model: db.productLegalities,
-          where: {
-            [Op.or]: formatFilter,
-          },
-        },
-      ],
-      where: {
-        idShop: idShop,
-      },
-    },
-    {}
+        //We do this comparison only if it's NOT the last element of the array (because the next element doesn't exist, yeah !)
+        if (i !== arrayOfCustomRules.length - 1) {
+          if (
+            arrayOfCustomRules[i].priceRangeTo !==
+            arrayOfCustomRules[i + 1].priceRangeFrom
+          ) {
+            arrayOfCustomRules[i].hasIncoherentFollowingPrices = true;
+          } else {
+            arrayOfCustomRules[i].hasIncoherentFollowingPrices = false;
+          }
+        }
+      }
+      // console.log("treated array", arrayOfCustomRules);
+      return arrayOfCustomRules;
+    } else {
+      throw new Error("Param received is not of type Array.");
+    }
+  };
+  const canArrayOfCustomRulesBeProcessed = (currentState) => {
+    return (
+      currentState.foil.filter(
+        (rule) =>
+          rule.hasEmptyInput ||
+          rule.hasIncoherentFollowingPrices ||
+          rule.hasIncoherentOrderInFromTo ||
+          rule.hasIncoherentStartingPrice ||
+          rule.isMissingSellingPrice
+      ).length === 0 &&
+      currentState.regular.filter(
+        (rule) =>
+          rule.hasEmptyInput ||
+          rule.hasIncoherentFollowingPrices ||
+          rule.hasIncoherentOrderInFromTo ||
+          rule.hasIncoherentStartingPrice ||
+          rule.isMissingSellingPrice
+      ).length === 0
+    );
+  };
+
+  const rulesWithError = browseScriptAndMarkIncoherence(orderedCustoMRules);
+
+  const IsArrayOfCustomRulesProcessable = canArrayOfCustomRulesBeProcessed(
+    rulesWithError
   );
 
-  // Saving by chunks
-  const chunkSize = 100;
+  console.log(
+    "can array of rules be processed ?",
+    IsArrayOfCustomRulesProcessable
+  );
 
-  //TO DO -> passer dans les custom rules en log(n) et enregistrer dans put memory
+  if (!IsArrayOfCustomRulesProcessable) {
+    console.log("rules with errors :", rulesWithError);
 
-  //Envoi Mail TO DO
+    res
+      .status(500)
+      .json("The custom rules are not coherent. Please check them.");
+  }
 
-  res.json("Script executed");
+  if (IsArrayOfCustomRulesProcessable) {
+    /* **************************************** */
+    /* ********** Chunk Management ***********/
+    /* **************************************** */
+
+    // Counting the number of cards concerned by this script
+
+    const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
+
+    let formatFilter = {};
+
+    for (let i = 0; i < req.body.formats.length; i++) {
+      formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
+    }
+
+    console.log("format filter", formatFilter);
+
+    const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
+      {
+        include: [
+          {
+            model: db.productLegalities,
+            where: {
+              [Op.or]: formatFilter,
+            },
+          },
+        ],
+        where: {
+          idShop: idShop,
+        },
+      },
+      {}
+    );
+
+    // Saving by chunks
+    const chunkSize = 100;
+    const numberOfIterations = Math.ceil(numberOfCardsToHandle / chunkSize);
+
+    console.log(
+      `with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
+    );
+
+    // We take a snapshot of the params
+    //TODO snapshot params
+
+    //Put Request creation - we get an ID that we will use in every put memory
+    put_request = await db.PUT_Request.create({
+      shopId: idShop,
+      snapShotParamId: 0,
+    });
+
+    for (let i = 0; i < numberOfIterations; i++) {
+      //On a besoin d'un id de put request
+      // Ecrire dans put_memory
+    }
+
+    //TO DO -> passer dans les custom rules en log(n) et enregistrer dans put memory
+
+    //Envoi Mail TO DO
+
+    res.json("Script executed");
+  }
 });
 
 module.exports = router;
