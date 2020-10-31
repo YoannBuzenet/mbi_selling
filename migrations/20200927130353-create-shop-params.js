@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      shopId: {
+      idShop: {
         type: Sequelize.INTEGER,
       },
       percentPerSigned: {
@@ -18,6 +18,9 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       percentPerNearMintRegular: {
+        type: Sequelize.INTEGER,
+      },
+      percentPerExcellentRegular: {
         type: Sequelize.INTEGER,
       },
       percentPerGoodRegular: {
@@ -36,6 +39,9 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       percentPerNearMintFoil: {
+        type: Sequelize.INTEGER,
+      },
+      percentPerExcellentFoil: {
         type: Sequelize.INTEGER,
       },
       percentPerGoodFoil: {

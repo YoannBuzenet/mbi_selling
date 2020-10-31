@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   shop_params.init(
     {
-      shopId: {
+      idShop: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       percentPerNearMintRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerExcellentRegular: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
@@ -51,6 +55,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       percentPerNearMintFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerExcellentFoil: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
