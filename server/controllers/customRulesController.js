@@ -23,8 +23,8 @@ function transformCustomRulesIntoBrowsableArray(arrayOfCustomRules) {
       ...processedArray,
       [
         arrayOfCustomRules[i].priceRangeFrom,
-        arrayOfCustomRules[i],
         arrayOfCustomRules[i].priceRangeTo,
+        arrayOfCustomRules[i],
       ],
     ];
   }
