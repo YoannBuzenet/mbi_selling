@@ -10,6 +10,7 @@ const definitionsAPI = require("../../../src/services/definitionsAPI");
 const { prepareStateFromArrayOfRules } = require("../../services/utils");
 const utils = require("../../services/utils");
 const customRulesController = require("../../controllers/customRulesController");
+const priceUpdateAPI = require("../../services/priceUpdateAPI");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -343,6 +344,7 @@ router.post("/", async (req, res) => {
         { offset: i * chunkSize, limit: chunkSize }
       );
 
+      //Morphing the rules into an array of array with prices sorted, to make them browsable in log(n)
       const arrayOfSortedRulesRegular = customRulesController.transformCustomRulesIntoBrowsableArray(
         orderedCustoMRules.regular
       );
@@ -350,11 +352,32 @@ router.post("/", async (req, res) => {
         orderedCustoMRules.foil
       );
 
-      console.log("array of sorted regular", arrayOfSortedRulesRegular);
-      console.log("array of sorted foil", arrayOfSortedRulesFoil);
-
+      let action;
       for (let j = 0; j < chunkOfCards.length; j++) {
         const card = chunkOfCards[i].dataValues;
+
+        // console.log("------voilà une CARTE", card);
+
+        if (card.isFoil === 0) {
+          console.log("array of sorted regular", arrayOfSortedRulesRegular);
+          action = priceUpdateAPI.findTheRightPriceRange(
+            arrayOfSortedRulesRegular,
+            card.price
+          );
+
+          console.log("regular action for that card", action);
+        } else if (card.isFoil === 1) {
+          console.log("array of sorted foil", arrayOfSortedRulesFoil);
+          action = priceUpdateAPI.findTheRightPriceRange(
+            arrayOfSortedRulesFoil,
+            card.price
+          );
+
+          console.log("regular action for that card", action);
+        } else {
+          res.status(500).json("A card was missing the isFoil prop.");
+        }
+        //next
         //yo
         //TO DO -> passer dans les custom rules en log(n)
         //if foil
