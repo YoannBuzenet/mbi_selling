@@ -353,6 +353,7 @@ router.post("/", async (req, res) => {
       );
 
       let action;
+      //For each card, we will process the price, check if we update it or not
       for (let j = 0; j < chunkOfCards.length; j++) {
         const card = chunkOfCards[i].dataValues;
 
@@ -375,9 +376,18 @@ router.post("/", async (req, res) => {
         } else {
           res.status(500).json("A card was missing the isFoil prop.");
         }
+
+        //We are getting all behaviours, we will need them whe processing the custom rules. This is an array
+        const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
+
+        //We transform the array into a dictionnary (hashmap) to browse it in constant time
+        const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+          behaviourDefinitions.map((definition) => definition.dataValues)
+        );
+
         //next - on se base sur l'action qui est soit un objet, soit -1, soit -2
         //yo
-        //TO DO -> passer dans les custom rules en log(n)
+        //TO DO -> passer dans les custom rules en log(n) + verif priceShield
         //if foil
         //if non foil
         // enregistrer dans put memory

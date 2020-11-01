@@ -82,4 +82,20 @@ async function snapshotShopParams(idShop) {
   return snaphotShopParams;
 }
 
-module.exports = { prepareStateFromArrayOfRules, snapshotShopParams };
+function transformArrayIntoDictionnaryWithKey(array, key = "id") {
+  var dictionnaryToReturn = {};
+
+  if (array) {
+    for (let i = 0; i < array.length; i++) {
+      dictionnaryToReturn[array[i][key]] = array[i];
+    }
+  }
+
+  return dictionnaryToReturn;
+}
+
+module.exports = {
+  prepareStateFromArrayOfRules,
+  snapshotShopParams,
+  transformArrayIntoDictionnaryWithKey,
+};
