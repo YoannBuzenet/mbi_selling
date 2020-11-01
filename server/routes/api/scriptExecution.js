@@ -9,6 +9,7 @@ const mkmController = require("../../controllers/mkmController");
 const definitionsAPI = require("../../../src/services/definitionsAPI");
 const { prepareStateFromArrayOfRules } = require("../../services/utils");
 const utils = require("../../services/utils");
+const customRulesController = require("../../controllers/customRulesController");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -342,10 +343,22 @@ router.post("/", async (req, res) => {
         { offset: i * chunkSize, limit: chunkSize }
       );
 
+      const arrayOfSortedRulesRegular = customRulesController.transformCustomRulesIntoBrowsableArray(
+        orderedCustoMRules.regular
+      );
+      const arrayOfSortedRulesFoil = customRulesController.transformCustomRulesIntoBrowsableArray(
+        orderedCustoMRules.foil
+      );
+
+      console.log("array of sorted regular", arrayOfSortedRulesRegular);
+      console.log("array of sorted foil", arrayOfSortedRulesFoil);
+
       for (let j = 0; j < chunkOfCards.length; j++) {
         const card = chunkOfCards[i].dataValues;
         //yo
         //TO DO -> passer dans les custom rules en log(n)
+        //if foil
+        //if non foil
         // enregistrer dans put memory
       }
     }
