@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
   customRule_behaviour_definition.init(
     {
       name: DataTypes.STRING,
+      type: DataTypes.STRING,
+      sense: DataTypes.STRING,
+      coefficient: DataTypes.FLOAT,
     },
     {
       sequelize,
