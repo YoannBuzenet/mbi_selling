@@ -37,6 +37,29 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
   return -1;
 }
 
+function priceShieldAllows(oldPrice, newPrice, priceTrend) {
+  const variationRate = Math.floor((newPrice - oldPrice / oldPrice) * 100);
+  const variationRateTrend = Math.floor(
+    (newPrice - priceTrend / priceTrend) * 100
+  );
+
+  //If card is under 50€ and new price is more than 30% under the trend
+  if (oldPrice < 50 && newPrice < priceTrend && variationRateTrend > 30) {
+    return false;
+  }
+  //If card is above 50€ and new price is more than 10% under the trend
+  else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 10) {
+    return false;
+  }
+  //If the card is worth more than 10 euros and variation rate is more than 50%
+  else if (oldPrce < newPrice && oldPrice >= 10 && variationRate > 50) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 module.exports = {
   findTheRightPriceRange,
+  priceShieldAllows,
 };

@@ -356,8 +356,6 @@ router.post("/", async (req, res) => {
       for (let j = 0; j < chunkOfCards.length; j++) {
         const card = chunkOfCards[i].dataValues;
 
-        // console.log("------voilà une CARTE", card);
-
         if (card.isFoil === 0) {
           console.log("array of sorted regular", arrayOfSortedRulesRegular);
           action = priceUpdateAPI.findTheRightPriceRange(
@@ -377,7 +375,7 @@ router.post("/", async (req, res) => {
         } else {
           res.status(500).json("A card was missing the isFoil prop.");
         }
-        //next
+        //next - on se base sur l'action qui est soit un objet, soit -1, soit -2
         //yo
         //TO DO -> passer dans les custom rules en log(n)
         //if foil
