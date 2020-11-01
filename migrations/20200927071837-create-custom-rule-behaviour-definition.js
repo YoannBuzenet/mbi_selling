@@ -131,7 +131,7 @@ module.exports = {
           {
             name: "roundUp0.5",
             coefficient: 0.5,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -139,7 +139,7 @@ module.exports = {
           {
             name: "roundUp1",
             coefficient: 1,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -147,7 +147,7 @@ module.exports = {
           {
             name: "roundUp2",
             coefficient: 2,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -155,7 +155,7 @@ module.exports = {
           {
             name: "roundUp5",
             coefficient: 5,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -163,7 +163,7 @@ module.exports = {
           {
             name: "roundUp10",
             coefficient: 10,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -171,7 +171,7 @@ module.exports = {
           {
             name: "roundUp15",
             coefficient: 15,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -179,7 +179,7 @@ module.exports = {
           {
             name: "roundUp20",
             coefficient: 20,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -187,7 +187,7 @@ module.exports = {
           {
             name: "roundUp50",
             coefficient: 50,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -195,7 +195,7 @@ module.exports = {
           {
             name: "roundUp100",
             coefficient: 100,
-            type: "number",
+            type: "roundPrice",
             sense: "up",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -203,7 +203,7 @@ module.exports = {
           {
             name: "roundDown0.5",
             coefficient: 0.5,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -211,7 +211,7 @@ module.exports = {
           {
             name: "roundDown1",
             coefficient: 1,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -219,7 +219,7 @@ module.exports = {
           {
             name: "roundDown2",
             coefficient: 2,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -227,7 +227,7 @@ module.exports = {
           {
             name: "roundDown5",
             coefficient: 5,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -235,7 +235,7 @@ module.exports = {
           {
             name: "roundDown10",
             coefficient: 10,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -243,7 +243,7 @@ module.exports = {
           {
             name: "roundDown15",
             coefficient: 15,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -251,7 +251,7 @@ module.exports = {
           {
             name: "roundDown20",
             coefficient: 20,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -259,7 +259,7 @@ module.exports = {
           {
             name: "roundDown50",
             coefficient: 50,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -267,7 +267,7 @@ module.exports = {
           {
             name: "roundDown100",
             coefficient: 100,
-            type: "number",
+            type: "roundPrice",
             sense: "down",
             createdAt: new Date(),
             updatedAt: new Date(),
