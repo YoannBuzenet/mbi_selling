@@ -301,7 +301,8 @@ router.post("/", async (req, res) => {
         PUT_Request_id: put_request.dataValues.id,
       });
 
-      const { id } = snapshot_custom_rule.dataValues;
+      const idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
+      orderedCustoMRules.idSnapShotCustomRule = idSnapShotCustomRule;
     }
 
     /* **************************************** */
@@ -412,19 +413,21 @@ router.post("/", async (req, res) => {
 
         //next - on se base sur l'action qui est soit un objet, soit -1, soit -2
         if (action === -1) {
+          //Price is not updated : we just
           console.log("we are in action : -1");
           db.put_memory.create({
-            idScript: "",
-            idProduct: "",
-            oldPrice: "",
-            newPrice: "",
-            condition: "",
-            lang: "",
-            isFoil: "",
-            isSigned: "",
+            idScript: idScript,
+            idProduct: card.idProduct,
+            oldPrice: card.price,
+            newPrice: card.price,
+            condition: card,
+            lang: card,
+            isFoil: card,
+            isSigned: card,
             isPlayset: 0,
-            idCustomRuleUsed: "",
-            PUT_Request_id: "",
+            behaviourChosen: "No corresponding Custom Rule",
+            idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
+            PUT_Request_id: put_request.dataValues.id,
           });
         }
         //yo

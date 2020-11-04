@@ -40,7 +40,6 @@ module.exports = {
       priceRangeTo: {
         type: Sequelize.FLOAT,
       },
-      //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, Exclude
       behaviourId: {
         type: Sequelize.INTEGER,
         allowNull: false,

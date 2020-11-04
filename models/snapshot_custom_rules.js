@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       PUT_Request_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: "PUT_Request",
