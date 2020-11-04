@@ -40,11 +40,11 @@ module.exports = {
       isPlayset: {
         type: Sequelize.INTEGER,
       },
-      idCustomRuleUsed: {
+      PUT_Request_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "snapshot_custom_rules",
+          model: "PUT_Request",
           key: "id",
         },
       },

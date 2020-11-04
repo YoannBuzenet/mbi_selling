@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      put_memory.belongsTo(models.PUT_Request);
+      put_memory.belongsTo(models.PUT_Request, {
+        foreignKey: "PUT_Request_id",
+      });
     }
   }
   put_memory.init(
@@ -50,6 +52,14 @@ module.exports = (sequelize, DataTypes) => {
       idCustomRuleUsed: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+      },
+      PUT_Request_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "PUT_Request",
+          key: "id",
+        },
       },
     },
     {

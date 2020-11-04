@@ -404,6 +404,7 @@ router.post("/", async (req, res) => {
             isSigned: "",
             isPlayset: 0,
             idCustomRuleUsed: "",
+            PUT_Request_id: "",
           });
         }
         //yo
