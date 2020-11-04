@@ -35,7 +35,6 @@ module.exports = {
       priceRangeTo: {
         type: Sequelize.INTEGER,
       },
-      //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, Exclude
       behaviourId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -62,7 +61,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "PUT_Request",
+          model: "PUT_Requests",
           key: "id",
         },
       },

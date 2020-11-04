@@ -40,11 +40,18 @@ module.exports = {
       isPlayset: {
         type: Sequelize.INTEGER,
       },
+      behaviourChosen: {
+        type: Sequelize.STRING,
+      },
+      idCustomRuleUsed: {
+        type: Sequelize.INTEGER,
+        validate: { isNumeric: true },
+      },
       PUT_Request_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "PUT_Request",
+          model: "PUT_Requests",
           key: "id",
         },
       },
