@@ -139,8 +139,6 @@ router.post("/", async (req, res) => {
   });
   console.log("all custom rules", allCustomRules);
 
-  // TO DO
-
   //Ordering rules by price and foil/non Foil
   let orderedCustoMRules = prepareStateFromArrayOfRules(
     allCustomRules.map((customRule) => customRule.dataValues)
@@ -273,6 +271,13 @@ router.post("/", async (req, res) => {
   }
 
   if (IsArrayOfCustomRulesProcessable) {
+    /* **************************************** */
+    /* ********** Snapshot Custom Rule ***********/
+    /* **************************************** */
+    //Yo
+    //TODO We must snapshot the rules
+    //TODO For each one snapshoted, add its id in the object of the custom rule
+
     /* **************************************** */
     /* ********** Chunk Management ***********/
     /* **************************************** */
