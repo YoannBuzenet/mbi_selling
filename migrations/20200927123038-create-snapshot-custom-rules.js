@@ -36,8 +36,13 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       //Can be SetValue, RoundUp0.5,RoundUp1,RoundUpX, RoundDownX, Exclude
-      behaviour: {
-        type: Sequelize.STRING,
+      behaviourId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "customRule_behaviour_definitions",
+          key: "id",
+        },
       },
       priceRangeValueToSet: {
         type: Sequelize.INTEGER,

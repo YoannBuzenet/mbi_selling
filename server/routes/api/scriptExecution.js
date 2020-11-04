@@ -272,11 +272,37 @@ router.post("/", async (req, res) => {
 
   if (IsArrayOfCustomRulesProcessable) {
     /* **************************************** */
+    /* ********** PUT REQUEST CREATION ***********/
+    /* **************************************** */
+    const put_request = await db.PUT_Request.create({
+      shopId: idShop,
+      snapShotParamId: snapShop_Shop_Param.dataValues.id,
+    });
+
+    /* **************************************** */
     /* ********** Snapshot Custom Rule ***********/
     /* **************************************** */
     //Yo
     //TODO We must snapshot the rules
     //TODO For each one snapshoted, add its id in the object of the custom rule
+    for (let i = 0; i < orderedCustoMRules.length; i++) {
+      const snapshot_custom_rule = await db.snapshot_custom_rules.create({
+        idScript: idScript,
+        ruleType: orderedCustoMRules[i].ruleType,
+        priceRangeFrom: orderedCustoMRules[i].priceRangeFrom,
+        priceRangeTo: orderedCustoMRules[i].priceRangeTo,
+        priceRangeValueToSet: orderedCustoMRules[i].priceRangeValueToSet,
+        behaviourId: orderedCustoMRules[i].behaviourId,
+        priceRangePercentageFromMkm:
+          orderedCustoMRules[i].priceRangePercentageFromMkm,
+        isForFoils: orderedCustoMRules[i].isForFoils,
+        isForSigned: orderedCustoMRules[i].isForSigned,
+        isForPlaysets: orderedCustoMRules[i].isForPlaysets,
+        PUT_Request_id: put_request.dataValues.id,
+      });
+
+      const { id } = snapshot_custom_rule.dataValues;
+    }
 
     /* **************************************** */
     /* ********** Chunk Management ***********/
@@ -323,12 +349,6 @@ router.post("/", async (req, res) => {
 
     //Snapshot shop params for the current PUT Request
     const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
-
-    //Put Request creation - we get an ID that we will use in every put memory
-    put_request = await db.PUT_Request.create({
-      shopId: idShop,
-      snapShotParamId: snapShop_Shop_Param.dataValues.id,
-    });
 
     for (let i = 0; i < numberOfIterations; i++) {
       //choper les 100 premières cartes (en ajusant offset à chaque iteration )

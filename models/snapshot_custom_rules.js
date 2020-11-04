@@ -33,7 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      behaviour: DataTypes.STRING,
+      behaviourId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       priceRangePercentageFromMkm: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
