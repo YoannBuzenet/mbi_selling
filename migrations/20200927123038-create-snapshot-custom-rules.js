@@ -53,6 +53,14 @@ module.exports = {
           key: "id",
         },
       },
+      PUT_Request_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "PUT_Request",
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

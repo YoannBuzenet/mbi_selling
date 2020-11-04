@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      snapshot_custom_rules.belongsTo(models.PUT_Request);
+      snapshot_custom_rules.belongsTo(models.PUT_Request, {
+        foreignKey: "PUT_Request_id",
+      });
     }
   }
   snapshot_custom_rules.init(
@@ -47,6 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       isForPlaysets: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+      },
+      PUT_Request_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "PUT_Request",
+          key: "id",
+        },
       },
     },
     {

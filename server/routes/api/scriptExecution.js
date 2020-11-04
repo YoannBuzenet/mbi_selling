@@ -386,6 +386,21 @@ router.post("/", async (req, res) => {
         );
 
         //next - on se base sur l'action qui est soit un objet, soit -1, soit -2
+        if (action === -1) {
+          console.log("we are in action : -1");
+          db.put_memory.create({
+            idScript: "",
+            idProduct: "",
+            oldPrice: "",
+            newPrice: "",
+            condition: "",
+            lang: "",
+            isFoil: "",
+            isSigned: "",
+            isPlayset: 0,
+            idCustomRuleUsed: "",
+          });
+        }
         //yo
         //TO DO -> passer dans les custom rules en log(n) + verif priceShield
         //if foil
