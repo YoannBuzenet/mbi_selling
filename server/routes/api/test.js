@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const db = require("../../../models/index");
 const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 router.get("/", async (req, res) => {
   //Old test to try many to many relations
@@ -34,6 +35,28 @@ router.get("/GetTransformedArrayOfAllFormats", async (req, res) => {
 
   res.json(arrayOfFormatId);
 });
+
+router.get("/GetAllMKMProductsForShop", async (req, res) => {
+  const chunkOfCards = await db.MkmProduct.findAll(
+    {
+      include: [
+        {
+          model: db.productLegalities,
+          where: {
+            [Op.or]: [{ isLegalLegacy: 1 }, { isLegalCommander: 1 }],
+          },
+        },
+      ],
+      where: {
+        idShop: 7,
+      },
+    },
+    {}
+  );
+
+  res.json(chunkOfCards);
+});
+
 router.post("/GetCardsWithFormatPayload", async (req, res) => {
   //isLegal via l'association productLegality
   const Op = Sequelize.Op;

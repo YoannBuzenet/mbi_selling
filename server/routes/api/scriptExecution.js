@@ -334,8 +334,6 @@ router.post("/", async (req, res) => {
         PUT_Request_id: put_request.dataValues.id,
       });
 
-      console.log("----snapshot custom rule", snapshot_custom_rule);
-
       idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
       orderedCustoMRules.idSnapShotCustomRule = idSnapShotCustomRule;
     }
@@ -343,6 +341,11 @@ router.post("/", async (req, res) => {
     /* **************************************** */
     /* ********** Chunk Management ***********/
     /* **************************************** */
+
+    console.log(
+      "ordered rules enrichies avec le snahsop param id custom rule",
+      orderedCustoMRules
+    );
 
     // Counting the number of cards concerned by this script
 
@@ -380,9 +383,9 @@ router.post("/", async (req, res) => {
       numberOfCardsToHandle.count / chunkSize
     );
 
-    // console.log(
-    //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
-    // );
+    console.log(
+      `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
+    );
 
     for (let i = 0; i < numberOfIterations; i++) {
       //choper les 100 premières cartes (en ajusant offset à chaque iteration )
@@ -414,24 +417,18 @@ router.post("/", async (req, res) => {
       let action;
       //For each card, we will process the price, check if we update it or not
       for (let j = 0; j < chunkOfCards.length; j++) {
-        const card = chunkOfCards[i].dataValues;
+        const card = chunkOfCards[j].dataValues;
 
         if (card.isFoil === 0) {
-          // console.log("array of sorted regular", arrayOfSortedRulesRegular);
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesRegular,
             card.price
           );
-
-          // console.log("regular action for that card", action);
         } else if (card.isFoil === 1) {
-          // console.log("array of sorted foil", arrayOfSortedRulesFoil);
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesFoil,
             card.price
           );
-
-          console.log("regular action for that card", action);
         } else {
           res.status(500).json("A card was missing the isFoil prop.");
         }
@@ -444,32 +441,41 @@ router.post("/", async (req, res) => {
           behaviourDefinitions.map((definition) => definition.dataValues)
         );
 
+        console.log("reminder of the card", card);
+        console.log("reminder of the card price", card.price);
+        console.log("action for that card", action);
+
         //next - on se base sur l'action qui est soit un objet, soit -1, soit -2
-        if (action === -1) {
+        if (action === -2) {
           //Price is not updated : we just
-          console.log("we are in action : -1");
-          db.put_memory.create({
+          console.log("we are in action : -2");
+          await db.put_memory.create({
             idScript: idScript,
             idProduct: card.idProduct,
             oldPrice: card.price,
             newPrice: card.price,
-            condition: card,
-            lang: card,
-            isFoil: card,
-            isSigned: card,
+            condition: card.condition,
+            lang: card.language,
+            isFoil: card.isFoil,
+            isSigned: card.isSigned,
             isPlayset: 0,
             behaviourChosen: "No corresponding Custom Rule",
             idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
             PUT_Request_id: put_request.dataValues.id,
           });
+        } else if (typeof action === object) {
+          //yo
+          //TO DO -> passer dans les custom rules en log(n) + verif priceShield
+          //if foil
+          //if non foil
+          // enregistrer dans put memory
+        } else {
+          console.log("not action -2");
         }
-        //yo
-        //TO DO -> passer dans les custom rules en log(n) + verif priceShield
-        //if foil
-        //if non foil
-        // enregistrer dans put memory
       }
     }
+
+    //Générer le PDF
 
     //Envoi Mail TO DO
 
