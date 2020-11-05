@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      ruleType: DataTypes.STRING,
+      ruleTypeId: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       priceRangeFrom: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
@@ -52,6 +55,11 @@ module.exports = (sequelize, DataTypes) => {
       isForPlaysets: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+      },
+      mkmPriceGuideReference: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+        defaultValue: 1,
       },
       PUT_Request_id: {
         type: DataTypes.INTEGER,
