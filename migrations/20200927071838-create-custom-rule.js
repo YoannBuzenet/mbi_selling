@@ -16,7 +16,7 @@ module.exports = {
           key: "id",
         },
       },
-      //Can be "Price Range"
+      //Which kind of type of rule ?
       ruleTypeId: {
         type: Sequelize.INTEGER,
         allowNull: false,

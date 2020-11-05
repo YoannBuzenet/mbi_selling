@@ -16,9 +16,14 @@ module.exports = {
           key: "id",
         },
       },
-      //Can be "Price Range"
-      ruleType: {
-        type: Sequelize.STRING,
+      //Which kind of type of rule ?
+      ruleTypeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "customRule_ruleType_definitions",
+          key: "id",
+        },
       },
       isForFoils: {
         type: Sequelize.INTEGER,

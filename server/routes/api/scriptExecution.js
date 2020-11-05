@@ -274,6 +274,10 @@ router.post("/", async (req, res) => {
     /* **************************************** */
     /* ********** PUT REQUEST CREATION ***********/
     /* **************************************** */
+
+    //Snapshot shop params for the current PUT Request
+    const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
+
     const put_request = await db.PUT_Request.create({
       shopId: idShop,
       snapShotParamId: snapShop_Shop_Param.dataValues.id,
@@ -285,23 +289,54 @@ router.post("/", async (req, res) => {
     //Yo
     //TODO We must snapshot the rules
     //TODO For each one snapshoted, add its id in the object of the custom rule
-    for (let i = 0; i < orderedCustoMRules.length; i++) {
-      const snapshot_custom_rule = await db.snapshot_custom_rules.create({
+
+    let snapshot_custom_rule;
+    let idSnapShotCustomRule;
+
+    for (let i = 0; i < orderedCustoMRules.regular.length; i++) {
+      snapshot_custom_rule = await db.snapshot_custom_rules.create({
         idScript: idScript,
-        ruleType: orderedCustoMRules[i].ruleType,
-        priceRangeFrom: orderedCustoMRules[i].priceRangeFrom,
-        priceRangeTo: orderedCustoMRules[i].priceRangeTo,
-        priceRangeValueToSet: orderedCustoMRules[i].priceRangeValueToSet,
-        behaviourId: orderedCustoMRules[i].behaviourId,
+        ruleTypeId: orderedCustoMRules.regular[i].ruleTypeId,
+        priceRangeFrom: orderedCustoMRules.regular[i].priceRangeFrom,
+        priceRangeTo: orderedCustoMRules.regular[i].priceRangeTo,
+        priceRangeValueToSet:
+          orderedCustoMRules.regular[i].priceRangeValueToSet,
+        behaviourId: orderedCustoMRules.regular[i].behaviourId,
         priceRangePercentageFromMkm:
-          orderedCustoMRules[i].priceRangePercentageFromMkm,
-        isForFoils: orderedCustoMRules[i].isForFoils,
-        isForSigned: orderedCustoMRules[i].isForSigned,
-        isForPlaysets: orderedCustoMRules[i].isForPlaysets,
+          orderedCustoMRules.regular[i].priceRangePercentageFromMkm,
+        mkmPriceGuideReference:
+          orderedCustoMRules.regular[i].mkmPriceGuideReference,
+        isForFoils: orderedCustoMRules.regular[i].isForFoils,
+        isForSigned: orderedCustoMRules.regular[i].isForSigned,
+        isForPlaysets: orderedCustoMRules.regular[i].isForPlaysets,
         PUT_Request_id: put_request.dataValues.id,
       });
 
-      const idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
+      idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
+      orderedCustoMRules.idSnapShotCustomRule = idSnapShotCustomRule;
+    }
+
+    for (let i = 0; i < orderedCustoMRules.foil.length; i++) {
+      snapshot_custom_rule = await db.snapshot_custom_rules.create({
+        idScript: idScript,
+        ruleTypeId: orderedCustoMRules.foil[i].ruleTypeId,
+        priceRangeFrom: orderedCustoMRules.foil[i].priceRangeFrom,
+        priceRangeTo: orderedCustoMRules.foil[i].priceRangeTo,
+        priceRangeValueToSet: orderedCustoMRules.foil[i].priceRangeValueToSet,
+        behaviourId: orderedCustoMRules.foil[i].behaviourId,
+        priceRangePercentageFromMkm:
+          orderedCustoMRules.foil[i].priceRangePercentageFromMkm,
+        mkmPriceGuideReference:
+          orderedCustoMRules.foil[i].mkmPriceGuideReference,
+        isForFoils: orderedCustoMRules.foil[i].isForFoils,
+        isForSigned: orderedCustoMRules.foil[i].isForSigned,
+        isForPlaysets: orderedCustoMRules.foil[i].isForPlaysets,
+        PUT_Request_id: put_request.dataValues.id,
+      });
+
+      console.log("----snapshot custom rule", snapshot_custom_rule);
+
+      idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
       orderedCustoMRules.idSnapShotCustomRule = idSnapShotCustomRule;
     }
 
@@ -311,6 +346,7 @@ router.post("/", async (req, res) => {
 
     // Counting the number of cards concerned by this script
 
+    //Building format dictionnary as a hashmap
     const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
 
     let formatFilter = {};
@@ -319,7 +355,7 @@ router.post("/", async (req, res) => {
       formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
     }
 
-    console.log("format filter", formatFilter);
+    // console.log("format filter", formatFilter);
 
     const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
       {
@@ -344,12 +380,9 @@ router.post("/", async (req, res) => {
       numberOfCardsToHandle.count / chunkSize
     );
 
-    console.log(
-      `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
-    );
-
-    //Snapshot shop params for the current PUT Request
-    const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
+    // console.log(
+    //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle} cards.`
+    // );
 
     for (let i = 0; i < numberOfIterations; i++) {
       //choper les 100 premières cartes (en ajusant offset à chaque iteration )
@@ -384,15 +417,15 @@ router.post("/", async (req, res) => {
         const card = chunkOfCards[i].dataValues;
 
         if (card.isFoil === 0) {
-          console.log("array of sorted regular", arrayOfSortedRulesRegular);
+          // console.log("array of sorted regular", arrayOfSortedRulesRegular);
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesRegular,
             card.price
           );
 
-          console.log("regular action for that card", action);
+          // console.log("regular action for that card", action);
         } else if (card.isFoil === 1) {
-          console.log("array of sorted foil", arrayOfSortedRulesFoil);
+          // console.log("array of sorted foil", arrayOfSortedRulesFoil);
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesFoil,
             card.price
