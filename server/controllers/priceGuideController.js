@@ -28,12 +28,20 @@ async function getAllPrices(jwt) {
               numberCard++
             ) {
               console.log("card n° : ", numberCard);
+              console.log(
+                "card to browse before the if",
+                cardsToBrowse[numberCard]
+              );
 
               if (
                 cardsToBrowse[numberCard].priceguide !== null &&
                 cardsToBrowse[numberCard].priceguide !== undefined
               ) {
-                await db.priceguide.upsert(
+                console.log(
+                  "card to browse inside the if",
+                  cardsToBrowse[numberCard]
+                );
+                const newPrice = await db.priceguide.upsert(
                   {
                     idProduct: cardsToBrowse[numberCard].mcmid,
                     AvgSellPrice:
@@ -77,6 +85,7 @@ async function getAllPrices(jwt) {
                     ],
                   }
                 );
+                console.log(newPrice);
               }
             }
           })

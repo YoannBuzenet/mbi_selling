@@ -445,9 +445,9 @@ router.post("/", async (req, res) => {
         console.log("reminder of the card price", card.price);
         console.log("action for that card", action);
 
-        //next - on se base sur l'action qui est soit un objet, soit -1, soit -2
+        // We chose to
         if (action === -2) {
-          //Price is not updated : we just
+          //Price is not updated : we just write it
           console.log("we are in action : -2");
           await db.put_memory.create({
             idScript: idScript,
@@ -464,15 +464,33 @@ router.post("/", async (req, res) => {
             PUT_Request_id: put_request.dataValues.id,
           });
         } else if (typeof action === object) {
+          console.log("we are in action : object");
           //yo
-          //TO DO -> passer dans les custom rules en log(n) + verif priceShield
-          //if foil
-          //if non foil
-          // enregistrer dans put memory
+
+          if (action.ruletypeId === 1) {
+            console.log("we are in ruletype 1");
+            // set value
+            // priceshield
+            // enregistrer dans put memory
+          } else if (action.ruleTypeId === 2) {
+            console.log("we are in ruletype 2");
+            // mkm relou
+            // priceshield
+            // enregistrer dans put memory
+          } else if (action.ruleTypeId === 3) {
+            console.log("we are in ruletype 3");
+            // exclude
+            // enregistrer dans put memory
+          }
         } else {
-          console.log("not action -2");
+          console.log("No rule where found for the card", card);
+          console.log("current action :", action);
+          throw new Error("No adapted behaviour found for the currend card.");
         }
+
+        //Ajouter la carte au chunk MKM
       }
+      //Envoyer à MKM
     }
 
     //Générer le PDF
