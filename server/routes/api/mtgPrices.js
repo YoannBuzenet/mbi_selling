@@ -1,9 +1,10 @@
 var express = require("express");
 var router = express.Router();
+const securityCheckAPI = require("../../services/securityCheckAPI");
 
 /* ADMIN ENDPOINT */
 router.get("/", async (req, res) => {
-  const jwt = req.headers.authorization;
+  let jwt = req.headers.authorization;
 
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
@@ -21,7 +22,7 @@ router.get("/", async (req, res) => {
 
   const { getAllPrices } = require("../../controllers/priceGuideController");
 
-  getAllPrices(jwt);
+  getAllPrices(req.headers.authorization);
   res.json("Price in DB have been updated.");
 });
 
