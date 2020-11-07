@@ -313,7 +313,7 @@ router.post("/", async (req, res) => {
       });
 
       idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
-      orderedCustoMRules.idSnapShotCustomRule = idSnapShotCustomRule;
+      orderedCustoMRules.regular[i].idSnapShotCustomRule = idSnapShotCustomRule;
     }
 
     for (let i = 0; i < orderedCustoMRules.foil.length; i++) {
@@ -335,7 +335,7 @@ router.post("/", async (req, res) => {
       });
 
       idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
-      orderedCustoMRules.idSnapShotCustomRule = idSnapShotCustomRule;
+      orderedCustoMRules.foil[i].idSnapShotCustomRule = idSnapShotCustomRule;
     }
 
     /* **************************************** */
@@ -444,6 +444,7 @@ router.post("/", async (req, res) => {
         console.log("reminder of the card", card);
         console.log("reminder of the card price", card.price);
         console.log("action for that card", action);
+        console.log("all our custom rules", orderedCustoMRules);
 
         // We chose to
         if (action === -2) {
@@ -460,7 +461,7 @@ router.post("/", async (req, res) => {
             isSigned: card.isSigned,
             isPlayset: 0,
             behaviourChosen: "No corresponding Custom Rule",
-            idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
+            idCustomRuleUsed: action.idSnapShotCustomRule,
             PUT_Request_id: put_request.dataValues.id,
           });
         } else if (typeof action === "object") {
@@ -493,6 +494,11 @@ router.post("/", async (req, res) => {
               )
             ) {
               // Price Shield allows the rule
+              console.log("ruleType 1, price shield allowed");
+              console.log(
+                "custom rule used",
+                orderedCustoMRules.idSnapShotCustomRule
+              );
               //PUT memory with change
               await db.put_memory.create({
                 idScript: idScript,
@@ -505,10 +511,11 @@ router.post("/", async (req, res) => {
                 isSigned: card.isSigned,
                 isPlayset: 0,
                 behaviourChosen: "Set Value",
-                idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
+                idCustomRuleUsed: action.idSnapShotCustomRule,
                 PUT_Request_id: put_request.dataValues.id,
               });
             } else {
+              console.log("ruleType 1, price shield blocked");
               // Price Shield blocked the rule
               await db.put_memory.create({
                 idScript: idScript,
@@ -520,8 +527,8 @@ router.post("/", async (req, res) => {
                 isFoil: card.isFoil,
                 isSigned: card.isSigned,
                 isPlayset: 0,
-                behaviourChosen: "Price Shield Block",
-                idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
+                behaviourChosen: "Price Shield Blocked",
+                idCustomRuleUsed: action.idSnapShotCustomRule,
                 PUT_Request_id: put_request.dataValues.id,
               });
             }
