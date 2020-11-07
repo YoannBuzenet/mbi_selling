@@ -136,8 +136,9 @@ router.post("/", async (req, res) => {
     where: {
       idScript: idScript,
     },
+    include: db.customRule_behaviour_definition,
   });
-  console.log("all custom rules", allCustomRules);
+  // console.log("all custom rules", allCustomRules);
 
   //Ordering rules by price and foil/non Foil
   let orderedCustoMRules = prepareStateFromArrayOfRules(
@@ -543,7 +544,16 @@ router.post("/", async (req, res) => {
               },
             });
 
-            const newPrice = action.priceRangeValueToSet;
+            const actionName =
+              action.customRule_behaviour_definition.dataValues.name;
+            const actionType =
+              action.customRule_behaviour_definition.dataValues.type;
+            const actionSense =
+              action.customRule_behaviour_definition.dataValues.sense;
+            const actionCoefficient =
+              action.customRule_behaviour_definition.dataValues.coefficient;
+
+            const newPrice = "TBD";
 
             let relevantTrend =
               card.isFoil === 0
@@ -567,7 +577,20 @@ router.post("/", async (req, res) => {
           } else if (action.ruleTypeId === 3) {
             console.log("we are in ruletype 3");
             // exclude
-            // enregistrer dans put memory
+            await db.put_memory.create({
+              idScript: idScript,
+              idProduct: card.idProduct,
+              oldPrice: card.price,
+              newPrice: newPrice,
+              condition: card.condition,
+              lang: card.language,
+              isFoil: card.isFoil,
+              isSigned: card.isSigned,
+              isPlayset: 0,
+              behaviourChosen: "Excluded",
+              idCustomRuleUsed: action.idSnapShotCustomRule,
+              PUT_Request_id: put_request.dataValues.id,
+            });
           }
         } else {
           console.log("No rule where found for the card", card);
