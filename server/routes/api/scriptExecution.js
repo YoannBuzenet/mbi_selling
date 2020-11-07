@@ -343,11 +343,6 @@ router.post("/", async (req, res) => {
     /* ********** Chunk Management ***********/
     /* **************************************** */
 
-    console.log(
-      "ordered rules enrichies avec le snahsop param id custom rule",
-      orderedCustoMRules
-    );
-
     // Counting the number of cards concerned by this script
 
     //Building format dictionnary as a hashmap
@@ -445,7 +440,6 @@ router.post("/", async (req, res) => {
         console.log("reminder of the card", card);
         console.log("reminder of the card price", card.price);
         console.log("action for that card", action);
-        console.log("all our custom rules", orderedCustoMRules);
 
         // We chose to
         if (action === -2) {
@@ -496,10 +490,7 @@ router.post("/", async (req, res) => {
             ) {
               // Price Shield allows the rule
               console.log("ruleType 1, price shield allowed");
-              console.log(
-                "custom rule used",
-                orderedCustoMRules.idSnapShotCustomRule
-              );
+              console.log("custom rule used", action.idSnapShotCustomRule);
               //PUT memory with change
               await db.put_memory.create({
                 idScript: idScript,
@@ -553,14 +544,37 @@ router.post("/", async (req, res) => {
             const actionCoefficient =
               action.customRule_behaviour_definition.dataValues.coefficient;
 
+            //Browsing data on the rule to choose the right price to apply to the card
+            if (actionType === "percent") {
+              if (actionSense === "up") {
+                //arrondir up %
+              } else if (actionSense === "down") {
+                //arrondir down %
+              } else {
+                throw new Error("No action sense (up or down) were precised.");
+              }
+            } else if (actionType === "number") {
+              if (actionSense === "up") {
+                //modulo up
+              } else if (actionSense === "down") {
+                //modulo down
+              } else {
+                throw new Error("No action sense (up or down) were precised.");
+              }
+            } else {
+              throw new Error(
+                "Action type wasn't precised on behaviour in custom rule."
+              );
+            }
+
             const newPrice = "TBD";
 
             let relevantTrend =
               card.isFoil === 0
                 ? priceguide.dataValues.trendPrice
                 : priceguide.dataValues.foilTrend;
-            // priceshield
 
+            // priceshield
             if (
               priceUpdateAPI.priceShieldAllows(
                 card.price,
@@ -603,7 +617,7 @@ router.post("/", async (req, res) => {
       //Envoyer à MKM
     }
 
-    //Générer le PDF
+    //Générer le PDF à partir de put memory en passant l'id put request
 
     //Envoi Mail TO DO
 
