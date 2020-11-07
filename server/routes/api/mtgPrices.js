@@ -14,15 +14,24 @@ router.get("/", async (req, res) => {
     jwt = jwt[1];
   }
 
+  //Check Refresh Token in payload
+  if (req.body.refresh_token === undefined) {
+    res.status(406).json("Refresh token is missing in payload.");
+    return;
+  }
+
+  const refresh_token = req.body.refresh_token;
+
   // Auth delegation - checking if the account is a ROLE_ADMIN
   const isAdmin = await securityCheckAPI.checkIfUserIsAdmin(jwt);
   if (!isAdmin) {
     res.status(401).json("You don't have access to this ressource.");
+    return;
   }
 
   const { getAllPrices } = require("../../controllers/priceGuideController");
 
-  getAllPrices(req.headers.authorization);
+  await getAllPrices(req.headers.authorization, refresh_token);
   res.json("Price in DB have been updated.");
 });
 

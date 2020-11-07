@@ -469,12 +469,15 @@ router.post("/", async (req, res) => {
 
           if (action.ruletypeId === 1) {
             console.log("we are in ruletype 1");
-            // set value
+            // set value behaviour
+            // get the price guide for this card
+
             // priceshield
             // enregistrer dans put memory
           } else if (action.ruleTypeId === 2) {
             console.log("we are in ruletype 2");
-            // mkm relou
+            // mkm relou behaviour
+            // get the price guide for this card
             // priceshield
             // enregistrer dans put memory
           } else if (action.ruleTypeId === 3) {

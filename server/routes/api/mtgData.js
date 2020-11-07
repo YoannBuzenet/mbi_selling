@@ -22,13 +22,12 @@ router.get("/", async (req, res) => {
   }
 
   const {
-    getAllDatasInRAM,
     getAllFormatDefinition,
   } = require("../../controllers/mtgDataController");
 
-  // getAllMcmIdAndLegalities(req.headers.authorization);
+  // Getting all formats and all productLegality for it
+  await getAllFormatDefinition(req.headers.authorization);
 
-  getAllFormatDefinition(req.headers.authorization);
   res.json("Core MTG data dictionnary has been updated.");
 });
 

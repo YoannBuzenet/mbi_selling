@@ -43,12 +43,16 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend) {
     (newPrice - priceTrend / priceTrend) * 100
   );
 
-  //If card is under 50€ and new price is more than 30% under the trend
-  if (oldPrice < 50 && newPrice < priceTrend && variationRateTrend > 30) {
+  //If card is under 20€ and new price is more than 40% under the trend
+  if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 40) {
     return false;
   }
-  //If card is above 50€ and new price is more than 10% under the trend
-  else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 10) {
+  //If card is under 50€ and new price is more than 30% under the trend
+  else if (oldPrice < 50 && newPrice < priceTrend && variationRateTrend > 30) {
+    return false;
+  }
+  //If card is above 50€ and new price is more than 20% under the trend
+  else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 20) {
     return false;
   }
   //If the card is worth more than 10 euros and variation rate is more than 50%
