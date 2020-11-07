@@ -477,12 +477,54 @@ router.post("/", async (req, res) => {
               },
             });
 
+            const newPrice = action.priceRangeValueToSet;
+
             let relevantTrend =
               card.isFoil === 0
                 ? priceguide.dataValues.trendPrice
                 : priceguide.dataValues.foilTrend;
-
             // priceshield
+
+            if (
+              priceUpdateAPI.priceShieldAllows(
+                card.price,
+                newPrice,
+                relevantTrend
+              )
+            ) {
+              // Price Shield allows the rule
+              //PUT memory with change
+              await db.put_memory.create({
+                idScript: idScript,
+                idProduct: card.idProduct,
+                oldPrice: card.price,
+                newPrice: newPrice,
+                condition: card.condition,
+                lang: card.language,
+                isFoil: card.isFoil,
+                isSigned: card.isSigned,
+                isPlayset: 0,
+                behaviourChosen: "Set Value",
+                idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
+                PUT_Request_id: put_request.dataValues.id,
+              });
+            } else {
+              // Price Shield blocked the rule
+              await db.put_memory.create({
+                idScript: idScript,
+                idProduct: card.idProduct,
+                oldPrice: card.price,
+                newPrice: newPrice,
+                condition: card.condition,
+                lang: card.language,
+                isFoil: card.isFoil,
+                isSigned: card.isSigned,
+                isPlayset: 0,
+                behaviourChosen: "Price Shield Block",
+                idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
+                PUT_Request_id: put_request.dataValues.id,
+              });
+            }
             // enregistrer dans put memory
           } else if (action.ruleTypeId === 2) {
             console.log("we are in ruletype 2");
@@ -494,11 +536,26 @@ router.post("/", async (req, res) => {
               },
             });
 
+            const newPrice = action.priceRangeValueToSet;
+
             let relevantTrend =
               card.isFoil === 0
                 ? priceguide.dataValues.trendPrice
                 : priceguide.dataValues.foilTrend;
             // priceshield
+
+            if (
+              priceUpdateAPI.priceShieldAllows(
+                card.price,
+                newPrice,
+                relevantTrend
+              )
+            ) {
+              //PUT memory with change
+            } else {
+              //PUT memory explaining why it didnt go for it
+            }
+
             // enregistrer dans put memory
           } else if (action.ruleTypeId === 3) {
             console.log("we are in ruletype 3");
