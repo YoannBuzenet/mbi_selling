@@ -71,5 +71,4 @@ async function addIdSetToProductLegalities() {
 module.exports = {
   getAllMcmIdAndLegalitiesFromOneFormat,
   getAllFormatDefinition,
-  getAllDatasInRAM,
 };

@@ -2,11 +2,12 @@ const { Sequelize, Model, DataTypes } = require("sequelize");
 const axios = require("axios");
 const db = require("../../models/index");
 const { config } = require("../../config/configApp");
+const authAPIserver = require("../services/authAPIserver");
 
-async function getAllPrices(jwt) {
+async function getAllPrices(jwt, refresh_token) {
   axios.defaults.headers["Authorization"] = jwt;
 
-  await axios
+  return await axios
     .get(process.env.REACT_APP_MTGAPI_URL + "/cards")
     .then(async (resp) => {
       const numberOfPages = parseInt(
@@ -17,6 +18,11 @@ async function getAllPrices(jwt) {
 
       for (let i = 1; i <= numberOfPages; i++) {
         console.log("page n°: ", i);
+
+        if (i % 30 === 0) {
+          await authAPIserver.refreshTokenAndInfos(refresh_token);
+        }
+
         await axios
           .get(process.env.REACT_APP_MTGAPI_URL + "/cards?page=" + i)
           .then(async (respPage) => {
