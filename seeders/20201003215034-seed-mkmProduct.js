@@ -298,7 +298,7 @@ module.exports = {
 
         {
           idArticle: 158,
-          idProduct: 101,
+          idProduct: 16236,
           englishName: "ok",
           localName: "ok",
           Exp: 5,

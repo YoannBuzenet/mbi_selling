@@ -463,14 +463,24 @@ router.post("/", async (req, res) => {
             idCustomRuleUsed: orderedCustoMRules.idSnapShotCustomRule,
             PUT_Request_id: put_request.dataValues.id,
           });
-        } else if (typeof action === object) {
+        } else if (typeof action === "object") {
           console.log("we are in action : object");
           //yo
 
-          if (action.ruletypeId === 1) {
+          if (action.ruleTypeId === 1) {
             console.log("we are in ruletype 1");
             // set value behaviour
             // get the price guide for this card
+            const priceguide = await db.priceguide.findOne({
+              where: {
+                idProduct: card.idProduct,
+              },
+            });
+
+            let relevantTrend =
+              card.isFoil === 0
+                ? priceguide.dataValues.trendPrice
+                : priceguide.dataValues.foilTrend;
 
             // priceshield
             // enregistrer dans put memory
@@ -478,6 +488,16 @@ router.post("/", async (req, res) => {
             console.log("we are in ruletype 2");
             // mkm relou behaviour
             // get the price guide for this card
+            const priceguide = await db.priceguide.findOne({
+              where: {
+                idProduct: card.idProduct,
+              },
+            });
+
+            let relevantTrend =
+              card.isFoil === 0
+                ? priceguide.dataValues.trendPrice
+                : priceguide.dataValues.foilTrend;
             // priceshield
             // enregistrer dans put memory
           } else if (action.ruleTypeId === 3) {

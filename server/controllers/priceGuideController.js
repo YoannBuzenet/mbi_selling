@@ -20,7 +20,11 @@ async function getAllPrices(jwt, refresh_token) {
         console.log("page n°: ", i);
 
         if (i % 30 === 0) {
-          await authAPIserver.refreshTokenAndInfos(refresh_token);
+          const newRefreshToken = await authAPIserver.refreshTokenAndInfos(
+            refresh_token
+          );
+          axios.defaults.headers["Authorization"] =
+            "Bearer " + newRefreshToken.data.token;
         }
 
         await axios
