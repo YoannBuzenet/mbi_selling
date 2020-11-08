@@ -223,9 +223,10 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        //Testing ruleTypeId 3
         {
           idArticle: 9,
-          idProduct: 110,
+          idProduct: 16483,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
@@ -247,14 +248,15 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        //Testing ruleTypeId 2
         {
           idArticle: 10,
-          idProduct: 1,
+          idProduct: 16413,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 5,
+          price: 0.5,
           language: 6,
           condition: 7,
           isFoil: 0,
@@ -271,14 +273,15 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        //Testing ruleTypeId 2
         {
           idArticle: 15,
-          idProduct: 101,
+          idProduct: 16413,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 5,
+          price: 7,
           language: 6,
           condition: 7,
           isFoil: 0,
@@ -295,6 +298,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        //Testing ruleTypeId 2
         {
           idArticle: 158,
           idProduct: 16511,
@@ -319,6 +323,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        //Testing ruleTypeId 2
         {
           idArticle: 159,
           idProduct: 16511,
