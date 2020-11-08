@@ -38,9 +38,7 @@ async function getAllPrices(jwt, refresh_token) {
               numberCard++
             ) {
               console.log("card n° : ", numberCard);
-              console.log(
-                "card to browse before the if",
-                cardsToBrowse[numberCard]
+              
               );
 
               if (
@@ -48,8 +46,8 @@ async function getAllPrices(jwt, refresh_token) {
                 cardsToBrowse[numberCard].priceguide !== undefined
               ) {
                 console.log(
-                  "card to browse inside the if",
-                  cardsToBrowse[numberCard]
+                  "priceguide of the card",
+                  cardsToBrowse[numberCard].priceguide
                 );
                 const newPrice = await db.priceguide.upsert(
                   {

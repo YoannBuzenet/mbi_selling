@@ -794,8 +794,6 @@ router.post("/", async (req, res) => {
                 PUT_Request_id: put_request.dataValues.id,
               });
             }
-
-            // enregistrer dans put memory
           } else if (action.ruleTypeId === 3) {
             console.log("we are in ruletype 3");
             // exclude
