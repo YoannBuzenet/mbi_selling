@@ -38,8 +38,6 @@ async function getAllPrices(jwt, refresh_token) {
               numberCard++
             ) {
               console.log("card n° : ", numberCard);
-              
-              );
 
               if (
                 cardsToBrowse[numberCard].priceguide !== null &&
@@ -93,11 +91,13 @@ async function getAllPrices(jwt, refresh_token) {
                     ],
                   }
                 );
-                console.log(newPrice);
+                console.log("new price just inserted", newPrice);
               }
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) =>
+            console.log("error when inserting priceguide line in DB", err)
+          );
       }
     });
 }
