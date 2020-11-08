@@ -531,12 +531,9 @@ router.post("/", async (req, res) => {
                 PUT_Request_id: put_request.dataValues.id,
               });
             }
-            // enregistrer dans put memory
           } else if (action.ruleTypeId === 2) {
             console.log("we are in ruletype 2");
-            //yo
-
-            // mkm behaviour
+            // Mkm based behaviour action
             // get the price guide for this card
             const priceguide = await db.priceguide.findOne({
               where: {
@@ -576,7 +573,37 @@ router.post("/", async (req, res) => {
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
+
+                  //Sur quelle trend on se base dans le cas d'une augmentation basée sur une info MKM ?
+
+                  // priceshield
+                  // if (
+                  //   priceUpdateAPI.priceShieldAllows(
+                  //     card.price,
+                  //     newPrice,
+                  //     relevantTrend
+                  //   )
+                  // ) {
+                  //   //PUT memory with change
+                  // } else {
+                  //   //PUT memory explaining why it didnt go for it
+                  // }
+
                   //Save with new price
+                  await db.put_memory.create({
+                    idScript: idScript,
+                    idProduct: card.idProduct,
+                    oldPrice: card.price,
+                    newPrice: newPrice,
+                    condition: card.condition,
+                    lang: card.language,
+                    isFoil: card.isFoil,
+                    isSigned: card.isSigned,
+                    isPlayset: 0,
+                    behaviourChosen: actionName,
+                    idCustomRuleUsed: action.idSnapShotCustomRule,
+                    PUT_Request_id: put_request.dataValues.id,
+                  });
                 } else if (actionSense === "down") {
                   //arrondir down %
                   newPrice = priceUpdateAPI.roundDownPercent(
@@ -584,6 +611,20 @@ router.post("/", async (req, res) => {
                     actionCoefficient
                   );
                   //Save with new price
+                  await db.put_memory.create({
+                    idScript: idScript,
+                    idProduct: card.idProduct,
+                    oldPrice: card.price,
+                    newPrice: newPrice,
+                    condition: card.condition,
+                    lang: card.language,
+                    isFoil: card.isFoil,
+                    isSigned: card.isSigned,
+                    isPlayset: 0,
+                    behaviourChosen: actionName,
+                    idCustomRuleUsed: action.idSnapShotCustomRule,
+                    PUT_Request_id: put_request.dataValues.id,
+                  });
                 } else {
                   throw new Error(
                     "No action sense (up or down) were precised."
@@ -596,7 +637,22 @@ router.post("/", async (req, res) => {
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
+
                   //Save with new price
+                  await db.put_memory.create({
+                    idScript: idScript,
+                    idProduct: card.idProduct,
+                    oldPrice: card.price,
+                    newPrice: newPrice,
+                    condition: card.condition,
+                    lang: card.language,
+                    isFoil: card.isFoil,
+                    isSigned: card.isSigned,
+                    isPlayset: 0,
+                    behaviourChosen: actionName,
+                    idCustomRuleUsed: action.idSnapShotCustomRule,
+                    PUT_Request_id: put_request.dataValues.id,
+                  });
                 } else if (actionSense === "down") {
                   //modulo down
                   newPrice = priceUpdateAPI.roundDownNumber(
@@ -604,6 +660,20 @@ router.post("/", async (req, res) => {
                     actionCoefficient
                   );
                   //Save with new price
+                  await db.put_memory.create({
+                    idScript: idScript,
+                    idProduct: card.idProduct,
+                    oldPrice: card.price,
+                    newPrice: newPrice,
+                    condition: card.condition,
+                    lang: card.language,
+                    isFoil: card.isFoil,
+                    isSigned: card.isSigned,
+                    isPlayset: 0,
+                    behaviourChosen: actionName,
+                    idCustomRuleUsed: action.idSnapShotCustomRule,
+                    PUT_Request_id: put_request.dataValues.id,
+                  });
                 } else {
                   throw new Error(
                     "No action sense (up or down) were precised."
@@ -617,24 +687,20 @@ router.post("/", async (req, res) => {
             } else {
               //The price did not exist in the price guide, so we do not change it and mark it in Put memory.
               //Save same as actual in put memory with mention "No Corresponding Priceguide"
-            }
-
-            let relevantTrend =
-              card.isFoil === 0
-                ? priceguide.dataValues.trendPrice
-                : priceguide.dataValues.foilTrend;
-
-            // priceshield
-            if (
-              priceUpdateAPI.priceShieldAllows(
-                card.price,
-                newPrice,
-                relevantTrend
-              )
-            ) {
-              //PUT memory with change
-            } else {
-              //PUT memory explaining why it didnt go for it
+              await db.put_memory.create({
+                idScript: idScript,
+                idProduct: card.idProduct,
+                oldPrice: card.price,
+                newPrice: card.price,
+                condition: card.condition,
+                lang: card.language,
+                isFoil: card.isFoil,
+                isSigned: card.isSigned,
+                isPlayset: 0,
+                behaviourChosen: "No Corresponding Priceguide",
+                idCustomRuleUsed: action.idSnapShotCustomRule,
+                PUT_Request_id: put_request.dataValues.id,
+              });
             }
 
             // enregistrer dans put memory
