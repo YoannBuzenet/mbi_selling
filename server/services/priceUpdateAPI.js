@@ -67,7 +67,8 @@ function roundDownNumber(number, coefficient) {
   return number - (number % coefficient);
 }
 function roundUpNumber(number, coefficient) {
-  return number + (number % coefficient);
+  const multiplier = math.ceil(number / coefficient);
+  return coefficient * multiplier;
 }
 
 function roundUpPercent(number, coefficient) {
