@@ -429,7 +429,7 @@ router.post("/", async (req, res) => {
           res.status(500).json("A card was missing the isFoil prop.");
         }
 
-        //We are getting all behaviours, we will need them whe processing the custom rules. This is an array
+        //We are getting all behaviours, we will need them when processing the custom rules. This is an array
         const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
 
         //We transform the array into a dictionnary (hashmap) to browse it in constant time
@@ -437,9 +437,18 @@ router.post("/", async (req, res) => {
           behaviourDefinitions.map((definition) => definition.dataValues)
         );
 
+        //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
+        const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
+
+        //We transform the array into a dictionnary (hashmap) to browse it in constant time
+        const mkmPricesGuideDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+          mkmPricesDefinitions.map((definition) => definition.dataValues)
+        );
+
         console.log("reminder of the card", card);
         console.log("reminder of the card price", card.price);
         console.log("action for that card", action);
+        console.log("mkm dictionnary", mkmPricesGuideDictionnary);
 
         // We chose to
         if (action === -2) {
@@ -461,7 +470,6 @@ router.post("/", async (req, res) => {
           });
         } else if (typeof action === "object") {
           console.log("we are in action : object");
-          //yo
 
           if (action.ruleTypeId === 1) {
             console.log("we are in ruletype 1");
@@ -527,7 +535,9 @@ router.post("/", async (req, res) => {
             // enregistrer dans put memory
           } else if (action.ruleTypeId === 2) {
             console.log("we are in ruletype 2");
-            // mkm relou behaviour
+            //yo
+
+            // mkm behaviour
             // get the price guide for this card
             const priceguide = await db.priceguide.findOne({
               where: {
@@ -544,10 +554,17 @@ router.post("/", async (req, res) => {
             const actionCoefficient =
               action.customRule_behaviour_definition.dataValues.coefficient;
 
+            let newPrice;
+
             //Browsing data on the rule to choose the right price to apply to the card
             if (actionType === "percent") {
               if (actionSense === "up") {
-                //arrondir up %
+                //Round up in % the number chosen in reference
+
+                newPrice = priceUpdateAPI.roundUpPercent(
+                  "test",
+                  actionCoefficient
+                );
               } else if (actionSense === "down") {
                 //arrondir down %
               } else {
@@ -566,8 +583,6 @@ router.post("/", async (req, res) => {
                 "Action type wasn't precised on behaviour in custom rule."
               );
             }
-
-            const newPrice = "TBD";
 
             let relevantTrend =
               card.isFoil === 0

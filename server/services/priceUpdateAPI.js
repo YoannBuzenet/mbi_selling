@@ -63,7 +63,35 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend) {
   }
 }
 
+function roundDownNumber(number, coefficient) {
+  return number - (number % coefficient);
+}
+function roundUpNumber(number, coefficient) {
+  return number + (number % coefficient);
+}
+
+function roundUpPercent(number, coefficient) {
+  return smoothFloatKeepEntireComplete(number * coefficient);
+}
+
+function roundDownPercent(number, coefficient) {
+  return smoothFloatKeepEntireComplete(number / coefficient);
+}
+
+function smoothFloatKeepEntireComplete(number) {
+  if (number % 1 !== 0) {
+    return parseFloat(number.toFixed(2));
+  } else {
+    return number;
+  }
+}
+
 module.exports = {
   findTheRightPriceRange,
   priceShieldAllows,
+  roundDownNumber,
+  roundUpNumber,
+  roundUpPercent,
+  roundDownPercent,
+  smoothFloatKeepEntireComplete,
 };
