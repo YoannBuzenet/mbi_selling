@@ -18,63 +18,63 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       AvgSellPrice: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       lowPrice: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       trendPrice: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       germanProLow: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       suggestedPrice: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       foilSell: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       foilLow: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       foilTrend: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       lowPriceEx: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       avg1: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       avg7: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       avg30: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       foilAvg1: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       foilAvg7: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       foilAvg30: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
     },

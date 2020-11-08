@@ -17,49 +17,49 @@ module.exports = {
         },
       },
       avgSellPrice: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       lowPrice: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       trendPrice: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       germanProLow: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       suggestedPrice: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       foilSell: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       foilLow: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       foilTrend: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       lowPriceEx: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       avg1: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       avg7: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       avg30: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       foilAvg1: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       foilAvg7: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       foilAvg30: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,
