@@ -448,7 +448,6 @@ router.post("/", async (req, res) => {
         console.log("reminder of the card", card);
         console.log("reminder of the card price", card.price);
         console.log("action for that card", action);
-        console.log("mkm dictionnary", mkmPricesGuideDictionnary);
 
         // We chose to
         if (action === -2) {
@@ -545,6 +544,11 @@ router.post("/", async (req, res) => {
               },
             });
 
+            console.log(
+              "price guide for this card, mkm step",
+              priceguide.dataValues
+            );
+
             const actionName =
               action.customRule_behaviour_definition.dataValues.name;
             const actionType =
@@ -555,33 +559,64 @@ router.post("/", async (req, res) => {
               action.customRule_behaviour_definition.dataValues.coefficient;
 
             let newPrice;
+            let priceguideRefUsedByUser =
+              priceguide.dataValues[
+                mkmPricesGuideDictionnary[action.mkmPriceGuideReference]
+              ];
 
-            //Browsing data on the rule to choose the right price to apply to the card
-            if (actionType === "percent") {
-              if (actionSense === "up") {
-                //Round up in % the number chosen in reference
+            //We check if this price exist (price guide is sometimes empty) before trying to work with it.
 
-                newPrice = priceUpdateAPI.roundUpPercent(
-                  "test",
-                  actionCoefficient
+            if (priceguideRefUsedByUser) {
+              if (actionType === "percent") {
+                //Browsing data on the rule to choose the right price to apply to the card
+                if (actionSense === "up") {
+                  //Round up in % the number chosen in reference
+
+                  newPrice = priceUpdateAPI.roundUpPercent(
+                    priceguideRefUsedByUser,
+                    actionCoefficient
+                  );
+                  //Save with new price
+                } else if (actionSense === "down") {
+                  //arrondir down %
+                  newPrice = priceUpdateAPI.roundDownPercent(
+                    priceguideRefUsedByUser,
+                    actionCoefficient
+                  );
+                  //Save with new price
+                } else {
+                  throw new Error(
+                    "No action sense (up or down) were precised."
+                  );
+                }
+              } else if (actionType === "number") {
+                if (actionSense === "up") {
+                  //modulo up
+                  newPrice = priceUpdateAPI.roundUpNumber(
+                    priceguideRefUsedByUser,
+                    actionCoefficient
+                  );
+                  //Save with new price
+                } else if (actionSense === "down") {
+                  //modulo down
+                  newPrice = priceUpdateAPI.roundDownNumber(
+                    priceguideRefUsedByUser,
+                    actionCoefficient
+                  );
+                  //Save with new price
+                } else {
+                  throw new Error(
+                    "No action sense (up or down) were precised."
+                  );
+                }
+              } else {
+                throw new Error(
+                  "Action type wasn't precised on behaviour in custom rule."
                 );
-              } else if (actionSense === "down") {
-                //arrondir down %
-              } else {
-                throw new Error("No action sense (up or down) were precised.");
-              }
-            } else if (actionType === "number") {
-              if (actionSense === "up") {
-                //modulo up
-              } else if (actionSense === "down") {
-                //modulo down
-              } else {
-                throw new Error("No action sense (up or down) were precised.");
               }
             } else {
-              throw new Error(
-                "Action type wasn't precised on behaviour in custom rule."
-              );
+              //The price did not exist in the price guide, so we do not change it and mark it in Put memory.
+              //Save same as actual in put memory with mention "No Corresponding Priceguide"
             }
 
             let relevantTrend =
