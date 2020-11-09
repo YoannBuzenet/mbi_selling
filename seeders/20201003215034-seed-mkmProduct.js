@@ -328,7 +328,7 @@ module.exports = {
         //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +15%)
         {
           idArticle: 159,
-          idProduct: 16229,
+          idProduct: 16511,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
@@ -353,7 +353,7 @@ module.exports = {
         //Testing ruleTypeId 1 : this card should be set to 1
         //trend between 0 <= X <= 1
         {
-          idArticle: 159,
+          idArticle: 169,
           idProduct: 16229,
           englishName: "ok",
           localName: "ok",
@@ -379,7 +379,7 @@ module.exports = {
         //Testing ruleTypeId 1 : this card should be set blocked by the priceguide
         //trend between 0 <= X <= 1
         {
-          idArticle: 159,
+          idArticle: 179,
           idProduct: 16229,
           englishName: "ok",
           localName: "ok",
