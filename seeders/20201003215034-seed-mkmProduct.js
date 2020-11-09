@@ -223,7 +223,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 3
+        //Testing ruleTypeId 3 : this card should be excluded
         {
           idArticle: 9,
           idProduct: 16483,
@@ -248,7 +248,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2
+        //Testing ruleTypeId 2 : this card should have +10%
         {
           idArticle: 10,
           idProduct: 16413,
@@ -273,7 +273,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2
+        //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +10%)
         {
           idArticle: 15,
           idProduct: 16413,
@@ -298,7 +298,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2
+        //Testing ruleTypeId 2 : this card should have +15%
         {
           idArticle: 158,
           idProduct: 16511,
@@ -323,7 +323,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2
+        //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +15%)
         {
           idArticle: 159,
           idProduct: 16511,
