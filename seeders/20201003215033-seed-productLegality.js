@@ -291,7 +291,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          idProduct: 16413,
+          idProduct: 16168,
           idSet: 1,
           isLegalCommander: 0,
           isLegalDuel: 0,
