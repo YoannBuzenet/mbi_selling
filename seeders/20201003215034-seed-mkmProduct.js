@@ -249,9 +249,10 @@ module.exports = {
           updatedAt: new Date(),
         },
         //Testing ruleTypeId 2 : this card should have +10%
+        //trend between 1 <= X <= 2
         {
           idArticle: 10,
-          idProduct: 16413,
+          idProduct: 16168,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
@@ -274,9 +275,10 @@ module.exports = {
           updatedAt: new Date(),
         },
         //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +10%)
+        //trend between 1 <= X <= 2
         {
           idArticle: 15,
-          idProduct: 16413,
+          idProduct: 16168,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
@@ -326,7 +328,59 @@ module.exports = {
         //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +15%)
         {
           idArticle: 159,
-          idProduct: 16511,
+          idProduct: 16229,
+          englishName: "ok",
+          localName: "ok",
+          Exp: 5,
+          expName: "ok",
+          price: 15,
+          language: 6,
+          condition: 7,
+          isFoil: 0,
+          isSigned: 0,
+          isPlayset: 0,
+          isAltered: 0,
+          comments: 0,
+          amount: 10,
+          onSale: 0,
+          idCurrency: 1,
+          productLegalityId: 3,
+          currencyCode: "EUR",
+          idShop: 7,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        //Testing ruleTypeId 1 : this card should be set to 1
+        //trend between 0 <= X <= 1
+        {
+          idArticle: 159,
+          idProduct: 16229,
+          englishName: "ok",
+          localName: "ok",
+          Exp: 5,
+          expName: "ok",
+          price: 0.2,
+          language: 6,
+          condition: 7,
+          isFoil: 0,
+          isSigned: 0,
+          isPlayset: 0,
+          isAltered: 0,
+          comments: 0,
+          amount: 10,
+          onSale: 0,
+          idCurrency: 1,
+          productLegalityId: 3,
+          currencyCode: "EUR",
+          idShop: 7,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        //Testing ruleTypeId 1 : this card should be set blocked by the priceguide
+        //trend between 0 <= X <= 1
+        {
+          idArticle: 159,
+          idProduct: 16229,
           englishName: "ok",
           localName: "ok",
           Exp: 5,
