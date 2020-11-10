@@ -287,9 +287,6 @@ router.post("/", async (req, res) => {
     /* **************************************** */
     /* ********** Snapshot Custom Rule ***********/
     /* **************************************** */
-    //Yo
-    //TODO We must snapshot the rules
-    //TODO For each one snapshoted, add its id in the object of the custom rule
 
     let snapshot_custom_rule;
     let idSnapShotCustomRule;
@@ -415,15 +412,21 @@ router.post("/", async (req, res) => {
       for (let j = 0; j < chunkOfCards.length; j++) {
         const card = chunkOfCards[j].dataValues;
 
+        const priceguide = await db.priceguide.findOne({
+          where: {
+            idProduct: card.idProduct,
+          },
+        });
+
         if (card.isFoil === 0) {
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesRegular,
-            card.price
+            priceguide.dataValues.trendPrice
           );
         } else if (card.isFoil === 1) {
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesFoil,
-            card.price
+            priceguide.dataValues.foilTrend
           );
         } else {
           res.status(500).json("A card was missing the isFoil prop.");
@@ -474,11 +477,6 @@ router.post("/", async (req, res) => {
             console.log("we are in ruletype 1");
             // set value behaviour
             // get the price guide for this card
-            const priceguide = await db.priceguide.findOne({
-              where: {
-                idProduct: card.idProduct,
-              },
-            });
 
             const newPrice = action.priceRangeValueToSet;
 
@@ -535,11 +533,6 @@ router.post("/", async (req, res) => {
             console.log("we are in ruletype 2");
             // Mkm based behaviour action
             // get the price guide for this card
-            const priceguide = await db.priceguide.findOne({
-              where: {
-                idProduct: card.idProduct,
-              },
-            });
 
             console.log(
               "price guide for this card, mkm step",
