@@ -418,15 +418,20 @@ router.post("/", async (req, res) => {
           },
         });
 
+        let relevantTrend =
+          card.isFoil === 0
+            ? priceguide.dataValues.trendPrice
+            : priceguide.dataValues.foilTrend;
+
         if (card.isFoil === 0) {
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesRegular,
-            priceguide.dataValues.trendPrice
+            relevantTrend
           );
         } else if (card.isFoil === 1) {
           action = priceUpdateAPI.findTheRightPriceRange(
             arrayOfSortedRulesFoil,
-            priceguide.dataValues.foilTrend
+            relevantTrend
           );
         } else {
           res.status(500).json("A card was missing the isFoil prop.");
@@ -481,12 +486,7 @@ router.post("/", async (req, res) => {
 
             const newPrice = action.priceRangeValueToSet;
 
-            let relevantTrend =
-              card.isFoil === 0
-                ? priceguide.dataValues.trendPrice
-                : priceguide.dataValues.foilTrend;
             // priceshield
-
             if (
               priceUpdateAPI.priceShieldAllows(
                 card.price,
@@ -504,8 +504,8 @@ router.post("/", async (req, res) => {
                 idArticle: card.idArticle,
                 oldPrice: card.price,
                 newPrice: newPrice,
-                regularCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                 condition: card.condition,
                 lang: card.language,
                 isFoil: card.isFoil,
@@ -522,8 +522,8 @@ router.post("/", async (req, res) => {
                 idScript: idScript,
                 idProduct: card.idProduct,
                 idArticle: card.idArticle,
-                regularCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                 oldPrice: card.price,
                 newPrice: newPrice,
                 condition: card.condition,
@@ -591,8 +591,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -612,8 +612,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: card.price,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -650,8 +650,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -671,8 +671,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: card.price,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -715,8 +715,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -736,8 +736,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: card.price,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -773,8 +773,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       numberUserChoseToUse: priceguideRefUsedByUser,
@@ -794,8 +794,8 @@ router.post("/", async (req, res) => {
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
                       regularCardsTrend:
-                        card.isFoil === 0 ? null : relevantTrend,
-                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                        card.isFoil === 0 ? relevantTrend : null,
+                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                       oldPrice: card.price,
                       newPrice: card.price,
                       numberUserChoseToUse: priceguideRefUsedByUser,

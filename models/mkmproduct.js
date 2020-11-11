@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       Exp: DataTypes.STRING,
       expName: DataTypes.STRING,
       price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       language: {
