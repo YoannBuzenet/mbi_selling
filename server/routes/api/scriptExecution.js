@@ -459,6 +459,7 @@ router.post("/", async (req, res) => {
           await db.put_memory.create({
             idScript: idScript,
             idProduct: card.idProduct,
+            idArticle: card.idArticle,
             oldPrice: card.price,
             newPrice: card.price,
             condition: card.condition,
@@ -500,6 +501,7 @@ router.post("/", async (req, res) => {
               await db.put_memory.create({
                 idScript: idScript,
                 idProduct: card.idProduct,
+                idArticle: card.idArticle,
                 oldPrice: card.price,
                 newPrice: newPrice,
                 condition: card.condition,
@@ -517,6 +519,7 @@ router.post("/", async (req, res) => {
               await db.put_memory.create({
                 idScript: idScript,
                 idProduct: card.idProduct,
+                idArticle: card.idArticle,
                 oldPrice: card.price,
                 newPrice: newPrice,
                 condition: card.condition,
@@ -538,6 +541,11 @@ router.post("/", async (req, res) => {
               "price guide for this card, mkm step",
               priceguide.dataValues
             );
+            console.log(
+              "action.mkmPriceGuideReference",
+              action.mkmPriceGuideReference
+            );
+            console.log("mkmPricesGuideDictionnary", mkmPricesGuideDictionnary);
 
             const actionName =
               action.customRule_behaviour_definition.dataValues.name;
@@ -557,6 +565,7 @@ router.post("/", async (req, res) => {
             //We check if this price exist (price guide is sometimes empty) before trying to work with it.
 
             if (priceguideRefUsedByUser) {
+              console.log("la data reference", priceguideRefUsedByUser);
               if (actionType === "percent") {
                 //Browsing data on the rule to choose the right price to apply to the card
                 if (actionSense === "up") {
@@ -566,8 +575,6 @@ router.post("/", async (req, res) => {
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
-
-                  //Sur quelle trend on se base dans le cas d'une augmentation basée sur une info MKM ?
 
                   // priceshield
                   if (
@@ -579,6 +586,7 @@ router.post("/", async (req, res) => {
                   ) {
                     //PUT memory with change
                     //Save with new price
+                    console.log("new price :", newPrice);
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
@@ -629,6 +637,7 @@ router.post("/", async (req, res) => {
                       priceguideRefUsedByUser
                     )
                   ) {
+                    console.log("new price :", newPrice);
                     //PUT memory with change
                     //Save with new price
                     await db.put_memory.create({
@@ -687,6 +696,7 @@ router.post("/", async (req, res) => {
                       priceguideRefUsedByUser
                     )
                   ) {
+                    console.log("new price :", newPrice);
                     //PUT memory with change
                     //Save with new price
                     await db.put_memory.create({
@@ -738,6 +748,7 @@ router.post("/", async (req, res) => {
                       priceguideRefUsedByUser
                     )
                   ) {
+                    console.log("new price :", newPrice);
                     //PUT memory with change
                     //Save with new price
                     await db.put_memory.create({
@@ -786,11 +797,16 @@ router.post("/", async (req, res) => {
                 );
               }
             } else {
+              console.log(
+                "la data qui semble manqure : ",
+                priceguideRefUsedByUser
+              );
               //The price did not exist in the price guide, so we do not change it and mark it in Put memory.
               //Save same as actual in put memory with mention "No Corresponding Priceguide"
               await db.put_memory.create({
                 idScript: idScript,
                 idProduct: card.idProduct,
+                idArticle: card.idArticle,
                 oldPrice: card.price,
                 newPrice: card.price,
                 condition: card.condition,
@@ -809,8 +825,9 @@ router.post("/", async (req, res) => {
             await db.put_memory.create({
               idScript: idScript,
               idProduct: card.idProduct,
+              idArticle: card.idArticle,
               oldPrice: card.price,
-              newPrice: newPrice,
+              newPrice: card.price,
               condition: card.condition,
               lang: card.language,
               isFoil: card.isFoil,
