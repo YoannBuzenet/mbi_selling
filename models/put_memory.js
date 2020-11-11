@@ -20,13 +20,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      idProduct: DataTypes.STRING,
+      idProduct: DataTypes.INT,
+      idArticle: DataTypes.INT,
       oldPrice: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       newPrice: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       condition: {

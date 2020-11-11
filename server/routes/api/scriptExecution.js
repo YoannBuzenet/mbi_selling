@@ -582,6 +582,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       condition: card.condition,
@@ -598,6 +599,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
                       condition: card.condition,
@@ -630,6 +632,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       condition: card.condition,
@@ -646,6 +649,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
                       condition: card.condition,
@@ -684,6 +688,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       condition: card.condition,
@@ -700,6 +705,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
                       condition: card.condition,
@@ -731,6 +737,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
                       condition: card.condition,
@@ -747,6 +754,7 @@ router.post("/", async (req, res) => {
                     await db.put_memory.create({
                       idScript: idScript,
                       idProduct: card.idProduct,
+                      idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
                       condition: card.condition,
