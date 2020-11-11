@@ -42,6 +42,7 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend) {
   const variationRateTrend = Math.floor(
     (newPrice - priceTrend / priceTrend) * 100
   );
+  console.log("variation rate", variationRate);
 
   //If card is under 20€ and new price is more than 40% under the trend
   if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 40) {
