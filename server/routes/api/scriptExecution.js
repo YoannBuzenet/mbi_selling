@@ -559,7 +559,7 @@ router.post("/", async (req, res) => {
             let newPrice;
             let priceguideRefUsedByUser =
               priceguide.dataValues[
-                mkmPricesGuideDictionnary[action.mkmPriceGuideReference]
+                mkmPricesGuideDictionnary[action.mkmPriceGuideReference].name
               ];
 
             //We check if this price exist (price guide is sometimes empty) before trying to work with it.
@@ -593,7 +593,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -611,7 +611,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -646,7 +646,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -664,7 +664,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -705,7 +705,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -723,7 +723,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -757,7 +757,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -775,7 +775,7 @@ router.post("/", async (req, res) => {
                       idArticle: card.idArticle,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRedUsedByUser,
+                      trendUsed: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
