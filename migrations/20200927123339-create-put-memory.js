@@ -19,11 +19,14 @@ module.exports = {
       idProduct: {
         type: Sequelize.INTEGER,
       },
-      oldPrice: {
+      idArticle: {
         type: Sequelize.INTEGER,
       },
+      oldPrice: {
+        type: Sequelize.FLOAT,
+      },
       newPrice: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       condition: {
         type: Sequelize.INTEGER,

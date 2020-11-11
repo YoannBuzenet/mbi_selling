@@ -244,7 +244,7 @@ module.exports = {
           onSale: 0,
           idCurrency: 1,
           currencyCode: "EUR",
-          idShop: 4,
+          idShop: 7,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
