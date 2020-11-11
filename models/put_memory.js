@@ -22,6 +22,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       idProduct: DataTypes.INTEGER,
       idArticle: DataTypes.INTEGER,
+      regularCardsTrend: {
+        type: DataTypes.FLOAT,
+        validate: { isNumeric: true },
+      },
+      foilCardsTrend: {
+        type: DataTypes.FLOAT,
+        validate: { isNumeric: true },
+      },
       oldPrice: {
         type: DataTypes.FLOAT,
         validate: { isNumeric: true },
@@ -30,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
-      trendUsed: {
+      numberUserChoseToUse: {
         type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
