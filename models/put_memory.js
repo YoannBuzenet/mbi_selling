@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
+      trendUsed: {
+        type: DataTypes.FLOAT,
+        validate: { isNumeric: true },
+      },
       condition: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },

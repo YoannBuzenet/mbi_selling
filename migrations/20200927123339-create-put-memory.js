@@ -22,6 +22,10 @@ module.exports = {
       idArticle: {
         type: Sequelize.INTEGER,
       },
+      trendUsed: {
+        type: Sequelize.FLOAT,
+        validate: { isNumeric: true },
+      },
       oldPrice: {
         type: Sequelize.FLOAT,
       },
