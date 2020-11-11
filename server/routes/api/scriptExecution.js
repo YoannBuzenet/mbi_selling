@@ -504,6 +504,8 @@ router.post("/", async (req, res) => {
                 idArticle: card.idArticle,
                 oldPrice: card.price,
                 newPrice: newPrice,
+                regularCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+                foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                 condition: card.condition,
                 lang: card.language,
                 isFoil: card.isFoil,
@@ -520,6 +522,8 @@ router.post("/", async (req, res) => {
                 idScript: idScript,
                 idProduct: card.idProduct,
                 idArticle: card.idArticle,
+                regularCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+                foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                 oldPrice: card.price,
                 newPrice: newPrice,
                 condition: card.condition,
@@ -541,11 +545,6 @@ router.post("/", async (req, res) => {
               "price guide for this card, mkm step",
               priceguide.dataValues
             );
-            console.log(
-              "action.mkmPriceGuideReference",
-              action.mkmPriceGuideReference
-            );
-            console.log("mkmPricesGuideDictionnary", mkmPricesGuideDictionnary);
 
             const actionName =
               action.customRule_behaviour_definition.dataValues.name;
@@ -591,9 +590,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -609,9 +611,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -644,9 +649,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -662,9 +670,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -703,9 +714,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -721,9 +735,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -755,9 +772,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: newPrice,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,
@@ -773,9 +793,12 @@ router.post("/", async (req, res) => {
                       idScript: idScript,
                       idProduct: card.idProduct,
                       idArticle: card.idArticle,
+                      regularCardsTrend:
+                        card.isFoil === 0 ? null : relevantTrend,
+                      foilCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                       oldPrice: card.price,
                       newPrice: card.price,
-                      trendUsed: priceguideRefUsedByUser,
+                      numberUserChoseToUse: priceguideRefUsedByUser,
                       condition: card.condition,
                       lang: card.language,
                       isFoil: card.isFoil,

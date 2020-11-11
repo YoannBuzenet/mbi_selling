@@ -22,7 +22,15 @@ module.exports = {
       idArticle: {
         type: Sequelize.INTEGER,
       },
-      trendUsed: {
+      regularCardsTrend: {
+        type: Sequelize.FLOAT,
+        validate: { isNumeric: true },
+      },
+      foilCardsTrend: {
+        type: Sequelize.FLOAT,
+        validate: { isNumeric: true },
+      },
+      numberUserChoseToUse: {
         type: Sequelize.FLOAT,
         validate: { isNumeric: true },
       },
