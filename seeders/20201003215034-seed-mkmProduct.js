@@ -333,7 +333,7 @@ module.exports = {
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 15,
+          price: 25,
           language: 6,
           condition: 7,
           isFoil: 0,
@@ -376,7 +376,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 1 : this card should be set blocked by the priceguide
+        //Testing ruleTypeId 1 : this card should be set blocked by the priceshield
         //trend between 0 <= X <= 1
         {
           idArticle: 179,
