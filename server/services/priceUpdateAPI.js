@@ -38,11 +38,22 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
 }
 
 function priceShieldAllows(oldPrice, newPrice, priceTrend) {
-  const variationRate = Math.floor((newPrice - oldPrice / oldPrice) * 100);
-  const variationRateTrend = Math.floor(
-    (newPrice - priceTrend / priceTrend) * 100
+  const variationRate = Math.abs(((newPrice - oldPrice) / oldPrice) * 100);
+  const variationRateTrend = Math.abs(
+    ((newPrice - priceTrend) / priceTrend) * 100
   );
   console.log("variation rate", variationRate);
+  console.log("oldPrice", oldPrice);
+  console.log("newPrice", newPrice);
+  console.log("priceTrend", priceTrend);
+  console.log(
+    "Math.abs(((newPrice - oldPrice) / oldPrice) * 100)",
+    Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
+  );
+  console.log(
+    "ABS (newPrice - oldPrice / oldPrice) * 100",
+    Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
+  );
 
   //If card is under 20€ and new price is more than 40% under the trend
   if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 40) {
@@ -57,7 +68,7 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend) {
     return false;
   }
   //If the card is worth more than 10 euros and variation rate is more than 50%
-  else if (oldPrice < newPrice && oldPrice >= 10 && variationRate > 50) {
+  else if (newPrice < oldPrice && oldPrice >= 10 && variationRate > 50) {
     return false;
   } else {
     return true;
