@@ -385,7 +385,7 @@ module.exports = {
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 15,
+          price: 150,
           language: 6,
           condition: 7,
           isFoil: 0,
