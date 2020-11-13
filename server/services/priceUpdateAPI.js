@@ -40,12 +40,6 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
 // Translation of the behaviours are in the src folder, /services/fullStacktranslations/priceshield
 function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
   const conditionId = parseInt(cardCondition);
-  //yooy
-  // Tu dois modifier le priceshield pour qu'il laisse passer les cartes trop abimées qui seront décotées
-  // indice : si condition < X telle suite de check
-  // si condition > X autre suite de check
-  // parse int la condition
-  // ajouter les nouvelles raisons dans le dico en fullstack après
 
   const variationRate = Math.abs(((newPrice - oldPrice) / oldPrice) * 100);
   const variationRateTrend = Math.abs(
@@ -108,7 +102,7 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
       //If card is under 20€ and new price is more than 80% under the trend
       return { result: false, reason: 6 };
     }
-    //If card is between 20 and 50€ and new price is more than 50% under the trend
+    //If card is between 20 and 50€ and new price is more than 60% under the trend
     else if (
       oldPrice < 50 &&
       newPrice < priceTrend &&
