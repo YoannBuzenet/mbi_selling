@@ -110,7 +110,13 @@ function calculatePriceWithLanguageAndConditionSpecifics(
   cardCondition,
   shopParams
 ) {
+  const {
+    langDefinition,
+    conditionDefinition,
+  } = require("../services/genericInfosAPI");
   console.log("shopParams", shopParams);
+  console.log("langDefinition", langDefinition);
+  console.log("conditionDefinition", conditionDefinition);
   const newPrice = 0;
   return initialPrice;
 }
