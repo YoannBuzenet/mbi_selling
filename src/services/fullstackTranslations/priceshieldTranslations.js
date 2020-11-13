@@ -29,6 +29,30 @@ const priceShieldReasons = {
     "fr-FR":
       "Le taux de variation entre l'ancien et le nouveau prix ne peut être supérieur à 60%.",
   },
+  6: {
+    "en-US":
+      "Price under 20 euros - Price can't be more than 80% cheaper than the MKM trend on used cards.",
+    "fr-FR":
+      "Prix en dessous de 20 euros - Le prix de vente ne peut être inférieur de plus de 80% à la tendance MKM sur les cartes usées.",
+  },
+  7: {
+    "en-US":
+      "Price under 50 euros - Price can't be more than 60% cheaper than the MKM trend on used cards.",
+    "fr-FR":
+      "Prix en dessous de 50 euros - Le prix de vente ne peut être inférieur de plus de 60% à la tendance MKM sur les cartes usées.",
+  },
+  8: {
+    "en-US":
+      "Price above 50 euros - Price can't be more than 40% cheaper than the MKM trend on used cards.",
+    "fr-FR":
+      "Prix en dessous de 40 euros - Le prix de vente ne peut être inférieur de plus de 40% à la tendance MKM sur les cartes usées.",
+  },
+  9: {
+    "en-US":
+      "Variation Rate between old price and new price can't be higher than 60%.",
+    "fr-FR":
+      "Le taux de variation entre l'ancien et le nouveau prix ne peut être supérieur à 60%.",
+  },
 };
 
 module.exports = {
