@@ -38,7 +38,15 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
 }
 
 // Translation of the behaviours are in the src folder, /services/fullStacktranslations/priceshield
-function priceShieldAllows(oldPrice, newPrice, priceTrend) {
+function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
+  const conditionId = parseInt(cardCondition);
+  //yooy
+  // Tu dois modifier le priceshield pour qu'il laisse passer les cartes trop abimées qui seront décotées
+  // indice : si condition < X telle suite de check
+  // si condition > X autre suite de check
+  // parse int la condition
+  // ajouter les nouvelles raisons dans le dico en fullstack après
+
   const variationRate = Math.abs(((newPrice - oldPrice) / oldPrice) * 100);
   const variationRateTrend = Math.abs(
     ((newPrice - priceTrend) / priceTrend) * 100
@@ -56,27 +64,76 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend) {
   //   Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
   // );
 
-  //If card is under 20€ and new price is more than 40% under the trend
-  if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 40) {
-    return { result: false, reason: 1 };
+  /* ***************************** */
+  // Mint, Near Mint, Excellent
+  /* ***************************** */
+
+  if (conditionId <= 3) {
+    if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 40) {
+      //If card is under 20€ and new price is more than 40% under the trend
+      return { result: false, reason: 1 };
+    }
+    //If card is under 50€ and new price is more than 30% under the trend
+    else if (
+      oldPrice < 50 &&
+      newPrice < priceTrend &&
+      variationRateTrend > 30
+    ) {
+      return { result: false, reason: 2 };
+    }
+    //If card is above 50€ and new price is more than 20% under the trend
+    else if (
+      oldPrice > 50 &&
+      newPrice < priceTrend &&
+      variationRateTrend > 20
+    ) {
+      return { result: false, reason: 3 };
+    }
+    //If the card is worth more than 10 euros and variation rate is more than 40%
+    else if (newPrice < oldPrice && oldPrice >= 10 && variationRate > 40) {
+      return { result: false, reason: 4 };
+    }
+    //If the variation rate is more than 60%
+    else if (newPrice < oldPrice && variationRate > 60) {
+      return { result: false, reason: 5 };
+    } else {
+      return { result: true };
+    }
   }
-  //If card is under 50€ and new price is more than 30% under the trend
-  else if (oldPrice < 50 && newPrice < priceTrend && variationRateTrend > 30) {
-    return { result: false, reason: 2 };
-  }
-  //If card is above 50€ and new price is more than 20% under the trend
-  else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 20) {
-    return { result: false, reason: 3 };
-  }
-  //If the card is worth more than 10 euros and variation rate is more than 40%
-  else if (newPrice < oldPrice && oldPrice >= 10 && variationRate > 40) {
-    return { result: false, reason: 4 };
-  }
-  //If the variation rate is more than 60%
-  else if (newPrice < oldPrice && variationRate > 60) {
-    return { result: false, reason: 5 };
+  /* ***************************** */
+  // Good, Light Played, Played, Good
+  /* ***************************** */
+  else if (conditionId > 3 && conditionId <= 7) {
+    if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 80) {
+      //If card is under 20€ and new price is more than 80% under the trend
+      return { result: false, reason: 6 };
+    }
+    //If card is between 20 and 50€ and new price is more than 50% under the trend
+    else if (
+      oldPrice < 50 &&
+      newPrice < priceTrend &&
+      variationRateTrend > 60
+    ) {
+      return { result: false, reason: 7 };
+    }
+    //If card is above 50€ and new price is more than 40% under the trend
+    else if (
+      oldPrice > 50 &&
+      newPrice < priceTrend &&
+      variationRateTrend > 40
+    ) {
+      return { result: false, reason: 8 };
+    }
+    //If the variation rate is more than 60%
+    else if (newPrice < oldPrice && variationRate > 60) {
+      return { result: false, reason: 9 };
+    } else {
+      return { result: true };
+    }
   } else {
-    return { result: true };
+    throw new Error(
+      "conditionId couldnt be found. ConditionId :" + conditionId
+    );
   }
 }
 
