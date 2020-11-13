@@ -486,14 +486,15 @@ router.post("/", async (req, res) => {
 
             const newPrice = action.priceRangeValueToSet;
 
+            //After price was defined, we pass it into the price shield
+            const priceShieldTest = priceUpdateAPI.priceShieldAllows(
+              card.price,
+              newPrice,
+              relevantTrend
+            );
+
             // priceshield
-            if (
-              priceUpdateAPI.priceShieldAllows(
-                card.price,
-                newPrice,
-                relevantTrend
-              )
-            ) {
+            if (priceShieldTest.result) {
               // Price Shield allows the rule
               console.log("ruleType 1, price shield allowed");
               console.log("custom rule used", action.idSnapShotCustomRule);
@@ -526,6 +527,8 @@ router.post("/", async (req, res) => {
                 foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                 oldPrice: card.price,
                 newPrice: newPrice,
+                priceShieldBlocked: 1,
+                priceShieldReason: priceShieldTest.reason,
                 condition: card.condition,
                 lang: card.language,
                 isFoil: card.isFoil,
@@ -564,128 +567,24 @@ router.post("/", async (req, res) => {
             //We check if this price exist (price guide is sometimes empty) before trying to work with it.
 
             if (priceguideRefUsedByUser) {
-              console.log("la data reference", priceguideRefUsedByUser);
+              //If the priceguide does exist, we will define the new price thanks to the operation criteria
+              // Then, pass it in the price shield at the end
+
               if (actionType === "percent") {
                 //Browsing data on the rule to choose the right price to apply to the card
+
                 if (actionSense === "up") {
                   //Round up in % the number chosen in reference
-
                   newPrice = priceUpdateAPI.roundUpPercent(
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
-
-                  // priceshield
-                  if (
-                    priceUpdateAPI.priceShieldAllows(
-                      card.price,
-                      newPrice,
-                      priceguideRefUsedByUser
-                    )
-                  ) {
-                    //PUT memory with change
-                    //Save with new price
-                    console.log("new price :", newPrice);
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  } else {
-                    //PUT memory explaining why it didnt go for it
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: "Price Shield Blocked " + actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  }
                 } else if (actionSense === "down") {
                   //arrondir down %
                   newPrice = priceUpdateAPI.roundDownPercent(
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
-
-                  // priceshield
-                  if (
-                    priceUpdateAPI.priceShieldAllows(
-                      card.price,
-                      newPrice,
-                      priceguideRefUsedByUser
-                    )
-                  ) {
-                    console.log("new price :", newPrice);
-                    //PUT memory with change
-                    //Save with new price
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  } else {
-                    //PUT memory explaining why it didnt go for it
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: "Price Shield Blocked " + actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  }
                 } else {
                   throw new Error(
                     "No action sense (up or down) were precised."
@@ -698,117 +597,12 @@ router.post("/", async (req, res) => {
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
-
-                  // priceshield
-                  if (
-                    priceUpdateAPI.priceShieldAllows(
-                      card.price,
-                      newPrice,
-                      priceguideRefUsedByUser
-                    )
-                  ) {
-                    console.log("new price :", newPrice);
-                    //PUT memory with change
-                    //Save with new price
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  } else {
-                    //PUT memory explaining why it didnt go for it
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: "Price Shield Blocked " + actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  }
                 } else if (actionSense === "down") {
                   //modulo down
                   newPrice = priceUpdateAPI.roundDownNumber(
                     priceguideRefUsedByUser,
                     actionCoefficient
                   );
-                  // priceshield
-                  if (
-                    priceUpdateAPI.priceShieldAllows(
-                      card.price,
-                      newPrice,
-                      priceguideRefUsedByUser
-                    )
-                  ) {
-                    console.log("new price :", newPrice);
-                    //PUT memory with change
-                    //Save with new price
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  } else {
-                    //PUT memory explaining why it didnt go for it
-                    await db.put_memory.create({
-                      idScript: idScript,
-                      idProduct: card.idProduct,
-                      idArticle: card.idArticle,
-                      regularCardsTrend:
-                        card.isFoil === 0 ? relevantTrend : null,
-                      foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                      oldPrice: card.price,
-                      newPrice: newPrice,
-                      numberUserChoseToUse: priceguideRefUsedByUser,
-                      condition: card.condition,
-                      lang: card.language,
-                      isFoil: card.isFoil,
-                      isSigned: card.isSigned,
-                      isPlayset: 0,
-                      behaviourChosen: "Price Shield Blocked " + actionName,
-                      idCustomRuleUsed: action.idSnapShotCustomRule,
-                      PUT_Request_id: put_request.dataValues.id,
-                    });
-                  }
                 } else {
                   throw new Error(
                     "No action sense (up or down) were precised."
@@ -818,6 +612,60 @@ router.post("/", async (req, res) => {
                 throw new Error(
                   "Action type wasn't precised on behaviour in custom rule."
                 );
+              }
+
+              //After price was defined, we pass it into the price shield
+              const priceShieldTest = priceUpdateAPI.priceShieldAllows(
+                card.price,
+                newPrice,
+                priceguideRefUsedByUser
+              );
+              if (priceShieldTest.result) {
+                console.log("new price :", newPrice);
+                //PUT memory with change
+                //Save with new price
+                await db.put_memory.create({
+                  idScript: idScript,
+                  idProduct: card.idProduct,
+                  idArticle: card.idArticle,
+                  regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                  foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+                  oldPrice: card.price,
+                  newPrice: newPrice,
+                  numberUserChoseToUse: priceguideRefUsedByUser,
+                  priceShieldBlocked: 0,
+                  priceShieldReason: null,
+                  condition: card.condition,
+                  lang: card.language,
+                  isFoil: card.isFoil,
+                  isSigned: card.isSigned,
+                  isPlayset: 0,
+                  behaviourChosen: actionName,
+                  idCustomRuleUsed: action.idSnapShotCustomRule,
+                  PUT_Request_id: put_request.dataValues.id,
+                });
+              } else {
+                //PUT memory explaining why it didnt go for it
+                await db.put_memory.create({
+                  idScript: idScript,
+                  idProduct: card.idProduct,
+                  idArticle: card.idArticle,
+                  regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+                  foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+                  oldPrice: card.price,
+                  newPrice: newPrice,
+                  numberUserChoseToUse: priceguideRefUsedByUser,
+                  priceShieldBlocked: 1,
+                  priceShieldReason: priceShieldTest.reason,
+                  condition: card.condition,
+                  lang: card.language,
+                  isFoil: card.isFoil,
+                  isSigned: card.isSigned,
+                  isPlayset: 0,
+                  behaviourChosen: "Price Shield Blocked " + actionName,
+                  idCustomRuleUsed: action.idSnapShotCustomRule,
+                  PUT_Request_id: put_request.dataValues.id,
+                });
               }
             } else {
               console.log(

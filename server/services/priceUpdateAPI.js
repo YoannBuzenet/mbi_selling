@@ -42,40 +42,40 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend) {
   const variationRateTrend = Math.abs(
     ((newPrice - priceTrend) / priceTrend) * 100
   );
-  console.log("variation rate", variationRate);
-  console.log("oldPrice", oldPrice);
-  console.log("newPrice", newPrice);
-  console.log("priceTrend", priceTrend);
-  console.log(
-    "Math.abs(((newPrice - oldPrice) / oldPrice) * 100)",
-    Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
-  );
-  console.log(
-    "ABS (newPrice - oldPrice / oldPrice) * 100",
-    Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
-  );
+  // console.log("variation rate", variationRate);
+  // console.log("oldPrice", oldPrice);
+  // console.log("newPrice", newPrice);
+  // console.log("priceTrend", priceTrend);
+  // console.log(
+  //   "Math.abs(((newPrice - oldPrice) / oldPrice) * 100)",
+  //   Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
+  // );
+  // console.log(
+  //   "ABS (newPrice - oldPrice / oldPrice) * 100",
+  //   Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
+  // );
 
   //If card is under 20€ and new price is more than 40% under the trend
   if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 40) {
-    return false;
+    return { result: false, reason: 1 };
   }
   //If card is under 50€ and new price is more than 30% under the trend
   else if (oldPrice < 50 && newPrice < priceTrend && variationRateTrend > 30) {
-    return false;
+    return { result: false, reason: 2 };
   }
   //If card is above 50€ and new price is more than 20% under the trend
   else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 20) {
-    return false;
+    return { result: false, reason: 3 };
   }
   //If the card is worth more than 10 euros and variation rate is more than 40%
   else if (newPrice < oldPrice && oldPrice >= 10 && variationRate > 40) {
-    return false;
+    return { result: false, reason: 4 };
   }
   //If the variation rate is more than 60%
   else if (newPrice < oldPrice && variationRate > 60) {
-    return false;
+    return { result: false, reason: 5 };
   } else {
-    return true;
+    return { result: true };
   }
 }
 

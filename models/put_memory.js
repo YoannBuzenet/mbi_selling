@@ -42,6 +42,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
+      priceShieldBlocked: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      priceShieldReason: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       condition: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
