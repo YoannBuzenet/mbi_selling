@@ -28,7 +28,7 @@ module.exports = {
           percentPerLangFrench: 97,
           percentPerLangItalian: 101,
           percentPerLangJapanese: 102,
-          percentPerLangPortuguese: 44,
+          percentPerLangPortuguese: 75,
           percentPerLangRussian: 55,
           percentPerLangSimplifiedChinese: 77,
           percentPerLangEnglish: 88,

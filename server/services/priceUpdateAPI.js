@@ -106,19 +106,28 @@ function smoothFloatKeepEntireComplete(number) {
 
 function calculatePriceWithLanguageAndConditionSpecifics(
   initialPrice,
-  cardLanguage,
-  cardCondition,
+  cardLanguageId,
+  cardConditionId,
+  isFoil,
   shopParams
 ) {
   const {
     langDefinition,
     conditionDefinition,
   } = require("../services/genericInfosAPI");
-  console.log("shopParams", shopParams);
-  console.log("langDefinition", langDefinition);
-  console.log("conditionDefinition", conditionDefinition);
-  const newPrice = 0;
-  return initialPrice;
+
+  const langName = langDefinition[cardLanguageId];
+  const langCoefficient = shopParams["percentPerLang" + langName];
+  const conditionName = conditionDefinition[cardConditionId].trim();
+  const foilOrRegular = isFoil === 0 ? "Regular" : "Foil";
+  const conditionCoefficient =
+    shopParams["percentPer" + conditionName + foilOrRegular];
+  const newPrice = (
+    (((initialPrice * langCoefficient) / 100) * conditionCoefficient) /
+    100
+  ).toFixed(2);
+
+  return parseFloat(newPrice);
 }
 
 module.exports = {

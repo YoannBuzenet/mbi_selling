@@ -600,12 +600,12 @@ router.post("/", async (req, res) => {
                 );
               }
 
-              //yo
               // We update the price depending on condition and language of the card, with shop params
               newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
                 newPrice,
                 card.language,
                 card.condition,
+                card.isFoil,
                 snapShop_Shop_Param.dataValues
               );
 
