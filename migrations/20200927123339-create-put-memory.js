@@ -34,6 +34,14 @@ module.exports = {
         type: Sequelize.FLOAT,
         validate: { isNumeric: true },
       },
+      priceShieldBlocked: {
+        type: Sequelize.INTEGER,
+        validate: { isNumeric: true },
+      },
+      priceShieldReason: {
+        type: Sequelize.INTEGER,
+        validate: { isNumeric: true },
+      },
       oldPrice: {
         type: Sequelize.FLOAT,
       },
