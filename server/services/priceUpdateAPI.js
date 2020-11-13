@@ -37,6 +37,7 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
   return -1;
 }
 
+// Translation of the behaviours are in the src folder, /services/fullStacktranslations/priceshield
 function priceShieldAllows(oldPrice, newPrice, priceTrend) {
   const variationRate = Math.abs(((newPrice - oldPrice) / oldPrice) * 100);
   const variationRateTrend = Math.abs(
@@ -103,6 +104,17 @@ function smoothFloatKeepEntireComplete(number) {
   }
 }
 
+function calculatePriceWithLanguageAndConditionSpecifics(
+  initialPrice,
+  cardLanguage,
+  cardCondition,
+  shopParams
+) {
+  console.log("shopParams", shopParams);
+  const newPrice = 0;
+  return initialPrice;
+}
+
 module.exports = {
   findTheRightPriceRange,
   priceShieldAllows,
@@ -111,4 +123,5 @@ module.exports = {
   roundUpPercent,
   roundDownPercent,
   smoothFloatKeepEntireComplete,
+  calculatePriceWithLanguageAndConditionSpecifics,
 };

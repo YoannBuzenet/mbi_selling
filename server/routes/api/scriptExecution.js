@@ -126,8 +126,6 @@ router.post("/", async (req, res) => {
     await mkmController.getShopStock(shopdataRequest.data, idShop);
   }
 
-  console.log("we passed the stock refresh step");
-
   /* ******************************************* */
   /* Loading custom rules for the current Script */
   /* ******************************************* */
@@ -258,11 +256,6 @@ router.post("/", async (req, res) => {
     rulesWithError
   );
 
-  console.log(
-    "can array of rules be processed ?",
-    IsArrayOfCustomRulesProcessable
-  );
-
   if (!IsArrayOfCustomRulesProcessable) {
     console.log("rules with errors :", rulesWithError);
 
@@ -376,9 +369,9 @@ router.post("/", async (req, res) => {
       numberOfCardsToHandle.count / chunkSize
     );
 
-    console.log(
-      `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
-    );
+    // console.log(
+    //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
+    // );
 
     for (let i = 0; i < numberOfIterations; i++) {
       //choper les 100 premières cartes (en ajusant offset à chaque iteration )
@@ -454,7 +447,6 @@ router.post("/", async (req, res) => {
         );
 
         console.log("reminder of the card", card);
-        console.log("reminder of the card price", card.price);
         console.log("action for that card", action);
 
         // We chose to
@@ -477,8 +469,6 @@ router.post("/", async (req, res) => {
             PUT_Request_id: put_request.dataValues.id,
           });
         } else if (typeof action === "object") {
-          console.log("we are in action : object");
-
           if (action.ruleTypeId === 1) {
             console.log("we are in ruletype 1");
             // set value behaviour
@@ -496,8 +486,6 @@ router.post("/", async (req, res) => {
             // priceshield
             if (priceShieldTest.result) {
               // Price Shield allows the rule
-              console.log("ruleType 1, price shield allowed");
-              console.log("custom rule used", action.idSnapShotCustomRule);
               //PUT memory with change
               await db.put_memory.create({
                 idScript: idScript,
@@ -517,7 +505,6 @@ router.post("/", async (req, res) => {
                 PUT_Request_id: put_request.dataValues.id,
               });
             } else {
-              console.log("ruleType 1, price shield blocked");
               // Price Shield blocked the rule
               await db.put_memory.create({
                 idScript: idScript,
@@ -540,14 +527,13 @@ router.post("/", async (req, res) => {
               });
             }
           } else if (action.ruleTypeId === 2) {
-            console.log("we are in ruletype 2");
             // Mkm based behaviour action
             // get the price guide for this card
 
-            console.log(
-              "price guide for this card, mkm step",
-              priceguide.dataValues
-            );
+            // console.log(
+            //   "price guide for this card, mkm step",
+            //   priceguide.dataValues
+            // );
 
             const actionName =
               action.customRule_behaviour_definition.dataValues.name;
@@ -614,6 +600,15 @@ router.post("/", async (req, res) => {
                 );
               }
 
+              //yo
+              // We update the price depending on condition and language of the card, with shop params
+              newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+                newPrice,
+                card.language,
+                card.condition,
+                snapShop_Shop_Param.dataValues
+              );
+
               //After price was defined, we pass it into the price shield
               const priceShieldTest = priceUpdateAPI.priceShieldAllows(
                 card.price,
@@ -621,7 +616,7 @@ router.post("/", async (req, res) => {
                 priceguideRefUsedByUser
               );
               if (priceShieldTest.result) {
-                console.log("new price :", newPrice);
+                // console.log("new price :", newPrice);
                 //PUT memory with change
                 //Save with new price
                 await db.put_memory.create({
@@ -668,10 +663,6 @@ router.post("/", async (req, res) => {
                 });
               }
             } else {
-              console.log(
-                "la data qui semble manqure : ",
-                priceguideRefUsedByUser
-              );
               //The price did not exist in the price guide, so we do not change it and mark it in Put memory.
               //Save same as actual in put memory with mention "No Corresponding Priceguide"
               await db.put_memory.create({
@@ -710,8 +701,6 @@ router.post("/", async (req, res) => {
             });
           }
         } else {
-          console.log("No rule where found for the card", card);
-          console.log("current action :", action);
           throw new Error("No adapted behaviour found for the currend card.");
         }
 
