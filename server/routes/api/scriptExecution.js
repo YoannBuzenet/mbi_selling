@@ -480,7 +480,8 @@ router.post("/", async (req, res) => {
             const priceShieldTest = priceUpdateAPI.priceShieldAllows(
               card.price,
               newPrice,
-              relevantTrend
+              relevantTrend,
+              card.condition
             );
 
             // priceshield
@@ -610,10 +611,12 @@ router.post("/", async (req, res) => {
               );
 
               //After price was defined, we pass it into the price shield
+
               const priceShieldTest = priceUpdateAPI.priceShieldAllows(
                 card.price,
                 newPrice,
-                priceguideRefUsedByUser
+                priceguideRefUsedByUser,
+                card.condition
               );
               if (priceShieldTest.result) {
                 // console.log("new price :", newPrice);
