@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const db = require("../../../models/index");
 const Sequelize = require("sequelize");
+const PDFGeneration = require("../../services/PDFGeneration");
 const Op = Sequelize.Op;
 
 router.get("/", async (req, res) => {
@@ -76,9 +77,12 @@ router.post("/GetCardsWithFormatPayload", async (req, res) => {
       idShop: 4,
     },
   });
+});
 
-  console.log("here is the result", numberOfCardsToHandle);
-  res.status(200).json(numberOfCardsToHandle);
+router.get("/generatePDFTest", async (req, res) => {
+  await PDFGeneration.generatePDFFromPutRequest(8);
+
+  res.status(200).json("PDF créé !");
 });
 
 router.post("/createOneCardInStock", async (req, res) => {
