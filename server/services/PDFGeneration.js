@@ -31,13 +31,30 @@ async function generatePDFFromPutRequest(put_requestId) {
     },
   });
 
-  console.log(all_higher_price_put_memories);
+  const all_lower_price_put_memories = await db.put_memory.findAndCountAll({
+    where: {
+      PUT_Request_id: put_requestId,
+      newPrice: {
+        [Op.lt]: Sequelize.col("oldPrice"),
+      },
+    },
+  });
 
-  // trouver les cartes qui ont baissé de prix
+  const all_priceShield_blocked_put_memories = await db.put_memory.findAndCountAll(
+    {
+      where: {
+        PUT_Request_id: put_requestId,
+        priceShieldBlocked: 1,
+      },
+    }
+  );
 
-  // trouver les cartes bloquées par le priceshield
-
-  // trouver les cartes exclues par les règles
+  const all_excluded_put_memories = await db.put_memory.findAndCountAll({
+    where: {
+      PUT_Request_id: put_requestId,
+      behaviourChosen: "Excluded",
+    },
+  });
 
   //https://pdfmake.github.io/docs/document-definition-object/tables/
   //http://pdfmake.org/playground.html
