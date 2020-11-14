@@ -1,5 +1,43 @@
+var PdfPrinter = require("pdfmake");
+var fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+const db = require("../../models");
+
 async function generatePDFFromPutRequest(put_requestId) {
-  var PdfPrinter = require("pdfmake");
+  /* ******************************* */
+  /* ******* GETTING CONTENT ******* */
+  /* ****************************** */
+
+  const put_request = await db.PUT_Request.findOne({
+    where: {
+      id: put_requestId,
+    },
+  });
+
+  const all_put_memories = await db.put_memory.findAndCountAll({
+    where: {
+      PUT_Request_id: put_requestId,
+    },
+  });
+
+  const all_higher_price_put_memories = await db.put_memory.findAndCountAll({
+    where: {
+      PUT_Request_id: put_requestId,
+      newPrice: {
+        [Op.gt]: Sequelize.col("oldPrice"),
+      },
+    },
+  });
+
+  console.log(all_higher_price_put_memories);
+
+  // trouver les cartes qui ont baissé de prix
+
+  // trouver les cartes bloquées par le priceshield
+
+  // trouver les cartes exclues par les règles
 
   //https://pdfmake.github.io/docs/document-definition-object/tables/
   //http://pdfmake.org/playground.html
@@ -25,9 +63,7 @@ async function generatePDFFromPutRequest(put_requestId) {
     fs.createWriteStream(
       path.join(
         __dirname,
-        "../../server/PDF_handling/PDF_buffer/" +
-          sellRequest.idSellRequest +
-          ".pdf"
+        "../../server/PDF_handling/PDF_buffer/" + "yooo_test" + ".pdf"
       )
     )
   );

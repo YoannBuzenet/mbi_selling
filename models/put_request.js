@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      PUT_Request.hasMany(models.put_memory);
+      PUT_Request.hasMany(models.put_memory, {
+        foreignKey: "PUT_Request_id",
+      });
       PUT_Request.hasMany(models.snapshot_custom_rules, {
         foreignKey: "PUT_Request_id",
       });
@@ -18,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   PUT_Request.init(
     {
-      shopId: {
+      idShop: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
