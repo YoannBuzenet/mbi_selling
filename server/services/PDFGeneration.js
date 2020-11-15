@@ -55,6 +55,7 @@ async function generatePDFFromPutRequest(
       newPrice: {
         [Op.gt]: Sequelize.col("oldPrice"),
       },
+      priceShieldBlocked: 0,
     },
   });
 
@@ -64,6 +65,7 @@ async function generatePDFFromPutRequest(
       newPrice: {
         [Op.lt]: Sequelize.col("oldPrice"),
       },
+      priceShieldBlocked: 0,
     },
   });
 
@@ -118,6 +120,7 @@ async function generatePDFFromPutRequest(
       { text: " " },
       { text: " " },
       { text: moment().format(translation.FormatDate[langLocale]) },
+      { text: " " },
       {
         text:
           "Formats ciblés : " +
@@ -134,7 +137,28 @@ async function generatePDFFromPutRequest(
             }
           }),
       },
-      { text: "" },
+      { text: " " },
+      { text: "Cartes concernées par le script : " + all_put_memories.count },
+      { text: "Récapitulatif" },
+      {
+        text:
+          "Cartes modifiées à la hausse : " +
+          all_higher_price_put_memories.count,
+      },
+      {
+        text:
+          "Cartes modifiées à la baisse : " +
+          all_lower_price_put_memories.count,
+      },
+      {
+        text:
+          "Cartes bloquées par le PriceShield : " +
+          all_priceShield_blocked_put_memories.count,
+      },
+      {
+        text:
+          "Cartes exclues par le script : " + all_excluded_put_memories.count,
+      },
     ],
     styles: {
       mainTitle: {
