@@ -9,6 +9,7 @@ const {
   translation,
 } = require("../../src/services/fullstackTranslations/formatDate");
 const utils = require("../../src/services/utils");
+const utilsServer = require("../services/utils");
 
 async function generatePDFFromPutRequest(
   put_requestId,
@@ -85,7 +86,19 @@ async function generatePDFFromPutRequest(
     },
   });
 
-  //yooy -> get tous les formats de la put_request (relation!)
+  const all_snapshot_custom_rules = await db.snapshot_custom_rules.findAll({
+    where: {
+      PUT_Request_id: put_requestId,
+    },
+  });
+
+  const snapshotCustomRulesCurrentValue = all_snapshot_custom_rules.map(
+    (sequelizeFormat) => sequelizeFormat.dataValues
+  );
+
+  const orderedSnapshotCustomRules = utilsServer.prepareStateFromArrayOfRules(
+    snapshotCustomRulesCurrentValue
+  );
 
   //https://pdfmake.github.io/docs/document-definition-object/tables/
   //http://pdfmake.org/playground.html
@@ -130,8 +143,8 @@ async function generatePDFFromPutRequest(
       { text: isTestScript ? "Procédure de test" : " ", style: "subTitle" },
       { text: " " },
       { text: " " },
-      { text: " " },
       { text: moment().format(translation.FormatDate[langLocale]) },
+      { text: "Référence : " + put_requestId },
       { text: " " },
       {
         text:
@@ -183,7 +196,54 @@ async function generatePDFFromPutRequest(
         },
         layout: "noBorders",
         style: "recapTable",
+        pageBreak: "after",
       },
+      { text: "Recap of the rules used" },
+      { text: "Regular cards" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [300, "auto", "auto", "auto", "auto", "auto"],
+          body: [
+            ["1", "2", "3", "4", "5", "6"],
+            ...orderedSnapshotCustomRules.regular.map((rule) => {
+              return [
+                rule.priceRangeFrom,
+                rule.priceRangeTo,
+                rule.ruleTypeId,
+                rule.priceRangeValueToSet,
+                rule.behaviourId,
+                rule.mkmPriceGuideReference,
+              ];
+            }),
+          ],
+        },
+        layout: "noBorders",
+        style: "recapTable",
+      },
+      { text: "Foil cards" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [300, "auto", "auto", "auto", "auto", "auto"],
+          body: [
+            ["1", "2", "3", "4", "5", "6"],
+            ...orderedSnapshotCustomRules.foil.map((rule) => {
+              return [
+                rule.priceRangeFrom,
+                rule.priceRangeTo,
+                rule.ruleTypeId,
+                rule.priceRangeValueToSet,
+                rule.behaviourId,
+                rule.mkmPriceGuideReference,
+              ];
+            }),
+          ],
+        },
+        layout: "noBorders",
+        style: "recapTable",
+      },
+      { text: "Recap of the parameters used" },
     ],
     footer: generateFooter,
     styles: {
