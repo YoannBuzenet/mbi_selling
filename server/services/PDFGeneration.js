@@ -4,8 +4,16 @@ const path = require("path");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const db = require("../../models");
+const moment = require("moment");
+const {
+  translation,
+} = require("../../src/services/fullstackTranslations/formatDate");
 
-async function generatePDFFromPutRequest(put_requestId, isTestScript = true) {
+async function generatePDFFromPutRequest(
+  put_requestId,
+  langLocale = "fr-FR",
+  isTestScript = true
+) {
   /* ******************************* */
   /* ******* GETTING CONTENT ******* */
   /* ****************************** */
@@ -21,6 +29,24 @@ async function generatePDFFromPutRequest(put_requestId, isTestScript = true) {
       PUT_Request_id: put_requestId,
     },
   });
+
+  if (all_put_memories.rows.length === 0) {
+    throw new Error(
+      "This script has no put memory created. Can't generate a PDF from that."
+    );
+  }
+
+  const idScript = all_put_memories.rows[0].dataValues.idScript;
+
+  const currentScript = await db.Script.findOne({
+    where: {
+      id: idScript,
+    },
+  });
+
+  const usedFormats = await currentScript.getFormats();
+
+  console.log("nos formats", usedFormats);
 
   const all_higher_price_put_memories = await db.put_memory.findAndCountAll({
     where: {
@@ -56,6 +82,8 @@ async function generatePDFFromPutRequest(put_requestId, isTestScript = true) {
     },
   });
 
+  //yooy -> get tous les formats de la put_request (relation!)
+
   //https://pdfmake.github.io/docs/document-definition-object/tables/
   //http://pdfmake.org/playground.html
 
@@ -74,15 +102,30 @@ async function generatePDFFromPutRequest(put_requestId, isTestScript = true) {
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
     content: [
+      { text: " " },
+      { text: " " },
+      { text: " " },
+      { text: " " },
+      { text: " " },
       {
-        text: "Script n° " + all_put_memories.rows[0].dataValues.idScript,
+        text: "Script n° " + idScript,
         style: "mainTitle",
       },
+      { text: " " },
+      { text: isTestScript ? "Procédure de test" : " ", style: "subTitle" },
+      { text: " " },
+      { text: " " },
+      { text: " " },
+      { text: moment().format(translation.FormatDate[langLocale]) },
+      { text: "Formats ciblés :" },
     ],
     styles: {
       mainTitle: {
         alignment: "center",
         fontSize: 20,
+      },
+      subTitle: {
+        alignment: "center",
       },
     },
   };
