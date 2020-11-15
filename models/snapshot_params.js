@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
+      percentPerExcellentRegular: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
       percentPerGoodRegular: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
@@ -51,6 +55,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       percentPerNearMintFoil: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+      },
+      percentPerExcellentFoil: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
