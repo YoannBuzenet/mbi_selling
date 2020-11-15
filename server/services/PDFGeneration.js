@@ -138,26 +138,39 @@ async function generatePDFFromPutRequest(
           }),
       },
       { text: " " },
-      { text: "Cartes concernées par le script : " + all_put_memories.count },
+      {
+        table: {
+          headerRows: 1,
+          widths: [300, "auto"],
+          body: [["Cartes concernées par le script", all_put_memories.count]],
+        },
+        layout: "noBorders",
+        style: "recapTable",
+      },
       { text: "Récapitulatif" },
+      { text: " " },
       {
-        text:
-          "Cartes modifiées à la hausse : " +
-          all_higher_price_put_memories.count,
-      },
-      {
-        text:
-          "Cartes modifiées à la baisse : " +
-          all_lower_price_put_memories.count,
-      },
-      {
-        text:
-          "Cartes bloquées par le PriceShield : " +
-          all_priceShield_blocked_put_memories.count,
-      },
-      {
-        text:
-          "Cartes exclues par le script : " + all_excluded_put_memories.count,
+        table: {
+          headerRows: 1,
+          widths: [300, "auto"],
+          body: [
+            [
+              "Cartes modifiées à la hausse",
+              all_higher_price_put_memories.count,
+            ],
+            [
+              "Cartes modifiées à la baisse",
+              all_lower_price_put_memories.count,
+            ],
+            [
+              "Cartes bloquées par le PriceShield",
+              all_priceShield_blocked_put_memories.count,
+            ],
+            ["Cartes exclues par le script", all_excluded_put_memories.count],
+          ],
+        },
+        layout: "noBorders",
+        style: "recapTable",
       },
     ],
     styles: {
@@ -167,6 +180,13 @@ async function generatePDFFromPutRequest(
       },
       subTitle: {
         alignment: "center",
+      },
+      sentenceRecapWithNumber: {
+        alignment: "right",
+        margin: [0, 0, 150, 0],
+      },
+      recapTable: {
+        margin: [100, 0, 0, 0],
       },
     },
   };
