@@ -32,7 +32,7 @@ function prepareStateFromArrayOfRules(arrayOfCustomRules) {
   return objectToReturn;
 }
 
-async function snapshotShopParams(idShop) {
+async function snapshotShopParams(idShop, idPutRequest) {
   const currentShopParams = await db.shop_params.findOne({
     where: {
       idShop: idShop,
@@ -77,6 +77,7 @@ async function snapshotShopParams(idShop) {
     percentPerLangKorean: currentShopParams.dataValues.percentPerLangKorean,
     percentPerLangTraditionalChinese:
       currentShopParams.dataValues.percentPerLangTraditionalChinese,
+    PUT_Request_id: idPutRequest,
   });
 
   return snaphotShopParams;

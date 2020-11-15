@@ -11,17 +11,6 @@ module.exports = {
       idShop: {
         type: Sequelize.INTEGER,
       },
-      // batchId: {
-      //   type: Sequelize.INTEGER,
-      // },
-      snapShotParamId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "snapshot_params",
-          key: "id",
-        },
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

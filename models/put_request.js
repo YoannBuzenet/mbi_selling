@@ -15,20 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       PUT_Request.hasMany(models.snapshot_custom_rules, {
         foreignKey: "PUT_Request_id",
       });
-      PUT_Request.hasOne(models.snapshot_params);
+      PUT_Request.hasOne(models.snapshot_params, {
+        foreignKey: "PUT_Request_id",
+      });
     }
   }
   PUT_Request.init(
     {
       idShop: {
-        type: DataTypes.INTEGER,
-        validate: { isNumeric: true },
-      },
-      // batchId: {
-      //   type: DataTypes.INTEGER,
-      //   validate: { isNumeric: true },
-      // },
-      snapShotParamId: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },

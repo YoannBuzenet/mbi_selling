@@ -269,13 +269,15 @@ router.post("/", async (req, res) => {
     /* ********** PUT REQUEST CREATION ***********/
     /* **************************************** */
 
-    //Snapshot shop params for the current PUT Request
-    const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
-
     const put_request = await db.PUT_Request.create({
       idShop: idShop,
-      snapShotParamId: snapShop_Shop_Param.dataValues.id,
     });
+
+    //Snapshot shop params for the current PUT Request
+    const snapShop_Shop_Param = await utils.snapshotShopParams(
+      idShop,
+      put_request.dataValues.id
+    );
 
     /* **************************************** */
     /* ********** Snapshot Custom Rule ***********/

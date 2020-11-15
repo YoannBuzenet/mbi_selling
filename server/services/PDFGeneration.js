@@ -86,6 +86,10 @@ async function generatePDFFromPutRequest(
     },
   });
 
+  /* ***************************** */
+  /* Getting snapshot custom rules */
+  /* ***************************** */
+
   const all_snapshot_custom_rules = await db.snapshot_custom_rules.findAll({
     where: {
       PUT_Request_id: put_requestId,
@@ -99,6 +103,18 @@ async function generatePDFFromPutRequest(
   const orderedSnapshotCustomRules = utilsServer.prepareStateFromArrayOfRules(
     snapshotCustomRulesCurrentValue
   );
+
+  /* **************************** */
+  /* Getting snapshot shop params */
+  /* **************************** */
+
+  const snapshotShopParams = await db.snapshot_params.findOne({
+    where: {
+      PUT_Request_id: put_requestId,
+    },
+  });
+
+  console.log("snapshotShopParams", snapshotShopParams);
 
   //https://pdfmake.github.io/docs/document-definition-object/tables/
   //http://pdfmake.org/playground.html
