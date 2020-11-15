@@ -70,9 +70,15 @@ async function generatePDFFromPutRequest(put_requestId) {
         "node_modules/roboto-font/fonts/Roboto/roboto-bolditalic-webfont.ttf",
     },
   };
-
+  // {
+  //         text: "Script" + all_put_memories.rows[0].dataValues.idScript,
+  //         fontSize: 15,
+  //       },
   var printer = new PdfPrinter(fonts);
-  var docDefinition = { content: [], styles: {} };
+  var docDefinition = {
+    content: ["test"],
+    styles: {},
+  };
   var options;
 
   var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
@@ -90,13 +96,15 @@ async function generatePDFFromPutRequest(put_requestId) {
   pdfDoc.pipe(
     fs.createWriteStream(
       path.join(
-        __dirname,
-        folderPathWithUserId +
-          "/" +
+        folderPathWithUserId,
+        "/" +
+          "shop_" +
           put_request.dataValues.idShop +
-          put_request.dataValues.idShop +
+          "_" +
+          "script_" +
           all_put_memories.rows[0].dataValues.idScript +
-          "test" +
+          "_" +
+          "Test" +
           ".pdf"
       )
     )
