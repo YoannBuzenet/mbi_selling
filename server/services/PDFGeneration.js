@@ -8,6 +8,7 @@ const moment = require("moment");
 const {
   translation,
 } = require("../../src/services/fullstackTranslations/formatDate");
+const utils = require("../../src/services/utils");
 
 async function generatePDFFromPutRequest(
   put_requestId,
@@ -117,7 +118,23 @@ async function generatePDFFromPutRequest(
       { text: " " },
       { text: " " },
       { text: moment().format(translation.FormatDate[langLocale]) },
-      { text: "Formats ciblés :" },
+      {
+        text:
+          "Formats ciblés : " +
+          usedFormats.map((formatFromSequelize, index) => {
+            if (index !== 0) {
+              return (
+                " " +
+                utils.capitalizeFirstLetter(formatFromSequelize.dataValues.name)
+              );
+            } else {
+              return utils.capitalizeFirstLetter(
+                formatFromSequelize.dataValues.name
+              );
+            }
+          }),
+      },
+      { text: "" },
     ],
     styles: {
       mainTitle: {
