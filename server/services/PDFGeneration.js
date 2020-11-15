@@ -103,11 +103,19 @@ async function generatePDFFromPutRequest(
   };
 
   function generateFooter(currentPage, pageCount) {
-    return currentPage.toString() + " of " + pageCount;
+    return [
+      {
+        text: "Page " + currentPage.toString() + " / " + pageCount,
+        style: "footer",
+      },
+      { text: "MKM Price Updater", style: "footerMention" },
+      { text: "www.mtginterface.com", style: "footerMention" },
+    ];
   }
 
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
+    pageMargins: [40, 60, 40, 80],
     content: [
       { text: " " },
       { text: " " },
@@ -192,6 +200,14 @@ async function generatePDFFromPutRequest(
       },
       recapTable: {
         margin: [100, 0, 0, 0],
+      },
+      footer: {
+        alignment: "center",
+        margin: [0, 0, 0, 10],
+      },
+      footerMention: {
+        alignment: "center",
+        fontSize: 10,
       },
     },
   };
