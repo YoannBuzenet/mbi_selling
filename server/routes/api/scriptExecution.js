@@ -494,6 +494,7 @@ router.post("/", async (req, res) => {
                 idArticle: card.idArticle,
                 oldPrice: card.price,
                 newPrice: newPrice,
+                priceShieldBlocked: 0,
                 regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
                 foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
                 condition: card.condition,
