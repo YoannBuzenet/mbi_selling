@@ -273,7 +273,7 @@ router.post("/", async (req, res) => {
     const snapShop_Shop_Param = await utils.snapshotShopParams(idShop);
 
     const put_request = await db.PUT_Request.create({
-      shopId: idShop,
+      idShop: idShop,
       snapShotParamId: snapShop_Shop_Param.dataValues.id,
     });
 

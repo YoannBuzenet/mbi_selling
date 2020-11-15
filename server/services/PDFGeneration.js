@@ -76,11 +76,28 @@ async function generatePDFFromPutRequest(put_requestId) {
   var options;
 
   var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
+
+  //Creating folder if it doesnt exist
+  // sync, should be async, fine for now
+  const folderPathWithUserId = path.join(
+    __dirname + "../../../PDF_Storage/" + put_request.dataValues.idShop
+  );
+  if (!fs.existsSync(folderPathWithUserId)) {
+    fs.mkdirSync(folderPathWithUserId);
+  }
+
+  // pdf writing
   pdfDoc.pipe(
     fs.createWriteStream(
       path.join(
         __dirname,
-        "../../server/PDF_handling/PDF_buffer/" + "yooo_test" + ".pdf"
+        folderPathWithUserId +
+          "/" +
+          put_request.dataValues.idShop +
+          put_request.dataValues.idShop +
+          all_put_memories.rows[0].dataValues.idScript +
+          "test" +
+          ".pdf"
       )
     )
   );
