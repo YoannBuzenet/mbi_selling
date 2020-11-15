@@ -102,6 +102,10 @@ async function generatePDFFromPutRequest(
     },
   };
 
+  function generateFooter(currentPage, pageCount) {
+    return currentPage.toString() + " of " + pageCount;
+  }
+
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
     content: [
@@ -173,6 +177,7 @@ async function generatePDFFromPutRequest(
         style: "recapTable",
       },
     ],
+    footer: generateFooter,
     styles: {
       mainTitle: {
         alignment: "center",
