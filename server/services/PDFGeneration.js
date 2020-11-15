@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const db = require("../../models");
 
-async function generatePDFFromPutRequest(put_requestId) {
+async function generatePDFFromPutRequest(put_requestId, isTestScript = true) {
   /* ******************************* */
   /* ******* GETTING CONTENT ******* */
   /* ****************************** */
@@ -70,14 +70,21 @@ async function generatePDFFromPutRequest(put_requestId) {
         "node_modules/roboto-font/fonts/Roboto/roboto-bolditalic-webfont.ttf",
     },
   };
-  // {
-  //         text: "Script" + all_put_memories.rows[0].dataValues.idScript,
-  //         fontSize: 15,
-  //       },
+
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
-    content: ["test"],
-    styles: {},
+    content: [
+      {
+        text: "Script n° " + all_put_memories.rows[0].dataValues.idScript,
+        style: "mainTitle",
+      },
+    ],
+    styles: {
+      mainTitle: {
+        alignment: "center",
+        fontSize: 20,
+      },
+    },
   };
   var options;
 
@@ -92,23 +99,42 @@ async function generatePDFFromPutRequest(put_requestId) {
     fs.mkdirSync(folderPathWithUserId);
   }
 
+  /* ************************ */
+  /* *****PATH DEFINITION**** */
+  /* ************************ */
+
+  // Is it a Test Script or a real one ?
+
+  let pdfPathName;
+  if (isTestScript) {
+    pdfPathName = path.join(
+      folderPathWithUserId,
+      "/" +
+        "shop_" +
+        put_request.dataValues.idShop +
+        "_" +
+        "script_" +
+        all_put_memories.rows[0].dataValues.idScript +
+        "_" +
+        "Test" +
+        ".pdf"
+    );
+  } else {
+    pdfPathName = path.join(
+      folderPathWithUserId,
+      "/" +
+        "shop_" +
+        put_request.dataValues.idShop +
+        "_" +
+        "script_" +
+        all_put_memories.rows[0].dataValues.idScript +
+        "_" +
+        "Real" +
+        ".pdf"
+    );
+  }
   // pdf writing
-  pdfDoc.pipe(
-    fs.createWriteStream(
-      path.join(
-        folderPathWithUserId,
-        "/" +
-          "shop_" +
-          put_request.dataValues.idShop +
-          "_" +
-          "script_" +
-          all_put_memories.rows[0].dataValues.idScript +
-          "_" +
-          "Test" +
-          ".pdf"
-      )
-    )
-  );
+  pdfDoc.pipe(fs.createWriteStream(pdfPathName));
   pdfDoc.end();
 
   console.log("processing PDF...");
