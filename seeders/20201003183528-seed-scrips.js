@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const db = require("../models/index");
-    return await db.Script.bulkCreate([
+    await db.Script.bulkCreate([
       {
         idShop: 4,
         name: "Le premier script",
@@ -24,8 +24,14 @@ module.exports = {
       },
     ]);
 
-    //TODO
-    // ADD N formats to N scripts
+    // Trying to add a N to N data to script 3
+    const script3 = await db.Script.findOne({
+      where: {
+        id: 3,
+      },
+    });
+
+    return script3.setFormats([1, 4]);
   },
 
   down: async (queryInterface, Sequelize) => {

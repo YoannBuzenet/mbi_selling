@@ -80,7 +80,7 @@ router.post("/GetCardsWithFormatPayload", async (req, res) => {
 });
 
 router.get("/generatePDFTest", async (req, res) => {
-  await PDFGeneration.generatePDFFromPutRequest(2);
+  await PDFGeneration.generatePDFFromPutRequest(1);
 
   res.status(200).json("PDF créé !");
 });
