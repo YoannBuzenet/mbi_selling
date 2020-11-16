@@ -214,22 +214,22 @@ async function generatePDFFromPutRequest(
         style: "recapTable",
         pageBreak: "after",
       },
-      { text: "Recap of the rules used" },
-      { text: "Regular cards" },
+      { text: "SUMMARY OF THE RULES USED", style: "pageTitle" },
+      { text: "Regular cards", style: "tableTitle" },
       {
         table: {
           headerRows: 1,
-          widths: [300, "auto", "auto", "auto", "auto", "auto"],
+          widths: [50, 50, 50, 50, 50, 50],
           body: [
-            ["1", "2", "3", "4", "5", "6"],
+            ["From", "To", "Action", "Value Set", "Action_MKM", "Based on"],
             ...orderedSnapshotCustomRules.regular.map((rule) => {
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
                 rule.ruleTypeId,
-                rule.priceRangeValueToSet,
-                rule.behaviourId,
-                rule.mkmPriceGuideReference,
+                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "N/A",
+                rule.ruleTypeId !== 1 ? rule.behaviourId : "N/A",
+                rule.ruleTypeId !== 1 ? rule.mkmPriceGuideReference : "N/A",
               ];
             }),
           ],
@@ -237,21 +237,21 @@ async function generatePDFFromPutRequest(
         layout: "noBorders",
         style: "recapTable",
       },
-      { text: "Foil cards" },
+      { text: "Foil cards", style: "tableTitle" },
       {
         table: {
           headerRows: 1,
-          widths: [300, "auto", "auto", "auto", "auto", "auto"],
+          widths: [50, 50, 50, 50, 50, 50],
           body: [
-            ["1", "2", "3", "4", "5", "6"],
+            ["From", "To", "Action", "Value Set", "Action_MKM", "Based on"],
             ...orderedSnapshotCustomRules.foil.map((rule) => {
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
                 rule.ruleTypeId,
-                rule.priceRangeValueToSet,
-                rule.behaviourId,
-                rule.mkmPriceGuideReference,
+                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "N/A",
+                rule.ruleTypeId !== 1 ? rule.behaviourId : "N/A",
+                rule.ruleTypeId !== 1 ? rule.mkmPriceGuideReference : "N/A",
               ];
             }),
           ],
@@ -259,91 +259,133 @@ async function generatePDFFromPutRequest(
         layout: "noBorders",
         style: "recapTable",
       },
-      { text: "Recap of the parameters used" },
-      { text: "Percent Per Condition Regular" },
+      { text: "PARAMETERS", style: "pageTitle" },
+      { text: "Percent Per Condition Regular", style: "tableTitle" },
       {
         table: {
           headerRows: 1,
           widths: [300, "auto"],
           body: [
-            ["Condition", "Percent"],
-            ["Mint", snapshotShopParams.dataValues.percentPerMintRegular],
+            [
+              "Mint",
+              snapshotShopParams.dataValues.percentPerMintRegular + " %",
+            ],
             [
               "Near Mint",
-              snapshotShopParams.dataValues.percentPerNearMintRegular,
+              snapshotShopParams.dataValues.percentPerNearMintRegular + " %",
             ],
             [
               "Excellent",
-              snapshotShopParams.dataValues.percentPerExcellentRegular,
+              snapshotShopParams.dataValues.percentPerExcellentRegular + " %",
             ],
-            ["Good", snapshotShopParams.dataValues.percentPerGoodRegular],
+            [
+              "Good",
+              snapshotShopParams.dataValues.percentPerGoodRegular + " %",
+            ],
             [
               "Light-Played",
-              snapshotShopParams.dataValues.percentPerLightPlayedRegular,
+              snapshotShopParams.dataValues.percentPerLightPlayedRegular + " %",
             ],
-            ["Played", snapshotShopParams.dataValues.percentPerPlayedRegular],
-            ["Poor", snapshotShopParams.dataValues.percentPerPoorRegular],
+            [
+              "Played",
+              snapshotShopParams.dataValues.percentPerPlayedRegular + " %",
+            ],
+            [
+              "Poor",
+              snapshotShopParams.dataValues.percentPerPoorRegular + " %",
+            ],
           ],
         },
         layout: "noBorders",
         style: "recapTable",
       },
-      { text: "Percent Per Condition Foil" },
+      { text: "Percent Per Condition Foil", style: "tableTitle" },
       {
         table: {
           headerRows: 1,
           widths: [300, "auto"],
           body: [
-            ["Condition", "Percent"],
-            ["Mint", snapshotShopParams.dataValues.percentPerMintFoil],
-            ["Near Mint", snapshotShopParams.dataValues.percentPerNearMintFoil],
+            ["Mint", snapshotShopParams.dataValues.percentPerMintFoil + " %"],
+            [
+              "Near Mint",
+              snapshotShopParams.dataValues.percentPerNearMintFoil + " %",
+            ],
             [
               "Excellent",
-              snapshotShopParams.dataValues.percentPerExcellentFoil,
+              snapshotShopParams.dataValues.percentPerExcellentFoil + " %",
             ],
-            ["Good", snapshotShopParams.dataValues.percentPerGoodFoil],
+            ["Good", snapshotShopParams.dataValues.percentPerGoodFoil + " %"],
             [
               "Light-Played",
-              snapshotShopParams.dataValues.percentPerLightPlayedFoil,
+              snapshotShopParams.dataValues.percentPerLightPlayedFoil + " %",
             ],
-            ["Played", snapshotShopParams.dataValues.percentPerPlayedFoil],
-            ["Poor", snapshotShopParams.dataValues.percentPerPoorFoil],
+            [
+              "Played",
+              snapshotShopParams.dataValues.percentPerPlayedFoil + " %",
+            ],
+            ["Poor", snapshotShopParams.dataValues.percentPerPoorFoil + " %"],
           ],
         },
         layout: "noBorders",
         style: "recapTable",
       },
-      { text: "Percent Per Language" },
+      { text: "Percent Per Language", style: "tableTitle" },
       {
         table: {
           headerRows: 1,
           widths: [300, "auto"],
           body: [
-            ["Language", "Percent"],
-            ["German", snapshotShopParams.dataValues.percentPerLangGerman],
-            ["Spanish", snapshotShopParams.dataValues.percentPerLangSpanish],
-            ["French", snapshotShopParams.dataValues.percentPerLangFrench],
-            ["Italian", snapshotShopParams.dataValues.percentPerLangItalian],
-            ["Japanese", snapshotShopParams.dataValues.percentPerLangJapanese],
+            [
+              "German",
+              snapshotShopParams.dataValues.percentPerLangGerman + " %",
+            ],
+            [
+              "Spanish",
+              snapshotShopParams.dataValues.percentPerLangSpanish + " %",
+            ],
+            [
+              "French",
+              snapshotShopParams.dataValues.percentPerLangFrench + " %",
+            ],
+            [
+              "Italian",
+              snapshotShopParams.dataValues.percentPerLangItalian + " %",
+            ],
+            [
+              "Japanese",
+              snapshotShopParams.dataValues.percentPerLangJapanese + " %",
+            ],
             [
               "Portuguese",
-              snapshotShopParams.dataValues.percentPerLangPortuguese,
+              snapshotShopParams.dataValues.percentPerLangPortuguese + " %",
             ],
-            ["Russian", snapshotShopParams.dataValues.percentPerLangRussian],
+            [
+              "Russian",
+              snapshotShopParams.dataValues.percentPerLangRussian + " %",
+            ],
             [
               "Simplified Chinese",
-              snapshotShopParams.dataValues.percentPerLangSimplifiedChinese,
+              snapshotShopParams.dataValues.percentPerLangSimplifiedChinese +
+                " %",
             ],
-            ["English", snapshotShopParams.dataValues.percentPerLangEnglish],
-            ["Korean", snapshotShopParams.dataValues.percentPerLangKorean],
+            [
+              "English",
+              snapshotShopParams.dataValues.percentPerLangEnglish + " %",
+            ],
+            [
+              "Korean",
+              snapshotShopParams.dataValues.percentPerLangKorean + " %",
+            ],
             [
               "Traditional Chinese",
-              snapshotShopParams.dataValues.percentPerLangTraditionalChinese,
+              snapshotShopParams.dataValues.percentPerLangTraditionalChinese +
+                " %",
             ],
           ],
         },
         layout: "noBorders",
         style: "recapTable",
+        pageBreak: "after",
       },
     ],
     footer: generateFooter,
@@ -361,6 +403,15 @@ async function generatePDFFromPutRequest(
       },
       recapTable: {
         margin: [100, 0, 0, 0],
+      },
+      pageTitle: {
+        alignment: "center",
+        fontSize: 18,
+      },
+      tableTitle: {
+        alignment: "center",
+        fontSize: 15,
+        margin: [0, 15, 0, 15],
       },
       footer: {
         alignment: "center",
