@@ -260,6 +260,91 @@ async function generatePDFFromPutRequest(
         style: "recapTable",
       },
       { text: "Recap of the parameters used" },
+      { text: "Percent Per Condition Regular" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [300, "auto"],
+          body: [
+            ["Condition", "Percent"],
+            ["Mint", snapshotShopParams.dataValues.percentPerMintRegular],
+            [
+              "Near Mint",
+              snapshotShopParams.dataValues.percentPerNearMintRegular,
+            ],
+            [
+              "Excellent",
+              snapshotShopParams.dataValues.percentPerExcellentRegular,
+            ],
+            ["Good", snapshotShopParams.dataValues.percentPerGoodRegular],
+            [
+              "Light-Played",
+              snapshotShopParams.dataValues.percentPerLightPlayedRegular,
+            ],
+            ["Played", snapshotShopParams.dataValues.percentPerPlayedRegular],
+            ["Poor", snapshotShopParams.dataValues.percentPerPoorRegular],
+          ],
+        },
+        layout: "noBorders",
+        style: "recapTable",
+      },
+      { text: "Percent Per Condition Foil" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [300, "auto"],
+          body: [
+            ["Condition", "Percent"],
+            ["Mint", snapshotShopParams.dataValues.percentPerMintFoil],
+            ["Near Mint", snapshotShopParams.dataValues.percentPerNearMintFoil],
+            [
+              "Excellent",
+              snapshotShopParams.dataValues.percentPerExcellentFoil,
+            ],
+            ["Good", snapshotShopParams.dataValues.percentPerGoodFoil],
+            [
+              "Light-Played",
+              snapshotShopParams.dataValues.percentPerLightPlayedFoil,
+            ],
+            ["Played", snapshotShopParams.dataValues.percentPerPlayedFoil],
+            ["Poor", snapshotShopParams.dataValues.percentPerPoorFoil],
+          ],
+        },
+        layout: "noBorders",
+        style: "recapTable",
+      },
+      { text: "Percent Per Language" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [300, "auto"],
+          body: [
+            ["Language", "Percent"],
+            ["German", snapshotShopParams.dataValues.percentPerLangGerman],
+            ["Spanish", snapshotShopParams.dataValues.percentPerLangSpanish],
+            ["French", snapshotShopParams.dataValues.percentPerLangFrench],
+            ["Italian", snapshotShopParams.dataValues.percentPerLangItalian],
+            ["Japanese", snapshotShopParams.dataValues.percentPerLangJapanese],
+            [
+              "Portuguese",
+              snapshotShopParams.dataValues.percentPerLangPortuguese,
+            ],
+            ["Russian", snapshotShopParams.dataValues.percentPerLangRussian],
+            [
+              "Simplified Chinese",
+              snapshotShopParams.dataValues.percentPerLangSimplifiedChinese,
+            ],
+            ["English", snapshotShopParams.dataValues.percentPerLangEnglish],
+            ["Korean", snapshotShopParams.dataValues.percentPerLangKorean],
+            [
+              "Traditional Chinese",
+              snapshotShopParams.dataValues.percentPerLangTraditionalChinese,
+            ],
+          ],
+        },
+        layout: "noBorders",
+        style: "recapTable",
+      },
     ],
     footer: generateFooter,
     styles: {
