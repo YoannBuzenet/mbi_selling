@@ -14,7 +14,8 @@ const utilsServer = require("../services/utils");
 async function generatePDFFromPutRequest(
   put_requestId,
   langLocale = "fr-FR",
-  isTestScript = true
+  isTestScript = true,
+  printExplaination = true
 ) {
   /* ******************************* */
   /* ******* GETTING CONTENT ******* */
@@ -168,61 +169,210 @@ async function generatePDFFromPutRequest(
   }
 
   //yooy
-  function generateLineHigherPriceCard(data) {
-    return [
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-      "hausse",
-    ];
+  function generateLineHigherPriceCard(data, shouldPrintExplaination) {
+    let arrayWithAllData = [];
+
+    for (let i = 0; i < data.rows.length; i++) {
+      if (shouldPrintExplaination) {
+        //Here we print all details
+
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+          ],
+          [
+            {
+              colSpan: 10,
+              text:
+                "Both:\nrowSpan and colSpan\ncan be defined at the same time",
+            },
+          ],
+        ];
+      } else {
+        //Here we just print the normal line
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+            "hausse",
+          ],
+        ];
+      }
+    }
+
+    return arrayWithAllData;
   }
-  function generateLineLowerPriceCard(data) {
-    return [
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-      "baisse",
-    ];
+
+  function generateLineLowerPriceCard(data, shouldPrintExplaination) {
+    let arrayWithAllData = [];
+
+    for (let i = 0; i < data.rows.length; i++) {
+      if (shouldPrintExplaination) {
+        //Here we print all details
+
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+          ],
+          [
+            {
+              colSpan: 10,
+              text:
+                "Both:\nrowSpan and colSpan\ncan be defined at the same time",
+            },
+          ],
+        ];
+      } else {
+        //Here we just print the normal line
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+            "baisse",
+          ],
+        ];
+      }
+    }
+
+    return arrayWithAllData;
   }
-  function generateLineBlockedPriceCard(data) {
-    return [
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-      "blocked",
-    ];
+  function generateLineBlockedPriceCard(data, shouldPrintExplaination) {
+    let arrayWithAllData = [];
+
+    for (let i = 0; i < data.rows.length; i++) {
+      if (shouldPrintExplaination) {
+        //Here we print all details
+
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+          ],
+          [
+            {
+              colSpan: 10,
+              text:
+                "Both:\nrowSpan and colSpan\ncan be defined at the same time",
+            },
+          ],
+        ];
+      } else {
+        //Here we just print the normal line
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+            "blocked",
+          ],
+        ];
+      }
+    }
+
+    return arrayWithAllData;
   }
-  function generateLineExcludedCard(data) {
-    return [
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-      "excluded",
-    ];
+  function generateLineExcludedCard(data, shouldPrintExplaination) {
+    let arrayWithAllData = [];
+
+    for (let i = 0; i < data.rows.length; i++) {
+      if (shouldPrintExplaination) {
+        //Here we print all details
+
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+          ],
+          [
+            {
+              colSpan: 10,
+              text:
+                "Both:\nrowSpan and colSpan\ncan be defined at the same time",
+            },
+          ],
+        ];
+      } else {
+        //Here we just print the normal line
+        arrayWithAllData = [
+          ...arrayWithAllData,
+          [
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+            "exclues",
+          ],
+        ];
+      }
+    }
+
+    return arrayWithAllData;
   }
 
   var printer = new PdfPrinter(fonts);
@@ -503,8 +653,9 @@ async function generatePDFFromPutRequest(
               "idProduct",
               "idArticle",
             ],
-            ...all_higher_price_put_memories.rows.map((data) =>
-              generateLineHigherPriceCard(data.dataValues)
+            ...generateLineHigherPriceCard(
+              all_higher_price_put_memories,
+              printExplaination
             ),
           ],
         },
@@ -540,8 +691,9 @@ async function generatePDFFromPutRequest(
               "idProduct",
               "idArticle",
             ],
-            ...all_lower_price_put_memories.rows.map((data) =>
-              generateLineLowerPriceCard(data.dataValues)
+            ...generateLineLowerPriceCard(
+              all_lower_price_put_memories,
+              printExplaination
             ),
           ],
         },
