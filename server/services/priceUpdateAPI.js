@@ -45,18 +45,6 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
   const variationRateTrend = Math.abs(
     ((newPrice - priceTrend) / priceTrend) * 100
   );
-  // console.log("variation rate", variationRate);
-  // console.log("oldPrice", oldPrice);
-  // console.log("newPrice", newPrice);
-  // console.log("priceTrend", priceTrend);
-  // console.log(
-  //   "Math.abs(((newPrice - oldPrice) / oldPrice) * 100)",
-  //   Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
-  // );
-  // console.log(
-  //   "ABS (newPrice - oldPrice / oldPrice) * 100",
-  //   Math.abs(((newPrice - oldPrice) / oldPrice) * 100)
-  // );
 
   /* ***************************** */
   // Mint, Near Mint, Excellent

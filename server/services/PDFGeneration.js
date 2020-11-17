@@ -87,6 +87,33 @@ async function generatePDFFromPutRequest(
   });
 
   /* ***************************** */
+  /* **** Getting Definitions **** */
+  /* ***************************** */
+
+  //We are getting all rules, we will need them when processing the custom rules. This is an array
+  const ruleTypesDefinitions = await db.customRule_ruleType_definition.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const ruleTypesDefinitionsDictionnary = utilsServer.transformArrayIntoDictionnaryWithKey(
+    ruleTypesDefinitions.map((definition) => definition.dataValues)
+  );
+  //We are getting all behaviours, we will need them when processing the custom rules. This is an array
+  const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const customRulesBehaviourDictionnary = utilsServer.transformArrayIntoDictionnaryWithKey(
+    behaviourDefinitions.map((definition) => definition.dataValues)
+  );
+
+  //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
+  const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const mkmPricesGuideDictionnary = utilsServer.transformArrayIntoDictionnaryWithKey(
+    mkmPricesDefinitions.map((definition) => definition.dataValues)
+  );
+
+  /* ***************************** */
   /* Getting snapshot custom rules */
   /* ***************************** */
 
@@ -114,10 +141,8 @@ async function generatePDFFromPutRequest(
     },
   });
 
-  console.log("snapshotShopParams", snapshotShopParams);
-
-  //https://pdfmake.github.io/docs/document-definition-object/tables/
-  //http://pdfmake.org/playground.html
+  // https://pdfmake.github.io/docs/document-definition-object/tables/
+  // http://pdfmake.org/playground.html
 
   var fonts = {
     Roboto: {
@@ -139,6 +164,64 @@ async function generatePDFFromPutRequest(
       },
       { text: "MKM Price Updater", style: "footerMention" },
       { text: "www.mtginterface.com", style: "footerMention" },
+    ];
+  }
+
+  //yooy
+  function generateLineHigherPriceCard(data) {
+    return [
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+      "hausse",
+    ];
+  }
+  function generateLineLowerPriceCard(data) {
+    return [
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+      "baisse",
+    ];
+  }
+  function generateLineBlockedPriceCard(data) {
+    return [
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+      "blocked",
+    ];
+  }
+  function generateLineExcludedCard(data) {
+    return [
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
+      "excluded",
     ];
   }
 
@@ -219,45 +302,52 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [50, 50, 50, 50, 50, 50],
+          widths: [50, 50, 50, 50, 120, 120],
           body: [
-            ["From", "To", "Action", "Value Set", "Action_MKM", "Based on"],
+            ["From", "To", "Action", "Value Set", "MKM Action", "Based on"],
             ...orderedSnapshotCustomRules.regular.map((rule) => {
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
-                rule.ruleTypeId,
-                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "N/A",
-                rule.ruleTypeId !== 1 ? rule.behaviourId : "N/A",
-                rule.ruleTypeId !== 1 ? rule.mkmPriceGuideReference : "N/A",
+                ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name,
+                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "",
+                rule.ruleTypeId === 2
+                  ? customRulesBehaviourDictionnary[rule.behaviourId].name
+                  : "",
+                rule.ruleTypeId === 2
+                  ? mkmPricesGuideDictionnary[rule.mkmPriceGuideReference].name
+                  : "",
               ];
             }),
           ],
         },
-        layout: "noBorders",
-        style: "recapTable",
+        style: "customRulesTable",
       },
       { text: "Foil cards", style: "tableTitle" },
       {
         table: {
           headerRows: 1,
-          widths: [50, 50, 50, 50, 50, 50],
+          widths: [50, 50, 50, 50, 120, 120],
           body: [
-            ["From", "To", "Action", "Value Set", "Action_MKM", "Based on"],
+            ["From", "To", "Action", "Value Set", "MKM Action", "Based on"],
             ...orderedSnapshotCustomRules.foil.map((rule) => {
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
-                rule.ruleTypeId,
-                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "N/A",
-                rule.ruleTypeId !== 1 ? rule.behaviourId : "N/A",
-                rule.ruleTypeId !== 1 ? rule.mkmPriceGuideReference : "N/A",
+                ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name,
+                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "",
+                rule.ruleTypeId === 2
+                  ? customRulesBehaviourDictionnary[rule.behaviourId].name
+                  : "",
+                rule.ruleTypeId === 2
+                  ? mkmPricesGuideDictionnary[rule.mkmPriceGuideReference].name
+                  : "",
               ];
             }),
           ],
         },
-        layout: "noBorders",
-        style: "recapTable",
+        style: "customRulesTable",
+        pageBreak: "after",
       },
       { text: "PARAMETERS", style: "pageTitle" },
       { text: "Percent Per Condition Regular", style: "tableTitle" },
@@ -296,7 +386,6 @@ async function generatePDFFromPutRequest(
             ],
           ],
         },
-        layout: "noBorders",
         style: "recapTable",
       },
       { text: "Percent Per Condition Foil", style: "tableTitle" },
@@ -326,7 +415,6 @@ async function generatePDFFromPutRequest(
             ["Poor", snapshotShopParams.dataValues.percentPerPoorFoil + " %"],
           ],
         },
-        layout: "noBorders",
         style: "recapTable",
       },
       { text: "Percent Per Language", style: "tableTitle" },
@@ -383,8 +471,81 @@ async function generatePDFFromPutRequest(
             ],
           ],
         },
-        layout: "noBorders",
         style: "recapTable",
+        pageBreak: "after",
+      },
+      { text: "CARTES MODIFEES A LA HAUSSE", style: "pageTitle" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [
+            300,
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+          ],
+          body: [
+            [
+              "Card Name",
+              "Foil",
+              "Condition",
+              "Language",
+              "OldPrice",
+              "New Price",
+              "Price trend",
+              "Foil Price Trend",
+              "idProduct",
+              "idArticle",
+            ],
+            ...all_higher_price_put_memories.rows.map((data) =>
+              generateLineHigherPriceCard(data.dataValues)
+            ),
+          ],
+        },
+        style: "recapTable2",
+        pageBreak: "after",
+      },
+      { text: "CARTES MODIFEES A LA BAISSE", style: "pageTitle" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [
+            300,
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+          ],
+          body: [
+            [
+              "Card Name",
+              "Foil",
+              "Condition",
+              "Language",
+              "OldPrice",
+              "New Price",
+              "Price trend",
+              "Foil Price Trend",
+              "idProduct",
+              "idArticle",
+            ],
+            ...all_lower_price_put_memories.rows.map((data) =>
+              generateLineLowerPriceCard(data.dataValues)
+            ),
+          ],
+        },
+        style: "recapTable3",
         pageBreak: "after",
       },
     ],
@@ -402,7 +563,10 @@ async function generatePDFFromPutRequest(
         margin: [0, 0, 150, 0],
       },
       recapTable: {
-        margin: [100, 0, 0, 0],
+        margin: [100, 0, 50, 0],
+      },
+      customRulesTable: {
+        margin: [20, 0, 50, 0],
       },
       pageTitle: {
         alignment: "center",
