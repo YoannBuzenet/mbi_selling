@@ -448,8 +448,8 @@ router.post("/", async (req, res) => {
           mkmPricesDefinitions.map((definition) => definition.dataValues)
         );
 
-        console.log("reminder of the card", card);
-        console.log("action for that card", action);
+        // console.log("reminder of the card", card);
+        // console.log("action for that card", action);
 
         // We chose to
         if (action === -2) {

@@ -68,7 +68,7 @@ module.exports = {
           idProduct: 16483,
           AvgSellPrice: 1,
           lowPrice: 2,
-          trendPrice: 3,
+          trendPrice: 12,
           germanProLow: 4,
           suggestedPrice: 5,
           foilSell: 6,
