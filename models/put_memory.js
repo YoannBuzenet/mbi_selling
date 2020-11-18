@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       idProduct: DataTypes.INTEGER,
       idArticle: DataTypes.INTEGER,
+      cardName: { type: DataTypes.STRING },
       regularCardsTrend: {
         type: DataTypes.FLOAT,
         validate: { isNumeric: true },
