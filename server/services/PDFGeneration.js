@@ -279,49 +279,27 @@ async function generatePDFFromPutRequest(
     let arrayWithAllData = [];
 
     for (let i = 0; i < data.rows.length; i++) {
-      if (shouldPrintExplaination) {
-        //Here we print all details
-
-        arrayWithAllData = [
-          ...arrayWithAllData,
-          [
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-          ],
-          [
-            {
-              colSpan: 10,
-              text:
-                "Both:\nrowSpan and colSpan\ncan be defined at the same time",
-            },
-          ],
-        ];
-      } else {
-        //Here we just print the normal line
-        arrayWithAllData = [
-          ...arrayWithAllData,
-          [
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-            "blocked",
-          ],
-        ];
-      }
+      arrayWithAllData = [
+        ...arrayWithAllData,
+        [
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+          "blocked",
+        ],
+        [
+          {
+            colSpan: 10,
+            text: "Reason of being blocked",
+          },
+        ],
+      ];
     }
 
     return arrayWithAllData;
@@ -344,8 +322,6 @@ async function generatePDFFromPutRequest(
             "exclues",
             "exclues",
             "exclues",
-            "exclues",
-            "exclues",
           ],
           [
             {
@@ -360,8 +336,6 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "exclues",
-            "exclues",
             "exclues",
             "exclues",
             "exclues",
@@ -703,6 +677,70 @@ async function generatePDFFromPutRequest(
         style: "bigTableLowerPrice",
         pageBreak: "after",
       },
+      { text: "CARTES BLOQUEES PRICE SHIELD", style: "pageTitle" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [
+            70,
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+          ],
+          body: [
+            [
+              "Card Name",
+              "Foil",
+              "Condition",
+              "Language",
+              "OldPrice",
+              "New Price",
+              "Price trend",
+              "Foil Price Trend",
+              "idProduct",
+              "idArticle",
+            ],
+            ...generateLineBlockedPriceCard(
+              all_priceShield_blocked_put_memories,
+              printExplaination
+            ),
+          ],
+        },
+        style: "bigTablePricehieldBlockedCards",
+        pageBreak: "after",
+      },
+      { text: "CARTES EXCLUES", style: "pageTitle" },
+      {
+        table: {
+          headerRows: 1,
+          widths: [70, "auto", "auto", "auto", "auto", "auto", "auto", "auto"],
+          body: [
+            [
+              "Card Name",
+              "Foil",
+              "Condition",
+              "Language",
+              "OldPrice",
+              "New Price",
+
+              "idProduct",
+              "idArticle",
+            ],
+            ...generateLineExcludedCard(
+              all_excluded_put_memories,
+              printExplaination
+            ),
+          ],
+        },
+        style: "bigTableExcludedCards",
+        pageBreak: "after",
+      },
     ],
     footer: generateFooter,
     styles: {
@@ -732,8 +770,10 @@ async function generatePDFFromPutRequest(
         fontSize: 15,
         margin: [0, 15, 0, 15],
       },
-      bigTableHigherPrice: { margin: [0, 0, 0, 0] },
-      bigTableLowerPrice: { margin: [0, 0, 0, 0] },
+      bigTableHigherPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
+      bigTableLowerPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
+      bigTablePricehieldBlockedCards: { margin: [0, 0, 0, 0], fontSize: 8 },
+      bigTableExcludedCards: { margin: [20, 0, 20, 0] },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
