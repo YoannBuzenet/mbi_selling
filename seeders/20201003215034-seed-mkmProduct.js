@@ -240,7 +240,7 @@ module.exports = {
           isAltered: 0,
           comments: 0,
           amount: 10,
-          productLegalityId: 12,
+          productLegalityId: 3,
           onSale: 0,
           idCurrency: 1,
           currencyCode: "EUR",
