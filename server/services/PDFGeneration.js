@@ -15,8 +15,11 @@ async function generatePDFFromPutRequest(
   put_requestId,
   langLocale = "fr-FR",
   isTestScript = true,
-  printExplaination = true
+  printExplaination = false
 ) {
+  // The PDF was supposed to print a line of explaination for each line of data. This feature has been stopped without being finished.
+  // If you wish to pass printExplaination parameter to true, just finish the function that generate translated text with relevant data for each line.
+
   /* ******************************* */
   /* ******* GETTING CONTENT ******* */
   /* ****************************** */
@@ -179,16 +182,16 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
+            data.rows[i].cardName,
+            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            utilsServer.conditionDefinition[data.rows[i].condition],
+            utilsServer.langDefinition[data.rows[i].lang],
+            data.rows[i].oldPrice,
+            data.rows[i].newPrice,
+            data.rows[i].regularCardsTrend,
+            data.rows[i].foilCardsTrend,
+            data.rows[i].idProduct,
+            data.rows[i].idArticle,
           ],
           [
             {
@@ -203,16 +206,16 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
-            "hausse",
+            data.rows[i].cardName,
+            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            utilsServer.conditionDefinition[data.rows[i].condition],
+            utilsServer.langDefinition[data.rows[i].lang],
+            data.rows[i].oldPrice,
+            data.rows[i].newPrice,
+            data.rows[i].regularCardsTrend,
+            data.rows[i].foilCardsTrend,
+            data.rows[i].idProduct,
+            data.rows[i].idArticle,
           ],
         ];
       }
@@ -231,16 +234,16 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
+            data.rows[i].cardName,
+            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            utilsServer.conditionDefinition[data.rows[i].condition],
+            utilsServer.langDefinition[data.rows[i].lang],
+            data.rows[i].oldPrice,
+            data.rows[i].newPrice,
+            data.rows[i].regularCardsTrend,
+            data.rows[i].foilCardsTrend,
+            data.rows[i].idProduct,
+            data.rows[i].idArticle,
           ],
           [
             {
@@ -255,16 +258,16 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
-            "baisse",
+            data.rows[i].cardName,
+            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            utilsServer.conditionDefinition[data.rows[i].condition],
+            utilsServer.langDefinition[data.rows[i].lang],
+            data.rows[i].oldPrice,
+            data.rows[i].newPrice,
+            data.rows[i].regularCardsTrend,
+            data.rows[i].foilCardsTrend,
+            data.rows[i].idProduct,
+            data.rows[i].idArticle,
           ],
         ];
       }
@@ -629,7 +632,7 @@ async function generatePDFFromPutRequest(
         table: {
           headerRows: 1,
           widths: [
-            300,
+            70,
             "auto",
             "auto",
             "auto",
@@ -659,7 +662,7 @@ async function generatePDFFromPutRequest(
             ),
           ],
         },
-        style: "recapTable2",
+        style: "bigTableHigherPrice",
         pageBreak: "after",
       },
       { text: "CARTES MODIFEES A LA BAISSE", style: "pageTitle" },
@@ -667,7 +670,7 @@ async function generatePDFFromPutRequest(
         table: {
           headerRows: 1,
           widths: [
-            300,
+            70,
             "auto",
             "auto",
             "auto",
@@ -697,7 +700,7 @@ async function generatePDFFromPutRequest(
             ),
           ],
         },
-        style: "recapTable3",
+        style: "bigTableLowerPrice",
         pageBreak: "after",
       },
     ],
@@ -729,6 +732,8 @@ async function generatePDFFromPutRequest(
         fontSize: 15,
         margin: [0, 15, 0, 15],
       },
+      bigTableHigherPrice: { margin: [0, 0, 0, 0] },
+      bigTableLowerPrice: { margin: [0, 0, 0, 0] },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],

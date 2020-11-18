@@ -22,6 +22,7 @@ module.exports = {
       idArticle: {
         type: Sequelize.INTEGER,
       },
+      cardName: { type: Sequelize.STRING },
       regularCardsTrend: {
         type: Sequelize.FLOAT,
         validate: { isNumeric: true },

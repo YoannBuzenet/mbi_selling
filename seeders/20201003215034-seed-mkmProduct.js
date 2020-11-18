@@ -10,7 +10,7 @@ module.exports = {
         {
           idArticle: 1,
           idProduct: 1,
-          englishName: "ok",
+          englishName: "testcardName1",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -34,7 +34,7 @@ module.exports = {
         {
           idArticle: 1767,
           idProduct: 101,
-          englishName: "ok",
+          englishName: "testcardName2",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -58,7 +58,7 @@ module.exports = {
         {
           idArticle: 2,
           idProduct: 102,
-          englishName: "ok",
+          englishName: "testcardName3",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -82,7 +82,7 @@ module.exports = {
         {
           idArticle: 3,
           idProduct: 103,
-          englishName: "ok",
+          englishName: "testcardName4",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -329,7 +329,7 @@ module.exports = {
         {
           idArticle: 159,
           idProduct: 16511,
-          englishName: "ok",
+          englishName: "testcardName6",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -355,7 +355,7 @@ module.exports = {
         {
           idArticle: 169,
           idProduct: 16229,
-          englishName: "ok",
+          englishName: "testcardName7",
           localName: "ok",
           Exp: 5,
           expName: "ok",
