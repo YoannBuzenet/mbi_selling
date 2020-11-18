@@ -10,6 +10,7 @@ const {
 } = require("../../src/services/fullstackTranslations/formatDate");
 const utils = require("../../src/services/utils");
 const utilsServer = require("../services/utils");
+const priceshieldTranslations = require("../../src/services/fullstackTranslations/priceshieldTranslations");
 
 async function generatePDFFromPutRequest(
   put_requestId,
@@ -275,28 +276,32 @@ async function generatePDFFromPutRequest(
 
     return arrayWithAllData;
   }
-  function generateLineBlockedPriceCard(data, shouldPrintExplaination) {
+  function generateLineBlockedPriceCard(data) {
     let arrayWithAllData = [];
 
     for (let i = 0; i < data.rows.length; i++) {
       arrayWithAllData = [
         ...arrayWithAllData,
         [
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
-          "blocked",
+          data.rows[i].cardName,
+          data.rows[i].isFoil === 1 ? "Yes" : "No",
+          utilsServer.conditionDefinition[data.rows[i].condition],
+          utilsServer.langDefinition[data.rows[i].lang],
+          data.rows[i].oldPrice,
+          data.rows[i].newPrice,
+          data.rows[i].regularCardsTrend,
+          data.rows[i].foilCardsTrend,
+          data.rows[i].idProduct,
+          data.rows[i].idArticle,
         ],
+
         [
           {
             colSpan: 10,
-            text: "Reason of being blocked",
+            text:
+              priceshieldTranslations.priceShieldReasons[
+                data.rows[i].priceShieldReason
+              ][langLocale],
           },
         ],
       ];
@@ -314,14 +319,14 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
+            data.rows[i].cardName,
+            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            utilsServer.conditionDefinition[data.rows[i].condition],
+            utilsServer.langDefinition[data.rows[i].lang],
+            data.rows[i].oldPrice,
+            data.rows[i].newPrice,
+            data.rows[i].idProduct,
+            data.rows[i].idArticle,
           ],
           [
             {
@@ -336,14 +341,14 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
-            "exclues",
+            data.rows[i].cardName,
+            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            utilsServer.conditionDefinition[data.rows[i].condition],
+            utilsServer.langDefinition[data.rows[i].lang],
+            data.rows[i].oldPrice,
+            data.rows[i].newPrice,
+            data.rows[i].idProduct,
+            data.rows[i].idArticle,
           ],
         ];
       }
@@ -728,7 +733,6 @@ async function generatePDFFromPutRequest(
               "Language",
               "OldPrice",
               "New Price",
-
               "idProduct",
               "idArticle",
             ],
