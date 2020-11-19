@@ -940,27 +940,21 @@ async function generatePDFFromPutRequest(
     pdfPathName = path.join(
       folderPathWithUserId,
       "/" +
-        "shop_" +
-        put_request.dataValues.idShop +
-        "_" +
-        "script_" +
-        all_put_memories.rows[0].dataValues.idScript +
-        "_" +
-        "Test" +
-        ".pdf"
+        createPDFName(
+          all_put_memories.rows[0].dataValues.idScript,
+          put_request.dataValues.idShop,
+          true
+        )
     );
   } else {
     pdfPathName = path.join(
       folderPathWithUserId,
       "/" +
-        "shop_" +
-        put_request.dataValues.idShop +
-        "_" +
-        "script_" +
-        all_put_memories.rows[0].dataValues.idScript +
-        "_" +
-        "Real" +
-        ".pdf"
+        createPDFName(
+          all_put_memories.rows[0].dataValues.idScript,
+          put_request.dataValues.idShop,
+          false
+        )
     );
   }
   // pdf writing
@@ -970,6 +964,20 @@ async function generatePDFFromPutRequest(
   console.log("processing PDF...");
 }
 
+function createPDFName(idScript, idShop, isTest) {
+  let pdfName;
+  if (isTest) {
+    pdfName =
+      "shop_" + idShop + "_" + "script_" + idScript + "_" + "Test" + ".pdf";
+  } else {
+    pdfName =
+      "shop_" + idShop + "_" + "script_" + idScript + "_" + "Real" + ".pdf";
+  }
+
+  return pdfName;
+}
+
 module.exports = {
   generatePDFFromPutRequest,
+  createPDFName,
 };
