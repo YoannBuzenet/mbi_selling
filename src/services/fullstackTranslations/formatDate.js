@@ -1,6 +1,6 @@
 const translation = {
   FormatDate: {
-    "En-us": "MM-DD-YYYY",
+    "en-US": "MM-DD-YYYY",
     "fr-FR": "DD-MM-YYYY",
   },
 };
