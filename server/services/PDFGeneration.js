@@ -326,6 +326,8 @@ async function generatePDFFromPutRequest(
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
             data.rows[i].newPrice,
+            data.rows[i].regularCardsTrend,
+            data.rows[i].foilCardsTrend,
             data.rows[i].idProduct,
             data.rows[i].idArticle,
           ],
@@ -348,6 +350,8 @@ async function generatePDFFromPutRequest(
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
             data.rows[i].newPrice,
+            data.rows[i].regularCardsTrend,
+            data.rows[i].foilCardsTrend,
             data.rows[i].idProduct,
             data.rows[i].idArticle,
           ],
@@ -731,7 +735,18 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [70, "auto", "auto", "auto", "auto", "auto", "auto", "auto"],
+          widths: [
+            70,
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+            "auto",
+          ],
           body: [
             [
               "Card Name",
@@ -740,6 +755,8 @@ async function generatePDFFromPutRequest(
               "Language",
               "OldPrice",
               "New Price",
+              "Price trend",
+              "Foil Price Trend",
               "idProduct",
               "idArticle",
             ],
@@ -784,7 +801,7 @@ async function generatePDFFromPutRequest(
       bigTableHigherPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
       bigTableLowerPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
       bigTablePricehieldBlockedCards: { margin: [0, 0, 0, 0], fontSize: 8 },
-      bigTableExcludedCards: { margin: [20, 0, 20, 0] },
+      bigTableExcludedCards: { margin: [0, 0, 0, 0] },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
