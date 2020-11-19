@@ -78,7 +78,135 @@ const ruleTypesDictionnary = {
   },
 };
 
+const pdfStructure = {
+  pdfTitle: {
+    ["en-US"]: "Script n°",
+    ["fr-FR"]: "Script n°",
+  },
+  page: {
+    ["en-US"]: "Page",
+    ["fr-FR"]: "Page",
+  },
+  testProcedure: {
+    ["en-US"]: "Test procedure",
+    ["fr-FR"]: "Procédure de test",
+  },
+  reference: {
+    ["en-US"]: "Reference",
+    ["fr-FR"]: "Référence",
+  },
+  usedFormats: {
+    ["en-US"]: "Affected formats : ",
+    ["fr-FR"]: "Formats concernés : ",
+  },
+  cardsConcernedByScript: {
+    ["en-US"]: "Cards affected by the script",
+    ["fr-FR"]: "Cartes concernées par le script ",
+  },
+  summary: {
+    ["en-US"]: "Summary",
+    ["fr-FR"]: "Récapitulatif",
+  },
+  cardsSetAtHigherPrice: {
+    ["en-US"]: "Prices changed upwards",
+    ["fr-FR"]: "Cartes modifiées à la hausse",
+  },
+  cardsSetAtLowerPrice: {
+    ["en-US"]: "Prices modified downwards",
+    ["fr-FR"]: "Cartes modifiées à la baisse",
+  },
+  cardsBlockedByPriceShield: {
+    ["en-US"]: "Cards blocked by PriceShield",
+    ["fr-FR"]: "Cartes bloquées par le PriceShield",
+  },
+  cardsExcluded: {
+    ["en-US"]: "Cards excluded by the script",
+    ["fr-FR"]: "Cartes exclues par le script",
+  },
+  summaryOfUsedRules: {
+    ["en-US"]: "Summary of the rules used",
+    ["fr-FR"]: "Récapitulatif des règles utilisées",
+  },
+  regularCards: {
+    ["en-US"]: "Regular Cards",
+    ["fr-FR"]: "Cartes Regular",
+  },
+  from: {
+    ["en-US"]: "From",
+    ["fr-FR"]: "De",
+  },
+  to: {
+    ["en-US"]: "To",
+    ["fr-FR"]: "A",
+  },
+  action: {
+    ["en-US"]: "Action",
+    ["fr-FR"]: "Action",
+  },
+  valueSet: {
+    ["en-US"]: "Value Set",
+    ["fr-FR"]: "Prix fixé",
+  },
+  mkmAction: {
+    ["en-US"]: "Action on MKM Price",
+    ["fr-FR"]: "Action sur prix MKM",
+  },
+  basedOn: {
+    ["en-US"]: "Based on",
+    ["fr-FR"]: "Basé sur",
+  },
+  foilCards: {
+    ["en-US"]: "Foil cards",
+    ["fr-FR"]: "Cartes Foil",
+  },
+  parameters: {
+    ["en-US"]: "Parameters",
+    ["fr-FR"]: "Paramètres",
+  },
+  percentPerConditionRegular: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  percentPerConditionFoil: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  percentPerLanguage: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  cardName: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  foil: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  condition: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  language: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  newPrice: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  priceTrend: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+  foilPriceTrend: {
+    ["en-US"]: "",
+    ["fr-FR"]: "",
+  },
+};
+
 module.exports = {
   BehaviourDictionnary,
   ruleTypesDictionnary,
+  pdfStructure,
 };
