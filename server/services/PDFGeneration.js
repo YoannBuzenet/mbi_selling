@@ -15,7 +15,8 @@ const genericTranslations = require("../../src/services/fullstackTranslations/ge
 
 async function generatePDFFromPutRequest(
   put_requestId,
-  langLocale = "fr-FR",
+  // langLocale = "fr-FR",
+  langLocale = "en-US",
   isTestScript = true,
   printExplaination = false
 ) {
@@ -165,7 +166,11 @@ async function generatePDFFromPutRequest(
   function generateFooter(currentPage, pageCount) {
     return [
       {
-        text: "Page " + currentPage.toString() + " / " + pageCount,
+        text:
+          genericTranslations.pdfStructure.page[langLocale] +
+          currentPage.toString() +
+          " / " +
+          pageCount,
         style: "footer",
       },
       { text: "MKM Price Updater", style: "footerMention" },
@@ -185,7 +190,9 @@ async function generatePDFFromPutRequest(
           ...arrayWithAllData,
           [
             data.rows[i].cardName,
-            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            data.rows[i].isFoil === 1
+              ? genericTranslations.pdfStructure.yes[langLocale]
+              : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[data.rows[i].condition],
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
@@ -198,8 +205,7 @@ async function generatePDFFromPutRequest(
           [
             {
               colSpan: 10,
-              text:
-                "Both:\nrowSpan and colSpan\ncan be defined at the same time",
+              text: "TBD if explaination is used one day",
             },
           ],
         ];
@@ -209,7 +215,9 @@ async function generatePDFFromPutRequest(
           ...arrayWithAllData,
           [
             data.rows[i].cardName,
-            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            data.rows[i].isFoil === 1
+              ? genericTranslations.pdfStructure.yes[langLocale]
+              : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[data.rows[i].condition],
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
@@ -237,7 +245,9 @@ async function generatePDFFromPutRequest(
           ...arrayWithAllData,
           [
             data.rows[i].cardName,
-            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            data.rows[i].isFoil === 1
+              ? genericTranslations.pdfStructure.yes[langLocale]
+              : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[data.rows[i].condition],
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
@@ -261,7 +271,9 @@ async function generatePDFFromPutRequest(
           ...arrayWithAllData,
           [
             data.rows[i].cardName,
-            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            data.rows[i].isFoil === 1
+              ? genericTranslations.pdfStructure.yes[langLocale]
+              : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[data.rows[i].condition],
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
@@ -285,7 +297,9 @@ async function generatePDFFromPutRequest(
         ...arrayWithAllData,
         [
           data.rows[i].cardName,
-          data.rows[i].isFoil === 1 ? "Yes" : "No",
+          data.rows[i].isFoil === 1
+            ? genericTranslations.pdfStructure.yes[langLocale]
+            : genericTranslations.pdfStructure.no[langLocale],
           utilsServer.conditionDefinition[data.rows[i].condition],
           utilsServer.langDefinition[data.rows[i].lang],
           data.rows[i].oldPrice,
@@ -321,7 +335,9 @@ async function generatePDFFromPutRequest(
           ...arrayWithAllData,
           [
             data.rows[i].cardName,
-            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            data.rows[i].isFoil === 1
+              ? genericTranslations.pdfStructure.yes[langLocale]
+              : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[data.rows[i].condition],
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
@@ -345,7 +361,9 @@ async function generatePDFFromPutRequest(
           ...arrayWithAllData,
           [
             data.rows[i].cardName,
-            data.rows[i].isFoil === 1 ? "Yes" : "No",
+            data.rows[i].isFoil === 1
+              ? genericTranslations.pdfStructure.yes[langLocale]
+              : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[data.rows[i].condition],
             utilsServer.langDefinition[data.rows[i].lang],
             data.rows[i].oldPrice,
@@ -372,19 +390,28 @@ async function generatePDFFromPutRequest(
       { text: " " },
       { text: " " },
       {
-        text: "Script n° " + idScript,
+        text: genericTranslations.pdfStructure.pdfTitle[langLocale] + idScript,
         style: "mainTitle",
       },
       { text: " " },
-      { text: isTestScript ? "Procédure de test" : " ", style: "subTitle" },
+      {
+        text: isTestScript
+          ? genericTranslations.pdfStructure.testProcedure[langLocale]
+          : " ",
+        style: "subTitle",
+      },
       { text: " " },
       { text: " " },
       { text: moment().format(translation.FormatDate[langLocale]) },
-      { text: "Référence : " + put_requestId },
+      {
+        text:
+          genericTranslations.pdfStructure.reference[langLocale] +
+          put_requestId,
+      },
       { text: " " },
       {
         text:
-          "Formats ciblés : " +
+          genericTranslations.pdfStructure.usedFormats[langLocale] +
           usedFormats.map((formatFromSequelize, index) => {
             if (index !== 0) {
               return (
@@ -403,12 +430,21 @@ async function generatePDFFromPutRequest(
         table: {
           headerRows: 1,
           widths: [300, "auto"],
-          body: [["Cartes concernées par le script", all_put_memories.count]],
+          body: [
+            [
+              genericTranslations.pdfStructure.cardsConcernedByScript[
+                langLocale
+              ],
+              all_put_memories.count,
+            ],
+          ],
         },
         layout: "noBorders",
         style: "recapTable",
       },
-      { text: "Récapitulatif" },
+      {
+        text: genericTranslations.pdfStructure.summary[langLocale],
+      },
       { text: " " },
       {
         table: {
@@ -416,32 +452,54 @@ async function generatePDFFromPutRequest(
           widths: [300, "auto"],
           body: [
             [
-              "Cartes modifiées à la hausse",
+              genericTranslations.pdfStructure.cardsSetAtHigherPrice[
+                langLocale
+              ],
               all_higher_price_put_memories.count,
             ],
             [
-              "Cartes modifiées à la baisse",
+              genericTranslations.pdfStructure.cardsSetAtLowerPrice[langLocale],
               all_lower_price_put_memories.count,
             ],
             [
-              "Cartes bloquées par le PriceShield",
+              genericTranslations.pdfStructure.cardsBlockedByPriceShield[
+                langLocale
+              ],
               all_priceShield_blocked_put_memories.count,
             ],
-            ["Cartes exclues par le script", all_excluded_put_memories.count],
+            [
+              genericTranslations.pdfStructure.cardsExcluded[langLocale],
+              all_excluded_put_memories.count,
+            ],
           ],
         },
         layout: "noBorders",
         style: "recapTable",
         pageBreak: "after",
       },
-      { text: "SUMMARY OF THE RULES USED", style: "pageTitle" },
-      { text: "Regular cards", style: "tableTitle" },
+      {
+        text: genericTranslations.pdfStructure.summaryOfUsedRules[
+          langLocale
+        ].toUpperCase(),
+        style: "pageTitle",
+      },
+      {
+        text: genericTranslations.pdfStructure.regularCards[langLocale],
+        style: "tableTitle",
+      },
       {
         table: {
           headerRows: 1,
           widths: [50, 50, 50, 50, 120, 120],
           body: [
-            ["From", "To", "Action", "Value Set", "MKM Action", "Based on"],
+            [
+              genericTranslations.pdfStructure.from[langLocale],
+              genericTranslations.pdfStructure.to[langLocale],
+              genericTranslations.pdfStructure.action[langLocale],
+              genericTranslations.pdfStructure.valueSet[langLocale],
+              genericTranslations.pdfStructure.mkmAction[langLocale],
+              genericTranslations.pdfStructure.basedOn[langLocale],
+            ],
             ...orderedSnapshotCustomRules.regular.map((rule) => {
               return [
                 rule.priceRangeFrom,
@@ -464,13 +522,23 @@ async function generatePDFFromPutRequest(
         },
         style: "customRulesTable",
       },
-      { text: "Foil cards", style: "tableTitle" },
+      {
+        text: genericTranslations.pdfStructure.foilCards[langLocale],
+        style: "tableTitle",
+      },
       {
         table: {
           headerRows: 1,
           widths: [50, 50, 50, 50, 120, 120],
           body: [
-            ["From", "To", "Action", "Value Set", "MKM Action", "Based on"],
+            [
+              genericTranslations.pdfStructure.from[langLocale],
+              genericTranslations.pdfStructure.to[langLocale],
+              genericTranslations.pdfStructure.action[langLocale],
+              genericTranslations.pdfStructure.valueSet[langLocale],
+              genericTranslations.pdfStructure.mkmAction[langLocale],
+              genericTranslations.pdfStructure.basedOn[langLocale],
+            ],
             ...orderedSnapshotCustomRules.foil.map((rule) => {
               return [
                 rule.priceRangeFrom,
@@ -492,8 +560,17 @@ async function generatePDFFromPutRequest(
         style: "customRulesTable",
         pageBreak: "after",
       },
-      { text: "PARAMETERS", style: "pageTitle" },
-      { text: "Percent Per Condition Regular", style: "tableTitle" },
+      {
+        text: genericTranslations.pdfStructure.parameters[langLocale],
+        style: "pageTitle",
+      },
+      {
+        text:
+          genericTranslations.pdfStructure.percentPerConditionRegular[
+            langLocale
+          ],
+        style: "tableTitle",
+      },
       {
         table: {
           headerRows: 1,
@@ -531,7 +608,11 @@ async function generatePDFFromPutRequest(
         },
         style: "recapTable",
       },
-      { text: "Percent Per Condition Foil", style: "tableTitle" },
+      {
+        text:
+          genericTranslations.pdfStructure.percentPerConditionFoil[langLocale],
+        style: "tableTitle",
+      },
       {
         table: {
           headerRows: 1,
@@ -560,55 +641,58 @@ async function generatePDFFromPutRequest(
         },
         style: "recapTable",
       },
-      { text: "Percent Per Language", style: "tableTitle" },
+      {
+        text: genericTranslations.pdfStructure.percentPerLanguage[langLocale],
+        style: "tableTitle",
+      },
       {
         table: {
           headerRows: 1,
           widths: [300, "auto"],
           body: [
             [
-              "German",
+              genericTranslations.pdfStructure.german[langLocale],
               snapshotShopParams.dataValues.percentPerLangGerman + " %",
             ],
             [
-              "Spanish",
+              genericTranslations.pdfStructure.spanish[langLocale],
               snapshotShopParams.dataValues.percentPerLangSpanish + " %",
             ],
             [
-              "French",
+              genericTranslations.pdfStructure.french[langLocale],
               snapshotShopParams.dataValues.percentPerLangFrench + " %",
             ],
             [
-              "Italian",
+              genericTranslations.pdfStructure.italian[langLocale],
               snapshotShopParams.dataValues.percentPerLangItalian + " %",
             ],
             [
-              "Japanese",
+              genericTranslations.pdfStructure.japanese[langLocale],
               snapshotShopParams.dataValues.percentPerLangJapanese + " %",
             ],
             [
-              "Portuguese",
+              genericTranslations.pdfStructure.portuguese[langLocale],
               snapshotShopParams.dataValues.percentPerLangPortuguese + " %",
             ],
             [
-              "Russian",
+              genericTranslations.pdfStructure.russian[langLocale],
               snapshotShopParams.dataValues.percentPerLangRussian + " %",
             ],
             [
-              "Simplified Chinese",
+              genericTranslations.pdfStructure.simplifiedChinese[langLocale],
               snapshotShopParams.dataValues.percentPerLangSimplifiedChinese +
                 " %",
             ],
             [
-              "English",
+              genericTranslations.pdfStructure.english[langLocale],
               snapshotShopParams.dataValues.percentPerLangEnglish + " %",
             ],
             [
-              "Korean",
+              genericTranslations.pdfStructure.korean[langLocale],
               snapshotShopParams.dataValues.percentPerLangKorean + " %",
             ],
             [
-              "Traditional Chinese",
+              genericTranslations.pdfStructure.traditionalChinese[langLocale],
               snapshotShopParams.dataValues.percentPerLangTraditionalChinese +
                 " %",
             ],
@@ -617,7 +701,12 @@ async function generatePDFFromPutRequest(
         style: "recapTable",
         pageBreak: "after",
       },
-      { text: "CARTES MODIFEES A LA HAUSSE", style: "pageTitle" },
+      {
+        text: genericTranslations.pdfStructure.cardsSetAtHigherPrice[
+          langLocale
+        ].toUpperCase(),
+        style: "pageTitle",
+      },
       {
         table: {
           headerRows: 1,
@@ -635,14 +724,14 @@ async function generatePDFFromPutRequest(
           ],
           body: [
             [
-              "Card Name",
-              "Foil",
-              "Condition",
-              "Language",
-              "OldPrice",
-              "New Price",
-              "Price trend",
-              "Foil Price Trend",
+              genericTranslations.pdfStructure.cardName[langLocale],
+              genericTranslations.pdfStructure.foil[langLocale],
+              genericTranslations.pdfStructure.condition[langLocale],
+              genericTranslations.pdfStructure.language[langLocale],
+              genericTranslations.pdfStructure.oldPrice[langLocale],
+              genericTranslations.pdfStructure.newPrice[langLocale],
+              genericTranslations.pdfStructure.priceTrend[langLocale],
+              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
               "idProduct",
               "idArticle",
             ],
@@ -655,7 +744,12 @@ async function generatePDFFromPutRequest(
         style: "bigTableHigherPrice",
         pageBreak: "after",
       },
-      { text: "CARTES MODIFEES A LA BAISSE", style: "pageTitle" },
+      {
+        text: genericTranslations.pdfStructure.cardsSetAtLowerPrice[
+          langLocale
+        ].toUpperCase(),
+        style: "pageTitle",
+      },
       {
         table: {
           headerRows: 1,
@@ -673,14 +767,14 @@ async function generatePDFFromPutRequest(
           ],
           body: [
             [
-              "Card Name",
-              "Foil",
-              "Condition",
-              "Language",
-              "OldPrice",
-              "New Price",
-              "Price trend",
-              "Foil Price Trend",
+              genericTranslations.pdfStructure.cardName[langLocale],
+              genericTranslations.pdfStructure.foil[langLocale],
+              genericTranslations.pdfStructure.condition[langLocale],
+              genericTranslations.pdfStructure.language[langLocale],
+              genericTranslations.pdfStructure.oldPrice[langLocale],
+              genericTranslations.pdfStructure.newPrice[langLocale],
+              genericTranslations.pdfStructure.priceTrend[langLocale],
+              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
               "idProduct",
               "idArticle",
             ],
@@ -693,7 +787,12 @@ async function generatePDFFromPutRequest(
         style: "bigTableLowerPrice",
         pageBreak: "after",
       },
-      { text: "CARTES BLOQUEES PRICE SHIELD", style: "pageTitle" },
+      {
+        text: genericTranslations.pdfStructure.cardsBlockedByPriceShield[
+          langLocale
+        ].toUpperCase(),
+        style: "pageTitle",
+      },
       {
         table: {
           headerRows: 1,
@@ -711,14 +810,14 @@ async function generatePDFFromPutRequest(
           ],
           body: [
             [
-              "Card Name",
-              "Foil",
-              "Condition",
-              "Language",
-              "OldPrice",
-              "New Price",
-              "Price trend",
-              "Foil Price Trend",
+              genericTranslations.pdfStructure.cardName[langLocale],
+              genericTranslations.pdfStructure.foil[langLocale],
+              genericTranslations.pdfStructure.condition[langLocale],
+              genericTranslations.pdfStructure.language[langLocale],
+              genericTranslations.pdfStructure.oldPrice[langLocale],
+              genericTranslations.pdfStructure.newPrice[langLocale],
+              genericTranslations.pdfStructure.priceTrend[langLocale],
+              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
               "idProduct",
               "idArticle",
             ],
@@ -731,7 +830,12 @@ async function generatePDFFromPutRequest(
         style: "bigTablePricehieldBlockedCards",
         pageBreak: "after",
       },
-      { text: "CARTES EXCLUES", style: "pageTitle" },
+      {
+        text: genericTranslations.pdfStructure.cardsExcluded[
+          langLocale
+        ].toUpperCase(),
+        style: "pageTitle",
+      },
       {
         table: {
           headerRows: 1,
@@ -749,14 +853,14 @@ async function generatePDFFromPutRequest(
           ],
           body: [
             [
-              "Card Name",
-              "Foil",
-              "Condition",
-              "Language",
-              "OldPrice",
-              "New Price",
-              "Price trend",
-              "Foil Price Trend",
+              genericTranslations.pdfStructure.cardName[langLocale],
+              genericTranslations.pdfStructure.foil[langLocale],
+              genericTranslations.pdfStructure.condition[langLocale],
+              genericTranslations.pdfStructure.language[langLocale],
+              genericTranslations.pdfStructure.oldPrice[langLocale],
+              genericTranslations.pdfStructure.newPrice[langLocale],
+              genericTranslations.pdfStructure.priceTrend[langLocale],
+              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
               "idProduct",
               "idArticle",
             ],

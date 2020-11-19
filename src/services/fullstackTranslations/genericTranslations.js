@@ -80,20 +80,20 @@ const ruleTypesDictionnary = {
 
 const pdfStructure = {
   pdfTitle: {
-    ["en-US"]: "Script n°",
-    ["fr-FR"]: "Script n°",
+    ["en-US"]: "Script n° ",
+    ["fr-FR"]: "Script n° ",
   },
   page: {
-    ["en-US"]: "Page",
-    ["fr-FR"]: "Page",
+    ["en-US"]: "Page ",
+    ["fr-FR"]: "Page ",
   },
   testProcedure: {
     ["en-US"]: "Test procedure",
     ["fr-FR"]: "Procédure de test",
   },
   reference: {
-    ["en-US"]: "Reference",
-    ["fr-FR"]: "Référence",
+    ["en-US"]: "Reference : ",
+    ["fr-FR"]: "Référence : ",
   },
   usedFormats: {
     ["en-US"]: "Affected formats : ",
@@ -175,6 +175,18 @@ const pdfStructure = {
     ["en-US"]: "Coefficient by Language",
     ["fr-FR"]: "Coefficient par Langue",
   },
+  german: { ["en-US"]: "German", ["fr-FR"]: "Allemand" },
+  spanish: { ["en-US"]: "Spanish", ["fr-FR"]: "Espagnol" },
+  french: { ["en-US"]: "French", ["fr-FR"]: "Français" },
+  italian: { ["en-US"]: "Italian", ["fr-FR"]: "Italien" },
+  japanese: { ["en-US"]: "Japanese", ["fr-FR"]: "Japonais" },
+  portuguese: { ["en-US"]: "Portuguese", ["fr-FR"]: "Portugais" },
+  russian: { ["en-US"]: "Russian", ["fr-FR"]: "Russe" },
+  simplifiedChinese: { ["en-US"]: "S. Chinese", ["fr-FR"]: "Chinois S." },
+  english: { ["en-US"]: "English", ["fr-FR"]: "Anglais" },
+  korean: { ["en-US"]: "Korean", ["fr-FR"]: "Coréen" },
+  traditionalChinese: { ["en-US"]: "T. Chinese", ["fr-FR"]: "Chinois T." },
+
   cardName: {
     ["en-US"]: "Card Name",
     ["fr-FR"]: "Nom",
@@ -207,6 +219,11 @@ const pdfStructure = {
     ["en-US"]: "Foil Price Trend",
     ["fr-FR"]: "Prix Tendance Foil",
   },
+  yes: {
+    ["en-US"]: "Yes",
+    ["fr-FR"]: "No",
+  },
+  no: { ["en-US"]: "No", ["fr-FR"]: "Non" },
 };
 
 module.exports = {
