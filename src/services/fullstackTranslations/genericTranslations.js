@@ -164,44 +164,48 @@ const pdfStructure = {
     ["fr-FR"]: "Paramètres",
   },
   percentPerConditionRegular: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Coefficient by Condition - Regular Cards",
+    ["fr-FR"]: "Coefficient par état - Cartes Regular",
   },
   percentPerConditionFoil: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Coefficient by Condition - Foil Cards",
+    ["fr-FR"]: "Coefficient par état - Cartes Foils",
   },
   percentPerLanguage: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Coefficient by Language",
+    ["fr-FR"]: "Coefficient par Langue",
   },
   cardName: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Card Name",
+    ["fr-FR"]: "Nom",
   },
   foil: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Foil",
+    ["fr-FR"]: "Foil",
   },
   condition: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Condition",
+    ["fr-FR"]: "État",
   },
   language: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Language",
+    ["fr-FR"]: "Langue",
+  },
+  oldPrice: {
+    ["en-US"]: "Old Price",
+    ["fr-FR"]: "Ancien prix",
   },
   newPrice: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "New Price",
+    ["fr-FR"]: "Nouveau prix",
   },
   priceTrend: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Price Trend",
+    ["fr-FR"]: "Prix Tendance",
   },
   foilPriceTrend: {
-    ["en-US"]: "",
-    ["fr-FR"]: "",
+    ["en-US"]: "Foil Price Trend",
+    ["fr-FR"]: "Prix Tendance Foil",
   },
 };
 
