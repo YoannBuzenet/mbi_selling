@@ -11,6 +11,7 @@ const {
 const utils = require("../../src/services/utils");
 const utilsServer = require("../services/utils");
 const priceshieldTranslations = require("../../src/services/fullstackTranslations/priceshieldTranslations");
+const genericTranslations = require("../../src/services/fullstackTranslations/genericTranslations");
 
 async function generatePDFFromPutRequest(
   put_requestId,
@@ -441,10 +442,14 @@ async function generatePDFFromPutRequest(
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
-                ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name,
+                genericTranslations.ruleTypesDictionnary[langLocale][
+                  ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
+                ],
                 rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "",
                 rule.ruleTypeId === 2
-                  ? customRulesBehaviourDictionnary[rule.behaviourId].name
+                  ? genericTranslations.BehaviourDictionnary[langLocale][
+                      customRulesBehaviourDictionnary[rule.behaviourId].name
+                    ]
                   : "",
                 rule.ruleTypeId === 2
                   ? mkmPricesGuideDictionnary[rule.mkmPriceGuideReference].name
@@ -466,7 +471,9 @@ async function generatePDFFromPutRequest(
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
-                ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name,
+                genericTranslations.ruleTypesDictionnary[langLocale][
+                  ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
+                ],
                 rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "",
                 rule.ruleTypeId === 2
                   ? customRulesBehaviourDictionnary[rule.behaviourId].name
