@@ -800,8 +800,8 @@ async function generatePDFFromPutRequest(
       },
       bigTableHigherPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
       bigTableLowerPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
-      bigTablePricehieldBlockedCards: { margin: [0, 0, 0, 0], fontSize: 8 },
-      bigTableExcludedCards: { margin: [0, 0, 0, 0] },
+      bigTablePricehieldBlockedCards: { margin: [10, 0, 0, 0], fontSize: 8 },
+      bigTableExcludedCards: { margin: [0, 0, 0, 0], fontSize: 10 },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
