@@ -1,13 +1,18 @@
 const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 const fs = require("fs");
+const path = require("path");
 const { createIntl, createIntlCache } = require("react-intl");
 const genericTranslations = require("../../src/services/fullstackTranslations/genericTranslations");
+const { createPDFName } = require("../services/PDFGeneration");
 
-async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
+async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   // test if parameters are here
+  if (!idScript || !idShop || !shopMail || !isTest) {
+    throw new Error("A parameter is missing in mail PDF function.");
+  }
 
-  //get shop mail
+  // get shop mail
 
   /* *********************************** */
   /* ******* TRANSLATION CONTEXT ******* */
@@ -44,15 +49,28 @@ async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
   console.log("mailing...");
 
   //Find the right ejs template file
+  let templatePath;
+  if (isTest) {
+    templatePath =
+      __dirname + "/../mail_templatePaths/" + locale + "/test-pdf.ejs";
+  } else {
+    templatePath = __dirname + "/../mail_templates/" + locale + "/real-pdf.ejs";
+  }
 
-  // préparer l'objet mailOptions
+  let templateData = {};
 
-  // choper le bon PDF
-
-  // et go !
-
-  let template;
-  let templateData;
+  let attachedPdf = [
+    {
+      filename: createPDFName(idScript, idShop, isTest),
+      path: path.join(
+        __dirname,
+        "../../PDF_storage/" +
+          idShop +
+          "/" +
+          createPDFName(idScript, idShop, isTest)
+      ),
+    },
+  ];
 
   const transport = nodemailer.createTransport({
     host: process.env.SMTP_NODEMAILER,
@@ -64,7 +82,7 @@ async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
     },
   });
 
-  ejs.renderFile(template, templateData, (err, html) => {
+  ejs.renderFile(templatePath, templateData, (err, html) => {
     if (err) console.log(err); // Handle error
     // console.log(templateData);
     // console.log(templateData.user.customer.SellRequests);
@@ -74,28 +92,30 @@ async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
 
     let mailOpts = {
       from: "testMail@gmail.com",
-      to: mailOptions.to,
+      to: shopMail,
       subject: mailTitle,
       html: html,
-      attachments: mailOptions.attachments,
+      attachments: attachedPdf,
     };
 
-    if (securityCheckMailCanBeSent) {
-      transport.sendMail(mailOpts, (err, info) => {
-        if (err) console.log(err); //Handle Error
-        console.log(info);
-        fs.unlink(
-          path.join(
-            __dirname,
-            "../../server/PDF_handling/PDF_buffer/" +
-              templateData.sellRequest.id +
-              ".pdf"
-          )
-        );
-      });
-      return true;
-    }
-    return false;
+    transport.sendMail(mailOpts, (err, info) => {
+      if (err) console.log(err); //Handle Error
+      console.log(info);
+      fs.unlink(
+        path.join(
+          __dirname,
+          "../../PDF_storage/" +
+            idShop +
+            "/" +
+            createPDFName(idScript, idShop, isTest)
+        ),
+        (err, info) => {
+          console.log("info une unlink", info);
+          console.log("err in unlink", err);
+        }
+      );
+    });
+    return true;
   });
 }
 
