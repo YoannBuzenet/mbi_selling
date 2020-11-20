@@ -4,6 +4,7 @@ const db = require("../../../models/index");
 const Sequelize = require("sequelize");
 const PDFGeneration = require("../../services/PDFGeneration");
 const Op = Sequelize.Op;
+const { mailPDF } = require("../../controllers/mailController");
 
 router.get("/", async (req, res) => {
   //Old test to try many to many relations
@@ -83,6 +84,12 @@ router.get("/generatePDFTest", async (req, res) => {
   await PDFGeneration.generatePDFFromPutRequest(1);
 
   res.status(200).json("PDF créé !");
+});
+
+router.get("/mailSendingTest", async (req, res) => {
+  mailPDF(3, 7, true);
+
+  res.status(200).json("Mail envoyé !");
 });
 
 router.post("/createOneCardInStock", async (req, res) => {
