@@ -87,7 +87,7 @@ router.get("/generatePDFTest", async (req, res) => {
 });
 
 router.get("/mailSendingTest", async (req, res) => {
-  mailPDF(3, 7, true);
+  mailPDF(3, 7, "ybuzenet@gmail.com", true);
 
   res.status(200).json("Mail envoyé !");
 });
