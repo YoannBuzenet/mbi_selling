@@ -71,16 +71,6 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
     },
   ];
 
-  const transport = nodemailer.createTransport({
-    host: process.env.SMTP_NODEMAILER,
-    port: process.env.SMTP_PORT,
-    secure: true,
-    auth: {
-      user: process.env.AUTH_USER,
-      pass: process.env.AUTH_PASSWORD,
-    },
-  });
-
   ejs.renderFile(templatePath, templateData, (err, html) => {
     if (err) console.log(err); // Handle error
     // console.log(templateData);
@@ -96,6 +86,16 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
       html: html,
       attachments: attachedPdf,
     };
+
+    const transport = nodemailer.createTransport({
+      host: process.env.SMTP_NODEMAILER,
+      port: process.env.SMTP_PORT,
+      secure: true,
+      auth: {
+        user: process.env.AUTH_USER,
+        pass: process.env.AUTH_PASSWORD,
+      },
+    });
 
     transport.sendMail(mailOpts, (err, info) => {
       if (err) console.log(err); //Handle Error
