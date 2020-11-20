@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       name: DataTypes.STRING,
+      isRunning: { type: DataTypes.INTEGER, defaultValue: 0 },
     },
     {
       sequelize,

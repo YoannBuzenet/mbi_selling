@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      isRunning: {
+        type: Sequelize.INTEGER,
+      },
       idShop: {
         type: Sequelize.INTEGER,
         references: {
