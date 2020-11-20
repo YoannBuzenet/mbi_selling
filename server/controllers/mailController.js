@@ -7,6 +7,8 @@ const genericTranslations = require("../../src/services/fullstackTranslations/ge
 async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
   // test if parameters are here
 
+  //get shop mail
+
   /* *********************************** */
   /* ******* TRANSLATION CONTEXT ******* */
   /* *********************************** */
@@ -26,6 +28,18 @@ async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
   );
 
   // create translated mail title
+  let mailTitle;
+  if (isTest) {
+    mailTitle = intl.formatMessage({
+      id: "mail.sending.title.test",
+      defaultMessage: "Your test script has been executed.",
+    });
+  } else {
+    mailTitle = intl.formatMessage({
+      id: "mail.sending.title.real",
+      defaultMessage: "Your script has been executed.",
+    });
+  }
 
   console.log("mailing...");
 
@@ -61,7 +75,7 @@ async function mailPDF(idScript, idShop, isTest, locale = "fr-FR") {
     let mailOpts = {
       from: "testMail@gmail.com",
       to: mailOptions.to,
-      subject: mailOptions.subject,
+      subject: mailTitle,
       html: html,
       attachments: mailOptions.attachments,
     };

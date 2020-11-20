@@ -181,5 +181,8 @@
   "settings.category.foil": "Foil",
   "settings.percentageToApply": "Pourcentage à appliquer",
   "settings.languages": "Langues",
-  "settings.language": "Langue"
+  "settings.language": "Langue",
+
+  "mail.sending.title.test": "Votre script de test a bien été éxécuté.",
+  "mail.sending.title.real": "Votre script a bien été éxécuté."
 }
