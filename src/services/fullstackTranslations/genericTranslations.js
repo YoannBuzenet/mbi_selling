@@ -1,3 +1,6 @@
+const French = require("../../translations/French.json");
+const English = require("../../translations/English.json");
+
 const BehaviourDictionnary = {
   ["en-US"]: {
     roundUp5percents: "Round Up 5%",
@@ -226,8 +229,14 @@ const pdfStructure = {
   no: { ["en-US"]: "No", ["fr-FR"]: "Non" },
 };
 
+const translatedMessagesWithLocaleKey = {
+  "en-US": English,
+  "fr-FR": French,
+};
+
 module.exports = {
   BehaviourDictionnary,
   ruleTypesDictionnary,
   pdfStructure,
+  translatedMessagesWithLocaleKey,
 };
