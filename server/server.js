@@ -9,6 +9,8 @@ const axios = require("axios");
 const securityCheckAPI = require("./services/securityCheckAPI");
 const fs = require("fs");
 
+global.__basedir = __dirname;
+
 //Parse each call
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
