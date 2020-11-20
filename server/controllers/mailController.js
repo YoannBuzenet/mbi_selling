@@ -51,10 +51,9 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   //Find the right ejs template file
   let templatePath;
   if (isTest) {
-    templatePath =
-      __dirname + "/../mail_templatePaths/" + locale + "/test-pdf.ejs";
+    templatePath = __basedir + "/mail_templates/" + locale + "/test-pdf.ejs";
   } else {
-    templatePath = __dirname + "/../mail_templates/" + locale + "/real-pdf.ejs";
+    templatePath = __basedir + "/mail_templates/" + locale + "/real-pdf.ejs";
   }
 
   let templateData = {};
@@ -101,19 +100,19 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
     transport.sendMail(mailOpts, (err, info) => {
       if (err) console.log(err); //Handle Error
       console.log(info);
-      fs.unlink(
-        path.join(
-          __dirname,
-          "../../PDF_storage/" +
-            idShop +
-            "/" +
-            createPDFName(idScript, idShop, isTest)
-        ),
-        (err, info) => {
-          console.log("info une unlink", info);
-          console.log("err in unlink", err);
-        }
-      );
+      // fs.unlink(
+      //   path.join(
+      //     __dirname,
+      //     "../../PDF_storage/" +
+      //       idShop +
+      //       "/" +
+      //       createPDFName(idScript, idShop, isTest)
+      //   ),
+      //   (err, info) => {
+      //     console.log("info une unlink", info);
+      //     console.log("err in unlink", err);
+      //   }
+      // );
     });
     return true;
   });
