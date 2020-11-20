@@ -9,6 +9,7 @@ const axios = require("axios");
 const securityCheckAPI = require("./services/securityCheckAPI");
 const fs = require("fs");
 
+// Global variable
 global.__basedir = __dirname;
 
 //Parse each call
