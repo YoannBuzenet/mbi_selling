@@ -764,6 +764,7 @@ async function realScriptPersistingStep(
     );
 
     let action;
+
     //For each card, we will process the price, check if we update it or not
     for (let j = 0; j < chunkOfCards.length; j++) {
       const card = chunkOfCards[j].dataValues;
@@ -812,9 +813,16 @@ async function realScriptPersistingStep(
       // console.log("reminder of the card", card);
       // console.log("action for that card", action);
 
-      // HERE
-      // yooy
-      console.log("we prepare the array of 100 objects here");
+      // Preparing the array that will be used for the MKM PUT
+      // Adding the action data in the card
+      chunkOfCards[j].action = action;
+
+      if (chunkOfCards.length === j + 1) {
+        // last teration of the chunk
+        // we can put MKM and then register to DB
+        // yooy
+        console.log("we prepare the array of 100 objects here");
+      }
     }
   }
 }
