@@ -693,6 +693,130 @@ async function realScriptPersistingStep(
   res
 ) {
   console.log("MKM script this time !");
+
+  /* **************************************** */
+  /* ********** Chunk Management ***********/
+  /* **************************************** */
+
+  // Counting the number of cards concerned by this script
+
+  //Building format dictionnary as a hashmap
+  const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
+
+  let formatFilter = {};
+
+  for (let i = 0; i < req.body.formats.length; i++) {
+    formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
+  }
+
+  // console.log("format filter", formatFilter);
+
+  const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
+    {
+      include: [
+        {
+          model: db.productLegalities,
+          where: {
+            [Op.or]: formatFilter,
+          },
+        },
+      ],
+      where: {
+        idShop: idShop,
+      },
+    },
+    {}
+  );
+
+  // Saving by chunks
+  const chunkSize = 100;
+  const numberOfIterations = Math.ceil(numberOfCardsToHandle.count / chunkSize);
+
+  // console.log(
+  //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
+  // );
+
+  for (let i = 0; i < numberOfIterations; i++) {
+    //choper les 100 premières cartes (en ajusant offset à chaque iteration )
+    const chunkOfCards = await db.MkmProduct.findAll(
+      {
+        include: [
+          {
+            model: db.productLegalities,
+            where: {
+              [Op.or]: formatFilter,
+            },
+          },
+        ],
+        where: {
+          idShop: idShop,
+        },
+      },
+      { offset: i * chunkSize, limit: chunkSize }
+    );
+
+    //Morphing the rules into an array of array with prices sorted, to make them browsable in log(n)
+    const arrayOfSortedRulesRegular = customRulesController.transformCustomRulesIntoBrowsableArray(
+      orderedCustoMRules.regular
+    );
+    const arrayOfSortedRulesFoil = customRulesController.transformCustomRulesIntoBrowsableArray(
+      orderedCustoMRules.foil
+    );
+
+    let action;
+    //For each card, we will process the price, check if we update it or not
+    for (let j = 0; j < chunkOfCards.length; j++) {
+      const card = chunkOfCards[j].dataValues;
+
+      const priceguide = await db.priceguide.findOne({
+        where: {
+          idProduct: card.idProduct,
+        },
+      });
+
+      let relevantTrend =
+        card.isFoil === 0
+          ? priceguide.dataValues.trendPrice
+          : priceguide.dataValues.foilTrend;
+
+      if (card.isFoil === 0) {
+        action = priceUpdateAPI.findTheRightPriceRange(
+          arrayOfSortedRulesRegular,
+          relevantTrend
+        );
+      } else if (card.isFoil === 1) {
+        action = priceUpdateAPI.findTheRightPriceRange(
+          arrayOfSortedRulesFoil,
+          relevantTrend
+        );
+      } else {
+        res.status(500).json("A card was missing the isFoil prop.");
+      }
+
+      //We are getting all behaviours, we will need them when processing the custom rules. This is an array
+      const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
+
+      //We transform the array into a dictionnary (hashmap) to browse it in constant time
+      const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+        behaviourDefinitions.map((definition) => definition.dataValues)
+      );
+
+      //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
+      const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
+
+      //We transform the array into a dictionnary (hashmap) to browse it in constant time
+      const mkmPricesGuideDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+        mkmPricesDefinitions.map((definition) => definition.dataValues)
+      );
+
+      // console.log("reminder of the card", card);
+      // console.log("action for that card", action);
+
+      // HERE
+      // yooy
+      console.log("we prepare the array of 100 objects here");
+    }
+  }
 }
 
 module.exports = {

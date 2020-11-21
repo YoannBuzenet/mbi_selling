@@ -32,11 +32,11 @@ router.post("/", async (req, res) => {
     res.status(406).json("Formats are mandatory to launch a Script Execution.");
     return;
   }
-  if (req.body.isTest === undefined) {
+  if (req.body.isTest === undefined || typeof req.body.isTest !== "boolean") {
     res
       .status(406)
       .json(
-        "Knowing if the format is a test or no is mandatory to launch a Script Execution."
+        "Knowing if the format is a test or no with a boolean is mandatory to launch a Script Execution."
       );
     return;
   }
