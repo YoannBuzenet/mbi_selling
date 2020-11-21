@@ -7,10 +7,41 @@ const hmacSHA1 = require("crypto-js/hmac-sha1");
 // <?xml version="1.0" encoding="UTF-8" ?>
 // <request>
 //     <article>
-//         <idProduct>100569</idProduct>
+//         <idProduct />           // Product ID the article is derived from (for POST) OR
+//         <idArticle />           // Article ID (for PUT and DELETE)
+//         <count />               // Quantity (for POST), quantity of updated, resp. deleted articles (for PUT and DELETE)
+//         <idLanguage />          // Language of the article
+//         <comments />            // User comments
+//         <price />               // Price the article is offered for
+//         <condition />           // Condition, if applicable (optional)
+//         <isFoil />
+//         <isSigned />
+//         <isAltered />
+//         <isPlayset />
+//         <isFirstEd />
+//     </article>
+// </request>
+
+// PUT https://api.cardmarket.com/ws/v2.0/stock
+
+// <?xml version="1.0" encoding="UTF-8" ?>
+// <request>
+//     <article>
+//         <idArticle>14449120</idArticle>
 //         <idLanguage>1</idLanguage>
-//         <comments>Inserted through the API</comments>
-//         <count>1</count>
+//         <comments>Edited through the API</comments>
+//         <count>4</count>
+//         <price>4</price>
+//         <condition>EX</condition>
+//         <isFoil>true</isFoil>
+//         <isSigned>false</isSigned>
+//         <isPlayset>false</isPlayset>
+//     </article>
+//     <article>
+//         <idArticle>42914990</idArticle>
+//         <idLanguage>1</idLanguage>
+//         <comments>Edited through the API</comments>
+//         <count>3</count>
 //         <price>4</price>
 //         <condition>EX</condition>
 //         <isFoil>true</isFoil>
@@ -20,6 +51,7 @@ const hmacSHA1 = require("crypto-js/hmac-sha1");
 // </request>
 
 const URL_MKM_GET_STOCK = "https://api.cardmarket.com/ws/v2.0/stock/file";
+const URL_MKM_PUT_STOCK = "https://api.cardmarket.com/ws/v2.0/stock";
 
 //Real Link
 const MKM_AUTHENTICATION_URL_BASE =
@@ -195,8 +227,19 @@ function buildOAuthHeader(
   return header;
 }
 
+function sendPUTRequest(XMLObject, header) {
+  return axios.post(URL_MKM_PUT_STOCK, XMLObject, {
+    headers: {
+      Authorization: header,
+    },
+  });
+}
+
 module.exports = {
   MKM_AUTHENTICATION_URL_BASE,
   URL_MKM_GET_STOCK,
   buildOAuthHeader,
+  MKM_MTG_API_LANG_TRANSLATION,
+  MKM_MTG_API_CONDITION_TRANSLATION,
+  sendPUTRequest,
 };
