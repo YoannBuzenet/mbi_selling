@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
     res
       .status(406)
       .json(
-        "Knowing if the format is a test or no with a boolean is mandatory to launch a Script Execution."
+        "isTest prop (boolean) in payload is mandatory to launch a Script Execution."
       );
     return;
   }
@@ -96,9 +96,9 @@ router.post("/", async (req, res) => {
 
   startScript(idShop, idScript, isTest, req, res);
 
-  // generer PDF (prendre si c'est test ou non en param)
-
-  // envoi mail (prendre si c'est test ou non en param)
+  // ADD THE REAL FUNCTION AT THE END
+  // 1. generer PDF (prendre si c'est test ou non en param)
+  // 2. envoi mail (prendre si c'est test ou non en param)
 });
 
 module.exports = router;

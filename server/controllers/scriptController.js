@@ -820,7 +820,12 @@ async function realScriptPersistingStep(
       if (chunkOfCards.length === j + 1) {
         // last teration of the chunk
         // we can put MKM and then register to DB
-        // yooy
+        // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
+        // YOOY
+        const XML_for_MKM = mkmController.transformChunkOfCardsAndActionsIntoXML(
+          chunkOfCards
+        );
+
         console.log("we prepare the array of 100 objects here");
       }
     }

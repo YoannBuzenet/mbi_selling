@@ -172,9 +172,55 @@ async function registerStockFileIntoDB(shopId) {
     });
 }
 
+// YOOY
+// TODO transform that for PUT
+function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
+  // console.log(arrayOfSellRequestCards);
+  const xml_start = '<?xml version="1.0" encoding="UTF-8" ?><request>';
+  const xml_end = "</request>";
+  const xml_body = arrayOfSellRequestCards.reduce(
+    (accumulator, currentValue) => {
+      const priceForSale =
+        currentValue.mkmSellPrice || currentValue.AutomaticSellingPrice;
+
+      const article =
+        "<article> <idProduct>" +
+        currentValue.mcmId +
+        "</idProduct><idLanguage>" +
+        MKM_MTG_API_LANG_TRANSLATION[currentValue.lang] +
+        "</idLanguage><comments>" +
+        "" + //Optional comment to post
+        "</comments><count>" +
+        currentValue.quantity +
+        "</count><price>" +
+        priceForSale +
+        "</price><condition>" +
+        MKM_MTG_API_CONDITION_TRANSLATION[currentValue.condition] +
+        "</condition><isFoil>" +
+        currentValue.isFoil +
+        "</isFoil><isSigned>" +
+        currentValue.isSigned +
+        "</isSigned><isPlayset>false</isPlayset></article>";
+
+      return article + accumulator;
+    },
+    ""
+  );
+  const xml_to_send = xml_start + xml_body + xml_end;
+
+  console.log(xml_to_send);
+
+  return xml_to_send;
+}
+
+//TO DO one day :d
 //Delete the shop from shop X
 function deleteStockShopInLocalDB(shopId) {
   console.log("Deleting local stock of shop ", shopId);
 }
 
-module.exports = { getShopStock, registerStockFileIntoDB };
+module.exports = {
+  getShopStock,
+  registerStockFileIntoDB,
+  transformChunkOfCardsAndActionsIntoXML,
+};
