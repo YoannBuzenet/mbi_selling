@@ -219,7 +219,7 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
         "</idLanguage><comments>" +
         "" + //Optional comment to post
         "</comments><count>" +
-        currentValue.quantity + // TODO PROBLEME
+        currentValue.amount +
         "</count><price>" +
         priceForSale +
         "</price><condition>" +

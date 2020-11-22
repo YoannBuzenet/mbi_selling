@@ -64,6 +64,9 @@ module.exports = {
       isPlayset: {
         type: Sequelize.INTEGER,
       },
+      amout: {
+        type: Sequelize.INTEGER,
+      },
       behaviourChosen: {
         type: Sequelize.STRING,
       },
