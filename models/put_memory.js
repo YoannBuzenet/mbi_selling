@@ -71,6 +71,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
+      amout: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+      },
       behaviourChosen: {
         type: DataTypes.STRING,
       },
