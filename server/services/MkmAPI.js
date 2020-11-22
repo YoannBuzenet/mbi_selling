@@ -22,34 +22,6 @@ const hmacSHA1 = require("crypto-js/hmac-sha1");
 //     </article>
 // </request>
 
-// PUT https://api.cardmarket.com/ws/v2.0/stock
-
-// <?xml version="1.0" encoding="UTF-8" ?>
-// <request>
-//     <article>
-//         <idArticle>14449120</idArticle>
-//         <idLanguage>1</idLanguage>
-//         <comments>Edited through the API</comments>
-//         <count>4</count>
-//         <price>4</price>
-//         <condition>EX</condition>
-//         <isFoil>true</isFoil>
-//         <isSigned>false</isSigned>
-//         <isPlayset>false</isPlayset>
-//     </article>
-//     <article>
-//         <idArticle>42914990</idArticle>
-//         <idLanguage>1</idLanguage>
-//         <comments>Edited through the API</comments>
-//         <count>3</count>
-//         <price>4</price>
-//         <condition>EX</condition>
-//         <isFoil>true</isFoil>
-//         <isSigned>false</isSigned>
-//         <isPlayset>false</isPlayset>
-//     </article>
-// </request>
-
 const URL_MKM_GET_STOCK = "https://api.cardmarket.com/ws/v2.0/stock/file";
 const URL_MKM_PUT_STOCK = "https://api.cardmarket.com/ws/v2.0/stock";
 

@@ -889,6 +889,9 @@ async function realScriptPersistingStep(
         chunkOfCards[j].error = "No Custom Rule for this card.";
       }
 
+      //Setting the price and keeping track of it
+      chunkOfCards[j].newPrice = newPrice;
+
       //After price was defined, we pass it into the price shield
       const priceShieldTest = priceUpdateAPI.priceShieldAllows(
         chunkOfCards[j].price,
@@ -897,20 +900,17 @@ async function realScriptPersistingStep(
         chunkOfCards[j].condition
       );
 
-      if (priceShieldTest.result) {
-        // yooy
-        // if priceshield, mutate object with all relevant info
-      } else {
-        // otherwise, mutate object to be ready for db registering
+      if (!priceShieldTest.result) {
+        chunkOfCards[j].priceShieldBlocked = "Blocked by PriceShield";
+        chunkOfCards[j].priceShieldReason = priceShieldTest.reason;
       }
 
       if (chunkOfCards.length === j + 1) {
-        // last teration of the chunk
-        // we can put MKM and then register to DB
-        // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
         // YOOY
-        // if priceshield, go xml
-        // otherwise, register DB directly
+        // last teration of the chunk
+        // Réécrire la fonction de transformation en XML
+        // puis foreach sur chaque element pusi soit écrire en DB (error, priceshield, exclude), soit ajouter au XML
+        // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
         const XML_for_MKM = mkmController.transformChunkOfCardsAndActionsIntoXML(
           chunkOfCards
         );

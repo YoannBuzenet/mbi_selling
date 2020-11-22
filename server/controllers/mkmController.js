@@ -172,6 +172,35 @@ async function registerStockFileIntoDB(shopId) {
     });
 }
 
+// MKM Doc
+// PUT https://api.cardmarket.com/ws/v2.0/stock
+
+// <?xml version="1.0" encoding="UTF-8" ?>
+// <request>
+//     <article>
+//         <idArticle>14449120</idArticle>
+//         <idLanguage>1</idLanguage>
+//         <comments>Edited through the API</comments>
+//         <count>4</count>
+//         <price>4</price>
+//         <condition>EX</condition>
+//         <isFoil>true</isFoil>
+//         <isSigned>false</isSigned>
+//         <isPlayset>false</isPlayset>
+//     </article>
+//     <article>
+//         <idArticle>42914990</idArticle>
+//         <idLanguage>1</idLanguage>
+//         <comments>Edited through the API</comments>
+//         <count>3</count>
+//         <price>4</price>
+//         <condition>EX</condition>
+//         <isFoil>true</isFoil>
+//         <isSigned>false</isSigned>
+//         <isPlayset>false</isPlayset>
+//     </article>
+// </request>
+
 // YOOY
 // TODO transform that for PUT
 function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
@@ -180,26 +209,25 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
   const xml_end = "</request>";
   const xml_body = arrayOfSellRequestCards.reduce(
     (accumulator, currentValue) => {
-      const priceForSale =
-        currentValue.mkmSellPrice || currentValue.AutomaticSellingPrice;
+      const priceForSale = currentValue.newPrice;
 
       const article =
-        "<article> <idProduct>" +
-        currentValue.mcmId +
-        "</idProduct><idLanguage>" +
-        MKM_MTG_API_LANG_TRANSLATION[currentValue.lang] +
+        "<article> <idArticle>" +
+        currentValue.idProduct +
+        "</idArticle><idLanguage>" +
+        MkmAPI.MKM_MTG_API_LANG_TRANSLATION[currentValue.lang] +
         "</idLanguage><comments>" +
         "" + //Optional comment to post
         "</comments><count>" +
-        currentValue.quantity +
+        currentValue.quantity + // TODO PROBLEME
         "</count><price>" +
         priceForSale +
         "</price><condition>" +
-        MKM_MTG_API_CONDITION_TRANSLATION[currentValue.condition] +
+        MkmAPI.MKM_MTG_API_CONDITION_TRANSLATION[currentValue.condition] +
         "</condition><isFoil>" +
         currentValue.isFoil +
         "</isFoil><isSigned>" +
-        currentValue.isSigned +
+        "false" +
         "</isSigned><isPlayset>false</isPlayset></article>";
 
       return article + accumulator;
