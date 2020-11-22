@@ -913,10 +913,35 @@ async function realScriptPersistingStep(
       }
 
       if (chunkOfCards.length === j + 1) {
+        const arrayOfCardsForXML = [];
+        const arrayOfCardsSkippedAndDirectToDB = [];
+        for (let k = 0; k < chunkOfCards.length; k++) {
+          if (
+            !chunkOfCards[j].error ||
+            !chunkOfCards[j].priceShieldBlocked ||
+            action.ruleTypeId !== 3
+          ) {
+            //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
+            arrayOfCardsForXML = [...arrayOfCardsForXML, chunkOfCards[j]];
+          } else {
+            //There is some kind of error in here : it will be skipped for MKM and go direct to our DB
+            arrayOfCardsSkippedAndDirectToDB = [
+              ...arrayOfCardsSkippedAndDirectToDB,
+              chunkOfCards[j],
+            ];
+          }
+        }
+
         // YOOY
-        // last teration of the chunk
-        // Réécrire la fonction de transformation en XML
-        // puis foreach sur chaque element pusi soit écrire en DB (error, priceshield, exclude), soit ajouter au XML
+
+        //boucler sur array  SKIP
+        //boucler sur array MKM
+
+        //envoyer à MKM
+
+        //Si succès, DB success
+        //si failure, DB failure et arrêter le script là
+
         // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
         const XML_for_MKM = mkmController.transformChunkOfCardsAndActionsIntoXML(
           chunkOfCards
