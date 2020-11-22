@@ -9,6 +9,26 @@ const utils = require("../services/utils");
 const customRulesController = require("./customRulesController");
 const priceUpdateAPI = require("../services/priceUpdateAPI");
 
+function generateBehaviourName(
+  isPriceShieldBlocking,
+  isExcluded,
+  hasNoPriceGuide,
+  hasNoCorrespondingCustomRule,
+  behaviourBase
+) {
+  if (isPriceShieldBlocking) {
+    return "Price Shield Blocked " + behaviourBase;
+  } else if (isExcluded) {
+    return "Excluded";
+  } else if (hasNoPriceGuide) {
+    return "No Corresponding Priceguide";
+  } else if (hasNoCorrespondingCustomRule) {
+    return "No corresponding Custom Rule";
+  } else {
+    return behaviourBase;
+  }
+}
+
 async function startScript(idShop, idScript, isTest, req, res) {
   /* ************************** */
   /* ********* LOGIC ********** */
@@ -825,7 +845,6 @@ async function realScriptPersistingStep(
       chunkOfCards[j].action = action;
 
       //Calculating the newPrice depending on the used rule
-      // yooy
       let newPrice;
       if (action.ruleTypeId === 1) {
         //Set Value
@@ -888,12 +907,12 @@ async function realScriptPersistingStep(
             );
           }
         } else {
-          chunkOfCards[j].error = "No priceguide for this card.";
+          chunkOfCards[j].hasNoPriceGuide = "No priceguide for this card.";
         }
       } else if (action.ruleTypeId === 3) {
         // We don't do anything here, as we will just register directly the card in DB without sending it to MKM.
       } else if (action.ruleTypeId === -2) {
-        chunkOfCards[j].error = "No Custom Rule for this card.";
+        chunkOfCards[j].hasNoCustomRule = "No Custom Rule for this card.";
       }
 
       //Setting the price and keeping track of it
@@ -933,21 +952,52 @@ async function realScriptPersistingStep(
         }
 
         // YOOY
+        // Looping on array of cards we SKIP from MKM because of errors
+        for (let i = 0; i < arrayOfCardsSkippedAndDirectToDB.length; i++) {
+          const newPutMemory = await db.put_memory.create({
+            idScript: idScript,
+            idProduct: arrayOfCardsSkippedAndDirectToDB[i].idProduct,
+            idArticle: arrayOfCardsSkippedAndDirectToDB[i].idArticle,
+            cardName: arrayOfCardsSkippedAndDirectToDB[i].englishName,
+            oldPrice: arrayOfCardsSkippedAndDirectToDB[i].price,
+            newPrice: arrayOfCardsSkippedAndDirectToDB[i].price,
+            condition: arrayOfCardsSkippedAndDirectToDB[i].condition,
+            lang: arrayOfCardsSkippedAndDirectToDB[i].language,
+            isFoil: arrayOfCardsSkippedAndDirectToDB[i].isFoil,
+            isSigned: arrayOfCardsSkippedAndDirectToDB[i].isSigned,
+            isPlayset: 0,
+            amount: arrayOfCardsSkippedAndDirectToDB[i].amount,
+            behaviourChosen: generateBehaviourName(
+              arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
+                "priceShieldBlocked"
+              ),
+              arrayOfCardsSkippedAndDirectToDB[i].action.ruleType === 3,
+              arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
+                "hasNoPriceGuide"
+              ),
+              arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
+                "hasNoCustomRule"
+              ),
+              arrayOfCardsSkippedAndDirectToDB[i].action
+                .customRule_behaviour_definition.dataValues.name
+            ),
+            idCustomRuleUsed:
+              arrayOfCardsSkippedAndDirectToDB[i].action.idSnapShotCustomRule,
+            PUT_Request_id: put_request.dataValues.id,
+          });
+        }
 
-        //boucler sur array  SKIP
-        //boucler sur array MKM
+        // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
+
+        //Looping on array of cards we update on MKM to create the XML payload
+        const XML_payload_Put_Request = mkmController.transformChunkOfCardsAndActionsIntoXML(
+          chunkOfCards
+        );
 
         //envoyer à MKM
 
         //Si succès, DB success
         //si failure, DB failure et arrêter le script là
-
-        // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
-        const XML_for_MKM = mkmController.transformChunkOfCardsAndActionsIntoXML(
-          chunkOfCards
-        );
-
-        console.log("we prepare the array of 100 objects here");
       }
     }
   }
