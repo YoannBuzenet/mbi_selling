@@ -817,11 +817,100 @@ async function realScriptPersistingStep(
       // Adding the action data in the card
       chunkOfCards[j].action = action;
 
+      //Calculating the newPrice depending on the used rule
+      // yooy
+      let newPrice;
+      if (action.ruleTypeId === 1) {
+        //Set Value
+
+        newPrice = action.priceRangeValueToSet;
+      } else if (action.ruleTypeId === 2) {
+        // MKM based action
+        const actionName =
+          action.customRule_behaviour_definition.dataValues.name;
+        const actionType =
+          action.customRule_behaviour_definition.dataValues.type;
+        const actionSense =
+          action.customRule_behaviour_definition.dataValues.sense;
+        const actionCoefficient =
+          action.customRule_behaviour_definition.dataValues.coefficient;
+
+        let priceguideRefUsedByUser =
+          priceguide.dataValues[
+            mkmPricesGuideDictionnary[action.mkmPriceGuideReference].name
+          ];
+
+        if (priceguideRefUsedByUser) {
+          if (actionType === "percent") {
+            //Browsing data on the rule to choose the right price to apply to the card
+
+            if (actionSense === "up") {
+              //Round up in % the number chosen in reference
+              newPrice = priceUpdateAPI.roundUpPercent(
+                priceguideRefUsedByUser,
+                actionCoefficient
+              );
+            } else if (actionSense === "down") {
+              //arrondir down %
+              newPrice = priceUpdateAPI.roundDownPercent(
+                priceguideRefUsedByUser,
+                actionCoefficient
+              );
+            } else {
+              throw new Error("No action sense (up or down) were precised.");
+            }
+          } else if (actionType === "number") {
+            if (actionSense === "up") {
+              //modulo up
+              newPrice = priceUpdateAPI.roundUpNumber(
+                priceguideRefUsedByUser,
+                actionCoefficient
+              );
+            } else if (actionSense === "down") {
+              //modulo down
+              newPrice = priceUpdateAPI.roundDownNumber(
+                priceguideRefUsedByUser,
+                actionCoefficient
+              );
+            } else {
+              throw new Error("No action sense (up or down) were precised.");
+            }
+          } else {
+            throw new Error(
+              "Action type wasn't precised on behaviour in custom rule."
+            );
+          }
+        } else {
+          chunkOfCards[j].error = "No priceguide for this card.";
+        }
+      } else if (action.ruleTypeId === 3) {
+        // We don't do anything here, as we will just register directly the card in DB without sending it to MKM.
+      } else if (action.ruleTypeId === -2) {
+        chunkOfCards[j].error = "No Custom Rule for this card.";
+      }
+
+      //After price was defined, we pass it into the price shield
+      const priceShieldTest = priceUpdateAPI.priceShieldAllows(
+        chunkOfCards[j].price,
+        newPrice,
+        relevantTrend,
+        chunkOfCards[j].condition
+      );
+
+      if (priceShieldTest.result) {
+        // yooy
+        // if priceshield, mutate object with all relevant info
+      } else {
+        // otherwise, mutate object to be ready for db registering
+      }
+
       if (chunkOfCards.length === j + 1) {
         // last teration of the chunk
         // we can put MKM and then register to DB
         // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
         // YOOY
+        // if priceshield, go xml
+        // otherwise, register DB directly
         const XML_for_MKM = mkmController.transformChunkOfCardsAndActionsIntoXML(
           chunkOfCards
         );
