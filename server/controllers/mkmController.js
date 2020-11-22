@@ -201,10 +201,7 @@ async function registerStockFileIntoDB(shopId) {
 //     </article>
 // </request>
 
-// YOOY
-// TODO transform that for PUT
 function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
-  // console.log(arrayOfSellRequestCards);
   const xml_start = '<?xml version="1.0" encoding="UTF-8" ?><request>';
   const xml_end = "</request>";
   const xml_body = arrayOfSellRequestCards.reduce(
