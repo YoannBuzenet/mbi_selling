@@ -201,6 +201,8 @@ async function registerStockFileIntoDB(shopId) {
 //     </article>
 // </request>
 
+// object structure in the array : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
+
 function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
   const xml_start = '<?xml version="1.0" encoding="UTF-8" ?><request>';
   const xml_end = "</request>";
