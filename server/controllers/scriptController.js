@@ -853,7 +853,10 @@ async function realScriptPersistingStep(
       // Adding the action data in the card
       chunkOfCards[j].action = action;
 
-      //Calculating the newPrice depending on the used rule
+      /* ***************************************************** */
+      /* Calculating the newPrice depending on the used rule   */
+      /* ***************************************************** */
+
       let newPrice;
       if (action.ruleTypeId === 1) {
         //Set Value
@@ -949,6 +952,12 @@ async function realScriptPersistingStep(
         chunkOfCards[j].priceShieldReason = priceShieldTest.reason;
       }
 
+      /* ***************************************************** */
+      /* Last iteration of the chunk : we create 2 sub arrays   */
+      /* ***************************************************** */
+
+      // One for the skipped cards that goes directly in DB, one for the MKM request
+
       if (chunkOfCards.length === j + 1) {
         const arrayOfCardsForXML = [];
         const arrayOfCardsSkippedAndDirectToDB = [];
@@ -969,7 +978,12 @@ async function realScriptPersistingStep(
           }
         }
 
-        // Looping on array of cards we SKIP from MKM because of errors
+        /* ****************************************** */
+        /* ******* Sub Array 1 : Skipped cards ****** */
+        /* ****************************************** */
+
+        // Direct to DB
+
         for (let i = 0; i < arrayOfCardsSkippedAndDirectToDB.length; i++) {
           const newPutMemory = await db.put_memory.create({
             idScript: idScript,
@@ -1004,9 +1018,14 @@ async function realScriptPersistingStep(
           });
         }
 
-        //Looping on array of cards we update on MKM to create the XML payload
+        /* ****************************************** */
+        /* ******* Sub Array 2 : cards for MKM ****** */
+        /* ****************************************** */
+
+        // XML Creation
+
         const XML_payload_Put_Request = mkmController.transformChunkOfCardsAndActionsIntoXML(
-          chunkOfCards
+          arrayOfCardsForXML
         );
 
         // YOOY
