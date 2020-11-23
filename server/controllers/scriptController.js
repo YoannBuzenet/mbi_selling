@@ -9,6 +9,7 @@ const utils = require("../services/utils");
 const customRulesController = require("./customRulesController");
 const priceUpdateAPI = require("../services/priceUpdateAPI");
 const MkmAPI = require("../services/MkmAPI");
+const put_memory = require("../../models/put_memory");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -1062,8 +1063,17 @@ async function realScriptPersistingStep(
             lastIterationNumberWhenMKM_ErrorHappened: i,
           });
 
-          // NEXT
-          //si failure, DB failure et arrêter le script là
+          // Yo
+
+          // Each card has to be registered as an error in DB.
+          for (let i = 0; i < XML_payload_Put_Request.length; i++) {
+            await db.put_memory.registerAsFailure(
+              idScript,
+              XML_payload_Put_Request[i],
+              XML_payload_Put_Request[i].action,
+              put_request
+            );
+          }
         }
 
         // NEXT
