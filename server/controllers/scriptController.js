@@ -775,6 +775,19 @@ async function realScriptPersistingStep(
   //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
   // );
 
+  /* **************************************** */
+  /* *************** MKM HEADER ***************/
+  /* **************************************** */
+
+  const mkmHeader = MkmAPI.buildOAuthHeader(
+    "PUT",
+    MkmAPI.URL_MKM_PUT_STOCK,
+    shopData.appToken,
+    shopData.appSecret,
+    shopData.accessToken,
+    shopData.accessSecret
+  );
+
   for (let i = 0; i < numberOfIterations; i++) {
     //choper les 100 premières cartes (en ajusant offset à chaque iteration )
     const chunkOfCards = await db.MkmProduct.findAll(
@@ -1031,19 +1044,6 @@ async function realScriptPersistingStep(
           arrayOfCardsForXML
         );
 
-        // TO DO NOW
-
-        // MKM sending
-        // use shopData
-        const mkmHeader = MkmAPI.buildOAuthHeader(
-          "PUT",
-          MkmAPI.URL_MKM_PUT_STOCK,
-          "appToken",
-          "appSecret",
-          "accessToken",
-          "accessTokenSecret"
-        );
-
         try {
           await axios.put(
             MkmAPI.URL_MKM_PUT_STOCK,
@@ -1051,7 +1051,7 @@ async function realScriptPersistingStep(
             mkmHeader
           );
         } catch (e) {
-          // update put request with mkm error and iteration index
+          // In case failure, we record it in DB
           const updatedPUT_request = await db.PUT_Request.findOne({
             where: {
               id: put_request.dataValues.id,
@@ -1067,7 +1067,9 @@ async function realScriptPersistingStep(
         }
 
         // NEXT
-        //Si succès, DB success
+        // Si succès, DB success
+
+        // await X milliseconds avant la prochaine iteration
       }
     }
   }
