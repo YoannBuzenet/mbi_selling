@@ -86,6 +86,25 @@ router.get("/generatePDFTest", async (req, res) => {
   res.status(200).json("PDF créé !");
 });
 
+router.get("/tryModelMethod", async (req, res) => {
+  const mock_card = {
+    idProduct: 1,
+    idArticle: 2,
+    cardName: "test erreur MKM",
+    oldPrice: 1,
+    newPrice: 2,
+    condition: 7,
+    lang: 5,
+    isFoil: 0,
+    isSigned: 0,
+    amount: 1,
+  };
+
+  await db.put_memory.registerAsFailure(3, mock_card, 1, 1);
+
+  res.status(200).json("Put memory d'erreur crée depuis le model :O");
+});
+
 router.get("/mailSendingTest", async (req, res) => {
   mailPDF(3, 7, "ybuzenet@gmail.com", true);
 
