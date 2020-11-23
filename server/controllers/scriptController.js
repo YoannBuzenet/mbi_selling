@@ -1070,8 +1070,8 @@ async function realScriptPersistingStep(
             await db.put_memory.registerAsFailure(
               idScript,
               XML_payload_Put_Request[i],
-              XML_payload_Put_Request[i].action,
-              put_request
+              XML_payload_Put_Request[i].action.idSnapShotCustomRule,
+              put_request.dataValues.id
             );
           }
         }
