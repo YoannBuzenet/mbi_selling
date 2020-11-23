@@ -8,6 +8,7 @@ const { prepareStateFromArrayOfRules } = require("../services/utils");
 const utils = require("../services/utils");
 const customRulesController = require("./customRulesController");
 const priceUpdateAPI = require("../services/priceUpdateAPI");
+const MkmAPI = require("../services/MkmAPI");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -1030,7 +1031,34 @@ async function realScriptPersistingStep(
 
         // YOOY
 
-        //envoyer à MKM
+        // MKM sending
+        const mkmHeader = MkmAPI.buildOAuthHeader(
+          "PUT",
+          MkmAPI.URL_MKM_PUT_STOCK,
+          "appToken",
+          "appSecret",
+          "accessToken",
+          "accessTokenSecret"
+        );
+
+        try {
+          await axios.put(
+            MkmAPI.URL_MKM_PUT_STOCK,
+            XML_payload_Put_Request,
+            mkmHeader
+          );
+        } catch (e) {
+          // update put request with mkm error and iteration index
+          const updatedPUT_request = await db.PUT_Request.findOne({
+            where: {
+              id: put_request.dataValues.id,
+            },
+          });
+          await updatedPUT_request.update({
+            eventualMKM_ErrorMessage: e.response.data,
+            lastIterationNumberWhenMKM_ErrorHappened: i,
+          });
+        }
 
         //Si succès, DB success
         //si failure, DB failure et arrêter le script là

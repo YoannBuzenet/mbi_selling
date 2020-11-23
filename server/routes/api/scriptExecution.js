@@ -96,6 +96,7 @@ router.post("/", async (req, res) => {
 
   startScript(idShop, idScript, isTest, req, res);
 
+  // TODO
   // ADD THE REAL FUNCTION AT THE END
   // 1. generer PDF (prendre si c'est test ou non en param)
   // 2. envoi mail (prendre si c'est test ou non en param)

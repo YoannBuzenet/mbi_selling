@@ -11,6 +11,10 @@ module.exports = {
       idShop: {
         type: Sequelize.INTEGER,
       },
+      eventualMKM_ErrorMessage: { type: Sequelize.STRING },
+      lastIterationNumberWhenMKM_ErrorHappened: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
