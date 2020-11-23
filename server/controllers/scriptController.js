@@ -30,7 +30,7 @@ function generateBehaviourName(
   }
 }
 
-async function startScript(idShop, idScript, isTest, req, res) {
+async function startScript(idShop, idScript, isTest, shopData, req, res) {
   /* ************************** */
   /* ********* LOGIC ********** */
   /* ************************** */
@@ -297,6 +297,7 @@ async function startScript(idShop, idScript, isTest, req, res) {
         idScript,
         put_request,
         snapShop_Shop_Param,
+        shopData,
         req,
         res
       );
@@ -726,6 +727,7 @@ async function realScriptPersistingStep(
   idScript,
   put_request,
   snapShop_Shop_Param,
+  shopData,
   req,
   res
 ) {
@@ -1029,9 +1031,10 @@ async function realScriptPersistingStep(
           arrayOfCardsForXML
         );
 
-        // YOOY
+        // TO DO NOW
 
         // MKM sending
+        // use shopData
         const mkmHeader = MkmAPI.buildOAuthHeader(
           "PUT",
           MkmAPI.URL_MKM_PUT_STOCK,
@@ -1058,10 +1061,13 @@ async function realScriptPersistingStep(
             eventualMKM_ErrorMessage: e.response.data,
             lastIterationNumberWhenMKM_ErrorHappened: i,
           });
+
+          // NEXT
+          //si failure, DB failure et arrêter le script là
         }
 
+        // NEXT
         //Si succès, DB success
-        //si failure, DB failure et arrêter le script là
       }
     }
   }
