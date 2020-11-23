@@ -460,7 +460,16 @@ async function testScriptPersistingStep(
           // set value behaviour
           // get the price guide for this card
 
-          const newPrice = action.priceRangeValueToSet;
+          let newPrice = action.priceRangeValueToSet;
+
+          // We update the price depending on condition and language of the card, with shop params
+          newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+            newPrice,
+            card.language,
+            card.condition,
+            card.isFoil,
+            snapShop_Shop_Param.dataValues
+          );
 
           //After price was defined, we pass it into the price shield
           const priceShieldTest = priceUpdateAPI.priceShieldAllows(
