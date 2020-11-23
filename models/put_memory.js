@@ -13,14 +13,19 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "PUT_Request_id",
       });
     }
-    static registerAsFailure(idScript, card, action, put_request) {
+    static registerAsFailure(
+      idScript,
+      card,
+      idSnapShotCustomRule,
+      idPut_request
+    ) {
       return put_memory.create({
         idScript: idScript,
         idProduct: card.idProduct,
         idArticle: card.idArticle,
         cardName: card.englishName,
-        regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
-        foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+        regularCardsTrend: null,
+        foilCardsTrend: null,
         oldPrice: card.price,
         newPrice: card.price,
         condition: card.condition,
@@ -30,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
         isPlayset: 0,
         amount: card.amount,
         behaviourChosen: "MKM Error",
-        idCustomRuleUsed: action.idSnapShotCustomRule,
-        PUT_Request_id: put_request.dataValues.id,
+        idCustomRuleUsed: idSnapShotCustomRule,
+        PUT_Request_id: idPut_request,
       });
     }
   }
