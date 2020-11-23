@@ -1053,19 +1053,21 @@ async function realScriptPersistingStep(
           );
         } catch (e) {
           // In case failure, we record it in DB
+          // 1. in the current put_request
+          // 2. In put_memory for the last chunk
+
+          // 1.
           const updatedPUT_request = await db.PUT_Request.findOne({
             where: {
               id: put_request.dataValues.id,
             },
           });
           await updatedPUT_request.update({
-            eventualMKM_ErrorMessage: e.response.data,
+            eventualMKM_ErrorMessage: e.response.data || "mkm_error",
             lastIterationNumberWhenMKM_ErrorHappened: i,
           });
 
-          // Yo
-
-          // Each card has to be registered as an error in DB.
+          // 2.
           for (let i = 0; i < XML_payload_Put_Request.length; i++) {
             await db.put_memory.registerAsFailure(
               idScript,
@@ -1074,10 +1076,13 @@ async function realScriptPersistingStep(
               put_request.dataValues.id
             );
           }
+          // Stop script to avoid unnecessary computation
+          return;
         }
 
+        // Yo
         // NEXT
-        // Si succès, DB success
+        // Si succès, register in DB as a success
 
         // await X milliseconds avant la prochaine iteration
       }
