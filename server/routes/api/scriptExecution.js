@@ -5,6 +5,7 @@ const Op = Sequelize.Op;
 const db = require("../../../models/index");
 const securityCheckAPI = require("../../services/securityCheckAPI");
 const { startScript } = require("../../controllers/scriptController");
+const shopAPI = require("../../services/shopAPI");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -90,11 +91,17 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  /* ********************************* */
+  /* **** GETTING NECESSARY DATA ***** */
+  /* ********************************* */
+
+  const shopData = shopAPI.getShopData(idShop, jwt);
+
   /* ************************* */
   /* ********* LOGIC ********* */
   /* ************************* */
 
-  startScript(idShop, idScript, isTest, req, res);
+  startScript(idShop, idScript, isTest, shopData, req, res);
 
   // TODO
   // ADD THE REAL FUNCTION AT THE END
