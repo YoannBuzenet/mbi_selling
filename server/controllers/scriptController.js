@@ -915,6 +915,15 @@ async function realScriptPersistingStep(
         chunkOfCards[j].hasNoCustomRule = "No Custom Rule for this card.";
       }
 
+      // We update the price depending on condition and language of the card, with shop params
+      newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+        newPrice,
+        card.language,
+        card.condition,
+        card.isFoil,
+        snapShop_Shop_Param.dataValues
+      );
+
       //Setting the price and keeping track of it
       chunkOfCards[j].newPrice = newPrice;
 
@@ -951,7 +960,6 @@ async function realScriptPersistingStep(
           }
         }
 
-        // YOOY
         // Looping on array of cards we SKIP from MKM because of errors
         for (let i = 0; i < arrayOfCardsSkippedAndDirectToDB.length; i++) {
           const newPutMemory = await db.put_memory.create({
@@ -987,12 +995,12 @@ async function realScriptPersistingStep(
           });
         }
 
-        // object structure : {dataValues : {}, productLegality: {dataValues : {}}, action : {}}
-
         //Looping on array of cards we update on MKM to create the XML payload
         const XML_payload_Put_Request = mkmController.transformChunkOfCardsAndActionsIntoXML(
           chunkOfCards
         );
+
+        // YOOY
 
         //envoyer à MKM
 
