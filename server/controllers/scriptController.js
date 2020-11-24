@@ -9,7 +9,6 @@ const utils = require("../services/utils");
 const customRulesController = require("./customRulesController");
 const priceUpdateAPI = require("../services/priceUpdateAPI");
 const MkmAPI = require("../services/MkmAPI");
-const put_memory = require("../../models/put_memory");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -1086,12 +1085,26 @@ async function realScriptPersistingStep(
         }
 
         // In case of success, we register updates in DB
-        for (let i = 0; i < XML_payload_Put_Request.length; i++) {
+        for (let i = 0; i < arrayOfCardsForXML.length; i++) {
           // Yo
           // Si succès, register in DB as a success
+          await db.put_memory.registerAsSuccess(
+            idScript,
+            arrayOfCardsForXML[i],
+            arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+            put_request.dataValues.id,
+            generateBehaviourName(
+              arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
+              arrayOfCardsForXML[i].action.ruleType === 3,
+              arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
+              arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
+              arrayOfCardsForXML[i].action.customRule_behaviour_definition
+                .dataValues.name
+            )
+          );
         }
-        // NEXT
-        // await X milliseconds avant la prochaine iteration
+        // We wait a bit before going to the next iteration to let the MKM API handle it.
+        utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
       }
     }
   }
