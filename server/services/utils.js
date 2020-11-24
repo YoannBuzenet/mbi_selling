@@ -120,10 +120,17 @@ const conditionDefinition = {
   7: "Poor",
 };
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 module.exports = {
   prepareStateFromArrayOfRules,
   snapshotShopParams,
   transformArrayIntoDictionnaryWithKey,
   langDefinition,
   conditionDefinition,
+  sleep,
 };
