@@ -1076,14 +1076,21 @@ async function realScriptPersistingStep(
               put_request.dataValues.id
             );
           }
+
+          res
+            .status(500)
+            .json("There has been an error while updating cards on MKM.");
+
           // Stop script to avoid unnecessary computation
           return;
         }
 
-        // Yo
+        // In case of success, we register updates in DB
+        for (let i = 0; i < XML_payload_Put_Request.length; i++) {
+          // Yo
+          // Si succès, register in DB as a success
+        }
         // NEXT
-        // Si succès, register in DB as a success
-
         // await X milliseconds avant la prochaine iteration
       }
     }
