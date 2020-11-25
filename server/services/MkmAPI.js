@@ -210,6 +210,7 @@ function sendPUTRequest(XMLObject, header) {
 module.exports = {
   MKM_AUTHENTICATION_URL_BASE,
   URL_MKM_GET_STOCK,
+  URL_MKM_PUT_STOCK,
   buildOAuthHeader,
   MKM_MTG_API_LANG_TRANSLATION,
   MKM_MTG_API_CONDITION_TRANSLATION,

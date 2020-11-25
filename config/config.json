@@ -5,6 +5,7 @@
     "database": "mbi_selling_database_development",
     "host": "127.0.0.1",
     "dialect": "mysql",
+    "logging": false,
     "use_env_variable": "DATABASE_URL_DEV",
     "pool": {
       "max": 50,
