@@ -975,7 +975,7 @@ async function realScriptPersistingStep(
       // One for the skipped cards that goes directly in DB, one for the MKM request
 
       if (chunkOfCards.length === j + 1) {
-        const arrayOfCardsForXML = [];
+        let arrayOfCardsForXML = [];
         const arrayOfCardsSkippedAndDirectToDB = [];
         for (let k = 0; k < chunkOfCards.length; k++) {
           if (
