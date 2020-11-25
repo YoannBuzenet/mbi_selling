@@ -788,6 +788,10 @@ async function realScriptPersistingStep(
     shopData.accessSecret
   );
 
+  const axiosConfigMKMHeader = {
+    headers: { Authorization: mkmHeader },
+  };
+
   for (let i = 0; i < numberOfIterations; i++) {
     //choper les 100 premières cartes (en ajusant offset à chaque iteration )
     const chunkOfCards = await db.MkmProduct.findAll(
@@ -1048,7 +1052,7 @@ async function realScriptPersistingStep(
           await axios.put(
             MkmAPI.URL_MKM_PUT_STOCK,
             XML_payload_Put_Request,
-            mkmHeader
+            axiosConfigMKMHeader
           );
         } catch (e) {
           // In case failure, we record it in DB
@@ -1061,24 +1065,24 @@ async function realScriptPersistingStep(
               id: put_request.dataValues.id,
             },
           });
+
+          // console.log("e", e);
+          // console.log("e stringified", JSON.stringify(e));
+
           await updatedPUT_request.update({
-            eventualMKM_ErrorMessage: e.response.data || "mkm_error",
+            eventualMKM_ErrorMessage: e?.message || "mkm_error",
             lastIterationNumberWhenMKM_ErrorHappened: i,
           });
 
           // 2.
-          for (let i = 0; i < XML_payload_Put_Request.length; i++) {
+          for (let i = 0; i < arrayOfCardsForXML.length; i++) {
             await db.put_memory.registerAsFailure(
               idScript,
-              XML_payload_Put_Request[i],
-              XML_payload_Put_Request[i].action.idSnapShotCustomRule,
+              arrayOfCardsForXML[i],
+              arrayOfCardsForXML[i].action.idSnapShotCustomRule,
               put_request.dataValues.id
             );
           }
-
-          res
-            .status(500)
-            .json("There has been an error while updating cards on MKM.");
 
           // Stop script to avoid unnecessary computation
           return;

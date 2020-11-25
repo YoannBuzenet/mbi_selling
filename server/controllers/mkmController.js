@@ -214,7 +214,7 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
         "<article> <idArticle>" +
         currentValue.idProduct +
         "</idArticle><idLanguage>" +
-        MkmAPI.MKM_MTG_API_LANG_TRANSLATION[currentValue.lang] +
+        currentValue.language +
         "</idLanguage><comments>" +
         "" + //Optional comment to post
         "</comments><count>" +
