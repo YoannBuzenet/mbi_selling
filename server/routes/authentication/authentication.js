@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
       userScripts[i].dataValues.formats = [...scriptFormats];
     }
 
-    console.log("user scripts to be added :", userScripts);
+    // console.log("user scripts to be added :", userScripts);
 
     const overloadedResponse = { ...loginOnMTGAPI.data, userScripts };
 
