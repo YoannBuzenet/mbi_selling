@@ -206,7 +206,7 @@ async function registerStockFileIntoDB(shopId) {
 function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
   const xml_start = '<?xml version="1.0" encoding="UTF-8" ?><request>';
   const xml_end = "</request>";
-  const xml_body = arrayOfSellRequestCards.reduce(
+  const xml_body = ArrayOfCardActionObjects.reduce(
     (accumulator, currentValue) => {
       const priceForSale = currentValue.newPrice;
 
