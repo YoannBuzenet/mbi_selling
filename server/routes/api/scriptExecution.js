@@ -97,9 +97,9 @@ router.post("/", async (req, res) => {
 
   const shopData = shopAPI.getShopData(idShop, jwt);
 
-  // Checking the Expiration token from MKM is existant and valid
+  // Checking the Expiration token from MKM is existant and valid IF we are in real mode
 
-  if (!shopData.ExpirationMkmToken) {
+  if (!isTest && !shopData.ExpirationMkmToken) {
     res.status(406).json("MKM Expiration token is not defined.");
     return;
   } else if (shopData.ExpirationMkmToken < Date.now()) {
