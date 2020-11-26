@@ -97,6 +97,21 @@ router.post("/", async (req, res) => {
 
   const shopData = shopAPI.getShopData(idShop, jwt);
 
+  // Checking the Expiration token from MKM is existant and valid
+
+  if (!shopData.ExpirationMkmToken) {
+    res.status(406).json("MKM Expiration token is not defined.");
+    return;
+  } else if (shopData.ExpirationMkmToken < Date.now()) {
+    res.status(406).json("MKM Token is expired.");
+    return;
+  } else if (shopData.ExpirationMkmToken + 3600000 < Date.now()) {
+    res
+      .status(406)
+      .json("MKM Token will expire soon, please log again to regenerate it.");
+    return;
+  }
+
   /* ************************* */
   /* ********* LOGIC ********* */
   /* ************************* */
