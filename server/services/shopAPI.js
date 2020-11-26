@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 async function getShopData(idShop, jwt) {
   if (idShop === undefined) {
     throw "idShop is missing in checkIfUserIsThisOneOrAdmin function";
