@@ -69,6 +69,9 @@ async function startScript(idShop, idScript, isTest, shopData, req, res) {
 
     //on get le stock via MKM
     await mkmController.getShopStock(shopdataRequest.data, idShop);
+
+    // On va cherche le CSV et on le passe en DB
+    await mkmController.registerStockFileIntoDB(idShop);
   }
 
   /* ******************************************* */
