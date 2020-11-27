@@ -24,6 +24,18 @@ router.post("/", async (req, res) => {
     );
     console.log(loginOnMTGAPI.data);
 
+    //checking if this user is registered on mbi_selling
+    let shop = await db.User.findOne({
+      where: {
+        idShop: loginOnMTGAPI.data.shop.id,
+      },
+    });
+
+    if (!shop) {
+      res.status(500).json("Shop doesn't exist on mbi_selling.");
+      return;
+    }
+
     //Getting all scripts for this user and adding them to the API response
 
     let userScripts = await db.Script.findAll({
