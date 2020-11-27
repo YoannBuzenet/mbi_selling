@@ -69,7 +69,7 @@ function getShopStock(shopInfo, idShop) {
         /* ******************* */
         fs.readFile("./shopStock/" + idShop + "/stock.gzip", (error, data) => {
           if (error) {
-            console.log(error);
+            console.log("error while reading file", error);
           }
 
           /* ******************* */
@@ -78,7 +78,7 @@ function getShopStock(shopInfo, idShop) {
           const zlib = require("zlib");
           zlib.gunzip(data, (error, fileUnzipped) => {
             if (error) {
-              console.log(error);
+              console.log("error while unzipping file", error);
             }
 
             const pathFile = "./shopStock/" + idShop + "/stock.csv";
