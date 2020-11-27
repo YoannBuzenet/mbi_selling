@@ -102,10 +102,10 @@ router.post("/", async (req, res) => {
   if (!isTest && !shopData.ExpirationMkmToken) {
     res.status(406).json("MKM Expiration token is not defined.");
     return;
-  } else if (shopData.ExpirationMkmToken < Date.now()) {
+  } else if (!isTest && shopData.ExpirationMkmToken < Date.now()) {
     res.status(406).json("MKM Token is expired.");
     return;
-  } else if (shopData.ExpirationMkmToken + 3600000 < Date.now()) {
+  } else if (!isTest && shopData.ExpirationMkmToken + 3600000 < Date.now()) {
     res
       .status(406)
       .json("MKM Token will expire soon, please log again to regenerate it.");
