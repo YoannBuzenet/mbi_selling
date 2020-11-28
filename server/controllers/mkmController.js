@@ -1,7 +1,6 @@
 const axios = require("axios");
 const MkmAPI = require("../services/MkmAPI");
 const fs = require("fs");
-var slugify = require("slugify");
 const csv = require("csvtojson");
 const db = require("../../models/index");
 
@@ -134,10 +133,18 @@ async function registerStockFileIntoDB(shopId) {
       console.log(arrayOfCards);
 
       for (let i = 0; i < arrayOfCards.length; i++) {
+        // Getting the Product Legality Id because of the One To Many relation
+        const productLegality = await db.productLegalities.findOne({
+          where: {
+            idProduct: arrayOfCards[i].idProduct,
+          },
+        });
+
         await db.MkmProduct.upsert(
           {
             idArticle: arrayOfCards[i].idArticle,
             idProduct: arrayOfCards[i].idProduct,
+            productLegalityId: productLegality.dataValues.id,
             englishName: arrayOfCards[i]["English Name"],
             localName: arrayOfCards[i]["Local Name"],
             Exp: arrayOfCards[i]["Exp."],

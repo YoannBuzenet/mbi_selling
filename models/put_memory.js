@@ -1,5 +1,10 @@
 "use strict";
+
 const { Model } = require("sequelize");
+const {
+  transformConditionStringIntoInteger,
+} = require("../server/controllers/genericDataController");
+
 module.exports = (sequelize, DataTypes) => {
   class put_memory extends Model {
     /**
@@ -28,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         foilCardsTrend: null,
         oldPrice: card.price,
         newPrice: card.price,
-        condition: card.condition,
+        condition: transformConditionStringIntoInteger(card.condition),
         lang: card.language,
         isFoil: card.isFoil,
         isSigned: card.isSigned,
@@ -56,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         foilCardsTrend: null,
         oldPrice: card.price,
         newPrice: card.price,
-        condition: card.condition,
+        condition: transformConditionStringIntoInteger(card.condition),
         lang: card.language,
         isFoil: card.isFoil,
         isSigned: card.isSigned,

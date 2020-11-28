@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
+      productLegalityId: {
+        type: DataTypes.INTEGER,
+      },
       englishName: DataTypes.STRING,
       localName: DataTypes.STRING,
       Exp: DataTypes.STRING,
