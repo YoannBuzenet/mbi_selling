@@ -1,5 +1,9 @@
 //This function search in an array of array in log(n) (recursion)
 
+const {
+  revertedDictionnaryConditionDefinition,
+} = require("../controllers/genericDataController");
+
 function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
   // console.log("beginning of function", arrayOfPriceRanges);
   let newArray = [...arrayOfPriceRanges];
@@ -39,7 +43,14 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
 
 // Translation of the behaviours are in the src folder, /services/fullStacktranslations/priceshield
 function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
-  const conditionId = parseInt(cardCondition);
+  // CardCondition is arriving in this form : MT, NM, EX.
+  // We translate it into an id.
+  let conditionId = parseInt(cardCondition);
+  if (isNaN(conditionId)) {
+    conditionId = parseInt(
+      revertedDictionnaryConditionDefinition[cardCondition]
+    );
+  }
 
   const variationRate = Math.abs(((newPrice - oldPrice) / oldPrice) * 100);
   const variationRateTrend = Math.abs(
@@ -157,7 +168,9 @@ function calculatePriceWithLanguageAndConditionSpecifics(
 
   const langName = langDefinition[cardLanguageId];
   const langCoefficient = shopParams["percentPerLang" + langName];
-  const conditionName = conditionDefinition[cardConditionId].trim();
+  const conditionName = conditionDefinition[
+    revertedDictionnaryConditionDefinition[cardConditionId]
+  ].trim();
   const foilOrRegular = isFoil === 0 ? "Regular" : "Foil";
   const conditionCoefficient =
     shopParams["percentPer" + conditionName + foilOrRegular];

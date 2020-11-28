@@ -59,18 +59,17 @@ async function startScript(idShop, idScript, isTest, shopData, req, res) {
         Authorization: req.headers.authorization,
       },
     };
-    // on choppe les shopinfo sur mtgapi avec le jwt
+    // Getting shop data through the MTG API
     const shopdataRequest = await axios
       .get(process.env.REACT_APP_MTGAPI_URL + "/shops/" + idShop, axiosConfig)
       .catch((err) =>
         console.log("error when trying to get shop data from mtgAPI", err)
       );
-    // console.log("shopdata from axios call", shopdataRequest);
 
-    //on get le stock via MKM
+    // Getting MKM stock and storing it in CSV
     await mkmController.getShopStock(shopdataRequest.data, idShop);
 
-    // On va cherche le CSV et on le passe en DB
+    // Passing from CSV to DB
     await mkmController.registerStockFileIntoDB(idShop);
   }
 
