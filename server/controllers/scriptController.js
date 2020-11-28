@@ -9,6 +9,9 @@ const utils = require("../services/utils");
 const customRulesController = require("./customRulesController");
 const priceUpdateAPI = require("../services/priceUpdateAPI");
 const MkmAPI = require("../services/MkmAPI");
+const {
+  transformConditionStringIntoInteger,
+} = require("./genericDataController");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -448,7 +451,7 @@ async function testScriptPersistingStep(
           cardName: card.englishName,
           oldPrice: card.price,
           newPrice: card.price,
-          condition: card.condition,
+          condition: transformConditionStringIntoInteger(card.condition),
           lang: card.language,
           isFoil: card.isFoil,
           isSigned: card.isSigned,
@@ -497,7 +500,7 @@ async function testScriptPersistingStep(
               priceShieldBlocked: 0,
               regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
               foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-              condition: card.condition,
+              condition: transformConditionStringIntoInteger(card.condition),
               lang: card.language,
               isFoil: card.isFoil,
               isSigned: card.isSigned,
@@ -520,7 +523,7 @@ async function testScriptPersistingStep(
               newPrice: newPrice,
               priceShieldBlocked: 1,
               priceShieldReason: priceShieldTest.reason,
-              condition: card.condition,
+              condition: transformConditionStringIntoInteger(card.condition),
               lang: card.language,
               isFoil: card.isFoil,
               isSigned: card.isSigned,
@@ -634,7 +637,7 @@ async function testScriptPersistingStep(
                 numberUserChoseToUse: priceguideRefUsedByUser,
                 priceShieldBlocked: 0,
                 priceShieldReason: null,
-                condition: card.condition,
+                condition: transformConditionStringIntoInteger(card.condition),
                 lang: card.language,
                 isFoil: card.isFoil,
                 isSigned: card.isSigned,
@@ -658,7 +661,7 @@ async function testScriptPersistingStep(
                 numberUserChoseToUse: priceguideRefUsedByUser,
                 priceShieldBlocked: 1,
                 priceShieldReason: priceShieldTest.reason,
-                condition: card.condition,
+                condition: transformConditionStringIntoInteger(card.condition),
                 lang: card.language,
                 isFoil: card.isFoil,
                 isSigned: card.isSigned,
@@ -679,7 +682,7 @@ async function testScriptPersistingStep(
               cardName: card.englishName,
               oldPrice: card.price,
               newPrice: card.price,
-              condition: card.condition,
+              condition: transformConditionStringIntoInteger(card.condition),
               lang: card.language,
               isFoil: card.isFoil,
               isSigned: card.isSigned,
@@ -702,7 +705,7 @@ async function testScriptPersistingStep(
             foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
             oldPrice: card.price,
             newPrice: card.price,
-            condition: card.condition,
+            condition: transformConditionStringIntoInteger(card.condition),
             lang: card.language,
             isFoil: card.isFoil,
             isSigned: card.isSigned,
@@ -716,8 +719,6 @@ async function testScriptPersistingStep(
       } else {
         throw new Error("No adapted behaviour found for the current card.");
       }
-
-      //Ajouter la carte au chunk MKM ici dans l'autre fct
     }
   }
 }
