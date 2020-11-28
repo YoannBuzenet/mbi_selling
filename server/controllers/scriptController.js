@@ -991,7 +991,7 @@ async function realScriptPersistingStep(
             action.ruleTypeId !== 3
           ) {
             //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
-            arrayOfCardsForXML = [...arrayOfCardsForXML, chunkOfCards[j]];
+            arrayOfCardsForXML = [...arrayOfCardsForXML, chunkOfCards[k]];
           } else {
             //There is some kind of error in here : it will be skipped for MKM and go direct to our DB
             arrayOfCardsSkippedAndDirectToDB = [
