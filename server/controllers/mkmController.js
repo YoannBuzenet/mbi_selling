@@ -216,10 +216,11 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
   const xml_body = ArrayOfCardActionObjects.reduce(
     (accumulator, currentValue) => {
       const priceForSale = currentValue.newPrice;
+      const isFoilBool = currentValue.isFoil === 0 ? "false" : "true";
 
       const article =
         "<article> <idArticle>" +
-        currentValue.idProduct +
+        currentValue.idArticle +
         "</idArticle><idLanguage>" +
         currentValue.language +
         "</idLanguage><comments>" +
@@ -229,9 +230,9 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
         "</count><price>" +
         priceForSale +
         "</price><condition>" +
-        MkmAPI.MKM_MTG_API_CONDITION_TRANSLATION[currentValue.condition] +
+        currentValue.condition +
         "</condition><isFoil>" +
-        currentValue.isFoil +
+        isFoilBool +
         "</isFoil><isSigned>" +
         "false" +
         "</isSigned><isPlayset>false</isPlayset></article>";
