@@ -87,6 +87,7 @@ module.exports = (sequelize, DataTypes) => {
         cardName: card.englishName,
         regularCardsTrend: null,
         foilCardsTrend: null,
+        priceShieldReason: card.priceShieldReason,
         oldPrice: card.price,
         newPrice: card.newPrice,
         condition: transformConditionStringIntoInteger(card.condition),
