@@ -783,10 +783,6 @@ async function realScriptPersistingStep(
   const chunkSize = 100;
   const numberOfIterations = Math.ceil(numberOfCardsToHandle.count / chunkSize);
 
-  // console.log(
-  //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
-  // );
-
   /* **************************************** */
   /* *************** MKM HEADER ***************/
   /* **************************************** */
@@ -805,7 +801,7 @@ async function realScriptPersistingStep(
   };
 
   for (let i = 0; i < numberOfIterations; i++) {
-    //choper les 100 premières cartes (en ajusant offset à chaque iteration )
+    // Working on a chunk of a 100 cards (MKM doesn't accept more)
     const chunkOfCards = await db.MkmProduct.findAll(
       {
         include: [
@@ -1031,7 +1027,7 @@ async function realScriptPersistingStep(
             ),
             arrayOfCardsSkippedAndDirectToDB[i].action
               .customRule_behaviour_definition.dataValues.name,
-            action.ruleTypeId
+            arrayOfCardsSkippedAndDirectToDB[i].action.ruleTypeId
           );
 
           await db.put_memory.registerAsSkippedCard(
@@ -1095,8 +1091,6 @@ async function realScriptPersistingStep(
 
         // In case of success, we register updates in DB
         for (let i = 0; i < arrayOfCardsForXML.length; i++) {
-          // Yo
-          // Si succès, register in DB as a success
           await db.put_memory.registerAsSuccess(
             idScript,
             arrayOfCardsForXML[i],
