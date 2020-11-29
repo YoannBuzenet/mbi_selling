@@ -873,8 +873,9 @@ async function realScriptPersistingStep(
       // console.log("action for that card", action);
 
       // Preparing the array that will be used for the MKM PUT
-      // Adding the action data in the card
+      // Adding data in the card
       chunkOfCards[j].action = action;
+      chunkOfCards[j].relevantTrend = relevantTrend;
 
       /* ***************************************************** */
       /* Calculating the newPrice depending on the used rule   */
