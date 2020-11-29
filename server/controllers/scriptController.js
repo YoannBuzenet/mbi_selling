@@ -34,7 +34,11 @@ function generateBehaviourName(
   } else if (hasNoCorrespondingCustomRule) {
     return "No corresponding Custom Rule";
   } else {
-    return behaviourBase;
+    if (ruleTypeId === 1) {
+      return "Set Value";
+    } else {
+      return behaviourBase;
+    }
   }
 }
 
@@ -1104,7 +1108,8 @@ async function realScriptPersistingStep(
               arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
               arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
               arrayOfCardsForXML[i].action.customRule_behaviour_definition
-                .dataValues.name
+                .dataValues.name,
+              arrayOfCardsForXML[i].action.ruleTypeId
             )
           );
         }
