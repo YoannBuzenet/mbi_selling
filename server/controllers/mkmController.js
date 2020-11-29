@@ -150,7 +150,9 @@ async function registerStockFileIntoDB(shopId) {
             Exp: arrayOfCards[i]["Exp."],
             expName: arrayOfCards[i]["Exp. Name"],
             price: arrayOfCards[i].Price,
-            language: arrayOfCards[i].Language,
+            language: MkmAPI.translateMKMLangIDIntoMTG_APILangId(
+              arrayOfCards[i].Language
+            ),
             condition: arrayOfCards[i].Condition,
             isFoil: arrayOfCards[i]["Foil?"] || 0,
             isSigned: arrayOfCards[i]["Signed?"] || 0,
@@ -222,7 +224,7 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
         "<article> <idArticle>" +
         currentValue.idArticle +
         "</idArticle><idLanguage>" +
-        currentValue.language +
+        MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.language) +
         "</idLanguage><comments>" +
         "" + //Optional comment to post
         "</comments><count>" +

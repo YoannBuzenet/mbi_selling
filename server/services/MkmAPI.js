@@ -45,6 +45,19 @@ const MKM_LANG_DEFINITION = {
   Korean: 10,
   "Traditional Chinese": 11,
 };
+const MTG_API_LANG_DEFINITION = {
+  German: 1,
+  Spanish: 2,
+  French: 3,
+  Italian: 4,
+  Japanese: 5,
+  Portuguese: 6,
+  Russian: 7,
+  "Simplified Chinese": 8,
+  English: 9,
+  Korean: 10,
+  "Traditional Chinese": 11,
+};
 
 const MKM_MTG_API_LANG_TRANSLATION = {
   1: MKM_LANG_DEFINITION.German,
@@ -59,6 +72,29 @@ const MKM_MTG_API_LANG_TRANSLATION = {
   10: MKM_LANG_DEFINITION.Korean,
   11: MKM_LANG_DEFINITION["Traditional Chinese"],
 };
+
+const MKM_TO_MTG_API_LANG_ID_TRANSLATION = {
+  1: MTG_API_LANG_DEFINITION.English,
+  2: MTG_API_LANG_DEFINITION.French,
+  3: MTG_API_LANG_DEFINITION.German,
+  4: MTG_API_LANG_DEFINITION.Spanish,
+  5: MTG_API_LANG_DEFINITION.Italian,
+  6: MTG_API_LANG_DEFINITION["Simplified Chinese"],
+  7: MTG_API_LANG_DEFINITION.Japanese,
+  8: MTG_API_LANG_DEFINITION.Portuguese,
+  9: MTG_API_LANG_DEFINITION.Russian,
+  10: MTG_API_LANG_DEFINITION.Korean,
+  11: MTG_API_LANG_DEFINITION["Traditional Chinese"],
+};
+
+/* Id of 11 langs are different from MKM to our DB. */
+/* Our id comes from MTGJSON and MKM fixed their own. These functions translate one into another. */
+function translateMKMLangIDIntoMTG_APILangId(idLangFromMKM) {
+  return MKM_TO_MTG_API_LANG_ID_TRANSLATION[idLangFromMKM];
+}
+function translateMTG_APILangIDIntoMKMLangId(idLangFromMTG_API) {
+  return MKM_MTG_API_LANG_TRANSLATION[idLangFromMTG_API];
+}
 
 const MKM_MTG_API_CONDITION_TRANSLATION = {
   1: "MT",
@@ -215,4 +251,6 @@ module.exports = {
   MKM_MTG_API_LANG_TRANSLATION,
   MKM_MTG_API_CONDITION_TRANSLATION,
   sendPUTRequest,
+  translateMKMLangIDIntoMTG_APILangId,
+  translateMTG_APILangIDIntoMKMLangId,
 };
