@@ -983,11 +983,11 @@ async function realScriptPersistingStep(
 
       if (chunkOfCards.length === j + 1) {
         let arrayOfCardsForXML = [];
-        const arrayOfCardsSkippedAndDirectToDB = [];
+        let arrayOfCardsSkippedAndDirectToDB = [];
         for (let k = 0; k < chunkOfCards.length; k++) {
           if (
-            !chunkOfCards[j].error ||
-            !chunkOfCards[j].priceShieldBlocked ||
+            !chunkOfCards[k].hasOwnProperty("error") &&
+            !chunkOfCards[k].hasOwnProperty("priceShieldBlocked") &&
             action.ruleTypeId !== 3
           ) {
             //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
@@ -996,10 +996,16 @@ async function realScriptPersistingStep(
             //There is some kind of error in here : it will be skipped for MKM and go direct to our DB
             arrayOfCardsSkippedAndDirectToDB = [
               ...arrayOfCardsSkippedAndDirectToDB,
-              chunkOfCards[j],
+              chunkOfCards[k],
             ];
           }
         }
+
+        console.log("arrayOfCardsForXML", arrayOfCardsForXML);
+        console.log(
+          "arrayOfCardsSkippedAndDirectToDB",
+          arrayOfCardsSkippedAndDirectToDB
+        );
 
         /* ****************************************** */
         /* ******* Sub Array 1 : Skipped cards ****** */
@@ -1008,37 +1014,28 @@ async function realScriptPersistingStep(
         // Direct to DB
 
         for (let i = 0; i < arrayOfCardsSkippedAndDirectToDB.length; i++) {
-          const newPutMemory = await db.put_memory.create({
-            idScript: idScript,
-            idProduct: arrayOfCardsSkippedAndDirectToDB[i].idProduct,
-            idArticle: arrayOfCardsSkippedAndDirectToDB[i].idArticle,
-            cardName: arrayOfCardsSkippedAndDirectToDB[i].englishName,
-            oldPrice: arrayOfCardsSkippedAndDirectToDB[i].price,
-            newPrice: arrayOfCardsSkippedAndDirectToDB[i].price,
-            condition: arrayOfCardsSkippedAndDirectToDB[i].condition,
-            lang: arrayOfCardsSkippedAndDirectToDB[i].language,
-            isFoil: arrayOfCardsSkippedAndDirectToDB[i].isFoil,
-            isSigned: arrayOfCardsSkippedAndDirectToDB[i].isSigned,
-            isPlayset: 0,
-            amount: arrayOfCardsSkippedAndDirectToDB[i].amount,
-            behaviourChosen: generateBehaviourName(
-              arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
-                "priceShieldBlocked"
-              ),
-              arrayOfCardsSkippedAndDirectToDB[i].action.ruleType === 3,
-              arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
-                "hasNoPriceGuide"
-              ),
-              arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
-                "hasNoCustomRule"
-              ),
-              arrayOfCardsSkippedAndDirectToDB[i].action
-                .customRule_behaviour_definition.dataValues.name
+          const behaviourChosen = generateBehaviourName(
+            arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
+              "priceShieldBlocked"
             ),
-            idCustomRuleUsed:
-              arrayOfCardsSkippedAndDirectToDB[i].action.idSnapShotCustomRule,
-            PUT_Request_id: put_request.dataValues.id,
-          });
+            arrayOfCardsSkippedAndDirectToDB[i].action.ruleType === 3,
+            arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
+              "hasNoPriceGuide"
+            ),
+            arrayOfCardsSkippedAndDirectToDB[i].hasOwnProperty(
+              "hasNoCustomRule"
+            ),
+            arrayOfCardsSkippedAndDirectToDB[i].action
+              .customRule_behaviour_definition.dataValues.name
+          );
+
+          await db.put_memory.registerAsSkippedCard(
+            idScript,
+            arrayOfCardsSkippedAndDirectToDB[i],
+            arrayOfCardsSkippedAndDirectToDB[i].action.idSnapShotCustomRule,
+            put_request.dataValues.id,
+            behaviourChosen
+          );
         }
 
         /* ****************************************** */
