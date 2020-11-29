@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      customRule_behaviour_definition.hasOne(models.Custom_Rule, {
-        foreignKey: "id",
+      customRule_behaviour_definition.hasMany(models.Custom_Rule, {
+        foreignKey: "behaviourId",
       });
     }
   }

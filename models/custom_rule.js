@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id",
       });
       Custom_Rule.belongsTo(models.customRule_behaviour_definition, {
-        foreignKey: "id",
+        foreignKey: "behaviourId",
       });
       Custom_Rule.belongsTo(models.PriceGuideDefinitions, {
         foreignKey: "id",
