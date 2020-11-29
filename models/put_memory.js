@@ -72,6 +72,34 @@ module.exports = (sequelize, DataTypes) => {
         PUT_Request_id: idPut_request,
       });
     }
+
+    static registerAsSkippedCard(
+      idScript,
+      card,
+      idSnapShotCustomRule,
+      idPut_request,
+      behaviourChosen
+    ) {
+      return put_memory.create({
+        idScript: idScript,
+        idProduct: card.idProduct,
+        idArticle: card.idArticle,
+        cardName: card.englishName,
+        regularCardsTrend: null,
+        foilCardsTrend: null,
+        oldPrice: card.price,
+        newPrice: card.newPrice,
+        condition: transformConditionStringIntoInteger(card.condition),
+        lang: card.language,
+        isFoil: card.isFoil,
+        isSigned: card.isSigned,
+        isPlayset: 0,
+        amount: card.amount,
+        behaviourChosen: behaviourChosen,
+        idCustomRuleUsed: idSnapShotCustomRule,
+        PUT_Request_id: idPut_request,
+      });
+    }
   }
   put_memory.init(
     {
