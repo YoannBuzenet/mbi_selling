@@ -1001,12 +1001,6 @@ async function realScriptPersistingStep(
           }
         }
 
-        console.log("arrayOfCardsForXML", arrayOfCardsForXML);
-        console.log(
-          "arrayOfCardsSkippedAndDirectToDB",
-          arrayOfCardsSkippedAndDirectToDB
-        );
-
         /* ****************************************** */
         /* ******* Sub Array 1 : Skipped cards ****** */
         /* ****************************************** */
