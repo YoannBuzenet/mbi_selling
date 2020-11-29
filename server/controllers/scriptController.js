@@ -18,10 +18,15 @@ function generateBehaviourName(
   isExcluded,
   hasNoPriceGuide,
   hasNoCorrespondingCustomRule,
-  behaviourBase
+  behaviourBase,
+  ruleTypeId
 ) {
   if (isPriceShieldBlocking) {
-    return "Price Shield Blocked " + behaviourBase;
+    if (ruleTypeId === 1) {
+      return "Price Shield Blocked Set Value";
+    } else {
+      return "Price Shield Blocked " + behaviourBase;
+    }
   } else if (isExcluded) {
     return "Excluded";
   } else if (hasNoPriceGuide) {
@@ -1021,7 +1026,8 @@ async function realScriptPersistingStep(
               "hasNoCustomRule"
             ),
             arrayOfCardsSkippedAndDirectToDB[i].action
-              .customRule_behaviour_definition.dataValues.name
+              .customRule_behaviour_definition.dataValues.name,
+            action.ruleTypeId
           );
 
           await db.put_memory.registerAsSkippedCard(
