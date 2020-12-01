@@ -62,7 +62,7 @@ async function startScript(idShop, idScript, isTest, shopData, req, res) {
   if (
     oneCardAtRandomFromStock === null ||
     new Date(oneCardAtRandomFromStock.updatedAt).getTime() +
-      process.env.TIME_TO_EXPIRE_STOCK <
+      parseInt(process.env.TIME_TO_EXPIRE_STOCK, 10) <
       new Date().getTime()
   ) {
     console.log("We refresh the shop stock");
@@ -87,6 +87,8 @@ async function startScript(idShop, idScript, isTest, shopData, req, res) {
 
     // Passing from CSV to DB
     await mkmController.registerStockFileIntoDB(idShop);
+  } else {
+    console.log("We do NOT refresh the shop stock");
   }
 
   /* ******************************************* */
