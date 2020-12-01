@@ -25,7 +25,7 @@ async function checkIfUserIsAdmin(jwt) {
 }
 
 function checkLocale(locale) {
-  return locale !== "en-US" || locale !== "fr-FR";
+  return locale === "en-US" || locale === "fr-FR";
 }
 
 async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
