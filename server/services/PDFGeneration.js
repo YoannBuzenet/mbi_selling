@@ -55,8 +55,6 @@ async function generatePDFFromPutRequest(
 
   const usedFormats = await currentScript.getFormats();
 
-  console.log("nos formats", usedFormats);
-
   const all_higher_price_put_memories = await db.put_memory.findAndCountAll({
     where: {
       PUT_Request_id: put_requestId,

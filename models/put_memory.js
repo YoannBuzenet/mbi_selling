@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         cardName: card.englishName,
         regularCardsTrend: card.isFoil === 0 ? card.relevantTrend : null,
         foilCardsTrend: card.isFoil === 0 ? null : card.relevantTrend,
+        priceShieldBlocked: 0,
         oldPrice: card.price,
         newPrice: card.price,
         condition: transformConditionStringIntoInteger(card.condition),
@@ -59,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         cardName: card.englishName,
         regularCardsTrend: card.isFoil === 0 ? card.relevantTrend : null,
         foilCardsTrend: card.isFoil === 0 ? null : card.relevantTrend,
+        priceShieldBlocked: 0,
         oldPrice: card.price,
         newPrice: card.newPrice,
         condition: transformConditionStringIntoInteger(card.condition),
@@ -87,6 +89,7 @@ module.exports = (sequelize, DataTypes) => {
         cardName: card.englishName,
         regularCardsTrend: card.isFoil === 0 ? card.relevantTrend : null,
         foilCardsTrend: card.isFoil === 0 ? null : card.relevantTrend,
+        priceShieldBlocked: card.hasOwnProperty("priceShieldBlocked") ? 1 : 0,
         priceShieldReason: card.priceShieldReason,
         oldPrice: card.price,
         newPrice: card.newPrice,
@@ -134,6 +137,7 @@ module.exports = (sequelize, DataTypes) => {
       priceShieldBlocked: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+        allowNull: false,
       },
       priceShieldReason: {
         type: DataTypes.INTEGER,
