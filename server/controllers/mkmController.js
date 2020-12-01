@@ -5,7 +5,7 @@ const csv = require("csvtojson");
 const db = require("../../models/index");
 
 /* ********** */
-// Get MKM stock from user and register it on server
+// Get MKM stock from user and save it in CSV file
 /* ********** */
 function getShopStock(shopInfo, idShop) {
   const header = MkmAPI.buildOAuthHeader(
@@ -39,7 +39,8 @@ function getShopStock(shopInfo, idShop) {
         // console.log("stock", result.response.stock[0]);
 
         const binaryFile = atob(result.response.stock[0]);
-        console.log("binary", binaryFile);
+        // console.log("binary", binaryFile);
+
         /* ******************* */
         //Save the file
         /* ******************* */
@@ -57,7 +58,8 @@ function getShopStock(shopInfo, idShop) {
           { encoding: "binary" },
           function (err) {
             if (err) {
-              return console.log("err", err);
+              console.log("err", err);
+              throw new Error("error while opening file", err);
             }
             console.log("The file was saved!");
           }
@@ -69,6 +71,7 @@ function getShopStock(shopInfo, idShop) {
         fs.readFile("./shopStock/" + idShop + "/stock.gzip", (error, data) => {
           if (error) {
             console.log("error while reading file", error);
+            throw new Error("error while reading file", error);
           }
 
           /* ******************* */
@@ -90,7 +93,8 @@ function getShopStock(shopInfo, idShop) {
               { encoding: "binary" },
               function (err) {
                 if (err) {
-                  return console.log("err", err);
+                  console.log("err", err);
+                  throw new Error("err", err);
                 }
                 console.log("The file was saved!");
                 /* ******************* */
@@ -114,16 +118,13 @@ function getShopStock(shopInfo, idShop) {
         });
       });
     })
-    .catch((err) => console.log("error when loggin to MKM", err));
+    .catch((err) => {
+      console.log("error when logging to MKM", err);
+      throw new Error("error when logging to MKM", err);
+    });
 }
 
 async function registerStockFileIntoDB(shopId) {
-  console.log(
-    "parse the CSV/Json file // put it in memory // write it in mysql"
-  );
-
-  console.log("we're looking for the stock of shop id: ", shopId);
-
   const path = "./shopStock/" + shopId + "/stock.csv";
 
   //Parameters customized for our CSV : separator is ; and there are dots in columns names that we don't want to interpret
