@@ -43,7 +43,15 @@ function generateBehaviourName(
   }
 }
 
-async function startScript(idShop, idScript, isTest, shopData, req, res) {
+async function startScript(
+  idShop,
+  idScript,
+  isTest,
+  shopData,
+  locale,
+  req,
+  res
+) {
   /* ************************** */
   /* ********* LOGIC ********** */
   /* ************************** */
@@ -308,6 +316,7 @@ async function startScript(idShop, idScript, isTest, shopData, req, res) {
         idScript,
         put_request,
         snapShop_Shop_Param,
+        locale,
         req,
         res
       );
@@ -319,6 +328,7 @@ async function startScript(idShop, idScript, isTest, shopData, req, res) {
         put_request,
         snapShop_Shop_Param,
         shopData,
+        locale,
         req,
         res
       );
@@ -335,6 +345,7 @@ async function testScriptPersistingStep(
   idScript,
   put_request,
   snapShop_Shop_Param,
+  locale,
   req,
   res
 ) {
@@ -736,7 +747,11 @@ async function testScriptPersistingStep(
         throw new Error("No adapted behaviour found for the current card.");
       }
     }
-    await PDFGeneration.generatePDFFromPutRequest(put_request.dataValues.id);
+    await PDFGeneration.generatePDFFromPutRequest(
+      put_request.dataValues.id,
+      locale,
+      true
+    );
   }
 }
 
@@ -748,6 +763,7 @@ async function realScriptPersistingStep(
   put_request,
   snapShop_Shop_Param,
   shopData,
+  locale,
   req,
   res
 ) {
@@ -1120,7 +1136,11 @@ async function realScriptPersistingStep(
       }
     }
   }
-  await PDFGeneration.generatePDFFromPutRequest(put_request.dataValues.id);
+  await PDFGeneration.generatePDFFromPutRequest(
+    put_request.dataValues.id,
+    locale,
+    false
+  );
 }
 
 module.exports = {
