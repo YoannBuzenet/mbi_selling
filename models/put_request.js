@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
+      // isReal: {
+      //   type: DataTypes.INTEGER,
+      //   validate: { isNumeric: true },
+      // },
       eventualMKM_ErrorMessage: {
         type: DataTypes.STRING,
       },
