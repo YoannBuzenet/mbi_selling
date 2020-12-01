@@ -84,7 +84,7 @@ function getShopStock(shopInfo, idShop) {
             }
 
             const pathFile = "./shopStock/" + idShop + "/stock.csv";
-            const pathFileWithoutExtension = "./shopStock/" + idShop + "/test";
+            const pathFileWithoutExtension = "./shopStock/" + idShop + "/stock";
 
             console.log(fileUnzipped);
             fs.writeFile(
@@ -93,8 +93,8 @@ function getShopStock(shopInfo, idShop) {
               { encoding: "binary" },
               function (err) {
                 if (err) {
-                  console.log("err", err);
-                  throw new Error("err", err);
+                  console.log("error while writing file", err);
+                  throw new Error("error while writing file", err);
                 }
                 console.log("The file was saved!");
                 /* ******************* */
@@ -104,7 +104,8 @@ function getShopStock(shopInfo, idShop) {
                   pathFileWithoutExtension + ".gzip",
                   (err, success) => {
                     if (err) {
-                      return console.log("err", err);
+                      console.log("error while deleting file", err);
+                      throw new Error("error while deleting file", err);
                     }
                     console.log(
                       "The GZIP was deleted! CSV is ready to be read in another function."
@@ -255,6 +256,13 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
 //Delete the shop from shop X
 function deleteStockShopInLocalDB(shopId) {
   console.log("Deleting local stock of shop ", shopId);
+}
+
+// To do
+function rewindScriptFromPutMemories(shopId) {
+  console.log(
+    "Put old price of each put memory on the stock of the shop " + shopId
+  );
 }
 
 module.exports = {
