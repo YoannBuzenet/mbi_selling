@@ -117,7 +117,7 @@ router.post("/", async (req, res) => {
   /* ************************* */
 
   // Core stuff
-  startScript(idShop, idScript, isTest, shopData, req, res);
+  startScript(idShop, idScript, isTest, shopData, "en-US", req, res);
 
   // TODO
   // 1. envoi mail (prendre si c'est test ou non en param)
