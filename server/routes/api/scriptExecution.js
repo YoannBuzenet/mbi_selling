@@ -116,12 +116,11 @@ router.post("/", async (req, res) => {
   /* ********* LOGIC ********* */
   /* ************************* */
 
+  // Core stuff
   startScript(idShop, idScript, isTest, shopData, req, res);
 
   // TODO
-  // ADD THE REAL FUNCTION AT THE END
-  // 1. generer PDF (prendre si c'est test ou non en param)
-  // 2. envoi mail (prendre si c'est test ou non en param)
+  // 1. envoi mail (prendre si c'est test ou non en param)
 });
 
 module.exports = router;
