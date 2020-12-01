@@ -24,6 +24,10 @@ async function checkIfUserIsAdmin(jwt) {
   return false;
 }
 
+function checkLocale(locale) {
+  return locale !== "en-US" || locale !== "fr-FR";
+}
+
 async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   if (idShop === undefined) {
     throw "idShop is missing in checkIfUserIsThisOneOrAdmin function";
@@ -105,4 +109,5 @@ module.exports = {
   checkIsJWTThere,
   checkQueryParams,
   checkType,
+  checkLocale,
 };

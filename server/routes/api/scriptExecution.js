@@ -33,6 +33,14 @@ router.post("/", async (req, res) => {
     res.status(406).json("Formats are mandatory to launch a Script Execution.");
     return;
   }
+  if (req.body.locale === undefined) {
+    res.status(406).json("Locale is mandatory to launch a Script Execution.");
+    return;
+  }
+  if (!securityCheckAPI.checkLocale(locale)) {
+    res.status(406).json("Locale must be en-US or fr-FR.");
+    return;
+  }
   if (req.body.isTest === undefined || typeof req.body.isTest !== "boolean") {
     res
       .status(406)
@@ -41,7 +49,7 @@ router.post("/", async (req, res) => {
       );
     return;
   }
-  const { isTest } = req.body;
+  const { isTest, locale } = req.body;
 
   if (!Array.isArray(req.body.formats)) {
     res.status(406).json("Formats must be an array.");
@@ -117,7 +125,7 @@ router.post("/", async (req, res) => {
   /* ************************* */
 
   // Core stuff
-  startScript(idShop, idScript, isTest, shopData, "en-US", req, res);
+  startScript(idShop, idScript, isTest, shopData, locale, req, res);
 
   // TODO
   // 1. envoi mail (prendre si c'est test ou non en param)
