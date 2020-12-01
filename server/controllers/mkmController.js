@@ -142,7 +142,7 @@ async function registerStockFileIntoDB(shopId) {
           },
         });
 
-        await db.MkmProduct.upsert(
+        const upsertedLine = await db.MkmProduct.upsert(
           {
             idArticle: arrayOfCards[i].idArticle,
             idProduct: arrayOfCards[i].idProduct,
@@ -179,6 +179,8 @@ async function registerStockFileIntoDB(shopId) {
             ],
           }
         );
+
+        console.log("upserted line :", upsertedLine);
       }
     });
 }

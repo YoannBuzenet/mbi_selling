@@ -12,6 +12,7 @@ const MkmAPI = require("../services/MkmAPI");
 const {
   transformConditionStringIntoInteger,
 } = require("./genericDataController");
+const PDFGeneration = require("../services/PDFGeneration");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -735,6 +736,7 @@ async function testScriptPersistingStep(
         throw new Error("No adapted behaviour found for the current card.");
       }
     }
+    await PDFGeneration.generatePDFFromPutRequest(put_request.dataValues.id);
   }
 }
 
@@ -1118,6 +1120,7 @@ async function realScriptPersistingStep(
       }
     }
   }
+  await PDFGeneration.generatePDFFromPutRequest(put_request.dataValues.id);
 }
 
 module.exports = {
