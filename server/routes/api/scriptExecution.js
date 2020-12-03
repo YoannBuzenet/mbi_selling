@@ -127,10 +127,34 @@ router.post("/", async (req, res) => {
 
   // Core stuff
 
+  mainQueue.mkmScriptsUpdateQueue.process(async function (job, done) {
+    console.log("starting process in main queue");
+    //   console.log("state of the queue", mkmScriptsUpdateQueue);
+
+    console.log("our job", job);
+
+    startScript(
+      job.data.idShop,
+      job.data.idScript,
+      job.data.isTest,
+      job.data.shopData,
+      locale,
+      req,
+      res
+    );
+
+    console.log("script has finished");
+
+    done();
+  });
+
   // Adding to the queue
   mainQueue.mkmScriptsUpdateQueue.add({
-    scriptFunction: () =>
-      startScript(idShop, idScript, isTest, shopData, locale, req, res),
+    idShop,
+    idScript,
+    isTest,
+    shopData,
+    locale,
   });
 
   // 1. envoi mail (prendre si c'est test ou non en param) A AJOUTER A LA FIN DU SCRIPT PRINCIPAL (REAL AND TEST)
