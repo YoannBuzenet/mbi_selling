@@ -49,8 +49,7 @@ async function startScript(
   isTest,
   shopData,
   locale,
-  req,
-  res
+  formats
 ) {
   /* ************************** */
   /* ********* LOGIC ********** */
@@ -91,7 +90,7 @@ async function startScript(
     try {
       await mkmController.getShopStock(shopdataRequest.data, idShop);
     } catch (e) {
-      res.status(500).json(e);
+      throw new Error(500).json(e);
     }
 
     // Passing from CSV to DB
@@ -318,8 +317,7 @@ async function startScript(
         put_request,
         snapShop_Shop_Param,
         locale,
-        req,
-        res
+        formats
       );
     } else {
       realScriptPersistingStep(
@@ -330,12 +328,9 @@ async function startScript(
         snapShop_Shop_Param,
         shopData,
         locale,
-        req,
-        res
+        formats
       );
     }
-
-    res.json("Script executed");
   }
 }
 
@@ -347,8 +342,7 @@ async function testScriptPersistingStep(
   put_request,
   snapShop_Shop_Param,
   locale,
-  req,
-  res
+  formats
 ) {
   /* **************************************** */
   /* ********** Chunk Management ***********/
@@ -361,8 +355,8 @@ async function testScriptPersistingStep(
 
   let formatFilter = {};
 
-  for (let i = 0; i < req.body.formats.length; i++) {
-    formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
+  for (let i = 0; i < formats.length; i++) {
+    formatFilter["isLegal" + formatDictionnary[formats[i]]] = 1;
   }
 
   // console.log("format filter", formatFilter);
@@ -446,7 +440,7 @@ async function testScriptPersistingStep(
           relevantTrend
         );
       } else {
-        res.status(500).json("A card was missing the isFoil prop.");
+        throw new Error("A card was missing the isFoil prop.");
       }
 
       //We are getting all behaviours, we will need them when processing the custom rules. This is an array
@@ -749,7 +743,7 @@ async function testScriptPersistingStep(
         throw new Error("No adapted behaviour found for the current card.");
       }
     }
-    //Yo TODO delete this, just to see if the script is awaited
+    //TO DELETE TODO delete this, just to see if the script is awaited
     await utils.sleep(5000);
 
     await PDFGeneration.generatePDFFromPutRequest(
@@ -769,8 +763,7 @@ async function realScriptPersistingStep(
   snapShop_Shop_Param,
   shopData,
   locale,
-  req,
-  res
+  formats
 ) {
   console.log("MKM script this time !");
 
@@ -785,8 +778,8 @@ async function realScriptPersistingStep(
 
   let formatFilter = {};
 
-  for (let i = 0; i < req.body.formats.length; i++) {
-    formatFilter["isLegal" + formatDictionnary[req.body.formats[i]]] = 1;
+  for (let i = 0; i < formats.length; i++) {
+    formatFilter["isLegal" + formatDictionnary[formats[i]]] = 1;
   }
 
   // console.log("format filter", formatFilter);
@@ -884,7 +877,7 @@ async function realScriptPersistingStep(
           relevantTrend
         );
       } else {
-        res.status(500).json("A card was missing the isFoil prop.");
+        throw new Error("A card was missing the isFoil prop.");
       }
 
       //We are getting all behaviours, we will need them when processing the custom rules. This is an array

@@ -4,7 +4,6 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const db = require("../../../models/index");
 const securityCheckAPI = require("../../services/securityCheckAPI");
-const { startScript } = require("../../controllers/scriptController");
 const shopAPI = require("../../services/shopAPI");
 const mainQueue = require("../../queues/mainQueue");
 
@@ -127,37 +126,20 @@ router.post("/", async (req, res) => {
 
   // Core stuff
 
-  mainQueue.mkmScriptsUpdateQueue.process(async function (job, done) {
-    console.log("starting process in main queue");
-    //   console.log("state of the queue", mkmScriptsUpdateQueue);
-
-    console.log("our job", job);
-
-    startScript(
-      job.data.idShop,
-      job.data.idScript,
-      job.data.isTest,
-      job.data.shopData,
-      locale,
-      req,
-      res
-    );
-
-    console.log("script has finished");
-
-    done();
-  });
-
-  // Adding to the queue
+  // Adding a script execution to the queue
+  // script if from scriptController
   mainQueue.mkmScriptsUpdateQueue.add({
     idShop,
     idScript,
     isTest,
     shopData,
     locale,
+    formats: req.body.formats,
   });
 
   // 1. envoi mail (prendre si c'est test ou non en param) A AJOUTER A LA FIN DU SCRIPT PRINCIPAL (REAL AND TEST)
+
+  res.status(200).json("Script Queued.");
 });
 
 module.exports = router;
