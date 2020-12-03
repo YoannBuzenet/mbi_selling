@@ -86,6 +86,23 @@ router.get("/generatePDFTest", async (req, res) => {
   res.status(200).json("PDF créé !");
 });
 
+router.get("/addJobToQueue", async (req, res) => {
+  console.log("received the request to add to queue");
+  // Yo
+  var Queue = require("bull");
+  var videoQueue = new Queue("Test bro", "redis://127.0.0.1:6379");
+  videoQueue.process(function (job, done) {
+    console.log("getting the process started");
+    setTimeout(() => {
+      console.log("Processed 5secs");
+      done();
+      // call done when finished
+    }, 5000);
+    videoQueue.add({ video: "http://example.com/video1.mov" });
+  });
+  res.status(200).json("Job added to Queue !");
+});
+
 router.get("/tryModelMethod", async (req, res) => {
   const mock_card = {
     idProduct: 1,
