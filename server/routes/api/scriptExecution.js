@@ -6,6 +6,7 @@ const db = require("../../../models/index");
 const securityCheckAPI = require("../../services/securityCheckAPI");
 const { startScript } = require("../../controllers/scriptController");
 const shopAPI = require("../../services/shopAPI");
+const mainQueue = require("../../queues/mainQueue");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -125,10 +126,14 @@ router.post("/", async (req, res) => {
   /* ************************* */
 
   // Core stuff
-  startScript(idShop, idScript, isTest, shopData, locale, req, res);
 
-  // TODO
-  // 1. envoi mail (prendre si c'est test ou non en param)
+  // Adding to the queue
+  mainQueue.mkmScriptsUpdateQueue.add({
+    function: () =>
+      startScript(idShop, idScript, isTest, shopData, locale, req, res),
+  });
+
+  // 1. envoi mail (prendre si c'est test ou non en param) A AJOUTER A LA FIN DU SCRIPT PRINCIPAL (REAL AND TEST)
 });
 
 module.exports = router;

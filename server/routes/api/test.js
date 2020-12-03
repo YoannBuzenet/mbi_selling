@@ -5,6 +5,7 @@ const Sequelize = require("sequelize");
 const PDFGeneration = require("../../services/PDFGeneration");
 const Op = Sequelize.Op;
 const { mailPDF } = require("../../controllers/mailController");
+const utils = require("../../services/utils");
 
 router.get("/", async (req, res) => {
   //Old test to try many to many relations
@@ -91,15 +92,16 @@ router.get("/addJobToQueue", async (req, res) => {
   // Yo
   var Queue = require("bull");
   var videoQueue = new Queue("Test bro", "redis://127.0.0.1:6379");
-  videoQueue.process(function (job, done) {
+
+  // console.log("our queue object : ", videoQueue);
+
+  videoQueue.process(async function (job, done) {
     console.log("getting the process started");
-    setTimeout(() => {
-      console.log("Processed 5secs");
-      done();
-      // call done when finished
-    }, 5000);
-    videoQueue.add({ video: "http://example.com/video1.mov" });
+    // console.log("the job :", job);
+    await utils.sleep(5000);
+    console.log("Processed 5secs");
   });
+  videoQueue.add({ video: "http://example.com/video1.mov" });
   res.status(200).json("Job added to Queue !");
 });
 
