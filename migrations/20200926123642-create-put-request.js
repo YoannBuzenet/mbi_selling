@@ -15,6 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         validate: { isNumeric: true },
       },
+      isFinished: {
+        type: Sequelize.INTEGER,
+        validate: { isNumeric: true },
+      },
       eventualMKM_ErrorMessage: { type: Sequelize.STRING },
       lastIterationNumberWhenMKM_ErrorHappened: {
         type: Sequelize.INTEGER,
