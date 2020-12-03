@@ -161,6 +161,15 @@ function calculatePriceWithLanguageAndConditionSpecifics(
   isFoil,
   shopParams
 ) {
+  console.log(
+    "les params :",
+    initialPrice,
+    cardLanguageId,
+    cardConditionId,
+    isFoil,
+    shopParams
+  );
+
   const {
     langDefinition,
     conditionDefinition,
@@ -168,9 +177,13 @@ function calculatePriceWithLanguageAndConditionSpecifics(
 
   const langName = langDefinition[cardLanguageId];
   const langCoefficient = shopParams["percentPerLang" + langName];
-  const conditionName = conditionDefinition[
+
+  let conditionName = conditionDefinition[
     revertedDictionnaryConditionDefinition[cardConditionId]
   ].trim();
+  // removing eventual hidden white spaces
+  conditionName = conditionName.replace(/\s/g, "");
+
   const foilOrRegular = isFoil === 0 ? "Regular" : "Foil";
   const conditionCoefficient =
     shopParams["percentPer" + conditionName + foilOrRegular];

@@ -650,7 +650,7 @@ async function testScriptPersistingStep(
               card.condition
             );
             if (priceShieldTest.result) {
-              // console.log("new price :", newPrice);
+              console.log("new price YOO:", newPrice);
               //PUT memory with change
               //Save with new price
               await db.put_memory.create({
@@ -731,6 +731,7 @@ async function testScriptPersistingStep(
             cardName: card.englishName,
             regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
             foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+            priceShieldBlocked: 0,
             oldPrice: card.price,
             newPrice: card.price,
             condition: transformConditionStringIntoInteger(card.condition),
