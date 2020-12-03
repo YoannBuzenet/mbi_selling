@@ -35,11 +35,11 @@ router.post("/", async (req, res) => {
     return;
   }
   if (req.body.locale === undefined) {
-    res.status(406).json("Locale is mandatory to launch a Script Execution.");
+    res.status(406).json("locale is mandatory to launch a Script Execution.");
     return;
   }
-  if (!securityCheckAPI.checkLocale(locale)) {
-    res.status(406).json("Locale must be en-US or fr-FR.");
+  if (!securityCheckAPI.checkLocale(req.body.locale)) {
+    res.status(406).json("locale must be en-US or fr-FR.");
     return;
   }
   if (req.body.isTest === undefined || typeof req.body.isTest !== "boolean") {
@@ -129,7 +129,7 @@ router.post("/", async (req, res) => {
 
   // Adding to the queue
   mainQueue.mkmScriptsUpdateQueue.add({
-    function: () =>
+    scriptFunction: () =>
       startScript(idShop, idScript, isTest, shopData, locale, req, res),
   });
 
