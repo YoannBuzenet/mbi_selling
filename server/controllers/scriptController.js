@@ -748,6 +748,9 @@ async function testScriptPersistingStep(
         throw new Error("No adapted behaviour found for the current card.");
       }
     }
+    //Yo TODO delete this, just to see if the script is awaited
+    await utils.sleep(5000);
+
     await PDFGeneration.generatePDFFromPutRequest(
       put_request.dataValues.id,
       locale,
