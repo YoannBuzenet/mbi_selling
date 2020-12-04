@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "script_id",
       });
     }
+    static markAsRunning(idScript) {
+      return Script.upsert({ id: idScript, isRunning: 1 });
+    }
+    static markAsNotRunning(idScript) {
+      return Script.upsert({ id: idScript, isRunning: 0 });
+    }
   }
   Script.init(
     {
