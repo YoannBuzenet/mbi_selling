@@ -138,9 +138,8 @@ router.post("/", async (req, res) => {
     shopData,
     locale,
     formats: req.body.formats,
+    jwt: req.headers.authorization,
   });
-
-  // 1. envoi mail (prendre si c'est test ou non en param) A AJOUTER A LA FIN DU SCRIPT PRINCIPAL (REAL AND TEST)
 
   res.status(200).json("Script Queued.");
 });

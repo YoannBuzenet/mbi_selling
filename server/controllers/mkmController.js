@@ -62,61 +62,66 @@ function getShopStock(shopInfo, idShop) {
               throw new Error("error while opening file", err);
             }
             console.log("The file was saved!");
-          }
-        );
 
-        /* ******************* */
-        //Read the file to get buffer
-        /* ******************* */
-        fs.readFile("./shopStock/" + idShop + "/stock.gzip", (error, data) => {
-          if (error) {
-            console.log("error while reading file", error);
-            throw new Error("error while reading file", error);
-          }
+            /* ******************* */
+            //Read the file to get buffer
+            /* ******************* */
 
-          /* ******************* */
-          //Transforming the GZIP into CSV
-          /* ******************* */
-          const zlib = require("zlib");
-          zlib.gunzip(data, (error, fileUnzipped) => {
-            if (error) {
-              console.log("error while unzipping file", error);
-            }
-
-            const pathFile = "./shopStock/" + idShop + "/stock.csv";
-            const pathFileWithoutExtension = "./shopStock/" + idShop + "/stock";
-
-            console.log(fileUnzipped);
-            fs.writeFile(
-              pathFile,
-              fileUnzipped,
-              { encoding: "binary" },
-              function (err) {
-                if (err) {
-                  console.log("error while writing file", err);
-                  throw new Error("error while writing file", err);
+            fs.readFile(
+              "./shopStock/" + idShop + "/stock.gzip",
+              (error, data) => {
+                if (error) {
+                  console.log("error while reading file", error);
+                  throw new Error("error while reading file", error);
                 }
-                console.log("The file was saved!");
+
                 /* ******************* */
-                // Deleting the gzip file
+                //Transforming the GZIP into CSV
                 /* ******************* */
-                fs.unlink(
-                  pathFileWithoutExtension + ".gzip",
-                  (err, success) => {
-                    if (err) {
-                      console.log("error while deleting file", err);
-                      throw new Error("error while deleting file", err);
-                    }
-                    console.log(
-                      "The GZIP was deleted! CSV is ready to be read in another function."
-                    );
-                    return true;
+                const zlib = require("zlib");
+                zlib.gunzip(data, (error, fileUnzipped) => {
+                  if (error) {
+                    console.log("error while unzipping file", error);
                   }
-                );
+
+                  const pathFile = "./shopStock/" + idShop + "/stock.csv";
+                  const pathFileWithoutExtension =
+                    "./shopStock/" + idShop + "/stock";
+
+                  console.log(fileUnzipped);
+                  fs.writeFile(
+                    pathFile,
+                    fileUnzipped,
+                    { encoding: "binary" },
+                    function (err) {
+                      if (err) {
+                        console.log("error while writing file", err);
+                        throw new Error("error while writing file", err);
+                      }
+                      console.log("The file was saved!");
+                      /* ******************* */
+                      // Deleting the gzip file
+                      /* ******************* */
+                      fs.unlink(
+                        pathFileWithoutExtension + ".gzip",
+                        (err, success) => {
+                          if (err) {
+                            console.log("error while deleting file", err);
+                            throw new Error("error while deleting file", err);
+                          }
+                          console.log(
+                            "The GZIP was deleted! CSV is ready to be read in another function."
+                          );
+                          return true;
+                        }
+                      );
+                    }
+                  );
+                });
               }
             );
-          });
-        });
+          }
+        );
       });
     })
     .catch((err) => {

@@ -19,7 +19,8 @@ mkmScriptsUpdateQueue.process(async function (job, done) {
       job.data.isTest,
       job.data.shopData,
       job.data.locale,
-      job.data.formats
+      job.data.formats,
+      job.data.jwt
     );
     console.log("script has finished");
   } catch (e) {
