@@ -13,7 +13,7 @@ mkmScriptsUpdateQueue.process(async function (job, done) {
   //   console.log("state of the queue", mkmScriptsUpdateQueue);
 
   try {
-    startScript(
+    await startScript(
       job.data.idShop,
       job.data.idScript,
       job.data.isTest,
@@ -21,11 +21,10 @@ mkmScriptsUpdateQueue.process(async function (job, done) {
       job.data.locale,
       job.data.formats
     );
+    console.log("script has finished");
   } catch (e) {
     console.log("error in the script execution", e);
   }
-
-  console.log("script has finished");
 
   done();
 });
