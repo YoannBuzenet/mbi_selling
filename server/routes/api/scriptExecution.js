@@ -126,6 +126,9 @@ router.post("/", async (req, res) => {
 
   // Core stuff
 
+  //Marking the current script as Running
+  db.Script.markAsRunning(idScript);
+
   // Adding a script execution to the queue
   // script if from scriptController
   mainQueue.mkmScriptsUpdateQueue.add({

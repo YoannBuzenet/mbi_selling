@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "PUT_Request_id",
       });
     }
+    static markAsFinishedSuccessfully(id_put_request) {
+      return PUT_Request.upsert({ id: id_put_request, isFinished: 1 });
+    }
   }
   PUT_Request.init(
     {
@@ -33,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       isFinished: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+        defaultValue: 0,
       },
       eventualMKM_ErrorMessage: {
         type: DataTypes.STRING,

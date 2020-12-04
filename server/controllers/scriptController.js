@@ -55,6 +55,8 @@ async function startScript(
   /* ********* LOGIC ********** */
   /* ************************** */
 
+  console.log("EXECUTING NEW SCRIPT", new Date());
+
   //Do we have already a stock for this user, and if yes, is it older than 24 hours ?
 
   const oneCardAtRandomFromStock = await db.MkmProduct.findOne({
@@ -465,7 +467,7 @@ async function testScriptPersistingStep(
       // We chose to
       if (action === -2) {
         //Price is not updated : we just write it
-        console.log("we are in action : -2");
+        // console.log("we are in action : -2");
         await db.put_memory.create({
           idScript: idScript,
           idProduct: card.idProduct,
@@ -485,7 +487,7 @@ async function testScriptPersistingStep(
         });
       } else if (typeof action === "object") {
         if (action.ruleTypeId === 1) {
-          console.log("we are in ruletype 1");
+          // console.log("we are in ruletype 1");
           // set value behaviour
           // get the price guide for this card
 
@@ -644,7 +646,7 @@ async function testScriptPersistingStep(
               card.condition
             );
             if (priceShieldTest.result) {
-              console.log("new price YOO:", newPrice);
+              // console.log("new price:", newPrice);
               //PUT memory with change
               //Save with new price
               await db.put_memory.create({
@@ -743,8 +745,14 @@ async function testScriptPersistingStep(
         throw new Error("No adapted behaviour found for the current card.");
       }
     }
-    //TO DELETE TODO delete this, just to see if the script is awaited
-    await utils.sleep(5000);
+
+    // Step End of Loop, nearly end of script
+
+    // Marking PUT Request as successful
+    await db.PUT_Request.markAsFinishedSuccessfully(put_request.dataValues.id);
+
+    // Marking Script as available
+    await db.Script.markAsNotRunning(idScript);
 
     await PDFGeneration.generatePDFFromPutRequest(
       put_request.dataValues.id,
@@ -1134,6 +1142,15 @@ async function realScriptPersistingStep(
       }
     }
   }
+
+  // Step End of Loop, nearly end of script
+
+  // Marking PUT Request as successful
+  await db.PUT_Request.markAsFinishedSuccessfully(put_request.dataValues.id);
+
+  // Marking Script as available
+  await db.Script.markAsNotRunning(idScript);
+
   await PDFGeneration.generatePDFFromPutRequest(
     put_request.dataValues.id,
     locale,

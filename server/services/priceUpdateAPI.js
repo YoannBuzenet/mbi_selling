@@ -161,14 +161,14 @@ function calculatePriceWithLanguageAndConditionSpecifics(
   isFoil,
   shopParams
 ) {
-  console.log(
-    "les params :",
-    initialPrice,
-    cardLanguageId,
-    cardConditionId,
-    isFoil,
-    shopParams
-  );
+  // console.log(
+  //   "les params :",
+  //   initialPrice,
+  //   cardLanguageId,
+  //   cardConditionId,
+  //   isFoil,
+  //   shopParams
+  // );
 
   const {
     langDefinition,
