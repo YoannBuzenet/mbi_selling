@@ -13,6 +13,7 @@ const {
   transformConditionStringIntoInteger,
 } = require("./genericDataController");
 const PDFGeneration = require("../services/PDFGeneration");
+const { sizeof } = require("../services/sizeof");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -49,7 +50,8 @@ async function startScript(
   isTest,
   shopData,
   locale,
-  formats
+  formats,
+  jwt
 ) {
   /* ************************** */
   /* ********* LOGIC ********** */
@@ -79,7 +81,7 @@ async function startScript(
     console.log("We refresh the shop stock");
     let axiosConfig = {
       headers: {
-        Authorization: req.headers.authorization,
+        Authorization: jwt,
       },
     };
     // Getting shop data through the MTG API
@@ -760,6 +762,8 @@ async function testScriptPersistingStep(
       locale,
       true
     );
+
+    // TO DO MAIL SENDING TO ADD
   }
 }
 
@@ -912,6 +916,8 @@ async function realScriptPersistingStep(
       // Adding data in the card
       chunkOfCards[j].action = action;
       chunkOfCards[j].relevantTrend = relevantTrend;
+
+      console.log("size of our card : ", sizeof(chunkOfCards[j]));
 
       /* ***************************************************** */
       /* Calculating the newPrice depending on the used rule   */
@@ -1157,6 +1163,8 @@ async function realScriptPersistingStep(
     locale,
     false
   );
+
+  // TO DO MAIL SENDING TO ADD
 }
 
 module.exports = {
