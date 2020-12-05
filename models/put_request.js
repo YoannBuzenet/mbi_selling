@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       isReal: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
+        allowNull: false,
       },
       isFinished: {
         type: DataTypes.INTEGER,
