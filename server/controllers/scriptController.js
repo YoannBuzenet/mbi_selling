@@ -249,7 +249,7 @@ async function startScript(
 
     const put_request = await db.PUT_Request.create({
       idShop: idShop,
-      // isReal: isTest ? 0 : 1,
+      isReal: isTest ? 0 : 1,
     });
 
     //Snapshot shop params for the current PUT Request

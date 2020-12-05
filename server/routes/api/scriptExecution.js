@@ -170,6 +170,21 @@ router.post("/rewindPutRequest", async (req, res) => {
     return;
   }
 
+  //Check that the put request was a real one and not a test
+  //Yo
+  const put_request = await db.PUT_Request.findOne({
+    where: {
+      id: put_request_id,
+    },
+  });
+
+  console.log("put request: ", put_request.dataValues);
+
+  if (put_request.dataValues.isReal === 0) {
+    res.status(406).json("Ask put request is a test one, not a real one.");
+    return;
+  }
+
   // Run rewind function
   await rewindPutRequest(put_request_id);
 
