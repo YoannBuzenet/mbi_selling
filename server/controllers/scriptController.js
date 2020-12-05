@@ -423,6 +423,8 @@ async function testScriptPersistingStep(
     for (let j = 0; j < chunkOfCards.length; j++) {
       const card = chunkOfCards[j].dataValues;
 
+      // console.log("size of our card : ", sizeof(chunkOfCards[j]));
+
       const priceguide = await db.priceguide.findOne({
         where: {
           idProduct: card.idProduct,
@@ -917,7 +919,7 @@ async function realScriptPersistingStep(
       chunkOfCards[j].action = action;
       chunkOfCards[j].relevantTrend = relevantTrend;
 
-      console.log("size of our card : ", sizeof(chunkOfCards[j]));
+      // console.log("size of our card : ", sizeof(chunkOfCards[j]));
 
       /* ***************************************************** */
       /* Calculating the newPrice depending on the used rule   */
@@ -1167,6 +1169,13 @@ async function realScriptPersistingStep(
   // TO DO MAIL SENDING TO ADD
 }
 
+/* In case of emergency, allows to rewind a put request */
+/* Function runing on the side of the queue for now, if necessary we will make one for it too. */
+async function rewindPutRequest(put_request_id) {
+  console.log("rewind put request : " + put_request_id);
+}
+
 module.exports = {
   startScript,
+  rewindPutRequest,
 };

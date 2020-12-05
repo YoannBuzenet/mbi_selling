@@ -75,7 +75,7 @@ router.post("/", async (req, res) => {
   }
 
   // Check 3 : JWT
-  // Auth delegation - checking if the account is a ROLE_ADMIN
+  // Auth delegation - checking if the account is this shop (or a ROLE_ADMIN)
   const isAdmin = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
     jwt,
     idShop
@@ -142,6 +142,37 @@ router.post("/", async (req, res) => {
   });
 
   res.status(200).json("Script Queued.");
+});
+
+router.post("/rewindPutRequest", async (req, res) => {
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+
+  securityCheckAPI.checkQueryParams(req, res, ["put_request_id", "idShop"]);
+
+  let put_request_id = req.query.put_request_id;
+  let idShop = req.query.idShop;
+
+  let jwt = req.headers.authorization;
+
+  if (jwt === undefined) {
+    res.status(406).json("Auth Header is missing !");
+    return;
+  }
+
+  // Check 3 : JWT
+  // Auth delegation - checking if the account is this shop (or a ROLE_ADMIN)
+  const isAdmin = await securityCheckAPI.checkIfUserIsAdmin(jwt, idShop);
+
+  if (!isAdmin) {
+    res.status(401).json("You don't have access to this ressource.");
+    return;
+  }
+
+  // Run rewind function
+
+  // send response
 });
 
 module.exports = router;
