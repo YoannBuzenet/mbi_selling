@@ -469,7 +469,6 @@ async function testScriptPersistingStep(
       // console.log("reminder of the card", card);
       // console.log("action for that card", action);
 
-      // We chose to
       if (action === -2) {
         //Price is not updated : we just write it
         // console.log("we are in action : -2");
@@ -1173,6 +1172,18 @@ async function realScriptPersistingStep(
 /* Function runing on the side of the queue for now, if necessary we will make one for it too. */
 async function rewindPutRequest(put_request_id) {
   console.log("rewind put request : " + put_request_id);
+
+  const numberOfPut_Memory_To_Restore = await db.put_memory.findAndCountAll({
+    where: {
+      PUT_Request_id: put_request_id,
+      priceShieldBlocked: 0,
+      behaviourChosen: {
+        [Op.not]: "Excluded",
+      },
+    },
+  });
+
+  // Loading all put_memories of target put_request that are not excluded or priceshieldBlocked
 }
 
 module.exports = {

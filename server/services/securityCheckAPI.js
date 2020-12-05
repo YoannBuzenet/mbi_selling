@@ -2,7 +2,15 @@ const axios = require("axios");
 const url = require("url");
 
 async function checkIfUserIsAdmin(jwt) {
-  axios.defaults.headers["Authorization"] = "Bearer " + jwt;
+  // Making sure we add the Bearer thing only once
+  let completeHeader;
+
+  if (!/^Bearer /.test(jwt)) {
+    completeHeader = "Bearer " + jwt;
+  } else {
+    completeHeader = jwt;
+  }
+  axios.defaults.headers["Authorization"] = completeHeader;
 
   let normalURL = process.env.REACT_APP_MTGAPI_URL + "/shops";
 
@@ -20,7 +28,7 @@ async function checkIfUserIsAdmin(jwt) {
     // console.log("true", respServ);
     return true;
   }
-  //   console.log("false", respServ);
+  // console.log("false", respServ);
   return false;
 }
 
