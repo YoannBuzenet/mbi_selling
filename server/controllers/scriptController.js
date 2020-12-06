@@ -1170,7 +1170,7 @@ async function realScriptPersistingStep(
 
 /* In case of emergency, allows to rewind a put request */
 /* Function runing on the side of the queue for now, if necessary we will make one for it too. */
-async function rewindPutRequest(put_requestToRewindId) {
+async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
   console.log("rewind put request : " + put_requestToRewindId);
 
   const put_request = await db.PUT_Request.create({
@@ -1221,12 +1221,27 @@ async function rewindPutRequest(put_requestToRewindId) {
       chunkOfCards
     );
 
-    // TO UPDATE //
+    /* **************************************** */
+    /* *************** MKM HEADER ***************/
+    /* **************************************** */
+
+    const mkmHeader = MkmAPI.buildOAuthHeader(
+      "PUT",
+      MkmAPI.URL_MKM_PUT_STOCK,
+      shopData.appToken,
+      shopData.appSecret,
+      shopData.accessToken,
+      shopData.accessSecret
+    );
+
+    const axiosConfigMKMHeader = {
+      headers: { Authorization: mkmHeader },
+    };
 
     try {
       await axios.put(
         MkmAPI.URL_MKM_PUT_STOCK,
-        XML_payload_Put_Request,
+        XMLPayload,
         axiosConfigMKMHeader
       );
     } catch (e) {
@@ -1237,7 +1252,7 @@ async function rewindPutRequest(put_requestToRewindId) {
       // 1.
       const updatedPUT_request = await db.PUT_Request.findOne({
         where: {
-          id: put_request.dataValues.id,
+          id: new_put_request_id,
         },
       });
 
@@ -1249,12 +1264,14 @@ async function rewindPutRequest(put_requestToRewindId) {
         lastIterationNumberWhenMKM_ErrorHappened: i,
       });
 
+      // TO UPDATE // how do I handle data here ?
+
       // 2.
-      for (let i = 0; i < arrayOfCardsForXML.length; i++) {
+      for (let i = 0; i < chunkOfCards.length; i++) {
         await db.put_memory.registerAsFailure(
           idScript,
-          arrayOfCardsForXML[i],
-          arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+          chunkOfCards[i], // is everything in here ?
+          null,
           put_request.dataValues.id
         );
       }

@@ -121,11 +121,9 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  /* ************************* */
-  /* ********* LOGIC ********* */
-  /* ************************* */
-
-  // Core stuff
+  /* ****************************** */
+  /* ********* Core stuff ********* */
+  /* ****************************** */
 
   //Marking the current script as Running
   db.Script.markAsRunning(idScript);
@@ -150,10 +148,15 @@ router.post("/rewindPutRequest", async (req, res) => {
   /* ****SECURITY & CHECKS**** */
   /* ************************ */
 
-  securityCheckAPI.checkQueryParams(req, res, ["put_request_id", "idShop"]);
+  securityCheckAPI.checkQueryParams(req, res, [
+    "put_request_id",
+    "idShop",
+    "idScript",
+  ]);
 
   let put_request_id = req.query.put_request_id;
   let idShop = req.query.idShop;
+  let idScript = req.query.idScript;
 
   let jwt = req.headers.authorization;
 
@@ -204,8 +207,12 @@ router.post("/rewindPutRequest", async (req, res) => {
     return;
   }
 
+  /* ****************************** */
+  /* ********* Core stuff ********* */
+  /* ****************************** */
+
   // Run rewind function
-  await rewindPutRequest(put_request_id);
+  await rewindPutRequest(put_request_id, shopData, idScript);
 
   res.status(200).json("Put Request " + put_request_id + " has been rewinded.");
 });
