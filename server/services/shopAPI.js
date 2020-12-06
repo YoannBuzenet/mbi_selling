@@ -2,7 +2,7 @@ const axios = require("axios");
 
 async function getShopData(idShop, jwt) {
   if (idShop === undefined) {
-    throw "idShop is missing in checkIfUserIsThisOneOrAdmin function";
+    throw "idShop is missing in getShopData function";
   }
 
   let idShopInt = parseInt(idShop);
