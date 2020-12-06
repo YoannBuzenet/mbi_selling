@@ -15,6 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         validate: { isNumeric: true },
       },
+      isRewind: {
+        type: Sequelize.INTEGER,
+        validate: { isNumeric: true },
+      },
       isFinished: {
         type: Sequelize.INTEGER,
         validate: { isNumeric: true },
