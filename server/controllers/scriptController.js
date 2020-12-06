@@ -1174,7 +1174,7 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
   console.log("rewind put request : " + put_requestToRewindId);
 
   const put_request = await db.PUT_Request.create({
-    idShop: idShop,
+    idShop: shopData.id,
     isReal: 1,
     isRewind: 1,
   });
@@ -1198,9 +1198,11 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
     numberOfPut_Memory_To_Restore.count / chunkSize
   );
 
-  for (let i = 0; i < numberOfIterations.length; i++) {
+  console.log("numberOfIterations", numberOfIterations);
+
+  for (let i = 0; i < numberOfIterations; i++) {
     //Get the first 100 put_memories for this put request
-    const chunkOfCards = await db.MkmProduct.findAll(
+    const chunkOfCards = await db.put_memory.findAll(
       {
         where: {
           PUT_Request_id: put_requestToRewindId,
@@ -1212,6 +1214,8 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
       },
       { offset: i * chunkSize, limit: chunkSize }
     );
+
+    console.log("chunkOfCards", chunkOfCards);
 
     /* ****************************************** */
     /* ******* Preparing cards for MKM ****** */
@@ -1256,8 +1260,8 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
         },
       });
 
-      // console.log("e", e);
-      // console.log("e stringified", JSON.stringify(e));
+      console.log("eeeee", e);
+      console.log("e stringified", JSON.stringify(e));
 
       await updatedPUT_request.update({
         eventualMKM_ErrorMessage: e?.message || "mkm_error",
@@ -1269,7 +1273,7 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
         await db.put_memory.registerAsFailureREWIND(
           idScript,
           chunkOfCards[i],
-          put_request.dataValues.id
+          new_put_request_id
         );
       }
 
@@ -1282,7 +1286,7 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
       await db.put_memory.registerAsSuccessREWIND(
         idScript,
         chunkOfCards[i],
-        put_request.dataValues.id
+        new_put_request_id
       );
     }
     // We wait a bit before going to the next iteration to let the MKM API handle it.

@@ -148,11 +148,17 @@ async function registerStockFileIntoDB(shopId) {
           },
         });
 
+        if (productLegality === null) {
+          throw new Error(
+            "Product Legality is missing (null). Either update DB with productLegalities or find a card we do not know yet and that is missing."
+          );
+        }
+
         const upsertedLine = await db.MkmProduct.upsert(
           {
             idArticle: arrayOfCards[i].idArticle,
             idProduct: arrayOfCards[i].idProduct,
-            productLegalityId: productLegality.dataValues.id,
+            productLegalityId: productLegality?.dataValues?.id || null,
             englishName: arrayOfCards[i]["English Name"],
             localName: arrayOfCards[i]["Local Name"],
             Exp: arrayOfCards[i]["Exp."],
@@ -260,7 +266,7 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
   return xml_to_send;
 }
 
-//to do : transformer la condition en MKM condition
+// REWIND XML creation
 function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
   ArrayOfPutMemoryObjects
 ) {
@@ -276,7 +282,7 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
         "<article> <idArticle>" +
         currentValue.idArticle +
         "</idArticle><idLanguage>" +
-        MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.language) +
+        MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.lang) +
         "</idLanguage><comments>" +
         "" + //Optional comment to post
         "</comments><count>" +
