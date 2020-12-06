@@ -178,8 +178,6 @@ router.post("/rewindPutRequest", async (req, res) => {
     },
   });
 
-  console.log("put request: ", put_request.dataValues);
-
   if (put_request.dataValues.isReal === 0) {
     res.status(406).json("Ask put request is a test one, not a real one.");
     return;

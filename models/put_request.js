@@ -34,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
         allowNull: false,
       },
+      isRewind: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+        defaultValue: 0,
+      },
       isFinished: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },

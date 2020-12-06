@@ -1173,6 +1173,13 @@ async function realScriptPersistingStep(
 async function rewindPutRequest(put_request_id) {
   console.log("rewind put request : " + put_request_id);
 
+  const put_request = await db.PUT_Request.create({
+    idShop: idShop,
+    isReal: 1,
+    isRewind: 1,
+  });
+
+  // Loading all put_memories of target put_request that are not excluded or priceshieldBlocked
   const numberOfPut_Memory_To_Restore = await db.put_memory.findAndCountAll({
     where: {
       PUT_Request_id: put_request_id,
@@ -1183,7 +1190,9 @@ async function rewindPutRequest(put_request_id) {
     },
   });
 
-  // Loading all put_memories of target put_request that are not excluded or priceshieldBlocked
+  // for each, prepare XML array, send it, register it in put memories
+
+  //in the end, complete put request
 }
 
 module.exports = {
