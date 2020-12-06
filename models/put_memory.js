@@ -207,7 +207,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
-      amout: {
+      amount: {
         type: DataTypes.INTEGER,
         defaultValue: 1,
       },

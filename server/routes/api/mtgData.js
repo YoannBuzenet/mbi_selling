@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
 
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
+    return;
   } else {
     //If there is a token, we remove the "Bearer" part
     jwt = jwt.split(" ");
@@ -19,6 +20,7 @@ router.get("/", async (req, res) => {
   const isAdmin = await securityCheckAPI.checkIfUserIsAdmin(jwt);
   if (!isAdmin) {
     res.status(401).json("You don't have access to this ressource.");
+    return;
   }
 
   const {
