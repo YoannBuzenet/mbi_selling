@@ -1199,10 +1199,92 @@ async function rewindPutRequest(put_requestToRewindId) {
   );
 
   for (let i = 0; i < numberOfIterations.length; i++) {
-    // for each iteration, prepare an XML array, send it, register it in put memories
-    //here
-    //success -> put memory success
-    //failure -> put memory failure
+    //Get the first 100 put_memories for this put request
+    const chunkOfCards = await db.MkmProduct.findAll(
+      {
+        where: {
+          PUT_Request_id: put_requestToRewindId,
+          priceShieldBlocked: 0,
+          behaviourChosen: {
+            [Op.not]: "Excluded",
+          },
+        },
+      },
+      { offset: i * chunkSize, limit: chunkSize }
+    );
+
+    /* ****************************************** */
+    /* ******* Preparing cards for MKM ****** */
+    /* ****************************************** */
+
+    const XMLPayload = mkmController.transformChunkOfCardsFromPutMemoryForRewindIntoXML(
+      chunkOfCards
+    );
+
+    // TO UPDATE //
+
+    try {
+      await axios.put(
+        MkmAPI.URL_MKM_PUT_STOCK,
+        XML_payload_Put_Request,
+        axiosConfigMKMHeader
+      );
+    } catch (e) {
+      // In case failure, we record it in DB
+      // 1. in the current put_request
+      // 2. In put_memory for the last chunk
+
+      // 1.
+      const updatedPUT_request = await db.PUT_Request.findOne({
+        where: {
+          id: put_request.dataValues.id,
+        },
+      });
+
+      // console.log("e", e);
+      // console.log("e stringified", JSON.stringify(e));
+
+      await updatedPUT_request.update({
+        eventualMKM_ErrorMessage: e?.message || "mkm_error",
+        lastIterationNumberWhenMKM_ErrorHappened: i,
+      });
+
+      // 2.
+      for (let i = 0; i < arrayOfCardsForXML.length; i++) {
+        await db.put_memory.registerAsFailure(
+          idScript,
+          arrayOfCardsForXML[i],
+          arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+          put_request.dataValues.id
+        );
+      }
+
+      // Stop script to avoid unnecessary computation
+      return;
+    }
+
+    // In case of success, we register updates in DB
+    for (let i = 0; i < arrayOfCardsForXML.length; i++) {
+      await db.put_memory.registerAsSuccess(
+        idScript,
+        arrayOfCardsForXML[i],
+        arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+        put_request.dataValues.id,
+        generateBehaviourName(
+          arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
+          arrayOfCardsForXML[i].action.ruleType === 3,
+          arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
+          arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
+          arrayOfCardsForXML[i].action.customRule_behaviour_definition
+            .dataValues.name,
+          arrayOfCardsForXML[i].action.ruleTypeId
+        )
+      );
+    }
+    // We wait a bit before going to the next iteration to let the MKM API handle it.
+    utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
+
+    // END TO UPDATE //
   }
 
   //in the end, complete put request
