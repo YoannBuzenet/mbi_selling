@@ -87,6 +87,7 @@ router.post("/", async (req, res) => {
   }
 
   //Script Existence Verification
+  // todo ; il manque la verification de l'association avec l'id User ?
   const scriptToCheck = await db.Script.findOne({
     where: {
       id: idScript,
@@ -171,6 +172,21 @@ router.post("/rewindPutRequest", async (req, res) => {
 
   if (!isAdmin) {
     res.status(401).json("You don't have access to this ressource.");
+    return;
+  }
+
+  // Checking the script does exist
+  // It may be a good idea to check if this script is associated with the idUser
+  const scriptToCheck = await db.Script.findOne({
+    where: {
+      id: idScript,
+    },
+  });
+
+  if (scriptToCheck === null) {
+    res
+      .status(401)
+      .json("Script doesnt exist, or you don't have access to it.");
     return;
   }
 

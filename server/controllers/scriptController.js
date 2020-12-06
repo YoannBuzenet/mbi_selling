@@ -1264,14 +1264,11 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
         lastIterationNumberWhenMKM_ErrorHappened: i,
       });
 
-      // TO UPDATE // how do I handle data here ?
-
       // 2.
       for (let i = 0; i < chunkOfCards.length; i++) {
-        await db.put_memory.registerAsFailure(
+        await db.put_memory.registerAsFailureREWIND(
           idScript,
-          chunkOfCards[i], // is everything in here ?
-          null,
+          chunkOfCards[i],
           put_request.dataValues.id
         );
       }
@@ -1281,27 +1278,15 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
     }
 
     // In case of success, we register updates in DB
-    for (let i = 0; i < arrayOfCardsForXML.length; i++) {
-      await db.put_memory.registerAsSuccess(
+    for (let i = 0; i < chunkOfCards.length; i++) {
+      await db.put_memory.registerAsSuccessREWIND(
         idScript,
-        arrayOfCardsForXML[i],
-        arrayOfCardsForXML[i].action.idSnapShotCustomRule,
-        put_request.dataValues.id,
-        generateBehaviourName(
-          arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
-          arrayOfCardsForXML[i].action.ruleType === 3,
-          arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
-          arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
-          arrayOfCardsForXML[i].action.customRule_behaviour_definition
-            .dataValues.name,
-          arrayOfCardsForXML[i].action.ruleTypeId
-        )
+        chunkOfCards[i],
+        put_request.dataValues.id
       );
     }
     // We wait a bit before going to the next iteration to let the MKM API handle it.
     utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
-
-    // END TO UPDATE //
   }
 
   //in the end, complete put request
