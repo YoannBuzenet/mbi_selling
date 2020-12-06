@@ -3,6 +3,7 @@ const MkmAPI = require("../services/MkmAPI");
 const fs = require("fs");
 const csv = require("csvtojson");
 const db = require("../../models/index");
+const genericDataController = require("./genericDataController");
 
 /* ********** */
 // Get MKM stock from user and save it in CSV file
@@ -160,7 +161,7 @@ async function registerStockFileIntoDB(shopId) {
             language: MkmAPI.translateMKMLangIDIntoMTG_APILangId(
               arrayOfCards[i].Language
             ),
-            condition: arrayOfCards[i].Condition,
+            condition: arrayOfCards[i].Condition, //string condition short name (MT, LP...)
             isFoil: arrayOfCards[i]["Foil?"] || 0,
             isSigned: arrayOfCards[i]["Signed?"] || 0,
             isPlayset: arrayOfCards[i]["Playset?"] || 0,
@@ -259,21 +260,59 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
   return xml_to_send;
 }
 
+//to do : transformer la condition en MKM condition
+function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
+  ArrayOfPutMemoryObjects
+) {
+  const xml_start = '<?xml version="1.0" encoding="UTF-8" ?><request>';
+  const xml_end = "</request>";
+  const xml_body = ArrayOfPutMemoryObjects.reduce(
+    (accumulator, currentValue) => {
+      //We choose the old price on purpose because we are rewinding an older put request
+      const priceForSale = currentValue.oldPrice;
+      const isFoilBool = currentValue.isFoil === 0 ? "false" : "true";
+
+      const article =
+        "<article> <idArticle>" +
+        currentValue.idArticle +
+        "</idArticle><idLanguage>" +
+        MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.language) +
+        "</idLanguage><comments>" +
+        "" + //Optional comment to post
+        "</comments><count>" +
+        currentValue.amount +
+        "</count><price>" +
+        priceForSale +
+        "</price><condition>" +
+        genericDataController.DictionnaryConditionShortNameDefinition[
+          currentValue.condition
+        ] +
+        "</condition><isFoil>" +
+        isFoilBool +
+        "</isFoil><isSigned>" +
+        "false" +
+        "</isSigned><isPlayset>false</isPlayset></article>";
+
+      return article + accumulator;
+    },
+    ""
+  );
+  const xml_to_send = xml_start + xml_body + xml_end;
+
+  console.log(xml_to_send);
+
+  return xml_to_send;
+}
+
 //TO DO one day :d
 //Delete the shop from shop X
 function deleteStockShopInLocalDB(shopId) {
   console.log("Deleting local stock of shop ", shopId);
 }
 
-// To do
-function rewindScriptFromPutMemories(shopId) {
-  console.log(
-    "Put old price of each put memory on the stock of the shop " + shopId
-  );
-}
-
 module.exports = {
   getShopStock,
   registerStockFileIntoDB,
   transformChunkOfCardsAndActionsIntoXML,
+  transformChunkOfCardsFromPutMemoryForRewindIntoXML,
 };

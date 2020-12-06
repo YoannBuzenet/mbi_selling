@@ -7,6 +7,15 @@ const revertedDictionnaryConditionDefinition = {
   PL: 6,
   PO: 7,
 };
+const DictionnaryConditionShortNameDefinition = {
+  1: "MT",
+  2: "NM",
+  3: "EX",
+  4: "GD",
+  5: "LP",
+  6: "PL",
+  7: "PO",
+};
 
 // Transforming condition as string into an integer that we know.
 function transformConditionStringIntoInteger(condition) {
@@ -25,5 +34,6 @@ function transformConditionStringIntoInteger(condition) {
 
 module.exports = {
   transformConditionStringIntoInteger,
+  DictionnaryConditionShortNameDefinition,
   revertedDictionnaryConditionDefinition,
 };

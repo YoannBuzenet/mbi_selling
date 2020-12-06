@@ -1170,8 +1170,8 @@ async function realScriptPersistingStep(
 
 /* In case of emergency, allows to rewind a put request */
 /* Function runing on the side of the queue for now, if necessary we will make one for it too. */
-async function rewindPutRequest(put_request_id) {
-  console.log("rewind put request : " + put_request_id);
+async function rewindPutRequest(put_requestToRewindId) {
+  console.log("rewind put request : " + put_requestToRewindId);
 
   const put_request = await db.PUT_Request.create({
     idShop: idShop,
@@ -1179,10 +1179,12 @@ async function rewindPutRequest(put_request_id) {
     isRewind: 1,
   });
 
+  const new_put_request_id = put_request.dataValues.id;
+
   // Loading all put_memories of target put_request that are not excluded or priceshieldBlocked
   const numberOfPut_Memory_To_Restore = await db.put_memory.findAndCountAll({
     where: {
-      PUT_Request_id: put_request_id,
+      PUT_Request_id: put_requestToRewindId,
       priceShieldBlocked: 0,
       behaviourChosen: {
         [Op.not]: "Excluded",
@@ -1190,9 +1192,22 @@ async function rewindPutRequest(put_request_id) {
     },
   });
 
-  // for each, prepare XML array, send it, register it in put memories
+  // Saving by chunks
+  const chunkSize = 100;
+  const numberOfIterations = Math.ceil(
+    numberOfPut_Memory_To_Restore.count / chunkSize
+  );
+
+  for (let i = 0; i < numberOfIterations.length; i++) {
+    // for each iteration, prepare an XML array, send it, register it in put memories
+    //here
+    //success -> put memory success
+    //failure -> put memory failure
+  }
 
   //in the end, complete put request
+  // Marking PUT Request as successful
+  await db.PUT_Request.markAsFinishedSuccessfully(new_put_request_id);
 }
 
 module.exports = {
