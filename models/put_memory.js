@@ -45,6 +45,28 @@ module.exports = (sequelize, DataTypes) => {
         PUT_Request_id: idPut_request,
       });
     }
+    static registerAsFailureREWIND(idScript, card, idPut_request) {
+      return put_memory.create({
+        idScript: idScript,
+        idProduct: card.idProduct,
+        idArticle: card.idArticle,
+        cardName: card.englishName,
+        regularCardsTrend: null,
+        foilCardsTrend: null,
+        priceShieldBlocked: 0,
+        oldPrice: card.oldPrice,
+        newPrice: card.oldPrice,
+        condition: card.condition, //Already an integer because coming from our DB
+        lang: card.language,
+        isFoil: card.isFoil,
+        isSigned: card.isSigned,
+        isPlayset: 0,
+        amount: card.amount,
+        behaviourChosen: "MKM Error",
+        idCustomRuleUsed: null,
+        PUT_Request_id: idPut_request,
+      });
+    }
 
     static registerAsSuccess(
       idScript,
@@ -71,6 +93,28 @@ module.exports = (sequelize, DataTypes) => {
         amount: card.amount,
         behaviourChosen: behaviourChosen,
         idCustomRuleUsed: idSnapShotCustomRule,
+        PUT_Request_id: idPut_request,
+      });
+    }
+    static registerAsSuccessREWIND(idScript, card, idPut_request) {
+      return put_memory.create({
+        idScript: idScript,
+        idProduct: card.idProduct,
+        idArticle: card.idArticle,
+        cardName: card.englishName,
+        regularCardsTrend: null,
+        foilCardsTrend: null,
+        priceShieldBlocked: 0,
+        oldPrice: card.oldPrice,
+        newPrice: card.oldPrice,
+        condition: card.condition, //Already an integer because coming from our DB
+        lang: card.language,
+        isFoil: card.isFoil,
+        isSigned: card.isSigned,
+        isPlayset: 0,
+        amount: card.amount,
+        behaviourChosen: "Rewind",
+        idCustomRuleUsed: null,
         PUT_Request_id: idPut_request,
       });
     }
