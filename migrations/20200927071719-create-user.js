@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         unique: true,
       },
-      hasPaidUntil: {
+      isSubscribedUntil: {
         type: Sequelize.DATE,
       },
       createdAt: {

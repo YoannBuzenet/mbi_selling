@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         validate: { isNumeric: true },
       },
-      hasPaidUntil: {
+      isSubscribedUntil: {
         type: DataTypes.DATE,
       },
     },
