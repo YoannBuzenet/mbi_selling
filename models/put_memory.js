@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
         regularCardsTrend: null,
         foilCardsTrend: null,
         priceShieldBlocked: 0,
-        oldPrice: card.oldPrice,
+        oldPrice: card.newPrice,
         newPrice: card.oldPrice,
         condition: card.condition, //Already an integer because coming from our DB
         lang: card.language,
@@ -105,7 +105,7 @@ module.exports = (sequelize, DataTypes) => {
         regularCardsTrend: null,
         foilCardsTrend: null,
         priceShieldBlocked: 0,
-        oldPrice: card.oldPrice,
+        oldPrice: card.newPrice,
         newPrice: card.oldPrice,
         condition: card.condition, //Already an integer because coming from our DB
         lang: card.language,
