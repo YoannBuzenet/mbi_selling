@@ -1,4 +1,7 @@
 "use strict";
+
+const utils = require("../server/services/utils");
+
 // const db = require("../models/index");
 
 module.exports = {
@@ -8,11 +11,13 @@ module.exports = {
       [
         {
           idShop: 4,
+          isSubscribedUntil: utils.createADateFromTodayAndAddMonths(6),
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           idShop: 7,
+          isSubscribedUntil: utils.createADateFromTodayAndAddMonths(1),
           createdAt: new Date(),
           updatedAt: new Date(),
         },

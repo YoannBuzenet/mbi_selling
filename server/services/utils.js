@@ -126,6 +126,13 @@ function sleep(ms) {
   });
 }
 
+function createADateFromTodayAndAddMonths(numberOfMonths) {
+  var CurrentDate = new Date();
+  return new Date(
+    CurrentDate.setMonth(CurrentDate.getMonth() + numberOfMonths)
+  );
+}
+
 module.exports = {
   prepareStateFromArrayOfRules,
   snapshotShopParams,
@@ -133,4 +140,5 @@ module.exports = {
   langDefinition,
   conditionDefinition,
   sleep,
+  createADateFromTodayAndAddMonths,
 };

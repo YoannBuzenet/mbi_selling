@@ -51,7 +51,11 @@ router.post("/", async (req, res) => {
 
     // console.log("user scripts to be added :", userScripts);
 
-    const overloadedResponse = { ...loginOnMTGAPI.data, userScripts };
+    const overloadedResponse = {
+      ...loginOnMTGAPI.data,
+      userScripts,
+      isSubscribedUntil: shop.dataValues.isSubscribedUntil,
+    };
 
     res.json(overloadedResponse);
   } catch (error) {
