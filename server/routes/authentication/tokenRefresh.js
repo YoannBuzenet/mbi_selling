@@ -30,9 +30,19 @@ router.post("/", async (req, res) => {
       userScripts[i].dataValues.formats = [...scriptFormats];
     }
 
+    let shop = await db.User.findOne({
+      where: {
+        idShop: loginOnMTGAPI.data.shop.id,
+      },
+    });
+
     // console.log("user scripts to be added :", userScripts);
 
-    const overloadedResponse = { ...refreskTokenOnMTGAPI.data, userScripts };
+    const overloadedResponse = {
+      ...refreskTokenOnMTGAPI.data,
+      userScripts,
+      isSubscribedUntil: shop.dataValues.isSubscribedUntil,
+    };
 
     res.json(overloadedResponse);
   } catch (error) {
