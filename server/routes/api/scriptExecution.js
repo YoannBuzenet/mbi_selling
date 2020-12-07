@@ -227,8 +227,14 @@ router.post("/rewindPutRequest", async (req, res) => {
   /* ********* Core stuff ********* */
   /* ****************************** */
 
+  // Pause the queue
+  mainQueue.mkmScriptsUpdateQueue.pause();
+
   // Run rewind function
   await rewindPutRequest(put_request_id, shopData, idScript);
+
+  // Resume the queue
+  mainQueue.mkmScriptsUpdateQueue.resume();
 
   res.status(200).json("Put Request " + put_request_id + " has been rewinded.");
 });

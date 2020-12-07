@@ -58,7 +58,7 @@ async function startScript(
   /* ************************** */
 
   console.log("EXECUTING NEW SCRIPT", new Date());
-  await utils.sleep(5000);
+  await utils.sleep(50000);
 
   //Do we have already a stock for this user, and if yes, is it older than 24 hours ?
 
