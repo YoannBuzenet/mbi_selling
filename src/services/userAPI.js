@@ -2,10 +2,7 @@ import axios from "axios";
 import config from "./config";
 
 function register(credentials) {
-  return axios.post(
-    process.env.REACT_APP_MTGAPI_URL + "/Register",
-    credentials
-  );
+  return axios.post("/authentication/register", credentials);
 }
 
 function update(id, credentials) {

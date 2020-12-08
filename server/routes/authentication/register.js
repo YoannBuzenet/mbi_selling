@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const { registerUser } = require("../../controllers/authController");
 
+//TODO Add a google recapatcha v3 here
+
 router.post("/", async (req, res) => {
   //Checking payload
   if (req.body.email === undefined || req.body.password === undefined) {
