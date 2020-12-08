@@ -18,6 +18,32 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
+      idInvoice: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      subscribingStartDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      subscribingEndDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      amountTaxIncluded: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      amountTaxExcluded: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      VATSum: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      VATStatus: { type: DataTypes.INTEGER, allowNull: false },
+      stripeReference: { type: DataTypes.STRING, allowNull: false },
     },
     {
       sequelize,
