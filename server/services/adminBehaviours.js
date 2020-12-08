@@ -17,10 +17,10 @@ async function retrieveAsAdmin(url, method, parameters) {
       },
     };
 
-    const action = await axios[method](url, parameters, temporaryHeader);
-    return action;
+    return axios[method](url, parameters, temporaryHeader);
   } catch (error) {
     console.log("error during admin login and retriving as admin");
+    return error;
   }
 }
 

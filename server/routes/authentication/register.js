@@ -14,10 +14,12 @@ router.post("/", async (req, res) => {
   console.log("get data from front");
   let userCredentials = { email: req.body.email, password: req.body.password };
 
-  // stuff here
-  await registerUser(userCredentials);
-
-  console.log("send 200 back");
+  try {
+    await registerUser(userCredentials);
+  } catch (error) {
+    res.status(500).json("An error occured during registering.");
+    return;
+  }
 
   res.status(200).json("User has been registered.");
   return;
