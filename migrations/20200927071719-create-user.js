@@ -14,7 +14,7 @@ module.exports = {
         unique: true,
       },
       isSubscribedUntil: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       createdAt: {
         allowNull: false,

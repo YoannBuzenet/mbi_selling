@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
       },
       isSubscribedUntil: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
     },
     {
