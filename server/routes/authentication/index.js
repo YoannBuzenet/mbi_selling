@@ -12,6 +12,6 @@ connect();
 
 router.use("/login", loginRoutes);
 router.use("/token/refresh", tokenRefreshRoutes);
-router.use("/register ", registerRoutes);
+router.use("/register", registerRoutes);
 
 module.exports = router;

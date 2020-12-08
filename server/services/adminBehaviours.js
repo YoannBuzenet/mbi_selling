@@ -7,19 +7,19 @@ async function retrieveAsAdmin(url, method, parameters) {
   };
   try {
     const servResp = await axios.post(
-      process.env.REACT_APP_MTGAPI_URL,
+      `${process.env.REACT_APP_MTGAPI_URL}/login`,
       credentials
     );
 
     let temporaryHeader = {
       headers: {
-        Authorization: servResp.data.token,
+        Authorization: `Bearer ${servResp.data.token}`,
       },
     };
 
     return axios[method](url, parameters, temporaryHeader);
   } catch (error) {
-    console.log("error during admin login and retriving as admin");
+    console.log("ERROR during admin login and retriving as admin");
     return error;
   }
 }

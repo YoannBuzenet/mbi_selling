@@ -1,7 +1,5 @@
 var express = require("express");
 var router = express.Router();
-var axios = require("axios");
-const db = require("../../../models/index");
 const { registerUser } = require("../../controllers/authController");
 
 router.post("/", async (req, res) => {
@@ -15,8 +13,10 @@ router.post("/", async (req, res) => {
   let userCredentials = { email: req.body.email, password: req.body.password };
 
   try {
-    await registerUser(userCredentials);
+    const didUserRegister = await registerUser(userCredentials);
+    console.log("didUserRegister", didUserRegister);
   } catch (error) {
+    console.log("error during registering User", error);
     res.status(500).json("An error occured during registering.");
     return;
   }

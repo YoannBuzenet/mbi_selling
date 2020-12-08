@@ -4,13 +4,11 @@ const axios = require("axios");
 async function registerUser(userCredentials) {
   console.log("log as admin, registerShop on MTGAPI");
 
-  console.log("register user...");
-
   const completeCredentials = buildRegisterObjectForBackEnd(userCredentials);
 
   return retrieveAsAdmin(
-    "post",
     process.env.REACT_APP_MTGAPI_URL + "/RegisterShop",
+    "post",
     completeCredentials
   );
 }
