@@ -11,6 +11,7 @@ import DefinitionContext from "../../../context/definitionsContext";
 import errorHandlingAPI from "../../../services/errorHandlingAPI";
 import MKMModalContext from "../../../context/mkmModalConnectionContext";
 import transparentDivContext from "../../../context/transparentDivContext";
+import appLangContext from "../../../context/selectedAppLang";
 
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -36,6 +37,9 @@ const CreateMyScript = ({ history }) => {
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
 
+  //App Lang
+  const { currentLang } = useContext(appLangContext);
+
   //Transparent Div Context
   const {
     isTransparentDivDisplayed,
@@ -54,7 +58,7 @@ const CreateMyScript = ({ history }) => {
     }
   });
 
-  //Getting id param on edition mode (with /manage-script/ route)
+  //Getting id param on edition mode (with /edit-script/ route)
   const match = matchPath(history.location.pathname, {
     path: "/edit-script/:id",
     exact: true,
@@ -73,6 +77,7 @@ const CreateMyScript = ({ history }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   // console.log("definitions", allDefinitions);
 
+  //TODO y
   const defaultScriptName = "Nouveau Script à traduire";
 
   const defaultCreationState = {
@@ -779,8 +784,6 @@ const CreateMyScript = ({ history }) => {
     }
 
     if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
-      //check front is user subscribed
-      // Yooy
       toast.error(
         <FormattedMessage
           id="subscribed.notSusbcribed.NeedToDoIt.text"
@@ -800,11 +803,34 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    console.log("test !");
-    // Yooy
-    // axios launch
-    // notif confirmation
-    // ou notif error
+    const payload = {
+      formats: selectedFormats,
+      isTest: true,
+      locale: currentLang.locale,
+    };
+
+    // Launching the test script request
+    axios
+      .post(
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        payload
+      )
+      .then((resp) =>
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.launchTest.success"
+            defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
+          />
+        )
+      )
+      .catch((error) =>
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.launchTest.failure"
+            defaultMessage="The test script could not be launched. Please try later, or contact us if the problem persists."
+          />
+        )
+      );
   };
 
   const launchScript = () => {
@@ -819,8 +845,22 @@ const CreateMyScript = ({ history }) => {
     }
 
     if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
-      //check front is user subscribed
-      // Yooy
+      toast.error(
+        <FormattedMessage
+          id="subscribed.notSusbcribed.NeedToDoIt.text"
+          defaultMessage="You need to subscribe to access this feature. You can do this {link}."
+          values={{
+            link: (
+              <Link to="/subscribe">
+                <FormattedMessage
+                  id="subscribed.notSusbcribed.NeedToDoIt.link"
+                  defaultMessage="here"
+                />
+              </Link>
+            ),
+          }}
+        />
+      );
       return;
     }
 
@@ -841,12 +881,34 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    //check if there is a one of the numerous "has incoherence" flag and notify if yes
-    console.log("Launch !");
-    // Yooy
-    // axios launch
-    // notif confirmation
-    // ou notif error
+    const payload = {
+      formats: selectedFormats,
+      isTest: false,
+      locale: currentLang.locale,
+    };
+
+    // Launching the Real script request
+    axios
+      .post(
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        payload
+      )
+      .then((resp) =>
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.launchReal.success"
+            defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
+          />
+        )
+      )
+      .catch((error) =>
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.launchReal.failure"
+            defaultMessage="The MKM script could not be launched. Please try later, or contact us if the problem persists."
+          />
+        )
+      );
   };
 
   const ITEM_HEIGHT = 48;
@@ -943,30 +1005,36 @@ const CreateMyScript = ({ history }) => {
             />
           </Button>
 
-          <Button
-            variant="contained"
-            color="primary"
-            className={"button-second-navbar " + classes.testButton}
-            size="large"
-            onClick={launchTest}
-          >
-            <FormattedMessage
-              id="createMyScript.buttons.test"
-              defaultMessage="Test"
-            />
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={"button-second-navbar " + classes.launchButton}
-            size="large"
-            onClick={launchScript}
-          >
-            <FormattedMessage
-              id="createMyScript.buttons.launch"
-              defaultMessage="Lancer"
-            />
-          </Button>
+          {/* This button only displays if script has an ID */}
+          {Boolean(idScript) && (
+            <Button
+              variant="contained"
+              color="primary"
+              className={"button-second-navbar " + classes.testButton}
+              size="large"
+              onClick={launchTest}
+            >
+              <FormattedMessage
+                id="createMyScript.buttons.test"
+                defaultMessage="Test"
+              />
+            </Button>
+          )}
+          {/* This button only displays if script has an ID */}
+          {Boolean(idScript) && (
+            <Button
+              variant="contained"
+              color="primary"
+              className={"button-second-navbar " + classes.launchButton}
+              size="large"
+              onClick={launchScript}
+            >
+              <FormattedMessage
+                id="createMyScript.buttons.launch"
+                defaultMessage="Lancer"
+              />
+            </Button>
+          )}
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-mutiple-checkbox-label">
               {formatSelectTitle}

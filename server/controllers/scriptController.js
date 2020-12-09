@@ -57,8 +57,9 @@ async function startScript(
   /* ********* LOGIC ********** */
   /* ************************** */
 
-  console.log("EXECUTING NEW SCRIPT", new Date());
-  await utils.sleep(50000);
+  // kept those in comments for testing purpose
+  // console.log("EXECUTING NEW SCRIPT", new Date());
+  // await utils.sleep(50000);
 
   //Do we have already a stock for this user, and if yes, is it older than 24 hours ?
 
@@ -95,11 +96,15 @@ async function startScript(
     try {
       await mkmController.getShopStock(shopdataRequest.data, idShop);
     } catch (e) {
-      throw new Error(500).json(e);
+      throw new Error("error while getting shop stock", e);
     }
 
     // Passing from CSV to DB
-    await mkmController.registerStockFileIntoDB(idShop);
+    try {
+      await mkmController.registerStockFileIntoDB(idShop);
+    } catch (e) {
+      throw new Error("error while registering shop stock", e);
+    }
   } else {
     console.log("We do NOT refresh the shop stock");
   }
@@ -390,6 +395,12 @@ async function testScriptPersistingStep(
   // console.log(
   //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
   // );
+
+  if (numberOfCardsToHandle.count === 0) {
+    console.log("No MKM Product on this test script.");
+    //TODO : mail qui explique que le stock contenait 0 cartes.
+    return;
+  }
 
   for (let i = 0; i < numberOfIterations; i++) {
     //choper les 100 premières cartes (en ajusant offset à chaque iteration )
@@ -814,6 +825,12 @@ async function realScriptPersistingStep(
     },
     {}
   );
+
+  if (numberOfCardsToHandle.count === 0) {
+    console.log("No MKM Product on this real script.");
+    //TODO : mail qui explique que le stock contenait 0 cartes.
+    return;
+  }
 
   // Saving by chunks
   const chunkSize = 100;
