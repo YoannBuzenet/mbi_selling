@@ -147,6 +147,10 @@
   "createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated": "Cards with superior prices to these mentionned here are not processed.",
   "createMyScript.checkMKMConnection.failture": "You are not connected to MKM. Please connect in order to launch a script.",
   "createMyScript.checkStateCoherence.failure": "There seems to be an error among the rules. Please check them.",
+  "createMyScript.launchTest.success": "The test script has been launched. Once it's done, you will receive a summary by mail.",
+  "createMyScript.launchTest.failure": "The test script could not be launched. Please try later, or contact us if the problem persists.",
+  "createMyScript.launchReal.success": "The MKM script has been launched. Once it's done, you will receive a summary by mail.",
+  "createMyScript.launchReal.failure": "The MKM script could not be launched. Please try later, or contact us if the problem persists.",
 
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Status",
