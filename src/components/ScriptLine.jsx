@@ -20,6 +20,7 @@ import authAPI from "../services/authAPI";
 import { FormattedMessage, useIntl } from "react-intl";
 import { isMobile } from "react-device-detect";
 import MKMAPI from "../services/MKMAPI";
+import subscribeAPI from "../services/subscribeAPI";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -139,6 +140,26 @@ const ScriptLine = ({ script, history, index }) => {
   };
 
   const launchScript = () => {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
+      toast.error(
+        <FormattedMessage
+          id="subscribed.notSusbcribed.NeedToDoIt.text"
+          defaultMessage="You need to subscribe to access this feature. You can do this {link}."
+          values={{
+            link: (
+              <Link to="/subscribe">
+                <FormattedMessage
+                  id="subscribed.notSusbcribed.NeedToDoIt.link"
+                  defaultMessage="here"
+                />
+              </Link>
+            ),
+          }}
+        />
+      );
+      return;
+    }
+
     //Check if user is connected to MKM
     if (!MKMAPI.isUserConnectedToMKM()) {
       setIsMKMModalDisplayed(true);
@@ -151,6 +172,99 @@ const ScriptLine = ({ script, history, index }) => {
       );
       return;
     }
+
+    const payload = {
+      formats: selectedFormats,
+      isTest: false,
+      locale: currentLang.locale,
+    };
+
+    // Launching the test script request
+    axios
+      .post(
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        payload
+      )
+      .then((resp) =>
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.launchReal.success"
+            defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
+          />
+        )
+      )
+      .catch((error) =>
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.launchReal.failure"
+            defaultMessage="The MKM script could not be launched. Please try later, or contact us if the problem persists."
+          />
+        )
+      );
+  };
+
+  const launchTest = () => {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
+      toast.error(
+        <FormattedMessage
+          id="subscribed.notSusbcribed.NeedToDoIt.text"
+          defaultMessage="You need to subscribe to access this feature. You can do this {link}."
+          values={{
+            link: (
+              <Link to="/subscribe">
+                <FormattedMessage
+                  id="subscribed.notSusbcribed.NeedToDoIt.link"
+                  defaultMessage="here"
+                />
+              </Link>
+            ),
+          }}
+        />
+      );
+      return;
+    }
+
+    //Check if user is connected to MKM
+    if (!MKMAPI.isUserConnectedToMKM()) {
+      setIsMKMModalDisplayed(true);
+      setIsTransparentDivDisplayed(true);
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkMKMConnection.failture"
+          defaultMessage="You are not connected to MKM. Please connect in order to launch a script."
+        />
+      );
+      return;
+    }
+
+    const payload = {
+      formats: selectedFormats,
+      isTest: true,
+      locale: currentLang.locale,
+    };
+
+    // Launching the test script request
+    axios
+      .post(
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        payload
+      )
+      .then((resp) =>
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.launchTest.success"
+            defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
+          />
+        )
+      )
+      .catch((error) =>
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.launchTest.failure"
+            defaultMessage="The test script could not be launched. Please try later, or contact us if the problem persists."
+          />
+        )
+      );
 
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
     console.log("Launch !");
@@ -233,6 +347,7 @@ const ScriptLine = ({ script, history, index }) => {
           color="primary"
           className={classes.testButton}
           size="large"
+          onClick={launchTest}
         >
           <FormattedMessage
             id="scriptLine.buttons.test"
