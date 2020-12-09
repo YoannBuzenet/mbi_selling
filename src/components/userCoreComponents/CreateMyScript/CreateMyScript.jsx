@@ -765,10 +765,17 @@ const CreateMyScript = ({ history }) => {
 
   const launchTest = () => {
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
+
     console.log("test !");
+    // Yooy
+    // axios launch
+    // notif confirmation
+    // ou notif error
   };
 
   const launchScript = () => {
+    //check if there is a one of the numerous "has incoherence" flag and notify if yes
+
     //Check if user is connected to MKM
     if (
       !MKMAPI.isUserConnectedToMKM(
@@ -788,6 +795,10 @@ const CreateMyScript = ({ history }) => {
 
     //check if there is a one of the numerous "has incoherence" flag and notify if yes
     console.log("Launch !");
+    // Yooy
+    // axios launch
+    // notif confirmation
+    // ou notif error
   };
 
   const ITEM_HEIGHT = 48;
