@@ -146,6 +146,7 @@
   "createMyScript.genericRules.playsetsAreNotTreated": "Playsets are not processed.",
   "createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated": "Cards with superior prices to these mentionned here are not processed.",
   "createMyScript.checkMKMConnection.failture": "You are not connected to MKM. Please connect in order to launch a script.",
+  "createMyScript.checkStateCoherence.failure": "There seems to be an error among the rules. Please check them.",
 
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Status",

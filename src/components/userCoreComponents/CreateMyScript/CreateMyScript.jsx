@@ -535,7 +535,12 @@ const CreateMyScript = ({ history }) => {
 
   const saveScriptAndCustomRules = async () => {
     if (canStateBeSaved(customRulesGlobalState) === false) {
-      toast.error("there's something in the state bro");
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkStateCoherence.failure"
+          defaultMessage="There seems to be an error among the rules. Please check them."
+        />
+      );
     } else {
       //POST SCRIPT IF IT HAS NO ID
       //GET DATA BACK PASS IT IN STATE
@@ -572,9 +577,6 @@ const CreateMyScript = ({ history }) => {
               formats: selectedFormats,
             }
           )
-          .then((resp) => {
-            console.log("ce .then sert à rien nan ?");
-          })
           .catch((err) => {
             console.log(err);
             console.log("erreur lors du patch script");
@@ -721,7 +723,7 @@ const CreateMyScript = ({ history }) => {
           }
         });
 
-        console.log("all our news rules", allNewRules);
+        // console.log("all our news rules", allNewRules);
 
         setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
         console.log("saved !");
@@ -764,7 +766,17 @@ const CreateMyScript = ({ history }) => {
   };
 
   const launchTest = () => {
-    //check if there is a one of the numerous "has incoherence" flag and notify if yes
+    if (canStateBeSaved(customRulesGlobalState) === false) {
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkStateCoherence.failure"
+          defaultMessage="There seems to be an error among the rules. Please check them."
+        />
+      );
+      return;
+    }
+
+    //check front is user subscribed
 
     console.log("test !");
     // Yooy
@@ -774,7 +786,17 @@ const CreateMyScript = ({ history }) => {
   };
 
   const launchScript = () => {
-    //check if there is a one of the numerous "has incoherence" flag and notify if yes
+    if (canStateBeSaved(customRulesGlobalState) === false) {
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkStateCoherence.failure"
+          defaultMessage="There seems to be an error among the rules. Please check them."
+        />
+      );
+      return;
+    }
+
+    //check front is user subscribed
 
     //Check if user is connected to MKM
     if (
