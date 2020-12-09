@@ -23,6 +23,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         validate: { isNumeric: true },
       },
+      had0MKMProducts: {
+        type: Sequelize.INTEGER,
+        validate: { isNumeric: true },
+        defaultValue: 0,
+      },
       eventualMKM_ErrorMessage: { type: Sequelize.STRING },
       lastIterationNumberWhenMKM_ErrorHappened: {
         type: Sequelize.INTEGER,

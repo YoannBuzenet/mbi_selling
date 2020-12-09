@@ -3,6 +3,16 @@ import { FormattedMessage } from "react-intl";
 
 const ScriptStatusCalculator = ({ isScriptRunning, savingState }) => {
   let status;
+  if (isScriptRunning === 1) {
+    status = (
+      <FormattedMessage
+        id="scriptLine.buttons.isRunning"
+        defaultMessage="Running"
+      />
+    );
+    return;
+  }
+
   switch (savingState) {
     case "saving": {
       status = (
