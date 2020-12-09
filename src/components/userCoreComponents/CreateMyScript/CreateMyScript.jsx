@@ -25,6 +25,7 @@ import Input from "@material-ui/core/Input";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
+import subscribeAPI from "../../../services/subscribeAPI";
 
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -776,7 +777,11 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    //check front is user subscribed
+    if (!subscribeAPI.isUserSubscribed()) {
+      //check front is user subscribed
+      // Yooy
+      return;
+    }
 
     console.log("test !");
     // Yooy
@@ -796,7 +801,11 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    //check front is user subscribed
+    if (!subscribeAPI.isUserSubscribed()) {
+      //check front is user subscribed
+      // Yooy
+      return;
+    }
 
     //Check if user is connected to MKM
     if (
