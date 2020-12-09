@@ -14,6 +14,7 @@ import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
 import MKMModalContext from "../context/mkmModalConnectionContext";
 import transparentDivContext from "../context/transparentDivContext";
+import AppLangContext from "../context/selectedAppLang";
 import axios from "axios";
 import { toast } from "react-toastify";
 import authAPI from "../services/authAPI";
@@ -21,6 +22,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { isMobile } from "react-device-detect";
 import MKMAPI from "../services/MKMAPI";
 import subscribeAPI from "../services/subscribeAPI";
+import ScriptStatusCalculator from "./ScriptStatutCalculator";
 
 const ScriptLine = ({ script, history, index }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -31,6 +33,9 @@ const ScriptLine = ({ script, history, index }) => {
 
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
+
+  //App Lang
+  const { currentLang } = useContext(AppLangContext);
 
   //Transparent Div Context
   const {
@@ -182,7 +187,7 @@ const ScriptLine = ({ script, history, index }) => {
     // Launching the test script request
     axios
       .post(
-        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${script.id}`,
         payload
       )
       .then((resp) =>
@@ -246,7 +251,7 @@ const ScriptLine = ({ script, history, index }) => {
     // Launching the test script request
     axios
       .post(
-        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${script.id}`,
         payload
       )
       .then((resp) =>
@@ -265,9 +270,6 @@ const ScriptLine = ({ script, history, index }) => {
           />
         )
       );
-
-    //check if there is a one of the numerous "has incoherence" flag and notify if yes
-    console.log("Launch !");
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -397,28 +399,10 @@ const ScriptLine = ({ script, history, index }) => {
         </FormControl>
       </Td>
       <Td className={isMobile && "marginHeight20px"}>
-        {savingState === "saving" && (
-          <span>
-            <FormattedMessage
-              id="scriptLine.buttons.saving"
-              defaultMessage="Saving..."
-            />
-          </span>
-        )}
-        {savingState === "saved" && (
-          <span>
-            <FormattedMessage
-              id="scriptLine.buttons.saved"
-              defaultMessage="Saved !"
-            />
-          </span>
-        )}
-        {!savingState && (
-          <FormattedMessage
-            id="scriptLine.buttons.upToDate"
-            defaultMessage="Up to date"
-          />
-        )}
+        <ScriptStatusCalculator
+          isScriptRunning={script.isRunning}
+          savingState={savingState}
+        />
       </Td>
     </Tr>
   );
