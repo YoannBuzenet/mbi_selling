@@ -19,8 +19,6 @@ const RegisterPage = ({ history }) => {
 
   const { currentLang, setCurrentLang } = useContext(SelectAppLangContext);
 
-  console.log(currentLang);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {

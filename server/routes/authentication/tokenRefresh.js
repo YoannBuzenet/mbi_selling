@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
 
     let shop = await db.User.findOne({
       where: {
-        idShop: loginOnMTGAPI.data.shop.id,
+        idShop: refreskTokenOnMTGAPI.data.shop.id,
       },
     });
 
