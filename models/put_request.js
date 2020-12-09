@@ -22,6 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     static markAsFinishedSuccessfully(id_put_request) {
       return PUT_Request.upsert({ id: id_put_request, isFinished: 1 });
     }
+
+    static markAsFinishedWith0MKMProducts(id_put_request) {
+      return PUT_Request.upsert({
+        id: id_put_request,
+        isFinished: 1,
+        had0MKMProducts: 1,
+      });
+    }
   }
   PUT_Request.init(
     {
@@ -40,6 +48,11 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
       },
       isFinished: {
+        type: DataTypes.INTEGER,
+        validate: { isNumeric: true },
+        defaultValue: 0,
+      },
+      had0MKMProducts: {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
         defaultValue: 0,

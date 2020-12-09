@@ -130,6 +130,7 @@
   "scriptLine.buttons.launch": "Launch",
   "scriptLine.buttons.saving": "Saving...",
   "scriptLine.buttons.saved": "Saved !",
+  "scriptLine.buttons.isRunning": "Running",
   "scriptLine.buttons.upToDate": "Up to date",
   "scriptline.select.formats.title": "Formats",
 

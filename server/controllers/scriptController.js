@@ -396,9 +396,19 @@ async function testScriptPersistingStep(
   //   `--------with a chunk of ${chunkSize}, we will iterate ${numberOfIterations} times, because we are handling ${numberOfCardsToHandle.count} cards.`
   // );
 
+  /* Shortcut to end the script */
   if (numberOfCardsToHandle.count === 0) {
     console.log("No MKM Product on this test script.");
+
     //TODO : mail qui explique que le stock contenait 0 cartes.
+    // Marking PUT Request as successful
+    await db.PUT_Request.markAsFinishedWith0MKMProducts(
+      put_request.dataValues.id
+    );
+
+    // Marking Script as available
+    await db.Script.markAsNotRunning(idScript);
+
     return;
   }
 
@@ -825,10 +835,19 @@ async function realScriptPersistingStep(
     },
     {}
   );
-
+  /* Shortcut to end the script */
   if (numberOfCardsToHandle.count === 0) {
     console.log("No MKM Product on this real script.");
     //TODO : mail qui explique que le stock contenait 0 cartes.
+
+    // Marking PUT Request as successful
+    await db.PUT_Request.markAsFinishedWith0MKMProducts(
+      put_request.dataValues.id
+    );
+
+    // Marking Script as available
+    await db.Script.markAsNotRunning(idScript);
+
     return;
   }
 
