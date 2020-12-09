@@ -189,5 +189,8 @@
   "settings.language": "Langue",
 
   "mail.sending.title.test": "Votre script de test a bien été éxécuté.",
-  "mail.sending.title.real": "Votre script a bien été éxécuté."
+  "mail.sending.title.real": "Votre script a bien été éxécuté.",
+
+  "subscribed.notSusbcribed.NeedToDoIt.text": "Vous devez vous abonner pour accéder à cette fonctionalité. Vous pouvez le faire {link}.",
+  "subscribed.notSusbcribed.NeedToDoIt.link": "sur ce lien"
 }

@@ -26,6 +26,7 @@ import Input from "@material-ui/core/Input";
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
 import subscribeAPI from "../../../services/subscribeAPI";
+import { Link } from "react-router-dom";
 
 const CreateMyScript = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -777,9 +778,25 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    if (!subscribeAPI.isUserSubscribed()) {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
       //check front is user subscribed
       // Yooy
+      toast.error(
+        <FormattedMessage
+          id="subscribed.notSusbcribed.NeedToDoIt.text"
+          defaultMessage="You need to subscribe to access this feature. You can do this {link}."
+          values={{
+            link: (
+              <Link to="/subscribe">
+                <FormattedMessage
+                  id="subscribed.notSusbcribed.NeedToDoIt.link"
+                  defaultMessage="here"
+                />
+              </Link>
+            ),
+          }}
+        />
+      );
       return;
     }
 
@@ -801,7 +818,7 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    if (!subscribeAPI.isUserSubscribed()) {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
       //check front is user subscribed
       // Yooy
       return;
@@ -925,6 +942,7 @@ const CreateMyScript = ({ history }) => {
               defaultMessage="Save"
             />
           </Button>
+
           <Button
             variant="contained"
             color="primary"
