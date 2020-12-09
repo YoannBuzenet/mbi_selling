@@ -135,7 +135,7 @@ async function registerStockFileIntoDB(shopId) {
   const path = "./shopStock/" + shopId + "/stock.csv";
 
   //Parameters customized for our CSV : separator is ; and there are dots in columns names that we don't want to interpret
-  csv({ delimiter: ";", flatKeys: true })
+  await csv({ delimiter: ";", flatKeys: true })
     .fromFile(path)
     .then(async (arrayOfCards) => {
       console.log(arrayOfCards);
