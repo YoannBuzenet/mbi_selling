@@ -40,7 +40,7 @@ async function snapshotShopParams(idShop, idPutRequest) {
   });
   //save current shop param in snapshot
 
-  const snaphotShopParams = await db.snapshot_params.create({
+  return db.snapshot_params.create({
     shopId: currentShopParams.dataValues.idShop,
     percentPerSigned: currentShopParams.dataValues.percentPerSigned,
     percentPerMintRegular: currentShopParams.dataValues.percentPerMintRegular,
@@ -79,8 +79,6 @@ async function snapshotShopParams(idShop, idPutRequest) {
       currentShopParams.dataValues.percentPerLangTraditionalChinese,
     PUT_Request_id: idPutRequest,
   });
-
-  return snaphotShopParams;
 }
 
 function transformArrayIntoDictionnaryWithKey(array, key = "id") {
