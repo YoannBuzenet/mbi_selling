@@ -24,6 +24,7 @@ mkmScriptsUpdateQueue.process(async function (job, done) {
     );
     console.log("script has finished");
   } catch (e) {
+    //TODO mail yoann avec l'erreur
     console.log("error in the script execution", e);
   }
 
