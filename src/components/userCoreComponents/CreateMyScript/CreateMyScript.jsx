@@ -197,16 +197,19 @@ const CreateMyScript = ({ history }) => {
     isCreationOrEditionMode === "Creation" ? defaultScriptName : ""
   );
 
-  let indexScript;
-  if (Boolean(idScript)) {
-    indexScript = authenticationInfos.userScripts.findIndex(
-      indexScript === idScript
-    );
-  }
-
   //This value is kept in state for creation mode, where we will need to set it before sending our rules.
   //With this we have this potential ID always in the same variable.
   const [idScript, setIdScript] = useState(match?.params?.id);
+
+  let indexScript;
+  if (Boolean(idScript)) {
+    indexScript = authenticationInfos.userScripts.findIndex(
+      (script) => script.id == idScript
+    );
+  }
+
+  console.log("indexScript", indexScript);
+  console.log("idScript", idScript);
 
   useEffect(() => {
     console.log("getting custom rules");
@@ -850,19 +853,19 @@ const CreateMyScript = ({ history }) => {
         );
 
         //Updating auth context with isRunning Info to 1
-
         const authContextCopy = { ...authenticationInfos };
         authContextCopy.userScripts[indexScript].isRunning = 1;
         setAuthenticationInfos(authContextCopy);
       })
-      .catch((error) =>
+      .catch((error) => {
+        console.log("error", error);
         toast.error(
           <FormattedMessage
             id="createMyScript.launchTest.failure"
             defaultMessage="The test script could not be launched. Please try later, or contact us if the problem persists."
           />
-        )
-      );
+        );
+      });
   };
 
   const launchScript = () => {
@@ -934,7 +937,6 @@ const CreateMyScript = ({ history }) => {
         );
 
         //Updating auth context with isRunning Info to 1
-
         const authContextCopy = { ...authenticationInfos };
         authContextCopy.userScripts[indexScript].isRunning = 1;
         setAuthenticationInfos(authContextCopy);
@@ -1053,7 +1055,8 @@ const CreateMyScript = ({ history }) => {
               onClick={launchTest}
               disabled={
                 indexScript
-                  ? authenticationInfos.userScripts[indexScript].isRunning === 1
+                  ? authenticationInfos?.userScripts?.[indexScript]
+                      ?.isRunning === 1
                   : false
               }
             >
@@ -1073,7 +1076,8 @@ const CreateMyScript = ({ history }) => {
               onClick={launchScript}
               disabled={
                 indexScript
-                  ? authenticationInfos.userScripts[indexScript].isRunning === 1
+                  ? authenticationInfos?.userScripts?.[indexScript]
+                      ?.isRunning === 1
                   : false
               }
             >

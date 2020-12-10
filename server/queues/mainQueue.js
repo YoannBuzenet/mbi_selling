@@ -1,6 +1,6 @@
 var Queue = require("bull");
 const { startScript } = require("../controllers/scriptController");
-const { db } = require("../../models/index");
+const db = require("../../models/index");
 
 // optimalbits.github.io/bull/
 
