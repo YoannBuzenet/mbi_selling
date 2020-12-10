@@ -1054,10 +1054,8 @@ const CreateMyScript = ({ history }) => {
               size="large"
               onClick={launchTest}
               disabled={
-                indexScript
-                  ? authenticationInfos?.userScripts?.[indexScript]
-                      ?.isRunning === 1
-                  : false
+                authenticationInfos?.userScripts?.[indexScript]?.isRunning ===
+                  1 || false
               }
             >
               <FormattedMessage
@@ -1075,10 +1073,8 @@ const CreateMyScript = ({ history }) => {
               size="large"
               onClick={launchScript}
               disabled={
-                indexScript
-                  ? authenticationInfos?.userScripts?.[indexScript]
-                      ?.isRunning === 1
-                  : false
+                authenticationInfos?.userScripts?.[indexScript]?.isRunning ===
+                  1 || false
               }
             >
               <FormattedMessage
