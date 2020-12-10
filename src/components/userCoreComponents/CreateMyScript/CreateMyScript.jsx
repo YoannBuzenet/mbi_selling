@@ -197,6 +197,13 @@ const CreateMyScript = ({ history }) => {
     isCreationOrEditionMode === "Creation" ? defaultScriptName : ""
   );
 
+  let indexScript;
+  if (Boolean(idScript)) {
+    indexScript = authenticationInfos.userScripts.findIndex(
+      indexScript === idScript
+    );
+  }
+
   //This value is kept in state for creation mode, where we will need to set it before sending our rules.
   //With this we have this potential ID always in the same variable.
   const [idScript, setIdScript] = useState(match?.params?.id);
@@ -783,6 +790,8 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
+    //Is user Subscribed to our service ?
+
     if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
       toast.error(
         <FormattedMessage
@@ -803,6 +812,23 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
+    //Check if user is connected to MKM
+    if (
+      !MKMAPI.isUserConnectedToMKM(
+        authenticationInfos?.shop?.ExpirationMkmToken
+      )
+    ) {
+      setIsMKMModalDisplayed(true);
+      setIsTransparentDivDisplayed(true);
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.checkMKMConnection.failture"
+          defaultMessage="You are not connected to MKM. Please connect in order to launch a script."
+        />
+      );
+      return;
+    }
+
     const payload = {
       formats: selectedFormats,
       isTest: true,
@@ -815,14 +841,20 @@ const CreateMyScript = ({ history }) => {
         `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
         payload
       )
-      .then((resp) =>
+      .then((resp) => {
         toast.success(
           <FormattedMessage
             id="createMyScript.launchTest.success"
             defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
           />
-        )
-      )
+        );
+
+        //Updating auth context with isRunning Info to 1
+
+        const authContextCopy = { ...authenticationInfos };
+        authContextCopy.userScripts[indexScript].isRunning = 1;
+        setAuthenticationInfos(authContextCopy);
+      })
       .catch((error) =>
         toast.error(
           <FormattedMessage
@@ -893,14 +925,20 @@ const CreateMyScript = ({ history }) => {
         `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
         payload
       )
-      .then((resp) =>
+      .then((resp) => {
         toast.success(
           <FormattedMessage
             id="createMyScript.launchReal.success"
             defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
           />
-        )
-      )
+        );
+
+        //Updating auth context with isRunning Info to 1
+
+        const authContextCopy = { ...authenticationInfos };
+        authContextCopy.userScripts[indexScript].isRunning = 1;
+        setAuthenticationInfos(authContextCopy);
+      })
       .catch((error) =>
         toast.error(
           <FormattedMessage
@@ -1013,6 +1051,11 @@ const CreateMyScript = ({ history }) => {
               className={"button-second-navbar " + classes.testButton}
               size="large"
               onClick={launchTest}
+              disabled={
+                indexScript
+                  ? authenticationInfos.userScripts[indexScript].isRunning === 1
+                  : false
+              }
             >
               <FormattedMessage
                 id="createMyScript.buttons.test"
@@ -1028,6 +1071,11 @@ const CreateMyScript = ({ history }) => {
               className={"button-second-navbar " + classes.launchButton}
               size="large"
               onClick={launchScript}
+              disabled={
+                indexScript
+                  ? authenticationInfos.userScripts[indexScript].isRunning === 1
+                  : false
+              }
             >
               <FormattedMessage
                 id="createMyScript.buttons.launch"
