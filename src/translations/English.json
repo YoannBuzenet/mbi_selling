@@ -166,6 +166,7 @@
   "app.MKMConnect.connected.logMtgInterface": "Log on MTG Interface",
   "app.MKMConnect.connected.sync": "Sync !",
   "app.MKMConnect.connected.notConnectedToMKM": "You are not connected to MKM.",
+  "app.MKMConnect.connected.PleaseConnectToMKM": "You are not connected to MKM. Please login again.",
 
   "customRules.price.from": "From",
   "customRules.price.to": "To",
