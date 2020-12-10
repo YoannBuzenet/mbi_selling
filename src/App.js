@@ -22,6 +22,7 @@ import LoginRenewOrLogOutContext from "./context/logAutoRenewOrLogout";
 import DefinitionsContext from "./context/definitionsContext";
 import MKMModalContext from "./context/mkmModalConnectionContext";
 import TransparentDivContext from "./context/transparentDivContext";
+import TimerScriptStatusCheck from "./context/timerScriptStatusCheck";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -111,10 +112,18 @@ function App() {
     false
   );
 
+  //STATE - Global timer that checks script status
+  const [checkStatusTimer, setCheckStatusTimer] = useState(false);
+
   //CONTEXT - Auto login/LogOut
   const ContextloginLogOut = {
     timers: timers,
     setTimers: setTimers,
+  };
+  //CONTEXT - Timer
+  const ContextTimer = {
+    checkStatusTimer: checkStatusTimer,
+    setCheckStatusTimer: setCheckStatusTimer,
   };
   //CONTEXT - Transparent Div
   const ContextTransparentDiv = {
@@ -226,57 +235,59 @@ function App() {
         <DefinitionsContext.Provider value={contextDefinitions}>
           <MKMModalContext.Provider value={contextMKMConnectionModal}>
             <TransparentDivContext.Provider value={ContextTransparentDiv}>
-              <Router>
-                {isTransparentDivDisplayed && <TransparentDiv />}
-                <ToastContainer
-                  autoClose={3000}
-                  position="bottom-left"
-                  hideProgressBar={true}
-                />
-                <NavbarWithRouter />
-                <Footer />
-                <Switch>
-                  <Route
-                    path="/login"
-                    render={({ match, history }) => (
-                      <LoginRenewOrLogOutContext.Provider
-                        value={ContextloginLogOut}
-                      >
-                        <LoginPage
-                          match={match}
-                          history={history}
-                          eraseAuthContext={eraseAuthContext}
-                          renewJWTToken={renewJWTToken}
-                        />
-                      </LoginRenewOrLogOutContext.Provider>
-                    )}
+              <TimerScriptStatusCheck.Provider value={ContextTimer}>
+                <Router>
+                  {isTransparentDivDisplayed && <TransparentDiv />}
+                  <ToastContainer
+                    autoClose={3000}
+                    position="bottom-left"
+                    hideProgressBar={true}
                   />
+                  <NavbarWithRouter />
+                  <Footer />
+                  <Switch>
+                    <Route
+                      path="/login"
+                      render={({ match, history }) => (
+                        <LoginRenewOrLogOutContext.Provider
+                          value={ContextloginLogOut}
+                        >
+                          <LoginPage
+                            match={match}
+                            history={history}
+                            eraseAuthContext={eraseAuthContext}
+                            renewJWTToken={renewJWTToken}
+                          />
+                        </LoginRenewOrLogOutContext.Provider>
+                      )}
+                    />
 
-                  <Route path="/register" component={RegisterPage} />
+                    <Route path="/register" component={RegisterPage} />
 
-                  <Route path="/usermail/reset" component={ResetMail} />
-                  <Route
-                    path="/usermail/setNewPassword/:challenge?"
-                    render={({ match, history }) => (
-                      <SetNewPassword match={match} history={history} />
-                    )}
-                  />
+                    <Route path="/usermail/reset" component={ResetMail} />
+                    <Route
+                      path="/usermail/setNewPassword/:challenge?"
+                      render={({ match, history }) => (
+                        <SetNewPassword match={match} history={history} />
+                      )}
+                    />
 
-                  <LoggedRouteRender
-                    path="/my-scripts/"
-                    component={AllMyScripts}
-                  />
-                  <LoggedRouteRender
-                    path="/edit-script/:id"
-                    component={CreateMyScript}
-                  />
-                  <LoggedRouteRender
-                    path="/create-script"
-                    component={CreateMyScript}
-                  />
-                  <LoggedRouteRender path="/settings" component={Settings} />
-                </Switch>
-              </Router>
+                    <LoggedRouteRender
+                      path="/my-scripts/"
+                      component={AllMyScripts}
+                    />
+                    <LoggedRouteRender
+                      path="/edit-script/:id"
+                      component={CreateMyScript}
+                    />
+                    <LoggedRouteRender
+                      path="/create-script"
+                      component={CreateMyScript}
+                    />
+                    <LoggedRouteRender path="/settings" component={Settings} />
+                  </Switch>
+                </Router>
+              </TimerScriptStatusCheck.Provider>
             </TransparentDivContext.Provider>
           </MKMModalContext.Provider>
         </DefinitionsContext.Provider>

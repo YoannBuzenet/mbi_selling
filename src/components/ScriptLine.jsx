@@ -55,11 +55,9 @@ const ScriptLine = ({ script, history, index }) => {
 
   const [savingState, setSavingState] = useState(null);
 
-  // console.log("saving state", savingState);
-
-  // console.log("authenticationInfos", authenticationInfos);
-
-  // console.log("selected formats", selectedFormats);
+  const indexScript = authenticationInfos.userScripts.findIndex(
+    (contextScript) => script.id == contextScript.id
+  );
 
   const handleChangeSelect = (event) => {
     setSavingState("saving");
@@ -196,14 +194,19 @@ const ScriptLine = ({ script, history, index }) => {
         `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${script.id}`,
         payload
       )
-      .then((resp) =>
+      .then((resp) => {
         toast.success(
           <FormattedMessage
             id="createMyScript.launchReal.success"
             defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
           />
-        )
-      )
+        );
+
+        //Updating auth context with isRunning Info to 1
+        const authContextCopy = { ...authenticationInfos };
+        authContextCopy.userScripts[indexScript].isRunning = 1;
+        setAuthenticationInfos(authContextCopy);
+      })
       .catch((error) =>
         toast.error(
           <FormattedMessage
@@ -264,14 +267,19 @@ const ScriptLine = ({ script, history, index }) => {
         `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${script.id}`,
         payload
       )
-      .then((resp) =>
+      .then((resp) => {
         toast.success(
           <FormattedMessage
             id="createMyScript.launchTest.success"
             defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
           />
-        )
-      )
+        );
+
+        //Updating auth context with isRunning Info to 1
+        const authContextCopy = { ...authenticationInfos };
+        authContextCopy.userScripts[indexScript].isRunning = 1;
+        setAuthenticationInfos(authContextCopy);
+      })
       .catch((error) =>
         toast.error(
           <FormattedMessage
