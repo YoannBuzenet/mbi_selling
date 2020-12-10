@@ -141,6 +141,7 @@
   "createMyScript.select.formats.title": "Formats",
   "createMyScript.columnTitles.regular": "Regular",
   "createMyScript.columnTitles.foil": "Foil",
+  "createMyScript.script.title.defaultName": "My new Script",
   "createMyScript.genericRules.title": "Generic Rules",
   "createMyScript.genericRules.signedCardAreNotTreated": "Signed cards are not processed.",
   "createMyScript.genericRules.alteredCardAreNotTreated": "Altered cards are not processed.",

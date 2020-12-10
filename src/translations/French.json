@@ -141,6 +141,7 @@
   "createMyScript.columnTitles.regular": "Regular",
   "createMyScript.columnTitles.foil": "Foil",
   "createMyScript.genericRules.title": "Regles génériques",
+  "createMyScript.script.title.defaultName": "Nouveau Script",
   "createMyScript.genericRules.signedCardAreNotTreated": "Les cartes signées ne sont pas traitées.",
   "createMyScript.genericRules.alteredCardAreNotTreated": "Les cartes altérées ne sont pas traitées.",
   "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",

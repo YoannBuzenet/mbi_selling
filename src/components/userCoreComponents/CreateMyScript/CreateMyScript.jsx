@@ -46,6 +46,8 @@ const CreateMyScript = ({ history }) => {
     setIsTransparentDivDisplayed,
   } = useContext(transparentDivContext);
 
+  const intl = useIntl();
+
   const [selectedFormats, setSelectedFormats] = useState(() => {
     //If we are in edition mode, we start from the formats aldready stored in the script
     if (match?.params?.id) {
@@ -77,8 +79,12 @@ const CreateMyScript = ({ history }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   // console.log("definitions", allDefinitions);
 
-  //TODO y
-  const defaultScriptName = "Nouveau Script à traduire";
+  const translatedDefaultScriptName = intl.formatMessage({
+    id: "createMyScript.script.title.defaultName",
+    defaultMessage: "My new Script",
+  });
+
+  const defaultScriptName = translatedDefaultScriptName;
 
   const defaultCreationState = {
     regular: [
@@ -1006,8 +1012,6 @@ const CreateMyScript = ({ history }) => {
   /* ******************** */
   /* *** TRANSLATIONS *** */
   /* ******************** */
-
-  const intl = useIntl();
 
   const formatSelectTitle = intl.formatMessage({
     id: "createMyScript.select.formats.title",
