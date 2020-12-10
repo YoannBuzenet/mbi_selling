@@ -29,6 +29,8 @@ const ScriptLine = ({ script, history, index }) => {
     AuthContext
   );
 
+  console.log("auth context from scriptline", authenticationInfos);
+
   const { allDefinitions } = useContext(AllDefinitionsContext);
 
   //MKM Modal Control
@@ -166,7 +168,11 @@ const ScriptLine = ({ script, history, index }) => {
     }
 
     //Check if user is connected to MKM
-    if (!MKMAPI.isUserConnectedToMKM()) {
+    if (
+      !MKMAPI.isUserConnectedToMKM(
+        authenticationInfos?.shop?.ExpirationMkmToken
+      )
+    ) {
       setIsMKMModalDisplayed(true);
       setIsTransparentDivDisplayed(true);
       toast.error(
@@ -230,7 +236,11 @@ const ScriptLine = ({ script, history, index }) => {
     }
 
     //Check if user is connected to MKM
-    if (!MKMAPI.isUserConnectedToMKM()) {
+    if (
+      !MKMAPI.isUserConnectedToMKM(
+        authenticationInfos?.shop?.ExpirationMkmToken
+      )
+    ) {
       setIsMKMModalDisplayed(true);
       setIsTransparentDivDisplayed(true);
       toast.error(

@@ -1,5 +1,6 @@
 var Queue = require("bull");
 const { startScript } = require("../controllers/scriptController");
+const { db } = require("../../models/index");
 
 // optimalbits.github.io/bull/
 
@@ -25,7 +26,10 @@ mkmScriptsUpdateQueue.process(async function (job, done) {
     console.log("script has finished");
   } catch (e) {
     //TODO mail yoann avec l'erreur
-    console.log("error in the script execution", e);
+
+    // Marking Script as available
+    await db.Script.markAsNotRunning(job.data.idScript);
+    console.error("error in the script execution", e);
   }
 
   done();
