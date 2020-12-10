@@ -282,10 +282,6 @@ function mkmConnexionStateCalculator(expirationToken) {
 }
 
 function isUserConnectedToMKM(ExpirationMkmToken) {
-  console.log(
-    "ExpirationMkmToken * 1000 - new Date().getTime() > 0",
-    ExpirationMkmToken * 1000 - new Date().getTime() > 0
-  );
   return ExpirationMkmToken * 1000 - new Date().getTime() > 0;
 }
 
