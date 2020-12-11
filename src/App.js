@@ -40,6 +40,8 @@ import CreateMyScript from "./components/userCoreComponents/CreateMyScript/Creat
 import definitionsAPI from "./services/definitionsAPI";
 import AllMyScripts from "./pages/AllMyScripts";
 import Settings from "./components/userCoreComponents/Settings/Settings";
+import Axios from "axios";
+import utils from "./services/utils";
 
 function App() {
   // STATE Creating the Authentication state
@@ -218,10 +220,28 @@ function App() {
   }
 
   const launchcheckStatusTimer = () => {
-    console.log("timer function has been called");
-    const checkScriptStatus = () => {
-      // take api resp and parse it and change auth context if needed
-      console.log("checking status...");
+    const checkScriptStatus = async () => {
+      // Getting updated script from the Express API
+      const userScripts = await Axios.get(
+        `/api/script/getByUserId?idUser=${authenticationInfos.user.id}`
+      );
+
+      // Sorting array script in a object to access data in constant time
+      const sortedScripts = utils.transformArrayIntoDictionnaryWithKey(
+        userScripts.data
+      );
+
+      let authContextCopy = { ...authenticationInfos };
+
+      // comparing our context with data from API to update or not scripts in our context
+      for (const ScriptInContext of authContextCopy.userScripts) {
+        if (sortedScripts.hasOwnProperty(ScriptInContext.id)) {
+          ScriptInContext.isRunning =
+            sortedScripts[ScriptInContext.id].isRunning;
+        }
+      }
+
+      setAuthenticationInfos(authContextCopy);
     };
 
     //Singleton - we want only one timer to run while user is logged
