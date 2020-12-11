@@ -62,6 +62,8 @@ function App() {
     } else {
       //Renew JWT token + setTimeout
       renewJWTToken();
+      //launch the check status setInterval that will poke API
+      launchcheckStatusTimer();
     }
   }, []);
 
@@ -113,7 +115,7 @@ function App() {
   );
 
   //STATE - Global timer that checks script status
-  const [checkStatusTimer, setCheckStatusTimer] = useState(false);
+  const [checkStatusTimer, setCheckStatusTimer] = useState(null);
 
   //CONTEXT - Auto login/LogOut
   const ContextloginLogOut = {
@@ -215,6 +217,23 @@ function App() {
     };
   }
 
+  const launchcheckStatusTimer = () => {
+    console.log("timer function has been called");
+    const checkScriptStatus = () => {
+      // take api resp and parse it and change auth context if needed
+      console.log("checking status...");
+    };
+
+    //Singleton - we want only one timer to run while user is logged
+    if (checkStatusTimer === null) {
+      setCheckStatusTimer(
+        setInterval(() => {
+          checkScriptStatus();
+        }, parseInt(process.env.REACT_APP_TIME_STATUS_CHECK))
+      );
+    }
+  };
+
   const eraseAuthContext = () => {
     setAuthenticationInfos({
       ...authenticationInfos,
@@ -257,6 +276,7 @@ function App() {
                             history={history}
                             eraseAuthContext={eraseAuthContext}
                             renewJWTToken={renewJWTToken}
+                            launchcheckStatusTimer={launchcheckStatusTimer}
                           />
                         </LoginRenewOrLogOutContext.Provider>
                       )}
