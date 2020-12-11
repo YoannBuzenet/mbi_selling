@@ -9,7 +9,12 @@ import CSSLoaderWaitingSpiral from "../components/loaders/CSSLoaderWaitingSpiral
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
-const LoginPage = ({ history, eraseAuthContext, renewJWTToken }) => {
+const LoginPage = ({
+  history,
+  eraseAuthContext,
+  renewJWTToken,
+  launchcheckStatusTimer,
+}) => {
   const { setAuthenticationInfos } = useContext(AuthContext);
   //Timers control for auto login renew or auto logout
   const { timers, setTimers } = useContext(LoginLogOutContext);
@@ -56,6 +61,9 @@ const LoginPage = ({ history, eraseAuthContext, renewJWTToken }) => {
         autoRenew: setTimeout(renewJWTToken, config.TIME_JWT_RENEW),
         autoLogOut: setTimeout(eraseAuthContext, config.TIME_TO_LOG_OUT),
       });
+
+      //launch the check status setInterval that will poke API
+      launchcheckStatusTimer();
 
       if (userData.user.roles.includes("ROLE_SHOP")) {
         history.replace("/my-scripts");
