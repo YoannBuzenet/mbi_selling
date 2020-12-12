@@ -1,8 +1,136 @@
 <html>
   <head>
     <title>Update your stock prices in one click</title>
+    <style>
+      :root {
+        --main-bg-color: coral;
+        --main-bg-color-darker: hsl(16, 90%, 66%);
+        --main-bg-color-almost: rgba(255, 127, 80, 0.9);
+        --main-bg-color-more: rgba(255, 127, 80, 0.7);
+        --main-bg-color-medium: rgba(255, 127, 80, 0.5);
+        --main-bg-color-weak: rgba(255, 127, 80, 0.3);
+        --background-color: #f9f9f9;
+        --border-radius-form-field: 8px;
+        --back-office-back-color: rgba(173, 216, 230, 0.8);
+      }
+
+      #root {
+        background-color: var(--background-color);
+      }
+
+      html {
+        font-size: 62.5%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: lightblue;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 70%;
+        margin: 0 auto;
+      }
+
+      p,
+      ul,
+      li,
+      div,
+      td {
+        font-size: 1.6rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      #root {
+        min-height: 100vh; /* will cover the 100% of viewport */
+        overflow: hidden;
+        display: block;
+        position: relative;
+        padding-bottom: 120px; /* height of the footer */
+      }
+
+      .classic-links {
+        margin: 1rem;
+        padding: 1rem;
+        text-decoration: none;
+        color: black;
+        border-radius: 50px;
+      }
+
+      .classic-links:hover {
+        background-color: var(--main-bg-color);
+        cursor: pointer;
+      }
+
+      nav {
+        background-color: white;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      }
+
+      nav > .container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .menu-links-left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-shop-link {
+        margin-right: 30px;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        z-index: 8;
+        width: 100%;
+        background-color: white;
+        min-height: 61px;
+      }
+
+      .navbar input[type="search"] {
+        border: 1px solid rgba(0, 0, 0, 0.5);
+      }
+
+      div.connect {
+        display: flex;
+      }
+
+      div.connect p {
+        padding-left: 2rem;
+      }
+
+      .margin-bottom {
+        margin-bottom: 7rem;
+      }
+    </style>
   </head>
   <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="menu-links-left">
+          <a href="/" class="logo-shop-link">
+            <img src="/shopLogo.png" />
+          </a>
+        </div>
+        <!-- Penser à ajouter le burger menu en responsive -->
+        <div class="not-connected-options">
+          <div class="connect">
+            <a class="classic-links">Subscribe</a>
+            <a class="classic-links">Register</a>
+            <a class="classic-links">Connect</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div className="margin-bottom"></div>
     <h1>Homepage for SSR</h1>
   </body>
 </html>
