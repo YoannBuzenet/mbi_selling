@@ -540,6 +540,9 @@ form.reset-password-form button {
   padding: 2rem;
   border: 1px solid lightgrey;
 }
+.planContainer > .planSubscribing:hover {
+  box-shadow: black 2px 1px;
+}
 .planContainer > .planSubscribing ul {
   margin: 0;
   padding: 2rem;
