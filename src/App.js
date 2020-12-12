@@ -27,6 +27,7 @@ import TimerScriptStatusCheck from "./context/timerScriptStatusCheck";
 //PAGES
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Subscribe from "./pages/Subscribe";
 
 //Components
 import LoggedRouteRender from "./components/LoggedRouteRender";
@@ -303,6 +304,7 @@ function App() {
                     />
 
                     <Route path="/register" component={RegisterPage} />
+                    <Route path="/subscribe" component={Subscribe} />
 
                     <Route path="/usermail/reset" component={ResetMail} />
                     <Route

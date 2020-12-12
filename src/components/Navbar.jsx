@@ -79,9 +79,9 @@ const Navbar = ({ history }) => {
       <nav className="navbar" style={adjustestyle}>
         <div className="container">
           <div className="menu-links-left">
-            <Link to="/" className="logo-shop-link">
+            <a href="/" className="logo-shop-link">
               <img src="/shopLogo.png" />
-            </Link>
+            </a>
             {/* <Link to="/" className="classic-links big-screen-info">
               Fantasy Sphere
             </Link> */}
@@ -149,6 +149,12 @@ const Navbar = ({ history }) => {
                           />
                         </li>
                       </Link> */}
+                      <Link className="classic-links" to="/subscribe">
+                        <FormattedMessage
+                          id="app.navbar.subscribe"
+                          defaultMessage={`Subscribe`}
+                        />
+                      </Link>
                       <Link
                         to="/settings"
                         className="toggle-menu-links"
@@ -196,6 +202,12 @@ const Navbar = ({ history }) => {
                     defaultMessage={`Stats`}
                   />
                 </Link> */}
+                <Link className="classic-links" to="/subscribe">
+                  <FormattedMessage
+                    id="app.navbar.subscribe"
+                    defaultMessage={`Subscribe`}
+                  />
+                </Link>
                 <Link className="classic-links" to="/register">
                   <FormattedMessage
                     id="app.navbar.register"
@@ -208,6 +220,7 @@ const Navbar = ({ history }) => {
                     defaultMessage={`Connect`}
                   />
                 </Link>
+
                 <AppLangChoice />
               </div>
             </div>
