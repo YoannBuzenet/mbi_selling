@@ -5,9 +5,12 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
-const axios = require("axios");
-const securityCheckAPI = require("./services/securityCheckAPI");
 const fs = require("fs");
+
+const pathToViews = path.join(__dirname, "views");
+
+app.set("views", pathToViews);
+app.set("view engine", "ejs");
 
 // Global variable
 global.__basedir = __dirname;
@@ -25,7 +28,7 @@ app.use("/api", require("./routes/api/index.js"));
 app.use("/authentication", require("./routes/authentication/index.js"));
 
 app.get("/", (req, res) => {
-  res.status(200).json("HomePage for SSR");
+  res.render("homepage");
 });
 
 // Serve the static files from the React app
