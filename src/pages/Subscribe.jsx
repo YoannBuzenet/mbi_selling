@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { useIntl, FormattedMessage } from "react-intl";
 
 const Subscribe = () => {
   const useStyles = makeStyles((theme) => ({
@@ -13,51 +14,111 @@ const Subscribe = () => {
 
   const classes = useStyles();
 
+  //Hook Intl to translate an attribute
+  const intl = useIntl();
+
+  /* ************************ */
+  /* ***** TRANSLATIONS ***** */
+  /* ************************ */
+  const translatedSubscribe = intl.formatMessage({
+    id: "app.subscribePage.button.subscribe",
+    defaultMessage: "Subscribe",
+  });
+
   return (
     <div>
-      <h1 className="front-title">Choose the best plan for your business</h1>
+      <h1 className="front-title">
+        <FormattedMessage
+          id="app.subscribePage.chooseYourPlan"
+          defaultMessage="Choose the best plan for your business"
+        />
+      </h1>
       <div className="planContainer">
         <div className="planSubscribing">
           <p className="price">
             <span className="number">49</span>
             <span className="currency">€</span>
           </p>
-          <p className="explaination">One Month</p>
+          <p className="explaination">
+            <FormattedMessage
+              id="app.subscribePage.oneMonth"
+              defaultMessage="One Month"
+            />
+          </p>
           <ul>
             <li>
-              <p>Unlimited price updates</p>
+              <p>
+                <FormattedMessage
+                  id="app.subscribePage.UnlimitedPriceUpdates"
+                  defaultMessage="Unlimited price updates"
+                />
+              </p>
             </li>
             <li>
-              <p>Customize your own scripts</p>
+              <p>
+                <FormattedMessage
+                  id="app.subscribePage.CustomizeYourOwnScripts"
+                  defaultMessage="Customize your own scripts"
+                />
+              </p>
             </li>
             <li>
-              <p>PDF summary of each modification</p>
+              <p>
+                <FormattedMessage
+                  id="app.subscribePage.PDFSummaryOfEachModification"
+                  defaultMessage="PDF summary of each modification"
+                />
+              </p>
             </li>
           </ul>
-          <Button variant="contained" color="primary" size="large">
-            Subscribe
-          </Button>
+          <div className={classes.root}>
+            <Button variant="contained" color="primary" size="large">
+              {translatedSubscribe}
+            </Button>
+          </div>
         </div>
         <div className="planSubscribing">
           <p className="price">
             <span className="number">29</span>
             <span className="currency">€</span>
           </p>
-          <p className="explaination">Three Month</p>
+          <p className="explaination">
+            <FormattedMessage
+              id="app.subscribePage.threeMonths"
+              defaultMessage="Three Month"
+            />
+          </p>
           <ul>
             <li>
-              <p>Unlimited price updates</p>
+              <p>
+                <FormattedMessage
+                  id="app.subscribePage.UnlimitedPriceUpdates"
+                  defaultMessage="Unlimited price updates"
+                />
+              </p>
             </li>
             <li>
-              <p>Customize your own scripts</p>
+              <p>
+                <FormattedMessage
+                  id="app.subscribePage.CustomizeYourOwnScripts"
+                  defaultMessage="Customize your own scripts"
+                />
+              </p>
             </li>
             <li>
-              <p>PDF summary of each modification</p>
+              <p>
+                <FormattedMessage
+                  id="app.subscribePage.PDFSummaryOfEachModification"
+                  defaultMessage="PDF summary of each modification"
+                />
+              </p>
             </li>
           </ul>
-          <Button variant="contained" color="primary" size="large">
-            Subscribe
-          </Button>
+          <div className={classes.root}>
+            <Button variant="contained" color="primary" size="large">
+              {translatedSubscribe}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
