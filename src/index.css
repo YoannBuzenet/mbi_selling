@@ -528,14 +528,47 @@ form.reset-password-form button {
 .planContainer {
   display: flex;
   justify-content: space-between;
-  width: 500px;
-  margin: auto;
+  width: 600px;
+  margin: 5rem auto;
 }
 
 .planContainer > .planSubscribing {
   width: 45%;
-  background-color: green;
+  background-color: white;
+  box-shadow: black 1px 1px;
   border-radius: 6px;
+  padding: 2rem;
+  border: 1px solid lightgrey;
+}
+.planContainer > .planSubscribing ul {
+  margin: 0;
+  padding: 2rem;
+}
+.planContainer > .planSubscribing ul li {
+  text-align: left;
+  margin-left: 1rem;
+}
+.planContainer > .planSubscribing ul li > p {
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.planSubscribing > .price {
+  position: relative;
+}
+
+.planSubscribing > .price > .number {
+  font-size: 6rem;
+}
+
+.planSubscribing > .price > .currency {
+  font-size: 2rem;
+  position: absolute;
+  top: 18px;
+}
+
+.planSubscribing > .explaination {
 }
 
 /**************************
