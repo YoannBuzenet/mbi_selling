@@ -57,6 +57,14 @@
   "app.LoginPage.toast.failure": "Login or password incorrect. Please try again.",
   "app.LoginPage.forgottePassword": "Forgot your password ?",
 
+  "app.subscribePage.chooseYourPlan": "Choose the best plan for your business",
+  "app.subscribePage.oneMonth": "One Month",
+  "app.subscribePage.threeMonths": "Three Months",
+  "app.subscribePage.button.subscribe": "Subscribe",
+  "app.subscribePage.UnlimitedPriceUpdates": "Unlimited price updates",
+  "app.subscribePage.CustomizeYourOwnScripts": "Customize your own scripts",
+  "app.subscribePage.PDFSummaryOfEachModification": "PDF summary of each modification",
+
   "app.loginOutdated.toast.failure": "You are not connected anymore. Please log again.",
 
   "app.ResetMail.title": "Forgot your password ?",

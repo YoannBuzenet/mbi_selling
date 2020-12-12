@@ -548,14 +548,20 @@ form.reset-password-form button {
   text-align: left;
   margin-left: 1rem;
 }
+.planContainer > .planSubscribing ul li::marker {
+  color: #3f51b5;
+}
 .planContainer > .planSubscribing ul li > p {
   padding: 0;
   margin: 0;
   margin-left: 1rem;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
 }
 
 .planSubscribing > .price {
   position: relative;
+  margin-bottom: 0;
 }
 
 .planSubscribing > .price > .number {
@@ -569,6 +575,8 @@ form.reset-password-form button {
 }
 
 .planSubscribing > .explaination {
+  margin-top: -5px;
+  font-size: 1.25rem;
 }
 
 /**************************
