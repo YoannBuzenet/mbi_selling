@@ -91,15 +91,11 @@ const LoginPage = ({
 
   return (
     <>
+      <h1 className="front-title">
+        <FormattedMessage id="app.LoginPage.title" defaultMessage={`Connect`} />
+      </h1>
       <div className="login-page">
         <div>
-          <h1>
-            <FormattedMessage
-              id="app.LoginPage.title"
-              defaultMessage={`Connect`}
-            />
-          </h1>
-
           <form action="" onSubmit={handleSubmit} className="login-form">
             <Field
               name="email"

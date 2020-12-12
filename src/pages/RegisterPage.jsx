@@ -101,7 +101,7 @@ const RegisterPage = ({ history }) => {
   return (
     <>
       <div className="container my-account">
-        <h1>
+        <h1 className="front-title">
           <FormattedMessage
             id="app.RegisterPage.title"
             defaultMessage={`Register`}
