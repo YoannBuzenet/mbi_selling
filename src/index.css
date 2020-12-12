@@ -111,6 +111,10 @@ h2 {
   margin-top: 0;
 }
 
+h1.front-title {
+  margin-top: 10rem;
+}
+
 #root {
   min-height: 100vh; /* will cover the 100% of viewport */
   overflow: hidden;
@@ -392,7 +396,7 @@ h2 {
 }
 
 .login-page > div {
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -519,8 +523,28 @@ form.reset-password-form button {
 }
 
 /**************************
+*******SUBSCRIBE PAGE******
+**************************/
+.planContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  margin: auto;
+}
+
+.planContainer > .planSubscribing {
+  width: 45%;
+  background-color: green;
+  border-radius: 6px;
+}
+
+/**************************
 *******REGISTER PAGE*******
 **************************/
+
+.container.my-account {
+}
+
 .RegisterLoader {
   margin-top: 30px;
 }
