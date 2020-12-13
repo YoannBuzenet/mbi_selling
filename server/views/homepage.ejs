@@ -17,12 +17,14 @@
       #root {
         background-color: var(--background-color);
       }
+      * {
+        box-sizing: border-box;
+      }
 
       html {
         font-size: 62.5%;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
       body {
@@ -110,6 +112,77 @@
       .margin-bottom {
         margin-bottom: 7rem;
       }
+
+      .arrow-menu.importedStyle {
+        top: 4px;
+      }
+      .current-app-lang {
+        position: relative;
+        width: 40px;
+        outline: none;
+      }
+
+      .flag-drop-down {
+        cursor: pointer;
+        padding: 3px;
+        background-color: var(--background-color);
+      }
+
+      .set-lang-choosing {
+        position: absolute;
+        top: 28px;
+        right: 8px;
+        left: 0;
+        box-shadow: 1px 1px 1px black;
+        z-index: 2;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      .set-lang-choosing .flag-drop-down:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      .current-app-lang img {
+        border-radius: 3px;
+        outline: none;
+      }
+
+      .current-lang-flag {
+        position: absolute;
+        cursor: pointer;
+        padding-right: 1rem;
+        top: 26px;
+        margin-left: 0px;
+      }
+
+      .arrow-app-lang {
+        position: absolute;
+        right: 0px;
+      }
+
+      div.lang-select-applevel {
+        width: 35px;
+        right: 12px;
+        left: -5px;
+        outline: none;
+      }
+
+      /* Arrow to toggle menu */
+      .arrow-menu {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        vertical-align: middle;
+        content: "";
+        border-top-style: solid;
+        border-top-width: 4px;
+        border-right: 4px solid transparent;
+        border-bottom: 0 solid transparent;
+        border-left: 4px solid transparent;
+        margin-left: 5px;
+      }
     </style>
   </head>
   <body>
@@ -123,14 +196,37 @@
         <!-- Penser à ajouter le burger menu en responsive -->
         <div class="not-connected-options">
           <div class="connect">
-            <a class="classic-links">Subscribe</a>
-            <a class="classic-links">Register</a>
-            <a class="classic-links">Connect</a>
+            <a class="classic-links" id="menu.navbar.subscribe">Subscribe</a>
+            <a class="classic-links" id="menu.navbar.register">Register</a>
+            <a class="classic-links" id="menu.navbar.connect">Connect</a>
+            <div class="current-app-lang">
+              <div class="current-lang-flag">
+                <img src="/flags/25X13/en.png" />
+                <span class="arrow-menu arrow-app-lang importedStyle"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </nav>
     <div className="margin-bottom"></div>
     <h1>Homepage for SSR</h1>
+    <script type="text/javascript">
+      const defaultPageLanguage = "en-US";
+      const translations = {
+        "menu.navbar.subscribe": {
+          "en-US": "Subscribe",
+          "fr-FR": "Tarifs",
+        },
+        "menu.navbar.register": {
+          "en-US": "Register",
+          "fr-FR": "S'enregistrer",
+        },
+        "menu.navbar.connect": {
+          "en-US": "Log in",
+          "fr-FR": "Se connecter",
+        },
+      };
+    </script>
   </body>
 </html>
