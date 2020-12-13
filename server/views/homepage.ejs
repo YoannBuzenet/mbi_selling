@@ -166,7 +166,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      background-color: var(--background-color)
+      background-color: var(--background-color);
+      display:none;
       }
 
       .arrow-app-lang {
@@ -211,12 +212,12 @@
             <a class="classic-links" id="menu.navbar.subscribe">Subscribe</a>
             <a class="classic-links" id="menu.navbar.register">Register</a>
             <a class="classic-links" id="menu.navbar.connect">Connect</a>
-            <div class="current-app-lang">
-              <div class="current-lang-flag">
+            <div class="current-app-lang" id="currentAppLanguage">
+              <div class="current-lang-flag" id="currengFlag">
                 <img src="/flags/25X13/en.png" />
                 <span class="arrow-menu arrow-app-lang importedStyle"></span>
                 <!-- Displaying all flags div -->
-                <div class="set-lang-choosing lang-select-applevel importedStyle">
+                <div class="set-lang-choosing lang-select-applevel importedStyle" id="displayingFlagsDiv">
                    <!-- One language -->
                    <div
                     class="flag-drop-down"
@@ -242,6 +243,23 @@
     <div className="margin-bottom"></div>
     <h1>Homepage for SSR</h1>
     <script type="text/javascript">
+
+
+      //Change lang app
+      const handleDisplayAllFlagsDiv = document.getElementById('currentAppLanguage').addEventListener('click', (event)=>{
+        //set lang in localstorage
+        console.log(event);
+
+        //Display div with all flags
+        if(document.getElementById('displayingFlagsDiv').style.display ==="flex"){
+          document.getElementById('displayingFlagsDiv').style.display ="none";
+        }
+        else{
+          document.getElementById('displayingFlagsDiv').style.display ="flex";
+        }
+      })
+
+
       const defaultPageLanguage = "en-US";
       const translations = {
         "menu.navbar.subscribe": {
