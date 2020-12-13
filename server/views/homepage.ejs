@@ -211,10 +211,10 @@
           <div class="connect">
             <a class="classic-links" id="menu.navbar.subscribe">Subscribe</a>
             <a class="classic-links" id="menu.navbar.register">Register</a>
-            <a class="classic-links" id="menu.navbar.connect">Connect</a>
+            <a class="classic-links" id="menu.navbar.connect">Log in</a>
             <div class="current-app-lang" id="currentAppLanguage">
               <div class="current-lang-flag" id="currengFlag">
-                <img src="/flags/25X13/en.png" />
+                <img src="/flags/25X13/en.png" id="currentlyDisplayedFlag"/>
                 <span class="arrow-menu arrow-app-lang importedStyle"></span>
                 <!-- Displaying all flags div -->
                 <div class="set-lang-choosing lang-select-applevel importedStyle" id="displayingFlagsDiv">
@@ -266,6 +266,7 @@
         console.log("je passe l'app en FR");
 
         //display the relevant flag in menu bar
+        document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/fr.png";
 
         //Get each text node and translate it
         translateHomePage("fr-FR");
@@ -279,7 +280,8 @@
       console.log("je passe l'app en EN");
 
       //display the relevant flag in menu bar
-
+      document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/en.png";
+      
       //Get each text node and translate it
         translateHomePage("en-US");
 
@@ -319,6 +321,14 @@
       };
 
       //TODO : boot the app on local storage OR in english by default
+      const langInLocalSorage = window.localStorage.getItem('appLang');
+      if(langInLocalSorage !== "en-US"){
+          //display the relevant flag in menu bar
+        document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/fr.png";
+
+        //Get each text node and translate it
+        translateHomePage("fr-FR");
+      }
     </script>
   </body>
 </html>
