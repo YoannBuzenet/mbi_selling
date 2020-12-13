@@ -124,7 +124,7 @@
 
       .flag-drop-down {
         cursor: pointer;
-        padding: 3px;
+        padding: 5px;
         background-color: var(--background-color);
       }
 
@@ -137,6 +137,7 @@
         z-index: 2;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
+        text-align: center;
       }
 
       .set-lang-choosing .flag-drop-down:last-child {
@@ -157,6 +158,17 @@
         margin-left: 0px;
       }
 
+      /* Floating div with flags */
+      .importedStyle.set-lang-choosing.lang-select-applevel{
+      line-height: 25px;
+      top: 18px;
+      height : 62px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      background-color: var(--background-color)
+      }
+
       .arrow-app-lang {
         position: absolute;
         right: 0px;
@@ -165,7 +177,7 @@
       div.lang-select-applevel {
         width: 35px;
         right: 12px;
-        left: -5px;
+        left: -3px;
         outline: none;
       }
 
@@ -203,6 +215,24 @@
               <div class="current-lang-flag">
                 <img src="/flags/25X13/en.png" />
                 <span class="arrow-menu arrow-app-lang importedStyle"></span>
+                <!-- Displaying all flags div -->
+                <div class="set-lang-choosing lang-select-applevel importedStyle">
+                   <!-- One language -->
+                   <div
+                    class="flag-drop-down"
+                  >
+                    <img
+                      src="/flags/25X13/fr.png"
+                    />
+                  </div>
+                   <!-- One language -->
+                  <div
+                    class="flag-drop-down"
+                  >
+                    <img
+                      src="/flags/25X13/en.png"
+                    />
+                  </div>
               </div>
             </div>
           </div>
