@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import BlackDivContext from "../context/blackDivModalContext";
-import CardDisplayOnPageContext from "../context/cardDisplayOnPageContext";
 import isResponsiveMenuDisplayedContext from "../context/menuDisplayedContext";
 import MKM_ModalContext from "../context/mkmModalConnectionContext";
 
@@ -10,9 +9,6 @@ import MKM_ModalContext from "../context/mkmModalConnectionContext";
 const BlackDiv = () => {
   //Black Div control
   const { setIsBlackDivModalDisplayed } = useContext(BlackDivContext);
-
-  //Card Display control
-  const { setCardDisplayInformation } = useContext(CardDisplayOnPageContext);
 
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKM_ModalContext);
@@ -26,7 +22,6 @@ const BlackDiv = () => {
     setIsResponsiveMenuDisplayed("deactivated");
     setIsBlackDivModalDisplayed("deactivated");
     setIsMKMModalDisplayed("deactivated");
-    setCardDisplayInformation({});
   };
 
   return (
