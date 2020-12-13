@@ -196,6 +196,160 @@
         border-left: 4px solid transparent;
         margin-left: 5px;
       }
+
+      .burgerMenuHomePage {
+        display :none;
+      }
+
+      @media only screen and (max-width: 1000px) {
+  div.connect {
+    display: none;
+  }
+  .not-connected-options {
+    display: flex;
+    align-items: center;
+  }
+  .burger-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 30px;
+    margin-right: 35px;
+  }
+
+  .burger-menu img {
+    width: 40px;
+  }
+  .responsive-basket-quantity {
+    position: absolute;
+    bottom: -4px;
+    right: -7px;
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+  }
+
+  .desktop_menu_options {
+    display: none;
+  }
+
+  .surname_responsive {
+    margin: 1rem;
+    font-size: 4rem;
+  }
+  .responsive_menu {
+    border-radius: 5px;
+    animation-duration: 0.25s;
+    animation-name: slidein1000;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .responsive_menu {
+    width: 40vw;
+  }
+  .responsive_menu {
+    animation-duration: 0.25s;
+    animation-name: slidein850;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .responsive_menu {
+    animation-duration: 0.25s;
+    animation-name: slidein750;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .big-screen-info {
+    display: none;
+  }
+
+  .responsive_menu {
+    animation-duration: 0.25s;
+    animation-name: slidein650;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .responsive_menu {
+    width: 50vw;
+  }
+  .responsive_menu {
+    animation-duration: 0.25s;
+    animation-name: slidein550;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .responsive_menu {
+    width: 60vw;
+    animation-duration: 0.25s;
+    animation-name: slidein500;
+  }
+  .margin-bottom {
+    margin-bottom: 9rem;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .responsive_menu {
+    animation-duration: 0.25s;
+    animation-name: slidein500;
+    height: 55vh;
+  }
+}
+
+@keyframes slidein1000 {
+  from {
+    right: -500%;
+  }
+
+  to {
+    right: 0%;
+  }
+}
+@keyframes slidein850 {
+  from {
+    right: -500%;
+  }
+
+  to {
+    right: 0%;
+  }
+}
+@keyframes slidein750 {
+  from {
+    right: -500%;
+  }
+
+  to {
+    right: 0;
+  }
+}
+@keyframes slidein650 {
+  from {
+    right: -500%;
+  }
+
+  to {
+    right: 0;
+  }
+}
+@keyframes slidein550 {
+  from {
+    right: -500%;
+  }
+
+  to {
+    right: 0;
+  }
+}
+@keyframes slidein500 {
+  from {
+    right: -500%;
+  }
+
+  to {
+    right: 0;
+  }
+}
     </style>
   </head>
   <body>
@@ -208,6 +362,9 @@
         </div>
         <!-- Penser à ajouter le burger menu en responsive -->
         <div class="not-connected-options">
+          <div class="burger-menu burgerMenuHomePage">
+            <img src="/pictures/burger-menu.png" alt="" />
+         </div>
           <div class="connect">
             <a class="classic-links" id="menu.navbar.subscribe" href="/subscribe">Subscribe</a>
             <a class="classic-links" id="menu.navbar.register" href="/register">Register</a>
