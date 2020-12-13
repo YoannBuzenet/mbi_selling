@@ -221,6 +221,7 @@
                    <!-- One language -->
                    <div
                     class="flag-drop-down"
+                    id="fr-flag-button"
                   >
                     <img
                       src="/flags/25X13/fr.png"
@@ -229,6 +230,7 @@
                    <!-- One language -->
                   <div
                     class="flag-drop-down"
+                    id="en-flag-button"
                   >
                     <img
                       src="/flags/25X13/en.png"
@@ -259,6 +261,38 @@
         }
       })
 
+      //Pass app lang to french
+      const passAppToFrench = document.getElementById("fr-flag-button").addEventListener('click', (event) =>{
+        console.log("je passe l'app en FR");
+
+        //display the relevant flag in menu bar
+
+        //Get each text node and translate it
+        translateHomePage("fr-FR");
+
+        //Local storage
+        window.localStorage.setItem("appLang","fr-FR");
+      })
+
+      //Pass app lang to english
+      const passAppToEnglish = document.getElementById("en-flag-button").addEventListener('click', (event) =>{
+      console.log("je passe l'app en EN");
+
+      //display the relevant flag in menu bar
+
+      //Get each text node and translate it
+        translateHomePage("en-US");
+
+      //Local storage
+      window.localStorage.setItem("appLang","en-US");
+      })
+
+     
+
+      const langToLocaleDictionnary = {
+        fr : "fr-FR",
+        en : "en-US"
+      }
 
       const defaultPageLanguage = "en-US";
       const translations = {
@@ -275,6 +309,16 @@
           "fr-FR": "Se connecter",
         },
       };
+
+       function translateHomePage(language="en-US"){
+        //  Menu
+        document.getElementById("menu.navbar.subscribe").textContent=translations["menu.navbar.subscribe"][language];
+        document.getElementById("menu.navbar.register").textContent=translations["menu.navbar.register"][language];
+        document.getElementById("menu.navbar.connect").textContent=translations["menu.navbar.connect"][language];
+
+      };
+
+      //TODO : boot the app on local storage OR in english by default
     </script>
   </body>
 </html>
