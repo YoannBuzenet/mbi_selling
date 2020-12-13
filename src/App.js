@@ -23,6 +23,7 @@ import DefinitionsContext from "./context/definitionsContext";
 import MKMModalContext from "./context/mkmModalConnectionContext";
 import TransparentDivContext from "./context/transparentDivContext";
 import TimerScriptStatusCheck from "./context/timerScriptStatusCheck";
+import isResponsiveMenuDisplayedContext from "./context/menuDisplayedContext";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -36,6 +37,7 @@ import Footer from "./components/Footer";
 import ResetMail from "./components/ResetMail";
 import SetNewPassword from "./components/SetNewPassword";
 import TransparentDiv from "./components/TransparentDiv";
+import BurgerMenuCustomerComponents from "./components/BurgerMenuCustomerComponents";
 
 import CreateMyScript from "./components/userCoreComponents/CreateMyScript/CreateMyScript";
 import definitionsAPI from "./services/definitionsAPI";
@@ -117,6 +119,11 @@ function App() {
     false
   );
 
+  //STATE - Check if responsive Menu is displayed
+  const [isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed] = useState(
+    "deactivated"
+  );
+
   //STATE - Global timer that checks script status
   const [checkStatusTimer, setCheckStatusTimer] = useState(null);
 
@@ -134,6 +141,12 @@ function App() {
   const ContextTransparentDiv = {
     isTransparentDivDisplayed: isTransparentDivDisplayed,
     setIsTransparentDivDisplayed: setIsTransparentDivDisplayed,
+  };
+
+  //CONTEXT CREATION - Is Responsive Menu Displayed
+  const contextResponsiveMenuDisplayed = {
+    isResponsiveMenuDisplayed: isResponsiveMenuDisplayed,
+    setIsResponsiveMenuDisplayed: setIsResponsiveMenuDisplayed,
   };
 
   // CONTEXT CREATION Passing Authentication state in Context
@@ -264,6 +277,9 @@ function App() {
     AuthAPI.logout();
   };
   const NavbarWithRouter = withRouter(Navbar);
+  const BurgerMenuCustomerComponentsWithRouter = withRouter(
+    BurgerMenuCustomerComponents
+  );
 
   return (
     <div
@@ -276,59 +292,72 @@ function App() {
           <MKMModalContext.Provider value={contextMKMConnectionModal}>
             <TransparentDivContext.Provider value={ContextTransparentDiv}>
               <TimerScriptStatusCheck.Provider value={ContextTimer}>
-                <Router>
-                  {isTransparentDivDisplayed && <TransparentDiv />}
-                  <ToastContainer
-                    autoClose={3000}
-                    position="bottom-left"
-                    hideProgressBar={true}
-                  />
-                  <NavbarWithRouter />
-                  <Footer />
-                  <Switch>
-                    <Route
-                      path="/login"
-                      render={({ match, history }) => (
-                        <LoginRenewOrLogOutContext.Provider
-                          value={ContextloginLogOut}
-                        >
-                          <LoginPage
-                            match={match}
-                            history={history}
-                            eraseAuthContext={eraseAuthContext}
-                            renewJWTToken={renewJWTToken}
-                            launchcheckStatusTimer={launchcheckStatusTimer}
-                          />
-                        </LoginRenewOrLogOutContext.Provider>
-                      )}
-                    />
+                <isResponsiveMenuDisplayedContext.Provider
+                  value={contextResponsiveMenuDisplayed}
+                >
+                  <Router>
+                    {isTransparentDivDisplayed && <TransparentDiv />}
 
-                    <Route path="/register" component={RegisterPage} />
-                    <Route path="/subscribe" component={Subscribe} />
+                    {/* Burger menu */}
+                    {isResponsiveMenuDisplayed === "activated" && (
+                      <BurgerMenuCustomerComponentsWithRouter />
+                    )}
 
-                    <Route path="/usermail/reset" component={ResetMail} />
-                    <Route
-                      path="/usermail/setNewPassword/:challenge?"
-                      render={({ match, history }) => (
-                        <SetNewPassword match={match} history={history} />
-                      )}
+                    <ToastContainer
+                      autoClose={3000}
+                      position="bottom-left"
+                      hideProgressBar={true}
                     />
+                    <NavbarWithRouter />
+                    <Footer />
+                    <Switch>
+                      <Route
+                        path="/login"
+                        render={({ match, history }) => (
+                          <LoginRenewOrLogOutContext.Provider
+                            value={ContextloginLogOut}
+                          >
+                            <LoginPage
+                              match={match}
+                              history={history}
+                              eraseAuthContext={eraseAuthContext}
+                              renewJWTToken={renewJWTToken}
+                              launchcheckStatusTimer={launchcheckStatusTimer}
+                            />
+                          </LoginRenewOrLogOutContext.Provider>
+                        )}
+                      />
 
-                    <LoggedRouteRender
-                      path="/my-scripts/"
-                      component={AllMyScripts}
-                    />
-                    <LoggedRouteRender
-                      path="/edit-script/:id"
-                      component={CreateMyScript}
-                    />
-                    <LoggedRouteRender
-                      path="/create-script"
-                      component={CreateMyScript}
-                    />
-                    <LoggedRouteRender path="/settings" component={Settings} />
-                  </Switch>
-                </Router>
+                      <Route path="/register" component={RegisterPage} />
+                      <Route path="/subscribe" component={Subscribe} />
+
+                      <Route path="/usermail/reset" component={ResetMail} />
+                      <Route
+                        path="/usermail/setNewPassword/:challenge?"
+                        render={({ match, history }) => (
+                          <SetNewPassword match={match} history={history} />
+                        )}
+                      />
+
+                      <LoggedRouteRender
+                        path="/my-scripts/"
+                        component={AllMyScripts}
+                      />
+                      <LoggedRouteRender
+                        path="/edit-script/:id"
+                        component={CreateMyScript}
+                      />
+                      <LoggedRouteRender
+                        path="/create-script"
+                        component={CreateMyScript}
+                      />
+                      <LoggedRouteRender
+                        path="/settings"
+                        component={Settings}
+                      />
+                    </Switch>
+                  </Router>
+                </isResponsiveMenuDisplayedContext.Provider>
               </TimerScriptStatusCheck.Provider>
             </TransparentDivContext.Provider>
           </MKMModalContext.Provider>

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/authContext";
-import SellingBasketContext from "../context/sellingBasket";
 import authAPI from "../services/authAPI";
 import { toast } from "react-toastify";
 import BlackDivContext from "../context/blackDivModalContext";
@@ -14,9 +13,6 @@ const BurgerMenuCustomerComponents = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
-
-  //Current Selling Request Basket
-  const { currentBasket } = useContext(SellingBasketContext);
 
   //Black Div control
   const { setIsBlackDivModalDisplayed } = useContext(BlackDivContext);
@@ -89,13 +85,6 @@ const BurgerMenuCustomerComponents = ({ history }) => {
                     id="app.burgerMenu.customer.mySellRequest"
                     defaultMessage={`Sell Request`}
                   />
-                  (
-                  <span className="buying-total">
-                    {currentBasket.reduce((total, card) => {
-                      return total + card.quantity;
-                    }, 0)}
-                  </span>
-                  )
                 </li>
               </Link>
 
@@ -168,13 +157,6 @@ const BurgerMenuCustomerComponents = ({ history }) => {
                 id="app.burgerMenu.customer.mySellRequest"
                 defaultMessage={`Sell Request`}
               />
-              (
-              <span className="buying-total">
-                {currentBasket.reduce((total, card) => {
-                  return total + card.quantity;
-                }, 0)}
-              </span>
-              )
             </Link>
             <Link
               className="classic_links_responsive"
