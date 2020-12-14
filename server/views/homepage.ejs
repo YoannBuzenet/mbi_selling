@@ -426,6 +426,50 @@
         right: 0;
       }
     }
+
+    /**************************
+    *********FOOTER***********
+    **************************/
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 100px;
+      border-top: 1px solid lightgrey;
+      background-color: var(--background-color);
+      z-index: 1;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      .footer {
+        height: 200px;
+      }
+    }
+    @media only screen and (max-width: 850px) {
+      .footer {
+        height: 300px;
+      }
+      .footer-container {
+        flex-direction: column;
+      }
+    }
+
     </style>
   </head>
   <body>
@@ -512,6 +556,21 @@
          <div class="container">
               <h1>Homepage for SSR</h1>
           </div>
+
+          <!-- <Footer> -->
+        <footer class="footer">
+          <div class="footer-container container">
+            <div>
+              <p>
+                <a href="/buyingClauses">d</a>
+              </p>
+            </div>
+            <div>
+              <p class="small-text"></p>
+            </div>
+          </div>
+        </footer>
+        <!-- </Footer> -->
 
     
     <script type="text/javascript">
