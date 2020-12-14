@@ -477,26 +477,25 @@
       <div class="responsive_menu" id="responsive_menu">
         <div class="not_connected_options_responsive">
           <div class="connection">
-            <a class="classic_links_responsive" href="/register" >
-              Register</a>
-            <a class="classic_links_responsive" href="/login">
-              Connect</a>
+            <a class="classic_links_responsive" href="/register" id="menu.navbar.subscribeResponsive">Subscribe</a>
+            <a class="classic_links_responsive" href="/register" id="menu.navbar.registerResponsive">Register</a>
+            <a class="classic_links_responsive" href="/login" id="menu.navbar.connectResponsive">Connect</a>
               <div class="burgerMenuCustomer-select-lang">
-                <div class="current-app-lang" id="currentAppLanguage">
-                  <div class="current-lang-flag" id="currengFlag">
-                    <img src="/flags/25X13/en.png" id="currentlyDisplayedFlag"/>
+                <div class="current-app-lang" id="currentAppLanguageResponsive">
+                  <div class="current-lang-flag" id="currengFlagResponsive">
+                    <img src="/flags/25X13/en.png" id="currentlyDisplayedFlagResponsive"/>
                     <span class="arrow-menu arrow-app-lang importedStyle"></span>
 
                       <!-- Displaying all flags div -->
-                      <div class="set-lang-choosing lang-select-applevel importedStyle" id="displayingFlagsDiv">
+                      <div class="set-lang-choosing lang-select-applevel importedStyle" id="displayingFlagsDivResponsive">
                         
                         <!-- One language -->
-                        <div class="flag-drop-down" id="fr-flag-button">
+                        <div class="flag-drop-down" id="fr-flag-buttonResponsive">
                             <img src="/flags/25X13/fr.png"/>
                         </div>
 
                         <!-- One language -->
-                        <div class="flag-drop-down" id="en-flag-button">
+                        <div class="flag-drop-down" id="en-flag-buttonResponsive">
                           <img src="/flags/25X13/en.png" />
                         </div>
                     </div>
@@ -591,6 +590,51 @@
       window.localStorage.setItem("appLang","en-US");
       })
 
+
+      //App translation in responsive
+
+       //Change lang app Responsive
+      const handleDisplayAllFlagsDivResponsive = document.getElementById('currentAppLanguageResponsive').addEventListener('click', (event)=>{
+        //set lang in localstorage
+        console.log(event);
+
+        //Display div with all flags
+        if(document.getElementById('displayingFlagsDivResponsive').style.display ==="flex"){
+          document.getElementById('displayingFlagsDivResponsive').style.display ="none";
+        }
+        else{
+          document.getElementById('displayingFlagsDivResponsive').style.display ="flex";
+        }
+      })
+
+      //Pass app lang to french
+      const passAppToFrenchResponsive = document.getElementById("fr-flag-buttonResponsive").addEventListener('click', (event) =>{
+        console.log("je passe l'app en FR");
+
+        //display the relevant flag in menu bar
+        document.getElementById("currentlyDisplayedFlagResponsive").src="/flags/25X13/fr.png";
+
+        //Get each text node and translate it
+        translateHomePage("fr-FR");
+
+        //Local storage
+        window.localStorage.setItem("appLang","fr-FR");
+      })
+
+      //Pass app lang to english
+      const passAppToEnglishResponsive = document.getElementById("en-flag-buttonResponsive").addEventListener('click', (event) =>{
+      console.log("je passe l'app en EN");
+
+      //display the relevant flag in menu bar
+      document.getElementById("currentlyDisplayedFlagResponsive").src="/flags/25X13/en.png";
+      
+      //Get each text node and translate it
+        translateHomePage("en-US");
+
+      //Local storage
+      window.localStorage.setItem("appLang","en-US");
+      })
+
      
 
       const langToLocaleDictionnary = {
@@ -612,6 +656,18 @@
           "en-US": "Log in",
           "fr-FR": "Se connecter",
         },
+        "menu.navbar.subscribeResponsive": {
+          "en-US": "Subscribe",
+          "fr-FR": "Tarifs",
+        },
+        "menu.navbar.registerResponsive": {
+          "en-US": "Register",
+          "fr-FR": "S'inscrire",
+        },
+        "menu.navbar.connectResponsive": {
+          "en-US": "Log in",
+          "fr-FR": "Se connecter",
+        },
       };
 
        function translateHomePage(language="en-US"){
@@ -620,7 +676,11 @@
         document.getElementById("menu.navbar.register").textContent=translations["menu.navbar.register"][language];
         document.getElementById("menu.navbar.connect").textContent=translations["menu.navbar.connect"][language];
 
-        //TODO translate responsive menu
+        //responsive menu
+
+         document.getElementById("menu.navbar.subscribeResponsive").textContent=translations["menu.navbar.subscribeResponsive"][language];
+        document.getElementById("menu.navbar.registerResponsive").textContent=translations["menu.navbar.registerResponsive"][language];
+        document.getElementById("menu.navbar.connectResponsive").textContent=translations["menu.navbar.connectResponsive"][language];
 
       };
 
