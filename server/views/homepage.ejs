@@ -58,6 +58,7 @@
 
       /* Black Div */
       .blackDiv {
+        display : none;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -230,6 +231,7 @@
       /* Responsive Menu */
       .responsive_menu {
         position: fixed;
+        display : none;
         top: 8rem;
         bottom: 0;
         height: 45vh;
@@ -429,7 +431,7 @@
   <body>
 
     <!-- Black Div -->
-    <div class="blackDiv"></div>
+    <div class="blackDiv" id="blackDiv"></div>
 
     <nav class="navbar">
       <div class="container">
@@ -439,7 +441,7 @@
           </a>
         </div>
         <div class="not-connected-options">
-            <div class="burger-menu burgerMenuHomePage">
+            <div class="burger-menu burgerMenuHomePage" id="burgerMenuImageResponsive">
               <img src="/pictures/burger-menu.png" alt="" />
             </div>
           <div class="connect">
@@ -472,7 +474,7 @@
     <div class="margin-bottom"></div>
 
     <!-- <Menu Responsive> -->
-      <div class="responsive_menu">
+      <div class="responsive_menu" id="responsive_menu">
         <div class="not_connected_options_responsive">
           <div class="connection">
             <a class="classic_links_responsive" href="/register" >
@@ -507,8 +509,45 @@
       </div>
         <!-- </Menu Responsive> -->
 
-    <h1>Homepage for SSR</h1>
+        <!-- <Main> -->
+         <div class="container">
+              <h1>Homepage for SSR</h1>
+          </div>
+
+    
     <script type="text/javascript">
+
+    // Black Div
+    
+    const blackDivTrigger = document.getElementById('blackDiv').addEventListener('click', (event)=>{
+        //set lang in localstorage
+        console.log(event);
+
+        //Display div with all flags
+        if(document.getElementById('blackDiv').style.display ==="inline-block"){
+          document.getElementById('blackDiv').style.display ="none";
+          document.getElementById('responsive_menu').style.display ="none";
+        }
+        else{
+          document.getElementById('blackDiv').style.display ="inline-block";
+          document.getElementById('responsive_menu').style.display ="inline-block";
+        }
+      })
+
+    const responveiMenuTriggerAppearance = document.getElementById('burgerMenuImageResponsive').addEventListener('click', (event)=>{
+        //set lang in localstorage
+        console.log(event);
+
+        //Display div with all flags
+        if(document.getElementById('responsive_menu').style.display ==="inline-block"){
+          document.getElementById('blackDiv').style.display ="none";
+          document.getElementById('responsive_menu').style.display ="none";
+        }
+        else{
+          document.getElementById('responsive_menu').style.display ="inline-block";
+          document.getElementById('blackDiv').style.display ="inline-block";
+        }
+      })
 
       //Change lang app
       const handleDisplayAllFlagsDiv = document.getElementById('currentAppLanguage').addEventListener('click', (event)=>{
