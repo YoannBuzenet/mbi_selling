@@ -201,49 +201,86 @@
         display :none;
       }
 
-      @media only screen and (max-width: 1000px) {
-  div.connect {
-    display: none;
-  }
-  .not-connected-options {
-    display: flex;
-    align-items: center;
-  }
-  .burger-menu {
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: 30px;
-    margin-right: 35px;
-  }
+      /* Responsive Menu */
+      .responsive_menu {
+        position: fixed;
+        top: 8rem;
+        bottom: 0;
+        height: 45vh;
+        width: 30vw;
+        right: 0;
+        background-color: white;
+        z-index: 5;
+      }
 
-  .burger-menu img {
-    width: 40px;
-  }
-  .responsive-basket-quantity {
-    position: absolute;
-    bottom: -4px;
-    right: -7px;
-    background-color: red;
-    border-radius: 50%;
-    width: 20px;
-  }
+      .authenticated-menu {
+        height: 70vh;
+      }
 
-  .desktop_menu_options {
-    display: none;
-  }
+      .divider {
+        display: block;
+        width: 65%;
+        margin: auto;
+      }
+      .classic_links_responsive {
+      text-decoration: none;
+      color: black;
+      display: block;
+      text-align: center;
+      padding: 3rem 0;
+      margin-left: 0;
+    }
 
-  .surname_responsive {
-    margin: 1rem;
-    font-size: 4rem;
-  }
-  .responsive_menu {
-    border-radius: 5px;
-    animation-duration: 0.25s;
-    animation-name: slidein1000;
-  }
+    .burgerMenuCustomer-select-lang {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
 }
+
+      @media only screen and (max-width: 1000px) {
+      div.connect {
+        display: none;
+      }
+      .not-connected-options {
+        display: flex;
+        align-items: center;
+      }
+      .burger-menu {
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 30px;
+        margin-right: 35px;
+      }
+
+      .burger-menu img {
+        width: 40px;
+      }
+      .responsive-basket-quantity {
+        position: absolute;
+        bottom: -4px;
+        right: -7px;
+        background-color: red;
+        border-radius: 50%;
+        width: 20px;
+      }
+
+      .desktop_menu_options {
+        display: none;
+      }
+
+      .surname_responsive {
+        margin: 1rem;
+        font-size: 4rem;
+      }
+      .responsive_menu {
+        border-radius: 5px;
+        animation-duration: 0.25s;
+        animation-name: slidein1000;
+      }
+    }
 @media only screen and (max-width: 850px) {
   .responsive_menu {
     width: 40vw;
@@ -360,7 +397,6 @@
             <img src="/shopLogo.png" />
           </a>
         </div>
-        <!-- Penser à ajouter le burger menu en responsive -->
         <div class="not-connected-options">
           <div class="burger-menu burgerMenuHomePage">
             <img src="/pictures/burger-menu.png" alt="" />
@@ -399,7 +435,42 @@
         </div>
       </div>
     </nav>
-    <div className="margin-bottom"></div>
+    <div class="margin-bottom"></div>
+
+    <!-- <Menu Responsive> -->
+      <div class="responsive_menu">
+        <div class="not_connected_options_responsive">
+          <div class="connection">
+            <a class="classic_links_responsive" href="/register" >
+              Register</a>
+            <a class="classic_links_responsive" href="/login">
+              Connect</a>
+              <div class="burgerMenuCustomer-select-lang">
+                <div class="current-app-lang" id="currentAppLanguage">
+                <div class="current-lang-flag" id="currengFlag">
+                  <img src="/flags/25X13/en.png" id="currentlyDisplayedFlag"/>
+                  <span class="arrow-menu arrow-app-lang importedStyle"></span>
+                  <!-- Displaying all flags div -->
+                    <div class="set-lang-choosing lang-select-applevel importedStyle" id="displayingFlagsDiv">
+                      
+                      <!-- One language -->
+                      <div class="flag-drop-down" id="fr-flag-button">
+                          <img src="/flags/25X13/fr.png"/>
+                      </div>
+
+                      <!-- One language -->
+                      <div class="flag-drop-down" id="en-flag-button">
+                        <img src="/flags/25X13/en.png" />
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div></div>
+        <!-- </Menu Responsive> -->
+
     <h1>Homepage for SSR</h1>
     <script type="text/javascript">
 
