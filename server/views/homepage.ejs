@@ -688,15 +688,23 @@
 
       };
 
-      //TODO : boot the app on local storage OR in english by default
-      const langInLocalSorage = window.localStorage.getItem('appLang');
-      if(langInLocalSorage !== "en-US"){
-          //display the relevant flag in menu bar
-        document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/fr.png";
-
-        //Get each text node and translate it
-        translateHomePage("fr-FR");
-      }
+     
+     //Checking if there is a lang saved in localstorage, to boot on
+     window.onload = () =>{
+       const langToBoot = localStorage.getItem('appLang');
+       console.log("langToBoot",langToBoot);
+       if(langToBoot){
+         translateHomePage(langToBoot);
+         if(langToBoot === "en-US"){
+           document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/en.png";
+           document.getElementById("currentlyDisplayedFlagResponsive").src="/flags/25X13/en.png";
+         }
+         else if(langToBoot === "fr-FR"){
+           document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/fr.png";
+           document.getElementById("currentlyDisplayedFlagResponsive").src="/flags/25X13/fr.png";
+         }
+       }
+     }
     </script>
   </body>
 </html>

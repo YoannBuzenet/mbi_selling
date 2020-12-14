@@ -20,6 +20,7 @@ const AppLangChoice = ({
       picture: lang.picture,
       langID: lang.langID,
     });
+    window.localStorage.setItem("appLang", lang.locale);
   };
 
   const handleClickDisplayFlags = (event) => {
