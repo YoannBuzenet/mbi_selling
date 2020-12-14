@@ -9,8 +9,7 @@ const AppWrapper = (props) => {
   // Finding in the all lang available which has an ID equal to what's in .env
   const [currentLang, setCurrentLang] = useState(
     ...config.websiteDefaultLanguageArrayLangAvailables.filter(
-      (langData) =>
-        langData.langID === parseInt(process.env.REACT_APP_APP_LANG_ID_DEFAULT)
+      (langData) => langData.locale === window.localStorage.getItem("appLang")
     )
   );
 
