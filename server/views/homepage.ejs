@@ -65,6 +65,15 @@
         padding-bottom: 120px; /* height of the footer */
       }
 
+      /* Removing the scrolling bar */
+      html {
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+    ::-webkit-scrollbar {
+        width: 0px;  /* Remove scrollbar space */
+    }
+
 
       /* Black Div */
       .blackDiv {
@@ -113,6 +122,10 @@
         cursor: pointer;
       }
 
+      .logo-shop-link {
+        margin-right: 30px;
+      }
+
       nav {
         background-color: white;
         box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -127,10 +140,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-      }
-
-      .logo-shop-link {
-        margin-right: 30px;
       }
 
       .navbar {
@@ -917,7 +926,7 @@
                   </h1>
                   <p>Get your own buying interface.</p>
                   <div class="cta-main">
-                      <a type="button" href="/getStarted">Get Started</a>
+                      <a type="button" href="/subscribe">Get Started</a>
                   </div>
                 </div>
                 <div class="right-content"></div>
@@ -1027,7 +1036,7 @@
             <div class="container">
               <p>Contact us and get a demo</p>
             </div>
-              <a class="CTA-button" href="/getStarted">Get Started</a>
+              <a class="CTA-button" href="/subscribe">Get Started</a>
           </div>
         </div>
       </main>
