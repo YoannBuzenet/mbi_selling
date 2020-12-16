@@ -1,6 +1,9 @@
 <html>
   <head>
     <title>Update your stock prices in one click</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;531;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
       :root {
         --main-bg-color: coral;
@@ -44,7 +47,15 @@
       div,
       td {
         font-size: 1.6rem;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        overflow: hidden;
       }
 
       #root {
@@ -71,16 +82,24 @@
       }
 
       
-        @keyframes blackDivAppearing {
-          0% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 0.5;
-          }
+      @keyframes blackDivAppearing {
+        0% {
+          opacity: 0;
         }
+        100% {
+          opacity: 0.5;
+        }
+      }
 
-      /* Menu */
+      @media only screen and (max-width: 1024px) {
+      .container {
+        width: 80%;
+        }
+      }  
+
+      /**********************/
+      /******** MENU ********/
+      /**********************/
 
       .classic-links {
         margin: 1rem;
@@ -427,6 +446,338 @@
       }
     }
 
+    /**************************/
+    /******** HOMEPAGE ********/
+    /**************************/
+
+    /***FIRST LINER ***/
+    .main-title {
+      display: flex;
+      justify-content: center;
+    }
+
+    .left-content,
+    .right-content {
+      width: 50%;
+    }
+
+    .left-content p {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+
+    .cta-main {
+      margin-top: 32px;
+    }
+
+    .left-content a,
+    .CTA-button {
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      background-color: rgb(28, 100, 242);
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.5s;
+      text-decoration: none;
+    }
+
+    .left-content a:hover,
+    .CTA-button:hover {
+      background-color: rgba(63, 131, 248, 0.8);
+      transition: background-color 0.5s;
+    }
+
+    .main-punchline {
+      font-size: 6.4rem;
+      margin-bottom: 0;
+    }
+    .first-liner {
+      padding: 3rem 0;
+      position: relative;
+    }
+
+    .first-liner .software-image img {
+      position: absolute;
+      width: 1200px;
+      transform: rotate(-5deg);
+      right: -500px;
+      top: -50px;
+      z-index: -1;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      .first-liner .software-image img {
+        position: absolute;
+        width: 1200px;
+        right: -650px;
+        top: -25px;
+        z-index: -1;
+      }
+    }
+    @media only screen and (max-width: 1024px) {
+      .first-liner .software-image img {
+        display: none;
+      }
+
+      .main-punchline {
+        text-align: center;
+      }
+      .right-content {
+        display: none;
+      }
+      .left-content {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .first-liner .software-image img {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 640px) {
+      .first-liner .software-image img {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 550px) {
+      .main-punchline {
+        font-size: 3rem;
+      }
+    }
+    /***SECOND LINER ***/
+
+    .second-liner {
+      background-color: #f9fafb;
+      border-top: 1px solid rgba(210, 214, 220, 0.5);
+      border-bottom: 1px solid rgba(210, 214, 220, 0.5);
+    }
+
+    .cards-container {
+      display: flex;
+      justify-content: center;
+      padding: 8rem 0;
+    }
+
+    .card {
+      font-size: 1.4rem;
+      width: 30%;
+      margin: 0 1%;
+      line-height: var(--line-height);
+    }
+
+    .card .card-title {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-size: 2.4rem;
+    }
+
+    .card span:last-child {
+      font-size: 1.8rem;
+      color: rgb(75, 85, 99);
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .cards-container {
+        flex-direction: column;
+      }
+      .card {
+        width: 100%;
+        padding-bottom: 5rem;
+      }
+
+      .card-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    /***THIRD LINER ***/
+
+    .third-liner {
+      position: relative;
+      height: 400px;
+      background-color: rgb(244, 245, 247);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .third-liner h2.punchline {
+      max-width: 768px;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+      margin: auto;
+    }
+    .third-liner p {
+      color: rgb(75, 85, 99);
+      font-size: 2rem;
+      max-width: 768px;
+      margin: auto;
+      line-height: 2.6rem;
+    }
+
+    .third-liner img {
+      position: absolute;
+      width: 1000px;
+      left: 50%;
+      top: 120%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(210, 214, 220, 0.5);
+    }
+
+    h2.punchline {
+      margin: 0;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      .third-liner img {
+        width: 800px;
+      }
+    }
+    @media only screen and (max-width: 1024px) {
+      .third-liner img {
+        width: 600px;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .third-liner {
+        height: 450px;
+      }
+      .third-liner p {
+        text-align: left;
+      }
+      .third-liner img {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 300px) {
+      .third-liner {
+        height: 500px;
+      }
+      .third-liner img {
+        display: none;
+      }
+    }
+
+    /***FOURTH LINER ***/
+
+    .fourth-liner {
+      background-color: #161e2e;
+      color: white;
+      height: 600px;
+      padding-top: 35rem;
+      padding-bottom: 30rem;
+    }
+
+    .fourth-liner p {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .fourth-liner .tick-box {
+      margin-left: 156px;
+      margin-right: 156px;
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .tick-box > div {
+      width: 30%;
+    }
+
+    .tick-box > div > div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 10px;
+    }
+
+    .tick-box > div > div svg {
+      margin-right: 10px;
+    }
+
+    h3.punchline {
+      margin: 0;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      .fourth-liner .tick-box {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    @media only screen and (max-width: 1024px) {
+      .fourth-liner {
+        padding-top: 25rem;
+      }
+      .fourth-liner .tick-box {
+        justify-content: space-around;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .fourth-liner {
+        padding-top: 10rem;
+        height: auto;
+        padding-bottom: 5rem;
+      }
+      .fourth-liner .tick-box {
+        flex-direction: column;
+        align-items: center;
+      }
+      .tick-box > div {
+        width: 50%;
+      }
+    }
+
+    /***FIFTH LINER ***/
+
+    .fifth-liner {
+      padding: 5rem 0;
+      background-color: rgb(249, 250, 251);
+    }
+
+    .fifth-liner > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+
+    .fifth-liner a.CTA-button {
+      margin-top: 0;
+    }
+
+    .fifth-liner p {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      .fifth-liner > div {
+        flex-direction: column;
+        text-align: left;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .fifth-liner p {
+        text-align: center;
+      }
+    }
+
+
     /**************************
     *********FOOTER***********
     **************************/
@@ -553,9 +904,139 @@
         <!-- </Menu Responsive> -->
 
         <!-- <Main> -->
-         <div class="container">
-              <h1>Homepage for SSR</h1>
+         <main>
+        <div className="first-liner">
+          <div className="container">
+            <div className="first-liner">
+              <div className="software-image">
+                <img src="/images/software_front.png" />
+              </div>
+              <div className="main-title">
+                <div className="left-content">
+                  <h1 className="main-punchline">
+                    Buying cards has never been so easy
+                  </h1>
+                  <p>Get your own buying interface.</p>
+                  <div className="cta-main">
+                    <Link href="/getStarted">
+                      <a type="button">Get Started</a>
+                    </Link>
+                  </div>
+                </div>
+                <div className="right-content"></div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div className="second-liner">
+          <div className="container">
+            <div className="cards-container">
+              <div className="card">
+                <span className="card-title">Buy what you want</span>
+                <span>
+                  Fix your buying prices only on the cards you want. If you want
+                  to buy everything, we've got you covered !
+                </span>
+              </div>
+              <div className="card">
+                <span className="card-title">Save your time</span>
+                <span>
+                  {" "}
+                  Customers list their cards themselves. You just have to
+                  receive them, check the condition, and validate.
+                </span>
+              </div>
+              <div className="card">
+                <span className="card-title">Sync with MKM</span>
+                <span>
+                  Once the customer did agree with your price and grading, you
+                  just click one button. All the cards are directly for sale on
+                  MKM !
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="third-liner">
+          <div className="container">
+            <h2 className="punchline">
+              Fix your prices. Let the customers do the rest.
+            </h2>
+            <p>
+              MTG Interface enables you to fix all your buying prices for any
+              MTG card : regular, foil, signed, in any condition or language.
+              Your customers just have to connect, check your prices, and sell
+              you their cards.
+            </p>
+            <div>
+              <img src="/images/sampleBasket.png" />
+            </div>
+          </div>
+        </div>
+        <div className="fourth-liner">
+          <div className="container">
+            <h3 className="punchline">Sync with MKM</h3>
+            <p>
+              Cards are automatically transferred to your MKM account, ready to
+              be sold.
+            </p>
+            <div className="tick-box">
+              <div>
+                <div>
+                  <span>Buying prices</span>
+                </div>
+                <div>
+                  <span>MKM Prices up-to-date</span>
+                </div>
+                <div>
+                  <span>Manage Sell Requests</span>
+                </div>
+                <div>
+                  <span>Manage Customers</span>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <span>Sell Automatically</span>
+                </div>
+                <div>
+                  <span>Automatic prices</span>
+                </div>
+                <div>
+                  <span>Daily follow-up</span>
+                </div>
+                <div>
+                  <span>Update anytime</span>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <span>Automatic Mailing</span>
+                </div>
+                <div>
+                  <span>PDF Generation</span>
+                </div>
+                <div>
+                  <span>International App</span>
+                </div>
+                <div>
+                  <span>MKM follow-up</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="fifth-liner">
+          <div>
+            <div className="container">
+              <p>Contact us and get a demo</p>
+            </div>
+            <Link href="/getStarted">
+              <a className="CTA-button">Get Started</a>
+            </Link>
+          </div>
+        </div>
+      </main>
 
           <!-- <Footer> -->
         <footer class="footer">
