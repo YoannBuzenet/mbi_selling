@@ -19,7 +19,9 @@ const AllMyScripts = ({ history }) => {
 
   return (
     <div className="container all-my-scripts">
-      <h2>My Scripts</h2>
+      <h2>
+        <FormattedMessage id="allMyScripts.title" defaultMessage="My Scripts" />
+      </h2>
       <div>
         <Table>
           <Thead>

@@ -163,6 +163,7 @@
   "createMyScript.launchReal.success": "The MKM script has been launched. Once it's done, you will receive a summary by mail.",
   "createMyScript.launchReal.failure": "The MKM script could not be launched. Please try later, or contact us if the problem persists.",
 
+  "allMyScripts.title": "My Scripts",
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Status",
 
