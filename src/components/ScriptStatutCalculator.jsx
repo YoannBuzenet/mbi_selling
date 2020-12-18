@@ -34,7 +34,7 @@ const ScriptStatusCalculator = ({ isScriptRunning, savingState }) => {
         status = (
           <FormattedMessage
             id="scriptLine.buttons.upToDate"
-            defaultMessage="Up to date"
+            defaultMessage="Ready"
           />
         );
         break;

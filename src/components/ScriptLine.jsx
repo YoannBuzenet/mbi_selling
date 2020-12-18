@@ -65,6 +65,8 @@ const ScriptLine = ({ script, history, index }) => {
 
     let idFormat = parseInt(event.target.value[0]);
 
+    console.log("id format", idFormat);
+
     //Creating an immediate copy that will be available before the state has been updated
     let copySelectedFormatsUpToDate;
 
