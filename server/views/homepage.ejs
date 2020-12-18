@@ -29,8 +29,7 @@
       }
 
       body {
-        background-color: lightblue;
-        margin: 0;
+         margin: 0;
         padding: 0;
       }
 
@@ -919,12 +918,12 @@
           <div class="container">
             <div class="first-liner">
               <div class="software-image">
-                <img src="/images/software_front.png" />
+                <img src="/screenshots/All-my-scripts_en-US.png" id="firstLinerPicture" />
               </div>
               <div class="main-title">
                 <div class="left-content">
                   <h1 class="main-punchline" id="main-punchline">
-                    Update all your prices on MKM in a few clicks
+                    Update all your prices on MKM in a click
                   </h1>
                   <p id="subSentence">Fixed price. Unlimited modifications.</p>
                   <div class="cta-main">
@@ -969,7 +968,7 @@
               Update your prices at will, by price range and by format. MKM Price Updater is an easy-to-use tool that enables you to set targeted price updates on all or part of your stock of MTG cards. Increase of decrease your prices at will.
             </p>
             <div>
-              <img src="/images/sampleBasket.png" />
+              <img src="/screenshots/Rules_en-US.png" id="thirdLinerPicture"/>
             </div>
           </div>
         </div>
@@ -1123,6 +1122,10 @@
         //Get each text node and translate it
         translateHomePage("fr-FR");
 
+        //display the translated screenshots
+        document.getElementById('firstLinerPicture').src = `/screenshots/All-my-scripts_fr-FR.png`
+        document.getElementById('thirdLinerPicture').src = `/screenshots/Rules_fr-FR.png`
+
         //Local storage
         window.localStorage.setItem("appLang","fr-FR");
       })
@@ -1137,6 +1140,10 @@
       
       //Get each text node and translate it
         translateHomePage("en-US");
+
+      //display the translated screenshots
+      document.getElementById('firstLinerPicture').src = `/screenshots/All-my-scripts_en-US.png`
+      document.getElementById('thirdLinerPicture').src = `/screenshots/Rules_en-US.png`
 
       //Local storage
       window.localStorage.setItem("appLang","en-US");
@@ -1170,6 +1177,10 @@
         //Get each text node and translate it
         translateHomePage("fr-FR");
 
+        //display the translated screenshots
+      document.getElementById('firstLinerPicture').src = `/screenshots/All-my-scripts_fr-FR.png`
+      document.getElementById('thirdLinerPicture').src = `/screenshots/Rules_fr-FR.png`
+
         //Local storage
         window.localStorage.setItem("appLang","fr-FR");
       })
@@ -1184,6 +1195,10 @@
       
       //Get each text node and translate it
         translateHomePage("en-US");
+
+      //display the translated screenshots
+      document.getElementById('firstLinerPicture').src = `/screenshots/All-my-scripts_en-US.png`
+      document.getElementById('thirdLinerPicture').src = `/screenshots/Rules_en-US.png`
 
       //Local storage
       window.localStorage.setItem("appLang","en-US");
@@ -1223,8 +1238,8 @@
           "fr-FR": "Se connecter",
         },
         "main-punchline": {
-          "en-US": "Update all your prices on MKM in a few clicks",
-          "fr-FR": "Modifiez tous vos prix sur MKM en quelques clics",
+          "en-US": "Update all your prices on MKM in a click",
+          "fr-FR": "Modifiez tous vos prix sur MKM en un clic",
         },
         "subSentence": {
           "en-US": "Fixed price. Unlimited modifications.",
@@ -1394,10 +1409,18 @@
          if(langToBoot === "en-US"){
            document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/en.png";
            document.getElementById("currentlyDisplayedFlagResponsive").src="/flags/25X13/en.png";
+
+           // Translated screenshots
+           document.getElementById('firstLinerPicture').src = `/screenshots/All-my-scripts_en-US.png`
+           document.getElementById('thirdLinerPicture').src = `/screenshots/Rules_en-US.png`
          }
          else if(langToBoot === "fr-FR"){
            document.getElementById("currentlyDisplayedFlag").src="/flags/25X13/fr.png";
            document.getElementById("currentlyDisplayedFlagResponsive").src="/flags/25X13/fr.png";
+
+           // Translated screenshots
+           document.getElementById('firstLinerPicture').src = `/screenshots/All-my-scripts_fr-FR.png`
+           document.getElementById('thirdLinerPicture').src = `/screenshots/Rules_fr-FR.png`
          }
        }
      }
