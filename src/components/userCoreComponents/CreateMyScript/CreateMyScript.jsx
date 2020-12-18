@@ -582,9 +582,14 @@ const CreateMyScript = ({ history }) => {
           setIdScript(scriptCreated.data.id);
           newScriptId = scriptCreated.data.id;
         } catch (e) {
-          console.log("creation script", e);
+          console.error("creation script error", e);
           errorHandlingAPI.checkErrorStatus(e);
-          toast.error("error when creating script");
+          toast.error(
+            <FormattedMessage
+              id="createMyScript.creating.failure"
+              defaultMessage="There has been an error while creating the script."
+            />
+          );
           return;
         }
       } else {
@@ -679,8 +684,13 @@ const CreateMyScript = ({ history }) => {
       const respServ = await Promise.all([...regularRules, ...foilRules]);
 
       try {
-        console.log("serv resp", respServ);
-        toast.success("Script saved babe");
+        // console.log("serv resp", respServ);
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.saving.success"
+            defaultMessage="Your script has been saved."
+          />
+        );
 
         //Saving the new script id/name in current auth state
         //We check if it exsists already : if yes, we update it, if no we add a new one in the array of scripts
@@ -752,8 +762,13 @@ const CreateMyScript = ({ history }) => {
         console.log("saved !");
       } catch (e) {
         errorHandlingAPI.checkErrorStatus(e);
-        console.log(e);
-        toast.error("error when saving");
+        console.log("error while saving", e);
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.saving.failure"
+            defaultMessage="There has been an error while saving."
+          />
+        );
         //Set l'ancien state - NOT TRIED
         console.log(previousState);
         setCustomRulesGlobalState(previousState);

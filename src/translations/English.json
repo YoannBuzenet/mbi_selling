@@ -162,6 +162,9 @@
   "createMyScript.launchTest.failure": "The test script could not be launched. Please try later, or contact us if the problem persists.",
   "createMyScript.launchReal.success": "The MKM script has been launched. Once it's done, you will receive a summary by mail.",
   "createMyScript.launchReal.failure": "The MKM script could not be launched. Please try later, or contact us if the problem persists.",
+  "createMyScript.saving.success": "Your script has been saved.",
+  "createMyScript.saving.failure": "There has been an error while saving. Please contact us if the problem persists.",
+  "createMyScript.creating.failure": "There has been an error while creating the script.",
 
   "allMyScripts.title": "My Scripts",
   "allMyScripts.formats": "Formats",
