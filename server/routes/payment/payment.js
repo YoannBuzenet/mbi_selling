@@ -1,29 +1,22 @@
 var express = require("express");
 var router = express.Router();
 
+const Stripe = require("stripe");
+const stripe = Stripe(
+  "sk_test_51HzmkjBMO6DDXsG6Th4l2fguNF6dlh5ciiiKrHv0kJj40U9tF0Fnc8K72zjrzMzUbwoCoQJL6J5sOE1J9X2KeGlA00pzDWvS7Z"
+);
+
 router.post("/", async (req, res) => {
   // TODO make it real
 
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    line_items: [
-      {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: "oneMonthSubscription",
-            images: ["https://i.imgur.com/EHyR2nP.png"],
-          },
-          unit_amount: 49,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: "payment",
-    success_url: `${process.env.REACT_APP_THIS_WEBSITE_URL}/success`,
-    cancel_url: `${process.env.REACT_APP_THIS_WEBSITE_URL}/subscribe`,
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 49,
+    currency: "usd",
+    // Verify your integration in this guide by including this parameter
+    metadata: { integration_check: "accept_a_payment" },
   });
-  res.json({ id: session.id });
+
+  res.json("stripe building endpoint");
 
   return;
 });
