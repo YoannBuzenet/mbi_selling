@@ -149,11 +149,17 @@ const Navbar = ({ history }) => {
                           />
                         </li>
                       </Link> */}
-                      <Link className="classic-links" to="/subscribe">
-                        <FormattedMessage
-                          id="app.navbar.subscribe"
-                          defaultMessage={`Subscribe`}
-                        />
+                      <Link
+                        className="toggle-menu-links"
+                        to="/subscribe"
+                        onClick={() => setToggleMenu(!toggleMenu)}
+                      >
+                        <li>
+                          <FormattedMessage
+                            id="app.navbar.subscribe"
+                            defaultMessage={`Subscribe`}
+                          />
+                        </li>
                       </Link>
                       <Link
                         to="/settings"
