@@ -172,7 +172,7 @@
 
   "mkmConnectionIndicator.title": "MKM Connection",
 
-  "app.MKMConnect.toast.success": "You logged succesfully to MCM.",
+  "app.MKMConnect.toast.success": "You logged succesfully to MKM.",
   "app.MKMConnect.shouldConnect.toast.failure": "Data seems to not be up to date. Please try again.",
   "app.MKMConnect.connected.until": "You are connected until ",
   "app.MKMConnect.connected.refresh": "Refresh",
