@@ -162,6 +162,7 @@
   "createMyScript.launchReal.success": "Le script MKM a été lancé. Une fois terminé, vous recevrez un récapitulatif par mail.",
   "createMyScript.launchReal.failure": "Le script MKMn'a pas pu être lancé. Merci de réessayer ultérieurement. Si le problème persiste, n'hésitez pas à nous contacter.",
 
+  "allMyScripts.title": "Mes Scripts",
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Statut",
 
