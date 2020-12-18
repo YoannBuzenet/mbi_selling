@@ -36,6 +36,7 @@
     "sequelize": "^6.3.5",
     "slugify": "^1.4.5",
     "status-indicator": "^1.0.9",
+    "stripe": "^8.129.0",
     "xml2js": "^0.4.23"
   },
   "scripts": {

@@ -26,6 +26,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/api", require("./routes/api/index.js"));
 app.use("/authentication", require("./routes/authentication/index.js"));
+app.use("/payment", require("./routes/payment/index.js"));
 
 app.get("/", (req, res) => {
   res.render("homepage");
