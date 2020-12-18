@@ -262,7 +262,7 @@ const CreateMyScript = ({ history }) => {
     } else if (isCreationOrEditionMode === "Creation") {
       console.log("on trigger le use Effect en creation");
       setCustomRulesGlobalState(defaultCreationState);
-      setScriptName("Nouveau nom exprès");
+      setScriptName(defaultScriptName);
     }
   }, [history.location.pathname]);
 
