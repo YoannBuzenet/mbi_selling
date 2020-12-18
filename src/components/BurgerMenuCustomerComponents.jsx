@@ -77,39 +77,13 @@ const BurgerMenuCustomerComponents = ({ history }) => {
             <ul className="">
               <Link
                 className="classic_links_responsive"
-                to="/my_selling_basket"
+                to="/subscribe"
                 onClick={(event) => closeMenu(event)}
               >
                 <li>
                   <FormattedMessage
-                    id="app.burgerMenu.customer.mySellRequest"
-                    defaultMessage={`Sell Request`}
-                  />
-                </li>
-              </Link>
-
-              <Link
-                to="/my_account"
-                className="classic_links_responsive"
-                onClick={(event) => closeMenu(event)}
-              >
-                <li>
-                  <FormattedMessage
-                    id="app.burgerMenu.customer.myAccount"
-                    defaultMessage={`My Account`}
-                  />
-                </li>
-              </Link>
-
-              <Link
-                to="/my_sell_requests"
-                className="classic_links_responsive"
-                onClick={(event) => closeMenu(event)}
-              >
-                <li>
-                  <FormattedMessage
-                    id="app.burgerMenu.customer.mySellRequests"
-                    defaultMessage={`My Sell Requests`}
+                    id="app.burgerMenu.subscribe"
+                    defaultMessage={`Subscribe`}
                   />
                 </li>
               </Link>
@@ -135,8 +109,8 @@ const BurgerMenuCustomerComponents = ({ history }) => {
                 className="classic_links_responsive"
               >
                 <FormattedMessage
-                  id="app.burgerMenu.customer.logOut"
-                  defaultMessage={`Log Out`}
+                  id="app.burgerMenu.logOut"
+                  defaultMessage={`Log out`}
                 />
               </li>
             </ul>
@@ -149,13 +123,13 @@ const BurgerMenuCustomerComponents = ({ history }) => {
         <div className="not_connected_options_responsive">
           <div className="connection">
             <Link
-              className="classic_links_responsive nav-element"
-              to="/my_selling_basket"
+              className="classic_links_responsive"
+              to="/subscribe"
               onClick={(event) => closeMenu(event)}
             >
               <FormattedMessage
-                id="app.burgerMenu.customer.mySellRequest"
-                defaultMessage={`Sell Request`}
+                id="app.burgerMenu.subscribe"
+                defaultMessage={`Subscribe`}
               />
             </Link>
             <Link
@@ -164,7 +138,7 @@ const BurgerMenuCustomerComponents = ({ history }) => {
               onClick={(event) => closeMenu(event)}
             >
               <FormattedMessage
-                id="app.burgerMenu.customer.register"
+                id="app.burgerMenu.register"
                 defaultMessage={`Register`}
               />
             </Link>
@@ -174,8 +148,8 @@ const BurgerMenuCustomerComponents = ({ history }) => {
               onClick={(event) => closeMenu(event)}
             >
               <FormattedMessage
-                id="app.burgerMenu.customer.connect"
-                defaultMessage={`Connect`}
+                id="app.burgerMenu.login"
+                defaultMessage={`Log in`}
               />
             </Link>
             <div className="burgerMenuCustomer-select-lang">

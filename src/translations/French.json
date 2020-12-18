@@ -34,6 +34,11 @@
 
   "app.footer.legalClauses": "Mentions Légales",
 
+  "app.burgerMenu.subscribe": "Tarifs",
+  "app.burgerMenu.register": "S'inscrire",
+  "app.burgerMenu.login": "Se connecter",
+  "app.burgerMenu.logOut": "Log out",
+
   "app.myAccountPage.title": "Mon compte",
   "app.myAccountPage.myEmail": "Email : ",
   "app.myAccountPage.FirstName": "Prénom",
