@@ -349,7 +349,7 @@ function App() {
                             hideProgressBar={true}
                           />
                           <NavbarWithRouter />
-                          <CheckoutForm />
+                          {isPaymentModalDisplayed && <CheckoutForm />}
                           <Footer />
                           <Switch>
                             <Route

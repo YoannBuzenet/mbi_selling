@@ -82,12 +82,14 @@ const CheckoutForm = () => {
 
   return (
     <div className="absolutePopIn">
-      <form onSubmit={handleSubmit}>
-        <CardElement options={CARD_ELEMENT_OPTIONS} />
-        <button type="submit" disabled={!stripe}>
-          Pay
-        </button>
-      </form>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <CardElement options={CARD_ELEMENT_OPTIONS} />
+          <button type="submit" disabled={!stripe}>
+            Pay
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
