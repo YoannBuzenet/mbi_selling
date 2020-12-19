@@ -1,6 +1,7 @@
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import "./style.css";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -73,12 +74,14 @@ const CheckoutForm = () => {
   //TODO add a loader and disable the button while loading
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement options={CARD_ELEMENT_OPTIONS} />
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
+    <div className="absolutePopIn">
+      <form onSubmit={handleSubmit}>
+        <CardElement options={CARD_ELEMENT_OPTIONS} />
+        <button type="submit" disabled={!stripe}>
+          Pay
+        </button>
+      </form>
+    </div>
   );
 };
 
