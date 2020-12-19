@@ -25,6 +25,7 @@ import TransparentDivContext from "./context/transparentDivContext";
 import TimerScriptStatusCheck from "./context/timerScriptStatusCheck";
 import isResponsiveMenuDisplayedContext from "./context/menuDisplayedContext";
 import BlackDivContext from "./context/blackDivModalContext";
+import PaymentDivContext from "./context/paymentModalContext";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -124,6 +125,9 @@ function App() {
   //STATE - is MKM Connection Modal Displayed ?
   const [isMKMModalDisplayed, setIsMKMModalDisplayed] = useState();
 
+  //STATE - is Stripe Payment Modal Displayed ?
+  const [isPaymentModalDisplayed, setIsPaymentModalDisplayed] = useState();
+
   //STATE - is Transparent Div Displayed ?
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] = useState(
     false
@@ -147,6 +151,7 @@ function App() {
     timers: timers,
     setTimers: setTimers,
   };
+
   //CONTEXT - Timer
   const ContextTimer = {
     checkStatusTimer: checkStatusTimer,
@@ -162,6 +167,12 @@ function App() {
   const contextBlackDiv = {
     isBlackDivModalDisplayed: isBlackDivModalDisplayed,
     setIsBlackDivModalDisplayed: setIsBlackDivModalDisplayed,
+  };
+
+  // CONTEXT - Stripe Payment Modal Activation
+  const contextStripeModal = {
+    isPaymentModalDisplayed: isPaymentModalDisplayed,
+    setIsPaymentModalDisplayed: setIsPaymentModalDisplayed,
   };
 
   //CONTEXT CREATION - Is Responsive Menu Displayed
@@ -318,76 +329,84 @@ function App() {
                     value={contextResponsiveMenuDisplayed}
                   >
                     <BlackDivContext.Provider value={contextBlackDiv}>
-                      <Router>
-                        {isTransparentDivDisplayed && <TransparentDiv />}
+                      <PaymentDivContext.Provider value={contextStripeModal}>
+                        <Router>
+                          {isTransparentDivDisplayed && <TransparentDiv />}
 
-                        {/* Absolute positioned components */}
-                        {isBlackDivModalDisplayed === "activated" && (
-                          <BlackDiv />
-                        )}
+                          {/* Absolute positioned components */}
+                          {isBlackDivModalDisplayed === "activated" && (
+                            <BlackDiv />
+                          )}
 
-                        {/* Burger menu */}
-                        {isResponsiveMenuDisplayed === "activated" && (
-                          <BurgerMenuCustomerComponentsWithRouter />
-                        )}
+                          {/* Burger menu */}
+                          {isResponsiveMenuDisplayed === "activated" && (
+                            <BurgerMenuCustomerComponentsWithRouter />
+                          )}
 
-                        <ToastContainer
-                          autoClose={3000}
-                          position="bottom-left"
-                          hideProgressBar={true}
-                        />
-                        <NavbarWithRouter />
-                        <CheckoutForm />
-                        <Footer />
-                        <Switch>
-                          <Route
-                            path="/login"
-                            render={({ match, history }) => (
-                              <LoginRenewOrLogOutContext.Provider
-                                value={ContextloginLogOut}
-                              >
-                                <LoginPage
+                          <ToastContainer
+                            autoClose={3000}
+                            position="bottom-left"
+                            hideProgressBar={true}
+                          />
+                          <NavbarWithRouter />
+                          <CheckoutForm />
+                          <Footer />
+                          <Switch>
+                            <Route
+                              path="/login"
+                              render={({ match, history }) => (
+                                <LoginRenewOrLogOutContext.Provider
+                                  value={ContextloginLogOut}
+                                >
+                                  <LoginPage
+                                    match={match}
+                                    history={history}
+                                    eraseAuthContext={eraseAuthContext}
+                                    renewJWTToken={renewJWTToken}
+                                    launchcheckStatusTimer={
+                                      launchcheckStatusTimer
+                                    }
+                                  />
+                                </LoginRenewOrLogOutContext.Provider>
+                              )}
+                            />
+
+                            <Route path="/register" component={RegisterPage} />
+                            <Route path="/subscribe" component={Subscribe} />
+
+                            <Route
+                              path="/usermail/reset"
+                              component={ResetMail}
+                            />
+                            <Route
+                              path="/usermail/setNewPassword/:challenge?"
+                              render={({ match, history }) => (
+                                <SetNewPassword
                                   match={match}
                                   history={history}
-                                  eraseAuthContext={eraseAuthContext}
-                                  renewJWTToken={renewJWTToken}
-                                  launchcheckStatusTimer={
-                                    launchcheckStatusTimer
-                                  }
                                 />
-                              </LoginRenewOrLogOutContext.Provider>
-                            )}
-                          />
+                              )}
+                            />
 
-                          <Route path="/register" component={RegisterPage} />
-                          <Route path="/subscribe" component={Subscribe} />
-
-                          <Route path="/usermail/reset" component={ResetMail} />
-                          <Route
-                            path="/usermail/setNewPassword/:challenge?"
-                            render={({ match, history }) => (
-                              <SetNewPassword match={match} history={history} />
-                            )}
-                          />
-
-                          <LoggedRouteRender
-                            path="/my-scripts/"
-                            component={AllMyScripts}
-                          />
-                          <LoggedRouteRender
-                            path="/edit-script/:id"
-                            component={CreateMyScript}
-                          />
-                          <LoggedRouteRender
-                            path="/create-script"
-                            component={CreateMyScript}
-                          />
-                          <LoggedRouteRender
-                            path="/settings"
-                            component={Settings}
-                          />
-                        </Switch>
-                      </Router>
+                            <LoggedRouteRender
+                              path="/my-scripts/"
+                              component={AllMyScripts}
+                            />
+                            <LoggedRouteRender
+                              path="/edit-script/:id"
+                              component={CreateMyScript}
+                            />
+                            <LoggedRouteRender
+                              path="/create-script"
+                              component={CreateMyScript}
+                            />
+                            <LoggedRouteRender
+                              path="/settings"
+                              component={Settings}
+                            />
+                          </Switch>
+                        </Router>
+                      </PaymentDivContext.Provider>
                     </BlackDivContext.Provider>
                   </isResponsiveMenuDisplayedContext.Provider>
                 </TimerScriptStatusCheck.Provider>

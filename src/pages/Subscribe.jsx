@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useIntl, FormattedMessage } from "react-intl";
+import blackDivContext from "../context/blackDivModalContext";
+import paymentModalContext from "../context/paymentModalContext";
 
 const Subscribe = () => {
+  const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
+  const { isPaymentModalDisplayed, setIsPaymentModalDisplayed } = useContext(
+    paymentModalContext
+  );
+
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {

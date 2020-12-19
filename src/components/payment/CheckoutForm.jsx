@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./style.css";
+import blackDivContext from "../../context/blackDivModalContext";
+import paymentModalContext from "../../context/paymentModalContext";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -22,6 +24,11 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 const CheckoutForm = () => {
+  const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
+  const { isPaymentModalDisplayed, setIsPaymentModalDisplayed } = useContext(
+    paymentModalContext
+  );
+
   const stripe = useStripe();
   const elements = useElements();
 
