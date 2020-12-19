@@ -15,7 +15,7 @@ const BlackDiv = () => {
   const { setIsMKMModalDisplayed } = useContext(MKM_ModalContext);
 
   // Payment Modal
-  const { setIsPaymentModalDisplayed } = useContext(PaymentModalContext);
+  const { setPaymentModalInformation } = useContext(PaymentModalContext);
 
   //Responsive Menu control
   const { setIsResponsiveMenuDisplayed } = useContext(
@@ -26,7 +26,10 @@ const BlackDiv = () => {
     setIsResponsiveMenuDisplayed("deactivated");
     setIsBlackDivModalDisplayed("deactivated");
     setIsMKMModalDisplayed("deactivated");
-    setIsPaymentModalDisplayed(false);
+    setPaymentModalInformation({
+      isDisplayed: false,
+      amount: 0,
+    });
   };
 
   return (

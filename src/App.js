@@ -126,7 +126,10 @@ function App() {
   const [isMKMModalDisplayed, setIsMKMModalDisplayed] = useState();
 
   //STATE - is Stripe Payment Modal Displayed ?
-  const [isPaymentModalDisplayed, setIsPaymentModalDisplayed] = useState();
+  const [paymentModalInformation, setPaymentModalInformation] = useState({
+    isDisplayed: false,
+    amount: 0,
+  });
 
   //STATE - is Transparent Div Displayed ?
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] = useState(
@@ -171,8 +174,8 @@ function App() {
 
   // CONTEXT - Stripe Payment Modal Activation
   const contextStripeModal = {
-    isPaymentModalDisplayed: isPaymentModalDisplayed,
-    setIsPaymentModalDisplayed: setIsPaymentModalDisplayed,
+    paymentModalInformation: paymentModalInformation,
+    setPaymentModalInformation: setPaymentModalInformation,
   };
 
   //CONTEXT CREATION - Is Responsive Menu Displayed
@@ -349,7 +352,12 @@ function App() {
                             hideProgressBar={true}
                           />
                           <NavbarWithRouter />
-                          {isPaymentModalDisplayed && <CheckoutForm />}
+
+                          {/* Stripe Payment Modal */}
+                          {paymentModalInformation.isDisplayed && (
+                            <CheckoutForm />
+                          )}
+
                           <Footer />
                           <Switch>
                             <Route

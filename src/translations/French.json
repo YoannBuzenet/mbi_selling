@@ -112,6 +112,8 @@
   "app.RegisterPage.accountCreation.mailAlreadyTaken.toast.failure": "Cet email est déjà pris. Merci d'en choisir un autre.",
   "app.RegisterPage.accountCreation.toast.failure": "Une erreur est survenue. Merci de réessayer.",
 
+  "app.modal.payment.button.pay": "Payer",
+
   "server.sendMail.welcomeEmail.title": "Bienvenue sur {url} !",
   "server.sendMail.sellRequest.submitted": "Votre demande de rachat est enregistrée !",
   "server.sendMail.sellRequest.cardsHaveBeenSent": "Vos cartes ont été notées comme envoyées.",

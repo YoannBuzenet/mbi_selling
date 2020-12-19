@@ -113,6 +113,8 @@
   "app.RegisterPage.accountCreation.mailAlreadyTaken.toast.failure": "This email is already taken. Please choose another one.",
   "app.RegisterPage.accountCreation.toast.failure": "An error has occured. Please try again.",
 
+  "app.modal.payment.button.pay": "Pay",
+
   "server.sendMail.welcomeEmail.title": "Welcome on {url} !",
   "server.sendMail.sellRequest.submitted": "Your sell request has been submitted !",
   "server.sendMail.sellRequest.cardsHaveBeenSent": "Your cards have been notified as sent.",
