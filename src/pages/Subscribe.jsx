@@ -7,13 +7,16 @@ import paymentModalContext from "../context/paymentModalContext";
 
 const Subscribe = () => {
   const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
-  const { isPaymentModalDisplayed, setIsPaymentModalDisplayed } = useContext(
+  const { paymentModalInformation, setPaymentModalInformation } = useContext(
     paymentModalContext
   );
 
   const handleSubscribe = () => {
     setIsBlackDivModalDisplayed("activated");
-    setIsPaymentModalDisplayed(true);
+    setPaymentModalInformation({
+      isDisplayed: true,
+      amount: 50,
+    });
   };
 
   const useStyles = makeStyles((theme) => ({

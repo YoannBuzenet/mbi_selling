@@ -4,6 +4,7 @@ import axios from "axios";
 import "./style.css";
 import blackDivContext from "../../context/blackDivModalContext";
 import paymentModalContext from "../../context/paymentModalContext";
+import { FormattedMessage } from "react-intl";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -25,7 +26,7 @@ const CARD_ELEMENT_OPTIONS = {
 
 const CheckoutForm = () => {
   const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
-  const { isPaymentModalDisplayed, setIsPaymentModalDisplayed } = useContext(
+  const { paymentModalInformation, setPaymentModalInformation } = useContext(
     paymentModalContext
   );
 
@@ -86,7 +87,10 @@ const CheckoutForm = () => {
         <form onSubmit={handleSubmit}>
           <CardElement options={CARD_ELEMENT_OPTIONS} />
           <button type="submit" disabled={!stripe}>
-            Pay
+            <FormattedMessage
+              id="app.modal.payment.button.pay"
+              defaultMessage="Pay"
+            />
           </button>
         </form>
       </div>

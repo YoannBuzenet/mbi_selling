@@ -1,6 +1,6 @@
 import React from "react";
 
 export default React.createContext({
-  isPaymentModalDisplayed: false,
-  setIsPaymentModalDisplayed: (value) => {},
+  paymentModalInformation: { isDiplayed: false, amount: 0 },
+  setPaymentModalInformation: (value) => {},
 });
