@@ -11,6 +11,11 @@ const Subscribe = () => {
     paymentModalContext
   );
 
+  const handleSubscribe = () => {
+    setIsBlackDivModalDisplayed("activated");
+    setIsPaymentModalDisplayed(true);
+  };
+
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
@@ -80,7 +85,12 @@ const Subscribe = () => {
               </li>
             </ul>
             <div className={classes.root}>
-              <Button variant="contained" color="primary" size="large">
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={handleSubscribe}
+              >
                 {translatedSubscribe}
               </Button>
             </div>
@@ -123,7 +133,12 @@ const Subscribe = () => {
               </li>
             </ul>
             <div className={classes.root}>
-              <Button variant="contained" color="primary" size="large">
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={handleSubscribe}
+              >
                 {translatedSubscribe}
               </Button>
             </div>
