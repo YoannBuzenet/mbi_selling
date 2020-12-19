@@ -51,6 +51,7 @@ import BlackDiv from "./components/BlackDiv";
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./components/payment/CheckoutForm";
 
 // Loading stripe outside of the component to avoid recalculation in each render
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TEST_KEY);
@@ -336,6 +337,7 @@ function App() {
                           hideProgressBar={true}
                         />
                         <NavbarWithRouter />
+                        <CheckoutForm />
                         <Footer />
                         <Switch>
                           <Route
