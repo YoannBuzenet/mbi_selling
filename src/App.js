@@ -53,7 +53,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 // Loading stripe outside of the component to avoid recalculation in each render
-const stripePromise = loadStripe(process.env.STRIPE_TEST_KEY);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TEST_KEY);
 
 function App() {
   // STATE Creating the Authentication state

@@ -8,6 +8,6 @@ const stripeRoutes = require("./payment");
 const { connect } = require("../../../database/connect");
 connect();
 
-router.use("/subscribe", stripeRoutes);
+router.use("/processPayment", stripeRoutes);
 
 module.exports = router;
