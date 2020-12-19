@@ -1,7 +1,8 @@
-async function getPayment() {
-  console.log("gerring payment...");
+function calculateAmount() {
+  console.log("calculating amount...");
+  return 50;
 }
 
 module.exports = {
-  getPayment,
+  calculateAmount,
 };
