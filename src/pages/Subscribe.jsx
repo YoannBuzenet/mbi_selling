@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { useIntl, FormattedMessage } from "react-intl";
 import blackDivContext from "../context/blackDivModalContext";
 import paymentModalContext from "../context/paymentModalContext";
+import { returnProductNameSubscription } from "../services/productAPI";
 
 const Subscribe = () => {
   const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
@@ -53,6 +54,7 @@ const Subscribe = () => {
       isDisplayed: true,
       amount: 50,
       title: messageToDisplayOnModal,
+      articleName: returnProductNameSubscription(duration),
     });
   };
 

@@ -45,7 +45,7 @@ const CheckoutForm = () => {
 
     //Get client secret on our server, then go on
     const apiData = await axios.post(`/payment/processPayment`, {
-      param: "param to complete",
+      productData: paymentModalInformation.articleName,
     });
 
     const clientSecret = apiData.data.client_secret;
