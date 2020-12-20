@@ -4,6 +4,7 @@ import axios from "axios";
 import "./style.css";
 import blackDivContext from "../../context/blackDivModalContext";
 import paymentModalContext from "../../context/paymentModalContext";
+import AuthContext from "../../context/authContext";
 import { FormattedMessage } from "react-intl";
 
 const CARD_ELEMENT_OPTIONS = {
@@ -30,6 +31,10 @@ const CheckoutForm = () => {
     paymentModalContext
   );
 
+  const { authenticationInfos, setAuthenticationInfos } = useContext(
+    AuthContext
+  );
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -43,9 +48,19 @@ const CheckoutForm = () => {
       return;
     }
 
+    console.log("paymentModalInformation", paymentModalInformation);
+
+    console.log(
+      "paymentModalInformation.articleName",
+      paymentModalInformation.articleName
+    );
+    console.log("authenticationInfos.shop.id", authenticationInfos.shop.id);
+
     //Get client secret on our server, then go on
+    //TO DO : add a catch with error
     const apiData = await axios.post(`/payment/processPayment`, {
       productData: paymentModalInformation.articleName,
+      idShop: authenticationInfos.shop.id,
     });
 
     const clientSecret = apiData.data.client_secret;
@@ -59,7 +74,7 @@ const CheckoutForm = () => {
       payment_method: {
         card: cardElement,
         billing_details: {
-          name: "Jenny Rosen",
+          name: "test string",
         },
       },
     });

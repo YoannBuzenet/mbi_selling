@@ -67,6 +67,13 @@ const Subscribe = () => {
         : threeMonthSubscribeTranslated;
 
     setIsBlackDivModalDisplayed("activated");
+
+    console.log("duration", duration);
+    console.log(
+      "returnProductNameSubscription(duration)",
+      returnProductNameSubscription(duration)
+    );
+
     setPaymentModalInformation({
       isDisplayed: true,
       amount: 50,
