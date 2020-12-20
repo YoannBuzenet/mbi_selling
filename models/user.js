@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       isSubscribedUntil: {
         type: DataTypes.DATEONLY,
       },
+      temporarySecret: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,
