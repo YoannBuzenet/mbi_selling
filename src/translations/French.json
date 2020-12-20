@@ -116,6 +116,7 @@
   "app.RegisterPage.accountCreation.toast.failure": "Une erreur est survenue. Merci de réessayer.",
 
   "app.modal.payment.button.pay": "Payer",
+  "app.modal.payment.failure": "Le paiement n'a pu être procédé. Merci de réessayer ultérieurement.",
   "app.subscribePage.button.duration.oneMonth": "Un mois",
   "app.subscribePage.button.duration.threeMonth": "Trois mois",
   "app.subscribePage.toast.pleaseLoginOrRegister": "Merci de vous connecter pour vous abonner !",
