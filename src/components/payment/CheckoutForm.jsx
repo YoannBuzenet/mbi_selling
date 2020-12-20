@@ -6,6 +6,7 @@ import blackDivContext from "../../context/blackDivModalContext";
 import paymentModalContext from "../../context/paymentModalContext";
 import AuthContext from "../../context/authContext";
 import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -50,10 +51,20 @@ const CheckoutForm = () => {
 
     //TO DO : add a catch with error
     //Get client secret on our server, then go on
-    const apiData = await axios.post(`/payment/processPayment`, {
-      productData: paymentModalInformation.articleName,
-      idShop: authenticationInfos.shop.id,
-    });
+    const apiData = await axios
+      .post(`/payment/processPayment`, {
+        productData: paymentModalInformation.articleName,
+        idShop: authenticationInfos.shop.id,
+      })
+      .catch((error) => {
+        console.error("error while creating payment", error);
+        toast.error(
+          <FormattedMessage
+            id="app.modal.payment.failure"
+            defaultMessage="Payment could not be proceeded. Please try later."
+          />
+        );
+      });
 
     const clientSecret = apiData.data.client_secret;
 
