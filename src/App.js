@@ -130,6 +130,7 @@ function App() {
     isDisplayed: false,
     amount: 0,
     title: "",
+    articleName: 0,
   });
 
   //STATE - is Transparent Div Displayed ?
