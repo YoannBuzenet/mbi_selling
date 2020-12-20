@@ -16,6 +16,9 @@ module.exports = {
       isSubscribedUntil: {
         type: Sequelize.DATEONLY,
       },
+      temporarySecret: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
