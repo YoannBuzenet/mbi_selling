@@ -83,17 +83,16 @@ const CheckoutForm = () => {
 
   return (
     <div className="absolutePopIn">
-      <div>
-        <form onSubmit={handleSubmit}>
-          <CardElement options={CARD_ELEMENT_OPTIONS} />
-          <button type="submit" disabled={!stripe}>
-            <FormattedMessage
-              id="app.modal.payment.button.pay"
-              defaultMessage="Pay"
-            />
-          </button>
-        </form>
-      </div>
+      <h2>{paymentModalInformation.title}</h2>
+      <form onSubmit={handleSubmit}>
+        <CardElement options={CARD_ELEMENT_OPTIONS} />
+        <button type="submit" disabled={!stripe}>
+          <FormattedMessage
+            id="app.modal.payment.button.pay"
+            defaultMessage="Pay"
+          />
+        </button>
+      </form>
     </div>
   );
 };

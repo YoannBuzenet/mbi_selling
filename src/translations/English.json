@@ -114,6 +114,8 @@
   "app.RegisterPage.accountCreation.toast.failure": "An error has occured. Please try again.",
 
   "app.modal.payment.button.pay": "Pay",
+  "app.subscribePage.button.duration.oneMonth": "One Month",
+  "app.subscribePage.button.duration.threeMonth": "Three Months",
 
   "server.sendMail.welcomeEmail.title": "Welcome on {url} !",
   "server.sendMail.sellRequest.submitted": "Your sell request has been submitted !",

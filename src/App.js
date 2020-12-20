@@ -129,6 +129,7 @@ function App() {
   const [paymentModalInformation, setPaymentModalInformation] = useState({
     isDisplayed: false,
     amount: 0,
+    title: "",
   });
 
   //STATE - is Transparent Div Displayed ?
