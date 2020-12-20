@@ -53,9 +53,46 @@ router.post("/", async (req, res) => {
 
 // TO BUILD MY DEAR
 router.post("/subscribe", async (req, res) => {
-  // check payload : secret & idShop
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+
+  let token = req.body.token;
+  let idShop = req.body.idShop;
+
+  if (token === undefined) {
+    res.status(406).json("Parameter token is missing in payload.");
+    return;
+  }
+
+  if (idShop === undefined) {
+    res.status(406).json("Parameter idShop is missing in payload.");
+    return;
+  }
+
   // go in DB, compare with secret stored
-  // if OK : go + delete
+  const user = await db.User.findOne({
+    where: {
+      idShop: idShop,
+    },
+  });
+
+  if (user === null) {
+    res.status(406).json("User doesn't exist.");
+    return;
+  }
+
+  const secretFromDB = user.dataValues.temporarySecret;
+
+  if (secretFromDB === null) {
+    res.status(406).json("No secret stored in DB.");
+    return;
+  }
+
+  const lastProductBought = user.dataValues.temporaryLastProductPaid;
+
+  // if secret from DB matches with the one received : go + delete
+
   //if not ok : do nothing
 });
 
