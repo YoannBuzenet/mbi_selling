@@ -115,6 +115,7 @@
   "app.modal.payment.button.pay": "Payer",
   "app.subscribePage.button.duration.oneMonth": "Un mois",
   "app.subscribePage.button.duration.threeMonth": "Trois mois",
+  "app.subscribePage.toast.pleaseLoginOrRegister": "Merci de vous connecter pour vous abonner !",
 
   "server.sendMail.welcomeEmail.title": "Bienvenue sur {url} !",
   "server.sendMail.sellRequest.submitted": "Votre demande de rachat est enregistrée !",

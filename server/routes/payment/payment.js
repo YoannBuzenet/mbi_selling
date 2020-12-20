@@ -13,6 +13,8 @@ router.post("/", async (req, res) => {
   /* ************************ */
   securityCheckAPI.checkQueryParams(req, res, ["productData"]);
 
+  /* should we check JWT ? */
+
   /* ************************** */
   /* ********** LOGIC ********* */
   /* ************************** */
