@@ -3,11 +3,19 @@ var router = express.Router();
 const { calculateAmount } = require("../../controllers/paymentController");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET);
+const securityCheckAPI = require("../../services/securityCheckAPI");
 
 // sending the secret to the client to enables him to ping Stripe directly
 
 router.post("/", async (req, res) => {
-  //check payment param is here (productData)
+  /* ************************** */
+  /* ****SECURITY & CHECKS**** */
+  /* ************************ */
+  securityCheckAPI.checkQueryParams(req, res, ["productData"]);
+
+  /* ************************** */
+  /* ********** LOGIC ********* */
+  /* ************************** */
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateAmount(req.body.productData), // Amount is in cents
