@@ -25,7 +25,7 @@ const BlackDiv = () => {
   const handleClick = (event) => {
     setIsResponsiveMenuDisplayed("deactivated");
     setIsBlackDivModalDisplayed("deactivated");
-    setIsMKMModalDisplayed("deactivated");
+    setIsMKMModalDisplayed(false);
     setPaymentModalInformation({
       isDisplayed: false,
       amount: 0,

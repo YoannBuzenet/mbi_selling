@@ -3,7 +3,7 @@ var router = express.Router();
 const { calculateAmount } = require("../../controllers/paymentController");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET);
-const securityCheckAPI = require("../../services/securityCheckAPI");
+const db = require("../../../models/index");
 
 // sending the secret to the client to enables him to ping Stripe directly
 
@@ -11,9 +11,19 @@ router.post("/", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
   /* ************************ */
-  securityCheckAPI.checkQueryParams(req, res, ["productData"]);
 
-  /* should we check JWT ? */
+  let productData = req.body.productData;
+  let idShop = req.body.idShop;
+
+  if (productData === undefined) {
+    res.status(406).json("Parameter productData is missing in payload.");
+    return;
+  }
+
+  if (idShop === undefined) {
+    res.status(406).json("Parameter idShop is missing in payload.");
+    return;
+  }
 
   /* ************************** */
   /* ********** LOGIC ********* */
@@ -26,9 +36,25 @@ router.post("/", async (req, res) => {
     metadata: { integration_check: "accept_a_payment" },
   });
 
+  // Storing Secret in DB to be able to track this payment
+  const updatedUSer = await db.User.upsert({
+    idShop: idShop,
+    temporarySecret: paymentIntent.client_secret,
+    temporaryDurationPaid: req.body.productData,
+    updatedAt: Date.now(),
+  });
+
   res.json({ client_secret: paymentIntent.client_secret });
 
   return;
+});
+
+// TO BUILD MY DEAR
+router.post("/subscribe", async (req, res) => {
+  // check payload : secret & idShop
+  // go in DB, compare with secret stored
+  // if OK : go + delete
+  //if not ok : do nothing
 });
 
 module.exports = router;
