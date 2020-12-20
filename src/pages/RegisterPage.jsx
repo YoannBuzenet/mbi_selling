@@ -15,6 +15,7 @@ const RegisterPage = ({ history }) => {
   const [credentials, setCredentials] = useState({
     mail: "",
     password: "",
+    passwordCheck: "",
   });
 
   const { currentLang, setCurrentLang } = useContext(SelectAppLangContext);
@@ -22,8 +23,20 @@ const RegisterPage = ({ history }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
-    setIsLoading(true);
     event.preventDefault();
+
+    // Checking the 2 password do match : if not, error & return
+    if (credentials.password !== credentials.passwordCheck) {
+      toast.error(
+        <FormattedMessage
+          id="app.RegisterPage.accountCreation.passwordCheck.failure"
+          defaultMessage={`Password don't match. Please type them again.`}
+        />
+      );
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
       const jsonToSend = {
@@ -57,7 +70,7 @@ const RegisterPage = ({ history }) => {
       //Getting user back to the top page
       window.scrollTo(0, 0);
 
-      history.replace("/");
+      history.replace("/login");
     } catch (error) {
       if (error.response) {
         setIsLoading(false);
@@ -144,6 +157,27 @@ const RegisterPage = ({ history }) => {
               <FormattedMessage
                 id="app.RegisterPage.label.password"
                 defaultMessage={`Password`}
+              />
+            }
+            minlength={6}
+          />
+
+          <Field
+            name="passwordCheck"
+            type="password"
+            id="passwordCheck"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.passwordCheck"
+                defaultMessage={`Please type your password again`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.passwordCheck"
+                defaultMessage={`Password Verification`}
               />
             }
             minlength={6}
