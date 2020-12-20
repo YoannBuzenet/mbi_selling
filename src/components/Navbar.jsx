@@ -25,7 +25,9 @@ const Navbar = ({ history }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleLogout = () => {
-    history.replace("/");
+    //getting out of react app on purpose to go on the ejs homepage
+    window.location.href = "/";
+
     authAPI.logout();
     setAuthenticationInfos({
       isAuthenticated: false,
@@ -45,6 +47,7 @@ const Navbar = ({ history }) => {
         SellRequests: [],
       },
     });
+
     toast.success(
       <FormattedMessage
         id="app.navbar.logOut.toast.success"
