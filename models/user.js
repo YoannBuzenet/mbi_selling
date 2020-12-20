@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       temporarySecret: {
         type: DataTypes.STRING,
       },
-      temporaryDurationPaid: {
-        type: DataTypes.INTEGER,
+      temporaryLastProductPaid: {
+        type: DataTypes.STRING,
       },
     },
     {
