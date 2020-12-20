@@ -93,6 +93,20 @@ const CheckoutForm = () => {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
+        const apiSubscriptionData = await axios
+          .post(`/payment/processPayment/subscribe`, {
+            token: clientSecret,
+            idShop: authenticationInfos.shop.id,
+          })
+          .catch((error) => {
+            console.error("error while creating payment", error);
+            toast.error(
+              <FormattedMessage
+                id="app.modal.payment.failureAfterSuccess"
+                defaultMessage="There has been an error after the payment did proceed. Please contact us."
+              />
+            );
+          });
       }
     }
   };
