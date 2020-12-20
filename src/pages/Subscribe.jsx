@@ -2,14 +2,20 @@ import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useIntl, FormattedMessage } from "react-intl";
+import { returnProductNameSubscription } from "../services/productAPI";
+import { toast } from "react-toastify";
+
 import blackDivContext from "../context/blackDivModalContext";
 import paymentModalContext from "../context/paymentModalContext";
-import { returnProductNameSubscription } from "../services/productAPI";
+import AuthContext from "../context/authContext";
 
 const Subscribe = () => {
   const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
   const { paymentModalInformation, setPaymentModalInformation } = useContext(
     paymentModalContext
+  );
+  const { authenticationInfos, setAuthenticationInfos } = useContext(
+    AuthContext
   );
 
   const useStyles = makeStyles((theme) => ({
@@ -43,7 +49,18 @@ const Subscribe = () => {
     defaultMessage: "Three Months",
   });
 
+  const pleaseLoginOrregister = intl.formatMessage({
+    id: "app.subscribePage.toast.pleaseLoginOrRegister",
+    defaultMessage: "Please login to purchase a subscription !",
+  });
+
   const handleSubscribe = (e, duration) => {
+    //check if user is authenticated. if not, toast
+    if (!authenticationInfos.isAuthenticated) {
+      toast.info(pleaseLoginOrregister);
+      return;
+    }
+
     const messageToDisplayOnModal =
       duration === 1
         ? oneMonthSubscribeTranslated

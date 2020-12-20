@@ -11,5 +11,4 @@ const returnProductNameSubscription = (duration) => {
 
 module.exports = {
   returnProductNameSubscription,
-  buildProductPayload,
 };

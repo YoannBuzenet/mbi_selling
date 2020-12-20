@@ -116,6 +116,7 @@
   "app.modal.payment.button.pay": "Pay",
   "app.subscribePage.button.duration.oneMonth": "One Month",
   "app.subscribePage.button.duration.threeMonth": "Three Months",
+  "app.subscribePage.toast.pleaseLoginOrRegister": "Please login to purchase a subscription !",
 
   "server.sendMail.welcomeEmail.title": "Welcome on {url} !",
   "server.sendMail.sellRequest.submitted": "Your sell request has been submitted !",

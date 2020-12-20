@@ -582,6 +582,23 @@ form.reset-password-form button {
   font-size: 1.25rem;
 }
 
+@media only screen and (max-width: 1000px) {
+  h1.front-title {
+    max-width: 70%;
+    margin: 10rem auto 0;
+  }
+  .planContainer {
+    flex-direction: column;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  .planContainer > .planSubscribing {
+    width: 60%;
+    margin-bottom: 20px;
+  }
+}
+
 /**************************
 *******REGISTER PAGE*******
 **************************/
