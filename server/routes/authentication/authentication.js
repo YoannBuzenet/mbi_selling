@@ -22,7 +22,12 @@ router.post("/", async (req, res) => {
       process.env.REACT_APP_MTGAPI_URL + "/login",
       credentials
     );
-    console.log(loginOnMTGAPI.data);
+
+    //if the login is an admin, we just log him without searching for scripts
+    if (loginOnMTGAPI.data.user.roles.includes("ROLE_ADMIN")) {
+      res.json(loginOnMTGAPI.data).status(200);
+      return;
+    }
 
     //checking if this user is registered on mbi_selling
     let shop = await db.User.findOne({
@@ -35,7 +40,6 @@ router.post("/", async (req, res) => {
       res.status(500).json("Shop doesn't exist on mbi_selling.");
       return;
     }
-
     //Getting all scripts for this user and adding them to the API response
 
     let userScripts = await db.Script.findAll({

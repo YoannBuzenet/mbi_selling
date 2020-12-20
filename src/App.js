@@ -381,7 +381,25 @@ function App() {
                               )}
                             />
 
-                            <Route path="/register" component={RegisterPage} />
+                            <Route
+                              path="/register"
+                              render={({ match, history }) => (
+                                <LoginRenewOrLogOutContext.Provider
+                                  value={ContextloginLogOut}
+                                >
+                                  <RegisterPage
+                                    match={match}
+                                    history={history}
+                                    eraseAuthContext={eraseAuthContext}
+                                    renewJWTToken={renewJWTToken}
+                                    launchcheckStatusTimer={
+                                      launchcheckStatusTimer
+                                    }
+                                  />
+                                </LoginRenewOrLogOutContext.Provider>
+                              )}
+                            />
+
                             <Route path="/subscribe" component={Subscribe} />
 
                             <Route

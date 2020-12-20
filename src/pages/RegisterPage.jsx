@@ -8,10 +8,25 @@ import { FormattedMessage } from "react-intl";
 import { useIntl } from "react-intl";
 import mailAPI from "../services/mailAPI";
 import SelectAppLangContext from "../context/selectedAppLang";
+import LoginLogOutContext from "../context/logAutoRenewOrLogout";
+import AuthContext from "../context/authContext";
+import authAPI from "../services/authAPI";
 
 //TODO : ADD CAPTCHA ON REGISTER THROUGH EXPRESS
 
-const RegisterPage = ({ history }) => {
+const RegisterPage = ({
+  history,
+  renewJWTToken,
+  eraseAuthContext,
+  launchcheckStatusTimer,
+}) => {
+  const { authenticationInfos, setAuthenticationInfos } = useContext(
+    AuthContext
+  );
+
+  //Timers control for auto login renew or auto logout
+  const { timers, setTimers } = useContext(LoginLogOutContext);
+
   const [credentials, setCredentials] = useState({
     mail: "",
     password: "",
@@ -70,7 +85,31 @@ const RegisterPage = ({ history }) => {
       //Getting user back to the top page
       window.scrollTo(0, 0);
 
-      history.replace("/login");
+      /////////////////////////
+      // TRYING TO LOG USER AFTER REGISTER
+      /////////////////////////
+
+      const userData = await authAPI.authenticate(jsonToSend);
+      // console.log(userData);
+      setAuthenticationInfos(userData);
+      setIsLoading(false);
+
+      clearTimeout(timers.autoRenew);
+      clearTimeout(timers.autoLogOut);
+
+      setTimers({
+        autoRenew: setTimeout(renewJWTToken, config.TIME_JWT_RENEW),
+        autoLogOut: setTimeout(eraseAuthContext, config.TIME_TO_LOG_OUT),
+      });
+
+      //launch the check status setInterval that will poke API
+      launchcheckStatusTimer();
+
+      if (userData.user.roles.includes("ROLE_SHOP")) {
+        history.replace("/my-scripts");
+      } else {
+        history.goBack();
+      }
     } catch (error) {
       if (error.response) {
         setIsLoading(false);
