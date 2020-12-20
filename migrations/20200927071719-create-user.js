@@ -19,8 +19,8 @@ module.exports = {
       temporarySecret: {
         type: Sequelize.STRING,
       },
-      temporaryDurationPaid: {
-        type: Sequelize.INTEGER,
+      temporaryLastProductPaid: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

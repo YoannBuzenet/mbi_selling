@@ -36,11 +36,13 @@ router.post("/", async (req, res) => {
     metadata: { integration_check: "accept_a_payment" },
   });
 
+  console.log("req.body.productData", req.body.productData);
+
   // Storing Secret in DB to be able to track this payment
   const updatedUSer = await db.User.upsert({
     idShop: idShop,
     temporarySecret: paymentIntent.client_secret,
-    temporaryDurationPaid: req.body.productData,
+    temporaryLastProductPaid: req.body.productData,
     updatedAt: Date.now(),
   });
 

@@ -1,12 +1,22 @@
 function calculateAmount(productName) {
+  let amountToReturn;
+
   switch (productName) {
-    case "1": {
-      return 4900;
+    case "OneMonthSubscription": {
+      amountToReturn = 4900;
+      break;
     }
-    case "3": {
-      return 2900;
+    case "ThreeMonthSubscription": {
+      amountToReturn = 2900;
+      break;
+    }
+    default: {
+      console.error("couldnt find a corresponding product");
+      break;
     }
   }
+
+  return amountToReturn;
 }
 
 module.exports = {

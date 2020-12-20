@@ -48,16 +48,8 @@ const CheckoutForm = () => {
       return;
     }
 
-    console.log("paymentModalInformation", paymentModalInformation);
-
-    console.log(
-      "paymentModalInformation.articleName",
-      paymentModalInformation.articleName
-    );
-    console.log("authenticationInfos.shop.id", authenticationInfos.shop.id);
-
-    //Get client secret on our server, then go on
     //TO DO : add a catch with error
+    //Get client secret on our server, then go on
     const apiData = await axios.post(`/payment/processPayment`, {
       productData: paymentModalInformation.articleName,
       idShop: authenticationInfos.shop.id,
