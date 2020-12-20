@@ -1,4 +1,5 @@
 .absolutePopIn {
+  padding: 1rem;
   position: absolute;
   z-index: 9999;
   top: 50%;
@@ -8,6 +9,10 @@
   height: 200px;
   border-radius: 6px;
   background-color: #fdfdfd;
+}
+
+.absolutePopIn h2 {
+  margin-top: 10px;
 }
 
 .absolutePopIn .FormGroup {
@@ -31,7 +36,7 @@
 
 .absolutePopIn form {
   max-width: 800px;
-  margin: 80px auto;
+  margin: 0 auto;
 }
 
 .absolutePopIn label {

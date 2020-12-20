@@ -11,14 +11,6 @@ const Subscribe = () => {
     paymentModalContext
   );
 
-  const handleSubscribe = () => {
-    setIsBlackDivModalDisplayed("activated");
-    setPaymentModalInformation({
-      isDisplayed: true,
-      amount: 50,
-    });
-  };
-
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
@@ -39,6 +31,30 @@ const Subscribe = () => {
     id: "app.subscribePage.button.subscribe",
     defaultMessage: "Subscribe",
   });
+
+  const oneMonthSubscribeTranslated = intl.formatMessage({
+    id: "app.subscribePage.button.duration.oneMonth",
+    defaultMessage: "One Month",
+  });
+
+  const threeMonthSubscribeTranslated = intl.formatMessage({
+    id: "app.subscribePage.button.duration.threeMonth",
+    defaultMessage: "Three Months",
+  });
+
+  const handleSubscribe = (e, duration) => {
+    const messageToDisplayOnModal =
+      duration === 1
+        ? oneMonthSubscribeTranslated
+        : threeMonthSubscribeTranslated;
+
+    setIsBlackDivModalDisplayed("activated");
+    setPaymentModalInformation({
+      isDisplayed: true,
+      amount: 50,
+      title: messageToDisplayOnModal,
+    });
+  };
 
   return (
     <>
@@ -92,7 +108,7 @@ const Subscribe = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                onClick={handleSubscribe}
+                onClick={(e) => handleSubscribe(e, 1)}
               >
                 {translatedSubscribe}
               </Button>
@@ -140,7 +156,7 @@ const Subscribe = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                onClick={handleSubscribe}
+                onClick={(e) => handleSubscribe(e, 3)}
               >
                 {translatedSubscribe}
               </Button>
