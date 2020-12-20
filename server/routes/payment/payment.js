@@ -4,6 +4,9 @@ const { calculateAmount } = require("../../controllers/paymentController");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET);
 const db = require("../../../models/index");
+const {
+  getProductDurationWithProductName,
+} = require("../../../src/services/productAPI");
 
 // sending the secret to the client to enables him to ping Stripe directly
 
@@ -51,16 +54,15 @@ router.post("/", async (req, res) => {
   return;
 });
 
-// TO BUILD MY DEAR
 router.post("/subscribe", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
   /* ************************ */
 
-  let token = req.body.token;
+  let clientSecret = req.body.token;
   let idShop = req.body.idShop;
 
-  if (token === undefined) {
+  if (clientSecret === undefined) {
     res.status(406).json("Parameter token is missing in payload.");
     return;
   }
@@ -89,11 +91,25 @@ router.post("/subscribe", async (req, res) => {
     return;
   }
 
+  console.log("clientSecret", clientSecret);
+  console.log("secretFromDB", secretFromDB);
+
   const lastProductBought = user.dataValues.temporaryLastProductPaid;
 
-  // if secret from DB matches with the one received : go + delete
+  console.log("temporaryLastProductPaid", lastProductBought);
 
-  //if not ok : do nothing
+  // if secret from DB matches with the one received : go + delete
+  if (clientSecret === secretFromDB) {
+    // subscribe
+    const subscribeDurationInMonth = getProductDurationWithProductName(
+      lastProductBought
+    );
+    // -> save it in DB
+    // -> erase secret
+  } else {
+    res.status(406).json("Secrets do not match.");
+    return;
+  }
 });
 
 module.exports = router;

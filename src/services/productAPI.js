@@ -18,6 +18,30 @@ const returnProductNameSubscription = (duration) => {
   return productNameToReturn;
 };
 
+const getProductDurationWithProductName = (productName) => {
+  let productDurationToReturn;
+
+  switch (productName) {
+    case "OneMonthSubscription": {
+      productDurationToReturn = 1;
+      break;
+    }
+    case "ThreeMonthSubscription": {
+      productDurationToReturn = 3;
+      break;
+    }
+    default: {
+      console.error(
+        "couldnot find a duration for this product. Input :",
+        productName
+      );
+      break;
+    }
+  }
+  return productDurationToReturn;
+};
+
 module.exports = {
   returnProductNameSubscription,
+  getProductDurationWithProductName,
 };
