@@ -15,7 +15,9 @@ const LoginPage = ({
   renewJWTToken,
   launchcheckStatusTimer,
 }) => {
-  const { setAuthenticationInfos } = useContext(AuthContext);
+  const { authenticationInfos, setAuthenticationInfos } = useContext(
+    AuthContext
+  );
   //Timers control for auto login renew or auto logout
   const { timers, setTimers } = useContext(LoginLogOutContext);
 
@@ -26,7 +28,10 @@ const LoginPage = ({
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // console.log(eraseAuthContext);
+  //if user is already authenticated, redirect him to my scripts
+  if (authenticationInfos.isAuthenticated) {
+    history.push("/my-scripts/");
+  }
 
   const handleChange = (event) => {
     const value = event.currentTarget.value;
