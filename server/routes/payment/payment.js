@@ -8,6 +8,11 @@ const {
   getProductDurationWithProductName,
 } = require("../../../src/services/productAPI");
 
+const {
+  getRelevantDateForUpdateSubscribe,
+  addMonthsToADate,
+} = require("../../services/utils");
+
 // sending the secret to the client to enables him to ping Stripe directly
 
 router.post("/", async (req, res) => {
@@ -91,6 +96,8 @@ router.post("/subscribe", async (req, res) => {
     return;
   }
 
+  console.log("user", user.dataValues);
+
   console.log("clientSecret", clientSecret);
   console.log("secretFromDB", secretFromDB);
 
@@ -100,12 +107,29 @@ router.post("/subscribe", async (req, res) => {
 
   // if secret from DB matches with the one received : go + delete
   if (clientSecret === secretFromDB) {
-    // subscribe
+    // Duration definition
     const subscribeDurationInMonth = getProductDurationWithProductName(
       lastProductBought
     );
-    // -> save it in DB
-    // -> erase secret
+
+    // Getting the right date
+    const date = getRelevantDateForUpdateSubscribe(
+      user.dataValues.isSubscribedUntil
+    );
+
+    // Adding duration on that date
+    const dateWithSubscriptionAdded = addMonthsToADate(
+      date,
+      subscribeDurationInMonth
+    );
+
+    // Save it in DB & erase temporary secret & temporary product
+    const updatedSubscription = await db.User.upsert({
+      idShop: idShop,
+      isSubscribedUntil: dateWithSubscriptionAdded,
+      temporarySecret: null,
+      temporaryLastProductPaid: null,
+    });
   } else {
     res.status(406).json("Secrets do not match.");
     return;
