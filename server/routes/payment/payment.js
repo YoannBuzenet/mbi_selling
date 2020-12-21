@@ -37,14 +37,14 @@ router.post("/", async (req, res) => {
   /* ********** LOGIC ********* */
   /* ************************** */
 
+  const amountToPay = calculateAmount(req.body.productData);
+
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateAmount(req.body.productData), // Amount is in cents
+    amount: amountToPay, // Amount is in cents
     currency: "usd",
     // Verify your integration in this guide by including this parameter
     metadata: { integration_check: "accept_a_payment" },
   });
-
-  console.log("req.body.productData", req.body.productData);
 
   // Storing Secret in DB to be able to track this payment
   const updatedUSer = await db.User.upsert({
@@ -53,6 +53,8 @@ router.post("/", async (req, res) => {
     temporaryLastProductPaid: req.body.productData,
     updatedAt: Date.now(),
   });
+
+  // TODO create invoice
 
   res.json({ client_secret: paymentIntent.client_secret });
 
@@ -96,14 +98,7 @@ router.post("/subscribe", async (req, res) => {
     return;
   }
 
-  console.log("user", user.dataValues);
-
-  console.log("clientSecret", clientSecret);
-  console.log("secretFromDB", secretFromDB);
-
   const lastProductBought = user.dataValues.temporaryLastProductPaid;
-
-  console.log("temporaryLastProductPaid", lastProductBought);
 
   // if secret from DB matches with the one received : go + delete
   if (

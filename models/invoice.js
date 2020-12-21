@@ -11,6 +11,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Invoice.belongsTo(models.User, { foreignKey: "idShop" });
     }
+    static registerInvoiceFromTransaction(idShop) {
+      return Invoice.create({
+        //prop : value
+        idShop,
+        subscribingStartDate: "",
+        subscribingEndDate: "",
+        amountTaxIncluded: "",
+        amountTaxExcluded: "",
+        VATSum: "",
+        VATStatus: "",
+      });
+    }
   }
   Invoice.init(
     {
@@ -43,7 +55,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       VATStatus: { type: DataTypes.INTEGER, allowNull: false },
-      stripeReference: { type: DataTypes.STRING, allowNull: false },
     },
     {
       sequelize,

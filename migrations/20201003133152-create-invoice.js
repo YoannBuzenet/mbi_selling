@@ -36,7 +36,6 @@ module.exports = {
         allowNull: false,
       },
       VATStatus: { type: Sequelize.INTEGER, allowNull: false },
-      stripeReference: { type: Sequelize.STRING, allowNull: false },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
