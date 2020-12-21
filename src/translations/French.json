@@ -90,6 +90,8 @@
   "app.setNewPassword.mailLabel": "Merci d'indiquer votre adresse mail",
   "app.setNewPassword.mailPlaceholder": "Votre email",
 
+  "app.invoicePage.title": "Factures",
+  "app.invoicePage.invoice.thead.name": "Facture",
   "app.invoicePage.getInvoices.failure": "Les factures n'ont pu être chargées. Merci de réessayer ultérieurement.",
 
   "app.RegisterPage.title": "Créer un compte",
