@@ -54,6 +54,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/payment/CheckoutForm";
 import MyInvoices from "./pages/MyInvoices";
+import MyAccountPage from "./pages/MyAccount";
 
 // Loading stripe outside of the component to avoid recalculation in each render
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TEST_KEY);
@@ -436,6 +437,10 @@ function App() {
                             <LoggedRouteRender
                               path="/my-invoices"
                               component={MyInvoices}
+                            />
+                            <LoggedRouteRender
+                              path="/myAccount"
+                              component={MyAccountPage}
                             />
                           </Switch>
                         </Router>
