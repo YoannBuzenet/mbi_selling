@@ -40,6 +40,7 @@ router.post("/", async (req, res) => {
 
   const amountToPay = calculateAmount(req.body.productData);
 
+  // Calling Stripe to get a token
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amountToPay, // Amount is in cents
     currency: "usd",
@@ -124,38 +125,47 @@ router.post("/subscribe", async (req, res) => {
     secretFromDB !== null &&
     secretFromDB !== ""
   ) {
-    // Duration definition
-    const subscribeDurationInMonth = getProductDurationWithProductName(
-      lastProductBought
-    );
+    try {
+      // Duration definition
+      const subscribeDurationInMonth = getProductDurationWithProductName(
+        lastProductBought
+      );
 
-    // Getting the right date
-    const date = getRelevantDateForUpdateSubscribe(
-      user.dataValues.isSubscribedUntil
-    );
+      // Getting the right date
+      const date = getRelevantDateForUpdateSubscribe(
+        user.dataValues.isSubscribedUntil
+      );
+      // Adding duration on that date
+      const dateWithSubscriptionAdded = addMonthsToADate(
+        date,
+        subscribeDurationInMonth
+      );
 
-    // Adding duration on that date
-    const dateWithSubscriptionAdded = addMonthsToADate(
-      date,
-      subscribeDurationInMonth
-    );
+      // Save User Subscription in DB & erase temporary secret & temporary product
+      const updatedSubscription = await db.User.upsert({
+        idShop: idShop,
+        isSubscribedUntil: dateWithSubscriptionAdded,
+        temporarySecret: null,
+        temporaryLastProductPaid: null,
+      });
 
-    // Save User Subscription in DB & erase temporary secret & temporary product
-    const updatedSubscription = await db.User.upsert({
-      idShop: idShop,
-      isSubscribedUntil: dateWithSubscriptionAdded,
-      temporarySecret: null,
-      temporaryLastProductPaid: null,
-    });
+      // Editing the current Invoice to register subscription
+      await db.Invoice.updateInvoiceFromCustomer(
+        idShop,
+        date,
+        dateWithSubscriptionAdded
+      );
 
-    // Editing the current Invoice to register subscription
-    await db.Invoice.updateInvoiceFromCustomer(
-      idShop,
-      date,
-      dateWithSubscriptionAdded
-    );
+      res.json("User Subscription Updated").status(200);
+      return;
+    } catch (error) {
+      console.log("error during subscription", error);
 
-    res.json("User Subscription Updated").status(200);
+      res
+        .status(500)
+        .json("There has been an error while registering the subscription.");
+      return;
+    }
   } else {
     res.status(406).json("Secrets do not match.");
     return;

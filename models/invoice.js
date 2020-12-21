@@ -38,16 +38,28 @@ module.exports = (sequelize, DataTypes) => {
       subscribingStartDate,
       subscribingEndDate
     ) {
-      const invoiceToUpdate = await db.Invoice.findOne({
+      const invoiceToUpdate = await Invoice.findOne({
         where: {
           subscribingStartDate: null,
           idShop: idShop,
         },
       });
-      return invoiceToUpdate.upsert({
-        subscribingStartDate: subscribingStartDate,
-        subscribingEndDate: subscribingEndDate,
-      });
+      if (invoiceToUpdate) {
+        return Invoice.upsert({
+          id: invoiceToUpdate.dataValues.id,
+          idInvoice: invoiceToUpdate.dataValues.idInvoice,
+          subscribingStartDate: subscribingStartDate,
+          subscribingEndDate: subscribingEndDate,
+          amountTaxIncluded: invoiceToUpdate.dataValues.amountTaxIncluded,
+          amountTaxExcluded: invoiceToUpdate.dataValues.amountTaxExcluded,
+          VATSum: invoiceToUpdate.dataValues.VATSum,
+          VATStatus: invoiceToUpdate.dataValues.VATStatus,
+        });
+      } else {
+        console.error(
+          "Error while trying to update an invoice : could not find it."
+        );
+      }
     }
 
     static async getNextIdForInvoice() {
