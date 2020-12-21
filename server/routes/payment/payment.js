@@ -134,6 +134,8 @@ router.post("/subscribe", async (req, res) => {
       temporarySecret: null,
       temporaryLastProductPaid: null,
     });
+
+    res.json("User Subscription Updated").status(200);
   } else {
     res.status(406).json("Secrets do not match.");
     return;

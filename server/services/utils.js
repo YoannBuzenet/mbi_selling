@@ -144,7 +144,15 @@ function createADateFromTodayAndAddMonths(numberOfMonths) {
 }
 
 function addMonthsToADate(date, numberOfMonths) {
-  return new Date(date.setMonth(CurrentDate.getMonth() + numberOfMonths));
+  let processedDate;
+  if (typeof date === "string") {
+    processedDate = new Date(date);
+  } else {
+    processedDate = date;
+  }
+  return new Date(
+    processedDate.setMonth(processedDate.getMonth() + numberOfMonths)
+  );
 }
 
 module.exports = {
