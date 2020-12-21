@@ -96,6 +96,7 @@
   "app.invoicePage.invoice.thead.endingDate": "Finit le",
   "app.invoicePage.invoice.thead.duration": "Durée",
   "app.invoicePage.invoice.thead.amount": "Montant",
+  "app.invoicePage.invoice.thead.download": "Télécharger",
   "app.invoicePage.getInvoices.failure": "Les factures n'ont pu être chargées. Merci de réessayer ultérieurement.",
 
   "app.RegisterPage.title": "Créer un compte",
