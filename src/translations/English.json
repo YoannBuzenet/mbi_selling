@@ -92,7 +92,11 @@
   "app.setNewPassword.mailPlaceholder": "Your Mail",
 
   "app.invoicePage.title": "Invoices",
-  "app.invoicePage.invoice.thead.name": "Invoice",
+  "app.invoicePage.invoice.thead.creationDate": "Created On",
+  "app.invoicePage.invoice.thead.beginningDate": "Starts on",
+  "app.invoicePage.invoice.thead.endingDate": "Ends On",
+  "app.invoicePage.invoice.thead.duration": "Duration",
+  "app.invoicePage.invoice.thead.amount": "Amount",
   "app.invoicePage.getInvoices.failure": "Invoices could not be loaded. Please try later.",
 
   "app.RegisterPage.title": "Register",

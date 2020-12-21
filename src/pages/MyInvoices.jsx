@@ -5,6 +5,7 @@ import authContext from "../context/authContext";
 import { toast } from "react-toastify";
 import { FormattedMessage } from "react-intl";
 import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
+import InvoiceLine from "../components/InvoiceLine";
 
 const MyInvoices = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -40,23 +41,38 @@ const MyInvoices = () => {
         <Table>
           <Thead>
             <Tr>
-              <Th></Th>
-              <Th></Th>
-              <Th></Th>
-              <Th></Th>
               <Th>
                 <FormattedMessage
-                  id="app.invoicePage.invoice.thead.name"
-                  defaultMessage="Invoice"
+                  id="app.invoicePage.invoice.thead.creationDate"
+                  defaultMessage="Created On"
                 />
               </Th>
+              <Th>
+                <FormattedMessage
+                  id="app.invoicePage.invoice.thead.beginningDate"
+                  defaultMessage="Starts on"
+                />
+              </Th>
+              <Th>
+                <FormattedMessage
+                  id="app.invoicePage.invoice.thead.endingDate"
+                  defaultMessage="Ends On"
+                />
+              </Th>
+              <Th>
+                <FormattedMessage
+                  id="app.invoicePage.invoice.thead.amount"
+                  defaultMessage="Amount"
+                />
+              </Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
             {listOfInvoices.map((invoice, index) => {
               return (
                 <>
-                  <p>Invoice</p>
+                  <InvoiceLine invoice={invoice} />
                 </>
               );
             })}

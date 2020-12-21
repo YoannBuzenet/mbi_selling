@@ -91,7 +91,11 @@
   "app.setNewPassword.mailPlaceholder": "Votre email",
 
   "app.invoicePage.title": "Factures",
-  "app.invoicePage.invoice.thead.name": "Facture",
+  "app.invoicePage.invoice.thead.creationDate": "Crée le",
+  "app.invoicePage.invoice.thead.beginningDate": "Commence le",
+  "app.invoicePage.invoice.thead.endingDate": "Finit le",
+  "app.invoicePage.invoice.thead.duration": "Durée",
+  "app.invoicePage.invoice.thead.amount": "Montant",
   "app.invoicePage.getInvoices.failure": "Les factures n'ont pu être chargées. Merci de réessayer ultérieurement.",
 
   "app.RegisterPage.title": "Créer un compte",
