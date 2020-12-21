@@ -56,13 +56,15 @@ router.post("/", async (req, res) => {
   });
 
   //Creating Invoice with payment information
-
   const amountTaxIncluded = amountToPay * MTGINTERFACE_VAT_RATE;
   const amountTaxExcluded = amountToPay;
   const VATSum = amountTaxIncluded - amountTaxExcluded;
 
+  const newInvoiceId = await db.Invoice.getNextIdForInvoice();
+
   const createdInvoice = await db.Invoice.registerInvoiceAfterTransaction(
     idShop,
+    newInvoiceId,
     null,
     null,
     amountTaxIncluded,
