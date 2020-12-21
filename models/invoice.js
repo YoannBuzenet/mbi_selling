@@ -49,9 +49,15 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    // TO DO
-    static getNextIdForInvoice() {
-      return "number";
+    static async getNextIdForInvoice() {
+      const latestInvoice = await Invoice.findAll({
+        limit: 1,
+        order: [["createdAt", "DESC"]],
+      });
+
+      const lastInvoiceId = parseInt(latestInvoice.davaValues.idInvoice);
+      const nextId = lastInvoiceId + 1;
+      return nextId;
     }
   }
   Invoice.init(
