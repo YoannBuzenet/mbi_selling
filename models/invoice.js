@@ -72,6 +72,14 @@ module.exports = (sequelize, DataTypes) => {
       const nextId = lastInvoiceId + 1;
       return nextId;
     }
+
+    static getAllInvoicesForOneShop(idShop) {
+      return Invoice.findAll({
+        where: {
+          idShop: idShop,
+        },
+      });
+    }
   }
   Invoice.init(
     {
