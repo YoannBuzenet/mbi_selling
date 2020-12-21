@@ -7,6 +7,7 @@ const db = require("../../../models/index");
 const {
   getProductDurationWithProductName,
 } = require("../../../src/services/productAPI");
+const { MTGINTERFACE_VAT_RATE } = require("../../services/config");
 
 const {
   getRelevantDateForUpdateSubscribe,
@@ -54,13 +55,28 @@ router.post("/", async (req, res) => {
     updatedAt: Date.now(),
   });
 
-  // TODO create invoice
+  //Creating Invoice with payment information
+
+  const amountTaxIncluded = amountToPay * MTGINTERFACE_VAT_RATE;
+  const amountTaxExcluded = amountToPay;
+  const VATSum = amountTaxIncluded - amountTaxExcluded;
+
+  const createdInvoice = await db.Invoice.registerInvoiceAfterTransaction(
+    idShop,
+    null,
+    null,
+    amountTaxIncluded,
+    amountTaxExcluded,
+    VATSum,
+    0
+  );
 
   res.json({ client_secret: paymentIntent.client_secret });
 
   return;
 });
 
+/* After payment, registering the actual product & purchase */
 router.post("/subscribe", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
@@ -79,7 +95,7 @@ router.post("/subscribe", async (req, res) => {
     return;
   }
 
-  // go in DB, compare with secret stored
+  // Comparing with temporary Secret stored in DB
   const user = await db.User.findOne({
     where: {
       idShop: idShop,
@@ -122,13 +138,20 @@ router.post("/subscribe", async (req, res) => {
       subscribeDurationInMonth
     );
 
-    // Save it in DB & erase temporary secret & temporary product
+    // Save User Subscription in DB & erase temporary secret & temporary product
     const updatedSubscription = await db.User.upsert({
       idShop: idShop,
       isSubscribedUntil: dateWithSubscriptionAdded,
       temporarySecret: null,
       temporaryLastProductPaid: null,
     });
+
+    // Editing the current Invoice to register subscription
+    await db.Invoice.updateInvoiceFromCustomer(
+      idShop,
+      date,
+      dateWithSubscriptionAdded
+    );
 
     res.json("User Subscription Updated").status(200);
   } else {

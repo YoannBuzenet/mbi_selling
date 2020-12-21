@@ -11,17 +11,47 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Invoice.belongsTo(models.User, { foreignKey: "idShop" });
     }
-    static registerInvoiceFromTransaction(idShop) {
+    static registerInvoiceFromTransaction(
+      idShop,
+      subscribingStartDate,
+      subscribingEndDate,
+      amountTaxIncluded,
+      amountTaxExcluded,
+      VATSum,
+      VATStatus
+    ) {
       return Invoice.create({
-        //prop : value
-        idShop,
-        subscribingStartDate: "",
-        subscribingEndDate: "",
-        amountTaxIncluded: "",
-        amountTaxExcluded: "",
-        VATSum: "",
-        VATStatus: "",
+        idShop: idShop,
+        idInvoice: 1,
+        subscribingStartDate: subscribingStartDate,
+        subscribingEndDate: subscribingEndDate,
+        amountTaxIncluded: amountTaxIncluded,
+        amountTaxExcluded: amountTaxExcluded,
+        VATSum: VATSum,
+        VATStatus: VATStatus,
       });
+    }
+
+    static async updateInvoiceFromCustomer(
+      idShop,
+      subscribingStartDate,
+      subscribingEndDate
+    ) {
+      const invoiceToUpdate = await db.Invoice.findOne({
+        where: {
+          subscribingStartDate: null,
+          idShop: idShop,
+        },
+      });
+      return invoiceToUpdate.upsert({
+        subscribingStartDate: subscribingStartDate,
+        subscribingEndDate: subscribingEndDate,
+      });
+    }
+
+    // TO DO
+    static getNextIdForInvoice() {
+      return "number";
     }
   }
   Invoice.init(
@@ -32,15 +62,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       idInvoice: {
         type: DataTypes.INTEGER,
+        unique: true,
         allowNull: false,
       },
       subscribingStartDate: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
       },
       subscribingEndDate: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
       },
       amountTaxIncluded: {
         type: DataTypes.FLOAT,
