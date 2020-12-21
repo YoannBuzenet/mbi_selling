@@ -1,6 +1,6 @@
 import React from "react";
 import { Tr, Td } from "react-super-responsive-table";
-import { FormattedDate } from "react-intl";
+import { FormattedDate, FormattedMessage } from "react-intl";
 
 const InvoiceLine = ({ invoice }) => {
   return (
@@ -17,6 +17,12 @@ const InvoiceLine = ({ invoice }) => {
         <FormattedDate value={invoice.subscribingEndDate} />
       </Td>
       <Td>{invoice.amountTaxIncluded}</Td>
+      <Td>
+        <FormattedMessage
+          id="app.invoicePage.invoice.thead.download"
+          defaultMessage="Download"
+        />
+      </Td>
     </Tr>
   );
 };

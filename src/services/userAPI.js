@@ -13,7 +13,25 @@ function update(id, credentials) {
   );
 }
 
+/* Are mandatory informations for invoices here ?*/
+/* Returns boolean */
+function hasGivenMandatoryInformationForInvoices(authContext) {
+  return (
+    authContext?.shop?.legalName !== "" &&
+    authContext?.shop?.legalName &&
+    authContext?.shop?.adress !== "" &&
+    authContext?.shop?.adress &&
+    authContext?.shop?.postalCode !== "" &&
+    authContext?.shop?.postalCode &&
+    authContext?.shop?.town !== "" &&
+    authContext?.shop?.town &&
+    authContext?.shop?.vatNumber !== "" &&
+    authContext?.shop?.vatNumber
+  );
+}
+
 export default {
   register,
   update,
+  hasGivenMandatoryInformationForInvoices,
 };

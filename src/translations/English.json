@@ -97,6 +97,7 @@
   "app.invoicePage.invoice.thead.endingDate": "Ends On",
   "app.invoicePage.invoice.thead.duration": "Duration",
   "app.invoicePage.invoice.thead.amount": "Amount",
+  "app.invoicePage.invoice.thead.download": "Download",
   "app.invoicePage.getInvoices.failure": "Invoices could not be loaded. Please try later.",
 
   "app.RegisterPage.title": "Register",
