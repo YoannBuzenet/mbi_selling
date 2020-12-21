@@ -1,15 +1,22 @@
 import React from "react";
 import { Tr, Td } from "react-super-responsive-table";
+import { FormattedDate } from "react-intl";
 
 const InvoiceLine = ({ invoice }) => {
   return (
     <Tr>
-      <Td>{invoice.createdAt}</Td>
-      <Td>{invoice.subscribingStartDate}</Td>
-      <Td>{invoice.subscribingEndDate}</Td>
+      <Td>
+        <FormattedDate
+          value={invoice.createdAt.substring(0, invoice.createdAt.length - 14)}
+        />
+      </Td>
+      <Td>
+        <FormattedDate value={invoice.subscribingStartDate} />
+      </Td>
+      <Td>
+        <FormattedDate value={invoice.subscribingEndDate} />
+      </Td>
       <Td>{invoice.amountTaxIncluded}</Td>
-      <Td>{invoice.createdAt}</Td>
-      <Td>{invoice.createdAt}</Td>
     </Tr>
   );
 };
