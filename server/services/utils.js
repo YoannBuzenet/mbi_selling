@@ -93,6 +93,18 @@ function transformArrayIntoDictionnaryWithKey(array, key = "id") {
   return dictionnaryToReturn;
 }
 
+function getRelevantDateForUpdateSubscribe(date) {
+  let processedDate;
+  // -> si la date est null ou inférieure à aujourd'hui, on la met à aujourd'hui. Sinon on prends celle de la DB
+  if (date === null || date < new Date()) {
+    console.log("date is inferior to today or was null :", date);
+    processedDate = new Date();
+  } else {
+    processedDate = date;
+  }
+  return processedDate;
+}
+
 //DEFINED LANGUAGE ID
 const langDefinition = {
   1: "German",
@@ -131,6 +143,10 @@ function createADateFromTodayAndAddMonths(numberOfMonths) {
   );
 }
 
+function addMonthsToADate(date, numberOfMonths) {
+  return new Date(date.setMonth(CurrentDate.getMonth() + numberOfMonths));
+}
+
 module.exports = {
   prepareStateFromArrayOfRules,
   snapshotShopParams,
@@ -139,4 +155,6 @@ module.exports = {
   conditionDefinition,
   sleep,
   createADateFromTodayAndAddMonths,
+  getRelevantDateForUpdateSubscribe,
+  addMonthsToADate,
 };
