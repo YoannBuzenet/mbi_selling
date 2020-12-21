@@ -106,7 +106,11 @@ router.post("/subscribe", async (req, res) => {
   console.log("temporaryLastProductPaid", lastProductBought);
 
   // if secret from DB matches with the one received : go + delete
-  if (clientSecret === secretFromDB) {
+  if (
+    clientSecret === secretFromDB &&
+    secretFromDB !== null &&
+    secretFromDB !== ""
+  ) {
     // Duration definition
     const subscribeDurationInMonth = getProductDurationWithProductName(
       lastProductBought

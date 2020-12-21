@@ -12,12 +12,16 @@ module.exports = {
         {
           idShop: 4,
           isSubscribedUntil: utils.createADateFromTodayAndAddMonths(6),
+          temporarySecret: "test",
+          temporaryLastProductPaid: "OneMonthSubscription",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           idShop: 7,
           isSubscribedUntil: utils.createADateFromTodayAndAddMonths(1),
+          temporarySecret: "test2",
+          temporaryLastProductPaid: "ThreeMonthSubscription",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
