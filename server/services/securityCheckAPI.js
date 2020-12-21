@@ -71,7 +71,7 @@ async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
     return true;
   }
   //User doesn't have access or doesnt exist
-  //   console.log("false", respServ);
+  // console.log("false", respServ);
   return false;
 }
 

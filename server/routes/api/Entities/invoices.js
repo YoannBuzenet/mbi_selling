@@ -34,6 +34,7 @@ router.get("/getForShop", async (req, res) => {
   const shopInvoices = await db.Invoice.getAllInvoicesForOneShop(idShop);
 
   res.status(200).json(shopInvoices);
+  return;
 });
 
 module.exports = router;

@@ -62,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
+    /* Law asks for a continuous id bewteen invoices, it is done with this function */
     static async getNextIdForInvoice() {
       const latestInvoice = await Invoice.findAll({
         limit: 1,
