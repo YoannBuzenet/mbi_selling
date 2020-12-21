@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     static registerInvoiceFromTransaction(
       idShop,
+      idInvoice,
       subscribingStartDate,
       subscribingEndDate,
       amountTaxIncluded,
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     ) {
       return Invoice.create({
         idShop: idShop,
-        idInvoice: 1,
+        idInvoice: idInvoice,
         subscribingStartDate: subscribingStartDate,
         subscribingEndDate: subscribingEndDate,
         amountTaxIncluded: amountTaxIncluded,
