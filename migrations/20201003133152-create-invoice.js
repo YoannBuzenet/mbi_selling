@@ -17,11 +17,9 @@ module.exports = {
       },
       subscribingStartDate: {
         type: Sequelize.DATEONLY,
-        allowNull: false,
       },
       subscribingEndDate: {
         type: Sequelize.DATEONLY,
-        allowNull: false,
       },
       amountTaxIncluded: {
         type: Sequelize.FLOAT,
