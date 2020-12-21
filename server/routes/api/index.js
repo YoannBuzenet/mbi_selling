@@ -15,6 +15,7 @@ const customrule_behaviour_definition = require("./Entities/customrule_behaviour
 const customrule_ruletype_definition = require("./Entities/customrule_ruletype_definition");
 const priceguideDefinition = require("./Entities/priceguideDefinition");
 const formatsDefinition = require("./Entities/format");
+const invoicesHandling = require("./Entities/invoices");
 
 //Testing routes
 const testRoutes = require("./test");
@@ -28,6 +29,7 @@ router.use("/testConnection", dbRoutes);
 router.use("/mtgData", mtgDataRoutes);
 router.use("/mtgPrices", mtgPricesRoutes);
 router.use("/scriptExecution", scriptExecutionRoutes);
+router.use("/invoices", invoicesHandling);
 
 //test purpose
 if (process.env.NODE_ENV === "development") {
