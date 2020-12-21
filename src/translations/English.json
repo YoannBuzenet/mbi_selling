@@ -91,6 +91,8 @@
   "app.setNewPassword.mailLabel": "Please type your mail adress",
   "app.setNewPassword.mailPlaceholder": "Your Mail",
 
+  "app.invoicePage.getInvoices.failure": "Invoices could not be loaded. Please try later.",
+
   "app.RegisterPage.title": "Register",
   "app.RegisterPage.label.mail": "Email",
   "app.RegisterPage.label.password": "Password",
