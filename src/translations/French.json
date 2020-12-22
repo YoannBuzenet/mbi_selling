@@ -98,6 +98,8 @@
   "app.invoicePage.invoice.thead.amount": "Montant",
   "app.invoicePage.invoice.thead.download": "Télécharger",
   "app.invoicePage.getInvoices.failure": "Les factures n'ont pu être chargées. Merci de réessayer ultérieurement.",
+  "app.invoicePage.invoice.noInvoiceYet": "Vous n'avez pas de factures pour l'instant. Vous pouvez vous abonner à tout moment !",
+  "app.invoicePage.invoice.subscribeCTA": "S'abonner",
 
   "app.RegisterPage.title": "Créer un compte",
   "app.RegisterPage.label.mail": "Email",
