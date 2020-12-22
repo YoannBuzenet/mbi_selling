@@ -99,6 +99,8 @@
   "app.invoicePage.invoice.thead.amount": "Amount",
   "app.invoicePage.invoice.thead.download": "Download",
   "app.invoicePage.getInvoices.failure": "Invoices could not be loaded. Please try later.",
+  "app.invoicePage.invoice.noInvoiceYet": "You have no invoice at the time. You can subscribe anytime !",
+  "app.invoicePage.invoice.subscribeCTA": "Purchase",
 
   "app.RegisterPage.title": "Register",
   "app.RegisterPage.label.mail": "Email",

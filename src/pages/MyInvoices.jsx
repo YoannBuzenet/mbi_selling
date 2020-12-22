@@ -6,6 +6,9 @@ import { FormattedMessage } from "react-intl";
 import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
 import InvoiceLine from "../components/InvoiceLine";
 import userAPI from "../services/userAPI";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const MyInvoices = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -28,6 +31,28 @@ const MyInvoices = () => {
         );
       });
   }, []);
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
+  //Hook Intl to translate an attribute
+  const intl = useIntl();
+
+  /* ************************ */
+  /* ***** TRANSLATIONS ***** */
+  /* ************************ */
+
+  const translatedSubscribe = intl.formatMessage({
+    id: "app.invoicePage.invoice.subscribeCTA",
+    defaultMessage: "Subscribe",
+  });
 
   return (
     <div className="container all-my-invoices">
@@ -84,6 +109,27 @@ const MyInvoices = () => {
             </Table>
           </div>
         )}
+      {/* If user has no invoices */}
+      {authenticationInfos &&
+        userAPI.hasGivenMandatoryInformationForInvoices(authenticationInfos) &&
+        listOfInvoices.length === 0 && (
+          <>
+            <p>
+              <FormattedMessage
+                id="app.invoicePage.invoice.noInvoiceYet"
+                defaultMessage="You have no invoice at the time. You can subscribe anytime !"
+              />
+            </p>
+            <div className={classes.root}>
+              <Link to="/subscribe">
+                <Button variant="contained" color="primary" size="large">
+                  {translatedSubscribe}
+                </Button>
+              </Link>
+            </div>
+          </>
+        )}
+      {/* If user sid not fill his mandatory info for invoice creation */}
       {authenticationInfos &&
         !userAPI.hasGivenMandatoryInformationForInvoices(
           authenticationInfos
