@@ -222,6 +222,122 @@ const RegisterPage = ({
             minlength={6}
           />
 
+          {/* TODO Yo */}
+          {/* List of fields to display */}
+          {/* adress/postal code / town */}
+          {/* VAT if applicable */}
+
+          <Field
+            name="legalName"
+            type="password"
+            id="legalName"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.legalName"
+                defaultMessage={`Company Name, or Business Owner Name`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.legalName"
+                defaultMessage={`Company Name, or Business Owner Name`}
+              />
+            }
+          />
+
+          {/* Adress */}
+          <Field
+            name="passwordCheck"
+            type="password"
+            id="passwordCheck"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.passwordCheck"
+                defaultMessage={`Please type your password again`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.passwordCheck"
+                defaultMessage={`Password Verification`}
+              />
+            }
+            minlength={6}
+          />
+
+          {/* Postalcode */}
+
+          <Field
+            name="passwordCheck"
+            type="password"
+            id="passwordCheck"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.passwordCheck"
+                defaultMessage={`Please type your password again`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.passwordCheck"
+                defaultMessage={`Password Verification`}
+              />
+            }
+            minlength={6}
+          />
+
+          {/* Town */}
+
+          <Field
+            name="passwordCheck"
+            type="password"
+            id="passwordCheck"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.passwordCheck"
+                defaultMessage={`Please type your password again`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.passwordCheck"
+                defaultMessage={`Password Verification`}
+              />
+            }
+            minlength={6}
+          />
+
+          {/* VAT if applicable */}
+
+          <Field
+            name="passwordCheck"
+            type="password"
+            id="passwordCheck"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.passwordCheck"
+                defaultMessage={`Please type your password again`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.passwordCheck"
+                defaultMessage={`Password Verification`}
+              />
+            }
+            minlength={6}
+          />
+
           {isLoading && (
             <div className="RegisterLoader">
               <CSSLoaderWaitingSpiral />
