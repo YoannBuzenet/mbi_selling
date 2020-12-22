@@ -109,6 +109,8 @@
   "app.RegisterPage.label.passwordCheck": "Merci de retapper votre mot de passe",
   "app.RegisterPage.placeholder.passwordCheck": "Verification Mot de passe",
   "app.RegisterPage.accountCreation.passwordCheck.failure": "Les mots de passe ne sont pas les mêmes. Merci de les retapper.",
+  "app.RegisterPage.placeholder.legalName": "Nom de société, ou nom du propriétaire de l'entreprise",
+  "app.RegisterPage.label.legalName": "Nom de société, ou nom du propriétaire de l'entreprise",
   "app.RegisterPage.label.firstName": "Prénom",
   "app.RegisterPage.label.lastName": "Nom de famille",
   "app.RegisterPage.label.telephone": "Téléphone",
