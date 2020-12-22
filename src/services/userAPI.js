@@ -6,11 +6,7 @@ function register(credentials) {
 }
 
 function update(id, credentials) {
-  // console.log(id, credentials);
-  return axios.put(
-    process.env.REACT_APP_MTGAPI_URL + "/users/" + id,
-    credentials
-  );
+  return axios.put("api/users/userShop" + id, credentials);
 }
 
 /* Are mandatory informations for invoices here ?*/
