@@ -8,7 +8,7 @@ import InvoiceLine from "../components/InvoiceLine";
 import userAPI from "../services/userAPI";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const MyInvoices = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
@@ -145,7 +145,20 @@ const MyInvoices = () => {
       {/* If user sid not fill his mandatory info for invoice creation */}
       {authenticationInfos &&
         !userAPI.hasGivenMandatoryInformationForInvoices(authenticationInfos) &&
-        !isLoading && <p>Merci de remplir tous les infos CONNARD</p>}
+        !isLoading && (
+          <p>
+            <FormattedMessage
+              id="app.invoicePage.invoice.needMandatoryInformations"
+              defaultMessage="We need some informations to be able to generates invoices. Please complete them "
+            />
+            <Link to="/my-account">
+              <FormattedMessage
+                id="app.invoicePage.invoice.needMandatoryInformationsHere"
+                defaultMessage="here."
+              />
+            </Link>
+          </p>
+        )}
     </div>
   );
 };
