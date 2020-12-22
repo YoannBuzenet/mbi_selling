@@ -2,22 +2,27 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import authContext from "../context/authContext";
 import { toast } from "react-toastify";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
 import InvoiceLine from "../components/InvoiceLine";
 import userAPI from "../services/userAPI";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const MyInvoices = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     authContext
   );
 
+  const history = useHistory();
+
   const [listOfInvoices, setListOfInvoices] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`api/invoices/getForShop?idShop=${authenticationInfos.shop.id}`)
       .then((resp) => setListOfInvoices(resp.data))
@@ -29,7 +34,8 @@ const MyInvoices = () => {
             defaultMessage="Invoices could not be loaded. Please try later."
           />
         );
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -54,6 +60,9 @@ const MyInvoices = () => {
     defaultMessage: "Subscribe",
   });
 
+  console.log("isLoading", isLoading);
+  console.log("listOfInvoices", listOfInvoices);
+
   return (
     <div className="container all-my-invoices">
       <h2>
@@ -63,9 +72,8 @@ const MyInvoices = () => {
         />
       </h2>
       {authenticationInfos &&
-        userAPI.hasGivenMandatoryInformationForInvoices(
-          authenticationInfos
-        ) && (
+        userAPI.hasGivenMandatoryInformationForInvoices(authenticationInfos) &&
+        !isLoading && (
           <div>
             <Table>
               <Thead>
@@ -112,6 +120,7 @@ const MyInvoices = () => {
       {/* If user has no invoices */}
       {authenticationInfos &&
         userAPI.hasGivenMandatoryInformationForInvoices(authenticationInfos) &&
+        !isLoading &&
         listOfInvoices.length === 0 && (
           <>
             <p>
@@ -121,19 +130,22 @@ const MyInvoices = () => {
               />
             </p>
             <div className={classes.root}>
-              <Link to="/subscribe">
-                <Button variant="contained" color="primary" size="large">
-                  {translatedSubscribe}
-                </Button>
-              </Link>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                className="buttonURL"
+                onClick={(e) => history.push("/subscribe")}
+              >
+                {translatedSubscribe}
+              </Button>
             </div>
           </>
         )}
       {/* If user sid not fill his mandatory info for invoice creation */}
       {authenticationInfos &&
-        !userAPI.hasGivenMandatoryInformationForInvoices(
-          authenticationInfos
-        ) && <p>Merci de remplir tous les infos CONNARD</p>}
+        !userAPI.hasGivenMandatoryInformationForInvoices(authenticationInfos) &&
+        !isLoading && <p>Merci de remplir tous les infos CONNARD</p>}
     </div>
   );
 };
