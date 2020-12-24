@@ -89,6 +89,19 @@ const BurgerMenuCustomerComponents = ({ history }) => {
               </Link>
 
               <Link
+                className="toggle-classic_links_responsive-links"
+                to="/my-invoices"
+                onClick={(event) => closeMenu(event)}
+              >
+                <li>
+                  <FormattedMessage
+                    id="app.navbar.invoices"
+                    defaultMessage={`My invoices`}
+                  />
+                </li>
+              </Link>
+
+              <Link
                 to="/settings"
                 className="classic_links_responsive"
                 onClick={(event) => closeMenu(event)}
