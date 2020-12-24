@@ -121,6 +121,7 @@
   "app.RegisterPage.label.telephone": "Telephone",
   "app.RegisterPage.label.adress": "Adress",
   "app.RegisterPage.label.town": "Town",
+  "app.RegisterPage.label.VAT": "VAT (if applicable)",
   "app.RegisterPage.placeholder.VAT": "VAT (if applicable)",
   "app.RegisterPage.placeholder.mail": "Mail Adress...",
   "app.RegisterPage.placeholder.password": "Your password",

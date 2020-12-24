@@ -57,6 +57,11 @@ const RegisterPage = ({
       const jsonToSend = {
         email: credentials.mail,
         password: credentials.password,
+        legalName: credentials.legalName,
+        addressStreet: credentials.addressStreet,
+        postalCode: credentials.postalCode,
+        town: credentials.town,
+        vat: credentials.vat,
       };
       //Sending the register demand, sending a welcome email if registering was successful
       const serverResponse = await userAPI.register(jsonToSend);
@@ -314,7 +319,6 @@ const RegisterPage = ({
                 defaultMessage={`VAT (if applicable)`}
               />
             }
-            required
             onChange={(event) => handleChange(event)}
             label={
               <FormattedMessage

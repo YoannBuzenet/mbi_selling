@@ -81,7 +81,6 @@ const MyAccount = () => {
   };
 
   const handleChange = (event) => {
-    setTimer(clearTimeout(timer));
     // console.log("change");
 
     const value = event.currentTarget.value;

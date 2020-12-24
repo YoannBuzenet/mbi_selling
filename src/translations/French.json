@@ -120,6 +120,7 @@
   "app.RegisterPage.label.telephone": "Téléphone",
   "app.RegisterPage.label.adress": "Adresse",
   "app.RegisterPage.label.town": "Ville",
+  "app.RegisterPage.label.VAT": "TVA (si applicable)",
   "app.RegisterPage.placeholder.VAT": "TVA (si applicable)",
   "app.RegisterPage.placeholder.mail": "Adresse mail...",
   "app.RegisterPage.placeholder.password": "Mot de passe",
