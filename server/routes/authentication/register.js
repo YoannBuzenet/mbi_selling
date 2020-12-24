@@ -7,13 +7,28 @@ const db = require("../../../models/index");
 
 router.post("/", async (req, res) => {
   //Checking payload
-  if (req.body.email === undefined || req.body.password === undefined) {
+  if (
+    req.body.email === undefined ||
+    req.body.password === undefined ||
+    req.body.legalName === undefined ||
+    req.body.addressStreet === undefined ||
+    req.body.postalCode === undefined ||
+    req.body.town === undefined
+  ) {
     res.status(406).json("Parameters are missing to register User.");
     return;
   }
 
   // console.log("get data from front");
-  let userCredentials = { email: req.body.email, password: req.body.password };
+  let userCredentials = {
+    email: req.body.email,
+    password: req.body.password,
+    legalName: req.body.legalName,
+    addressStreet: req.body.legalNaddressStreetame,
+    postalCode: req.body.postalCode,
+    town: req.body.town,
+    vat: req.body.vat,
+  };
 
   try {
     const didUserRegister = await registerUser(userCredentials);
