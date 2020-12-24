@@ -103,6 +103,7 @@
   "app.invoicePage.invoice.subscribeCTA": "S'abonner",
   "app.invoicePage.invoice.needMandatoryInformations": "Nous avons besoin de certaines informations pour générer une facture. Merci de les remplir sur ce ",
   "app.invoicePage.invoice.needMandatoryInformationsHere": "lien.",
+  "app.invoicePage.InvoiceLinegeneratePDF": "Télécharger PDF",
 
   "app.RegisterPage.title": "Créer un compte",
   "app.RegisterPage.label.mail": "Email",
