@@ -165,6 +165,18 @@ const Navbar = ({ history }) => {
                         </li>
                       </Link>
                       <Link
+                        className="toggle-menu-links"
+                        to="/my-invoices"
+                        onClick={() => setToggleMenu(!toggleMenu)}
+                      >
+                        <li>
+                          <FormattedMessage
+                            id="app.navbar.invoices"
+                            defaultMessage={`My invoices`}
+                          />
+                        </li>
+                      </Link>
+                      <Link
                         to="/settings"
                         className="toggle-menu-links"
                         onClick={() => setToggleMenu(!toggleMenu)}
