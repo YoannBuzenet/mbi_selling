@@ -104,6 +104,7 @@
   "app.invoicePage.invoice.subscribeCTA": "Subscribe",
   "app.invoicePage.invoice.needMandatoryInformations": "We need some informations to be able to generates invoices. Please complete them ",
   "app.invoicePage.invoice.needMandatoryInformationsHere": "here.",
+  "app.invoicePage.InvoiceLinegeneratePDF": "Download PDF",
 
   "app.RegisterPage.title": "Register",
   "app.RegisterPage.label.mail": "Email",
