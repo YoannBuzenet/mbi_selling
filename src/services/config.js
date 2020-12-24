@@ -199,6 +199,12 @@ const ruleTypesDictionnary = {
   },
 };
 
+const ourCompanyName = "";
+const ourCompanyAddress = "";
+const ourCompanyPostalCode = "";
+const ourCompanyTown = "";
+const ourCompanySIREN = "";
+
 export default {
   langDefinition,
   TIME_TO_LOG_OUT,
@@ -214,4 +220,9 @@ export default {
   mkmPriceGuideDictionnary,
   BehaviourDictionnary,
   ruleTypesDictionnary,
+  ourCompanyName,
+  ourCompanyAddress,
+  ourCompanyPostalCode,
+  ourCompanyTown,
+  ourCompanySIREN,
 };
