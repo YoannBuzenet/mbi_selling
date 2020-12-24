@@ -222,14 +222,9 @@ const RegisterPage = ({
             minlength={6}
           />
 
-          {/* TODO Yo */}
-          {/* List of fields to display */}
-          {/* adress/postal code / town */}
-          {/* VAT if applicable */}
-
           <Field
             name="legalName"
-            type="password"
+            type="text"
             id="legalName"
             placeholder={
               <FormattedMessage
@@ -247,92 +242,84 @@ const RegisterPage = ({
             }
           />
 
-          {/* Adress */}
           <Field
-            name="passwordCheck"
-            type="password"
-            id="passwordCheck"
+            name="addressStreet"
+            type="text"
+            id="addressStreet"
             placeholder={
               <FormattedMessage
-                id="app.RegisterPage.placeholder.passwordCheck"
-                defaultMessage={`Please type your password again`}
+                id="app.RegisterPage.placeholder.addressStreet"
+                defaultMessage={`Address`}
               />
             }
             required
             onChange={(event) => handleChange(event)}
             label={
               <FormattedMessage
-                id="app.RegisterPage.label.passwordCheck"
+                id="app.RegisterPage.label.address"
+                defaultMessage={`Address`}
+              />
+            }
+            minlength={6}
+          />
+          <Field
+            name="postalCode"
+            type="text"
+            id="postalCode"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.postalCode"
+                defaultMessage={`Postal Code`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.postalCode"
                 defaultMessage={`Password Verification`}
+              />
+            }
+            minlength={3}
+          />
+
+          <Field
+            name="town"
+            type="text"
+            id="town"
+            placeholder={
+              <FormattedMessage
+                id="app.RegisterPage.placeholder.town"
+                defaultMessage={`Town`}
+              />
+            }
+            required
+            onChange={(event) => handleChange(event)}
+            label={
+              <FormattedMessage
+                id="app.RegisterPage.label.town"
+                defaultMessage={`Town`}
               />
             }
             minlength={6}
           />
 
-          {/* Postalcode */}
-
           <Field
-            name="passwordCheck"
-            type="password"
-            id="passwordCheck"
+            name="vat"
+            type="text"
+            id="vat"
             placeholder={
               <FormattedMessage
-                id="app.RegisterPage.placeholder.passwordCheck"
-                defaultMessage={`Please type your password again`}
+                id="app.RegisterPage.placeholder.VAT"
+                defaultMessage={`VAT (if applicable)`}
               />
             }
             required
             onChange={(event) => handleChange(event)}
             label={
               <FormattedMessage
-                id="app.RegisterPage.label.passwordCheck"
-                defaultMessage={`Password Verification`}
-              />
-            }
-            minlength={6}
-          />
-
-          {/* Town */}
-
-          <Field
-            name="passwordCheck"
-            type="password"
-            id="passwordCheck"
-            placeholder={
-              <FormattedMessage
-                id="app.RegisterPage.placeholder.passwordCheck"
-                defaultMessage={`Please type your password again`}
-              />
-            }
-            required
-            onChange={(event) => handleChange(event)}
-            label={
-              <FormattedMessage
-                id="app.RegisterPage.label.passwordCheck"
-                defaultMessage={`Password Verification`}
-              />
-            }
-            minlength={6}
-          />
-
-          {/* VAT if applicable */}
-
-          <Field
-            name="passwordCheck"
-            type="password"
-            id="passwordCheck"
-            placeholder={
-              <FormattedMessage
-                id="app.RegisterPage.placeholder.passwordCheck"
-                defaultMessage={`Please type your password again`}
-              />
-            }
-            required
-            onChange={(event) => handleChange(event)}
-            label={
-              <FormattedMessage
-                id="app.RegisterPage.label.passwordCheck"
-                defaultMessage={`Password Verification`}
+                id="app.RegisterPage.label.VAT"
+                defaultMessage={`VAT (if applicable)`}
               />
             }
             minlength={6}
