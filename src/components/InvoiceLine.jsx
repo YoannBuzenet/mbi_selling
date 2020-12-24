@@ -42,7 +42,10 @@ const InvoiceLine = ({ invoice }) => {
               locale={currentLang.locale}
               messages={currentLang.translationsForUsersLocale}
             >
-              <InvoiceTemplate shopData={authenticationInfos.shop} />
+              <InvoiceTemplate
+                shopData={authenticationInfos.shop}
+                invoice={invoice}
+              />
             </IntlProvider>
           }
           fileName={"Invoice n°" + invoice.id + ".pdf"}
