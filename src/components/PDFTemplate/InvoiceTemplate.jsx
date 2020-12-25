@@ -24,6 +24,8 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       backgroundColor: "blue",
     },
     table: {
+      width: "80%",
+      margin: "auto",
       display: "table",
       borderStyle: "solid",
       borderColor: "#bfbfbf",
@@ -37,6 +39,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       flexDirection: "row",
     },
     tableColHeader: {
+      width: "12.5%",
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderBottomColor: "#000",
@@ -54,6 +57,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       borderTopWidth: 0,
     },
     tableCol: {
+      width: "12.5%",
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderWidth: 1,
@@ -117,7 +121,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
           {/* Table Head */}
           <View style={styles.tableRow}>
             <View style={styles.tableColHeaderProduct}>
-              <Text style={styles.tableColHeaderProduct}>
+              <Text style={styles.tableCellHeader}>
                 <FormattedMessage
                   id="app.invoice.PDF.table.products"
                   defaultMessage={`Products`}
