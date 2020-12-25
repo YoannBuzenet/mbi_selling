@@ -161,58 +161,58 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               </Text>
             </View>
           </View>
-        </View>
-        {/* Table Body */}
-        {["e"].map((card) => {
-          return (
-            <>
-              <View style={styles.tableRow}>
-                <View style={styles.tableColProduct}>
-                  <Text style={styles.tableCell}>product</Text>
+          {/* Table Body */}
+          {["e"].map((card) => {
+            return (
+              <>
+                <View style={styles.tableRow}>
+                  <View style={styles.tableColProduct}>
+                    <Text style={styles.tableCell}>product</Text>
+                  </View>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>e</Text>
+                  </View>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>e</Text>
+                  </View>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>e</Text>
+                  </View>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>e</Text>
+                  </View>
                 </View>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>e</Text>
-                </View>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>e</Text>
-                </View>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>e</Text>
-                </View>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>e</Text>
-                </View>
-              </View>
-            </>
-          );
-        })}
+              </>
+            );
+          })}
 
-        {/* Table Bottom */}
+          {/* Table Bottom */}
 
-        <View style={styles.tableRow}>
-          <View style={styles.tableColTotalProducts}>
-            <Text style={styles.regularText}>
-              {[].reduce((total, card) => total + card.quantity, 0)}{" "}
-              <FormattedMessage
-                id="app.shop.OneSellRequestPDF.products"
-                defaultMessage={`products`}
-              />
-            </Text>
-          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableColTotalProducts}>
+              <Text style={styles.regularText}>
+                {[].reduce((total, card) => total + card.quantity, 0)}{" "}
+                <FormattedMessage
+                  id="app.invoice.PDF.table.summary.products"
+                  defaultMessage={`Products`}
+                />
+              </Text>
+            </View>
 
-          <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>
-              {[].reduce((total, card) => total + card.quantity, 0)}
-            </Text>
-          </View>
-          <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>
-              {[].reduce(
-                (total, card) => total + card.quantity * card.price,
-                0
-              )}
-              €
-            </Text>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>
+                {[].reduce((total, card) => total + card.quantity, 0)}
+              </Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>
+                {[].reduce(
+                  (total, card) => total + card.quantity * card.price,
+                  0
+                )}
+                €
+              </Text>
+            </View>
           </View>
         </View>
 
