@@ -199,11 +199,13 @@ const ruleTypesDictionnary = {
   },
 };
 
-const ourCompanyName = "";
-const ourCompanyAddress = "";
-const ourCompanyPostalCode = "";
-const ourCompanyTown = "";
-const ourCompanySIREN = "";
+const ourCompanyName = "MTG Interface";
+const ourCompanyAddress = "9, Rue Place Foch";
+const ourCompanyPostalCode = "56700";
+const ourCompanyTown = "Hennebont";
+const ourCompanyCountry = "France";
+const ourWebSite = "mtginterface.com";
+const ourCompanySIREN = "804 965 101 00038";
 
 export default {
   langDefinition,
@@ -225,4 +227,6 @@ export default {
   ourCompanyPostalCode,
   ourCompanyTown,
   ourCompanySIREN,
+  ourCompanyCountry,
+  ourWebSite,
 };

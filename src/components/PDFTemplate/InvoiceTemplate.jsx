@@ -15,6 +15,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
     topSection: {
       flexDirection: "row",
       justifyContent: "space-around",
+      marginTop: "100px",
     },
     leftArea: {
       backgroundColor: "red",
@@ -24,19 +25,27 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
     },
     table: {
       display: "table",
-      width: "auto",
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderWidth: 1,
       borderRightWidth: 0,
       borderBottomWidth: 0,
+      marginTop: "100px",
     },
     tableRow: {
       margin: "auto",
       flexDirection: "row",
     },
     tableColHeader: {
-      width: "11.11%",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderBottomColor: "#000",
+      borderWidth: 1,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+    },
+    tableColHeaderProduct: {
+      width: "50%",
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderBottomColor: "#000",
@@ -45,7 +54,14 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       borderTopWidth: 0,
     },
     tableCol: {
-      width: "11.11%",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderWidth: 1,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+    },
+    tableColProduct: {
+      width: "50%",
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderWidth: 1,
@@ -67,8 +83,9 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
     regularText: {
       fontSize: 10,
     },
-    tableColTotalProducts: {
-      width: "77.77%",
+    footer: {
+      textAlign: "center",
+      marginTop: "100px",
     },
   });
 
@@ -78,10 +95,13 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
         {/* Top div : my infos + customer info */}
         <View style={styles.topSection}>
           <View style={styles.leftArea}>
-            <Text>Nom</Text>
-            <Text>SIRET</Text>
-            <Text>Adresse</Text>
-            <Text>Site Internet</Text>
+            <Text>{config.ourCompanyName}</Text>
+            <Text>{config.ourCompanyAddress}</Text>
+            <Text>
+              {config.ourCompanyPostalCode} {config.ourCompanyTown}
+            </Text>
+            <Text>{config.ourWebSite}</Text>
+            <Text>{config.ourCompanySIREN}</Text>
           </View>
           <View style={styles.rightArea}>
             <Text>Lui</Text>
@@ -96,81 +116,104 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
         <View style={styles.table}>
           {/* Table Head */}
           <View style={styles.tableRow}>
-            <View style={styles.tableColHeader}>
-              <Text style={styles.tableCellHeader}>
+            <View style={styles.tableColHeaderProduct}>
+              <Text style={styles.tableColHeaderProduct}>
                 <FormattedMessage
-                  id="app.shop.OneSellRequestPDF.card"
-                  defaultMessage={`Card`}
+                  id="app.invoice.PDF.table.products"
+                  defaultMessage={`Products`}
                 />
               </Text>
             </View>
             <View style={styles.tableColHeader}>
               <Text style={styles.tableCellHeader}>
                 <FormattedMessage
-                  id="app.shop.OneSellRequestPDF.set"
-                  defaultMessage={`Set`}
+                  id="app.invoice.PDF.table.amount"
+                  defaultMessage={`Amount`}
                 />
               </Text>
             </View>
             <View style={styles.tableColHeader}>
               <Text style={styles.tableCellHeader}>
                 <FormattedMessage
-                  id="app.shop.OneSellRequestPDF.language"
-                  defaultMessage={`Language`}
+                  id="app.invoice.PDF.table.vat"
+                  defaultMessage={`VAT`}
                 />
               </Text>
             </View>
             <View style={styles.tableColHeader}>
               <Text style={styles.tableCellHeader}>
                 <FormattedMessage
-                  id="app.shop.OneSellRequestPDF.condition"
-                  defaultMessage={`Condition`}
+                  id="app.invoice.PDF.table.quantity"
+                  defaultMessage={`Quantity`}
                 />
               </Text>
             </View>
             <View style={styles.tableColHeader}>
               <Text style={styles.tableCellHeader}>
                 <FormattedMessage
-                  id="app.shop.OneSellRequestPDF.foil"
-                  defaultMessage={`Foil`}
+                  id="app.invoice.PDF.table.total"
+                  defaultMessage={`Total`}
                 />
               </Text>
             </View>
           </View>
         </View>
         {/* Table Body */}
-        {[].map((card) => {
+        {["e"].map((card) => {
           return (
             <>
               <View style={styles.tableRow}>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>{card.name}</Text>
+                <View style={styles.tableColProduct}>
+                  <Text style={styles.tableCell}>product</Text>
                 </View>
                 <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>{card.set}</Text>
+                  <Text style={styles.tableCell}>e</Text>
                 </View>
                 <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>
-                    {config.langDefinition[card.lang]}
-                  </Text>
+                  <Text style={styles.tableCell}>e</Text>
                 </View>
                 <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>
-                    {config.conditionDefinition[parseInt(card.condition)]}
-                  </Text>
+                  <Text style={styles.tableCell}>e</Text>
                 </View>
                 <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>
-                    {card.isFoil ? "Yes" : "No"}
-                  </Text>
+                  <Text style={styles.tableCell}>e</Text>
                 </View>
               </View>
             </>
           );
         })}
 
+        {/* Table Bottom */}
+
+        <View style={styles.tableRow}>
+          <View style={styles.tableColTotalProducts}>
+            <Text style={styles.regularText}>
+              {[].reduce((total, card) => total + card.quantity, 0)}{" "}
+              <FormattedMessage
+                id="app.shop.OneSellRequestPDF.products"
+                defaultMessage={`products`}
+              />
+            </Text>
+          </View>
+
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>
+              {[].reduce((total, card) => total + card.quantity, 0)}
+            </Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>
+              {[].reduce(
+                (total, card) => total + card.quantity * card.price,
+                0
+              )}
+              €
+            </Text>
+          </View>
+        </View>
+
         {/* infos légales */}
-        <View>
+        <View style={styles.footer}>
           <Text>TVA non applicable, art. 293 B du CGI</Text>
         </View>
       </Page>
