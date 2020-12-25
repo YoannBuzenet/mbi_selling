@@ -27,11 +27,6 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       width: "80%",
       margin: "auto",
       display: "table",
-      borderStyle: "solid",
-      borderColor: "#bfbfbf",
-      borderWidth: 1,
-      borderRightWidth: 0,
-      borderBottomWidth: 0,
       marginTop: "100px",
     },
     tableRow: {
@@ -61,6 +56,33 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderWidth: 1,
+      borderTopWidth: 0,
+      borderLeftWidth: 0,
+    },
+    tableColRight: {
+      width: "12.5%",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderWidth: 1,
+      borderRightWidth: 0,
+      borderTopWidth: 0,
+      borderLeftWidth: 0,
+    },
+    tableColRightHeader: {
+      width: "12.5%",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderWidth: 1,
+      borderBottomColor: "#000",
+      borderRightWidth: 0,
+      borderTopWidth: 0,
+      borderLeftWidth: 0,
+    },
+    tableColLeft: {
+      width: "12.5%",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderWidth: 1,
       borderLeftWidth: 0,
       borderTopWidth: 0,
     },
@@ -83,6 +105,28 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       margin: 5,
       fontSize: 8,
       textAlign: "center",
+    },
+    tableColTotalProducts: {
+      width: "87.5%",
+      textAlign: "right",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderWidth: 1,
+      borderTopWidth: 0,
+      paddingRight: "20px",
+      paddingTop: "5px",
+      borderLeftWidth: 0,
+      borderBottomWidth: 0,
+    },
+    tableColTotal: {
+      width: "12.5%",
+      borderStyle: "solid",
+      borderColor: "#bfbfbf",
+      borderWidth: 1,
+      borderTopWidth: 0,
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
     },
     regularText: {
       fontSize: 10,
@@ -152,7 +196,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
                 />
               </Text>
             </View>
-            <View style={styles.tableColHeader}>
+            <View style={styles.tableColRightHeader}>
               <Text style={styles.tableCellHeader}>
                 <FormattedMessage
                   id="app.invoice.PDF.table.total"
@@ -178,7 +222,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
                   <View style={styles.tableCol}>
                     <Text style={styles.tableCell}>e</Text>
                   </View>
-                  <View style={styles.tableCol}>
+                  <View style={styles.tableColRight}>
                     <Text style={styles.tableCell}>e</Text>
                   </View>
                 </View>
@@ -191,20 +235,13 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
           <View style={styles.tableRow}>
             <View style={styles.tableColTotalProducts}>
               <Text style={styles.regularText}>
-                {[].reduce((total, card) => total + card.quantity, 0)}{" "}
                 <FormattedMessage
-                  id="app.invoice.PDF.table.summary.products"
-                  defaultMessage={`Products`}
+                  id="app.invoice.PDF.table.total"
+                  defaultMessage={`Total`}
                 />
               </Text>
             </View>
-
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>
-                {[].reduce((total, card) => total + card.quantity, 0)}
-              </Text>
-            </View>
-            <View style={styles.tableCol}>
+            <View style={styles.tableColTotal}>
               <Text style={styles.tableCell}>
                 {[].reduce(
                   (total, card) => total + card.quantity * card.price,
