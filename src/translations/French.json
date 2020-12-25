@@ -110,6 +110,7 @@
   "app.invoice.PDF.table.vat": "TVA",
   "app.invoice.PDF.table.quantity": "Quantité",
   "app.invoice.PDF.table.total": "Total",
+  "app.invoice.PDF.table.summary.products": "Produits",
 
   "app.RegisterPage.title": "Créer un compte",
   "app.RegisterPage.label.mail": "Email",
