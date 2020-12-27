@@ -56,24 +56,6 @@ router.post("/", async (req, res) => {
     updatedAt: Date.now(),
   });
 
-  //Creating Invoice with payment information
-  const amountTaxIncluded = amountToPay * MTGINTERFACE_VAT_RATE;
-  const amountTaxExcluded = amountToPay;
-  const VATSum = amountTaxIncluded - amountTaxExcluded;
-
-  const newInvoiceId = await db.Invoice.getNextIdForInvoice();
-
-  const createdInvoice = await db.Invoice.registerInvoiceAfterTransaction(
-    idShop,
-    newInvoiceId,
-    null,
-    null,
-    amountTaxIncluded,
-    amountTaxExcluded,
-    VATSum,
-    0
-  );
-
   res.json({ client_secret: paymentIntent.client_secret });
 
   return;
@@ -149,11 +131,22 @@ router.post("/subscribe", async (req, res) => {
         temporaryLastProductPaid: null,
       });
 
-      // Editing the current Invoice to register subscription
-      await db.Invoice.updateInvoiceFromCustomer(
+      //Creating Invoice with payment information
+      const amountTaxIncluded = amountToPay * MTGINTERFACE_VAT_RATE;
+      const amountTaxExcluded = amountToPay;
+      const VATSum = amountTaxIncluded - amountTaxExcluded;
+
+      const newInvoiceId = await db.Invoice.getNextIdForInvoice();
+
+      const createdInvoice = await db.Invoice.registerInvoiceAfterTransaction(
         idShop,
+        newInvoiceId,
         date,
-        dateWithSubscriptionAdded
+        dateWithSubscriptionAdded,
+        amountTaxIncluded,
+        amountTaxExcluded,
+        VATSum,
+        0
       );
 
       res.json("User Subscription Updated").status(200);
