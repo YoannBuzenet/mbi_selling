@@ -15,6 +15,26 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      userName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      userAddress: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      userPostalCode: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      userTown: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      userVAT: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       subscribingStartDate: {
         type: Sequelize.DATEONLY,
       },

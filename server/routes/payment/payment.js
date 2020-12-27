@@ -8,6 +8,7 @@ const {
   getProductDurationWithProductName,
 } = require("../../../src/services/productAPI");
 const { MTGINTERFACE_VAT_RATE } = require("../../services/config");
+const shopAPI = require("../../services/shopAPI");
 
 const {
   getRelevantDateForUpdateSubscribe,
@@ -80,6 +81,15 @@ router.post("/subscribe", async (req, res) => {
     return;
   }
 
+  let jwt = req.headers.authorization;
+  if (jwt === undefined) {
+    res.status(406).json("Auth Header is missing !");
+  } else {
+    //If there is a token, we remove the "Bearer" part
+    jwt = jwt.split(" ");
+    jwt = jwt[1];
+  }
+
   // Comparing with temporary Secret stored in DB
   const user = await db.User.findOne({
     where: {
@@ -108,6 +118,9 @@ router.post("/subscribe", async (req, res) => {
     secretFromDB !== ""
   ) {
     try {
+      // Get user data for invoice creation
+      const shopData = await shopAPI.getShopData(idShop, jwt);
+
       // Duration definition
       const subscribeDurationInMonth = getProductDurationWithProductName(
         lastProductBought
@@ -141,6 +154,11 @@ router.post("/subscribe", async (req, res) => {
       const createdInvoice = await db.Invoice.registerInvoiceAfterTransaction(
         idShop,
         newInvoiceId,
+        shopData.dataValues.userName,
+        shopData.dataValues.userAddress,
+        shopData.dataValues.userPostalCode,
+        shopData.dataValues.userTown,
+        shopData.dataValues.userVAT,
         date,
         dateWithSubscriptionAdded,
         amountTaxIncluded,

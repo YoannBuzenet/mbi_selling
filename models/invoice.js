@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     static registerInvoiceFromTransaction(
       idShop,
       idInvoice,
+      userName,
+      userAddress,
+      userPostalCode,
+      userTown,
+      userVAT,
       subscribingStartDate,
       subscribingEndDate,
       amountTaxIncluded,
@@ -24,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       return Invoice.create({
         idShop: idShop,
         idInvoice: idInvoice,
+        userName: userName,
+        userAddress: userAddress,
+        userPostalCode: userPostalCode,
+        userTown: userTown,
+        userVAT: userVAT,
         subscribingStartDate: subscribingStartDate,
         subscribingEndDate: subscribingEndDate,
         amountTaxIncluded: amountTaxIncluded,
@@ -48,6 +58,11 @@ module.exports = (sequelize, DataTypes) => {
         return Invoice.upsert({
           id: invoiceToUpdate.dataValues.id,
           idInvoice: invoiceToUpdate.dataValues.idInvoice,
+          userName: invoiceToUpdate.dataValues.userName,
+          userAddress: invoiceToUpdate.dataValues.userAddress,
+          userPostalCode: invoiceToUpdate.dataValues.userPostalCode,
+          userTown: invoiceToUpdate.dataValues.userTown,
+          userVAT: invoiceToUpdate.dataValues.userVAT,
           subscribingStartDate: subscribingStartDate,
           subscribingEndDate: subscribingEndDate,
           amountTaxIncluded: invoiceToUpdate.dataValues.amountTaxIncluded,
@@ -91,6 +106,26 @@ module.exports = (sequelize, DataTypes) => {
       idInvoice: {
         type: DataTypes.INTEGER,
         unique: true,
+        allowNull: false,
+      },
+      userName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      userAddress: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      userPostalCode: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      userTown: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      userVAT: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       subscribingStartDate: {
