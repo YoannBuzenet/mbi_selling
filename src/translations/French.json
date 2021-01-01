@@ -106,7 +106,7 @@
   "app.invoicePage.InvoiceLinegeneratePDF": "Télécharger PDF",
 
   "app.invoice.PDF.table.products": "Produits",
-  "app.invoice.PDF.table.amount": "Montants",
+  "app.invoice.PDF.table.amount": "Montants HT",
   "app.invoice.PDF.table.vat": "TVA",
   "app.invoice.PDF.table.quantity": "Quantité",
   "app.invoice.PDF.table.total": "Total",

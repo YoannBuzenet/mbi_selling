@@ -107,7 +107,7 @@
   "app.invoicePage.InvoiceLinegeneratePDF": "Download PDF",
 
   "app.invoice.PDF.table.products": "Products",
-  "app.invoice.PDF.table.amount": "Amount",
+  "app.invoice.PDF.table.amount": "Amount Tax EX.",
   "app.invoice.PDF.table.vat": "VAT",
   "app.invoice.PDF.table.quantity": "Quantity",
   "app.invoice.PDF.table.total": "Total",
