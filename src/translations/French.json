@@ -114,6 +114,9 @@
   "app.invoice.PDF.summary.invoiceNumber": "Facture n° ",
   "app.invoice.PDF.summary.date": "Date : ",
   "app.invoice.PDF.footer.fiscalRuleNoVAT": "TVA non applicable, art. 293 B du CGI",
+  "app.invoice.PDF.product.OneMonthSubscription": "Abonnement d'un mois",
+  "app.invoice.PDF.product.ThreeMonthSubscription": "Abonnement de trois mois",
+  "app.invoice.PDF.summary.vat": "TVA : ",
 
   "app.RegisterPage.title": "Créer un compte",
   "app.RegisterPage.label.mail": "Email",

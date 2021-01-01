@@ -30,6 +30,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
     ourInfoTownPostalCode: { marginBottom: "5px" },
     ourInfowebsite: { marginBottom: "5px" },
     ourInfoSIREN: { marginBottom: "5px" },
+    ourInfoCountry: { marginBottom: "5px" },
     rightArea: {
       fontSize: 12,
     },
@@ -40,7 +41,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       flexDirection: "row",
       justifyContent: "space-around",
       marginLeft: "100px",
-      marginTop: "30px",
+      marginTop: "50px",
       marginBottom: "20px",
     },
     summaryLeft: { width: "50%" },
@@ -49,7 +50,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       width: "80%",
       margin: "auto",
       display: "table",
-      marginTop: "30px",
+      marginTop: "50px",
     },
     tableRow: {
       margin: "auto",
@@ -145,10 +146,10 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
       borderStyle: "solid",
       borderColor: "#bfbfbf",
       borderWidth: 1,
+      borderBottomColor: "#000",
+      borderRightWidth: 0,
       borderTopWidth: 0,
       borderLeftWidth: 0,
-      borderRightWidth: 0,
-      borderBottomWidth: 0,
     },
     regularText: {
       fontSize: 10,
@@ -156,6 +157,9 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
     footer: {
       textAlign: "center",
       marginTop: "100px",
+    },
+    footerText: {
+      fontSize: 12,
     },
   });
 
@@ -166,11 +170,14 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
         <View style={styles.topSection}>
           <View style={styles.leftArea}>
             <Text style={styles.ourInfoLegalName}>{config.ourCompanyName}</Text>
+            <Text style={styles.ourInfowebsite}>{config.ourWebSite}</Text>
             <Text style={styles.ourInfoStreet}>{config.ourCompanyAddress}</Text>
             <Text style={styles.ourInfoTownPostalCode}>
               {config.ourCompanyPostalCode} {config.ourCompanyTown}
             </Text>
-            <Text style={styles.ourInfowebsite}>{config.ourWebSite}</Text>
+            <Text style={styles.ourInfoCountry}>
+              {config.ourCompanyCountry}
+            </Text>
             <Text style={styles.ourInfoSIREN}>{config.ourCompanySIREN}</Text>
           </View>
 
@@ -183,7 +190,15 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               {`${shopData.postalCode} ${shopData.town}`}
             </Text>
 
-            {shopData.vatNumber && <Text>TVA : {shopData.vatNumber}</Text>}
+            {shopData.vatNumber && (
+              <Text>
+                <FormattedMessage
+                  id="app.invoice.PDF.summary.vat"
+                  defaultMessage={`VAT :  `}
+                />
+                {shopData.vatNumber}
+              </Text>
+            )}
           </View>
         </View>
 
@@ -260,7 +275,13 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               <>
                 <View style={styles.tableRow}>
                   <View style={styles.tableColProduct}>
-                    <Text style={styles.tableCell}>{invoice.productName}</Text>
+                    <Text style={styles.tableCell}>
+                      <FormattedMessage
+                        id={`app.invoice.PDF.product.${invoice.productName}`}
+                        defaultMessage={invoice.productName}
+                      />
+                      {invoice.productName}
+                    </Text>
                   </View>
                   <View style={styles.tableCol}>
                     <Text style={styles.tableCell}>
@@ -287,22 +308,24 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
 
           <View style={styles.tableRow}>
             <View style={styles.tableColTotalProducts}>
-              <Text style={styles.regularText}>
+              <Text style={styles.tableCell}>
                 <FormattedMessage
                   id="app.invoice.PDF.table.total"
                   defaultMessage={`Total`}
                 />
               </Text>
             </View>
-            <View style={styles.tableColTotal}>
-              <Text>{invoice.amountTaxExcluded}</Text>
+            <View style={styles.tableColRight}>
+              <Text style={styles.tableCell}>
+                {invoice.amountTaxExcluded} €
+              </Text>
             </View>
           </View>
         </View>
 
         {/* infos légales */}
         <View style={styles.footer}>
-          <Text>
+          <Text style={styles.footerText}>
             <FormattedMessage
               id="app.invoice.PDF.footer.fiscalRuleNoVAT"
               defaultMessage={

@@ -115,6 +115,9 @@
   "app.invoice.PDF.summary.invoiceNumber": "Invoice n° ",
   "app.invoice.PDF.summary.date": "Date : ",
   "app.invoice.PDF.footer.fiscalRuleNoVAT": "Non applicable VAT, art. 293 B of french Fiscal Code (CGI).",
+  "app.invoice.PDF.product.OneMonthSubscription": "One Month Subscription",
+  "app.invoice.PDF.product.ThreeMonthSubscription": "Three Month Subscription",
+  "app.invoice.PDF.summary.vat": "VAT : ",
 
   "app.RegisterPage.title": "Register",
   "app.RegisterPage.label.mail": "Email",
