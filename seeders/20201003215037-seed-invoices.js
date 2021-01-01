@@ -16,6 +16,7 @@ module.exports = {
           userTown: "hennebont",
           amountTaxIncluded: 29,
           amountTaxExcluded: 29,
+          productName: "Product Test Seed",
           VATSum: 0,
           VATStatus: 0,
         },
