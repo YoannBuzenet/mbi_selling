@@ -6,7 +6,7 @@ module.exports = {
 
     return await db.Invoice.bulkCreate(
       [
-        // Invoice completed at first step
+        // Are missing : stat / end subscribing date
         {
           idShop: 7,
           idInvoice: 1,
