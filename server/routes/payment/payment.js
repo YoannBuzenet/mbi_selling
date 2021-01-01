@@ -159,6 +159,7 @@ router.post("/subscribe", async (req, res) => {
         shopData.dataValues.userPostalCode,
         shopData.dataValues.userTown,
         shopData.dataValues.userVAT,
+        lastProductBought,
         date,
         dateWithSubscriptionAdded,
         amountTaxIncluded,
