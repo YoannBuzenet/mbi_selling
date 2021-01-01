@@ -190,11 +190,21 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
         {/* Summary of main info : reference invoice + date */}
         <View style={styles.summarySection}>
           <View style={styles.summaryLeft}>
-            <Text>Invoice n °{invoice.idInvoice}</Text>
+            <Text>
+              <FormattedMessage
+                id="app.invoice.PDF.summary.invoiceNumber"
+                defaultMessage={`Invoice n° `}
+              />
+              {invoice.idInvoice}
+            </Text>
           </View>
           <View style={styles.summaryRight}>
             <Text>
-              Date : <FormattedDate value={invoice.createdAt} />
+              <FormattedMessage
+                id="app.invoice.PDF.summary.date"
+                defaultMessage={`Date : `}
+              />
+              <FormattedDate value={invoice.createdAt} />
             </Text>
           </View>
         </View>
@@ -250,7 +260,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               <>
                 <View style={styles.tableRow}>
                   <View style={styles.tableColProduct}>
-                    <Text style={styles.tableCell}>Product Name fuuuuu</Text>
+                    <Text style={styles.tableCell}>{invoice.productName}</Text>
                   </View>
                   <View style={styles.tableCol}>
                     <Text style={styles.tableCell}>
@@ -292,7 +302,14 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
 
         {/* infos légales */}
         <View style={styles.footer}>
-          <Text>TVA non applicable, art. 293 B du CGI</Text>
+          <Text>
+            <FormattedMessage
+              id="app.invoice.PDF.footer.fiscalRuleNoVAT"
+              defaultMessage={
+                "Non applicable VAT, art. 293 B of french Fiscal Code (CGI)."
+              }
+            />
+          </Text>
         </View>
       </Page>
     </Document>
