@@ -23,6 +23,12 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
     rightArea: {
       backgroundColor: "blue",
     },
+    summarySection: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+    },
+    summaryLeft: { width: "50%" },
+    summaryRight: { width: "50%" },
     table: {
       width: "80%",
       margin: "auto",
@@ -157,10 +163,18 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
             <Text>Adresse</Text>
           </View>
         </View>
-        {/* Facture n° + date */}
-        <View></View>
 
-        {/* Tableau produits */}
+        {/* Summary of main info : reference invoice + date */}
+        <View style={styles.summarySection}>
+          <View style={styles.summaryLeft}>
+            <Text>Invoice n °{invoice.idInvoice}</Text>
+          </View>
+          <View style={styles.summaryRight}>
+            <Text>{invoice.createdAt}</Text>
+          </View>
+        </View>
+
+        {/* Summary of bought products */}
         <View style={styles.table}>
           {/* Table Head */}
           <View style={styles.tableRow}>
@@ -176,7 +190,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               <Text style={styles.tableCellHeader}>
                 <FormattedMessage
                   id="app.invoice.PDF.table.amount"
-                  defaultMessage={`Amount`}
+                  defaultMessage={`Amount Tax EX.`}
                 />
               </Text>
             </View>
@@ -211,19 +225,21 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               <>
                 <View style={styles.tableRow}>
                   <View style={styles.tableColProduct}>
-                    <Text style={styles.tableCell}>product</Text>
+                    <Text style={styles.tableCell}>{invoice.idInvoice}</Text>
                   </View>
                   <View style={styles.tableCol}>
-                    <Text style={styles.tableCell}>e</Text>
+                    <Text style={styles.tableCell}>
+                      {invoice.amountTaxExcluded}
+                    </Text>
                   </View>
                   <View style={styles.tableCol}>
-                    <Text style={styles.tableCell}>e</Text>
+                    <Text style={styles.tableCell}>{invoice.VATSum}</Text>
                   </View>
                   <View style={styles.tableCol}>
-                    <Text style={styles.tableCell}>e</Text>
+                    <Text style={styles.tableCell}>1</Text>
                   </View>
                   <View style={styles.tableColRight}>
-                    <Text style={styles.tableCell}>e</Text>
+                    <Text style={styles.tableCell}>{invoice.VATSum * 1}</Text>
                   </View>
                 </View>
               </>

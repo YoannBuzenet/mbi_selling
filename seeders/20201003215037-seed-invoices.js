@@ -10,6 +10,10 @@ module.exports = {
         {
           idShop: 7,
           idInvoice: 1,
+          userName: "utilisateur de test créé via Seed",
+          userAddress: "5 rue des lilas",
+          userPostalCode: "56700",
+          userTown: "hennebont",
           amountTaxIncluded: 29,
           amountTaxExcluded: 29,
           VATSum: 0,

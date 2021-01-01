@@ -126,7 +126,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       userVAT: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       subscribingStartDate: {
         type: DataTypes.DATEONLY,

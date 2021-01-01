@@ -33,7 +33,6 @@ module.exports = {
       },
       userVAT: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       subscribingStartDate: {
         type: Sequelize.DATEONLY,
