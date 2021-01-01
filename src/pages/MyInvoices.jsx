@@ -18,6 +18,8 @@ const MyInvoices = () => {
     authContext
   );
 
+  console.log("auth", authenticationInfos);
+
   const history = useHistory();
 
   const [listOfInvoices, setListOfInvoices] = useState([]);
@@ -122,7 +124,10 @@ const MyInvoices = () => {
                 {listOfInvoices.map((invoice, index) => {
                   return (
                     <>
-                      <InvoiceLine invoice={invoice} />
+                      <InvoiceLine
+                        invoice={invoice}
+                        shopData={authenticationInfos}
+                      />
                     </>
                   );
                 })}
@@ -155,7 +160,7 @@ const MyInvoices = () => {
             </div>
           </>
         )}
-      {/* If user sid not fill his mandatory info for invoice creation */}
+      {/* If user did not fill his mandatory info for invoice creation */}
       {authenticationInfos &&
         !userAPI.hasGivenMandatoryInformationForInvoices(authenticationInfos) &&
         !isLoading && (
