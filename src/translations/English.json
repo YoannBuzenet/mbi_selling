@@ -112,6 +112,9 @@
   "app.invoice.PDF.table.quantity": "Quantity",
   "app.invoice.PDF.table.total": "Total",
   "app.invoice.PDF.table.summary.products": "Products",
+  "app.invoice.PDF.summary.invoiceNumber": "Invoice n° ",
+  "app.invoice.PDF.summary.date": "Date : ",
+  "app.invoice.PDF.footer.fiscalRuleNoVAT": "Non applicable VAT, art. 293 B of french Fiscal Code (CGI).",
 
   "app.RegisterPage.title": "Register",
   "app.RegisterPage.label.mail": "Email",

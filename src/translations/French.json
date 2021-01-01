@@ -111,6 +111,9 @@
   "app.invoice.PDF.table.quantity": "Quantité",
   "app.invoice.PDF.table.total": "Total",
   "app.invoice.PDF.table.summary.products": "Produits",
+  "app.invoice.PDF.summary.invoiceNumber": "Facture n° ",
+  "app.invoice.PDF.summary.date": "Date : ",
+  "app.invoice.PDF.footer.fiscalRuleNoVAT": "TVA non applicable, art. 293 B du CGI",
 
   "app.RegisterPage.title": "Créer un compte",
   "app.RegisterPage.label.mail": "Email",
