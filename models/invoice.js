@@ -127,6 +127,11 @@ module.exports = (sequelize, DataTypes) => {
       userVAT: {
         type: DataTypes.STRING,
       },
+      productName: {
+        //For now, an invoice can contain only one product. TODO next step : product table and N-N relation
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       subscribingStartDate: {
         type: DataTypes.DATEONLY,
       },

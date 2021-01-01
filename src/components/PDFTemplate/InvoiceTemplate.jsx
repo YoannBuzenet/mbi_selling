@@ -285,13 +285,7 @@ const InvoiceTemplatePDF = ({ shopData, invoice }) => {
               </Text>
             </View>
             <View style={styles.tableColTotal}>
-              <Text style={styles.tableCell}>
-                {[].reduce(
-                  (total, card) => total + card.quantity * card.price,
-                  0
-                )}
-                €
-              </Text>
+              <Text>{invoice.amountTaxExcluded}</Text>
             </View>
           </View>
         </View>
