@@ -285,8 +285,8 @@ const Settings = () => {
                           )
                         }
                         value={
-                          pageState.PercentPerConditions["1"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["1"]
+                            ?.percentPercondition
                         }
                       />
                       %
@@ -305,8 +305,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions["2"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["2"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -333,8 +333,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions["3"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["3"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -361,8 +361,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions["4"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["4"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -389,8 +389,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions["5"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["5"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -417,8 +417,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions["6"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["6"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -445,8 +445,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions["7"]
-                            .percentPercondition
+                          pageState.PercentPerConditions?.["7"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -503,8 +503,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["1"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["1"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -531,8 +531,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["2"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["2"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -559,8 +559,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["3"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["3"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -587,8 +587,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["4"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["4"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -615,8 +615,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["5"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["5"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -643,8 +643,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["6"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["6"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -671,8 +671,8 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils["7"]
-                            .percentPercondition
+                          pageState.PercentPerConditionFoils?.["7"]
+                            ?.percentPercondition
                         }
                         onChange={(e) =>
                           handleChange(
@@ -729,7 +729,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["1"].percentPerlanguage
+                          pageState.PercentPerLangs?.["1"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -756,7 +756,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["2"].percentPerlanguage
+                          pageState.PercentPerLangs?.["2"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -783,7 +783,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["3"].percentPerlanguage
+                          pageState.PercentPerLangs?.["3"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -810,7 +810,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["4"].percentPerlanguage
+                          pageState.PercentPerLangs?.["4"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -837,7 +837,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["5"].percentPerlanguage
+                          pageState.PercentPerLangs?.["5"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -864,7 +864,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["6"].percentPerlanguage
+                          pageState.PercentPerLangs?.["6"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -891,7 +891,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["7"].percentPerlanguage
+                          pageState.PercentPerLangs?.["7"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -918,7 +918,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["8"].percentPerlanguage
+                          pageState.PercentPerLangs?.["8"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -945,7 +945,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["9"].percentPerlanguage
+                          pageState.PercentPerLangs?.["9"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -972,7 +972,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["10"].percentPerlanguage
+                          pageState.PercentPerLangs?.["10"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
@@ -999,7 +999,7 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs["11"].percentPerlanguage
+                          pageState.PercentPerLangs?.["11"]?.percentPerlanguage
                         }
                         onChange={(e) =>
                           handleChange(
