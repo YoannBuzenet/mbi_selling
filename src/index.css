@@ -509,6 +509,10 @@ form.reset-password-form button {
   text-align: left;
 }
 
+div.createScriptButton {
+  text-align: right;
+}
+
 /* div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
   top: 110px !important;
 } */
