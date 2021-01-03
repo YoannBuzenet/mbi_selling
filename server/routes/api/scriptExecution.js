@@ -87,10 +87,10 @@ router.post("/", async (req, res) => {
   }
 
   //Script Existence Verification
-  // todo ; il manque la verification de l'association avec l'id User ?
   const scriptToCheck = await db.Script.findOne({
     where: {
       id: idScript,
+      idShop: idShop,
     },
   });
 
