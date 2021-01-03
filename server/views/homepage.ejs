@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Update your stock prices in one click</title>
+    <title>MKM Price Updater</title>
 
       <style>
       :root {
@@ -1213,6 +1213,10 @@
 
       const defaultPageLanguage = "en-US";
       const translations = {
+        "document.title": {
+          "en-US": "MKM Price Updater",
+          "fr-FR": "Modifiez vos prix sur MKM",
+        },
         "menu.navbar.subscribe": {
           "en-US": "Subscribe",
           "fr-FR": "Tarifs",
@@ -1348,6 +1352,10 @@
       };
 
        function translateHomePage(language="en-US"){
+
+        //Document title
+        document.title = translations["document.title"][language];
+
         //  Menu
         document.getElementById("menu.navbar.subscribe").textContent=translations["menu.navbar.subscribe"][language];
         document.getElementById("menu.navbar.register").textContent=translations["menu.navbar.register"][language];
