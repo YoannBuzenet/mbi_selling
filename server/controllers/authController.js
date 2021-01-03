@@ -37,7 +37,47 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
       percentPerLangs: [
         {
           percent: 100,
+          language: "/languages/1",
+        },
+        {
+          percent: 100,
+          language: "/languages/2",
+        },
+        {
+          percent: 100,
           language: "/languages/3",
+        },
+        {
+          percent: 100,
+          language: "/languages/4",
+        },
+        {
+          percent: 100,
+          language: "/languages/5",
+        },
+        {
+          percent: 100,
+          language: "/languages/6",
+        },
+        {
+          percent: 100,
+          language: "/languages/7",
+        },
+        {
+          percent: 100,
+          language: "/languages/8",
+        },
+        {
+          percent: 100,
+          language: "/languages/9",
+        },
+        {
+          percent: 100,
+          language: "/languages/10",
+        },
+        {
+          percent: 100,
+          language: "/languages/11",
         },
       ],
       percentPerConditions: [
@@ -45,11 +85,59 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
           percent: 100,
           CardCondition: "/card_conditions/1",
         },
+        {
+          percent: 100,
+          CardCondition: "/card_conditions/2",
+        },
+        {
+          percent: 90,
+          CardCondition: "/card_conditions/3",
+        },
+        {
+          percent: 80,
+          CardCondition: "/card_conditions/4",
+        },
+        {
+          percent: 70,
+          CardCondition: "/card_conditions/5",
+        },
+        {
+          percent: 65,
+          CardCondition: "/card_conditions/6",
+        },
+        {
+          percent: 60,
+          CardCondition: "/card_conditions/7",
+        },
       ],
       percentPerCondiditonFoils: [
         {
           percent: 100,
           CardCondition: "/card_conditions/1",
+        },
+        {
+          percent: 100,
+          CardCondition: "/card_conditions/2",
+        },
+        {
+          percent: 90,
+          CardCondition: "/card_conditions/3",
+        },
+        {
+          percent: 80,
+          CardCondition: "/card_conditions/4",
+        },
+        {
+          percent: 70,
+          CardCondition: "/card_conditions/5",
+        },
+        {
+          percent: 65,
+          CardCondition: "/card_conditions/6",
+        },
+        {
+          percent: 60,
+          CardCondition: "/card_conditions/7",
         },
       ],
       percentPerSigned: 100,
