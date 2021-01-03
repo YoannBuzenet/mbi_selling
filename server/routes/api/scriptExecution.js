@@ -101,6 +101,14 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  /* ************************************************** */
+  /* ***** Checking if script is already running ****** */
+  /* ************************************************** */
+  if (scriptToCheck.dataValues.isRunning === 1) {
+    res.status(406).json("Script is already running.");
+    return;
+  }
+
   /* ********************************* */
   /* **** GETTING NECESSARY DATA ***** */
   /* ********************************* */
