@@ -218,6 +218,7 @@
   "allMyScripts.title": "My Scripts",
   "allMyScripts.formats": "Formats",
   "allMyScripts.status": "Status",
+  "allMyScripts.button.createScript": "Create a Script",
 
   "mkmConnectionIndicator.title": "MKM Connection",
 
