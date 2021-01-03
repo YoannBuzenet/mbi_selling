@@ -69,8 +69,10 @@
   "app.subscribePage.threeMonths": "Trois Mois",
   "app.subscribePage.button.subscribe": "Acheter",
   "app.subscribePage.UnlimitedPriceUpdates": "Mises à jour illimitées",
-  "app.subscribePage.CustomizeYourOwnScripts": "Personalisez vos scripts",
+  "app.subscribePage.CustomizeYourOwnScripts": "Personnalisez vos scripts",
   "app.subscribePage.PDFSummaryOfEachModification": "Récap PDF de chaque modification",
+  "app.subscribePage.oneMonths.slogan": "Rafraichissez vos prix",
+  "app.subscribePage.threeMonths.slogan": "Devenez compétitif sur le long terme",
 
   "app.loginOutdated.toast.failure": "Vous n'êtes plus connecté. Merci de vous reconnecter.",
 
