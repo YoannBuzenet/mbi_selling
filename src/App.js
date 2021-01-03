@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useIntl } from "react-intl";
 
 //CONTEXTS
 import AuthContext from "./context/authContext";
@@ -319,6 +320,18 @@ function App() {
   const BurgerMenuCustomerComponentsWithRouter = withRouter(
     BurgerMenuCustomerComponents
   );
+
+  /* ************************ */
+  /* ***** TRANSLATIONS ***** */
+  /* ************************ */
+  const intl = useIntl();
+  const translatedDOMTitle = intl.formatMessage({
+    id: "document.title",
+    defaultMessage: "MKM Price Updater",
+  });
+
+  // DOM Title
+  window.document.title = translatedDOMTitle;
 
   return (
     <div
