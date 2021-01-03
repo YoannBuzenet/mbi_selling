@@ -92,6 +92,8 @@ const Subscribe = () => {
           />
         </h1>
         <div className="planContainer">
+          {/* Plan 1 */}
+
           <div className="planSubscribing">
             <p className="price">
               <span className="number">49</span>
@@ -103,6 +105,12 @@ const Subscribe = () => {
                 defaultMessage="One Month"
               />
             </p>
+            {/* <p className="explainationSlogan">
+              <FormattedMessage
+                id="app.subscribePage.oneMonths.slogan"
+                defaultMessage="Just refresh your prices"
+              />
+            </p> */}
             <ul>
               <li>
                 <p>
@@ -140,6 +148,9 @@ const Subscribe = () => {
               </Button>
             </div>
           </div>
+
+          {/* Plan 2 */}
+
           <div className="planSubscribing">
             <p className="price">
               <span className="number">29</span>
@@ -151,6 +162,12 @@ const Subscribe = () => {
                 defaultMessage="Three Month"
               />
             </p>
+            {/* <p className="explainationSlogan">
+              <FormattedMessage
+                id="app.subscribePage.threeMonths.slogan"
+                defaultMessage="Get competitive on the long run"
+              />
+            </p> */}
             <ul>
               <li>
                 <p>
