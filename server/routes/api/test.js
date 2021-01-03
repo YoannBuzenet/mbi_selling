@@ -124,6 +124,25 @@ router.get("/tryModelMethod", async (req, res) => {
   res.status(200).json("Put memory d'erreur crée depuis le model :O");
 });
 
+router.get("/checkScriptUser", async (req, res) => {
+  const script = await db.Script.findOne({
+    where: {
+      idShop: 7,
+    },
+    include: [
+      {
+        model: db.User,
+      },
+    ],
+  });
+
+  console.log("script in test route", script);
+
+  const userScripts = script.getUser();
+
+  res.status(200).json(userScripts);
+});
+
 router.get("/mailSendingTest", async (req, res) => {
   mailPDF(3, 7, "ybuzenet@gmail.com", true);
 
