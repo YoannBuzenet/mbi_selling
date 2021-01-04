@@ -155,6 +155,16 @@ function addMonthsToADate(date, numberOfMonths) {
   );
 }
 
+function compareByCardName(a, b) {
+  if (a.cardName < b.cardName) {
+    return -1;
+  }
+  if (a.cardName > b.cardName) {
+    return 1;
+  }
+  return 0;
+}
+
 module.exports = {
   prepareStateFromArrayOfRules,
   snapshotShopParams,
@@ -165,4 +175,5 @@ module.exports = {
   createADateFromTodayAndAddMonths,
   getRelevantDateForUpdateSubscribe,
   addMonthsToADate,
+  compareByCardName,
 };
