@@ -239,7 +239,7 @@ async function generatePDFFromPutRequest(
   }
 
   function generateLineLowerPriceCard(data, shouldPrintExplaination) {
-    const sortedData = data.sort(utilsServer.compareByCardName);
+    const sortedData = data.rows.sort(utilsServer.compareByCardName);
 
     let arrayWithAllData = [];
 
@@ -250,18 +250,18 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            sortedData.rows[i].cardName,
-            sortedData.rows[i].isFoil === 1
+            sortedData[i].cardName,
+            sortedData[i].isFoil === 1
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
-            utilsServer.conditionDefinition[sortedData.rows[i].condition],
-            utilsServer.langDefinition[sortedData.rows[i].lang],
-            sortedData.rows[i].oldPrice,
-            sortedData.rows[i].newPrice,
-            sortedData.rows[i].regularCardsTrend,
-            sortedData.rows[i].foilCardsTrend,
-            sortedData.rows[i].idProduct,
-            sortedData.rows[i].idArticle,
+            utilsServer.conditionDefinition[sortedData[i].condition],
+            utilsServer.langDefinition[sortedData[i].lang],
+            sortedData[i].oldPrice,
+            sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend,
+            sortedData[i].idProduct,
+            sortedData[i].idArticle,
           ],
           [
             {
@@ -276,18 +276,18 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            sortedData.rows[i].cardName,
-            sortedData.rows[i].isFoil === 1
+            sortedData[i].cardName,
+            sortedData[i].isFoil === 1
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
-            utilsServer.conditionDefinition[sortedData.rows[i].condition],
-            utilsServer.langDefinition[sortedData.rows[i].lang],
-            sortedData.rows[i].oldPrice,
-            sortedData.rows[i].newPrice,
-            sortedData.rows[i].regularCardsTrend,
-            sortedData.rows[i].foilCardsTrend,
-            sortedData.rows[i].idProduct,
-            sortedData.rows[i].idArticle,
+            utilsServer.conditionDefinition[sortedData[i].condition],
+            utilsServer.langDefinition[sortedData[i].lang],
+            sortedData[i].oldPrice,
+            sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend,
+            sortedData[i].idProduct,
+            sortedData[i].idArticle,
           ],
         ];
       }
@@ -296,7 +296,7 @@ async function generatePDFFromPutRequest(
     return arrayWithAllData;
   }
   function generateLineBlockedPriceCard(data) {
-    const sortedData = data.sort(utilsServer.compareByCardName);
+    const sortedData = data.rows.sort(utilsServer.compareByCardName);
 
     let arrayWithAllData = [];
 
@@ -304,18 +304,18 @@ async function generatePDFFromPutRequest(
       arrayWithAllData = [
         ...arrayWithAllData,
         [
-          sortedData.rows[i].cardName,
-          sortedData.rows[i].isFoil === 1
+          sortedData[i].cardName,
+          sortedData[i].isFoil === 1
             ? genericTranslations.pdfStructure.yes[langLocale]
             : genericTranslations.pdfStructure.no[langLocale],
-          utilsServer.conditionDefinition[sortedData.rows[i].condition],
-          utilsServer.langDefinition[sortedData.rows[i].lang],
-          sortedData.rows[i].oldPrice,
-          sortedData.rows[i].newPrice,
-          sortedData.rows[i].regularCardsTrend,
-          sortedData.rows[i].foilCardsTrend,
-          sortedData.rows[i].idProduct,
-          sortedData.rows[i].idArticle,
+          utilsServer.conditionDefinition[sortedData[i].condition],
+          utilsServer.langDefinition[sortedData[i].lang],
+          sortedData[i].oldPrice,
+          sortedData[i].newPrice,
+          sortedData[i].regularCardsTrend,
+          sortedData[i].foilCardsTrend,
+          sortedData[i].idProduct,
+          sortedData[i].idArticle,
         ],
 
         [
@@ -323,7 +323,7 @@ async function generatePDFFromPutRequest(
             colSpan: 10,
             text:
               priceshieldTranslations.priceShieldReasons[
-                data.rows[i].priceShieldReason
+                sortedData[i].priceShieldReason
               ][langLocale],
           },
         ],
@@ -333,7 +333,7 @@ async function generatePDFFromPutRequest(
     return arrayWithAllData;
   }
   function generateLineExcludedCard(data, shouldPrintExplaination) {
-    const sortedData = data.sort(utilsServer.compareByCardName);
+    const sortedData = data.rows.sort(utilsServer.compareByCardName);
 
     let arrayWithAllData = [];
 
@@ -344,18 +344,18 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            sortedData.rows[i].cardName,
-            sortedData.rows[i].isFoil === 1
+            sortedData[i].cardName,
+            sortedData[i].isFoil === 1
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
-            utilsServer.conditionDefinition[sortedData.rows[i].condition],
-            utilsServer.langDefinition[sortedData.rows[i].lang],
-            sortedData.rows[i].oldPrice,
-            sortedData.rows[i].newPrice,
-            sortedData.rows[i].regularCardsTrend,
-            sortedData.rows[i].foilCardsTrend,
-            sortedData.rows[i].idProduct,
-            sortedData.rows[i].idArticle,
+            utilsServer.conditionDefinition[sortedData[i].condition],
+            utilsServer.langDefinition[sortedData[i].lang],
+            sortedData[i].oldPrice,
+            sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend,
+            sortedData[i].idProduct,
+            sortedData[i].idArticle,
           ],
           [
             {
@@ -370,18 +370,18 @@ async function generatePDFFromPutRequest(
         arrayWithAllData = [
           ...arrayWithAllData,
           [
-            sortedData.rows[i].cardName,
-            sortedData.rows[i].isFoil === 1
+            sortedData[i].cardName,
+            sortedData[i].isFoil === 1
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
-            utilsServer.conditionDefinition[sortedData.rows[i].condition],
-            utilsServer.langDefinition[sortedData.rows[i].lang],
-            sortedData.rows[i].oldPrice,
-            sortedData.rows[i].newPrice,
-            sortedData.rows[i].regularCardsTrend,
-            sortedData.rows[i].foilCardsTrend,
-            sortedData.rows[i].idProduct,
-            sortedData.rows[i].idArticle,
+            utilsServer.conditionDefinition[sortedData[i].condition],
+            utilsServer.langDefinition[sortedData[i].lang],
+            sortedData[i].oldPrice,
+            sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend,
+            sortedData[i].idProduct,
+            sortedData[i].idArticle,
           ],
         ];
       }

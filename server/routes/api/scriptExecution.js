@@ -164,30 +164,35 @@ router.post("/", async (req, res) => {
 
   // Checking if redis is running
   const client = redis.createClient();
+
   client.on("error", function (err) {
     console.log("Error caught when checking connection : " + err);
   });
-  if (!client.connected) {
-    res.status(500).json("Redis not connected.");
-    return;
-  }
+  client.set("test key", "test value to test redis connection", redis.print);
+  client.get("test key", function (error, result) {
+    if (error) {
+      console.log(error);
+      res.status(500).json("Redis not connected.");
+      return;
+    } else {
+      //Marking the current script as Running
+      db.Script.markAsRunning(idScript);
 
-  //Marking the current script as Running
-  db.Script.markAsRunning(idScript);
+      // Adding a script execution to the queue
+      // script if from scriptController
+      mainQueue.mkmScriptsUpdateQueue.add({
+        idShop,
+        idScript,
+        isTest,
+        shopData,
+        locale,
+        formats: req.body.formats,
+        jwt: req.headers.authorization,
+      });
 
-  // Adding a script execution to the queue
-  // script if from scriptController
-  mainQueue.mkmScriptsUpdateQueue.add({
-    idShop,
-    idScript,
-    isTest,
-    shopData,
-    locale,
-    formats: req.body.formats,
-    jwt: req.headers.authorization,
+      res.status(200).json("Script Queued.");
+    }
   });
-
-  res.status(200).json("Script Queued.");
 });
 
 router.post("/rewindPutRequest", async (req, res) => {
