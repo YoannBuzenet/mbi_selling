@@ -815,6 +815,7 @@ const CreateMyScript = ({ history }) => {
     }
 
     // number of formats check : more than 0 mandatory
+    // this check is done in real & test script in ScriptLine and Create My Script
     if (selectedFormats.length === 0) {
       toast.error(
         <FormattedMessage
@@ -912,6 +913,7 @@ const CreateMyScript = ({ history }) => {
     }
 
     // number of formats check : more than 0 mandatory
+    // this check is done in real & test script in ScriptLine and Create My Script
     if (selectedFormats.length === 0) {
       toast.error(
         <FormattedMessage
