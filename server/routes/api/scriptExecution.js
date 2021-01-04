@@ -7,6 +7,7 @@ const securityCheckAPI = require("../../services/securityCheckAPI");
 const shopAPI = require("../../services/shopAPI");
 const mainQueue = require("../../queues/mainQueue");
 const { rewindPutRequest } = require("../../controllers/scriptController");
+const redis = require("redis");
 
 router.post("/", async (req, res) => {
   /* ************************** */
@@ -160,6 +161,16 @@ router.post("/", async (req, res) => {
   /* ****************************** */
   /* ********* Core stuff ********* */
   /* ****************************** */
+
+  // Checking if redis is running
+  const client = redis.createClient();
+  client.on("error", function (err) {
+    console.log("Error caught when checking connection : " + err);
+  });
+  if (!client.connected) {
+    res.status(500).json("Redis not connected.");
+    return;
+  }
 
   //Marking the current script as Running
   db.Script.markAsRunning(idScript);
