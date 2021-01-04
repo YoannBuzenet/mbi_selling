@@ -79,6 +79,7 @@ function checkIsJWTThere(req, res) {
   let jwt = req.headers.authorization;
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
+    return;
   }
 }
 
