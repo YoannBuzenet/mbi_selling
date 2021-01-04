@@ -406,7 +406,7 @@ module.exports = {
         {
           idArticle: 179,
           idProduct: 16229,
-          englishName: "ok",
+          englishName: "playsetCard",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -431,7 +431,7 @@ module.exports = {
         {
           idArticle: 179,
           idProduct: 16229,
-          englishName: "ok",
+          englishName: "SignedCard",
           localName: "ok",
           Exp: 5,
           expName: "ok",
@@ -456,7 +456,7 @@ module.exports = {
         {
           idArticle: 179,
           idProduct: 16229,
-          englishName: "ok",
+          englishName: "alteredCard",
           localName: "ok",
           Exp: 5,
           expName: "ok",
