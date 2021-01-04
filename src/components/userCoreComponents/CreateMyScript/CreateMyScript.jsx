@@ -814,6 +814,17 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
+    // number of formats check : more than 0 mandatory
+    if (selectedFormats.length === 0) {
+      toast.error(
+        <FormattedMessage
+          id="scriptline.select.formats.mustHaveOneAtLeast"
+          defaultMessage="Your script must at least target one format."
+        />
+      );
+      return;
+    }
+
     //Is user Subscribed to our service ?
 
     if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
@@ -895,6 +906,17 @@ const CreateMyScript = ({ history }) => {
         <FormattedMessage
           id="createMyScript.checkStateCoherence.failure"
           defaultMessage="There seems to be an error among the rules. Please check them."
+        />
+      );
+      return;
+    }
+
+    // number of formats check : more than 0 mandatory
+    if (selectedFormats.length === 0) {
+      toast.error(
+        <FormattedMessage
+          id="scriptline.select.formats.mustHaveOneAtLeast"
+          defaultMessage="Your script must at least target one format."
         />
       );
       return;
