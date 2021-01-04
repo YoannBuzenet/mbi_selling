@@ -102,6 +102,28 @@ router.post("/", async (req, res) => {
   }
 
   /* ************************************************** */
+  /* ****** Checking if the user is subscribed ******** */
+  /* ************************************************** */
+  const user = await db.User.findOne({
+    where: {
+      idShop: idShop,
+    },
+  });
+
+  if (user === null) {
+    res.status(406).json("User could not be found.");
+    return;
+  }
+
+  if (
+    user.dataValues.isSubscribedUntil &&
+    new Date(user.dataValues.isSubscribedUntil) > new Date()
+  ) {
+    res.status(406).json("User is not subscribed.");
+    return;
+  }
+
+  /* ************************************************** */
   /* ***** Checking if script is already running ****** */
   /* ************************************************** */
   if (scriptToCheck.dataValues.isRunning === 1) {
