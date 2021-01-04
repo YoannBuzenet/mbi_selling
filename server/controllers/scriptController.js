@@ -413,14 +413,6 @@ async function testScriptPersistingStep(
     return;
   }
 
-  //We are getting all behaviours, we will need them when processing the custom rules. This is an array
-  const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
-
-  //We transform the array into a dictionnary (hashmap) to browse it in constant time
-  const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
-    behaviourDefinitions.map((definition) => definition.dataValues)
-  );
-
   //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
   const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
 
@@ -874,14 +866,6 @@ async function realScriptPersistingStep(
   const axiosConfigMKMHeader = {
     headers: { Authorization: mkmHeader },
   };
-
-  //We are getting all behaviours, we will need them when processing the custom rules. This is an array
-  const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
-
-  //We transform the array into a dictionnary (hashmap) to browse it in constant time
-  const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
-    behaviourDefinitions.map((definition) => definition.dataValues)
-  );
 
   //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
   const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
