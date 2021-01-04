@@ -404,7 +404,7 @@ module.exports = {
         },
         // Testing if playset is skipped in script
         {
-          idArticle: 179,
+          idArticle: 180,
           idProduct: 16229,
           englishName: "playsetCard",
           localName: "ok",
@@ -429,7 +429,7 @@ module.exports = {
         },
         // Testing if signed card is skipped in script
         {
-          idArticle: 179,
+          idArticle: 181,
           idProduct: 16229,
           englishName: "SignedCard",
           localName: "ok",
@@ -454,7 +454,7 @@ module.exports = {
         },
         // Testing if altered is skipped in script
         {
-          idArticle: 179,
+          idArticle: 182,
           idProduct: 16229,
           englishName: "alteredCard",
           localName: "ok",
