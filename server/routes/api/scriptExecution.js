@@ -57,6 +57,11 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  if (req.body.formats.length === 0) {
+    res.status(406).json("There must be at least one format.");
+    return;
+  }
+
   //Dictionnary of formats ID
   const allFormats = await db.Format.findAll();
   const reducer = (accumulator, currentValue) => [
