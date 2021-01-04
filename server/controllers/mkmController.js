@@ -149,9 +149,11 @@ async function registerStockFileIntoDB(shopId) {
         });
 
         if (productLegality === null) {
-          throw new Error(
-            "Product Legality is missing (null). Either update DB with productLegalities or find a card we do not know yet and that is missing."
+          console.error(
+            "Product Legality is missing (null). Either update DB with productLegalities or find a card we do not know yet and that is missing. SKIPPING THIS REFERENCE IN STOCK. Missing MKMid :" +
+              arrayOfCards[i].idProduct
           );
+          continue;
         }
 
         const upsertedLine = await db.MkmProduct.upsert(
