@@ -121,6 +121,10 @@ async function startScript(
   });
   // console.log("all custom rules", allCustomRules);
 
+  if (Array.isArray(allCustomRules) && allCustomRules.length === 0) {
+    throw new Error("There must be at least one custom rule in the script.");
+  }
+
   //Ordering rules by price and foil/non Foil
   let orderedCustoMRules = prepareStateFromArrayOfRules(
     allCustomRules.map((customRule) => customRule.dataValues)
@@ -241,10 +245,7 @@ async function startScript(
 
   if (!IsArrayOfCustomRulesProcessable) {
     console.log("rules with errors :", rulesWithError);
-
-    res
-      .status(500)
-      .json("The custom rules are not coherent. Please check them.");
+    throw new Error("The custom rules are not coherent. Please check them.");
   }
 
   if (IsArrayOfCustomRulesProcessable) {
