@@ -122,7 +122,7 @@ router.post("/", async (req, res) => {
 
   if (
     user.dataValues.isSubscribedUntil &&
-    new Date(user.dataValues.isSubscribedUntil) > new Date()
+    new Date(user.dataValues.isSubscribedUntil) < new Date()
   ) {
     res.status(406).json("User is not subscribed.");
     return;
