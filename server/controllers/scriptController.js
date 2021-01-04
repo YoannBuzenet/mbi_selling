@@ -57,7 +57,7 @@ async function startScript(
   /* ********* LOGIC ********** */
   /* ************************** */
 
-  // kept those in comments for testing purpose
+  // kept those in comments for testing purpose, to see if queuing works
   // console.log("EXECUTING NEW SCRIPT", new Date());
   // await utils.sleep(50000);
 
