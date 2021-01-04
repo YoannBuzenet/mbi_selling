@@ -453,7 +453,27 @@ async function testScriptPersistingStep(
     for (let j = 0; j < chunkOfCards.length; j++) {
       const card = chunkOfCards[j].dataValues;
 
-      //Do we pass here Signed/altered/Playset ? Yoann
+      // If the card is Signed / Altered / Signed, we skip it.
+      if (card.isSigned === 1 || card.isAltered === 1 || card.isPlayset === 1) {
+        await db.put_memory.create({
+          idScript: idScript,
+          idProduct: card.idProduct,
+          idArticle: card.idArticle,
+          cardName: card.englishName,
+          oldPrice: card.price,
+          newPrice: card.price,
+          condition: transformConditionStringIntoInteger(card.condition),
+          lang: card.language,
+          isFoil: card.isFoil,
+          isSigned: card.isSigned,
+          isPlayset: card.isPlayset,
+          amount: card.amount,
+          behaviourChosen: "Signed/Altered/Playset skipped",
+          idCustomRuleUsed: 0,
+          PUT_Request_id: put_request.dataValues.id,
+        });
+        continue;
+      }
 
       // console.log("size of our card : ", sizeof(chunkOfCards[j]));
 
@@ -908,7 +928,27 @@ async function realScriptPersistingStep(
     for (let j = 0; j < chunkOfCards.length; j++) {
       const card = chunkOfCards[j].dataValues;
 
-      //Do we pass here Signed/altered/Playset ? Yoann
+      // If the card is Signed / Altered / Signed, we skip it.
+      if (card.isSigned === 1 || card.isAltered === 1 || card.isPlayset === 1) {
+        await db.put_memory.create({
+          idScript: idScript,
+          idProduct: card.idProduct,
+          idArticle: card.idArticle,
+          cardName: card.englishName,
+          oldPrice: card.price,
+          newPrice: card.price,
+          condition: transformConditionStringIntoInteger(card.condition),
+          lang: card.language,
+          isFoil: card.isFoil,
+          isSigned: card.isSigned,
+          isPlayset: card.isPlayset,
+          amount: card.amount,
+          behaviourChosen: "Signed/Altered/Playset skipped",
+          idCustomRuleUsed: 0,
+          PUT_Request_id: put_request.dataValues.id,
+        });
+        continue;
+      }
 
       const priceguide = await db.priceguide.findOne({
         where: {

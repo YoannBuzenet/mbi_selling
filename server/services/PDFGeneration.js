@@ -87,7 +87,11 @@ async function generatePDFFromPutRequest(
   const all_excluded_put_memories = await db.put_memory.findAndCountAll({
     where: {
       PUT_Request_id: put_requestId,
-      behaviourChosen: "Excluded",
+      [Op.or]: {
+        behaviourChosen: "Excluded",
+        behaviourChosen: "Signed/Altered/Playset skipped",
+      },
+      // behaviourChosen: "Excluded",
     },
   });
 
@@ -828,6 +832,9 @@ async function generatePDFFromPutRequest(
         style: "bigTablePricehieldBlockedCards",
         pageBreak: "after",
       },
+      // ********************** //
+      // *** EXCLUDED CARDS *** //
+      // ********************** //
       {
         text: genericTranslations.pdfStructure.cardsExcluded[
           langLocale
