@@ -194,6 +194,7 @@
   "scriptLine.buttons.isRunning": "En cours",
   "scriptLine.buttons.upToDate": "Prêt",
   "scriptline.select.formats.title": "Formats",
+  "scriptline.select.formats.mustHaveOneAtLeast": "Votre script doit comporter un format au moins.",
 
   "createMyScript.title.scriptname": "Nom du script",
   "createMyScript.buttons.save": "Sauvegarder",
