@@ -413,6 +413,22 @@ async function testScriptPersistingStep(
     return;
   }
 
+  //We are getting all behaviours, we will need them when processing the custom rules. This is an array
+  const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+    behaviourDefinitions.map((definition) => definition.dataValues)
+  );
+
+  //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
+  const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const mkmPricesGuideDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+    mkmPricesDefinitions.map((definition) => definition.dataValues)
+  );
+
   for (let i = 0; i < numberOfIterations; i++) {
     //choper les 100 premières cartes (en ajusant offset à chaque iteration )
     const chunkOfCards = await db.MkmProduct.findAll(
@@ -445,6 +461,8 @@ async function testScriptPersistingStep(
     for (let j = 0; j < chunkOfCards.length; j++) {
       const card = chunkOfCards[j].dataValues;
 
+      //Do we pass here Signed/altered/Playset ? Yoann
+
       // console.log("size of our card : ", sizeof(chunkOfCards[j]));
 
       const priceguide = await db.priceguide.findOne({
@@ -471,22 +489,6 @@ async function testScriptPersistingStep(
       } else {
         throw new Error("A card was missing the isFoil prop.");
       }
-
-      //We are getting all behaviours, we will need them when processing the custom rules. This is an array
-      const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
-
-      //We transform the array into a dictionnary (hashmap) to browse it in constant time
-      const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
-        behaviourDefinitions.map((definition) => definition.dataValues)
-      );
-
-      //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
-      const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
-
-      //We transform the array into a dictionnary (hashmap) to browse it in constant time
-      const mkmPricesGuideDictionnary = utils.transformArrayIntoDictionnaryWithKey(
-        mkmPricesDefinitions.map((definition) => definition.dataValues)
-      );
 
       // console.log("reminder of the card", card);
       // console.log("action for that card", action);
@@ -873,6 +875,22 @@ async function realScriptPersistingStep(
     headers: { Authorization: mkmHeader },
   };
 
+  //We are getting all behaviours, we will need them when processing the custom rules. This is an array
+  const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+    behaviourDefinitions.map((definition) => definition.dataValues)
+  );
+
+  //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
+  const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
+
+  //We transform the array into a dictionnary (hashmap) to browse it in constant time
+  const mkmPricesGuideDictionnary = utils.transformArrayIntoDictionnaryWithKey(
+    mkmPricesDefinitions.map((definition) => definition.dataValues)
+  );
+
   for (let i = 0; i < numberOfIterations; i++) {
     // Working on a chunk of a 100 cards (MKM doesn't accept more)
     const chunkOfCards = await db.MkmProduct.findAll(
@@ -906,6 +924,8 @@ async function realScriptPersistingStep(
     for (let j = 0; j < chunkOfCards.length; j++) {
       const card = chunkOfCards[j].dataValues;
 
+      //Do we pass here Signed/altered/Playset ? Yoann
+
       const priceguide = await db.priceguide.findOne({
         where: {
           idProduct: card.idProduct,
@@ -930,22 +950,6 @@ async function realScriptPersistingStep(
       } else {
         throw new Error("A card was missing the isFoil prop.");
       }
-
-      //We are getting all behaviours, we will need them when processing the custom rules. This is an array
-      const behaviourDefinitions = await db.customRule_behaviour_definition.findAll();
-
-      //We transform the array into a dictionnary (hashmap) to browse it in constant time
-      const customRulesBehaviourDictionnary = utils.transformArrayIntoDictionnaryWithKey(
-        behaviourDefinitions.map((definition) => definition.dataValues)
-      );
-
-      //We are getting all MKM Priceguide Definition to be able to know which mkm price the user chose.
-      const mkmPricesDefinitions = await db.PriceGuideDefinitions.findAll();
-
-      //We transform the array into a dictionnary (hashmap) to browse it in constant time
-      const mkmPricesGuideDictionnary = utils.transformArrayIntoDictionnaryWithKey(
-        mkmPricesDefinitions.map((definition) => definition.dataValues)
-      );
 
       // console.log("reminder of the card", card);
       // console.log("action for that card", action);
