@@ -57,6 +57,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
         defaultValue: 0,
       },
+      hasPriceBasedOn: {
+        type: DataTypes.STRING,
+        defaultValue: "mkmTrends",
+      },
       eventualMKM_ErrorMessage: {
         type: DataTypes.STRING,
       },

@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: DataTypes.STRING,
       isRunning: { type: DataTypes.INTEGER, defaultValue: 0 },
+      willBeBasedOn: {
+        type: DataTypes.STRING,
+        defaultValue: "mkmTrends",
+      },
     },
     {
       sequelize,

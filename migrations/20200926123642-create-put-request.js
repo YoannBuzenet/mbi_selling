@@ -28,6 +28,10 @@ module.exports = {
         validate: { isNumeric: true },
         defaultValue: 0,
       },
+      hasPriceBasedOn: {
+        type: Sequelize.STRING,
+        defaultValue: "mkmTrends",
+      },
       eventualMKM_ErrorMessage: { type: Sequelize.STRING },
       lastIterationNumberWhenMKM_ErrorHappened: {
         type: Sequelize.INTEGER,

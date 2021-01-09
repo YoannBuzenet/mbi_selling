@@ -110,7 +110,7 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
           CardCondition: "/card_conditions/7",
         },
       ],
-      percentPerCondiditonFoils: [
+      percentPerConditionFoils: [
         {
           percent: 100,
           CardCondition: "/card_conditions/1",

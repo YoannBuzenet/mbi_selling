@@ -14,6 +14,10 @@ module.exports = {
       isRunning: {
         type: Sequelize.INTEGER,
       },
+      willBeBasedOn: {
+        type: Sequelize.STRING,
+        defaultValue: "mkmTrends",
+      },
       idShop: {
         type: Sequelize.INTEGER,
         references: {
