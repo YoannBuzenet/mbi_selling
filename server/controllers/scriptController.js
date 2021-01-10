@@ -78,9 +78,14 @@ async function startScript(
     },
   });
 
+  // yoann check if there was a marker "refresh stock" on user
+  // yoann mon yoann t'es le meilleur
+
   /* **************************************** */
   /* *****Refreshing the stock if needed ******/
   /* **************************************** */
+
+  // prop : shouldHaveStockDataRefreshed
 
   if (
     oneCardAtRandomFromStock === null ||
@@ -853,6 +858,17 @@ async function realScriptPersistingStep(
   formats
 ) {
   console.log("MKM script this time !");
+
+  /* ********************************************************************* */
+  /* ********** Marking if stock should be updated after process ***********/
+  /* ********************************************************************* */
+  // We are going to update shop prices on MKM, thus our data wont be up-to-date anymore after script.
+  //We mark it, to be sure we will refresh data if needed.
+  if (put_request.dataValues.pricedBasedOn === "oldPrices") {
+    // yoann
+    // marquer l'user comme "stock should be refreshed";
+    // prop : shouldHaveStockDataRefreshed
+  }
 
   /* **************************************** */
   /* ********** Chunk Management ***********/

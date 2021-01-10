@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       temporaryLastProductPaid: {
         type: DataTypes.STRING,
       },
+      shouldHaveStockDataRefreshed: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
     {
       sequelize,
