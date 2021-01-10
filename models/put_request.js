@@ -59,6 +59,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       hasPriceBasedOn: {
         type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["oldPrices", "mkmTrends"]],
+            msg: "Value must be OldPrices or mkmTrends string.",
+          },
+        },
         defaultValue: "mkmTrends",
       },
       eventualMKM_ErrorMessage: {

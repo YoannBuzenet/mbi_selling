@@ -35,6 +35,12 @@ module.exports = (sequelize, DataTypes) => {
       willBeBasedOn: {
         type: DataTypes.STRING,
         defaultValue: "mkmTrends",
+        validate: {
+          isIn: {
+            args: [["oldPrices", "mkmTrends"]],
+            msg: "Value must be OldPrices or mkmTrends string.",
+          },
+        },
       },
     },
     {
