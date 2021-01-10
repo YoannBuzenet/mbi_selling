@@ -274,10 +274,12 @@ function App() {
   }
 
   const launchcheckStatusTimer = () => {
+    const userID = authenticationInfos.user.id;
+
     const checkScriptStatus = async () => {
       // Getting updated script from the Express API
       const userScripts = await Axios.get(
-        `/api/script/getByUserId?idUser=${authenticationInfos.user.id}`
+        `/api/script/getByUserId?idUser=${userID}`
       );
 
       // Sorting array script in a object to access data in constant time
