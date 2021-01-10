@@ -88,8 +88,7 @@ async function generatePDFFromPutRequest(
     where: {
       PUT_Request_id: put_requestId,
       [Op.or]: {
-        behaviourChosen: "Excluded",
-        behaviourChosen: "Signed/Altered/Playset skipped",
+        behaviourChosen: ["Signed/Altered/Playset skipped", "Excluded"],
       },
       // behaviourChosen: "Excluded",
     },

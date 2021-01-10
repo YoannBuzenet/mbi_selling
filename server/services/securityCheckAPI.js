@@ -42,6 +42,9 @@ async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   }
 
   let idShopInt = parseInt(idShop);
+  if (isNaN(idShopInt)) {
+    throw ("idShop is NaN. It looks like that before being parsed :", idShop);
+  }
 
   const axiosConfigShopHeader = {
     headers: {
