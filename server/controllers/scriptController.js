@@ -491,6 +491,9 @@ async function testScriptPersistingStep(
         },
       });
 
+      // yoann
+      const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
+
       let relevantTrend =
         card.isFoil === 0
           ? priceguide.dataValues.trendPrice
@@ -966,6 +969,9 @@ async function realScriptPersistingStep(
           idProduct: card.idProduct,
         },
       });
+
+      // yoann
+      const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
 
       let relevantTrend =
         card.isFoil === 0
