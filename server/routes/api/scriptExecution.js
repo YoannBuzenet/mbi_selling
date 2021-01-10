@@ -188,6 +188,7 @@ router.post("/", async (req, res) => {
         locale,
         formats: req.body.formats,
         jwt: req.headers.authorization,
+        hasPricedBasedOn: scriptToCheck.dataValues.willBeBasedOn,
       });
 
       res.status(200).json("Script Queued.");
