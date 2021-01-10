@@ -16,6 +16,52 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Order, { foreignKey: "idShop" });
       User.hasMany(models.Invoice, { foreignKey: "idShop" });
     }
+    static passStockAsShouldBeRefreshed(idUser){
+      //find it, update it
+      const userToUpdate = await User.findOne({
+        where: {
+          id: idUser,
+        },
+      });
+      if (userToUpdate) {
+        return Invoice.upsert({
+          id: idUser.dataValues.id,
+          isSubscribedUntil :idUser.dataValues.isSubscribedUntil,
+          temporarySecret:idUser.dataValues.temporarySecret,
+          temporaryLastProductPaid:idUser.dataValues.temporaryLastProductPaid,
+          shouldHaveStockDataRefreshed:1,
+        });
+      }
+      else {
+        console.error(
+          "Error while trying to update an user : could not find it."
+        );
+      }
+      
+    }
+    static removeStockAsShouldBeRefreshed(idUser){
+      //find it, update it
+      const userToUpdate = await User.findOne({
+        where: {
+          id: idUser,
+        },
+      });
+      if (userToUpdate) {
+        return Invoice.upsert({
+          id: idUser.dataValues.id,
+          isSubscribedUntil :idUser.dataValues.isSubscribedUntil,
+          temporarySecret:idUser.dataValues.temporarySecret,
+          temporaryLastProductPaid:idUser.dataValues.temporaryLastProductPaid,
+          shouldHaveStockDataRefreshed:0,
+        });
+      }
+      else {
+        console.error(
+          "Error while trying to update an user : could not find it."
+        );
+      }
+      
+    }
   }
   User.init(
     {
