@@ -21,7 +21,8 @@ mkmScriptsUpdateQueue.process(async function (job, done) {
       job.data.shopData,
       job.data.locale,
       job.data.formats,
-      job.data.jwt
+      job.data.jwt,
+      job.data.hasPricedBasedOn
     );
     console.log("script has finished");
   } catch (e) {
