@@ -309,7 +309,7 @@ module.exports = {
           Exp: 5,
           expName: "ok",
           price: 6,
-          language: 6,
+          language: 3,
           condition: "MT",
           isFoil: 0,
           isSigned: 0,
