@@ -363,7 +363,7 @@ module.exports = {
           language: 6,
           condition: "NM",
           isFoil: 0,
-          isSigned: 0,
+          isSigned: 1,
           isPlayset: 0,
           isAltered: 0,
           comments: 0,

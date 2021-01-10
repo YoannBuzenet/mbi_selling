@@ -21,7 +21,8 @@ function generateBehaviourName(
   hasNoPriceGuide,
   hasNoCorrespondingCustomRule,
   behaviourBase,
-  ruleTypeId
+  ruleTypeId,
+  excludedForSomeReason = null
 ) {
   if (isPriceShieldBlocking) {
     if (ruleTypeId === 1) {
@@ -35,6 +36,8 @@ function generateBehaviourName(
     return "No Corresponding Priceguide";
   } else if (hasNoCorrespondingCustomRule) {
     return "No corresponding Custom Rule";
+  } else if (excludedForSomeReason) {
+    return excludedForSomeReason;
   } else {
     if (ruleTypeId === 1) {
       return "Set Value";
@@ -586,7 +589,6 @@ async function testScriptPersistingStep(
           if (priceShieldTest.result) {
             // Price Shield allows the rule
             //PUT memory with change
-            console.log("card is passed with rule type id === 1", action, card);
             await db.put_memory.create({
               idScript: idScript,
               idProduct: card.idProduct,
@@ -632,7 +634,6 @@ async function testScriptPersistingStep(
             });
           }
         } else if (action.ruleTypeId === 2) {
-          console.log("card is passed with rule type id === 2", action, card);
           // operations based action
 
           const actionName =
@@ -795,7 +796,6 @@ async function testScriptPersistingStep(
             });
           }
         } else if (action.ruleTypeId === 3) {
-          console.log("we are in ruletype 3");
           // exclude
           await db.put_memory.create({
             idScript: idScript,
@@ -975,26 +975,7 @@ async function realScriptPersistingStep(
         } else if (card.isPlayset === 1) {
           reasonForExcluding = "Excluded - Playset";
         }
-
-        await db.put_memory.create({
-          idScript: idScript,
-          idProduct: card.idProduct,
-          idArticle: card.idArticle,
-          cardName: card.englishName,
-          priceShieldBlocked: 0,
-          oldPrice: card.price,
-          newPrice: card.price,
-          condition: transformConditionStringIntoInteger(card.condition),
-          lang: card.language,
-          isFoil: card.isFoil,
-          isSigned: card.isSigned,
-          isPlayset: card.isPlayset,
-          amount: card.amount,
-          behaviourChosen: reasonForExcluding,
-          idCustomRuleUsed: 0,
-          PUT_Request_id: put_request.dataValues.id,
-        });
-        continue;
+        chunkOfCards[j].excludedVariousReason = reasonForExcluding;
       }
 
       const priceguide = await db.priceguide.findOne({
@@ -1003,23 +984,34 @@ async function realScriptPersistingStep(
         },
       });
 
-      // yoann
-      const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
-
       let relevantTrend =
         card.isFoil === 0
           ? priceguide.dataValues.trendPrice
           : priceguide.dataValues.foilTrend;
 
+      const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
+
+      let numberBaseToFindRelevantRule;
+      if (pricedBasedOn === "mkmTrends") {
+        numberBaseToFindRelevantRule = relevantTrend;
+      } else if (pricedBasedOn === "oldPrices") {
+        numberBaseToFindRelevantRule = card.price;
+      } else {
+        console.error(
+          "Coulnt find a relevant pricedBasedOn value. Currently contains :",
+          pricedBasedOn
+        );
+      }
+
       if (card.isFoil === 0) {
         action = priceUpdateAPI.findTheRightPriceRange(
           arrayOfSortedRulesRegular,
-          relevantTrend
+          numberBaseToFindRelevantRule
         );
       } else if (card.isFoil === 1) {
         action = priceUpdateAPI.findTheRightPriceRange(
           arrayOfSortedRulesFoil,
-          relevantTrend
+          numberBaseToFindRelevantRule
         );
       } else {
         throw new Error("A card was missing the isFoil prop.");
@@ -1056,55 +1048,66 @@ async function realScriptPersistingStep(
           action.customRule_behaviour_definition.dataValues.coefficient;
 
         let priceguideRefUsedByUser =
-          priceguide.dataValues[
-            mkmPricesGuideDictionnary[action.mkmPriceGuideReference].name
+          priceguide?.dataValues?.[
+            mkmPricesGuideDictionnary?.[action?.mkmPriceGuideReference]?.name
           ];
 
-        //yoann - here we check if we base on MKM or old prices.
-        //if old price, process and continue
+        // Here we check if we base our calculus on MKM or shop existing prices.
+        let numberBaseToWorkOn;
+        if (pricedBasedOn === "mkmTrends") {
+          numberBaseToWorkOn = priceguideRefUsedByUser;
+        } else if (pricedBasedOn === "oldPrices") {
+          numberBaseToWorkOn = card.price;
+        } else {
+          console.error(
+            "Coulnt find a relevant pricedBasedOn value. Currently contains :",
+            pricedBasedOn
+          );
+        }
 
-        if (priceguideRefUsedByUser) {
-          if (actionType === "percent") {
-            //Browsing data on the rule to choose the right price to apply to the card
+        //We check if this number to work on exists (price guide is sometimes empty, or old card price couln't be read) before trying to work with it.
+        if (!numberBaseToWorkOn) {
+          chunkOfCards[j].error = "No base number to work on.";
+        }
 
-            if (actionSense === "up") {
-              //Round up in % the number chosen in reference
-              newPrice = priceUpdateAPI.roundUpPercent(
-                priceguideRefUsedByUser,
-                actionCoefficient
-              );
-            } else if (actionSense === "down") {
-              //arrondir down %
-              newPrice = priceUpdateAPI.roundDownPercent(
-                priceguideRefUsedByUser,
-                actionCoefficient
-              );
-            } else {
-              throw new Error("No action sense (up or down) were precised.");
-            }
-          } else if (actionType === "number") {
-            if (actionSense === "up") {
-              //modulo up
-              newPrice = priceUpdateAPI.roundUpNumber(
-                priceguideRefUsedByUser,
-                actionCoefficient
-              );
-            } else if (actionSense === "down") {
-              //modulo down
-              newPrice = priceUpdateAPI.roundDownNumber(
-                priceguideRefUsedByUser,
-                actionCoefficient
-              );
-            } else {
-              throw new Error("No action sense (up or down) were precised.");
-            }
-          } else {
-            throw new Error(
-              "Action type wasn't precised on behaviour in custom rule."
+        if (actionType === "percent") {
+          //Browsing data on the rule to choose the right price to apply to the card
+
+          if (actionSense === "up") {
+            //Round up in % the number chosen in reference
+            newPrice = priceUpdateAPI.roundUpPercent(
+              numberBaseToWorkOn,
+              actionCoefficient
             );
+          } else if (actionSense === "down") {
+            //arrondir down %
+            newPrice = priceUpdateAPI.roundDownPercent(
+              numberBaseToWorkOn,
+              actionCoefficient
+            );
+          } else {
+            throw new Error("No action sense (up or down) were precised.");
+          }
+        } else if (actionType === "number") {
+          if (actionSense === "up") {
+            //modulo up
+            newPrice = priceUpdateAPI.roundUpNumber(
+              numberBaseToWorkOn,
+              actionCoefficient
+            );
+          } else if (actionSense === "down") {
+            //modulo down
+            newPrice = priceUpdateAPI.roundDownNumber(
+              numberBaseToWorkOn,
+              actionCoefficient
+            );
+          } else {
+            throw new Error("No action sense (up or down) were precised.");
           }
         } else {
-          chunkOfCards[j].hasNoPriceGuide = "No priceguide for this card.";
+          throw new Error(
+            "Action type wasn't precised on behaviour in custom rule."
+          );
         }
       } else if (action.ruleTypeId === 3) {
         // We don't do anything here, as we will just register directly the card in DB without sending it to MKM.
@@ -1142,7 +1145,6 @@ async function realScriptPersistingStep(
       /* ***************************************************** */
 
       // One for the skipped cards that goes directly in DB, one for the MKM request
-
       if (chunkOfCards.length === j + 1) {
         let arrayOfCardsForXML = [];
         let arrayOfCardsSkippedAndDirectToDB = [];
@@ -1150,6 +1152,7 @@ async function realScriptPersistingStep(
           if (
             !chunkOfCards[k].hasOwnProperty("error") &&
             !chunkOfCards[k].hasOwnProperty("priceShieldBlocked") &&
+            !chunkOfCards[k].hasOwnProperty("excludedVariousReason") &&
             action.ruleTypeId !== 3
           ) {
             //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
@@ -1183,7 +1186,8 @@ async function realScriptPersistingStep(
             ),
             arrayOfCardsSkippedAndDirectToDB[i].action
               .customRule_behaviour_definition.dataValues.name,
-            arrayOfCardsSkippedAndDirectToDB[i].action.ruleTypeId
+            arrayOfCardsSkippedAndDirectToDB[i].action.ruleTypeId,
+            arrayOfCardsSkippedAndDirectToDB[i].excludedVariousReason
           );
 
           await db.put_memory.registerAsSkippedCard(
@@ -1200,7 +1204,6 @@ async function realScriptPersistingStep(
         /* ****************************************** */
 
         // XML Creation
-
         const XML_payload_Put_Request = mkmController.transformChunkOfCardsAndActionsIntoXML(
           arrayOfCardsForXML
         );
@@ -1247,21 +1250,27 @@ async function realScriptPersistingStep(
 
         // In case of success, we register updates in DB
         for (let i = 0; i < arrayOfCardsForXML.length; i++) {
-          await db.put_memory.registerAsSuccess(
-            idScript,
-            arrayOfCardsForXML[i],
-            arrayOfCardsForXML[i].action.idSnapShotCustomRule,
-            put_request.dataValues.id,
-            generateBehaviourName(
-              arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
-              arrayOfCardsForXML[i].action.ruleType === 3,
-              arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
-              arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
-              arrayOfCardsForXML[i].action.customRule_behaviour_definition
-                .dataValues.name,
-              arrayOfCardsForXML[i].action.ruleTypeId
-            )
-          );
+          try {
+            await db.put_memory.registerAsSuccess(
+              idScript,
+              arrayOfCardsForXML[i],
+              arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+              put_request.dataValues.id,
+              generateBehaviourName(
+                arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
+                arrayOfCardsForXML[i].action.ruleType === 3,
+                arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
+                arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
+                arrayOfCardsForXML[i].action.customRule_behaviour_definition
+                  .dataValues.name,
+                arrayOfCardsForXML[i].action.ruleTypeId,
+                arrayOfCardsForXML[i].excludedVariousReason
+              )
+            );
+          } catch (e) {
+            console.log("erreee", e);
+            console.log("cardss : ", card);
+          }
         }
         // We wait a bit before going to the next iteration to let the MKM API handle it.
         utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
@@ -1332,8 +1341,6 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
       },
       { offset: i * chunkSize, limit: chunkSize }
     );
-
-    console.log("chunkOfCards", chunkOfCards);
 
     /* ****************************************** */
     /* ******* Preparing cards for MKM ****** */
