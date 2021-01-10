@@ -274,7 +274,10 @@ function App() {
   }
 
   const launchcheckStatusTimer = () => {
-    const userID = authenticationInfos.user.id;
+    const userID = authenticationInfos?.user?.id;
+    if (userID === undefined) {
+      console.error("user ID is not defined in script update function");
+    }
 
     const checkScriptStatus = async () => {
       // Getting updated script from the Express API

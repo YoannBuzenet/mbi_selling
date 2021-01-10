@@ -61,6 +61,12 @@ async function startScript(
   // console.log("EXECUTING NEW SCRIPT", new Date());
   // await utils.sleep(50000);
 
+  const scriptData = await db.Script.findOne({
+    where: {
+      id: idScript,
+    },
+  });
+
   //Do we have already a stock for this user, and if yes, is it older than 24 hours ?
 
   const oneCardAtRandomFromStock = await db.MkmProduct.findOne({
@@ -256,6 +262,7 @@ async function startScript(
     const put_request = await db.PUT_Request.create({
       idShop: idShop,
       isReal: isTest ? 0 : 1,
+      hasPriceBasedOn: scriptData.dataValues.willBeBasedOn,
     });
 
     //Snapshot shop params for the current PUT Request
