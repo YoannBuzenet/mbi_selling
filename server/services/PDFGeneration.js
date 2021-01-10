@@ -18,7 +18,8 @@ async function generatePDFFromPutRequest(
   // langLocale = "fr-FR",
   langLocale = "en-US",
   isTestScript = true,
-  printExplaination = false
+  printExplaination = false,
+  hasPricedBasedOn = "mkmTrends"
 ) {
   // The PDF was supposed to print a line of explaination for each line of data. This feature has been stopped without being finished.
   // If you wish to pass printExplaination parameter to true, just finish the function that generate translated text with relevant data for each line.
@@ -410,6 +411,17 @@ async function generatePDFFromPutRequest(
         style: "subTitle",
       },
       { text: " " },
+      {
+        text:
+          hasPricedBasedOn === "mkmTrends"
+            ? genericTranslations.pdfStructure.hasPriceBasedOnMKMTrends[
+                langLocale
+              ]
+            : genericTranslations.pdfStructure.hasPriceBasedOnOldPrices[
+                langLocale
+              ],
+        style: "subTitle",
+      },
       { text: " " },
       { text: moment().format(translation.FormatDate[langLocale]) },
       {

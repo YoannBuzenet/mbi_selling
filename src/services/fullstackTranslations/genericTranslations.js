@@ -94,6 +94,14 @@ const pdfStructure = {
     ["en-US"]: "Test procedure",
     ["fr-FR"]: "Procédure de test",
   },
+  hasPriceBasedOnMKMTrends: {
+    ["en-US"]: "Prices based on : MKM Trends",
+    ["fr-FR"]: "Prix basés sur : Tendances MKM",
+  },
+  hasPriceBasedOnOldPrices: {
+    ["en-US"]: "Prices based on : Already existing shop prices",
+    ["fr-FR"]: "Prix basés sur :  Prix boutique existants",
+  },
   reference: {
     ["en-US"]: "Reference : ",
     ["fr-FR"]: "Référence : ",
