@@ -29,7 +29,7 @@ module.exports = {
             updatedAt: new Date(),
           },
           {
-            name: "basedOnMKM",
+            name: "operationsApplying",
             createdAt: new Date(),
             updatedAt: new Date(),
           },

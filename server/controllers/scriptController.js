@@ -462,6 +462,15 @@ async function testScriptPersistingStep(
 
       // If the card is Signed / Altered / Signed, we skip it.
       if (card.isSigned === 1 || card.isAltered === 1 || card.isPlayset === 1) {
+        let reasonForExcluding;
+        if (card.isSigned === 1) {
+          reasonForExcluding = "Excluded - Signed";
+        } else if (card.isAltered === 1) {
+          reasonForExcluding = "Excluded - Altered";
+        } else if (card.isPlayset === 1) {
+          reasonForExcluding = "Excluded - Playset";
+        }
+
         await db.put_memory.create({
           idScript: idScript,
           idProduct: card.idProduct,
@@ -476,7 +485,7 @@ async function testScriptPersistingStep(
           isSigned: card.isSigned,
           isPlayset: card.isPlayset,
           amount: card.amount,
-          behaviourChosen: "Signed/Altered/Playset skipped",
+          behaviourChosen: reasonForExcluding,
           idCustomRuleUsed: 0,
           PUT_Request_id: put_request.dataValues.id,
         });
@@ -491,7 +500,6 @@ async function testScriptPersistingStep(
         },
       });
 
-      // yoann
       const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
 
       let relevantTrend =
@@ -499,15 +507,27 @@ async function testScriptPersistingStep(
           ? priceguide.dataValues.trendPrice
           : priceguide.dataValues.foilTrend;
 
+      let numberBaseToFindRelevantRule;
+      if (pricedBasedOn === "mkmTrends") {
+        numberBaseToFindRelevantRule = relevantTrend;
+      } else if (pricedBasedOn === "oldPrices") {
+        numberBaseToFindRelevantRule = card.price;
+      } else {
+        console.error(
+          "Coulnt find a relevant pricedBasedOn value. Currently contains :",
+          pricedBasedOn
+        );
+      }
+
       if (card.isFoil === 0) {
         action = priceUpdateAPI.findTheRightPriceRange(
           arrayOfSortedRulesRegular,
-          relevantTrend
+          numberBaseToFindRelevantRule
         );
       } else if (card.isFoil === 1) {
         action = priceUpdateAPI.findTheRightPriceRange(
           arrayOfSortedRulesFoil,
-          relevantTrend
+          numberBaseToFindRelevantRule
         );
       } else {
         throw new Error("A card was missing the isFoil prop.");
@@ -566,6 +586,7 @@ async function testScriptPersistingStep(
           if (priceShieldTest.result) {
             // Price Shield allows the rule
             //PUT memory with change
+            console.log("card is passed with rule type id === 1", action, card);
             await db.put_memory.create({
               idScript: idScript,
               idProduct: card.idProduct,
@@ -611,13 +632,8 @@ async function testScriptPersistingStep(
             });
           }
         } else if (action.ruleTypeId === 2) {
-          // Mkm based behaviour action
-          // get the price guide for this card
-
-          // console.log(
-          //   "price guide for this card, mkm step",
-          //   priceguide.dataValues
-          // );
+          console.log("card is passed with rule type id === 2", action, card);
+          // operations based action
 
           const actionName =
             action.customRule_behaviour_definition.dataValues.name;
@@ -630,127 +646,25 @@ async function testScriptPersistingStep(
 
           let newPrice;
           let priceguideRefUsedByUser =
-            priceguide.dataValues[
-              mkmPricesGuideDictionnary[action.mkmPriceGuideReference].name
+            priceguide?.dataValues?.[
+              mkmPricesGuideDictionnary?.[action?.mkmPriceGuideReference]?.name
             ];
 
-          //We check if this price exist (price guide is sometimes empty) before trying to work with it.
-
-          if (priceguideRefUsedByUser) {
-            //If the priceguide does exist, we will define the new price thanks to the operation criteria
-            // Then, pass it in the price shield at the end
-
-            if (actionType === "percent") {
-              //Browsing data on the rule to choose the right price to apply to the card
-
-              if (actionSense === "up") {
-                //Round up in % the number chosen in reference
-                newPrice = priceUpdateAPI.roundUpPercent(
-                  priceguideRefUsedByUser,
-                  actionCoefficient
-                );
-              } else if (actionSense === "down") {
-                //arrondir down %
-                newPrice = priceUpdateAPI.roundDownPercent(
-                  priceguideRefUsedByUser,
-                  actionCoefficient
-                );
-              } else {
-                throw new Error("No action sense (up or down) were precised.");
-              }
-            } else if (actionType === "number") {
-              if (actionSense === "up") {
-                //modulo up
-                newPrice = priceUpdateAPI.roundUpNumber(
-                  priceguideRefUsedByUser,
-                  actionCoefficient
-                );
-              } else if (actionSense === "down") {
-                //modulo down
-                newPrice = priceUpdateAPI.roundDownNumber(
-                  priceguideRefUsedByUser,
-                  actionCoefficient
-                );
-              } else {
-                throw new Error("No action sense (up or down) were precised.");
-              }
-            } else {
-              throw new Error(
-                "Action type wasn't precised on behaviour in custom rule."
-              );
-            }
-
-            // We update the price depending on condition and language of the card, with shop params
-            newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
-              newPrice,
-              card.language,
-              card.condition,
-              card.isFoil,
-              snapShop_Shop_Param.dataValues
-            );
-
-            //After price was defined, we pass it into the price shield
-
-            const priceShieldTest = priceUpdateAPI.priceShieldAllows(
-              card.price,
-              newPrice,
-              priceguideRefUsedByUser,
-              card.condition
-            );
-            if (priceShieldTest.result) {
-              // console.log("new price:", newPrice);
-              //PUT memory with change
-              //Save with new price
-              await db.put_memory.create({
-                idScript: idScript,
-                idProduct: card.idProduct,
-                idArticle: card.idArticle,
-                cardName: card.englishName,
-                regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
-                foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                oldPrice: card.price,
-                newPrice: newPrice,
-                numberUserChoseToUse: priceguideRefUsedByUser,
-                priceShieldBlocked: 0,
-                priceShieldReason: null,
-                condition: transformConditionStringIntoInteger(card.condition),
-                lang: card.language,
-                isFoil: card.isFoil,
-                isSigned: card.isSigned,
-                isPlayset: 0,
-                amount: card.amount,
-                behaviourChosen: actionName,
-                idCustomRuleUsed: action.idSnapShotCustomRule,
-                PUT_Request_id: put_request.dataValues.id,
-              });
-            } else {
-              //PUT memory explaining why it didnt go for it
-              await db.put_memory.create({
-                idScript: idScript,
-                idProduct: card.idProduct,
-                idArticle: card.idArticle,
-                cardName: card.englishName,
-                regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
-                foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
-                oldPrice: card.price,
-                newPrice: newPrice,
-                numberUserChoseToUse: priceguideRefUsedByUser,
-                priceShieldBlocked: 1,
-                priceShieldReason: priceShieldTest.reason,
-                condition: transformConditionStringIntoInteger(card.condition),
-                lang: card.language,
-                isFoil: card.isFoil,
-                isSigned: card.isSigned,
-                isPlayset: 0,
-                amount: card.amount,
-                behaviourChosen: "Price Shield Blocked " + actionName,
-                idCustomRuleUsed: action.idSnapShotCustomRule,
-                PUT_Request_id: put_request.dataValues.id,
-              });
-            }
+          // Here we check if we base our calculus on MKM or shop existing prices.
+          let numberBaseToWorkOn;
+          if (pricedBasedOn === "mkmTrends") {
+            numberBaseToWorkOn = priceguideRefUsedByUser;
+          } else if (pricedBasedOn === "oldPrices") {
+            numberBaseToWorkOn = card.price;
           } else {
-            //The price did not exist in the price guide, so we do not change it and mark it in Put memory.
-            //Save same as actual in put memory with mention "No Corresponding Priceguide"
+            console.error(
+              "Coulnt find a relevant pricedBasedOn value. Currently contains :",
+              pricedBasedOn
+            );
+          }
+
+          //We check if this number to work on exists (price guide is sometimes empty, or old card price couln't be read) before trying to work with it.
+          if (!numberBaseToWorkOn) {
             await db.put_memory.create({
               idScript: idScript,
               idProduct: card.idProduct,
@@ -765,7 +679,117 @@ async function testScriptPersistingStep(
               isSigned: card.isSigned,
               isPlayset: 0,
               amount: card.amount,
-              behaviourChosen: "No Corresponding Priceguide",
+              behaviourChosen: "No Base number to work on",
+              idCustomRuleUsed: action.idSnapShotCustomRule,
+              PUT_Request_id: put_request.dataValues.id,
+            });
+            continue;
+          }
+
+          if (actionType === "percent") {
+            //Browsing data on the rule to choose the right price to apply to the card
+
+            if (actionSense === "up") {
+              //Round up in % the number chosen in reference
+              newPrice = priceUpdateAPI.roundUpPercent(
+                numberBaseToWorkOn,
+                actionCoefficient
+              );
+            } else if (actionSense === "down") {
+              //arrondir down %
+              newPrice = priceUpdateAPI.roundDownPercent(
+                numberBaseToWorkOn,
+                actionCoefficient
+              );
+            } else {
+              throw new Error("No action sense (up or down) were precised.");
+            }
+          } else if (actionType === "number") {
+            if (actionSense === "up") {
+              //modulo up
+              newPrice = priceUpdateAPI.roundUpNumber(
+                numberBaseToWorkOn,
+                actionCoefficient
+              );
+            } else if (actionSense === "down") {
+              //modulo down
+              newPrice = priceUpdateAPI.roundDownNumber(
+                numberBaseToWorkOn,
+                actionCoefficient
+              );
+            } else {
+              throw new Error("No action sense (up or down) were precised.");
+            }
+          } else {
+            throw new Error(
+              "Action type wasn't precised on behaviour in custom rule."
+            );
+          }
+
+          // We update the price depending on condition and language of the card, with shop params
+          newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+            newPrice,
+            card.language,
+            card.condition,
+            card.isFoil,
+            snapShop_Shop_Param.dataValues
+          );
+
+          //After price was defined, we pass it into the price shield
+
+          const priceShieldTest = priceUpdateAPI.priceShieldAllows(
+            card.price,
+            newPrice,
+            priceguideRefUsedByUser,
+            card.condition
+          );
+          if (priceShieldTest.result) {
+            // console.log("new price:", newPrice);
+            //PUT memory with change
+            //Save with new price
+            await db.put_memory.create({
+              idScript: idScript,
+              idProduct: card.idProduct,
+              idArticle: card.idArticle,
+              cardName: card.englishName,
+              regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+              foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+              oldPrice: card.price,
+              newPrice: newPrice,
+              numberUserChoseToUse: numberBaseToWorkOn,
+              priceShieldBlocked: 0,
+              priceShieldReason: null,
+              condition: transformConditionStringIntoInteger(card.condition),
+              lang: card.language,
+              isFoil: card.isFoil,
+              isSigned: card.isSigned,
+              isPlayset: 0,
+              amount: card.amount,
+              behaviourChosen: actionName,
+              idCustomRuleUsed: action.idSnapShotCustomRule,
+              PUT_Request_id: put_request.dataValues.id,
+            });
+          } else {
+            //PUT memory explaining why it didnt go for it
+            await db.put_memory.create({
+              idScript: idScript,
+              idProduct: card.idProduct,
+              idArticle: card.idArticle,
+              cardName: card.englishName,
+              regularCardsTrend: card.isFoil === 0 ? relevantTrend : null,
+              foilCardsTrend: card.isFoil === 0 ? null : relevantTrend,
+              oldPrice: card.price,
+              newPrice: newPrice,
+              numberUserChoseToUse: numberBaseToWorkOn,
+              priceShieldBlocked: 1,
+              priceShieldReason: priceShieldTest.reason,
+              condition: transformConditionStringIntoInteger(card.condition),
+              lang: card.language,
+              isFoil: card.isFoil,
+              isSigned: card.isSigned,
+              isPlayset: 0,
+              amount: card.amount,
+              behaviourChosen: "Price Shield Blocked " + actionName,
               idCustomRuleUsed: action.idSnapShotCustomRule,
               PUT_Request_id: put_request.dataValues.id,
             });
@@ -943,6 +967,15 @@ async function realScriptPersistingStep(
 
       // If the card is Signed / Altered / Signed, we skip it.
       if (card.isSigned === 1 || card.isAltered === 1 || card.isPlayset === 1) {
+        let reasonForExcluding;
+        if (card.isSigned === 1) {
+          reasonForExcluding = "Excluded - Signed";
+        } else if (card.isAltered === 1) {
+          reasonForExcluding = "Excluded - Altered";
+        } else if (card.isPlayset === 1) {
+          reasonForExcluding = "Excluded - Playset";
+        }
+
         await db.put_memory.create({
           idScript: idScript,
           idProduct: card.idProduct,
@@ -957,7 +990,7 @@ async function realScriptPersistingStep(
           isSigned: card.isSigned,
           isPlayset: card.isPlayset,
           amount: card.amount,
-          behaviourChosen: "Signed/Altered/Playset skipped",
+          behaviourChosen: reasonForExcluding,
           idCustomRuleUsed: 0,
           PUT_Request_id: put_request.dataValues.id,
         });
@@ -1012,7 +1045,7 @@ async function realScriptPersistingStep(
 
         newPrice = action.priceRangeValueToSet;
       } else if (action.ruleTypeId === 2) {
-        // MKM based action
+        // Operations applied based action
         const actionName =
           action.customRule_behaviour_definition.dataValues.name;
         const actionType =
@@ -1026,6 +1059,9 @@ async function realScriptPersistingStep(
           priceguide.dataValues[
             mkmPricesGuideDictionnary[action.mkmPriceGuideReference].name
           ];
+
+        //yoann - here we check if we base on MKM or old prices.
+        //if old price, process and continue
 
         if (priceguideRefUsedByUser) {
           if (actionType === "percent") {
