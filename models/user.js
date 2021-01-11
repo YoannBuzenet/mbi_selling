@@ -16,8 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Order, { foreignKey: "idShop" });
       User.hasMany(models.Invoice, { foreignKey: "idShop" });
     }
-    static passStockAsShouldBeRefreshed(idUser){
-      //find it, update it
+    static async passStockAsShouldBeRefreshed(idUser) {
       const userToUpdate = await User.findOne({
         where: {
           id: idUser,
@@ -26,21 +25,18 @@ module.exports = (sequelize, DataTypes) => {
       if (userToUpdate) {
         return Invoice.upsert({
           id: idUser.dataValues.id,
-          isSubscribedUntil :idUser.dataValues.isSubscribedUntil,
-          temporarySecret:idUser.dataValues.temporarySecret,
-          temporaryLastProductPaid:idUser.dataValues.temporaryLastProductPaid,
-          shouldHaveStockDataRefreshed:1,
+          isSubscribedUntil: idUser.dataValues.isSubscribedUntil,
+          temporarySecret: idUser.dataValues.temporarySecret,
+          temporaryLastProductPaid: idUser.dataValues.temporaryLastProductPaid,
+          shouldHaveStockDataRefreshed: 1,
         });
-      }
-      else {
+      } else {
         console.error(
           "Error while trying to update an user : could not find it."
         );
       }
-      
     }
-    static removeStockAsShouldBeRefreshed(idUser){
-      //find it, update it
+    static async removeStockAsShouldBeRefreshed(idUser) {
       const userToUpdate = await User.findOne({
         where: {
           id: idUser,
@@ -49,18 +45,16 @@ module.exports = (sequelize, DataTypes) => {
       if (userToUpdate) {
         return Invoice.upsert({
           id: idUser.dataValues.id,
-          isSubscribedUntil :idUser.dataValues.isSubscribedUntil,
-          temporarySecret:idUser.dataValues.temporarySecret,
-          temporaryLastProductPaid:idUser.dataValues.temporaryLastProductPaid,
-          shouldHaveStockDataRefreshed:0,
+          isSubscribedUntil: idUser.dataValues.isSubscribedUntil,
+          temporarySecret: idUser.dataValues.temporarySecret,
+          temporaryLastProductPaid: idUser.dataValues.temporaryLastProductPaid,
+          shouldHaveStockDataRefreshed: 0,
         });
-      }
-      else {
+      } else {
         console.error(
           "Error while trying to update an user : could not find it."
         );
       }
-      
     }
   }
   User.init(

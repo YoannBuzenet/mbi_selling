@@ -78,17 +78,19 @@ async function startScript(
     },
   });
 
-  // yoann check if there was a marker "refresh stock" on user
-  // yoann mon yoann t'es le meilleur
+  const currentUser = await db.User.findOne({
+    where: {
+      idShop: idShop,
+    },
+  });
 
   /* **************************************** */
   /* *****Refreshing the stock if needed ******/
   /* **************************************** */
 
-  // prop : shouldHaveStockDataRefreshed
-
   if (
     oneCardAtRandomFromStock === null ||
+    currentUser.dataValues.shouldHaveStockDataRefreshed === 1 ||
     new Date(oneCardAtRandomFromStock.updatedAt).getTime() +
       parseInt(process.env.TIME_TO_EXPIRE_STOCK, 10) <
       new Date().getTime()
@@ -833,6 +835,14 @@ async function testScriptPersistingStep(
     // Marking PUT Request as successful
     await db.PUT_Request.markAsFinishedSuccessfully(put_request.dataValues.id);
 
+    if (pricedBasedOn === "oldPrices") {
+      const updateUser = await db.User.passStockAsShouldBeRefreshed(idShop);
+    } else if (pricedBasedOn === "mkmTrends") {
+      const updateUserDONOTRefresh = await db.User.removeStockAsShouldBeRefreshed(
+        idShop
+      );
+    }
+
     // Marking Script as available
     await db.Script.markAsNotRunning(idScript);
 
@@ -1298,6 +1308,14 @@ async function realScriptPersistingStep(
 
   // Marking PUT Request as successful
   await db.PUT_Request.markAsFinishedSuccessfully(put_request.dataValues.id);
+
+  if (pricedBasedOn === "oldPrices") {
+    const updateUser = await db.User.passStockAsShouldBeRefreshed(idShop);
+  } else if (pricedBasedOn === "mkmTrends") {
+    const updateUserDONOTRefresh = await db.User.removeStockAsShouldBeRefreshed(
+      idShop
+    );
+  }
 
   // Marking Script as available
   await db.Script.markAsNotRunning(idScript);
