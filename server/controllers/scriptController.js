@@ -837,10 +837,6 @@ async function testScriptPersistingStep(
 
     if (pricedBasedOn === "oldPrices") {
       const updateUser = await db.User.passStockAsShouldBeRefreshed(idShop);
-    } else if (pricedBasedOn === "mkmTrends") {
-      const updateUserDONOTRefresh = await db.User.removeStockAsShouldBeRefreshed(
-        idShop
-      );
     }
 
     // Marking Script as available
@@ -1311,10 +1307,6 @@ async function realScriptPersistingStep(
 
   if (pricedBasedOn === "oldPrices") {
     const updateUser = await db.User.passStockAsShouldBeRefreshed(idShop);
-  } else if (pricedBasedOn === "mkmTrends") {
-    const updateUserDONOTRefresh = await db.User.removeStockAsShouldBeRefreshed(
-      idShop
-    );
   }
 
   // Marking Script as available
