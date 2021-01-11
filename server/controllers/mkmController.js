@@ -131,6 +131,14 @@ function getShopStock(shopInfo, idShop) {
     });
 }
 
+async function eraseShopStock(shopId) {
+  return await db.MkmProduct.destroy({
+    where: {
+      idShop: shopId,
+    },
+  });
+}
+
 async function registerStockFileIntoDB(shopId) {
   const path = "./shopStock/" + shopId + "/stock.csv";
 
@@ -323,4 +331,5 @@ module.exports = {
   registerStockFileIntoDB,
   transformChunkOfCardsAndActionsIntoXML,
   transformChunkOfCardsFromPutMemoryForRewindIntoXML,
+  eraseShopStock,
 };

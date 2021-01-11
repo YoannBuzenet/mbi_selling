@@ -115,6 +115,13 @@ async function startScript(
       throw new Error("error while getting shop stock", e);
     }
 
+    // Reseting current data in DB
+    try {
+      await mkmController.eraseShopStock(idShop);
+    } catch (e) {
+      throw new Error("error while erasing stock", e);
+    }
+
     // Passing from CSV to DB
     try {
       await mkmController.registerStockFileIntoDB(idShop);
