@@ -91,6 +91,7 @@ async function startScript(
   if (
     oneCardAtRandomFromStock === null ||
     currentUser.dataValues.shouldHaveStockDataRefreshed === 1 ||
+    scriptData.dataValues.willBeBasedOn === "oldPrices" ||
     new Date(oneCardAtRandomFromStock.updatedAt).getTime() +
       parseInt(process.env.TIME_TO_EXPIRE_STOCK, 10) <
       new Date().getTime()
