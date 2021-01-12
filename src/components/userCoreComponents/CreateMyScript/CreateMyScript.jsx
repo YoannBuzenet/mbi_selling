@@ -48,6 +48,13 @@ const CreateMyScript = ({ history }) => {
 
   const intl = useIntl();
 
+  //Getting id param on edition mode (with /edit-script/ route)
+  const match = matchPath(history.location.pathname, {
+    path: "/edit-script/:id",
+    exact: true,
+    strict: false,
+  });
+
   const [selectedFormats, setSelectedFormats] = useState(() => {
     //If we are in edition mode, we start from the formats aldready stored in the script
     if (match?.params?.id) {
@@ -58,13 +65,6 @@ const CreateMyScript = ({ history }) => {
     else if (!match?.params?.id) {
       return [];
     }
-  });
-
-  //Getting id param on edition mode (with /edit-script/ route)
-  const match = matchPath(history.location.pathname, {
-    path: "/edit-script/:id",
-    exact: true,
-    strict: false,
   });
 
   console.log("auth from create script", authenticationInfos);
