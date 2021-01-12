@@ -189,12 +189,12 @@ const BehaviourDictionnary = {
 const ruleTypesDictionnary = {
   ["en-US"]: {
     setValue: "Set Value",
-    basedOnMKM: "Based on MKM",
+    operationsApplying: "Create an operation",
     exclude: "Exclude",
   },
   ["fr-FR"]: {
     setValue: "Prix fixé",
-    basedOnMKM: "Se baser sur MKM",
+    operationsApplying: "Créer opération",
     exclude: "Exclure",
   },
 };
