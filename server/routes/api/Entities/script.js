@@ -108,6 +108,11 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  if (req.body.willBeBasedOn === undefined) {
+    res.status(406).json("willBeBasedOn is mandatory.");
+    return;
+  }
+
   //Check that the requester is who he sayts he is OR is admin
   const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
     req.headers.authorization,
@@ -123,6 +128,7 @@ router.post("/", async (req, res) => {
     const newScript = await db.Script.create({
       name: req.body.name,
       idShop: req.query.idUser,
+      willBeBasedOn: req.body.willBeBasedOn,
     });
 
     if (req.body.formats) {
@@ -132,11 +138,12 @@ router.post("/", async (req, res) => {
     }
 
     console.log(newScript);
-
     res.status(200).json(newScript);
+    return;
   } catch (err) {
     console.log("error when creating a script", err);
     res.status(500).json(err);
+    return;
   }
 });
 
@@ -192,9 +199,12 @@ router.patch("/:id", async (req, res) => {
   /* ********************* */
   /* *****PROCESS******** */
   /* ******************* */
-  //Register Rule
-  //Send it back with its id !
+
   existingScript.name = req.body.name;
+
+  if (req.body.willBeBasedOn !== undefined) {
+    existingScript.willBeBasedOn = req.body.willBeBasedOn;
+  }
 
   //Check if we are setting formats from the script
   if (req.body.formats) {
@@ -207,6 +217,7 @@ router.patch("/:id", async (req, res) => {
     .then((resp) => {
       console.log("what do we have here ? IN PATCH : ", resp);
       res.status(200).json(resp.dataValues);
+      return;
     })
     .catch((err) => {
       console.log("didnt work bro", err);
