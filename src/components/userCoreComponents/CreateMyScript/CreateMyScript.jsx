@@ -999,6 +999,7 @@ const CreateMyScript = ({ history }) => {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
+    disableScrollLock: true,
     PaperProps: {
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
@@ -1033,6 +1034,9 @@ const CreateMyScript = ({ history }) => {
       margin: theme.spacing(1),
       minWidth: 120,
       maxWidth: 300,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
     },
     chips: {
       display: "flex",
@@ -1152,6 +1156,23 @@ const CreateMyScript = ({ history }) => {
                   />
                 </MenuItem>
               ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="isBasedOnChoice">
+          <p>Ok c'est là</p>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value="10"
+              onChange={() => {}}
+              MenuProps={{ disableScrollLock: true }}
+            >
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
             </Select>
           </FormControl>
         </div>

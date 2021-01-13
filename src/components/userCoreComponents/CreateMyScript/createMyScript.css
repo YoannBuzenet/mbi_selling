@@ -9,7 +9,7 @@
 **************************/
 
 .create-my-script-container {
-  margin-top: 160px;
+  margin-top: 250px;
 }
 
 .second-menu-scripts {
@@ -25,10 +25,10 @@
   border-top: 1px solid black;
 }
 
-.column-definitions {
+.isBasedOnChoice {
   position: fixed;
   top: 122px;
-  height: 30px;
+  height: 60px;
   width: 100%;
   background-color: #f9f9f9;
   z-index: 5;
@@ -36,6 +36,20 @@
   box-shadow: 1px 1px 1px black;
   display: flex;
   justify-content: center;
+}
+
+.column-definitions {
+  position: fixed;
+  top: 182px;
+  height: 60px;
+  width: 100%;
+  background-color: #f9f9f9;
+  z-index: 5;
+  border-top: 1px solid black;
+  box-shadow: 1px 1px 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scriptNameEdition {
