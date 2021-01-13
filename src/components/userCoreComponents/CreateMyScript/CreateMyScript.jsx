@@ -1214,30 +1214,50 @@ const CreateMyScript = ({ history }) => {
           </FormControl>
         </div>
         <div className="isBasedOnChoice">
-          <p>
-            <FormattedMessage
-              id="createMyScript.script.select.pricesAreBasedOn.label"
-              defaultMessage="Base the new prices on : "
-            />
-          </p>
-          <FormControl className={classes.formControl}>
-            <Select
-              labelId="price-based-on-select-label"
-              id="price-based-on-select"
-              value={pricesAreBasedOn}
-              onChange={handlePricedBasedOn}
-              MenuProps={{ disableScrollLock: true }}
-            >
-              {pricedBasedOnPossibilities.map((pricedBasedOnPossibility) => (
-                <MenuItem value={pricedBasedOnPossibility.value}>
-                  <FormattedMessage
-                    id={pricedBasedOnPossibility.id}
-                    defaultMessage={pricedBasedOnPossibility.default}
-                  />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <div>
+            <p>
+              <FormattedMessage
+                id="createMyScript.script.select.pricesAreBasedOn.label"
+                defaultMessage="Base the new prices on : "
+              />
+            </p>
+            <FormControl className={classes.formControl}>
+              <Select
+                labelId="price-based-on-select-label"
+                id="price-based-on-select"
+                value={pricesAreBasedOn}
+                onChange={handlePricedBasedOn}
+                MenuProps={{ disableScrollLock: true }}
+              >
+                {pricedBasedOnPossibilities.map((pricedBasedOnPossibility) => (
+                  <MenuItem value={pricedBasedOnPossibility.value}>
+                    <FormattedMessage
+                      id={pricedBasedOnPossibility.id}
+                      defaultMessage={pricedBasedOnPossibility.default}
+                    />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+          <div>
+            {pricesAreBasedOn === "mkmTrends" && (
+              <p>
+                <FormattedMessage
+                  id="createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText"
+                  defaultMessage="New prices will be based on MKM trends. Example : +10% on MKM trend. This only applies to rules where you chose 'Create operation'."
+                />
+              </p>
+            )}
+            {pricesAreBasedOn === "oldPrices" && (
+              <p>
+                <FormattedMessage
+                  id="createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText"
+                  defaultMessage="New prices will be based on your current prices. Example : +10% on your current prices. This only applies to rules where you chose 'Create operation'."
+                />
+              </p>
+            )}
+          </div>
         </div>
         <div className="column-definitions">
           <p>

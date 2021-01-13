@@ -208,6 +208,8 @@
   "createMyScript.script.select.pricesAreBasedOn.label": "Baser les nouveaux prix sur : ",
   "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends": "Tendance MKM",
   "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices": "Mes prix actuels",
+  "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText": "Les nouveaux prix seront basés par rapport à vos prix existants. Exemple : +10% sur vos prix actuels. Cela ne s'applique qu'aux règles où vous avez sélectionné 'Créer Opération'.",
+  "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText": "Les nouveaux prix seront fixés par rapport aux tendances MKM. Exemple : +10% par rapport à la tendance MKM. Cela ne s'applique qu'aux règles où vous avez sélectionné 'Créer Opération'.",
   "createMyScript.genericRules.signedCardAreNotTreated": "Les cartes signées ne sont pas traitées.",
   "createMyScript.genericRules.alteredCardAreNotTreated": "Les cartes altérées ne sont pas traitées.",
   "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",
