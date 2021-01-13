@@ -216,6 +216,7 @@
   "createMyScript.checkStateCoherence.failure": "Il semble y avoir une erreur au sein des règles. Merci de vérifier à nouveau.",
   "createMyScript.launchTest.success": "Le script de test a été lancé. Une fois terminé, vous recevrez un récapitulatif par mail.",
   "createMyScript.launchTest.failure": "Le script n'a pas pu être lancé. Merci de réessayer ultérieurement. Si le problème persiste, n'hésitez pas à nous contacter.",
+  "createMyScript.scriptMustBeSaved": "Merci de sauvegarder le script avant de le lancer.",
   "createMyScript.launchReal.success": "Le script MKM a été lancé. Une fois terminé, vous recevrez un récapitulatif par mail.",
   "createMyScript.launchReal.failure": "Le script MKMn'a pas pu être lancé. Merci de réessayer ultérieurement. Si le problème persiste, n'hésitez pas à nous contacter.",
   "createMyScript.saving.success": "Votre script a été sauvegardé.",

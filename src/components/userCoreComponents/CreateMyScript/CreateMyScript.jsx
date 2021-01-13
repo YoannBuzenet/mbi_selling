@@ -220,6 +220,10 @@ const CreateMyScript = ({ history }) => {
     isCreationOrEditionMode === "Creation" ? defaultScriptName : ""
   );
 
+  const [scriptMustBeSaved, setScriptMustbeSaved] = useState(
+    isCreationOrEditionMode === "Creation" ? true : false
+  );
+
   //This value is kept in state for creation mode, where we will need to set it before sending our rules.
   //With this we have this potential ID always in the same variable.
   const [idScript, setIdScript] = useState(match?.params?.id);
@@ -575,12 +579,9 @@ const CreateMyScript = ({ history }) => {
   };
 
   const handlePricedBasedOn = (event) => {
+    setScriptMustbeSaved(true);
     const { value } = event.target;
     setPricesAreBasedOn(value);
-
-    console.log(
-      "updating state with new price basedOn and keep the custom rules OK"
-    );
   };
 
   const saveScriptAndCustomRules = async () => {
@@ -608,6 +609,7 @@ const CreateMyScript = ({ history }) => {
           );
           console.log("data arrived : ", scriptCreated);
           setIdScript(scriptCreated.data.id);
+
           newScriptId = scriptCreated.data.id;
         } catch (e) {
           console.error("creation script error", e);
@@ -788,6 +790,7 @@ const CreateMyScript = ({ history }) => {
         // console.log("all our news rules", allNewRules);
 
         setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
+        setScriptMustbeSaved(false);
         console.log("saved !");
       } catch (e) {
         errorHandlingAPI.checkErrorStatus(e);
@@ -806,10 +809,12 @@ const CreateMyScript = ({ history }) => {
   };
 
   const handleChangeScriptName = (event) => {
+    setScriptMustbeSaved(true);
     setScriptName(event.target.value);
   };
 
   const handleChangeSelect = (event) => {
+    setScriptMustbeSaved(true);
     let idFormat = parseInt(event.target.value[0]);
 
     //Immediate state-of-the-app
@@ -833,6 +838,16 @@ const CreateMyScript = ({ history }) => {
   };
 
   const launchTest = () => {
+    if (scriptMustBeSaved) {
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.scriptMustBeSaved"
+          defaultMessage="Please save the script before launching it."
+        />
+      );
+      return;
+    }
+
     if (canStateBeSaved(customRulesGlobalState) === false) {
       toast.error(
         <FormattedMessage
@@ -931,6 +946,16 @@ const CreateMyScript = ({ history }) => {
   };
 
   const launchScript = () => {
+    if (scriptMustBeSaved) {
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.scriptMustBeSaved"
+          defaultMessage="Please save thhe script before launching it."
+        />
+      );
+      return;
+    }
+
     if (canStateBeSaved(customRulesGlobalState) === false) {
       toast.error(
         <FormattedMessage
