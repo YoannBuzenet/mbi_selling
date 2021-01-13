@@ -603,6 +603,7 @@ const CreateMyScript = ({ history }) => {
             {
               name: scriptName,
               formats: selectedFormats,
+              willBeBasedOn: pricesAreBasedOn,
             }
           );
           console.log("data arrived : ", scriptCreated);
@@ -630,6 +631,7 @@ const CreateMyScript = ({ history }) => {
             {
               name: scriptName,
               formats: selectedFormats,
+              willBeBasedOn: pricesAreBasedOn,
             }
           )
           .catch((err) => {
