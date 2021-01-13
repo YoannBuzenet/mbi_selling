@@ -25,6 +25,20 @@
   border-top: 1px solid black;
 }
 
+.basedOnSelection {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.basedOnSelection p {
+  margin-right: 20px;
+}
+
+.basedOnHelperText {
+  width: 50%;
+}
+
 .isBasedOnChoice {
   position: fixed;
   top: 122px;
