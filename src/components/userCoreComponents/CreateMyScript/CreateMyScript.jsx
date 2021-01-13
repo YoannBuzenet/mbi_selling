@@ -84,6 +84,19 @@ const CreateMyScript = ({ history }) => {
     defaultMessage: "My new Script",
   });
 
+  const pricedBasedOnPossibilities = [
+    {
+      value: "mkmTrends",
+      id: "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends",
+      default: "MKM trend",
+    },
+    {
+      value: "oldPrices",
+      id: "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices",
+      default: "My current prices",
+    },
+  ];
+
   const defaultScriptName = translatedDefaultScriptName;
 
   const defaultCreationState = {
@@ -193,6 +206,10 @@ const CreateMyScript = ({ history }) => {
     ],
   };
 
+  const [pricesAreBasedOn, setPricesAreBasedOn] = useState(
+    isCreationOrEditionMode === "Creation" ? "mkmTrends" : ""
+  );
+
   const [customRulesGlobalState, setCustomRulesGlobalState] = useState(
     isCreationOrEditionMode === "Creation"
       ? defaultCreationState
@@ -249,6 +266,7 @@ const CreateMyScript = ({ history }) => {
         )
         .then((resp) => {
           console.log("pass script name in state");
+          setPricesAreBasedOn(resp.data.willBeBasedOn);
           setScriptName(resp.data.name);
           setSelectedFormats(
             resp.data.scriptFormats.map((format) => format.id)
@@ -553,6 +571,15 @@ const CreateMyScript = ({ history }) => {
           rule.hasIncoherentStartingPrice ||
           rule.isMissingSellingPrice
       ).length === 0
+    );
+  };
+
+  const handlePricedBasedOn = (event) => {
+    const { value } = event.target;
+    setPricesAreBasedOn(value);
+
+    console.log(
+      "updating state with new price basedOn and keep the custom rules OK"
     );
   };
 
@@ -1160,19 +1187,28 @@ const CreateMyScript = ({ history }) => {
           </FormControl>
         </div>
         <div className="isBasedOnChoice">
-          <p>Ok c'est là</p>
+          <p>
+            <FormattedMessage
+              id="createMyScript.script.select.pricesAreBasedOn.label"
+              defaultMessage="Base the new prices on : "
+            />
+          </p>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value="10"
-              onChange={() => {}}
+              labelId="price-based-on-select-label"
+              id="price-based-on-select"
+              value={pricesAreBasedOn}
+              onChange={handlePricedBasedOn}
               MenuProps={{ disableScrollLock: true }}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {pricedBasedOnPossibilities.map((pricedBasedOnPossibility) => (
+                <MenuItem value={pricedBasedOnPossibility.value}>
+                  <FormattedMessage
+                    id={pricedBasedOnPossibility.id}
+                    defaultMessage={pricedBasedOnPossibility.default}
+                  />
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
