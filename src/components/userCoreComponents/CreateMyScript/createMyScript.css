@@ -9,7 +9,7 @@
 **************************/
 
 .create-my-script-container {
-  margin-top: 250px;
+  margin-top: 270px;
 }
 
 .second-menu-scripts {
@@ -32,17 +32,45 @@
 }
 
 .basedOnSelection p {
+  margin-top: 25px;
   margin-right: 20px;
 }
 
 .basedOnHelperText {
   width: 50%;
 }
+.basedOnHelperText > div {
+  margin-top: 2px;
+  width: 60%;
+  padding: 8px;
+  background-color: rgb(248, 225, 162);
+  border: 1px solid rgb(241, 121, 52);
+  display: flex;
+  justify-content: space-between;
+}
+
+.basedOnHelperText p {
+  text-align: left;
+  font-size: 14px;
+  margin: 0;
+}
+
+.svgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.basedOnHelperText svg {
+  width: 100px;
+  font-size: 30px;
+  color: #fda400;
+}
 
 .isBasedOnChoice {
   position: fixed;
   top: 122px;
-  height: 60px;
+  height: 80px;
   width: 100%;
   background-color: #f9f9f9;
   z-index: 5;
@@ -54,7 +82,7 @@
 
 .column-definitions {
   position: fixed;
-  top: 182px;
+  top: 202px;
   height: 60px;
   width: 100%;
   background-color: #f9f9f9;

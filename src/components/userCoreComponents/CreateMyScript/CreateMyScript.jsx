@@ -23,6 +23,7 @@ import Select from "@material-ui/core/Select";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
+import InfoIcon from "@material-ui/icons/Info";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
@@ -1088,7 +1089,7 @@ const CreateMyScript = ({ history }) => {
       margin: theme.spacing(1),
       minWidth: 120,
       maxWidth: 300,
-      marginTop: 15,
+      marginTop: 25,
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
@@ -1243,20 +1244,30 @@ const CreateMyScript = ({ history }) => {
           </div>
           <div className="basedOnHelperText">
             {pricesAreBasedOn === "mkmTrends" && (
-              <p>
-                <FormattedMessage
-                  id="createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText"
-                  defaultMessage="New prices will be based on MKM trends. Example : +10% on MKM trend. This only applies to rules where you chose 'Create operation'."
-                />
-              </p>
+              <div className="helperContainer">
+                <div className="svgContainer">
+                  <InfoIcon />
+                </div>
+                <p>
+                  <FormattedMessage
+                    id="createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText"
+                    defaultMessage="New prices will be based on MKM trends. Example : +10% on MKM trend. This only applies to rules where you chose 'Create operation'."
+                  />
+                </p>
+              </div>
             )}
             {pricesAreBasedOn === "oldPrices" && (
-              <p>
-                <FormattedMessage
-                  id="createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText"
-                  defaultMessage="New prices will be based on your current prices. Example : +10% on your current prices. This only applies to rules where you chose 'Create operation'."
-                />
-              </p>
+              <div className="helperContainer">
+                <div className="svgContainer">
+                  <InfoIcon />
+                </div>
+                <p>
+                  <FormattedMessage
+                    id="createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText"
+                    defaultMessage="New prices will be based on your current prices. Example : +10% on your current prices. This only applies to rules where you chose 'Create operation'."
+                  />
+                </p>
+              </div>
             )}
           </div>
         </div>
@@ -1299,6 +1310,7 @@ const CreateMyScript = ({ history }) => {
                         "" + rule.id + "" + rule.temporaryId + "" + "regular"
                       }
                       updateACustomRule={updateACustomRule}
+                      scriptIsBasedOn={pricesAreBasedOn}
                     />
                   );
                 })}
@@ -1326,6 +1338,7 @@ const CreateMyScript = ({ history }) => {
                         "" + rule.id + "" + rule.temporaryId + "" + "regular"
                       }
                       updateACustomRule={updateACustomRule}
+                      scriptIsBasedOn={pricesAreBasedOn}
                     />
                   );
                 })}
