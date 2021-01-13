@@ -23,6 +23,7 @@ const CustomRule = ({
   addACustomRule,
   deleteACustomRule,
   updateACustomRule,
+  scriptIsBasedOn,
 }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
   // console.log("definitions from the rule level", allDefinitions);
@@ -220,39 +221,40 @@ const CustomRule = ({
 
                 {rule.ruleTypeId === 2 && (
                   <div>
-                    {Array.isArray(allDefinitions.priceGuidePossibilities) && (
-                      <FormControl
-                        variant="outlined"
-                        className={classes.formControl}
-                      >
-                        <InputLabel id="demo-simple-select-outlined-label-2">
-                          {userMKMChoice}
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-outlined-label-2"
-                          id="demo-simple-select-outlined-2"
-                          onChange={(e) => handleChange(e)}
-                          name="mkmPriceGuideReference"
-                          value={rule.mkmPriceGuideReference || 1}
-                          label="TestToTranslate"
+                    {Array.isArray(allDefinitions.priceGuidePossibilities) &&
+                      scriptIsBasedOn === "mkmTrends" && (
+                        <FormControl
+                          variant="outlined"
+                          className={classes.formControl}
                         >
-                          {allDefinitions.priceGuidePossibilities.map(
-                            (priceGuidePossibility) => (
-                              <MenuItem
-                                value={priceGuidePossibility.id}
-                                className={classes.menuItem}
-                              >
-                                {
-                                  config?.mkmPriceGuideDictionnary?.[
-                                    currentLang.locale
-                                  ]?.[priceGuidePossibility.name]
-                                }
-                              </MenuItem>
-                            )
-                          )}
-                        </Select>
-                      </FormControl>
-                    )}
+                          <InputLabel id="demo-simple-select-outlined-label-2">
+                            {userMKMChoice}
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-outlined-label-2"
+                            id="demo-simple-select-outlined-2"
+                            onChange={(e) => handleChange(e)}
+                            name="mkmPriceGuideReference"
+                            value={rule.mkmPriceGuideReference || 1}
+                            label="TestToTranslate"
+                          >
+                            {allDefinitions.priceGuidePossibilities.map(
+                              (priceGuidePossibility) => (
+                                <MenuItem
+                                  value={priceGuidePossibility.id}
+                                  className={classes.menuItem}
+                                >
+                                  {
+                                    config?.mkmPriceGuideDictionnary?.[
+                                      currentLang.locale
+                                    ]?.[priceGuidePossibility.name]
+                                  }
+                                </MenuItem>
+                              )
+                            )}
+                          </Select>
+                        </FormControl>
+                      )}
 
                     {Array.isArray(allDefinitions.ruleBehaviours) && (
                       <FormControl
