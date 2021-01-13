@@ -1088,6 +1088,7 @@ const CreateMyScript = ({ history }) => {
       margin: theme.spacing(1),
       minWidth: 120,
       maxWidth: 300,
+      marginTop: 15,
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
@@ -1214,7 +1215,7 @@ const CreateMyScript = ({ history }) => {
           </FormControl>
         </div>
         <div className="isBasedOnChoice">
-          <div>
+          <div className="basedOnSelection">
             <p>
               <FormattedMessage
                 id="createMyScript.script.select.pricesAreBasedOn.label"
@@ -1240,7 +1241,7 @@ const CreateMyScript = ({ history }) => {
               </Select>
             </FormControl>
           </div>
-          <div>
+          <div className="basedOnHelperText">
             {pricesAreBasedOn === "mkmTrends" && (
               <p>
                 <FormattedMessage
