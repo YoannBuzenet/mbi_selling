@@ -525,6 +525,7 @@ async function testScriptPersistingStep(
           ? priceguide.dataValues.trendPrice
           : priceguide.dataValues.foilTrend;
 
+      // Relevant price can be either MKM trend chosen (foil or regular), or the former price
       let numberBaseToFindRelevantRule;
       if (pricedBasedOn === "mkmTrends") {
         numberBaseToFindRelevantRule = relevantTrend;
@@ -583,14 +584,18 @@ async function testScriptPersistingStep(
 
           let newPrice = action.priceRangeValueToSet;
 
-          // We update the price depending on condition and language of the card, with shop params
-          newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
-            newPrice,
-            card.language,
-            card.condition,
-            card.isFoil,
-            snapShop_Shop_Param.dataValues
-          );
+          // MKM Trends price particularity
+          // On old price, this coefficient has already been applied
+          if (pricedBasedOn === "mkmTrends") {
+            // We update the price depending on condition and language of the card, with shop params
+            newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+              newPrice,
+              card.language,
+              card.condition,
+              card.isFoil,
+              snapShop_Shop_Param.dataValues
+            );
+          }
 
           //After price was defined, we pass it into the price shield
           const priceShieldTest = priceUpdateAPI.priceShieldAllows(
@@ -742,14 +747,18 @@ async function testScriptPersistingStep(
             );
           }
 
-          // We update the price depending on condition and language of the card, with shop params
-          newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
-            newPrice,
-            card.language,
-            card.condition,
-            card.isFoil,
-            snapShop_Shop_Param.dataValues
-          );
+          // MKM Trends price particularity
+          // On old price, this coefficient has already been applied
+          if (pricedBasedOn === "mkmTrends") {
+            // We update the price depending on condition and language of the card, with shop params
+            newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+              newPrice,
+              card.language,
+              card.condition,
+              card.isFoil,
+              snapShop_Shop_Param.dataValues
+            );
+          }
 
           //After price was defined, we pass it into the price shield
 
@@ -1145,14 +1154,18 @@ async function realScriptPersistingStep(
         chunkOfCards[j].hasNoCustomRule = "No Custom Rule for this card.";
       }
 
-      // We update the price depending on condition and language of the card, with shop params
-      newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
-        newPrice,
-        card.language,
-        card.condition,
-        card.isFoil,
-        snapShop_Shop_Param.dataValues
-      );
+      // MKM Trends price particularity
+      // On old price, this coefficient has already been applied
+      if (pricedBasedOn === "mkmTrends") {
+        // We update the price depending on condition and language of the card, with shop params
+        newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
+          newPrice,
+          card.language,
+          card.condition,
+          card.isFoil,
+          snapShop_Shop_Param.dataValues
+        );
+      }
 
       //Setting the price and keeping track of it
       chunkOfCards[j].newPrice = newPrice;
