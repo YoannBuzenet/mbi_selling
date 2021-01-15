@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       keywordBehaviour: {
         type: DataTypes.STRING,
-        defaultValue: "targetsSpecifically",
+        defaultValue: "ignoresEverything",
         validate: {
           isIn: {
             args: [

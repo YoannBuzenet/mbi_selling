@@ -594,6 +594,10 @@ const CreateMyScript = ({ history }) => {
         />
       );
     } else {
+      /* ******************************* */
+      /* ***** SCRIPT INFO HANDLING **** */
+      /* ******************************* */
+
       //POST SCRIPT IF IT HAS NO ID
       //GET DATA BACK PASS IT IN STATE
       let newScriptId = null;
@@ -643,6 +647,12 @@ const CreateMyScript = ({ history }) => {
             errorHandlingAPI.checkErrorStatus(err);
           });
       }
+
+      /* ******************************* */
+      /* **** CUSTOM RULES HANDLING **** */
+      /* ******************************* */
+
+      // They are all parsed and posted/patched (if needed) and end in a Promise.all
 
       console.log("starting to POST/PATCH");
       //.map array regular
