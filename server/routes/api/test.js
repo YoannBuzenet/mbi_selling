@@ -87,6 +87,16 @@ router.get("/generatePDFTest", async (req, res) => {
   res.status(200).json("PDF créé !");
 });
 
+router.get("/testkeywords", async (req, res) => {
+  const keywords = await db.Keyword.findOne({
+    where: {
+      idScript: 3,
+    },
+  });
+
+  res.status(200).json(keywords);
+});
+
 router.get("/addJobToQueue", async (req, res) => {
   console.log("received the request to add to queue");
   // Yo
