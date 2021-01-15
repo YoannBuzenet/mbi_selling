@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       PUT_Request.hasOne(models.snapshot_params, {
         foreignKey: "PUT_Request_id",
       });
+      PUT_Request.hasOne(models.snapshot_keyword, {
+        foreignKey: "PUT_Request_id",
+      });
     }
     static markAsFinishedSuccessfully(id_put_request) {
       return PUT_Request.upsert({ id: id_put_request, isFinished: 1 });
