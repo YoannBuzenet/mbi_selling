@@ -70,6 +70,7 @@ router.get("/getById/:id", async (req, res) => {
     where: {
       id: req.params.id,
     },
+    include: db.Keyword,
   });
 
   if (userScripts === null) {
