@@ -39,7 +39,25 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isIn: {
             args: [["oldPrices", "mkmTrends"]],
-            msg: "Value must be OldPrices or mkmTrends string.",
+            msg:
+              "Value of willBeBasedOn prop must be OldPrices or mkmTrends string.",
+          },
+        },
+      },
+      keywordBehaviour: {
+        type: DataTypes.STRING,
+        defaultValue: "targetsSpecifically",
+        validate: {
+          isIn: {
+            args: [
+              [
+                "targetsSpecifically",
+                "avoidsSpecifically",
+                "ignoresEverything",
+              ],
+            ],
+            msg:
+              "Value of keyword Behaviour must be targetsSpecifically, avoidsSpecifically or ignoresEverything string.",
           },
         },
       },

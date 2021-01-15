@@ -18,6 +18,10 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: "mkmTrends",
       },
+      keywordBehaviour: {
+        type: Sequelize.STRING,
+        defaultValue: "targetsSpecifically",
+      },
       idShop: {
         type: Sequelize.INTEGER,
         references: {
