@@ -17,6 +17,7 @@ const priceguideDefinition = require("./Entities/priceguideDefinition");
 const formatsDefinition = require("./Entities/format");
 const invoicesHandling = require("./Entities/invoices");
 const userHandling = require("./Entities/user");
+const keywordsHandling = require("./Entities/keyword");
 
 //Testing routes
 const testRoutes = require("./test");
@@ -32,6 +33,7 @@ router.use("/mtgPrices", mtgPricesRoutes);
 router.use("/scriptExecution", scriptExecutionRoutes);
 router.use("/invoices", invoicesHandling);
 router.use("/users", userHandling);
+router.use("/keywords", keywordsHandling);
 
 //test purpose
 if (process.env.NODE_ENV === "development") {
