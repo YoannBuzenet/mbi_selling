@@ -33,6 +33,7 @@ router.get("/getByUserId", async (req, res) => {
     where: {
       idShop: req.query.idUser,
     },
+    include: db.Keyword,
   });
 
   res.status(200).json(userScripts);
