@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Script.hasMany(models.Custom_Rule, { foreignKey: "id" });
+      Script.hasMany(models.Keyword, { foreignKey: "id" });
       Script.belongsTo(models.User, { foreignKey: "idShop" });
       Script.belongsToMany(models.Format, {
         through: models.ScriptsFormats,
