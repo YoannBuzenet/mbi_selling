@@ -20,7 +20,7 @@ module.exports = {
       },
       keywordBehaviour: {
         type: Sequelize.STRING,
-        defaultValue: "targetsSpecifically",
+        defaultValue: "ignoresEverything",
       },
       idShop: {
         type: Sequelize.INTEGER,

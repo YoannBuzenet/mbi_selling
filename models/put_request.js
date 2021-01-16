@@ -70,6 +70,23 @@ module.exports = (sequelize, DataTypes) => {
         },
         defaultValue: "mkmTrends",
       },
+      keywordBehaviour: {
+        type: DataTypes.STRING,
+        defaultValue: "ignoresEverything",
+        validate: {
+          isIn: {
+            args: [
+              [
+                "targetsSpecifically",
+                "avoidsSpecifically",
+                "ignoresEverything",
+              ],
+            ],
+            msg:
+              "Value of keyword Behaviour must be targetsSpecifically, avoidsSpecifically or ignoresEverything string.",
+          },
+        },
+      },
       eventualMKM_ErrorMessage: {
         type: DataTypes.STRING,
       },
