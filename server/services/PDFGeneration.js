@@ -150,6 +150,16 @@ async function generatePDFFromPutRequest(
     },
   });
 
+  /* **************************** */
+  /* Getting snapshot key words */
+  /* **************************** */
+
+  const snapshotKeywords = await db.snapshot_keyword.findAll({
+    where: {
+      PUT_Request_id: put_requestId,
+    },
+  });
+
   // https://pdfmake.github.io/docs/document-definition-object/tables/
   // http://pdfmake.org/playground.html
 
