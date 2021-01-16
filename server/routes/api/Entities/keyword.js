@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
   const userScript = await db.Script.findOne({
     where: {
       idShop: req.query.idUser,
+      id: req.query.idScript,
     },
   });
 
@@ -53,7 +54,7 @@ router.post("/", async (req, res) => {
 router.patch("/", async (req, res) => {
   securityCheckAPI.checkIsJWTThere(req, res);
 
-  securityCheckAPI.checkQueryParams(req, res, "idUser");
+  securityCheckAPI.checkQueryParams(req, res, ["idUser", "idScript"]);
 
   //Check that the requester is who he sayts he is OR is admin
   const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
@@ -64,6 +65,21 @@ router.patch("/", async (req, res) => {
   if (!userHasRightToAccess) {
     res.status(401).json("User does not have access do this ressource.");
     return;
+  }
+
+  //Check that the script belongs to the user making request
+  const userScript = await db.Script.findOne({
+    where: {
+      idShop: req.query.idUser,
+      id: req.query.idScript,
+    },
+  });
+
+  if (userScript === null) {
+    res.status(401).json("Script doesnt belong to specified user.");
+    return;
+  } else {
+    console.log("user HAS a script which is ", userScript);
   }
 
   // Check payload for name prop
@@ -80,8 +96,14 @@ router.patch("/", async (req, res) => {
   const existingKeyword = await db.Keyword.findOne({
     where: {
       id: req.body.id,
+      idScript: req.query.idScript,
     },
   });
+
+  if (existingKeyword === null) {
+    res.status(406).json("This keyword doesnt exist.");
+    return;
+  }
 
   // upating data
   existingKeyword.name = req.body.name;
