@@ -47,6 +47,33 @@ function generateBehaviourName(
   }
 }
 
+function generateRelevantRequest(
+  idShop,
+  dbObject,
+  dbOperator,
+  formatFilter,
+  keywordBehaviour,
+  keywordList
+) {
+  const requestObject = {
+    include: [
+      {
+        model: dbObject.productLegalities,
+        where: {
+          [dbOperator.or]: formatFilter,
+        },
+      },
+    ],
+    where: {
+      idShop: idShop,
+    },
+  };
+
+  //Add op Not or Op Or at the same level of first include
+
+  return requestObject;
+}
+
 async function startScript(
   idShop,
   idScript,
@@ -408,6 +435,7 @@ async function testScriptPersistingStep(
 
   // Getting all info to build the SQL request
 
+  /* FORMAT FILTER */
   //Building format dictionnary as a hashmap
   const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
 
@@ -417,24 +445,28 @@ async function testScriptPersistingStep(
     formatFilter["isLegal" + formatDictionnary[formats[i]]] = 1;
   }
 
+  /* KEYWORDS FILTER */
+  const allKeywordsUsed = await db.snapshot_keyword.findAll({
+    where: {
+      PUT_Request_id: put_request.dataValues.id,
+    },
+  });
+
   // Are we targeting, avoiding, or ignoring keywords ?
   // yoann
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
 
+  const relevantRequest = generateRelevantRequest(
+    idShop,
+    db,
+    Op,
+    formatFilter,
+    put_request_keyword_behaviour,
+    allKeywordsUsed
+  );
+
   const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
-    {
-      include: [
-        {
-          model: db.productLegalities,
-          where: {
-            [Op.or]: formatFilter,
-          },
-        },
-      ],
-      where: {
-        idShop: idShop,
-      },
-    },
+    relevantRequest,
     {}
   );
 
@@ -472,22 +504,10 @@ async function testScriptPersistingStep(
 
   for (let i = 0; i < numberOfIterations; i++) {
     //choper les 100 premières cartes (en ajusant offset à chaque iteration )
-    const chunkOfCards = await db.MkmProduct.findAll(
-      {
-        include: [
-          {
-            model: db.productLegalities,
-            where: {
-              [Op.or]: formatFilter,
-            },
-          },
-        ],
-        where: {
-          idShop: idShop,
-        },
-      },
-      { offset: i * chunkSize, limit: chunkSize }
-    );
+    const chunkOfCards = await db.MkmProduct.findAll(relevantRequest, {
+      offset: i * chunkSize,
+      limit: chunkSize,
+    });
 
     //Morphing the rules into an array of array with prices sorted, to make them browsable in log(n)
     const arrayOfSortedRulesRegular = customRulesController.transformCustomRulesIntoBrowsableArray(
