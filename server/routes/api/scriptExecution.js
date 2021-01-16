@@ -233,6 +233,7 @@ router.post("/rewindPutRequest", async (req, res) => {
   const scriptToCheck = await db.Script.findOne({
     where: {
       id: idScript,
+      idShop: idShop,
     },
   });
 
