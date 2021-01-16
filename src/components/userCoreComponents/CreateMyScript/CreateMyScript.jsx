@@ -725,6 +725,9 @@ const CreateMyScript = ({ history }) => {
 
       const respServ = await Promise.all([...regularRules, ...foilRules]);
 
+      // Save the keywords here
+      // To do yoann
+
       try {
         // console.log("serv resp", respServ);
         toast.success(
