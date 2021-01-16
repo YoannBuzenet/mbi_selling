@@ -406,6 +406,8 @@ async function testScriptPersistingStep(
 
   // Counting the number of cards concerned by this script
 
+  // Getting all info to build the SQL request
+
   //Building format dictionnary as a hashmap
   const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
 
@@ -415,7 +417,9 @@ async function testScriptPersistingStep(
     formatFilter["isLegal" + formatDictionnary[formats[i]]] = 1;
   }
 
-  // console.log("format filter", formatFilter);
+  // Are we targeting, avoiding, or ignoring keywords ?
+  // yoann
+  const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
 
   const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
     {
@@ -901,17 +905,6 @@ async function realScriptPersistingStep(
   formats
 ) {
   console.log("MKM script this time !");
-
-  /* ********************************************************************* */
-  /* ********** Marking if stock should be updated after process ***********/
-  /* ********************************************************************* */
-  // We are going to update shop prices on MKM, thus our data wont be up-to-date anymore after script.
-  //We mark it, to be sure we will refresh data if needed.
-  if (put_request.dataValues.pricedBasedOn === "oldPrices") {
-    // yoann
-    // marquer l'user comme "stock should be refreshed";
-    // prop : shouldHaveStockDataRefreshed
-  }
 
   /* **************************************** */
   /* ********** Chunk Management ***********/

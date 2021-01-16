@@ -12,15 +12,6 @@ async function connect() {
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
-  // const { User, Blogpost } = require("./models/index");
-  // const users = await User.findAll();
-  // console.log("hey", users);
-
-  // const shouldBeYoann = await User.findOne({
-  //   where: {
-  //     id: 1,
-  //   },
-  // });
 }
 
 module.exports = { connect };
