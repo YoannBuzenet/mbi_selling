@@ -70,6 +70,15 @@ function generateRelevantRequest(
   };
 
   //Add op Not or Op Or at the same level of first include
+  if (keywordBehaviour === "targetsSpecifically") {
+    requestObject.where.comments = { [dbOperator.or]: keywordList };
+  } else if (keywordBehaviour === "avoidsSpecifically") {
+    requestObject.where.comments = { [dbOperator.not]: keywordList };
+  } else if (keywordBehaviour === "ignoresEverything") {
+    // pass for now, as the request remains the same
+  } else {
+    throw new Error("Unmatched keyword behaviour.");
+  }
 
   return requestObject;
 }
@@ -452,6 +461,8 @@ async function testScriptPersistingStep(
     },
   });
 
+  const filteredKeywords = allKeywordsUsed.map((keyword) => keyword.name);
+
   // Are we targeting, avoiding, or ignoring keywords ?
   // yoann
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
@@ -462,7 +473,7 @@ async function testScriptPersistingStep(
     Op,
     formatFilter,
     put_request_keyword_behaviour,
-    allKeywordsUsed
+    filteredKeywords
   );
 
   const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
