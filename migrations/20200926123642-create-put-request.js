@@ -32,6 +32,10 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: "mkmTrends",
       },
+      keywordBehaviour: {
+        type: Sequelize.STRING,
+        defaultValue: "ignoresEverything",
+      },
       eventualMKM_ErrorMessage: { type: Sequelize.STRING },
       lastIterationNumberWhenMKM_ErrorHappened: {
         type: Sequelize.INTEGER,
