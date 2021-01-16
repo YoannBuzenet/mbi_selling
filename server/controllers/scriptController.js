@@ -293,6 +293,8 @@ async function startScript(
     /* ********** Snapshot Custom Rule ***********/
     /* **************************************** */
 
+    // And passing their newly created id in the array to use it later in the script
+
     let snapshot_custom_rule;
     let idSnapShotCustomRule;
 
@@ -339,6 +341,24 @@ async function startScript(
 
       idSnapShotCustomRule = snapshot_custom_rule.dataValues.id;
       orderedCustoMRules.foil[i].idSnapShotCustomRule = idSnapShotCustomRule;
+    }
+
+    /* ************************************************* */
+    /* *** Snapshot Keywords for current PUT Request *** */
+    /* ************************************************* */
+
+    const allKeyWordsForThatScript = await db.Keyword.findAll({
+      where: {
+        idScript: idScript,
+      },
+    });
+
+    for (let i = 0; i < allKeyWordsForThatScript.length; i++) {
+      snapshotKeyword = await db.snapshot_keyword.create({
+        idScript: idScript,
+        name: allKeyWordsForThatScript[i].dataValues.name,
+        PUT_Request_id: put_request.dataValues.id,
+      });
     }
 
     /* **************************************** */

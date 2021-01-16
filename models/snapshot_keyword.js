@@ -14,7 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   snapshot_keyword.init(
-    { idScript: DataTypes.INTEGER, name: DataTypes.STRING },
+    {
+      idScript: DataTypes.INTEGER,
+      name: DataTypes.STRING,
+      PUT_Request_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "PUT_Requests",
+          key: "id",
+        },
+      },
+    },
     {
       sequelize,
       modelName: "snapshot_keyword",
