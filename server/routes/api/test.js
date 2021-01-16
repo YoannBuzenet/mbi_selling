@@ -97,6 +97,17 @@ router.get("/testkeywords", async (req, res) => {
   res.status(200).json(keywords);
 });
 
+router.get("/testDBFilterWithKeywords", async (req, res) => {
+  const MkmProducts = await db.MkmProduct.findAll({
+    where: {
+      idShop: "7",
+      comments: { [Op.not]: ["+20cc"] },
+    },
+  });
+
+  res.status(200).json(MkmProducts);
+});
+
 router.get("/addJobToQueue", async (req, res) => {
   console.log("received the request to add to queue");
   // Yo
