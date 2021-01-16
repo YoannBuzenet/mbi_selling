@@ -168,6 +168,7 @@ router.patch("/:id", async (req, res) => {
   const existingScript = await db.Script.findOne({
     where: {
       id: req.params.id,
+      idUser: req.query.idUser,
     },
   });
 
@@ -248,6 +249,7 @@ router.delete("/:id", async (req, res) => {
   const existingScript = await db.Script.findOne({
     where: {
       id: req.params.id,
+      idUser: req.query.idUser,
     },
   });
 
