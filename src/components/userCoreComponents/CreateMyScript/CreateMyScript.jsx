@@ -652,6 +652,14 @@ const CreateMyScript = ({ history }) => {
       /* **** CUSTOM RULES HANDLING **** */
       /* ******************************* */
 
+      // Script Id definition
+      let scriptId;
+      if (newScriptId !== null) {
+        scriptId = parseInt(newScriptId);
+      } else {
+        scriptId = parseInt(idScript);
+      }
+
       // They are all parsed and posted/patched (if needed) and end in a Promise.all
 
       console.log("starting to POST/PATCH");
@@ -664,19 +672,13 @@ const CreateMyScript = ({ history }) => {
             "/api/customRules/" +
               rule.id +
               "?idUser=" +
-              authenticationInfos.user.id,
+              authenticationInfos.user.id +
+              "&idScript=" +
+              scriptId,
             rule
           );
         } else if (rule.hasOwnProperty("temporaryId")) {
           console.log("POST", rule);
-          //We use the right script variable
-          let scriptId;
-          if (newScriptId !== null) {
-            scriptId = newScriptId;
-          } else {
-            scriptId = idScript;
-          }
-
           return axios.post(
             "/api/customRules/" +
               "?idUser=" +
@@ -698,18 +700,13 @@ const CreateMyScript = ({ history }) => {
             "/api/customRules/" +
               rule.id +
               "?idUser=" +
-              authenticationInfos.user.id,
+              authenticationInfos.user.id +
+              "&idScript=" +
+              scriptId,
             rule
           );
         } else if (rule.hasOwnProperty("temporaryId")) {
           console.log("POST", rule);
-          //We use the right script variable
-          let scriptId;
-          if (newScriptId !== null) {
-            scriptId = newScriptId;
-          } else {
-            scriptId = idScript;
-          }
 
           return axios.post(
             "/api/customRules/" +
@@ -739,14 +736,6 @@ const CreateMyScript = ({ history }) => {
 
         //Saving the new script id/name in current auth state
         //We check if it exsists already : if yes, we update it, if no we add a new one in the array of scripts
-
-        //We use the right script variable
-        let scriptId;
-        if (newScriptId !== null) {
-          scriptId = parseInt(newScriptId);
-        } else {
-          scriptId = parseInt(idScript);
-        }
 
         //We will pass it into localStorage also
         //Depending on creation or edition mode, as for the state, we will save it differently in state

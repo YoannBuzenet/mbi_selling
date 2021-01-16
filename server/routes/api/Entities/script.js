@@ -168,7 +168,7 @@ router.patch("/:id", async (req, res) => {
   const existingScript = await db.Script.findOne({
     where: {
       id: req.params.id,
-      idUser: req.query.idUser,
+      idShop: req.query.idUser,
     },
   });
 
