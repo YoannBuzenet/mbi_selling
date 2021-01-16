@@ -229,7 +229,6 @@ router.post("/rewindPutRequest", async (req, res) => {
   }
 
   // Checking the script does exist
-  // It may be a good idea to check if this script is associated with the idUser
   const scriptToCheck = await db.Script.findOne({
     where: {
       id: idScript,

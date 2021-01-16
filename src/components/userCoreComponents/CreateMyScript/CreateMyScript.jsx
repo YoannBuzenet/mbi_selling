@@ -648,10 +648,6 @@ const CreateMyScript = ({ history }) => {
           });
       }
 
-      /* ******************************* */
-      /* **** CUSTOM RULES HANDLING **** */
-      /* ******************************* */
-
       // Script Id definition
       let scriptId;
       if (newScriptId !== null) {
@@ -660,7 +656,11 @@ const CreateMyScript = ({ history }) => {
         scriptId = parseInt(idScript);
       }
 
-      // They are all parsed and posted/patched (if needed) and end in a Promise.all
+      /* ******************************* */
+      /* **** CUSTOM RULES HANDLING **** */
+      /* ******************************* */
+
+      // Custom Rules are all parsed and posted/patched (if needed) and end in a Promise.all
 
       console.log("starting to POST/PATCH");
       //.map array regular
