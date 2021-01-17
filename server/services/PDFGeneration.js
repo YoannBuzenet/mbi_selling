@@ -160,6 +160,15 @@ async function generatePDFFromPutRequest(
     },
   });
 
+  // to do : .map qqpart avec la liste
+
+  /* ****************************** */
+  /*  PUT request keyword behaviour */
+  /* ****************************** */
+
+  const putRequestKeywordBehaviour = put_request.dataValues.keywordBehaviour;
+  // to do translate et display first page
+
   // https://pdfmake.github.io/docs/document-definition-object/tables/
   // http://pdfmake.org/playground.html
 
@@ -190,7 +199,7 @@ async function generatePDFFromPutRequest(
     ];
   }
 
-  //yooy
+  // prepare to enrich this function if explaination feature is asked by customer
   function generateLineHigherPriceCard(data, shouldPrintExplaination) {
     let arrayWithAllData = [];
 

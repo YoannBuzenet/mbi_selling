@@ -102,6 +102,28 @@ const pdfStructure = {
     ["en-US"]: "Prices based on : Already existing shop prices",
     ["fr-FR"]: "Prix basés sur :  Prix boutique existants",
   },
+  keywordTitle: {
+    ["en-US"]: "Keywords used : ",
+    "fr-FR": "Mot clefs utilisés : ",
+  },
+  keywordBehaviourTitle: {
+    ["en-US"]: "Keyword use : ",
+    "fr-FR": "Utilisation des mots clefs : ",
+  },
+  keywordBehaviour: {
+    targetsSpecifically: {
+      ["en-US"]: "Targets specifically",
+      "fr-FR": "Cible uniquement",
+    },
+    avoidsSpecifically: {
+      ["en-US"]: "Avoids specifically",
+      "fr-FR": "Evite ces mots clefs",
+    },
+    ignoresEverything: {
+      ["en-US"]: "Ignore if here or not",
+      "fr-FR": "Ignore si le mot clef est présent ou non",
+    },
+  },
   reference: {
     ["en-US"]: "Reference : ",
     ["fr-FR"]: "Référence : ",
