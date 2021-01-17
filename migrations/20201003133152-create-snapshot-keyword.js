@@ -1,13 +1,14 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("snapshot_keyword", {
+    await queryInterface.createTable("snapshot_keywords", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      idScript: Sequelize.INTEGER,
       PUT_Request_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -30,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("snapshot_keyword");
+    await queryInterface.dropTable("snapshot_keywords");
   },
 };

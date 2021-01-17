@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       snapshot_keyword.belongsTo(models.PUT_Request, {
-        foreignKey: "idPUT_Request",
+        foreignKey: "PUT_Request_id",
       });
     }
   }

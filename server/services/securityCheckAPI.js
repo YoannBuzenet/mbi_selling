@@ -44,7 +44,7 @@ async function checkIfUserIsThisOneOrAdmin(jwt, idShop) {
   let idShopInt = parseInt(idShop);
   if (isNaN(idShopInt)) {
     console.error(
-      "idShop is NaN. It looks like that before being parsed :",
+      "ERROR - idShop is NaN. It looks like that before being parsed :",
       idShop
     );
     throw ("idShop is NaN. It looks like that before being parsed :", idShop);
