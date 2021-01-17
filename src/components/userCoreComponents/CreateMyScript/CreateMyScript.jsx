@@ -24,6 +24,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
 import InfoIcon from "@material-ui/icons/Info";
+import Chip from "@material-ui/core/Chip";
+import Paper from "@material-ui/core/Paper";
+import TagFacesIcon from "@material-ui/icons/TagFaces";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
@@ -99,6 +102,20 @@ const CreateMyScript = ({ history }) => {
   ];
 
   const defaultScriptName = translatedDefaultScriptName;
+
+  const [chipData, setChipData] = React.useState([
+    { key: 0, label: "Angular" },
+    { key: 1, label: "jQuery" },
+    { key: 2, label: "Polymer" },
+    { key: 3, label: "React" },
+    { key: 4, label: "Vue.js" },
+  ]);
+
+  const handleDeleteChip = (chipToDelete) => () => {
+    setChipData((chips) =>
+      chips.filter((chip) => chip.key !== chipToDelete.key)
+    );
+  };
 
   const defaultCreationState = {
     regular: [
@@ -1070,9 +1087,18 @@ const CreateMyScript = ({ history }) => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      listStyle: "none",
+      padding: theme.spacing(0.5),
+      margin: "1rem 0",
       "& > *": {
         margin: theme.spacing(1),
       },
+    },
+    chip: {
+      margin: theme.spacing(0.5),
     },
     saveButton: {
       backgroundColor: "rgb(0, 177, 106)",
@@ -1080,7 +1106,6 @@ const CreateMyScript = ({ history }) => {
         background: "rgb(123, 239, 178)",
       },
     },
-
     launchButton: {
       backgroundColor: "rgb(247, 202, 24)",
       "&:hover": {
@@ -1274,9 +1299,47 @@ const CreateMyScript = ({ history }) => {
           </div>
         </div>
         <div className="keywordSelection">
-          <div>select keyword behaviour</div>
-          <div>keyword list</div>
-          <div>keyword helper</div>
+          <div className="behaviourSelect">
+            <p>Mots clefs :</p>
+            <FormControl className={classes.formControl}>
+              <Select
+                labelId="keyword-behaviour-select-label"
+                id="keyword-behaviour-select"
+                value=""
+                onChange={() => {}}
+                MenuProps={{ disableScrollLock: true }}
+              >
+                <MenuItem value={""}>la</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div className="keywordList">
+            <Paper component="ul" className={classes.root}>
+              {chipData.map((data) => {
+                let icon;
+
+                if (data.label === "React") {
+                  icon = <TagFacesIcon />;
+                }
+
+                return (
+                  <li key={data.key}>
+                    <Chip
+                      icon={icon}
+                      label={data.label}
+                      onDelete={
+                        data.label === "React"
+                          ? undefined
+                          : handleDeleteChip(data)
+                      }
+                      className={classes.chip}
+                    />
+                  </li>
+                );
+              })}
+            </Paper>
+          </div>
+          <div className="keywordHelper">keyword helper</div>
         </div>
         <div className="column-definitions">
           <p>
