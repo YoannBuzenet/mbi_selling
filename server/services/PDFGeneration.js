@@ -467,6 +467,27 @@ async function generatePDFFromPutRequest(
       },
       { text: " " },
       {
+        text:
+          genericTranslations.pdfStructure.keywordBehaviourTitle[langLocale] +
+          " " +
+          genericTranslations.pdfStructure.keywordBehaviour[
+            putRequestKeywordBehaviour
+          ][langLocale],
+      },
+      { text: " " },
+      {
+        text:
+          genericTranslations.pdfStructure.keywordTitle[langLocale] +
+          snapshotKeywords.map((keyword, index) => {
+            if (index !== 0) {
+              return " " + keyword;
+            } else {
+              return keyword;
+            }
+          }),
+      },
+      { text: " " },
+      {
         table: {
           headerRows: 1,
           widths: [300, "auto"],
