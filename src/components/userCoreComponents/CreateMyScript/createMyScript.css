@@ -9,7 +9,7 @@
 **************************/
 
 .create-my-script-container {
-  margin-top: 270px;
+  margin-top: 350px;
 }
 
 .second-menu-scripts {
@@ -79,10 +79,21 @@
   display: flex;
   justify-content: center;
 }
+.keywordSelection {
+  position: fixed;
+  top: 202px;
+  height: 80px;
+  width: 100%;
+  border-top: 1px solid black;
+  background-color: #f9f9f9;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+}
 
 .column-definitions {
   position: fixed;
-  top: 202px;
+  top: 282px;
   height: 60px;
   width: 100%;
   background-color: #f9f9f9;

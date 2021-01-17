@@ -1273,6 +1273,11 @@ const CreateMyScript = ({ history }) => {
             )}
           </div>
         </div>
+        <div className="keywordSelection">
+          <div>select keyword behaviour</div>
+          <div>keyword list</div>
+          <div>keyword helper</div>
+        </div>
         <div className="column-definitions">
           <p>
             <FormattedMessage
