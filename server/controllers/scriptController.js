@@ -1026,6 +1026,9 @@ async function realScriptPersistingStep(
     mkmPricesDefinitions.map((definition) => definition.dataValues)
   );
 
+  // Defining on which price is based the put request
+  const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
+
   for (let i = 0; i < numberOfIterations; i++) {
     // Working on a chunk of a 100 cards (MKM doesn't accept more)
     const chunkOfCards = await db.MkmProduct.findAll(relevantRequest, {
@@ -1070,8 +1073,6 @@ async function realScriptPersistingStep(
         card.isFoil === 0
           ? priceguide.dataValues.trendPrice
           : priceguide.dataValues.foilTrend;
-
-      const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
 
       let numberBaseToFindRelevantRule;
       if (pricedBasedOn === "mkmTrends") {

@@ -176,6 +176,7 @@ const CustomRule = ({
                       value={rule.ruleTypeId || 1}
                       label="TestToTranslate"
                       labelWidth="100px"
+                      MenuProps={{ disableScrollLock: true }}
                     >
                       {allDefinitions.ruleTypes.map((ruleType) => (
                         <MenuItem
@@ -237,6 +238,7 @@ const CustomRule = ({
                             name="mkmPriceGuideReference"
                             value={rule.mkmPriceGuideReference || 1}
                             label="TestToTranslate"
+                            MenuProps={{ disableScrollLock: true }}
                           >
                             {allDefinitions.priceGuidePossibilities.map(
                               (priceGuidePossibility) => (
@@ -271,6 +273,7 @@ const CustomRule = ({
                           name="behaviourId"
                           value={rule.behaviourId || 1}
                           label="TestToTranslate"
+                          MenuProps={{ disableScrollLock: true }}
                         >
                           {allDefinitions.ruleBehaviours.map(
                             (ruleBehaviour) => (
