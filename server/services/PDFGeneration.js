@@ -160,14 +160,11 @@ async function generatePDFFromPutRequest(
     },
   });
 
-  // to do : .map qqpart avec la liste
-
   /* ****************************** */
   /*  PUT request keyword behaviour */
   /* ****************************** */
 
   const putRequestKeywordBehaviour = put_request.dataValues.keywordBehaviour;
-  // to do translate et display first page
 
   // https://pdfmake.github.io/docs/document-definition-object/tables/
   // http://pdfmake.org/playground.html
@@ -430,6 +427,13 @@ async function generatePDFFromPutRequest(
         style: "subTitle",
       },
       { text: " " },
+      { text: moment().format(translation.FormatDate[langLocale]) },
+      {
+        text:
+          genericTranslations.pdfStructure.reference[langLocale] +
+          put_requestId,
+      },
+      { text: " " },
       {
         text:
           hasPricedBasedOn === "mkmTrends"
@@ -439,14 +443,6 @@ async function generatePDFFromPutRequest(
             : genericTranslations.pdfStructure.hasPriceBasedOnOldPrices[
                 langLocale
               ],
-        style: "subTitle",
-      },
-      { text: " " },
-      { text: moment().format(translation.FormatDate[langLocale]) },
-      {
-        text:
-          genericTranslations.pdfStructure.reference[langLocale] +
-          put_requestId,
       },
       { text: " " },
       {
@@ -480,12 +476,14 @@ async function generatePDFFromPutRequest(
           genericTranslations.pdfStructure.keywordTitle[langLocale] +
           snapshotKeywords.map((keyword, index) => {
             if (index !== 0) {
-              return " " + keyword;
+              return " " + keyword.dataValues.name;
             } else {
-              return keyword;
+              return keyword.dataValues.name;
             }
           }),
       },
+      { text: " " },
+      { text: " " },
       { text: " " },
       {
         table: {
