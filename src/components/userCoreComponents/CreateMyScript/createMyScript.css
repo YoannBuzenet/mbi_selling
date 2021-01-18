@@ -108,6 +108,12 @@
   display: flex;
   justify-content: center;
 }
+
+.keywordAdder .keywordAdderContainer {
+  max-height: 50px;
+  align-self: center;
+}
+
 .keywordHelper {
   width: 20%;
 }
