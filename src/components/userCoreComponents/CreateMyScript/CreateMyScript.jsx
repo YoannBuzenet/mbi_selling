@@ -701,87 +701,86 @@ const CreateMyScript = ({ history }) => {
       /* **************************************** */
       /* **** STEP 2 : CUSTOM RULES HANDLING **** */
       /* **************************************** */
-
-      // Custom Rules are all parsed and posted/patched (if needed) and end in a Promise.all
-
-      console.log("starting to POST/PATCH");
-      //.map array regular
-      let regularRules = customRulesGlobalState.regular.map(async (rule) => {
-        if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
-          //PATCH
-          console.log("PATCH", rule);
-          return axios.patch(
-            "/api/customRules/" +
-              rule.id +
-              "?idUser=" +
-              authenticationInfos.user.id +
-              "&idScript=" +
-              scriptId,
-            rule
-          );
-        } else if (rule.hasOwnProperty("temporaryId")) {
-          console.log("POST", rule);
-          return axios.post(
-            "/api/customRules/" +
-              "?idUser=" +
-              authenticationInfos.user.id +
-              "&idScript=" +
-              scriptId,
-            rule
-          );
-        }
-        return rule;
-      });
-
-      //.map array foils
-      let foilRules = customRulesGlobalState.foil.map(async (rule) => {
-        if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
-          //PATCH
-          console.log("PATCH", rule);
-          return axios.patch(
-            "/api/customRules/" +
-              rule.id +
-              "?idUser=" +
-              authenticationInfos.user.id +
-              "&idScript=" +
-              scriptId,
-            rule
-          );
-        } else if (rule.hasOwnProperty("temporaryId")) {
-          console.log("POST", rule);
-
-          return axios.post(
-            "/api/customRules/" +
-              "?idUser=" +
-              authenticationInfos.user.id +
-              "&idScript=" +
-              scriptId,
-            rule
-          );
-        }
-        return rule;
-      });
-
-      const respServ = await Promise.all([...regularRules, ...foilRules]);
-
-      // Save the keywords here
-      const chipsCopy = [...chipData];
-      for (let i = 0; i < chipsCopy.length; i++) {
-        if (chipsCopy[i].hasOwnProperty("temporaryKey")) {
-          await axios
-            .post(
-              `/api/keywords?idUser=${authenticationInfos.shop.id}&idScript=${idScript}`,
-              { name: chipsCopy[i].label }
-            )
-            .then((resp) => {
-              delete chipsCopy[i].temporaryKey;
-              chipsCopy[i].key = resp.data.id;
-            });
-        }
-      }
-      setChipData(chipsCopy);
-
       try {
+        // Custom Rules are all parsed and posted/patched (if needed) and end in a Promise.all
+
+        console.log("starting to POST/PATCH");
+        //.map array regular
+        let regularRules = customRulesGlobalState.regular.map(async (rule) => {
+          if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
+            //PATCH
+            console.log("PATCH", rule);
+            return axios.patch(
+              "/api/customRules/" +
+                rule.id +
+                "?idUser=" +
+                authenticationInfos.user.id +
+                "&idScript=" +
+                scriptId,
+              rule
+            );
+          } else if (rule.hasOwnProperty("temporaryId")) {
+            console.log("POST", rule);
+            return axios.post(
+              "/api/customRules/" +
+                "?idUser=" +
+                authenticationInfos.user.id +
+                "&idScript=" +
+                scriptId,
+              rule
+            );
+          }
+          return rule;
+        });
+
+        //.map array foils
+        let foilRules = customRulesGlobalState.foil.map(async (rule) => {
+          if (rule.hasOwnProperty("id") && rule.isToBeSaved === true) {
+            //PATCH
+            console.log("PATCH", rule);
+            return axios.patch(
+              "/api/customRules/" +
+                rule.id +
+                "?idUser=" +
+                authenticationInfos.user.id +
+                "&idScript=" +
+                scriptId,
+              rule
+            );
+          } else if (rule.hasOwnProperty("temporaryId")) {
+            console.log("POST", rule);
+
+            return axios.post(
+              "/api/customRules/" +
+                "?idUser=" +
+                authenticationInfos.user.id +
+                "&idScript=" +
+                scriptId,
+              rule
+            );
+          }
+          return rule;
+        });
+
+        const respServ = await Promise.all([...regularRules, ...foilRules]);
+
+        // Save the keywords here
+        const chipsCopy = [...chipData];
+        for (let i = 0; i < chipsCopy.length; i++) {
+          if (chipsCopy[i].hasOwnProperty("temporaryKey")) {
+            await axios
+              .post(
+                `/api/keywords?idUser=${authenticationInfos.shop.id}&idScript=${idScript}`,
+                { name: chipsCopy[i].label }
+              )
+              .then((resp) => {
+                delete chipsCopy[i].temporaryKey;
+                chipsCopy[i].key = resp.data.id;
+              });
+          }
+        }
+        setChipData(chipsCopy);
+
         //Saving the new script id/name in current auth state
         //We check if it exsists already : if yes, we update it, if no we add a new one in the array of scripts
 
