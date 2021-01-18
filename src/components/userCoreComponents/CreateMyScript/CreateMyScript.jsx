@@ -26,7 +26,7 @@ import Input from "@material-ui/core/Input";
 import InfoIcon from "@material-ui/icons/Info";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
-import TagFacesIcon from "@material-ui/icons/TagFaces";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
@@ -124,15 +124,11 @@ const CreateMyScript = ({ history }) => {
   const defaultScriptName = translatedDefaultScriptName;
 
   // Keyword default state
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" },
-    { key: 4, label: "Vue.js" },
-  ]);
+  // Exemple of chip item :  { key: 0, label: "Angular" }
+  const [chipData, setChipData] = React.useState([]);
 
   const [keywordBehaviour, setKeywordBehaviour] = useState("ignores");
+  const [keywordName, setKeywordName] = UseState("");
 
   const handleSelectBehaviour = (event) => {
     const { value } = event.target;
@@ -856,6 +852,11 @@ const CreateMyScript = ({ history }) => {
     }
   };
 
+  const handleWriteKeywordName = (event) => {
+    const { value } = event.target;
+    setKeywordName(value);
+  };
+
   const handleChangeScriptName = (event) => {
     setScriptMustbeSaved(true);
     setScriptName(event.target.value);
@@ -1124,6 +1125,10 @@ const CreateMyScript = ({ history }) => {
       "& > *": {
         margin: theme.spacing(1),
       },
+      "& .MuiTextField-root": {
+        margin: theme.spacing(1),
+        width: "25ch",
+      },
     },
     chip: {
       margin: theme.spacing(0.5),
@@ -1170,6 +1175,11 @@ const CreateMyScript = ({ history }) => {
   const formatSelectTitle = intl.formatMessage({
     id: "createMyScript.select.formats.title",
     defaultMessage: "Formats",
+  });
+
+  const keywordAddLabel = intl.formatMessage({
+    id: "createMyScript.script.select.keywordBehaviour.add.form.label",
+    defaultMessage: "Add a keyword",
   });
 
   return (
@@ -1371,7 +1381,18 @@ const CreateMyScript = ({ history }) => {
               })}
             </Paper>
           </div>
-          <div className="keywordAdder">keyword adder</div>
+          {/* yooy */}
+          <div className="keywordAdder">
+            <TextField
+              id="keywordNametextfield"
+              label={keywordAddLabel}
+              value={keywordName}
+              onChange={handleWriteKeywordName}
+            />
+            <IconButton aria-label="add" disabled={keywordName.length === 0}>
+              <AddCircleIcon />
+            </IconButton>
+          </div>
           <div className="keywordHelper">keyword helper</div>
         </div>
         <div className="column-definitions">

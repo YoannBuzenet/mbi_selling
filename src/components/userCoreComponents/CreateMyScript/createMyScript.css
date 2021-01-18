@@ -105,6 +105,8 @@
 }
 .keywordAdder {
   width: 20%;
+  display: flex;
+  justify-content: center;
 }
 .keywordHelper {
   width: 20%;
