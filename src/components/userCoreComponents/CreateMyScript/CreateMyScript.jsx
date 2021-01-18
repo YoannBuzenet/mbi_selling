@@ -858,6 +858,19 @@ const CreateMyScript = ({ history }) => {
     setKeywordName(value);
   };
 
+  const handleAddKeyword = (event, name) => {
+    // yoann - forcer la sauvegarde
+
+    const { value } = event.target;
+
+    // yoann - trouver comment avoir une bonne clef
+    const newChipToAdd = {
+      key: 1,
+      label: value,
+    };
+    setChipData(newChipToAdd);
+  };
+
   const handleChangeScriptName = (event) => {
     setScriptMustbeSaved(true);
     setScriptName(event.target.value);
