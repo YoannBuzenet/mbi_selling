@@ -1371,6 +1371,7 @@ const CreateMyScript = ({ history }) => {
               })}
             </Paper>
           </div>
+          <div className="keywordAdder">keyword adder</div>
           <div className="keywordHelper">keyword helper</div>
         </div>
         <div className="column-definitions">
