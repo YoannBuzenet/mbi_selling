@@ -882,6 +882,7 @@ const CreateMyScript = ({ history }) => {
       label: name,
     };
     setChipData([...chipData, newChipToAdd]);
+    setKeywordName("");
   };
 
   const handleDeleteChip = (chipToDelete) => () => {
