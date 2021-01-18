@@ -309,6 +309,12 @@ const CreateMyScript = ({ history }) => {
           console.log("pass script name in state");
           setPricesAreBasedOn(resp.data.willBeBasedOn);
           setScriptName(resp.data.name);
+          setChipData(
+            resp.data.Keywords.map((keyword) => ({
+              label: keyword.name,
+              key: keyword.id,
+            }))
+          );
           setSelectedFormats(
             resp.data.scriptFormats.map((format) => format.id)
           );
@@ -630,9 +636,9 @@ const CreateMyScript = ({ history }) => {
         />
       );
     } else {
-      /* ******************************* */
-      /* ***** SCRIPT INFO HANDLING **** */
-      /* ******************************* */
+      /* **************************************** */
+      /* ***** STEP 1 : SCRIPT INFO HANDLING **** */
+      /* **************************************** */
 
       //POST SCRIPT IF IT HAS NO ID
       //GET DATA BACK PASS IT IN STATE
@@ -692,9 +698,9 @@ const CreateMyScript = ({ history }) => {
         scriptId = parseInt(idScript);
       }
 
-      /* ******************************* */
-      /* **** CUSTOM RULES HANDLING **** */
-      /* ******************************* */
+      /* **************************************** */
+      /* **** STEP 2 : CUSTOM RULES HANDLING **** */
+      /* **************************************** */
 
       // Custom Rules are all parsed and posted/patched (if needed) and end in a Promise.all
 
@@ -759,17 +765,22 @@ const CreateMyScript = ({ history }) => {
       const respServ = await Promise.all([...regularRules, ...foilRules]);
 
       // Save the keywords here
-      // To do yoann
+      const chipsCopy = [...chipData];
+      for (let i = 0; i < chipsCopy.length; i++) {
+        if (chipsCopy[i].hasOwnProperty("temporaryKey")) {
+          await axios
+            .post(
+              `/api/keywords?idUser=${authenticationInfos.shop.id}&idScript=${idScript}`
+            )
+            .then((resp) => {
+              delete chipsCopy[i].temporaryKey;
+              chipsCopy[i].key = resp.data.id;
+            });
+        }
+      }
+      setChipData(chipsCopy);
 
       try {
-        // console.log("serv resp", respServ);
-        toast.success(
-          <FormattedMessage
-            id="createMyScript.saving.success"
-            defaultMessage="Your script has been saved."
-          />
-        );
-
         //Saving the new script id/name in current auth state
         //We check if it exsists already : if yes, we update it, if no we add a new one in the array of scripts
 
@@ -830,6 +841,14 @@ const CreateMyScript = ({ history }) => {
 
         setCustomRulesGlobalState(prepareStateFromArrayOfRules(allNewRules));
         setScriptMustbeSaved(false);
+
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.saving.success"
+            defaultMessage="Your script has been saved."
+          />
+        );
+
         console.log("saved !");
       } catch (e) {
         errorHandlingAPI.checkErrorStatus(e);
@@ -862,7 +881,7 @@ const CreateMyScript = ({ history }) => {
       key: temporaryNumber,
       label: name,
     };
-    setChipData(newChipToAdd);
+    setChipData([...chipData, newChipToAdd]);
   };
 
   const handleDeleteChip = (chipToDelete) => () => {
