@@ -215,6 +215,7 @@
   "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically": "Cible uniquement",
   "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically": "Evite",
   "createMyScript.script.select.keywordBehaviour.add.form.label": "Ajouter un mot clef",
+  "createMyScript.script.select.keywordBehaviour.delete.failure.toast": "Ce mot clef n'a pu être effacé. Merci de réessayer ultérieurement.",
   "createMyScript.genericRules.signedCardAreNotTreated": "Les cartes signées ne sont pas traitées.",
   "createMyScript.genericRules.alteredCardAreNotTreated": "Les cartes altérées ne sont pas traitées.",
   "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",
