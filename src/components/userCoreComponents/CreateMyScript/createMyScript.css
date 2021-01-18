@@ -96,7 +96,9 @@
   justify-content: center;
   width: 30%;
 }
-
+.behaviourSelect p {
+  margin-top: 25px;
+}
 .keywordList {
   width: 30%;
 }
