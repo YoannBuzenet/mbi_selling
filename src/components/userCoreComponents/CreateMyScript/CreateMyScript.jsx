@@ -136,12 +136,6 @@ const CreateMyScript = ({ history }) => {
     setKeywordBehaviour(value);
   };
 
-  const handleDeleteChip = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
-  };
-
   const defaultCreationState = {
     regular: [
       {
@@ -859,16 +853,30 @@ const CreateMyScript = ({ history }) => {
   };
 
   const handleAddKeyword = (event, name) => {
-    // yoann - forcer la sauvegarde
+    setScriptMustbeSaved(true);
 
-    const { value } = event.target;
+    const temporaryNumber = Math.random()
 
     // yoann - trouver comment avoir une bonne clef
+    // ceci est la prochaine étape
     const newChipToAdd = {
-      key: 1,
-      label: value,
+      temporaryKey = temporaryNumber,
+      key: temporaryNumber,
+      label: name,
     };
     setChipData(newChipToAdd);
+  };
+
+  const handleDeleteChip = (chipToDelete) => () => {
+    setChipData((chips) =>
+      chips.filter((chip) => chip.key !== chipToDelete.key)
+    );
+
+    // IF there was no temporary id AND script id exists
+    // delete on API side
+    // in case of failure, put it back + toast "createMyScript.script.select.keywordBehaviour.delete.failure.toast"
+
+    //axios.delete(`/api/keywords/${chip.key}?idUser=${}&idScript=${}`);
   };
 
   const handleChangeScriptName = (event) => {
@@ -1405,7 +1413,11 @@ const CreateMyScript = ({ history }) => {
               onChange={handleWriteKeywordName}
             />
             <div className="keywordAdderContainer">
-              <IconButton aria-label="add" disabled={keywordName.length === 0}>
+              <IconButton
+                aria-label="add"
+                disabled={keywordName.length === 0}
+                onClick={(e) => handleAddKeyword(e, keywordName)}
+              >
                 <AddCircleIcon
                   color={keywordName.length === 0 ? "" : "primary"}
                 />
