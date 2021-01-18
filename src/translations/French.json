@@ -214,6 +214,7 @@
   "createMyScript.script.select.keywordBehaviourPossibilities.ignores": "Ignore",
   "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically": "Cible uniquement",
   "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically": "Evite",
+  "createMyScript.script.select.keywordBehaviour.add.form.label": "Ajouter un mot clef",
   "createMyScript.genericRules.signedCardAreNotTreated": "Les cartes signées ne sont pas traitées.",
   "createMyScript.genericRules.alteredCardAreNotTreated": "Les cartes altérées ne sont pas traitées.",
   "createMyScript.genericRules.playsetsAreNotTreated": "Les playsets ne sont pas traités.",

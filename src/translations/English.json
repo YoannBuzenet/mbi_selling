@@ -213,6 +213,7 @@
   "createMyScript.script.select.keywordBehaviourPossibilities.ignores": "Ignores",
   "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically": "Targets Only",
   "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically": "Avoids Specifically",
+  "createMyScript.script.select.keywordBehaviour.add.form.label": "Add a keyword",
   "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices": "My current prices",
   "createMyScript.genericRules.title": "Generic Rules",
   "createMyScript.genericRules.signedCardAreNotTreated": "Signed cards are not processed.",
