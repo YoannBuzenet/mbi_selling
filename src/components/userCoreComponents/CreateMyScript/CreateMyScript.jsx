@@ -770,7 +770,8 @@ const CreateMyScript = ({ history }) => {
         if (chipsCopy[i].hasOwnProperty("temporaryKey")) {
           await axios
             .post(
-              `/api/keywords?idUser=${authenticationInfos.shop.id}&idScript=${idScript}`
+              `/api/keywords?idUser=${authenticationInfos.shop.id}&idScript=${idScript}`,
+              { name: chipsCopy[i].label }
             )
             .then((resp) => {
               delete chipsCopy[i].temporaryKey;
