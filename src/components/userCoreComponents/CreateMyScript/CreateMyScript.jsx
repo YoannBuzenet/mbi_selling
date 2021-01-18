@@ -855,12 +855,10 @@ const CreateMyScript = ({ history }) => {
   const handleAddKeyword = (event, name) => {
     setScriptMustbeSaved(true);
 
-    const temporaryNumber = Math.random()
+    const temporaryNumber = Math.random();
 
-    // yoann - trouver comment avoir une bonne clef
-    // ceci est la prochaine étape
     const newChipToAdd = {
-      temporaryKey = temporaryNumber,
+      temporaryKey: temporaryNumber,
       key: temporaryNumber,
       label: name,
     };
@@ -868,15 +866,32 @@ const CreateMyScript = ({ history }) => {
   };
 
   const handleDeleteChip = (chipToDelete) => () => {
+    const arrayCopy = [...chipData];
+
     setChipData((chips) =>
       chips.filter((chip) => chip.key !== chipToDelete.key)
     );
 
-    // IF there was no temporary id AND script id exists
-    // delete on API side
-    // in case of failure, put it back + toast "createMyScript.script.select.keywordBehaviour.delete.failure.toast"
-
-    //axios.delete(`/api/keywords/${chip.key}?idUser=${}&idScript=${}`);
+    // If the chip has no temporary ID, then it was registered on DB, then we need to delete it
+    if (!chipToDelete.hasOwnProperty("temporaryKey")) {
+      //delete on API side
+      // in case of failure, put it back + toast "createMyScript.script.select.keywordBehaviour.delete.failure.toast"
+      axios
+        .delete(
+          `/api/keywords/${chipToDelete.key}?idUser=${authenticationInfos.shop.id}&idScript=${idScript}`
+        )
+        .catch((err) => {
+          console.log("error when trying to delete", err);
+          // Reseting Chip array because data could not be deleted
+          setChipData(arrayCopy);
+          toast.error(
+            <FormattedMessage
+              id="createMyScript.script.select.keywordBehaviour.delete.failure.toast"
+              defaultMessage="This keyword could not be deleted. Please try later."
+            />
+          );
+        });
+    }
   };
 
   const handleChangeScriptName = (event) => {
@@ -1404,7 +1419,6 @@ const CreateMyScript = ({ history }) => {
               })}
             </Paper>
           </div>
-          {/* yooy */}
           <div className="keywordAdder">
             <TextField
               id="keywordNametextfield"
