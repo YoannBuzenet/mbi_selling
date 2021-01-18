@@ -1357,21 +1357,13 @@ const CreateMyScript = ({ history }) => {
             <Paper component="ul" className={classes.root}>
               {chipData.map((data) => {
                 let icon;
-
-                if (data.label === "React") {
-                  icon = <TagFacesIcon />;
-                }
-
+                // Icon can be set as non deletable - see doc
                 return (
                   <li key={data.key}>
                     <Chip
                       icon={icon}
                       label={data.label}
-                      onDelete={
-                        data.label === "React"
-                          ? undefined
-                          : handleDeleteChip(data)
-                      }
+                      onDelete={handleDeleteChip(data)}
                       className={classes.chip}
                     />
                   </li>
