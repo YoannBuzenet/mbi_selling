@@ -26,6 +26,7 @@ import Input from "@material-ui/core/Input";
 import InfoIcon from "@material-ui/icons/Info";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import { FormattedMessage, useIntl } from "react-intl";
@@ -128,7 +129,7 @@ const CreateMyScript = ({ history }) => {
   const [chipData, setChipData] = React.useState([]);
 
   const [keywordBehaviour, setKeywordBehaviour] = useState("ignores");
-  const [keywordName, setKeywordName] = UseState("");
+  const [keywordName, setKeywordName] = useState("");
 
   const handleSelectBehaviour = (event) => {
     const { value } = event.target;
@@ -1122,6 +1123,7 @@ const CreateMyScript = ({ history }) => {
       listStyle: "none",
       padding: theme.spacing(0.5),
       margin: "1rem 0",
+      minHeight: 40,
       "& > *": {
         margin: theme.spacing(1),
       },
@@ -1389,9 +1391,13 @@ const CreateMyScript = ({ history }) => {
               value={keywordName}
               onChange={handleWriteKeywordName}
             />
-            <IconButton aria-label="add" disabled={keywordName.length === 0}>
-              <AddCircleIcon />
-            </IconButton>
+            <div className="keywordAdderContainer">
+              <IconButton aria-label="add" disabled={keywordName.length === 0}>
+                <AddCircleIcon
+                  color={keywordName.length === 0 ? "" : "primary"}
+                />
+              </IconButton>
+            </div>
           </div>
           <div className="keywordHelper">keyword helper</div>
         </div>
