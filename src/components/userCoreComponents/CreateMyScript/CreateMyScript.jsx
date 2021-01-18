@@ -101,8 +101,29 @@ const CreateMyScript = ({ history }) => {
     },
   ];
 
+  const keywordBehaviourPossibilities = [
+    {
+      value: "ignores",
+      id: "createMyScript.script.select.keywordBehaviourPossibilities.ignores",
+      default: "Ignores",
+    },
+    {
+      value: "targetsSpecifically",
+      id:
+        "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically",
+      default: "Targets only",
+    },
+    {
+      value: "avoidsSpecifically",
+      id:
+        "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically",
+      default: "Avoid specifically",
+    },
+  ];
+
   const defaultScriptName = translatedDefaultScriptName;
 
+  // Keyword default state
   const [chipData, setChipData] = React.useState([
     { key: 0, label: "Angular" },
     { key: 1, label: "jQuery" },
@@ -110,6 +131,13 @@ const CreateMyScript = ({ history }) => {
     { key: 3, label: "React" },
     { key: 4, label: "Vue.js" },
   ]);
+
+  const [keywordBehaviour, setKeywordBehaviour] = useState("ignores");
+
+  const handleSelectBehaviour = (event) => {
+    const { value } = event.target;
+    setKeywordBehaviour(value);
+  };
 
   const handleDeleteChip = (chipToDelete) => () => {
     setChipData((chips) =>
@@ -1300,16 +1328,28 @@ const CreateMyScript = ({ history }) => {
         </div>
         <div className="keywordSelection">
           <div className="behaviourSelect">
-            <p>Mots clefs :</p>
+            <p>
+              <FormattedMessage
+                id="createMyScript.script.select.keywordBehaviour.title"
+                defaultMessage="Keywords : "
+              />
+            </p>
             <FormControl className={classes.formControl}>
               <Select
                 labelId="keyword-behaviour-select-label"
                 id="keyword-behaviour-select"
-                value=""
-                onChange={() => {}}
+                value={keywordBehaviour}
+                onChange={handleSelectBehaviour}
                 MenuProps={{ disableScrollLock: true }}
               >
-                <MenuItem value={""}>la</MenuItem>
+                {keywordBehaviourPossibilities.map((possibility) => (
+                  <MenuItem value={possibility.value}>
+                    <FormattedMessage
+                      id={possibility.id}
+                      defaultMessage={possibility.default}
+                    />
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
