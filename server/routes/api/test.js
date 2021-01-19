@@ -6,6 +6,9 @@ const PDFGeneration = require("../../services/PDFGeneration");
 const Op = Sequelize.Op;
 const { mailPDF } = require("../../controllers/mailController");
 const utils = require("../../services/utils");
+const {
+  createPreMadeScripts10PercentsFoilStandard,
+} = require("../../controllers/shopController");
 
 router.get("/", async (req, res) => {
   //Old test to try many to many relations
@@ -106,7 +109,17 @@ router.get("/testDBFilterWithKeywords", async (req, res) => {
   });
 
   res.status(200).json(MkmProducts);
+  return;
 });
+
+router.get(
+  "/createPremadeScriptFoil10PercentsFoilStandard",
+  async (req, res) => {
+    await createPreMadeScripts10PercentsFoilStandard(7);
+    res.status(200).json("bro");
+    return;
+  }
+);
 
 router.get("/addJobToQueue", async (req, res) => {
   console.log("received the request to add to queue");
