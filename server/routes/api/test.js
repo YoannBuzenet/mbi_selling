@@ -8,6 +8,7 @@ const { mailPDF } = require("../../controllers/mailController");
 const utils = require("../../services/utils");
 const {
   createPreMadeScripts10PercentsFoilStandard,
+  createPreMadeScriptsMinus5PercentOnKeywordsCards,
 } = require("../../controllers/shopController");
 
 router.get("/", async (req, res) => {
@@ -116,6 +117,7 @@ router.get(
   "/createPremadeScriptFoil10PercentsFoilStandard",
   async (req, res) => {
     await createPreMadeScripts10PercentsFoilStandard(7);
+    await createPreMadeScriptsMinus5PercentOnKeywordsCards(7);
     res.status(200).json("bro");
     return;
   }
