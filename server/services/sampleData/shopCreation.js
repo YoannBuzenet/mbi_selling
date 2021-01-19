@@ -56,6 +56,50 @@ const customRules10percentsFoilStandard = (scriptID) => [
     updatedAt: new Date(),
   },
 ];
+const customRulesPlus10percentsFoilStandard = (scriptID) => [
+  {
+    idScript: scriptID,
+    ruleTypeId: 3,
+    priceRangeFrom: 0,
+    priceRangeTo: 200,
+    priceRangeValueToSet: 0.5,
+    behaviourId: 2,
+    mkmPriceGuideReference: 1,
+    isForFoils: 0,
+    isForSigned: 0,
+    isForPlaysets: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    idScript: scriptID,
+    ruleTypeId: 3,
+    priceRangeFrom: 0,
+    priceRangeTo: 20,
+    priceRangeValueToSet: 0.5,
+    behaviourId: 2,
+    mkmPriceGuideReference: 1,
+    isForFoils: 1,
+    isForSigned: 0,
+    isForPlaysets: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    idScript: scriptID,
+    ruleTypeId: 2,
+    priceRangeFrom: 20,
+    priceRangeTo: 200,
+    priceRangeValueToSet: 0.5,
+    behaviourId: 2,
+    mkmPriceGuideReference: 1,
+    isForFoils: 1,
+    isForSigned: 0,
+    isForPlaysets: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
 const customRules10percentsUPonMKMTrendsStandard = (scriptID) => [
   {
     idScript: scriptID,
@@ -292,6 +336,7 @@ const customRulesPlus5PercentOnModernAbove30euros = (scriptID) => [
 
 module.exports = {
   customRules10percentsFoilStandard,
+  customRulesPlus10percentsFoilStandard,
   customRules10percentsUPonMKMTrendsStandard,
   customRulesMinus5PercentOnKeywordsCards,
   customRulesMinus5PercentOnModernAbove30euros,
