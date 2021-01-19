@@ -13,7 +13,8 @@ router.post("/", async (req, res) => {
     req.body.legalName === undefined ||
     req.body.addressStreet === undefined ||
     req.body.postalCode === undefined ||
-    req.body.town === undefined
+    req.body.town === undefined ||
+    req.body.languageUsed === undefined
   ) {
     res.status(406).json("Parameters are missing to register User.");
     return;
@@ -28,6 +29,7 @@ router.post("/", async (req, res) => {
     postalCode: req.body.postalCode,
     town: req.body.town,
     vat: req.body.vat,
+    languageUsed: req.body.languageUsed,
   };
 
   try {

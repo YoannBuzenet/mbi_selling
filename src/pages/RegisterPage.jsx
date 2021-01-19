@@ -53,6 +53,8 @@ const RegisterPage = ({
 
     setIsLoading(true);
 
+    const languageInLocalStorage = window.localStorage.getItem("appLang");
+
     try {
       const jsonToSend = {
         email: credentials.mail,
@@ -62,6 +64,7 @@ const RegisterPage = ({
         postalCode: credentials.postalCode,
         town: credentials.town,
         vat: credentials.vat,
+        languageUsed: languageInLocalStorage ? languageInLocalStorage : null,
       };
       //Sending the register demand, sending a welcome email if registering was successful
       const serverResponse = await userAPI.register(jsonToSend);
