@@ -4,6 +4,10 @@ const axios = require("axios");
 async function registerUser(userCredentials) {
   console.log("log as admin, registerShop on MTGAPI");
 
+  //Definir la langue ici
+  // Besoin de dictionnaire et de dictionnaire inversé pour avoir le lang ID stocké en DB MTGAPI
+  // yoann
+
   const completeCredentials = buildRegisterObjectForBackEnd(userCredentials);
 
   return retrieveAsAdmin(
