@@ -145,6 +145,33 @@ async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
   );
 }
 
+async function createPremadeScriptsForShop(idShop, shopLang = "fr-FR") {
+  await createPreMadeScripts10PercentsFoilStandard(
+    idShop,
+    (shopLang = "fr-FR")
+  );
+  await createPreMadeScriptsIncrease10PercentsFoilStandard(
+    idShop,
+    (shopLang = "fr-FR")
+  );
+  await createPreMadeScripts10PercentsUPONMKMALLStandard(
+    idShop,
+    (shopLang = "fr-FR")
+  );
+  await createPreMadeScriptsMinus5PercentOnKeywordsCards(
+    idShop,
+    (shopLang = "fr-FR")
+  );
+  await createPreMadeScriptsMinus5PercentOnModernAbove30euros(
+    idShop,
+    (shopLang = "fr-FR")
+  );
+  await createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
+    idShop,
+    (shopLang = "fr-FR")
+  );
+}
+
 module.exports = {
   createPreMadeScripts10PercentsFoilStandard,
   createPreMadeScriptsIncrease10PercentsFoilStandard,
@@ -152,4 +179,5 @@ module.exports = {
   createPreMadeScriptsMinus5PercentOnKeywordsCards,
   createPreMadeScriptsMinus5PercentOnModernAbove30euros,
   createPreMadeScriptsIncrease5PercentOnModernAbove30euros,
+  createPremadeScriptsForShop,
 };
