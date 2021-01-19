@@ -1458,7 +1458,47 @@ const CreateMyScript = ({ history }) => {
               </IconButton>
             </div>
           </div>
-          <div className="keywordHelper">keyword helper</div>
+          <div className="keywordHelper">
+            {keywordBehaviour === "ignores" && (
+              <div className="helperContainer">
+                <div className="svgContainer">
+                  <InfoIcon />
+                </div>
+                <p>
+                  <FormattedMessage
+                    id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.ignore"
+                    defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script IGNORES these comments."
+                  />
+                </p>
+              </div>
+            )}
+            {keywordBehaviour === "targetsSpecifically" && (
+              <div className="helperContainer">
+                <div className="svgContainer">
+                  <InfoIcon />
+                </div>
+                <p>
+                  <FormattedMessage
+                    id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.targets"
+                    defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script TARGETS ONLY cards with these comments."
+                  />
+                </p>
+              </div>
+            )}
+            {keywordBehaviour === "avoidsSpecifically" && (
+              <div className="helperContainer">
+                <div className="svgContainer">
+                  <InfoIcon />
+                </div>
+                <p>
+                  <FormattedMessage
+                    id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.avoid"
+                    defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script AVOIDS cards with these comments."
+                  />
+                </p>
+              </div>
+            )}
+          </div>
         </div>
         <div className="column-definitions">
           <p>
