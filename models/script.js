@@ -23,6 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     static markAsNotRunning(idScript) {
       return Script.upsert({ id: idScript, isRunning: 0 });
     }
+    // Running these functions when creating a new shop, to give them pre made scripts
+    static createCustomScript10PercentOnStandardFoil(scriptName, idShop) {
+      return Script.create({
+        idShop,
+        willBeBasedOn: "oldPrices",
+      });
+    }
   }
   Script.init(
     {
@@ -31,7 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isNumeric: true },
         allowNull: false,
       },
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       isRunning: { type: DataTypes.INTEGER, defaultValue: 0 },
       willBeBasedOn: {
         type: DataTypes.STRING,
