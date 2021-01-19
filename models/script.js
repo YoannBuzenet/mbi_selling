@@ -24,11 +24,17 @@ module.exports = (sequelize, DataTypes) => {
       return Script.upsert({ id: idScript, isRunning: 0 });
     }
     // Running these functions when creating a new shop, to give them pre made scripts
-    static createCustomScript(scriptName, idShop, pricedBasedOn) {
+    static createCustomScript(
+      scriptName,
+      idShop,
+      pricedBasedOn,
+      keywordbehaviour = "ignoresEverything"
+    ) {
       return Script.create({
         name: scriptName,
         idShop,
         willBeBasedOn: pricedBasedOn,
+        keywordBehaviour: keywordbehaviour,
       });
     }
   }
