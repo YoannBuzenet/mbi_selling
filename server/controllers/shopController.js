@@ -5,6 +5,7 @@ const {
   customRules10percentsUPonMKMTrendsStandard,
   customRulesMinus5PercentOnKeywordsCards,
   customRulesMinus5PercentOnModernAbove30euros,
+  customRulesPlus5PercentOnModernAbove30euros,
 } = require("../services/sampleData/shopCreation");
 
 async function createPreMadeScripts10PercentsFoilStandard(
@@ -100,10 +101,32 @@ async function createPreMadeScriptsMinus5PercentOnModernAbove30euros(
     {}
   );
 }
+async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
+  idShop,
+  shopLang = "fr-FR"
+) {
+  //-10% standard Foil
+  const newScript = await db.Script.createCustomScript(
+    "+5% on Modern for cards above 30 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    idShop,
+    "oldPrices"
+  );
+
+  // set formats
+  await newScript.setFormats(4);
+
+  // Create custom rules for this script
+  await queryInterface.bulkInsert(
+    "Custom_Rules",
+    customRulesPlus5PercentOnModernAbove30euros(newScript.dataValues.id),
+    {}
+  );
+}
 
 module.exports = {
   createPreMadeScripts10PercentsFoilStandard,
   createPreMadeScripts10PercentsUPONMKMALLStandard,
   createPreMadeScriptsMinus5PercentOnKeywordsCards,
   createPreMadeScriptsMinus5PercentOnModernAbove30euros,
+  createPreMadeScriptsIncrease5PercentOnModernAbove30euros,
 };
