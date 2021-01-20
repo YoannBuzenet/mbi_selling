@@ -274,6 +274,35 @@ const localeLangIDDictionnary = {
   "en-US": 9,
 };
 
+const premadeScriptTitles = {
+  createPreMadeScripts10PercentsFoilStandard: {
+    "en-US": "-10% on Foil Standard cards for cards above 20 euros",
+    "fr-FR": "-10% sur les cartes Foil Standard au dessus de 20 euros",
+  },
+  createPreMadeScriptsIncrease10PercentsFoilStandard: {
+    "en-US": "+10% on Foil Standard cards for cards above 20 euros",
+    "fr-FR": "+10% sur les cartes Foil Standard au dessus de 20 euros",
+  },
+  createPreMadeScripts10PercentsUPONMKMALLStandard: {
+    "en-US":
+      "+10% higher than MKM Trend on all standard, and minimum selling price 50 cents",
+    "fr-FR":
+      "+10% par rapport à la tendance MKM sur le standard, et prix minimum 50 centimes",
+  },
+  createPreMadeScriptsMinus5PercentOnKeywordsCards: {
+    "en-US": "-5% on all the cards with a MKM comment 'Demo Update'",
+    "fr-FR": "-5% sur toutes les cartes avec le commentaire MKM 'Demo update'",
+  },
+  createPreMadeScriptsMinus5PercentOnModernAbove30euros: {
+    "en-US": "-5% on Modern for all cards above 30 euros",
+    "fr-FR": "-5% sur toutes les cartes du Modern au dessus de 30 euros",
+  },
+  createPreMadeScriptsIncrease5PercentOnModernAbove30euros: {
+    "en-US": "+5% on Modern for all cards above 30 euros",
+    "fr-FR": "+5% sur toutes les cartes du Modern au dessus de 30 euros",
+  },
+};
+
 module.exports = {
   BehaviourDictionnary,
   ruleTypesDictionnary,
@@ -281,4 +310,5 @@ module.exports = {
   translatedMessagesWithLocaleKey,
   langIDLocaleDictionnary,
   localeLangIDDictionnary,
+  premadeScriptTitles,
 };
