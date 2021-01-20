@@ -31,7 +31,7 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
       adress: initialCredentials.addressStreet,
       postalCode: initialCredentials.postalCode,
       town: initialCredentials.town,
-      vatNumber: initialCredentials.vat || "",
+      vatNumber: initialCredentials.vat || null,
       baseLang: `/languages/${
         localeLangIDDictionnary[initialCredentials.languageUsed] //BaseLang is deduced from the locale user used in front-end to display language when he registered
       }`,
@@ -148,8 +148,8 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
       percentPerSigned: 100,
     },
     client: {
-      nom: "mbi_selling",
-      prenom: "mbi_selling",
+      nom: initialCredentials.legalName,
+      prenom: initialCredentials.legalName,
       tel: "",
       adress: "",
       postalCode: "",
