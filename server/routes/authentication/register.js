@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 const { registerUser } = require("../../controllers/authController");
 const db = require("../../../models/index");
+const {
+  createPremadeScriptsForShop,
+} = require("../../controllers/shopController");
 
 //TODO Add a google recapatcha v3 here
 
@@ -41,7 +44,11 @@ router.post("/", async (req, res) => {
     await db.User.create({
       idShop: shopIdOnMTGI,
     });
-    //Yo -> script premade are created here
+    // Create premade scripts for user
+    await createPremadeScriptsForShop(
+      shopIdOnMTGI,
+      req.body.languageUsed || "en-US"
+    );
   } catch (error) {
     console.log("error during registering User", error);
     res.status(500).json("An error occured during registering.");
