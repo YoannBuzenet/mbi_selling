@@ -8,6 +8,12 @@ const {
   customRulesMinus5PercentOnModernAbove30euros,
   customRulesPlus5PercentOnModernAbove30euros,
 } = require("../services/sampleData/shopCreation");
+const {
+  premadeScriptTitles,
+} = require("../../src/services/fullstackTranslations/genericTranslations");
+
+// Yoann
+// WE NEED SHOP BASELANG HERE
 
 // -10% on foil standard
 async function createPreMadeScripts10PercentsFoilStandard(
@@ -37,7 +43,7 @@ async function createPreMadeScriptsIncrease10PercentsFoilStandard(
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    "-10% Foil Standard for cards > 20 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    "+10% Foil Standard for cards > 20 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
     idShop,
     "oldPrices"
   );
