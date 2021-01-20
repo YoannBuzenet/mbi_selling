@@ -22,7 +22,7 @@ async function createPreMadeScripts10PercentsFoilStandard(
 ) {
   //-10% standard Foil
   const newScript = await db.Script.createCustomScript(
-    "-10% Foil Standard for cards > 20 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    premadeScriptTitles.createPreMadeScripts10PercentsFoilStandard[shopLang],
     idShop,
     "oldPrices"
   );
@@ -43,7 +43,9 @@ async function createPreMadeScriptsIncrease10PercentsFoilStandard(
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    "+10% Foil Standard for cards > 20 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    premadeScriptTitles.createPreMadeScriptsIncrease10PercentsFoilStandard[
+      shopLang
+    ],
     idShop,
     "oldPrices"
   );
@@ -65,7 +67,9 @@ async function createPreMadeScripts10PercentsUPONMKMALLStandard(
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    "10% higher than MKM Trend on all standard and nothing under 50 cents", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    premadeScriptTitles.createPreMadeScripts10PercentsUPONMKMALLStandard[
+      shopLang
+    ],
     idShop,
     "mkmTrends"
   );
@@ -86,7 +90,9 @@ async function createPreMadeScriptsMinus5PercentOnKeywordsCards(
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    "-5% on all the cards with a MKM comment 'Demo Update'", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    premadeScriptTitles.createPreMadeScriptsMinus5PercentOnKeywordsCards[
+      shopLang
+    ],
     idShop,
     "oldPrices",
     "targetsSpecifically"
@@ -114,7 +120,9 @@ async function createPreMadeScriptsMinus5PercentOnModernAbove30euros(
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    "-5% on Modern for cards above 30 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    premadeScriptTitles.createPreMadeScriptsMinus5PercentOnModernAbove30euros[
+      shopLang
+    ],
     idShop,
     "oldPrices"
   );
@@ -135,7 +143,8 @@ async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    "+5% on Modern for cards above 30 euros", //todo -> traduire le titre en fonction du baselang ID stocké en DB coté API
+    premadeScriptTitles
+      .createPreMadeScriptsIncrease5PercentOnModernAbove30euros[shopLang],
     idShop,
     "oldPrices"
   );

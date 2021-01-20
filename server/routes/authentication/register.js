@@ -41,6 +41,7 @@ router.post("/", async (req, res) => {
     await db.User.create({
       idShop: shopIdOnMTGI,
     });
+    //Yo -> script premade are created here
   } catch (error) {
     console.log("error during registering User", error);
     res.status(500).json("An error occured during registering.");
