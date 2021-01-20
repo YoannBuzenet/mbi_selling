@@ -169,7 +169,7 @@ const MyInvoices = () => {
               id="app.invoicePage.invoice.needMandatoryInformations"
               defaultMessage="We need some informations to be able to generates invoices. Please complete them "
             />
-            <Link to="/my-account">
+            <Link to="/myAccount">
               <FormattedMessage
                 id="app.invoicePage.invoice.needMandatoryInformationsHere"
                 defaultMessage="here."
