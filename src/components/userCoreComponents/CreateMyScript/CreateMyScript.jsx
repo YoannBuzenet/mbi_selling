@@ -1179,6 +1179,7 @@ const CreateMyScript = ({ history }) => {
       listStyle: "none",
       padding: theme.spacing(0.5),
       margin: "1rem 0",
+      position: "relative",
       minHeight: 40,
       "& > *": {
         margin: theme.spacing(1),
@@ -1423,6 +1424,14 @@ const CreateMyScript = ({ history }) => {
           </div>
           <div className="keywordList">
             <Paper component="ul" className={classes.root}>
+              {chipData.length === 0 && (
+                <div className="chipsPlaceHolderNoKeywords">
+                  <FormattedMessage
+                    id="createMyScript.script.select.keywordChips.placeholder.noKeywords"
+                    defaultMessage="No keywords were added."
+                  />
+                </div>
+              )}
               {chipData.map((data) => {
                 let icon;
                 // Icon can be set as non deletable - see doc

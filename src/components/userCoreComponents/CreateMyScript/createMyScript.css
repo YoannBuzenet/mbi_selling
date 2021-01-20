@@ -103,6 +103,12 @@
 .keywordList {
   width: 30%;
 }
+
+.chipsPlaceHolderNoKeywords {
+  position: absolute;
+  top: 5px;
+  font-size: 14px;
+}
 .keywordAdder {
   width: 15%;
   display: flex;
