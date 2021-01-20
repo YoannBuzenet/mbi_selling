@@ -264,9 +264,21 @@ const translatedMessagesWithLocaleKey = {
   "fr-FR": French,
 };
 
+const langIDLocaleDictionnary = {
+  3: "fr-FR",
+  9: "en-US",
+};
+
+const localeLangIDDictionnary = {
+  "fr-FR": 3,
+  "en-US": 9,
+};
+
 module.exports = {
   BehaviourDictionnary,
   ruleTypesDictionnary,
   pdfStructure,
   translatedMessagesWithLocaleKey,
+  langIDLocaleDictionnary,
+  localeLangIDDictionnary,
 };

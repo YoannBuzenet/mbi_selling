@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     postalCode: req.body.postalCode,
     town: req.body.town,
     vat: req.body.vat,
-    languageUsed: req.body.languageUsed,
+    languageUsed: req.body.languageUsed || "en-US",
   };
 
   try {
