@@ -1,12 +1,11 @@
 const { retrieveAsAdmin } = require("../services/adminBehaviours");
 const axios = require("axios");
+const {
+  localeLangIDDictionnary,
+} = require("../../src/services/fullstackTranslations/genericTranslations");
 
 async function registerUser(userCredentials) {
   console.log("log as admin, registerShop on MTGAPI");
-
-  //Definir la langue ici
-  // Besoin de dictionnaire et de dictionnaire inversé pour avoir le lang ID stocké en DB MTGAPI
-  // yoann
 
   const completeCredentials = buildRegisterObjectForBackEnd(userCredentials);
 
@@ -33,7 +32,9 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
       postalCode: initialCredentials.postalCode,
       town: initialCredentials.town,
       vatNumber: initialCredentials.vat || "",
-      baseLang: "/languages/3",
+      baseLang: `/languages/${
+        localeLangIDDictionnary[initialCredentials.languageUsed] //BaseLang is deduced from the locale user used in front-end to display language when he registered
+      }`,
       appToken: "",
       accessToken: "",
       appSecret: "",
