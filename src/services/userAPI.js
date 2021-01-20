@@ -20,9 +20,10 @@ function hasGivenMandatoryInformationForInvoices(authContext) {
     authContext?.shop?.postalCode !== "" &&
     authContext?.shop?.postalCode &&
     authContext?.shop?.town !== "" &&
-    authContext?.shop?.town &&
-    authContext?.shop?.vatNumber !== "" &&
-    authContext?.shop?.vatNumber
+    authContext?.shop?.town
+    // removing VAT check to be able to invoice non business customers
+    // authContext?.shop?.vatNumber !== "" &&
+    // authContext?.shop?.vatNumber
   );
 }
 
