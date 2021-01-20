@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     legalName: req.body.legalName,
-    addressStreet: req.body.legalNaddressStreetame,
+    addressStreet: req.body.addressStreet,
     postalCode: req.body.postalCode,
     town: req.body.town,
     vat: req.body.vat,
