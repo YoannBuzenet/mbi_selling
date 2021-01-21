@@ -1,12 +1,19 @@
-<h2>Bienvenue <%= shop.legalName %>,</h2>
-<p>Vous êtes inscrit sur <%= process.env.REACT_APP_THIS_WEBSITE_URL %>.</p>
+<h2>Hello <%= shop.legalName %>,</h2>
 <p>
-  Une fois abonné, vous pourrez lancer des scripts et mettre à jour vos prix à
-  volonté.
+  We received your payment for an order of <%= order.amount %> euros, tor a
+  duration of <%= order.duration %> month.
+</p>
+<p>You are now subscribed until the <%= order.endDate %> included.</p>
+<p>
+  You can find a summary of all your invoices on
+  <a
+    href="<%= process.env.REACT_APP_THIS_WEBSITE_URL%>/my-invoices"
+    target="_blank"
+    >your account.</a
+  >
 </p>
 <p>
-  Pour toute question, merci de nous contacter à l'adresse suivante :
-  supprt@mkmpriceupdater.com
+  If you have any question, please contact us at support@mkmpriceupdater.com.
 </p>
-<p>Merci,</p>
-<p>L'équipe MTG Interface</p>
+<p>Bests,</p>
+<p>The MTG Interface Team</p>
