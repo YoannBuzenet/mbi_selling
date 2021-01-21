@@ -4,7 +4,7 @@ const db = require("../../../models/index");
 const Sequelize = require("sequelize");
 const PDFGeneration = require("../../services/PDFGeneration");
 const Op = Sequelize.Op;
-const { mailPDF } = require("../../controllers/mailController");
+const { sendEmail } = require("../../controllers/mailController");
 const utils = require("../../services/utils");
 const {
   createPreMadeScripts10PercentsFoilStandard,
@@ -180,9 +180,9 @@ router.get("/checkScriptUser", async (req, res) => {
 });
 
 router.get("/mailSendingTest", async (req, res) => {
-  mailPDF(3, 7, "ybuzenet@gmail.com", true);
+  // sendEmail(3, 7, "ybuzenet@gmail.com", true);
 
-  res.status(200).json("Mail envoyé !");
+  res.status(200).json("endpoint Mail à corriger");
 });
 
 router.post("/createOneCardInStock", async (req, res) => {

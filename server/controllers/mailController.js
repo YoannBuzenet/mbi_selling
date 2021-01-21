@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { createIntl, createIntlCache } = require("react-intl");
 const genericTranslations = require("../../src/services/fullstackTranslations/genericTranslations");
-const { createPDFName } = require("../services/PDFGeneration");
+const { createSummaryPDFName } = require("../services/PDFGeneration");
 
 function getTemplate(action, locale) {
   let template;
@@ -24,7 +24,7 @@ function getTemplate(action, locale) {
   return template;
 }
 
-function getMailTitle() {
+function getMailTitle(action, locale) {
   let mailTitle;
   switch (action) {
     case "summaryTestScript": {
@@ -70,13 +70,61 @@ function buildTemplateData(action, idShop, params) {
   return templateData;
 }
 
-async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
+function getPDF(action, locale, idShop) {
+  let PDFData = [];
+  switch (action) {
+    case "summaryTestScript": {
+      PDFData = [
+        {
+          filename: createSummaryPDFName(idScript, idShop, isTest),
+          path: path.join(
+            __dirname,
+            "../../PDF_storage/" +
+              idShop +
+              "/" +
+              createSummaryPDFName(idScript, idShop, isTest)
+          ),
+        },
+      ];
+      break;
+    }
+    case "summaryRealScript": {
+      PDFData = [
+        {
+          filename: createSummaryPDFName(idScript, idShop, isTest),
+          path: path.join(
+            __dirname,
+            "../../PDF_storage/" +
+              idShop +
+              "/" +
+              createSummaryPDFName(idScript, idShop, isTest)
+          ),
+        },
+      ];
+      break;
+    }
+    default: {
+      throw new Error(
+        "Could not find corresponding action for building templateData."
+      );
+    }
+  }
+
+  return PDFData;
+}
+
+async function sendEmail(
+  action,
+  idScript,
+  idShop,
+  shopMail,
+  isTest,
+  locale = "fr-FR"
+) {
   // test if parameters are here
   if (!idScript || !idShop || !shopMail || !isTest) {
     throw new Error("A parameter is missing in mail PDF function.");
   }
-
-  // get shop mail
 
   /* *********************************** */
   /* ******* TRANSLATION CONTEXT ******* */
@@ -104,18 +152,7 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
 
   const templateData = buildTemplateData(action, idShop, params);
 
-  let attachedPdf = [
-    {
-      filename: createPDFName(idScript, idShop, isTest),
-      path: path.join(
-        __dirname,
-        "../../PDF_storage/" +
-          idShop +
-          "/" +
-          createPDFName(idScript, idShop, isTest)
-      ),
-    },
-  ];
+  const attachedPdf = getPDF(action, locale, idShop);
 
   ejs.renderFile(templatePath, templateData, (err, html) => {
     if (err) console.log(err); // Handle error
@@ -165,5 +202,5 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
 }
 
 module.exports = {
-  mailPDF,
+  sendEmail,
 };
