@@ -113,16 +113,9 @@ function getPDF(action, locale, idShop) {
   return PDFData;
 }
 
-async function sendEmail(
-  action,
-  idScript,
-  idShop,
-  shopMail,
-  isTest,
-  locale = "fr-FR"
-) {
+async function sendEmail(action, idScript, idShop, shopMail, locale = "fr-FR") {
   // test if parameters are here
-  if (!idScript || !idShop || !shopMail || !isTest) {
+  if (!idScript || !idShop || !shopMail) {
     throw new Error("A parameter is missing in mail PDF function.");
   }
 
@@ -163,7 +156,7 @@ async function sendEmail(
     console.log(`HTML: ${html}`);
 
     let mailOpts = {
-      from: "testMail@gmail.com",
+      from: process.env.MAIL_SENDING,
       to: shopMail,
       subject: mailTitle,
       html: html,
