@@ -33,7 +33,7 @@ const ResetMail = () => {
           // console.log(token);
           //Adding token to state
           userInfos["token"] = token;
-          userInfos["langID"] = currentLang.langID;
+          userInfos["locale"] = currentLang.locale;
           axios
             .post("/authentication/resetPassword", userInfos)
             .then((respServer) =>
