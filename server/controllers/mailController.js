@@ -6,6 +6,24 @@ const { createIntl, createIntlCache } = require("react-intl");
 const genericTranslations = require("../../src/services/fullstackTranslations/genericTranslations");
 const { createPDFName } = require("../services/PDFGeneration");
 
+function getTemplate(action, locale) {
+  let template;
+  switch (action) {
+    case "summaryTestScript": {
+      template = __basedir + "/mail_templates/" + locale + "/test-pdf.ejs";
+      break;
+    }
+    case "summaryRealScript": {
+      template = __basedir + "/mail_templates/" + locale + "/real-pdf.ejs";
+      break;
+    }
+    default: {
+      throw new Error("Could not find corresponding template.");
+    }
+  }
+  return template;
+}
+
 async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   // test if parameters are here
   if (!idScript || !idShop || !shopMail || !isTest) {
@@ -49,12 +67,7 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   console.log("mailing...");
 
   //Find the right ejs template file
-  let templatePath;
-  if (isTest) {
-    templatePath = __basedir + "/mail_templates/" + locale + "/test-pdf.ejs";
-  } else {
-    templatePath = __basedir + "/mail_templates/" + locale + "/real-pdf.ejs";
-  }
+  let templatePath = getTemplate(action, locale);
 
   let templateData = {};
 
