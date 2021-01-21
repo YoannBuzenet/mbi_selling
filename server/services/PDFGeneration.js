@@ -1026,7 +1026,7 @@ async function generatePDFFromPutRequest(
   console.log("processing PDF...");
 }
 
-function createPDFName(idScript, idShop, isTest) {
+function createSummaryPDFName(idScript, idShop, isTest) {
   let pdfName;
   if (isTest) {
     pdfName =
@@ -1041,5 +1041,5 @@ function createPDFName(idScript, idShop, isTest) {
 
 module.exports = {
   generatePDFFromPutRequest,
-  createPDFName,
+  createSummaryPDFName,
 };
