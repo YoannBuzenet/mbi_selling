@@ -46,7 +46,17 @@ router.post("/", async (req, res) => {
     });
 
     // mail user
-    sendEmail("register", userCreated.dataValues.id, req.body.email);
+    sendEmail(
+      "register",
+      userCreated.dataValues.id,
+      req.body.email,
+      {
+        shop: {
+          legalName: req.body.legalName,
+        },
+      },
+      req.body.languageUsed
+    );
 
     // Create premade scripts for user
     await createPremadeScriptsForShop(

@@ -73,8 +73,11 @@ function buildTemplateData(action, params) {
       break;
     }
     case "register": {
-      //shop.name will be needed
-      templateData = {};
+      templateData = {
+        shop: {
+          legalName: params.shop.legalName,
+        },
+      };
       break;
     }
     default: {
