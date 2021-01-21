@@ -24,6 +24,31 @@ function getTemplate(action, locale) {
   return template;
 }
 
+function getMailTitle() {
+  let mailTitle;
+  switch (action) {
+    case "summaryTestScript": {
+      mailTitle = intl.formatMessage({
+        id: "mail.sending.title.test",
+        defaultMessage: "Your test script has been executed.",
+      });
+      break;
+    }
+    case "summaryRealScript": {
+      mailTitle = mailTitle = intl.formatMessage({
+        id: "mail.sending.title.real",
+        defaultMessage: "Your script has been executed.",
+      });
+      break;
+    }
+    default: {
+      throw new Error("Could not find corresponding mailTitle.");
+    }
+  }
+
+  return mailTitle;
+}
+
 async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   // test if parameters are here
   if (!idScript || !idShop || !shopMail || !isTest) {
@@ -51,20 +76,7 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   );
 
   // create translated mail title
-  let mailTitle;
-  if (isTest) {
-    mailTitle = intl.formatMessage({
-      id: "mail.sending.title.test",
-      defaultMessage: "Your test script has been executed.",
-    });
-  } else {
-    mailTitle = intl.formatMessage({
-      id: "mail.sending.title.real",
-      defaultMessage: "Your script has been executed.",
-    });
-  }
-
-  console.log("mailing...");
+  const mailTitle = getMailTitle(action, locale);
 
   //Find the right ejs template file
   let templatePath = getTemplate(action, locale);
