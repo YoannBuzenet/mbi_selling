@@ -44,21 +44,21 @@ function getMailTitle(action) {
       break;
     }
     case "summaryRealScript": {
-      mailTitle = mailTitle = intl.formatMessage({
+      mailTitle = intl.formatMessage({
         id: "mail.sending.title.real",
         defaultMessage: "Your script has been executed.",
       });
       break;
     }
     case "register": {
-      mailTitle = mailTitle = intl.formatMessage({
+      mailTitle = intl.formatMessage({
         id: "mail.sending.title.register",
         defaultMessage: "You just registered on mkmpriceupdater.com !",
       });
       break;
     }
     case "mailForgotten": {
-      mailTitle = mailTitle = intl.formatMessage({
+      mailTitle = intl.formatMessage({
         id: "Reset your password",
         defaultMessage: "mail.sending.title.passwordForgotten",
       });
@@ -100,6 +100,14 @@ function buildTemplateData(action, params) {
     case "summaryRealScript": {
       templateData = {};
       break;
+    }
+    case "mailForgotten": {
+      if (params?.challenge === undefined) {
+        console.error(
+          "Missing parameter : challenge in buildTempleData function"
+        );
+      }
+      templateData = { challenge: params.challenge };
     }
     default: {
       throw new Error(
@@ -238,60 +246,6 @@ async function sendEmail(
   });
 }
 
-//factoriser dans l'envoi de mail classique
-//make sure to pass challenge in templateData
-async function sendResetPasswordMail(userMail, langID, challenge) {
-  let template =
-    __dirname +
-    "/templates/" +
-    langDefinition[langID].toLowerCase() +
-    "/resetMailSendChallenge.ejs";
-
-  let templateData = {
-    challenge,
-  };
-
-  let subject = {
-    french: "Réinitialisation de mot de passe",
-    english: "Password Reset",
-  };
-
-  console.log("process.env.SMTP_NODEMAILER", process.env.SMTP_NODEMAILER);
-
-  const transport = nodemailer.createTransport({
-    host: process.env.SMTP_NODEMAILER,
-    port: process.env.SMTP_PORT,
-    secure: true,
-    auth: {
-      user: process.env.AUTH_USER,
-      pass: process.env.AUTH_PASSWORD,
-    },
-  });
-
-  ejs.renderFile(template, templateData, (err, html) => {
-    if (err) console.log(err); // Handle error
-    // console.log(templateData);
-    // console.log(templateData.user.customer.SellRequests);
-    // console.log(template);
-
-    console.log(`HTML: ${html}`);
-
-    let mailOpts = {
-      from: process.env.OFFICIAL_SMTP_MAIL_SENDING,
-      to: userMail,
-      subject: subject[langDefinition[langID].toLowerCase()],
-      html: html,
-    };
-
-    transport.sendMail(mailOpts, (err, info) => {
-      if (err) console.error("error while sending mail", err); //Handle Error
-      console.log(info);
-    });
-    return true;
-  });
-}
-
 module.exports = {
   sendEmail,
-  sendResetPasswordMail,
 };
