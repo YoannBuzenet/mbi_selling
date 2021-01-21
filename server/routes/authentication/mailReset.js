@@ -95,13 +95,11 @@ app.post("/setNewPassword", (req, res) => {
           mail,
         });
 
-        res.statusCode = 200;
-        res.end("Password has been updated.");
+        res.status(200).json("Password has been updated.");
       } else {
         //TODO TRAITER LE CATCH AVEC NOTIF ERROR
         console.log("error while contacting google servers", googleResp);
-        res.statusCode = 500;
-        res.end("Password couldn't be updated.");
+        res.status(500).json("Password couldn't be updated.");
       }
     })
     .catch((e) => console.log("ici LOL", e));

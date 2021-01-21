@@ -169,6 +169,7 @@ router.post("/subscribe", async (req, res) => {
       );
 
       //To do -> mail customer here
+      // yoann
 
       res.json("User Subscription Updated").status(200);
       return;

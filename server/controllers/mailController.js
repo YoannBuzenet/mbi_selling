@@ -97,10 +97,6 @@ function buildTemplateData(action, params) {
       };
       break;
     }
-    case "summaryRealScript": {
-      templateData = {};
-      break;
-    }
     case "mailForgotten": {
       if (params?.challenge === undefined) {
         console.error(
