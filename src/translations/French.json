@@ -279,6 +279,7 @@
   "mail.sending.title.real": "Votre script a bien été éxécuté.",
   "mail.sending.title.register": "Inscription sur mkmpriceupdater.com",
   "mail.sending.title.passwordForgotten": "Renouvellement du mot de passe",
+  "mail.sending.title.afterPayment": "Paiement reçu",
 
   "subscribed.notSusbcribed.NeedToDoIt.text": "Vous devez vous abonner pour accéder à cette fonctionalité. Vous pouvez le faire {link}.",
   "subscribed.notSusbcribed.NeedToDoIt.link": "sur ce lien"
