@@ -9,6 +9,7 @@ const {
 } = require("../../../src/services/productAPI");
 const { MTGINTERFACE_VAT_RATE } = require("../../services/config");
 const shopAPI = require("../../services/shopAPI");
+const { sendEmail } = require("../../controllers/mailController");
 
 const {
   getRelevantDateForUpdateSubscribe,
@@ -168,8 +169,13 @@ router.post("/subscribe", async (req, res) => {
         0
       );
 
-      //To do -> mail customer here
-      // yoann
+      sendEmail("afterPayment", idShop, shopData.dataValues.email, {
+        order: {
+          amount: amountTaxIncluded,
+          duration: subscribeDurationInMonth,
+          endDate: dateWithSubscriptionAdded,
+        },
+      });
 
       res.json("User Subscription Updated").status(200);
       return;
