@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var axios = require("axios");
-const { sendResetPasswordMail } = require("../../controllers/mailController");
+const { sendEmail } = require("../../controllers/mailController");
 
 /*******************************/
 /******RESET MAIL FIRST STEP****/
@@ -11,7 +11,7 @@ app.post("/resetPassword", async (req, res) => {
   console.log("Receiving mail reset request, step 1");
   let googleToken = req.body.token;
   let usermail = req.body.mail;
-  let langID = req.body.langID;
+  let locale = req.body.locale;
 
   let config = {
     headers: {
@@ -41,7 +41,7 @@ app.post("/resetPassword", async (req, res) => {
           .then((respServ) => {
             console.log(respServ);
             const challenge = respServ.data;
-            sendResetPasswordMail(usermail, langID, challenge);
+            sendEmail("mailForgotten", null, usermail, { challenge }, locale);
           })
           .catch((e) =>
             console.log(
