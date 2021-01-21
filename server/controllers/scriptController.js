@@ -14,6 +14,7 @@ const {
 } = require("./genericDataController");
 const PDFGeneration = require("../services/PDFGeneration");
 const { sizeof } = require("../services/sizeof");
+const { sendEmail } = require("../controllers/mailController");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -920,7 +921,14 @@ async function testScriptPersistingStep(
       true
     );
 
-    // TO DO MAIL SENDING TO ADD
+    // TO COMPLETE YOANN
+    sendEmail(
+      "summaryTestScript",
+      idShop,
+      "TODO_MAIL_TO_FIND",
+      {},
+      "LOCALE_TO_FIND"
+    );
   }
 }
 
@@ -1512,6 +1520,15 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
   //in the end, complete put request
   // Marking PUT Request as successful
   await db.PUT_Request.markAsFinishedSuccessfully(new_put_request_id);
+
+  // TO COMPLETE YOANN
+  sendEmail(
+    "summaryRealScript",
+    idShop,
+    "TODO_MAIL_TO_FIND",
+    {},
+    "LOCALE_TO_FIND"
+  );
 }
 
 module.exports = {
