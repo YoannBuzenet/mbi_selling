@@ -41,13 +41,12 @@ router.post("/", async (req, res) => {
     const shopIdOnMTGI = parseInt(didUserRegister.data.shop.substring(7));
 
     //register user in our DB too
-    await db.User.create({
+    const userCreated = await db.User.create({
       idShop: shopIdOnMTGI,
     });
 
-    //mail user
-    //to do finish param passing
-    sendEmail("register");
+    // mail user
+    sendEmail("register", userCreated.dataValues.id, req.body.email);
 
     // Create premade scripts for user
     await createPremadeScriptsForShop(
