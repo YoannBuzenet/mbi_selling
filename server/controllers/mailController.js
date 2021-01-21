@@ -49,6 +49,27 @@ function getMailTitle() {
   return mailTitle;
 }
 
+function buildTemplateData(action, idShop, params) {
+  //each case of witch should verify the params it needs and throw an error
+  let templateData;
+  switch (action) {
+    case "summaryTestScript": {
+      templateData = {};
+      break;
+    }
+    case "summaryRealScript": {
+      templateData = {};
+      break;
+    }
+    default: {
+      throw new Error(
+        "Could not find corresponding action for building templateData."
+      );
+    }
+  }
+  return templateData;
+}
+
 async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   // test if parameters are here
   if (!idScript || !idShop || !shopMail || !isTest) {
@@ -79,9 +100,9 @@ async function mailPDF(idScript, idShop, shopMail, isTest, locale = "fr-FR") {
   const mailTitle = getMailTitle(action, locale);
 
   //Find the right ejs template file
-  let templatePath = getTemplate(action, locale);
+  const templatePath = getTemplate(action, locale);
 
-  let templateData = {};
+  const templateData = buildTemplateData(action, idShop, params);
 
   let attachedPdf = [
     {
