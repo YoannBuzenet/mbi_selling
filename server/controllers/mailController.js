@@ -28,7 +28,7 @@ function getTemplate(action, locale) {
   return template;
 }
 
-function getMailTitle(action, locale) {
+function getMailTitle(action) {
   let mailTitle;
   switch (action) {
     case "summaryTestScript": {
@@ -60,7 +60,7 @@ function getMailTitle(action, locale) {
   return mailTitle;
 }
 
-function buildTemplateData(action, idShop, params) {
+function buildTemplateData(action, params) {
   //each case of witch should verify the params it needs and throw an error
   let templateData;
   switch (action) {
@@ -127,9 +127,15 @@ function getPDF(action, locale, idShop) {
   return PDFData;
 }
 
-async function sendEmail(action, idShop, shopMail, params, locale = "fr-FR") {
+async function sendEmail(
+  action,
+  idShop,
+  shopMail,
+  params = {},
+  locale = "fr-FR"
+) {
   // test if parameters are here
-  if (!idShop || !shopMail) {
+  if (!shopMail) {
     throw new Error("A parameter is missing in mail PDF function.");
   }
 
@@ -152,12 +158,12 @@ async function sendEmail(action, idShop, shopMail, params, locale = "fr-FR") {
   );
 
   // create translated mail title
-  const mailTitle = getMailTitle(action, locale);
+  const mailTitle = getMailTitle(action);
 
   //Find the right ejs template file
   const templatePath = getTemplate(action, locale);
 
-  const templateData = buildTemplateData(action, idShop, params);
+  const templateData = buildTemplateData(action, params);
 
   const attachedPdf = getPDF(action, locale, idShop);
 
@@ -205,7 +211,6 @@ async function sendEmail(action, idShop, shopMail, params, locale = "fr-FR") {
       //   }
       // );
     });
-    return true;
   });
 }
 
