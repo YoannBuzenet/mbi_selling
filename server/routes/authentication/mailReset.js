@@ -40,7 +40,8 @@ app.post("/resetPassword", async (req, res) => {
           })
           .then((respServ) => {
             console.log(respServ);
-            sendResetPasswordMail(usermail, langID, respServ.data);
+            const challenge = respServ.data;
+            sendResetPasswordMail(usermail, langID, challenge);
           })
           .catch((e) =>
             console.log(
@@ -56,8 +57,7 @@ app.post("/resetPassword", async (req, res) => {
       } else {
         //TODO TRAITER LE CATCH AVEC NOTIF ERROR
         console.log(googleResp);
-        res.statusCode = 500;
-        res.end("Message couldn't be posted.");
+        res.status(500).json("Message couldn't be posted.");
       }
     })
     .catch((e) => console.log("ERROR IN GOOGLE ASKING", e));
