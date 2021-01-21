@@ -168,6 +168,8 @@ router.post("/subscribe", async (req, res) => {
         0
       );
 
+      //To do -> mail customer here
+
       res.json("User Subscription Updated").status(200);
       return;
     } catch (error) {
