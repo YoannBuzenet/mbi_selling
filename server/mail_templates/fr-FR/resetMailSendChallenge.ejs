@@ -1,0 +1,13 @@
+<h2>Bonjour,</h2>
+
+<p>
+  Vous avez effectué une demande de réinitialisation de mot de passe. Si ce
+  n'était pas vous, vous pouvez ignorer ce mail.
+</p>
+<p>
+  Pour remettre à jour votre mot de passe, merci de cliquer sur le lien suivant
+  : <%= process.env.REACT_APP_PUBLIC_URL+"/usermail/setNewPassword/"+challenge
+  %>
+</p>
+<p>Merci,</p>
+<p><%= process.env.REACT_APP_SHOP_NAME %></p>
