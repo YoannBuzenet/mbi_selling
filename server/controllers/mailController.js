@@ -17,6 +17,10 @@ function getTemplate(action, locale) {
       template = __basedir + "/mail_templates/" + locale + "/real-pdf.ejs";
       break;
     }
+    case "register": {
+      template = __basedir + "/mail_templates/" + locale + "/register.ejs";
+      break;
+    }
     default: {
       throw new Error("Could not find corresponding template.");
     }
@@ -41,6 +45,13 @@ function getMailTitle(action, locale) {
       });
       break;
     }
+    case "register": {
+      mailTitle = mailTitle = intl.formatMessage({
+        id: "mail.sending.title.register",
+        defaultMessage: "You just registered on mkmpriceupdater.com !",
+      });
+      break;
+    }
     default: {
       throw new Error("Could not find corresponding mailTitle.");
     }
@@ -58,6 +69,11 @@ function buildTemplateData(action, idShop, params) {
       break;
     }
     case "summaryRealScript": {
+      templateData = {};
+      break;
+    }
+    case "register": {
+      //shop.name will be needed
       templateData = {};
       break;
     }
@@ -104,18 +120,16 @@ function getPDF(action, locale, idShop) {
       break;
     }
     default: {
-      throw new Error(
-        "Could not find corresponding action for building templateData."
-      );
+      console.log("no attachment for this email.");
     }
   }
 
   return PDFData;
 }
 
-async function sendEmail(action, idScript, idShop, shopMail, locale = "fr-FR") {
+async function sendEmail(action, idShop, shopMail, params, locale = "fr-FR") {
   // test if parameters are here
-  if (!idScript || !idShop || !shopMail) {
+  if (!idShop || !shopMail) {
     throw new Error("A parameter is missing in mail PDF function.");
   }
 
@@ -176,6 +190,7 @@ async function sendEmail(action, idScript, idShop, shopMail, locale = "fr-FR") {
     transport.sendMail(mailOpts, (err, info) => {
       if (err) console.log(err); //Handle Error
       console.log(info);
+      //TODO later: pass unlink behaviour in param
       // fs.unlink(
       //   path.join(
       //     __dirname,
