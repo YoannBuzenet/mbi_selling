@@ -26,6 +26,10 @@ function getTemplate(action, locale) {
         __basedir + "/mail_templates/" + locale + "/resetMailSendChallenge.ejs";
       break;
     }
+    case "afterPayment": {
+      template = __basedir + "/mail_templates/" + locale + "/afterPayment.ejs";
+      break;
+    }
     default: {
       throw new Error("Could not find corresponding template.");
     }
@@ -61,6 +65,13 @@ function getMailTitle(action) {
       mailTitle = intl.formatMessage({
         id: "Reset your password",
         defaultMessage: "mail.sending.title.passwordForgotten",
+      });
+      break;
+    }
+    case "afterPayment": {
+      mailTitle = intl.formatMessage({
+        id: "mail.sending.title.afterPayment",
+        defaultMessage: "Payment received",
       });
       break;
     }
@@ -104,6 +115,19 @@ function buildTemplateData(action, params) {
         );
       }
       templateData = { challenge: params.challenge };
+    }
+    case "afterPayment": {
+      if (params?.order === undefined) {
+        console.error("Missing parameter : order in buildTempleData function");
+      }
+
+      templateData = {
+        order: {
+          amount: params?.order?.amount,
+          duration: params?.order?.duration,
+          endDate: params?.order?.endDate,
+        },
+      };
     }
     default: {
       throw new Error(
