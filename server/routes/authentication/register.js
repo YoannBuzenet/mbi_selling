@@ -5,7 +5,7 @@ const db = require("../../../models/index");
 const {
   createPremadeScriptsForShop,
 } = require("../../controllers/shopController");
-
+const { sendEmail } = require("../../controllers/mailController");
 //TODO Add a google recapatcha v3 here
 
 router.post("/", async (req, res) => {
@@ -44,6 +44,11 @@ router.post("/", async (req, res) => {
     await db.User.create({
       idShop: shopIdOnMTGI,
     });
+
+    //mail user
+    //to do finish param passing
+    sendEmail("register");
+
     // Create premade scripts for user
     await createPremadeScriptsForShop(
       shopIdOnMTGI,

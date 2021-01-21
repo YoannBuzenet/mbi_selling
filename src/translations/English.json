@@ -278,6 +278,7 @@
 
   "mail.sending.title.test": "Your test script has been executed.",
   "mail.sending.title.real": "Your script has been executed.",
+  "mail.sending.title.register": "You just registered on mkmpriceupdater.com !",
 
   "subscribed.notSusbcribed.NeedToDoIt.text": "You need to subscribe to access this feature. You can do this {link}.",
   "subscribed.notSusbcribed.NeedToDoIt.link": "here"
