@@ -180,7 +180,7 @@ router.get("/checkScriptUser", async (req, res) => {
 });
 
 router.get("/mailSendingTest", async (req, res) => {
-  // sendEmail(3, 7, "ybuzenet@gmail.com", true);
+  sendEmail("summaryTestScript", 3, 7, "ybuzenet@gmail.com", "fr-FR");
 
   res.status(200).json("endpoint Mail à corriger");
 });
