@@ -15,6 +15,10 @@ const {
 const PDFGeneration = require("../services/PDFGeneration");
 const { sizeof } = require("../services/sizeof");
 const { sendEmail } = require("../controllers/mailController");
+const { retrieveAsAdmin } = require("../services/adminBehaviours");
+const {
+  langIDLocaleDictionnary,
+} = require("../../src/services/fullstackTranslations/genericTranslations");
 
 function generateBehaviourName(
   isPriceShieldBlocking,
@@ -921,13 +925,17 @@ async function testScriptPersistingStep(
       true
     );
 
-    // TO COMPLETE YOANN
+    const shopData = await retrieveAsAdmin(
+      `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
+      "GET"
+    );
+
     sendEmail(
       "summaryTestScript",
       idShop,
-      "TODO_MAIL_TO_FIND",
+      shopData.data.email,
       {},
-      "LOCALE_TO_FIND"
+      langIDLocaleDictionnary[shopData.data.baselang]
     );
   }
 }
@@ -1521,13 +1529,17 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
   // Marking PUT Request as successful
   await db.PUT_Request.markAsFinishedSuccessfully(new_put_request_id);
 
-  // TO COMPLETE YOANN
+  const shopData = await retrieveAsAdmin(
+    `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
+    "GET"
+  );
+
   sendEmail(
     "summaryRealScript",
     idShop,
-    "TODO_MAIL_TO_FIND",
+    shopData.data.email,
     {},
-    "LOCALE_TO_FIND"
+    langIDLocaleDictionnary[shopData.data.baselang]
   );
 }
 
