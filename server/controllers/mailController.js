@@ -73,6 +73,11 @@ function buildTemplateData(action, params) {
       break;
     }
     case "register": {
+      if (params?.shop?.legalName === undefined) {
+        console.error(
+          "Missing parameter : shop LegalName in buildTempleData function"
+        );
+      }
       templateData = {
         shop: {
           legalName: params.shop.legalName,
