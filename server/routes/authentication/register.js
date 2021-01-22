@@ -50,6 +50,7 @@ router.post("/", async (req, res) => {
     //register user in our DB too
     const userCreated = await db.User.create({
       idShop: shopIdOnMTGI,
+      email: req.body.email,
       shopKey: shopKeyCreated,
     });
 
