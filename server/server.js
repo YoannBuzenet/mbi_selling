@@ -1,8 +1,13 @@
 // Core
 require("dotenv").config();
-require("dotenv").config({ path: "../.env.local" });
-const express = require("express");
 const path = require("path");
+const result = require("dotenv").config({
+  path: path.resolve(process.cwd(), "./.env.local"),
+});
+if (result.error) {
+  throw result.error;
+}
+const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const fs = require("fs");
