@@ -6,7 +6,7 @@ const { sendEmail } = require("../../controllers/mailController");
 /*******************************/
 /******RESET MAIL FIRST STEP****/
 /*******************************/
-app.post("/resetPassword", async (req, res) => {
+router.post("/resetPassword", async (req, res) => {
   //Receving the google Token : sending to their server and then doing stuff
   console.log("Receiving mail reset request, step 1");
   let googleToken = req.body.token;
@@ -66,7 +66,7 @@ app.post("/resetPassword", async (req, res) => {
     .catch((e) => console.log("ERROR IN GOOGLE ASKING", e));
 });
 
-app.post("/setNewPassword", (req, res) => {
+router.post("/setNewPassword", (req, res) => {
   console.log("resting password step 2");
   let googleToken = req.body.token;
   let { challenge, password, mail } = req.body;
@@ -107,3 +107,5 @@ app.post("/setNewPassword", (req, res) => {
     })
     .catch((e) => console.log("ici LOL", e));
 });
+
+module.exports = router;
