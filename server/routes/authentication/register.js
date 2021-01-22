@@ -6,6 +6,8 @@ const {
   createPremadeScriptsForShop,
 } = require("../../controllers/shopController");
 const { sendEmail } = require("../../controllers/mailController");
+const { createShopKey } = require("../../services/utils");
+
 //TODO Add a google recapatcha v3 here
 
 router.post("/", async (req, res) => {
@@ -23,6 +25,8 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  const shopKeyCreated = createShopKey();
+
   // console.log("get data from front");
   let userCredentials = {
     email: req.body.email,
@@ -33,6 +37,7 @@ router.post("/", async (req, res) => {
     town: req.body.town,
     vat: req.body.vat,
     languageUsed: req.body.languageUsed || "en-US",
+    shopKey: shopKeyCreated,
   };
 
   try {
@@ -43,6 +48,7 @@ router.post("/", async (req, res) => {
     //register user in our DB too
     const userCreated = await db.User.create({
       idShop: shopIdOnMTGI,
+      shopKey: shopKeyCreated,
     });
 
     // mail user
