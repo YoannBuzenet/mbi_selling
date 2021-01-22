@@ -43,7 +43,9 @@ router.post("/", async (req, res) => {
   try {
     const didUserRegister = await registerUser(userCredentials);
     console.log("didUserRegister", didUserRegister);
-    const shopIdOnMTGI = parseInt(didUserRegister.data.shop.substring(7));
+    const shopIdOnMTGI = parseInt(
+      didUserRegister.data.shop["@id"].substring(7)
+    );
 
     //register user in our DB too
     const userCreated = await db.User.create({
