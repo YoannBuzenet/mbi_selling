@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var axios = require("axios");
 const { sendEmail } = require("../../controllers/mailController");
+const db = require("../../../models");
 
 /*******************************/
 /******RESET MAIL FIRST STEP****/
@@ -28,18 +29,27 @@ router.post("/resetPassword", async (req, res) => {
       {},
       config
     )
-    .then((googleResp) => {
+    .then(async (googleResp) => {
       if (googleResp.data.success) {
         console.log("received the OK from google");
 
-        // Yoann Yooy
-        // Choper l'idshop dans notre DB sequelize et le passer en param du call en dessous
+        // We need some data to trigger the challenge behaviour on MTGAPI : we get them on our own database.
+        const shopDataMbiSelling = await db.User.findOne({
+          where: {
+            email: usermail,
+          },
+        });
 
-        axios
+        if (shopDataMbiSelling === null) {
+          res.status(406).json("This shop doesn't exist.");
+          return;
+        }
+
+        await axios
           .post(process.env.REACT_APP_MTGAPI_URL + "/usermail/challenge", {
-            shopId: "luilol", //Todo yoann yooy we need shop id here
+            shopId: shopDataMbiSelling.dataValues.idShop,
             mail: usermail,
-            shopKey: process.env.SHOPKEY,
+            shopKey: shopDataMbiSelling.dataValues.shopKey,
           })
           .then((respServ) => {
             console.log(respServ);
