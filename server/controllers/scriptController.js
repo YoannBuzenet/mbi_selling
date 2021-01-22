@@ -1399,7 +1399,13 @@ async function realScriptPersistingStep(
     false
   );
 
-  // TO DO MAIL SENDING TO ADD
+  sendEmail(
+    "summaryRealScript",
+    idShop,
+    shopData.data.email,
+    {},
+    langIDLocaleDictionnary[shopData.data.baselang]
+  );
 }
 
 /* In case of emergency, allows to rewind a put request */
@@ -1529,18 +1535,7 @@ async function rewindPutRequest(put_requestToRewindId, shopData, idScript) {
   // Marking PUT Request as successful
   await db.PUT_Request.markAsFinishedSuccessfully(new_put_request_id);
 
-  const shopData = await retrieveAsAdmin(
-    `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
-    "GET"
-  );
-
-  sendEmail(
-    "summaryRealScript",
-    idShop,
-    shopData.data.email,
-    {},
-    langIDLocaleDictionnary[shopData.data.baselang]
-  );
+  // End of rewind function
 }
 
 module.exports = {
