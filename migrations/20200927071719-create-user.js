@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         unique: true,
       },
+      shopKey: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       isSubscribedUntil: {
         type: Sequelize.DATEONLY,
       },
