@@ -64,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         validate: { isNumeric: true },
       },
+      shopKey: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
       isSubscribedUntil: {
         type: DataTypes.DATEONLY,
       },
