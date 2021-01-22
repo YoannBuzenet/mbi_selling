@@ -12,6 +12,7 @@ module.exports = {
         {
           idShop: 4,
           shopKey: "seedTestShopKey",
+          email: "testaccount@test.com",
           isSubscribedUntil: utils.createADateFromTodayAndAddMonths(6),
           temporarySecret: "test",
           temporaryLastProductPaid: "OneMonthSubscription",
@@ -21,6 +22,7 @@ module.exports = {
         {
           idShop: 7,
           shopKey: "seedTestShopKey2",
+          email: "testaccount2@test.com",
           isSubscribedUntil: utils.createADateFromTodayAndAddMonths(1),
           temporarySecret: "test2",
           temporaryLastProductPaid: "ThreeMonthSubscription",

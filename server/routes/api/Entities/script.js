@@ -37,6 +37,7 @@ router.get("/getByUserId", async (req, res) => {
   });
 
   res.status(200).json(userScripts);
+  return;
 });
 
 //Get a script by Id
