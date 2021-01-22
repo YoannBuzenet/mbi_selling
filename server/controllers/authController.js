@@ -39,6 +39,7 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
       accessToken: "",
       appSecret: "",
       accessSecret: "",
+      shopKey: initialCredentials.shopKey,
       percentPerLangs: [
         {
           percent: 100,
