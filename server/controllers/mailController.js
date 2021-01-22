@@ -6,6 +6,10 @@ const { createIntl, createIntlCache } = require("react-intl");
 const genericTranslations = require("../../src/services/fullstackTranslations/genericTranslations");
 const { createSummaryPDFName } = require("../services/PDFGeneration");
 
+/* *********************************** */
+/* ******* TRANSLATION CONTEXT ******* */
+/* *********************************** */
+
 function getTemplate(action, locale) {
   let template;
   switch (action) {
@@ -83,7 +87,7 @@ function getMailTitle(action) {
   return mailTitle;
 }
 
-function buildTemplateData(action, params) {
+function buildTemplateData(action, params, intl) {
   //each case of witch should verify the params it needs and throw an error
   let templateData;
   switch (action) {
@@ -125,7 +129,7 @@ function buildTemplateData(action, params) {
         order: {
           amount: params?.order?.amount,
           duration: params?.order?.duration,
-          endDate: params?.order?.endDate,
+          endDate: intl.formatDate({ value: params?.order?.endDate }),
         },
       };
     }
@@ -191,10 +195,6 @@ async function sendEmail(
     throw new Error("A parameter is missing in mail PDF function.");
   }
 
-  /* *********************************** */
-  /* ******* TRANSLATION CONTEXT ******* */
-  /* *********************************** */
-
   // This is optional but highly recommended
   // since it prevents memory leak
   const cache = createIntlCache();
@@ -215,7 +215,7 @@ async function sendEmail(
   //Find the right ejs template file
   const templatePath = getTemplate(action, locale);
 
-  const templateData = buildTemplateData(action, params);
+  const templateData = buildTemplateData(action, params, intl);
 
   const attachedPdf = getPDF(action, locale, idShop);
 

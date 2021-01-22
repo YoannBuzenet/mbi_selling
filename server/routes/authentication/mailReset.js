@@ -31,10 +31,13 @@ app.post("/resetPassword", async (req, res) => {
     .then((googleResp) => {
       if (googleResp.data.success) {
         console.log("received the OK from google");
-        //TO DO : RES 200 + NOTIF
+
+        // Yoann Yooy
+        // Choper l'idshop dans notre DB sequelize et le passer en param du call en dessous
+
         axios
           .post(process.env.REACT_APP_MTGAPI_URL + "/usermail/challenge", {
-            shopId: process.env.REACT_APP_SHOP_ID, //Todo yoann we need shop id here
+            shopId: "luilol", //Todo yoann yooy we need shop id here
             mail: usermail,
             shopKey: process.env.SHOPKEY,
           })
