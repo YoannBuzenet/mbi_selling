@@ -41,7 +41,7 @@ function getTemplate(action, locale) {
   return template;
 }
 
-function getMailTitle(action) {
+function getMailTitle(action, intl) {
   let mailTitle;
   switch (action) {
     case "summaryTestScript": {
@@ -210,7 +210,7 @@ async function sendEmail(
   );
 
   // create translated mail title
-  const mailTitle = getMailTitle(action);
+  const mailTitle = getMailTitle(action, intl);
 
   //Find the right ejs template file
   const templatePath = getTemplate(action, locale);
