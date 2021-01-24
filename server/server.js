@@ -1,3 +1,10 @@
+// Helps getting better logs on pm2
+const today = new Date();
+const date =
+  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+const time =
+  today.getHours() + 1 + ":" + today.getMinutes() + ":" + today.getSeconds();
+
 // Core
 require("dotenv").config();
 const path = require("path");
@@ -43,18 +50,11 @@ app.use(express.static(path.join(__dirname, "../build")));
 
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
-  console.log("the react app has been asked");
+  console.log("the react app has been asked", "log at", date, time);
   res.sendFile(path.join(__dirname, "../build/index.html"));
 });
 
 const port = process.env.PORT || 3000;
 app.listen(port);
-
-// Helps getting better logs on pm2
-const today = new Date();
-const date =
-  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-const time =
-  today.getHours() + 1 + ":" + today.getMinutes() + ":" + today.getSeconds();
 
 console.log("App is listening on port " + port, "log at", date, time);
