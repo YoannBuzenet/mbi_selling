@@ -3,7 +3,8 @@ function calculateAmount(productName) {
 
   switch (productName) {
     case "OneMonthSubscription": {
-      amountToReturn = 4900;
+      // amountToReturn = 4900;
+      amountToReturn = 100;
       break;
     }
     case "ThreeMonthSubscription": {
