@@ -42,7 +42,12 @@ app.use(express.static(path.join(__dirname, "../build")));
 
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build/index.html"));
+  console.log("the react app has been asked");
+  try {
+    res.sendFile(path.join(__dirname, "../build/index.html"));
+  } catch (e) {
+    console.log("didnt find it", e);
+  }
   // res.sendFile(path.resolve(process.cwd(), "./build/index.html")));
   // res.status(200).json("HomePage for SSR2");
 });
@@ -50,10 +55,11 @@ app.get("*", (req, res) => {
 const port = process.env.PORT || 3000;
 app.listen(port);
 
-var today = new Date();
-var date =
+// Helps getting better logs on pm2
+const today = new Date();
+const date =
   today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-var time =
+const time =
   today.getHours() + 1 + ":" + today.getMinutes() + ":" + today.getSeconds();
 
 console.log("App is listening on port " + port, "log at", date, time);
