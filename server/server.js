@@ -50,8 +50,10 @@ app.get("*", (req, res) => {
 const port = process.env.PORT || 3000;
 app.listen(port);
 
-console.log(
-  "App is listening on port " + port,
-  "log at",
-  Date.now().toLocaleString()
-);
+var today = new Date();
+var date =
+  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+var time =
+  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+console.log("App is listening on port " + port, "log at", date, time);
