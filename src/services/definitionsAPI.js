@@ -3,40 +3,29 @@ const utils = require("./utils");
 
 function getCustomRuleRuleTypeDefinitions() {
   return axios
-    .get(
-      process.env.REACT_APP_THIS_WEBSITE_URL +
-        "/api/customrule_ruletype_definition/getDefinitions"
-    )
+    .get("/api/customrule_ruletype_definition/getDefinitions")
     .then((resp) => resp.data);
 }
 
 function getCustomRuleRuleBehaviourDefinitions() {
   return axios
-    .get(
-      process.env.REACT_APP_THIS_WEBSITE_URL +
-        "/api/customrule_behaviour_definition/getDefinitions"
-    )
+    .get("/api/customrule_behaviour_definition/getDefinitions")
     .then((resp) => resp.data);
 }
 
 function getPriceGuideDefinitions() {
   return axios
-    .get(
-      process.env.REACT_APP_THIS_WEBSITE_URL +
-        "/api/priceguideDefinition/getDefinitions"
-    )
+    .get("/api/priceguideDefinition/getDefinitions")
     .then((resp) => resp.data);
 }
 function getFormatsDefinitions() {
-  return axios
-    .get(process.env.REACT_APP_THIS_WEBSITE_URL + "/api/formats/getDefinitions")
-    .then((resp) => resp.data);
+  return axios.get("/api/formats/getDefinitions").then((resp) => resp.data);
 }
 
 function getFormatsAndReturnHashtable() {
   // console.log("is this function being called ?");
   return axios
-    .get(process.env.REACT_APP_THIS_WEBSITE_URL + "/api/formats/getDefinitions")
+    .get("/api/formats/getDefinitions")
     .then((resp) => {
       // console.log("formats def resp", resp);
       let hashmapToreturn = {};
