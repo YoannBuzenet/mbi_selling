@@ -1,4 +1,5 @@
 "use strict";
+const { arrayOf } = require("prop-types");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Invoice extends Model {
@@ -86,12 +87,13 @@ module.exports = (sequelize, DataTypes) => {
         limit: 1,
         order: [["createdAt", "DESC"]],
       });
+
       let nextId;
-
-      console.log("just checking what in", latestInvoice);
-
       // For first invoice
-      if (latestInvoice === null) {
+      if (
+        latestInvoice === null ||
+        (Array.isArray(latestInvoice) && latestInvoice).length === 0
+      ) {
         nextId = 1;
       } else {
         // Normal behaviour
