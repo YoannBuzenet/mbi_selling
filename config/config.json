@@ -12,7 +12,7 @@
       "idle": 10000,
       "acquire": 500000
     },
-    "url": "mysql://root:Musk1977!@localhost:3306/mbi_selling_database_development"
+    "url": "mysql://root:Musk1977!@localhost/mbi_selling_database_development"
   },
   "test": {
     "username": "root",
@@ -24,7 +24,7 @@
   },
   "production": {
     "username": "root",
-    "password": null,
+    "password": "mbi_prod_db",
     "database": "mbi_selling_database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
