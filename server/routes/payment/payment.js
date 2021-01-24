@@ -50,12 +50,19 @@ router.post("/", async (req, res) => {
     metadata: { integration_check: "accept_a_payment" },
   });
 
+  const user = await db.User.findOne({
+    where: {
+      idShop: idShop,
+    },
+  });
+
   // Storing Secret in DB to be able to track this payment
   const updatedUSer = await db.User.upsert({
     idShop: idShop,
+    email: user.dataValues.email,
+    shopKey: user.dataValues.shopKey,
     temporarySecret: paymentIntent.client_secret,
     temporaryLastProductPaid: req.body.productData,
-    updatedAt: Date.now(),
   });
 
   res.json({ client_secret: paymentIntent.client_secret });
@@ -140,6 +147,8 @@ router.post("/subscribe", async (req, res) => {
       // Save User Subscription in DB & erase temporary secret & temporary product
       const updatedSubscription = await db.User.upsert({
         idShop: idShop,
+        email: user.dataValues.email,
+        shopKey: user.dataValues.shopKey,
         isSubscribedUntil: dateWithSubscriptionAdded,
         temporarySecret: null,
         temporaryLastProductPaid: null,
