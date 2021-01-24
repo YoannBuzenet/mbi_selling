@@ -76,14 +76,15 @@ const CheckoutForm = () => {
       payment_method: {
         card: cardElement,
         billing_details: {
-          name: "test string",
+          name: authenticationInfos.shop.legalName,
         },
       },
     });
 
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      console.log(result?.error?.message);
+      toast.error(result?.error?.message);
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === "succeeded") {
