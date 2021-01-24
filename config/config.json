@@ -28,6 +28,6 @@
     "database": "mbi_selling_database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "use_env_variable": "NOM ENV VARIABLE"
+    "use_env_variable": "DATABASE_URL_PROD"
   }
 }
