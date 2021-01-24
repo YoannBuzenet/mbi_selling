@@ -94,7 +94,7 @@ const CheckoutForm = () => {
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
         const apiSubscriptionData = await axios
-          .post(`/payment/processPayment/subscribe`, {
+          .post(`/payment/subscribe`, {
             token: clientSecret,
             idShop: authenticationInfos.shop.id,
           })

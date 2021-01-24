@@ -18,7 +18,7 @@ const {
 
 // sending the secret to the client to enables him to ping Stripe directly
 
-router.post("/", async (req, res) => {
+router.post("/processPayment", async (req, res) => {
   /* ************************** */
   /* ****SECURITY & CHECKS**** */
   /* ************************ */
