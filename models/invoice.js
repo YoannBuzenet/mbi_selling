@@ -88,6 +88,8 @@ module.exports = (sequelize, DataTypes) => {
       });
       let nextId;
 
+      console.log("just checking what in", latestInvoice);
+
       // For first invoice
       if (latestInvoice === null) {
         nextId = 1;
