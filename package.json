@@ -52,6 +52,7 @@
     "db-MKM-test": "SET DATABASE_URL_DEV= mysql://root:Musk1977!@localhost:3306/mbi_selling_database_development & npx sequelize-cli db:seed:all --seeders-path seedersMKMTest --debug",
     "db-reset": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
     "start:server": "NODE_ENV=development node server/server.js",
+    "start:server:prod": "NODE_ENV=production node server/server.js",
     "start:server:windows": "SET NODE_ENV=development& node server/server.js"
   },
   "eslintConfig": {
