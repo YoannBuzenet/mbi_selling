@@ -86,9 +86,16 @@ module.exports = (sequelize, DataTypes) => {
         limit: 1,
         order: [["createdAt", "DESC"]],
       });
+      let nextId;
 
-      const lastInvoiceId = parseInt(latestInvoice.davaValues.idInvoice);
-      const nextId = lastInvoiceId + 1;
+      // For first invoice
+      if (latestInvoice === null) {
+        nextId = 1;
+      } else {
+        // Normal behaviour
+        const lastInvoiceId = parseInt(latestInvoice.davaValues.idInvoice);
+        nextId = lastInvoiceId + 1;
+      }
       return nextId;
     }
 
