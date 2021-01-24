@@ -52,7 +52,7 @@ const CheckoutForm = () => {
     //TO DO : add a catch with error
     //Get client secret on our server, then go on
     const apiData = await axios
-      .post(`/payment/processPayment`, {
+      .post(`/payment/process/`, {
         productData: paymentModalInformation.articleName,
         idShop: authenticationInfos.shop.id,
       })
@@ -94,7 +94,7 @@ const CheckoutForm = () => {
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
         const apiSubscriptionData = await axios
-          .post(`/payment/subscribe`, {
+          .post(`/payment/process/subscribe`, {
             token: clientSecret,
             idShop: authenticationInfos.shop.id,
           })
