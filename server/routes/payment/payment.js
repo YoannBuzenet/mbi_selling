@@ -92,10 +92,6 @@ router.post("/subscribe", async (req, res) => {
   let jwt = req.headers.authorization;
   if (jwt === undefined) {
     res.status(406).json("Auth Header is missing !");
-  } else {
-    //If there is a token, we remove the "Bearer" part
-    jwt = jwt.split(" ");
-    jwt = jwt[1];
   }
 
   // Comparing with temporary Secret stored in DB

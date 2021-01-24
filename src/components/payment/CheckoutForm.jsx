@@ -49,7 +49,6 @@ const CheckoutForm = () => {
       return;
     }
 
-    //TO DO : add a catch with error
     //Get client secret on our server, then go on
     const apiData = await axios
       .post(`/payment/process/`, {
