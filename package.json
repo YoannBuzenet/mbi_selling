@@ -37,6 +37,7 @@
     "redis": "^3.0.2",
     "roboto-font": "^0.1.0",
     "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
     "slugify": "^1.4.5",
     "status-indicator": "^1.0.9",
     "stripe": "^8.129.0",
@@ -68,7 +69,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "sequelize-cli": "^6.2.0"
-  }
+  "devDependencies": {}
 }
