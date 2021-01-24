@@ -26,7 +26,7 @@ module.exports = {
       idShop: {
         type: Sequelize.INTEGER,
         references: {
-          model: "users",
+          model: "Users",
           key: "idShop",
         },
       },
