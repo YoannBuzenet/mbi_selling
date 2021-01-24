@@ -37,19 +37,14 @@ app.get("/", (req, res) => {
   res.render("homepage");
 });
 
+console.log("checking path", path.join(__dirname, "../build"));
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "../build")));
 
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
   console.log("the react app has been asked");
-  try {
-    res.sendFile(path.join(__dirname, "../build/index.html"));
-  } catch (e) {
-    console.log("didnt find it", e);
-  }
-  // res.sendFile(path.resolve(process.cwd(), "./build/index.html")));
-  // res.status(200).json("HomePage for SSR2");
+  res.sendFile(path.join(__dirname, "../build/index.html"));
 });
 
 const port = process.env.PORT || 3000;
