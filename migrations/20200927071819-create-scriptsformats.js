@@ -10,14 +10,14 @@ module.exports = {
       script_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "scripts",
+          model: "Scripts",
           key: "id",
         },
       },
       format_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "formats",
+          model: "Formats",
           key: "id",
         },
       },
