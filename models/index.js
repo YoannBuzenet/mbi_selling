@@ -1,5 +1,6 @@
 "use strict";
 const path = require("path");
+
 const result = require("dotenv").config({
   path: path.resolve(process.cwd(), "./.env.local"),
 });
@@ -8,7 +9,7 @@ if (result.error) {
 }
 
 const fs = require("fs");
-const path = require("path");
+
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
