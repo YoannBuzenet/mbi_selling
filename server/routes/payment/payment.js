@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
   // Calling Stripe to get a token
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amountToPay, // Amount is in cents
-    currency: "usd",
+    currency: "eur",
     // Verify your integration in this guide by including this parameter
     metadata: { integration_check: "accept_a_payment" },
   });
@@ -129,6 +129,9 @@ router.post("/subscribe", async (req, res) => {
       const subscribeDurationInMonth = getProductDurationWithProductName(
         lastProductBought
       );
+
+      //Amount To Pay definition
+      const amountToPay = calculateAmount(lastProductBought);
 
       // Getting the right date
       const date = getRelevantDateForUpdateSubscribe(

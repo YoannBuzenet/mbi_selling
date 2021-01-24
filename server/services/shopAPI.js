@@ -7,6 +7,8 @@ async function getShopData(idShop, jwt) {
 
   let idShopInt = parseInt(idShop);
 
+  //To do if problem, parse jwt and make sure Bearer is precised (sometimes it is splitted or added twice, this way it will be sure)
+
   const axiosConfigShopHeader = {
     headers: {
       Authorization: jwt,
