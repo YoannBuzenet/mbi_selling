@@ -6,15 +6,6 @@ const result = require("dotenv").config({
 });
 if (result.error) {
   throw result.error;
-} else {
-  console.log(
-    "in local : DATABASE_URL_PROD=mysql://root:mbi_selling_prod@127.0.0.1/mbi_selling_database_production",
-    process.env.DATABASE_URL_PROD
-  );
-  console.log(
-    "in .env : DATABASE_URL_PROD=mysql://root:mbi_selling_prod@localhost/mbi_selling_database_production",
-    process.env.DATABASE_URL_PROD
-  );
 }
 
 const fs = require("fs");
