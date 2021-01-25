@@ -177,7 +177,7 @@ router.post("/subscribe", async (req, res) => {
         0
       );
 
-      sendEmail("afterPayment", idShop, shopData.dataValues.email, {
+      sendEmail("afterPayment", idShop, shopData.email, {
         order: {
           amount: amountTaxIncluded,
           duration: subscribeDurationInMonth,
