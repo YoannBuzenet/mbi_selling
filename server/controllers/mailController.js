@@ -129,7 +129,11 @@ function buildTemplateData(action, params, intl) {
         order: {
           amount: params?.order?.amount,
           duration: params?.order?.duration,
-          endDate: intl.formatDate({ value: params?.order?.endDate }),
+          endDate: intl.formatDate(new Date(params?.order?.endDate), {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          }),
         },
       };
     }
