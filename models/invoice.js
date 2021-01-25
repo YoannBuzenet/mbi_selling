@@ -97,7 +97,7 @@ module.exports = (sequelize, DataTypes) => {
         nextId = 1;
       } else {
         // Normal behaviour
-        const lastInvoiceId = parseInt(latestInvoice.davaValues.idInvoice);
+        const lastInvoiceId = parseInt(latestInvoice.dataValues.idInvoice);
         nextId = lastInvoiceId + 1;
       }
       return nextId;
