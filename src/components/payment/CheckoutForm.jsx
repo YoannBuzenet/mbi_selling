@@ -8,6 +8,8 @@ import AuthContext from "../../context/authContext";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
 import CSSLoaderDualRing from "../loaders/CSSLoaderDualRing";
+import Checkbox from "@material-ui/core/Checkbox";
+import { Link } from "react-router-dom";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -38,6 +40,10 @@ const CheckoutForm = () => {
   );
 
   const [isLoading, setIsLoading] = useState(false);
+  const [
+    hasReadGeneralSalesConditions,
+    setHasReadGeneralSalesConditions,
+  ] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -126,7 +132,9 @@ const CheckoutForm = () => {
     }
   };
 
-  //TODO add a loader and disable the button while loading
+  const handleChange = (event) => {
+    setHasReadGeneralSalesConditions(!hasReadGeneralSalesConditions);
+  };
 
   return (
     <div className="absolutePopIn">
@@ -134,9 +142,29 @@ const CheckoutForm = () => {
 
       <form onSubmit={handleSubmit}>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
-        <div>THE cyberpunk game</div>
+        <div className="generalSalesConditions">
+          <Checkbox
+            checked={hasReadGeneralSalesConditions}
+            onChange={handleChange}
+            size="medium"
+            color="primary"
+          />
+          <FormattedMessage
+            id="app.modal.generalConditions.checkIn.firstPart"
+            defaultMessage="I have read and accepted the "
+          />
+          <a href="/general-sales-conditions" target="_blank">
+            <FormattedMessage
+              id="app.modal.generalConditions.checkIn.SecondPartLink"
+              defaultMessage="Conditions of Sales."
+            />
+          </a>
+        </div>
         <div class="paymentPopInButtons">
-          <button type="submit" disabled={!stripe}>
+          <button
+            type="submit"
+            disabled={!stripe || isLoading || !hasReadGeneralSalesConditions}
+          >
             <FormattedMessage
               id="app.modal.payment.button.pay"
               defaultMessage="Pay"
