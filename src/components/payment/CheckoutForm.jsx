@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./style.css";
@@ -7,6 +7,7 @@ import paymentModalContext from "../../context/paymentModalContext";
 import AuthContext from "../../context/authContext";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
+import CSSLoaderDualRing from "../loaders/CSSLoaderDualRing";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -36,12 +37,16 @@ const CheckoutForm = () => {
     AuthContext
   );
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (event) => {
     // Block native form submission.
     event.preventDefault();
+
+    setIsLoading(true);
 
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -85,6 +90,7 @@ const CheckoutForm = () => {
       // Show error to your customer (e.g., insufficient funds)
       console.log(result?.error?.message);
       toast.error(result?.error?.message);
+      setIsLoading(false);
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === "succeeded") {
@@ -105,6 +111,7 @@ const CheckoutForm = () => {
                 defaultMessage="Your paiment has been received. Your are now subscribed."
               />
             );
+            setIsLoading(false);
           })
           .catch((error) => {
             console.error("error while creating payment", error);
@@ -124,14 +131,21 @@ const CheckoutForm = () => {
   return (
     <div className="absolutePopIn">
       <h2>{paymentModalInformation.title}</h2>
+
       <form onSubmit={handleSubmit}>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
-        <button type="submit" disabled={!stripe}>
-          <FormattedMessage
-            id="app.modal.payment.button.pay"
-            defaultMessage="Pay"
-          />
-        </button>
+        <div>THE cyberpunk game</div>
+        <div class="paymentPopInButtons">
+          <button type="submit" disabled={!stripe}>
+            <FormattedMessage
+              id="app.modal.payment.button.pay"
+              defaultMessage="Pay"
+            />
+          </button>
+          {isLoading && (
+            <CSSLoaderDualRing position="absolute" top="5px" left="230px" />
+          )}
+        </div>
       </form>
     </div>
   );

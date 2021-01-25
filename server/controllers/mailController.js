@@ -88,6 +88,7 @@ function getMailTitle(action, intl) {
 }
 
 function buildTemplateData(action, params, intl) {
+  console.log("in building template data, action is :", action);
   //each case of witch should verify the params it needs and throw an error
   let templateData;
   switch (action) {
@@ -119,6 +120,7 @@ function buildTemplateData(action, params, intl) {
         );
       }
       templateData = { challenge: params.challenge };
+      break;
     }
     case "afterPayment": {
       if (params?.order === undefined) {
@@ -136,6 +138,7 @@ function buildTemplateData(action, params, intl) {
           }),
         },
       };
+      break;
     }
     default: {
       throw new Error(

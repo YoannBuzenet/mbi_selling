@@ -126,7 +126,7 @@ More info: https://stripe.com/docs/stripe-js/reference#element-options
 .StripeElementIdeal,
 .StripeElementFpx {
   display: block;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 10px 0;
   max-width: 500px;
   padding: 10px 14px;
   box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
@@ -152,4 +152,8 @@ More info: https://stripe.com/docs/stripe-js/reference#element-options
 .StripeElementIdeal,
 .StripeElementFpx {
   padding: 0;
+}
+
+.paymentPopInButtons {
+  position: relative;
 }
