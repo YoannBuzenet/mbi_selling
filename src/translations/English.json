@@ -155,6 +155,7 @@
   "app.RegisterPage.accountCreation.toast.failure": "An error has occured. Please try again.",
 
   "app.modal.payment.button.pay": "Pay",
+  "app.modal.payment.success": "Your paiment has been received. Your are now subscribed.",
   "app.modal.payment.failure": "Payment could not be proceeded. Please try later.",
   "app.modal.payment.failureAfterSuccess": "There has been an error after the payment did proceed. Please contact us.",
   "app.subscribePage.button.duration.oneMonth": "One Month",

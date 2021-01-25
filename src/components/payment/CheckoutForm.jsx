@@ -98,6 +98,12 @@ const CheckoutForm = () => {
             token: clientSecret,
             idShop: authenticationInfos.shop.id,
           })
+          .then((resp) => {
+            <FormattedMessage
+              id="app.modal.payment.success"
+              defaultMessage="Your paiment has been received. Your are now subscribed."
+            />;
+          })
           .catch((error) => {
             console.error("error while creating payment", error);
             toast.error(
