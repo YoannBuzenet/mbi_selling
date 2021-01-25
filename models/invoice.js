@@ -88,6 +88,17 @@ module.exports = (sequelize, DataTypes) => {
         order: [["createdAt", "DESC"]],
       });
 
+      console.log("latestInvoice", latestInvoice);
+      console.log("latestInvoice === null", latestInvoice === null);
+      console.log(
+        "Array.isArray(latestInvoice) && latestInvoice.length === 0",
+        Array.isArray(latestInvoice) && latestInvoice.length === 0
+      );
+      console.log(
+        "latestInvoice === null ||",
+        Array.isArray(latestInvoice) && latestInvoice.length === 0
+      );
+
       let nextId;
       // For first invoice
       if (
@@ -97,7 +108,7 @@ module.exports = (sequelize, DataTypes) => {
         nextId = 1;
       } else {
         // Normal behaviour
-        const lastInvoiceId = parseInt(latestInvoice.dataValues.idInvoice);
+        const lastInvoiceId = parseInt(latestInvoice[0].dataValues.idInvoice);
         nextId = lastInvoiceId + 1;
       }
       return nextId;
