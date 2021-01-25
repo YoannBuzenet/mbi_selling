@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Invoice.belongsTo(models.User, { foreignKey: "idShop" });
     }
-    static registerInvoiceFromTransaction(
+    static registerInvoiceAfterTransaction(
       idShop,
       idInvoice,
       userName,
