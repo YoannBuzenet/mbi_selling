@@ -155,6 +155,8 @@
 
   "app.modal.payment.button.pay": "Payer",
   "app.modal.payment.success": "Votre paiement a bien été enregistré. Vous êtes abonné.",
+  "app.modal.generalConditions.checkIn.firstPart": "J'accepte les ",
+  "app.modal.generalConditions.checkIn.SecondPartLink": "Conditions Générales de Vente.",
   "app.modal.payment.failure": "Le paiement n'a pu être procédé. Merci de réessayer ultérieurement.",
   "app.modal.payment.failureAfterSuccess": "Il y a eu une erreur après l'enregistrement du paiment. Merci de nous contacter.",
   "app.subscribePage.button.duration.oneMonth": "Un mois",
