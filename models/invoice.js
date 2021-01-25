@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
       // For first invoice
       if (
         latestInvoice === null ||
-        (Array.isArray(latestInvoice) && latestInvoice).length === 0
+        (Array.isArray(latestInvoice) && latestInvoice.length === 0)
       ) {
         nextId = 1;
       } else {
