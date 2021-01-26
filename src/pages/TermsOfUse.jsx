@@ -205,7 +205,6 @@ const TermsOfUse = () => {
       </p>
       <h2>Droit de rétractation</h2>
       <p>
-        {/* là */}
         En tant qu'utilisateur résidant dans un pays membre de l'Union
         européenne, vous avez le droit de vous rétracter de tout achat effectué
         sur MTGINTERFACE sans donner de motif.
@@ -217,8 +216,8 @@ const TermsOfUse = () => {
         merci de nous contacter à support@mtginterface.com.
       </p>
       <h2>ARTICLE 14- MISCELLANEOUS 14.1 </h2>
+      {/* là */}
       <p>
-        {" "}
         Agreement on proof In the event of any disputes over the use of the
         SERVICE and/or the SITE, the MERCHANT and MTGINTERFACE agree that the
         data saved on MTGINTERFACE equipment and particularly the use of the
@@ -247,12 +246,12 @@ const TermsOfUse = () => {
       </p>
       <h2>14.6 – Applicable law</h2>
       <p>
-        Competent jurisdiction These Terms and Conditions are subject to
-        signature, interpretation and performance under French law. Any dispute
-        between SELLERMANIA and the MERCHANT relating to the existence,
-        validity, interpretation or performance of the Terms and Conditions or
-        of any of their clauses that the parties are unable to resolve amicably
-        shall be ruled by the Paris courts.
+        Les présentes conditions d'utilisation sont soumises à signature,
+        interprétation et exécution en droit français. Tout litige entre
+        MTGINTERFACE et le VENDEUR relatif à l'existence, la validité,
+        l'interprétation ou l'exécution des conditions d'utilisation ou de l'une
+        quelconque de leurs clauses que les parties ne sont pas en mesure de
+        résoudre à l'amiable sera jugé par les tribunaux de Paris.
       </p>
       {/* EN */}
       <p>
