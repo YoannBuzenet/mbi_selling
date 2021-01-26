@@ -21,21 +21,7 @@ const TermsOfUse = () => {
         Siège social : 9 Rue place Maréchal Foch, 56700 Hennebont, SIREN 804 965
         101 00038
       </p>
-      {/* EN */}
-      <p>
-        MTGINTERFACE offers a web service (hereinafter referred to as the «
-        SERVICE ») aimed at helping professional merchants, be they private
-        individuals or legal entities, (hereinafter referred to as the «
-        MERCHANT(S) ») who wish to optimise the price of items they are offering
-        for sale on the Magic Card Market Marketplace platform
-        (https://www.cardmarket.com/en/Magic).The terms and conditions of this
-        SERVICE are set out in these Terms and Conditions.
-      </p>
-      <p>
-        Details regarding the MTGINTERFACE company are as follows: Tél : +336 13
-        64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place
-        Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038
-      </p>
+
       <h2>Agreement</h2>
       <h2>NECESSARY CONDITIONS FOR SUBSCRIBING TO THE SERVICE</h2>
       <p>
@@ -48,17 +34,8 @@ const TermsOfUse = () => {
         ces conditions d'utilisation. Dans ce cas, "vous" et "votre" feront
         référence à cette entité.
       </p>
-      <p>
-        You may use the SERVICE only if you are 18 years or older and capable of
-        forming a binding contract with MTGINTERFACE, and not otherwise barred
-        from using the SERVICE under applicable law. If you are accessing and
-        using the SERVICE on behalf of a company (such as your employer) or
-        other legal entity, you represent and warrant that you have the
-        authority to bind that entity to these Terms. In that case, “you” and
-        “your” will refer to that entity.
-      </p>
-      <h2>Duration / Termination / Cancellation</h2>
 
+      <h2>Duration / Termination / Cancellation</h2>
       <p>
         Durée A la fin de la période d'abonnement, l'abonnement n'est PAS
         renouvelé tacitement.
@@ -73,16 +50,6 @@ const TermsOfUse = () => {
         notamment un simple message éléctronique (e-mail).
       </p>
 
-      <p>
-        At the end of the initial subscription period, the Terms and Conditions
-        shall NOT be renewed automatically by tacit agreement. 6.2 –
-        Cancellation In the event that the MERCHANT fails to perform some or all
-        of their obligations under these Terms and Conditions, MTGINTERFACE may
-        cancel these Terms and Conditions as of right and at any time, with or
-        without formal notice being made to the MERCHANT to fulfil their
-        obligations. MTGINTERFACE shall send any formal notice by any means of
-        its choice, including by simple electronic mail (e-mail).
-      </p>
       <h2>LIABILITY</h2>
       <p>
         {/* FR */}
@@ -193,7 +160,6 @@ const TermsOfUse = () => {
           </li>
         </ul>
       </p>
-
       <h2>ARTICLE 10 – FORCE MAJEURE</h2>
       <p>
         Les événements de force majeure suspendront les obligations de
@@ -216,33 +182,40 @@ const TermsOfUse = () => {
         merci de nous contacter à support@mtginterface.com.
       </p>
       <h2>ARTICLE 14- MISCELLANEOUS 14.1 </h2>
-      {/* là */}
+
       <p>
-        Agreement on proof In the event of any disputes over the use of the
-        SERVICE and/or the SITE, the MERCHANT and MTGINTERFACE agree that the
-        data saved on MTGINTERFACE equipment and particularly the use of the
-        MERCHANT’s private usernames and passwords shall constitute valid proof
-        between the parties. It is explicitly agreed that all the technical
-        information regarding the MERCHANT, particularly saved data and
-        statistics will be kept and archived by MTGINTERFACE for probative
-        reasons. 14.2 – Comprehensiveness These Terms and Conditions give the
-        full obligations of the parties. The fact that either party does not
-        take advantage of any shortcoming or any failure to perform any of its
-        obligations or any other breach by the other party of any of its
-        obligations under the Terms and Conditions shall not be interpreted as a
-        waiver of the obligation in question or of any of the other provisions
-        contained in the Terms and Conditions. Similarly, any delay or failure
-        by either party to perform the rights and prerogatives granted to them
-        under these Terms and Conditions shall not be interpreted as a waiver of
-        these rights and prerogatives. 14.3 – Contractual documents These Terms
-        and Conditions constitute a full and exclusive whole of the terms of the
-        agreement entered into between MTGINTERFACE and the MERCHANT. 14.4 –
-        Partial non-validity In the event that any of the Terms and Conditions
-        clauses are declared null and void, this clause shall be deemed not to
-        have been written. This shall not lead to the cancellation of the Terms
-        and Conditions in their entirety. In the event that the customer has
-        signed several Terms and Conditions in different countries, Terms and
-        Conditions as signed in the customer’s local country will prevail.
+        En cas de litige sur l'utilisation du SERVICE, le VENDEUR et
+        MTGINTERFACE conviennent que le les données enregistrées sur les
+        équipements MTGINTERFACE et notamment l'utilisation des noms
+        d'utilisateur et mots de passe privés du VENDEUR constituent une preuve
+        valide entre les parties. Il est explicitement convenu que toutes les
+        informations concernant le VENDEUR, notamment les données enregistrées
+        et les statistiques seront conservées et archivées par MTGINTERFACE à
+        des fins probantes.
+      </p>
+      <p>
+        Les présentes conditions d'utilisation donnent l'intégralité obligations
+        des parties. Le fait que l'une ou l'autre des parties ne prenne avantage
+        de toute lacune ou de tout manquement à l'exécution de l'une de ses
+        obligations ou toute autre violation par l'autre partie de l'une de ses
+        les obligations envers les conditions d'utilisation ne sauraient être
+        interprétées comme une renonciation à l'obligation en question ou à
+        l'une des autres dispositions contenues dans les conditions
+        d'utilisation. De même, tout retard ou échec par l'une ou l'autre des
+        parties pour exercer les droits et prérogatives qui leur sont accordés
+        en vertu des présentes conditions d'utilisation ne doit pas être
+        interprété comme une renonciation à ces droits et prérogatives.
+      </p>
+      <p>
+        Les présentes conditions d'utilisation constituent un ensemble complet
+        et exclusif des termes de l'accord conclu entre MTGINTERFACE et le
+        VENDEUR.
+      </p>
+      <p>
+        Dans le cas où l'une ou plusieurs des clauses des présentes conditions
+        d'utilisation seraientt déclarées nulles et non avenues, cette clause
+        sera considérée comem non écrite. Cela n'entraînera pas l'annulation des
+        conditions d'utilisation dans leur intégralité.
       </p>
       <h2>14.6 – Applicable law</h2>
       <p>
@@ -254,6 +227,39 @@ const TermsOfUse = () => {
         résoudre à l'amiable sera jugé par les tribunaux de Paris.
       </p>
       {/* EN */}
+      <p>
+        MTGINTERFACE offers a web service (hereinafter referred to as the «
+        SERVICE ») aimed at helping professional merchants, be they private
+        individuals or legal entities, (hereinafter referred to as the «
+        MERCHANT(S) ») who wish to optimise the price of items they are offering
+        for sale on the Magic Card Market Marketplace platform
+        (https://www.cardmarket.com/en/Magic).The terms and conditions of this
+        SERVICE are set out in these Terms and Conditions.
+      </p>
+      <p>
+        Details regarding the MTGINTERFACE company are as follows: Tél : +336 13
+        64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place
+        Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038
+      </p>
+      <p>
+        You may use the SERVICE only if you are 18 years or older and capable of
+        forming a binding contract with MTGINTERFACE, and not otherwise barred
+        from using the SERVICE under applicable law. If you are accessing and
+        using the SERVICE on behalf of a company (such as your employer) or
+        other legal entity, you represent and warrant that you have the
+        authority to bind that entity to these Terms. In that case, “you” and
+        “your” will refer to that entity.
+      </p>
+      <p>
+        At the end of the initial subscription period, the Terms and Conditions
+        shall NOT be renewed automatically by tacit agreement. 6.2 –
+        Cancellation In the event that the MERCHANT fails to perform some or all
+        of their obligations under these Terms and Conditions, MTGINTERFACE may
+        cancel these Terms and Conditions as of right and at any time, with or
+        without formal notice being made to the MERCHANT to fulfil their
+        obligations. MTGINTERFACE shall send any formal notice by any means of
+        its choice, including by simple electronic mail (e-mail).
+      </p>
       <p>
         <h3>Principle</h3>
         <ul>
