@@ -8,8 +8,8 @@ const TermsOfUse = () => {
       {/* FR */}
       <p>
         MTGINTERFACE offre un service web (ci-après nommé le « SERVICE »)
-        destiné à aider les profesionnels marchands, qu'ils soient privés ou via
-        leur entité légale, (ci-après nommé le « MARCHAND(S) ») qui veulent
+        destiné à aider les vendeurs profesionnels, qu'ils soient privés ou via
+        leur entité légale, (ci-après nommé le « VENDEUR(S) ») qui veulent
         optimiser les prix de leurs produits à vendresur la place de marché the
         Magic Card Market Marketplace (https://www.cardmarket.com/en/Magic). Les
         conditions d'utilisation du SERVICE sont précisés dans ces conditions
@@ -36,7 +36,6 @@ const TermsOfUse = () => {
         64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place
         Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038
       </p>
-
       <h2>Agreement</h2>
       <h2>NECESSARY CONDITIONS FOR SUBSCRIBING TO THE SERVICE</h2>
       <p>
@@ -58,20 +57,22 @@ const TermsOfUse = () => {
         authority to bind that entity to these Terms. In that case, “you” and
         “your” will refer to that entity.
       </p>
-
       <h2>Duration / Termination / Cancellation</h2>
-      {/* FR */}
+
       <p>
-        At the end of the initial subscription period, the Terms and Conditions
-        shall NOT be renewed automatically by tacit agreement. 6.2 –
-        Cancellation In the event that the MERCHANT fails to perform some or all
-        of their obligations under these Terms and Conditions, MTGINTERFACE may
-        cancel these Terms and Conditions as of right and at any time, with or
-        without formal notice being made to the MERCHANT to fulfil their
-        obligations. MTGINTERFACE shall send any formal notice by any means of
-        its choice, including by simple electronic mail (e-mail).
+        Durée A la fin de la période d'abonnement, l'abonnement n'est PAS
+        renouvelé tacitement.
       </p>
-      {/* EN */}
+      <h3>Annulation</h3>
+      <p>
+        Dans le cas où un VENDEUR ne respecterait pas une ou plusieurs de ses
+        obligations selon ces conditions d'utilisation, MTGINTERFACE se réserve
+        le droit d'annuler ces conditions d'utilisations à tout moment, avec ou
+        sans avis formel pour prévenir le VENDEUR de remplir ses obligations.
+        MTGINTERFACE pourra envoyer un avis formel par le biais de son choix,
+        notamment un simple message éléctronique (e-mail).
+      </p>
+
       <p>
         At the end of the initial subscription period, the Terms and Conditions
         shall NOT be renewed automatically by tacit agreement. 6.2 –
@@ -84,79 +85,218 @@ const TermsOfUse = () => {
       </p>
       <h2>LIABILITY</h2>
       <p>
-        9.1 – Principle a/ The MERCHANT explicitly acknowledges and agrees that
-        MTGINTERFACE has a simple due care obligation for all its obligations
-        arising from the Terms and Conditions. b/ Except in the event of proven
-        gross or intentional misconduct, the overall liability of MTGINTERFACE
-        to the MERCHANT by virtue of these Terms and Conditions, irrespective of
-        the legal grounds may not, if applicable, exceed the amounts already
-        paid by the MERCHANT for their last monthly payment. Furthermore, the
-        MERCHANT may not claim any compensation in this regard if a claim is not
-        made by registered post with return receipt sent to MTGINTERFACE within
-        one (1) week as of the date when the underlying event happens. c/ The
-        MERCHANT explicitly agrees that MTGINTERFACE and/or its representatives
-        have only limited liability (in accordance with article 10.1 /b above)
-        to it for (1) any indirect damages arising through the poor performance
-        or non-performance by MTGINTERFACE of its obligations by virtue of this
-        document resulting in, but not limited to, any losses of profits or
-        income and/or any damage arising from the impossibility of using all or
-        part of the SERVICE, interruptions to business or other, even if
-        MTGINTERFACE or its representatives have been informed of the
-        possibility of such damage, (2) any service or assistance no
-        specifically included in these Terms and Conditions, (3) any damages
-        arising, directly or indirectly, from the inaccuracy of the information
-        coming from the use of the SERVICE. d/ The MERCHANT acknowledges that
-        they alone are responsible for the information they hold and/or own, as
-        well as that arising from the use of the SERVICE, and assume sole
-        responsibility for keeping such information. e/ The MERCHANT
-        acknowledges that it alone is responsible for forecasting and
-        calculating any damage it is liable to suffer in the event of any
-        problem arising in the performance of the Terms and Conditions whose
-        terms (including financial measures) have been set with regard to the
-        liability limitations and exemptions enjoyed by MTGINTERFACE. As a
-        consequence, the MERCHANT acknowledges and accepts that it is their own
-        responsibility to insure themselves against all risks and that they
-        alone deem appropriate with regard to their own individual situation and
-        under the terms of the Terms and Conditions. f/ All sales made by the
-        merchant on the AMAZON platform, particularly where MTGINTERFACE puts
-        optimum prices online on the MERCHANT’s behalf as part of the role with
-        which the latter has entrusted it in Article 4, are made directly
-        between the merchant and the buyers on AMAZON. As a consequence, (i)
-        MTGINTERFACE is under no circumstances a contractual party to agreements
-        signed between the MERCHANT and the buyers on AMAZON, and (ii) The
-        merchant undertakes to respect the applicable legislative and regulatory
-        provisions and particularly those aimed at consumer protection and mail
-        order sales. 9.2 – Reliance on AMAZON third party technology a/ The
-        MERCHANT explicitly acknowledges that it is aware of and agrees to: –
-        the SERVICE relying on « web service » technology developed by AMAZON
-        and made available to Marketplace merchants. The MERCHANT undertakes
-        only to use information obtained thanks to the SERVICE with the aim of
-        optimising their prices on AMAZON, in accordance with these General
-        Conditions and with the provisions of the Terms and Conditions and the
-        AMAZON Marketplace and Seller Central Participation Agreements. – some
-        changes made by AMAZON could render the SERVICE obsolete, independently
-        of the monitoring and the desires of MTGINTERFACE, and that this latter
-        may under no circumstances be held responsible for developments governed
-        by AMAZON and their consequences, whether they arise with or without
-        warning and irrespective of the consequences of these changes. b/
-        MTGINTERFACE acquits itself of all responsibility as to the integrity,
-        exhaustiveness, precision, accuracy, and updating of information and
-        data provided by the SERVICE depending on AMAZON and its software and
-        databases. MTGINTERFACE holds no intellectual property or other rights
-        over AMAZON information and data. This information and data remain the
-        exclusive property of AMAZON, as is explicitly acknowledged by the
-        MERCHANT, who shall take this into account in their usage. c/
-        MTGINTERFACE shall make every effort available to it to make sure the
-        SERVICE provides the most up-to-date possible information. However, the
-        MERCHANT explicitly acknowledges and agrees that: – the information
-        relating to prices are by their very nature volatile, and therefore that
-        the optimum prices proposed as part of this SERVICE may no longer be up
-        to date when the MERCHANT puts their prices online on Amazon; – by
-        clicking on the « Send to Amazon » button, the MERCHANT takes
-        responsibility for the prices the put online The abovementioned
-        guarantee and liability limitations constitute essential and overriding
-        factors of the TERMS AND Conditions between MTGINTERFACE and the
-        MERCHANT.
+        {/* FR */}
+        <h3>Principle</h3>
+        <ul>
+          <li>
+            a/ The MERCHANT explicitly acknowledges and agrees that MTGINTERFACE
+            has a simple due care obligation for all its obligations arising
+            from the Terms and Conditions.
+          </li>
+          <li>
+            b/ Except in the event of proven gross or intentional misconduct,
+            the overall liability of MTGINTERFACE to the MERCHANT by virtue of
+            these Terms and Conditions, irrespective of the legal grounds may
+            not, if applicable, exceed the amounts already paid by the MERCHANT
+            for their last monthly payment. Furthermore, the MERCHANT may not
+            claim any compensation in this regard if a claim is not made by
+            registered post with return receipt sent to MTGINTERFACE within one
+            (1) week as of the date when the underlying event happens.
+          </li>
+          <li>
+            c/ The MERCHANT explicitly agrees that MTGINTERFACE and/or its
+            representatives have only limited liability (in accordance with
+            article 10.1 /b above) to it for (1) any indirect damages arising
+            through the poor performance or non-performance by MTGINTERFACE of
+            its obligations by virtue of this document resulting in, but not
+            limited to, any losses of profits or income and/or any damage
+            arising from the impossibility of using all or part of the SERVICE,
+            interruptions to business or other, even if MTGINTERFACE or its
+            representatives have been informed of the possibility of such
+            damage, (2) any service or assistance no specifically included in
+            these Terms and Conditions, (3) any damages arising, directly or
+            indirectly, from the inaccuracy of the information coming from the
+            use of the SERVICE.
+          </li>
+          <li>
+            d/ The MERCHANT acknowledges that they alone are responsible for the
+            information they hold and/or own, as well as that arising from the
+            use of the SERVICE, and assume sole responsibility for keeping such
+            information.
+          </li>
+          <li>
+            e/ The MERCHANT acknowledges that it alone is responsible for
+            forecasting and calculating any damage it is liable to suffer in the
+            event of any problem arising in the performance of the Terms and
+            Conditions whose terms (including financial measures) have been set
+            with regard to the liability limitations and exemptions enjoyed by
+            MTGINTERFACE. As a consequence, the MERCHANT acknowledges and
+            accepts that it is their own responsibility to insure themselves
+            against all risks and that they alone deem appropriate with regard
+            to their own individual situation and under the terms of the Terms
+            and Conditions.
+          </li>
+          <li>
+            f/ All sales made by the merchant on the AMAZON platform,
+            particularly where MTGINTERFACE puts optimum prices online on the
+            MERCHANT’s behalf as part of the role with which the latter has
+            entrusted it in Article 4, are made directly between the merchant
+            and the buyers on AMAZON. As a consequence, (i) MTGINTERFACE is
+            under no circumstances a contractual party to agreements signed
+            between the MERCHANT and the buyers on AMAZON, and (ii) The merchant
+            undertakes to respect the applicable legislative and regulatory
+            provisions and particularly those aimed at consumer protection and
+            mail order sales.
+          </li>
+        </ul>
+        <h3>9.2 – Reliance on AMAZON third party technology</h3>
+        <ul>
+          <li>
+            a/ The MERCHANT explicitly acknowledges that it is aware of and
+            agrees to: – the SERVICE relying on « web service » technology
+            developed by AMAZON and made available to Marketplace merchants. The
+            MERCHANT undertakes only to use information obtained thanks to the
+            SERVICE with the aim of optimising their prices on AMAZON, in
+            accordance with these General Conditions and with the provisions of
+            the Terms and Conditions and the AMAZON Marketplace and Seller
+            Central Participation Agreements. – some changes made by AMAZON
+            could render the SERVICE obsolete, independently of the monitoring
+            and the desires of MTGINTERFACE, and that this latter may under no
+            circumstances be held responsible for developments governed by
+            AMAZON and their consequences, whether they arise with or without
+            warning and irrespective of the consequences of these changes.
+          </li>
+          <li>
+            b/ MTGINTERFACE acquits itself of all responsibility as to the
+            integrity, exhaustiveness, precision, accuracy, and updating of
+            information and data provided by the SERVICE depending on AMAZON and
+            its software and databases. MTGINTERFACE holds no intellectual
+            property or other rights over AMAZON information and data. This
+            information and data remain the exclusive property of AMAZON, as is
+            explicitly acknowledged by the MERCHANT, who shall take this into
+            account in their usage.
+          </li>
+          <li>
+            c/ MTGINTERFACE shall make every effort available to it to make sure
+            the SERVICE provides the most up-to-date possible information.
+            However, the MERCHANT explicitly acknowledges and agrees that: – the
+            information relating to prices are by their very nature volatile,
+            and therefore that the optimum prices proposed as part of this
+            SERVICE may no longer be up to date when the MERCHANT puts their
+            prices online on Amazon; – by clicking on the « Send to Amazon »
+            button, the MERCHANT takes responsibility for the prices the put
+            online The abovementioned guarantee and liability limitations
+            constitute essential and overriding factors of the TERMS AND
+            Conditions between MTGINTERFACE and the MERCHANT.
+          </li>
+        </ul>
+      </p>
+      {/* EN */}
+      <p>
+        <h3>Principle</h3>
+        <ul>
+          <li>
+            a/ The MERCHANT explicitly acknowledges and agrees that MTGINTERFACE
+            has a simple due care obligation for all its obligations arising
+            from the Terms and Conditions.
+          </li>
+          <li>
+            b/ Except in the event of proven gross or intentional misconduct,
+            the overall liability of MTGINTERFACE to the MERCHANT by virtue of
+            these Terms and Conditions, irrespective of the legal grounds may
+            not, if applicable, exceed the amounts already paid by the MERCHANT
+            for their last monthly payment. Furthermore, the MERCHANT may not
+            claim any compensation in this regard if a claim is not made by
+            registered post with return receipt sent to MTGINTERFACE within one
+            (1) week as of the date when the underlying event happens.
+          </li>
+          <li>
+            c/ The MERCHANT explicitly agrees that MTGINTERFACE and/or its
+            representatives have only limited liability (in accordance with
+            article 10.1 /b above) to it for (1) any indirect damages arising
+            through the poor performance or non-performance by MTGINTERFACE of
+            its obligations by virtue of this document resulting in, but not
+            limited to, any losses of profits or income and/or any damage
+            arising from the impossibility of using all or part of the SERVICE,
+            interruptions to business or other, even if MTGINTERFACE or its
+            representatives have been informed of the possibility of such
+            damage, (2) any service or assistance no specifically included in
+            these Terms and Conditions, (3) any damages arising, directly or
+            indirectly, from the inaccuracy of the information coming from the
+            use of the SERVICE.
+          </li>
+          <li>
+            d/ The MERCHANT acknowledges that they alone are responsible for the
+            information they hold and/or own, as well as that arising from the
+            use of the SERVICE, and assume sole responsibility for keeping such
+            information.
+          </li>
+          <li>
+            e/ The MERCHANT acknowledges that it alone is responsible for
+            forecasting and calculating any damage it is liable to suffer in the
+            event of any problem arising in the performance of the Terms and
+            Conditions whose terms (including financial measures) have been set
+            with regard to the liability limitations and exemptions enjoyed by
+            MTGINTERFACE. As a consequence, the MERCHANT acknowledges and
+            accepts that it is their own responsibility to insure themselves
+            against all risks and that they alone deem appropriate with regard
+            to their own individual situation and under the terms of the Terms
+            and Conditions.
+          </li>
+          <li>
+            f/ All sales made by the merchant on the AMAZON platform,
+            particularly where MTGINTERFACE puts optimum prices online on the
+            MERCHANT’s behalf as part of the role with which the latter has
+            entrusted it in Article 4, are made directly between the merchant
+            and the buyers on AMAZON. As a consequence, (i) MTGINTERFACE is
+            under no circumstances a contractual party to agreements signed
+            between the MERCHANT and the buyers on AMAZON, and (ii) The merchant
+            undertakes to respect the applicable legislative and regulatory
+            provisions and particularly those aimed at consumer protection and
+            mail order sales.
+          </li>
+        </ul>
+        <h3>9.2 – Reliance on AMAZON third party technology</h3>
+        <ul>
+          <li>
+            a/ The MERCHANT explicitly acknowledges that it is aware of and
+            agrees to: – the SERVICE relying on « web service » technology
+            developed by AMAZON and made available to Marketplace merchants. The
+            MERCHANT undertakes only to use information obtained thanks to the
+            SERVICE with the aim of optimising their prices on AMAZON, in
+            accordance with these General Conditions and with the provisions of
+            the Terms and Conditions and the AMAZON Marketplace and Seller
+            Central Participation Agreements. – some changes made by AMAZON
+            could render the SERVICE obsolete, independently of the monitoring
+            and the desires of MTGINTERFACE, and that this latter may under no
+            circumstances be held responsible for developments governed by
+            AMAZON and their consequences, whether they arise with or without
+            warning and irrespective of the consequences of these changes.
+          </li>
+          <li>
+            b/ MTGINTERFACE acquits itself of all responsibility as to the
+            integrity, exhaustiveness, precision, accuracy, and updating of
+            information and data provided by the SERVICE depending on AMAZON and
+            its software and databases. MTGINTERFACE holds no intellectual
+            property or other rights over AMAZON information and data. This
+            information and data remain the exclusive property of AMAZON, as is
+            explicitly acknowledged by the MERCHANT, who shall take this into
+            account in their usage.
+          </li>
+          <li>
+            c/ MTGINTERFACE shall make every effort available to it to make sure
+            the SERVICE provides the most up-to-date possible information.
+            However, the MERCHANT explicitly acknowledges and agrees that: – the
+            information relating to prices are by their very nature volatile,
+            and therefore that the optimum prices proposed as part of this
+            SERVICE may no longer be up to date when the MERCHANT puts their
+            prices online on Amazon; – by clicking on the « Send to Amazon »
+            button, the MERCHANT takes responsibility for the prices the put
+            online The abovementioned guarantee and liability limitations
+            constitute essential and overriding factors of the TERMS AND
+            Conditions between MTGINTERFACE and the MERCHANT.
+          </li>
+        </ul>
       </p>
       <h2>ARTICLE 10 – FORCE MAJEURE</h2>
       <p>
