@@ -96,7 +96,7 @@ const Subscribe = () => {
 
           <div className="planSubscribing">
             <p className="price">
-              <span className="number">49</span>
+              <span className="number">39</span>
               <span className="currency">€</span>
             </p>
             <p className="explaination">
