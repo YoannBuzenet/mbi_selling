@@ -11,9 +11,9 @@ const TermsOfUse = () => {
         destiné à aider les vendeurs profesionnels, qu'ils soient privés ou via
         leur entité légale, (ci-après nommé le « VENDEUR(S) ») qui veulent
         optimiser les prix de leurs produits à vendresur la place de marché the
-        Magic Card Market Marketplace (https://www.cardmarket.com/en/Magic). Les
-        conditions d'utilisation du SERVICE sont précisés dans ces conditions
-        d'utilisation.
+        Magic Card Market Marketplace (https://www.cardmarket.com/en/Magic)
+        (ci-après nommé la « PLATEFORME »). Les conditions d'utilisation du
+        SERVICE sont précisés dans ces conditions d'utilisation.
       </p>
       <p>
         Les informations légales regardant l'entreprise MTGINTERFACE sont les
@@ -121,35 +121,36 @@ const TermsOfUse = () => {
           </li>
           <li>
             d / Le VENDEUR reconnaît être seul responsable des informations
-            qu'ils détient et / ou possède, ainsi que celles découlant de la
-            utilisation du SERVICE, et assume l'entière responsabilité de
+            qu'ils détient et / ou possède, ainsi que celles découlant de
+            l'utilisation du SERVICE, et assume l'entière responsabilité de
             conserver cette information.
           </li>
           <li>
-            e/ The MERCHANT acknowledges that it alone is responsible for
-            forecasting and calculating any damage it is liable to suffer in the
-            event of any problem arising in the performance of the Terms and
-            Conditions whose terms (including financial measures) have been set
-            with regard to the liability limitations and exemptions enjoyed by
-            MTGINTERFACE. As a consequence, the MERCHANT acknowledges and
-            accepts that it is their own responsibility to insure themselves
-            against all risks and that they alone deem appropriate with regard
-            to their own individual situation and under the terms of the Terms
-            and Conditions.
+            e / Le VENDEUR reconnaît être seul responsable de prévoir et de
+            calculer les dommages qu'il est susceptible de subir en cas de
+            problème survenant dans l'exécution des conditions d'utilisation
+            dont les conditions (y compris les mesures financières) ont été
+            fixées en ce qui concerne les limitations de responsabilité et les
+            exemptions dont bénéficie MTGINTERFACE. En conséquence, le VENDEUR
+            reconnaît et accepte qu'il est de sa propre responsabilité de
+            s'assurer contre tous les risques et qu’il en est le seul juge au
+            regard de sa propre situation individuelle et selon les termes des
+            conditions d'utilisation.
           </li>
           <li>
-            f/ All sales made by the merchant on the AMAZON platform,
-            particularly where MTGINTERFACE puts optimum prices online on the
-            MERCHANT’s behalf as part of the role with which the latter has
-            entrusted it in Article 4, are made directly between the merchant
-            and the buyers on AMAZON. As a consequence, (i) MTGINTERFACE is
-            under no circumstances a contractual party to agreements signed
-            between the MERCHANT and the buyers on AMAZON, and (ii) The merchant
-            undertakes to respect the applicable legislative and regulatory
-            provisions and particularly those aimed at consumer protection and
-            mail order sales.
+            f / Toutes les ventes réalisées par le commerçant sur la PLATEFORME,
+            en particulier là où MTGINTERFACE met en ligne des prix optimaux sur
+            les produits du VENDEUR dans le cadre du rôle avec lequel ce dernier
+            a confiée à l'article XX, se font directement entre le commerçant et
+            les acheteurs sur la PLATEFORME. En conséquence, MTGINTERFACE est en
+            aucun cas une partie contractuelle aux accords signés entre le
+            MARCHAND et les acheteurs sur la PLATEFORME, et le VENDEUR s'engage
+            à respecter les dispositions législatives et réglementaires
+            applicables dispositions et notamment celles visant la protection
+            des consommateurs et vente par correspondance.
           </li>
         </ul>
+        {/* Là */}
         <h3>9.2 – Reliance on AMAZON third party technology</h3>
         <ul>
           <li>
