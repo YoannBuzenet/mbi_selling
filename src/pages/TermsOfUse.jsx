@@ -141,57 +141,118 @@ const TermsOfUse = () => {
             f / Toutes les ventes réalisées par le commerçant sur la PLATEFORME,
             en particulier là où MTGINTERFACE met en ligne des prix optimaux sur
             les produits du VENDEUR dans le cadre du rôle avec lequel ce dernier
-            a confiée à l'article XX, se font directement entre le commerçant et
-            les acheteurs sur la PLATEFORME. En conséquence, MTGINTERFACE est en
-            aucun cas une partie contractuelle aux accords signés entre le
+            a confiée à l'article XXXXX, se font directement entre le commerçant
+            et les acheteurs sur la PLATEFORME. En conséquence, MTGINTERFACE est
+            en aucun cas une partie contractuelle aux accords signés entre le
             MARCHAND et les acheteurs sur la PLATEFORME, et le VENDEUR s'engage
             à respecter les dispositions législatives et réglementaires
             applicables dispositions et notamment celles visant la protection
             des consommateurs et vente par correspondance.
           </li>
         </ul>
-        {/* Là */}
         <h3>9.2 – Reliance on AMAZON third party technology</h3>
         <ul>
           <li>
-            a/ The MERCHANT explicitly acknowledges that it is aware of and
-            agrees to: – the SERVICE relying on « web service » technology
-            developed by AMAZON and made available to Marketplace merchants. The
-            MERCHANT undertakes only to use information obtained thanks to the
-            SERVICE with the aim of optimising their prices on AMAZON, in
-            accordance with these General Conditions and with the provisions of
-            the Terms and Conditions and the AMAZON Marketplace and Seller
-            Central Participation Agreements. – some changes made by AMAZON
-            could render the SERVICE obsolete, independently of the monitoring
-            and the desires of MTGINTERFACE, and that this latter may under no
-            circumstances be held responsible for developments governed by
-            AMAZON and their consequences, whether they arise with or without
-            warning and irrespective of the consequences of these changes.
+            a / Le VENDEUR reconnaît explicitement qu'il a connaissance et
+            reconnait que : - le SERVICE reposant sur la technologie «API»
+            développée par la PLATEFORME et mise à disposition des marchands de
+            la PLATEFORME. Le VENDEUR s'engage à n'utiliser que les informations
+            obtenues grâce au SERVICE dans le but d'optimiser ses prix sur la
+            PLATEFORME, en conformément aux présentes conditions d'utilisation
+            et aux dispositions des conditions générales de la PLATEFORME. -
+            certaines modifications apportées par la PLATEFORME pourraient
+            rendre le SERVICE obsolète, indépendamment de la surveillance et de
+            la désirs de MTGINTERFACE, et que cette dernière ne peut sous aucun
+            circonstances être tenue responsable des développements régis par la
+            PLATEFORME et leurs conséquences, qu'elles surviennent avec ou sans
+            avertissement et indépendamment des conséquences de ces changements.
           </li>
           <li>
-            b/ MTGINTERFACE acquits itself of all responsibility as to the
-            integrity, exhaustiveness, precision, accuracy, and updating of
-            information and data provided by the SERVICE depending on AMAZON and
-            its software and databases. MTGINTERFACE holds no intellectual
-            property or other rights over AMAZON information and data. This
-            information and data remain the exclusive property of AMAZON, as is
-            explicitly acknowledged by the MERCHANT, who shall take this into
-            account in their usage.
+            b / MTGINTERFACE décline toute responsabilité quant à l'intégrité,
+            l'exhaustivité, la précision, l'exactitude et la mise à jour des
+            informations et données fournies par le SERVICE par le biais de la
+            PLATEFORME et ses logiciels et ses bases de données. MTGINTERFACE ne
+            détient aucune propriété intellectuelle ou autres droits sur les
+            informations et les données de la PLATEFORME. Les informations et
+            données restent la propriété exclusive de la PLATEFORME, en l'état
+            explicitement reconnu par le VENDEUR, qui en tiendra compte compte
+            dans leur utilisation.
           </li>
           <li>
-            c/ MTGINTERFACE shall make every effort available to it to make sure
-            the SERVICE provides the most up-to-date possible information.
-            However, the MERCHANT explicitly acknowledges and agrees that: – the
-            information relating to prices are by their very nature volatile,
-            and therefore that the optimum prices proposed as part of this
-            SERVICE may no longer be up to date when the MERCHANT puts their
-            prices online on Amazon; – by clicking on the « Send to Amazon »
-            button, the MERCHANT takes responsibility for the prices the put
-            online The abovementioned guarantee and liability limitations
-            constitute essential and overriding factors of the TERMS AND
-            Conditions between MTGINTERFACE and the MERCHANT.
+            c / MTGINTERFACE mettra tout en œuvre pour s'assurer que le SERVICE
+            fournit les informations les plus récentes possibles. Cependant, le
+            VENDEUR reconnaît et accepte explicitement que: - le les
+            informations relatives aux prix sont de par leur nature volatiles,
+            et donc que les prix optimaux proposés dans le cadre de du SERVICE
+            peuvent ne plus être à jour lorsque le VENDEUR met son prix en ligne
+            sur la PLATEFORME; - en cliquant sur le bouton «Lancer le Scrupt» ,
+            le VENDEUR assume la responsabilité des prix de vente en ligne. La
+            garantie et les limitations de responsabilité susmentionnées
+            constituent des facteurs essentiels et primordiaux des conditions
+            d'utilisation entre MTGINTERFACE et le VENDEUR.
           </li>
         </ul>
+      </p>
+
+      <h2>ARTICLE 10 – FORCE MAJEURE</h2>
+      <p>
+        Les événements de force majeure suspendront les obligations de
+        MTGINTERFACE et des VENDEURS concernant les conditions d'utilisation.
+        Cependant, si l'événement de force majeure se poursuit pendant plus de
+        deux (2) mois, chaque partie aura la possibilité de mettant fin aux CGV
+        par courrier recommandé avec accusé de réception envoyé à l'autre
+        partie.
+      </p>
+      <h2>Droit de rétractation</h2>
+      <p>
+        {/* là */}
+        En tant qu'utilisateur résidant dans un pays membre de l'Union
+        européenne, vous avez le droit de vous rétracter de tout achat effectué
+        sur MTGINTERFACE sans donner de motif.
+      </p>
+      <p>
+        Vous acceptez toutefois que votre droit de rétractation légal prenne fin
+        dans 14 jours ou dès que vous commencez l'éxécution d'un script, selon
+        ce qui se produit en premier. Pour toute démarche de remboursement,
+        merci de nous contacter à support@mtginterface.com.
+      </p>
+      <h2>ARTICLE 14- MISCELLANEOUS 14.1 </h2>
+      <p>
+        {" "}
+        Agreement on proof In the event of any disputes over the use of the
+        SERVICE and/or the SITE, the MERCHANT and MTGINTERFACE agree that the
+        data saved on MTGINTERFACE equipment and particularly the use of the
+        MERCHANT’s private usernames and passwords shall constitute valid proof
+        between the parties. It is explicitly agreed that all the technical
+        information regarding the MERCHANT, particularly saved data and
+        statistics will be kept and archived by MTGINTERFACE for probative
+        reasons. 14.2 – Comprehensiveness These Terms and Conditions give the
+        full obligations of the parties. The fact that either party does not
+        take advantage of any shortcoming or any failure to perform any of its
+        obligations or any other breach by the other party of any of its
+        obligations under the Terms and Conditions shall not be interpreted as a
+        waiver of the obligation in question or of any of the other provisions
+        contained in the Terms and Conditions. Similarly, any delay or failure
+        by either party to perform the rights and prerogatives granted to them
+        under these Terms and Conditions shall not be interpreted as a waiver of
+        these rights and prerogatives. 14.3 – Contractual documents These Terms
+        and Conditions constitute a full and exclusive whole of the terms of the
+        agreement entered into between MTGINTERFACE and the MERCHANT. 14.4 –
+        Partial non-validity In the event that any of the Terms and Conditions
+        clauses are declared null and void, this clause shall be deemed not to
+        have been written. This shall not lead to the cancellation of the Terms
+        and Conditions in their entirety. In the event that the customer has
+        signed several Terms and Conditions in different countries, Terms and
+        Conditions as signed in the customer’s local country will prevail.
+      </p>
+      <h2>14.6 – Applicable law</h2>
+      <p>
+        Competent jurisdiction These Terms and Conditions are subject to
+        signature, interpretation and performance under French law. Any dispute
+        between SELLERMANIA and the MERCHANT relating to the existence,
+        validity, interpretation or performance of the Terms and Conditions or
+        of any of their clauses that the parties are unable to resolve amicably
+        shall be ruled by the Paris courts.
       </p>
       {/* EN */}
       <p>
