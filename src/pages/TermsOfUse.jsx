@@ -86,43 +86,44 @@ const TermsOfUse = () => {
       <h2>LIABILITY</h2>
       <p>
         {/* FR */}
-        <h3>Principle</h3>
+        <h3>Principes</h3>
         <ul>
           <li>
-            a/ The MERCHANT explicitly acknowledges and agrees that MTGINTERFACE
-            has a simple due care obligation for all its obligations arising
-            from the Terms and Conditions.
+            a/ Le VENDEUR reconnait explicitement et est d'accord avec le fait
+            que MTGINTERFACE a une simple obligation de moyens concernant ces
+            conditions d'utilisation.
           </li>
           <li>
-            b/ Except in the event of proven gross or intentional misconduct,
-            the overall liability of MTGINTERFACE to the MERCHANT by virtue of
-            these Terms and Conditions, irrespective of the legal grounds may
-            not, if applicable, exceed the amounts already paid by the MERCHANT
-            for their last monthly payment. Furthermore, the MERCHANT may not
-            claim any compensation in this regard if a claim is not made by
-            registered post with return receipt sent to MTGINTERFACE within one
-            (1) week as of the date when the underlying event happens.
+            /b Sauf en cas de faute grave ou intentionnelle avérée, la
+            responsabilité globale de MTGINTERFACE envers le VENDEUR en vertu de
+            ces conditions d'utilisation, quels que soient les motifs
+            juridiques, peuvent ne pas, le cas échéant, dépasser les montants
+            déjà payés par le VENDEUR pour leur dernier paiement mensuel. En
+            outre, le VENDEUR ne peut réclamer une indemnité à cet égard si une
+            réclamation n'est pas faite par courrier recommandé avec accusé de
+            réception envoyé à MTGINTERFACE dans un délai d'un (1) semaine à
+            compter de la date à laquelle l'événement sous-jacent se produit.
           </li>
           <li>
-            c/ The MERCHANT explicitly agrees that MTGINTERFACE and/or its
-            representatives have only limited liability (in accordance with
-            article 10.1 /b above) to it for (1) any indirect damages arising
-            through the poor performance or non-performance by MTGINTERFACE of
-            its obligations by virtue of this document resulting in, but not
-            limited to, any losses of profits or income and/or any damage
-            arising from the impossibility of using all or part of the SERVICE,
-            interruptions to business or other, even if MTGINTERFACE or its
-            representatives have been informed of the possibility of such
-            damage, (2) any service or assistance no specifically included in
-            these Terms and Conditions, (3) any damages arising, directly or
-            indirectly, from the inaccuracy of the information coming from the
-            use of the SERVICE.
+            c/ Le VENDEUR accepte explicitement que MTGINTERFACE et / ou ses les
+            représentants n'ont qu'une responsabilité limitée (conformément à
+            article XX/ b ci-dessus) pour (1) tout dommage indirect par la
+            mauvaise performance ou la non-performance de MTGINTERFACE de ses
+            obligations en vertu de ce document entraînant, mais non limité à,
+            toute perte de bénéfices ou de revenus et / ou tout dommage
+            résultant de l'impossibilité d'utiliser tout ou partie du SERVICE,
+            interruptions d'activité ou autre, même si MTGINTERFACE ou ses les
+            représentants ont été informés de la possibilité d'une telle
+            dommages, (2) tout service ou assistance non spécifiquement inclus
+            dans ces conditions d'utilisation, (3) tout dommage résultant,
+            directement ou indirectement, de l'inexactitude des informations
+            provenant du utilisation du SERVICE.
           </li>
           <li>
-            d/ The MERCHANT acknowledges that they alone are responsible for the
-            information they hold and/or own, as well as that arising from the
-            use of the SERVICE, and assume sole responsibility for keeping such
-            information.
+            d / Le VENDEUR reconnaît être seul responsable des informations
+            qu'ils détient et / ou possède, ainsi que celles découlant de la
+            utilisation du SERVICE, et assume l'entière responsabilité de
+            conserver cette information.
           </li>
           <li>
             e/ The MERCHANT acknowledges that it alone is responsible for
