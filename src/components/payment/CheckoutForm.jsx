@@ -153,10 +153,10 @@ const CheckoutForm = () => {
             id="app.modal.generalConditions.checkIn.firstPart"
             defaultMessage="I have read and accepted the "
           />
-          <a href="/general-sales-conditions" target="_blank">
+          <a href="/terms-of-use" target="_blank">
             <FormattedMessage
               id="app.modal.generalConditions.checkIn.SecondPartLink"
-              defaultMessage="Conditions of Sales."
+              defaultMessage="Terms of use."
             />
           </a>
         </div>

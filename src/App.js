@@ -32,7 +32,7 @@ import PaymentDivContext from "./context/paymentModalContext";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Subscribe from "./pages/Subscribe";
-import GeneralSalesConditions from "./pages/GeneralSalesConditions";
+import TermsOfUse from "./pages/TermsOfUse";
 
 //Components
 import LoggedRouteRender from "./components/LoggedRouteRender";
@@ -423,8 +423,8 @@ function App() {
 
                             <Route path="/subscribe" component={Subscribe} />
                             <Route
-                              path="/general-sales-conditions"
-                              component={GeneralSalesConditions}
+                              path="/terms-of-use"
+                              component={TermsOfUse}
                             />
 
                             <Route
