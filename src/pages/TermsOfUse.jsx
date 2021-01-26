@@ -16,11 +16,10 @@ const TermsOfUse = () => {
         d'utilisation.
       </p>
       <p>
-        {/* là */}
-        Details regarding the MTGINTERFACE company are as follows: Tél : (33)
-        01.79.75.53.00 – Société MTGINTERFACE – Siège social : 10 rue de
-        Penthièvre – 75008 Paris (France) – Société Anonyme au capital de 78 347
-        euros – Immatriculée au RCS Nanterre sous le numéro 483.181.483
+        Les informations légales regardant l'entreprise MTGINTERFACE sont les
+        suivants : tél : +336 13 64 92 72 - Micro Entreprise MTGINTERFACE -
+        Siège social : 9 Rue place Maréchal Foch, 56700 Hennebont, SIREN 804 965
+        101 00038
       </p>
       {/* EN */}
       <p>
@@ -33,34 +32,46 @@ const TermsOfUse = () => {
         SERVICE are set out in these Terms and Conditions.
       </p>
       <p>
-        Details regarding the MTGINTERFACE company are as follows: Tél : (33)
-        01.79.75.53.00 – Société MTGINTERFACE – Siège social : 10 rue de
-        Penthièvre – 75008 Paris (France) – Société Anonyme au capital de 78 347
-        euros – Immatriculée au RCS Nanterre sous le numéro 483.181.483
+        Details regarding the MTGINTERFACE company are as follows: Tél : +336 13
+        64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place
+        Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038
       </p>
+
       <h2>Agreement</h2>
-      <p>
-        By using our SERVICE, you agree to be bound by these Terms. If you do
-        not agree to be bound by these Terms, do not use the SERVICE. If you are
-        accessing and using the SERVICE on behalf of a company (such as your
-        employer) or other legal entity, you represent and warrant that you have
-        the authority to bind that entity to these Terms. In that case, “you”
-        and “your” will refer to that entity.
-      </p>
       <h2>NECESSARY CONDITIONS FOR SUBSCRIBING TO THE SERVICE</h2>
+      <p>
+        Vous pouvez utiliser le SERVICE si et seulement si vous avez plus de 18
+        ans et êtes légalement apte de lier un contrat avec MTGINTERFACE, et pas
+        sous interdiction de contracter. Si vous accédez au SERVICE sur ordre de
+        votre entreprise (comme votre employeur par exemple) ou de toute autre
+        entité juridique, vous représentez cette entité et garantissez avoir
+        l'autorité et le droit légitime de lier contractuellement cette entité à
+        ces conditions d'utilisation. Dans ce cas, "vous" et "votre" feront
+        référence à cette entité.
+      </p>
       <p>
         You may use the SERVICE only if you are 18 years or older and capable of
         forming a binding contract with MTGINTERFACE, and not otherwise barred
-        from using the SERVICE under applicable law. For certain features of the
-        SERVICE you will need an account. It is important that you provide us
-        with accurate, complete and current account information and keep this
-        information up to date. If you don’t, we might have to suspend or
-        terminate your account. To protect your account, keep the account
-        details and password confidential, and notify us right away of any
-        unauthorized use. You are responsible for all activities that occur
-        under your account.
+        from using the SERVICE under applicable law. If you are accessing and
+        using the SERVICE on behalf of a company (such as your employer) or
+        other legal entity, you represent and warrant that you have the
+        authority to bind that entity to these Terms. In that case, “you” and
+        “your” will refer to that entity.
       </p>
+
       <h2>Duration / Termination / Cancellation</h2>
+      {/* FR */}
+      <p>
+        At the end of the initial subscription period, the Terms and Conditions
+        shall NOT be renewed automatically by tacit agreement. 6.2 –
+        Cancellation In the event that the MERCHANT fails to perform some or all
+        of their obligations under these Terms and Conditions, MTGINTERFACE may
+        cancel these Terms and Conditions as of right and at any time, with or
+        without formal notice being made to the MERCHANT to fulfil their
+        obligations. MTGINTERFACE shall send any formal notice by any means of
+        its choice, including by simple electronic mail (e-mail).
+      </p>
+      {/* EN */}
       <p>
         At the end of the initial subscription period, the Terms and Conditions
         shall NOT be renewed automatically by tacit agreement. 6.2 –
