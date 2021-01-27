@@ -3,9 +3,8 @@ import React from "react";
 const TermsOfUse = () => {
   return (
     <>
-      <h1>Terms of Use</h1>
-      <h2>Preambule</h2>
-      {/* FR */}
+      <h1>Conditions d'utilisation</h1>
+      <h2>Préambule</h2>
       <p>
         MTGINTERFACE offre un service web (ci-après nommé le « SERVICE »)
         destiné à aider les vendeurs profesionnels, qu'ils soient privés ou via
@@ -22,8 +21,7 @@ const TermsOfUse = () => {
         101 00038
       </p>
 
-      <h2>Agreement</h2>
-      <h2>NECESSARY CONDITIONS FOR SUBSCRIBING TO THE SERVICE</h2>
+      <h2>1. Conditions nécessaires pour accéder au SERVICE</h2>
       <p>
         Vous pouvez utiliser le SERVICE si et seulement si vous avez plus de 18
         ans et êtes légalement apte de lier un contrat avec MTGINTERFACE, et pas
@@ -35,10 +33,11 @@ const TermsOfUse = () => {
         référence à cette entité.
       </p>
 
-      <h2>Duration / Termination / Cancellation</h2>
+      <h2>2. Durée / Annulation</h2>
+      <h3>Durée</h3>
       <p>
-        Durée A la fin de la période d'abonnement, l'abonnement n'est PAS
-        renouvelé tacitement.
+        A la fin de la période d'abonnement, l'abonnement n'est PAS renouvelé
+        tacitement.
       </p>
       <h3>Annulation</h3>
       <p>
@@ -50,7 +49,7 @@ const TermsOfUse = () => {
         notamment un simple message éléctronique (e-mail).
       </p>
 
-      <h2>LIABILITY</h2>
+      <h2>3. Limitation de responsabilité</h2>
       <p>
         {/* FR */}
         <h3>Principes</h3>
@@ -74,7 +73,7 @@ const TermsOfUse = () => {
           <li>
             c/ Le VENDEUR accepte explicitement que MTGINTERFACE et / ou ses les
             représentants n'ont qu'une responsabilité limitée (conformément à
-            article XX/ b ci-dessus) pour (1) tout dommage indirect par la
+            article 3/ b ci-dessus) pour (1) tout dommage indirect par la
             mauvaise performance ou la non-performance de MTGINTERFACE de ses
             obligations en vertu de ce document entraînant, mais non limité à,
             toute perte de bénéfices ou de revenus et / ou tout dommage
@@ -117,7 +116,9 @@ const TermsOfUse = () => {
             des consommateurs et vente par correspondance.
           </li>
         </ul>
-        <h3>9.2 – Reliance on AMAZON third party technology</h3>
+        <h3>
+          4. Dépendance avec la technologie de la PLATEFORME Magic Card Market
+        </h3>
         <ul>
           <li>
             a / Le VENDEUR reconnaît explicitement qu'il a connaissance et
@@ -160,7 +161,7 @@ const TermsOfUse = () => {
           </li>
         </ul>
       </p>
-      <h2>ARTICLE 10 – FORCE MAJEURE</h2>
+      <h2>5. FORCE MAJEURE</h2>
       <p>
         Les événements de force majeure suspendront les obligations de
         MTGINTERFACE et des VENDEURS concernant les conditions d'utilisation.
@@ -169,7 +170,7 @@ const TermsOfUse = () => {
         par courrier recommandé avec accusé de réception envoyé à l'autre
         partie.
       </p>
-      <h2>Droit de rétractation</h2>
+      <h2>6.Droit de rétractation</h2>
       <p>
         En tant qu'utilisateur résidant dans un pays membre de l'Union
         européenne, vous avez le droit de vous rétracter de tout achat effectué
@@ -181,7 +182,7 @@ const TermsOfUse = () => {
         ce qui se produit en premier. Pour toute démarche de remboursement,
         merci de nous contacter à support@mtginterface.com.
       </p>
-      <h2>ARTICLE 14- MISCELLANEOUS 14.1 </h2>
+      <h2>7. Divers </h2>
 
       <p>
         En cas de litige sur l'utilisation du SERVICE, le VENDEUR et
@@ -217,7 +218,7 @@ const TermsOfUse = () => {
         sera considérée comem non écrite. Cela n'entraînera pas l'annulation des
         conditions d'utilisation dans leur intégralité.
       </p>
-      <h2>14.6 – Applicable law</h2>
+      <h2>8. Application de la loi</h2>
       <p>
         Les présentes conditions d'utilisation sont soumises à signature,
         interprétation et exécution en droit français. Tout litige entre
