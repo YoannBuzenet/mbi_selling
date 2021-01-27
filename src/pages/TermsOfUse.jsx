@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 const TermsOfUse = () => {
   return (
-    <>
+    <div className="container">
       <h1>
         <FormattedMessage
           id="app.page.termsAndConditions.title"
@@ -252,7 +252,7 @@ const TermsOfUse = () => {
           defaultMessage="Competent jurisdiction These Terms and Conditions are subject to signature, interpretation and performance under French law. Any dispute between MTGINTERFACE and the MERCHANT relating to the existence, validity, interpretation or performance of the Terms and Conditions or of any of their clauses that the parties are unable to resolve amicably shall be ruled by the Paris courts."
         />
       </p>
-    </>
+    </div>
   );
 };
 
