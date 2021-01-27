@@ -20,7 +20,6 @@ const TermsOfUse = () => {
         Siège social : 9 Rue place Maréchal Foch, 56700 Hennebont, SIREN 804 965
         101 00038
       </p>
-
       <h2>1. Conditions nécessaires pour accéder au SERVICE</h2>
       <p>
         Vous pouvez utiliser le SERVICE si et seulement si vous avez plus de 18
@@ -32,7 +31,6 @@ const TermsOfUse = () => {
         ces conditions d'utilisation. Dans ce cas, "vous" et "votre" feront
         référence à cette entité.
       </p>
-
       <h2>2. Durée / Annulation</h2>
       <h3>Durée</h3>
       <p>
@@ -48,8 +46,28 @@ const TermsOfUse = () => {
         MTGINTERFACE pourra envoyer un avis formel par le biais de son choix,
         notamment un simple message éléctronique (e-mail).
       </p>
-
-      <h2>3. Limitation de responsabilité</h2>
+      <h2>3. Decription du SERVICE de modification des prix</h2>
+      <p>
+        Le SERVICE consiste à mettre à disposition du VENDEUR un outil leur
+        permettant d'optimiser le prix des produits qu'ils souhaitent proposer
+        en vente sur la PLATEFORME. Cette optimisation est effectuée à l'aide
+        d'un stratégie tarifaire définie par le VENDEUR, portant entre autres à
+        l'esprit le positionnement qu'ils choisissent par rapport aux tendances
+        de marché, par rapport aux soldes qu'ils veulent fixer sur tout ou
+        partie de leur stock, à l'état et la langue de leurs produits. Le
+        VENDEUR surveillera et vérifiera l'adéquation des prix optimaux proposés
+        par le système MTGINTERFACE, notamment grâce à la fonction de Test
+        disponible pour chaque script, et fera tout ajustement nécessaire de ces
+        propositions. Ils pourront alors, sous sous leur propre responsabilité,
+        choisir les produits et les prix qui seront enfin mettre en ligne pour
+        les acheteurs sur la PLATEFORME, en cliquant sur le bouton «Lancer le
+        script ». Les nouveaux prix n'apparaîtront pas sur la PLATEFORME sauf si
+        vous cliquez sur ce bouton. Le VENDEUR fournira à MTGINTERFACE leur nom
+        d'utilisateur et mot de passe de la PLATEFORME, et autorisera
+        MTGINTERFACE à les utiliser afin de pouvoir modifier les prix du stock
+        du VENDEUR et mettre en ligne de nouveaux prix en son nom.
+      </p>
+      <h2>4. Limitation de responsabilité</h2>
       <p>
         <h3>Principes</h3>
         <ul>
@@ -106,9 +124,9 @@ const TermsOfUse = () => {
             f / Toutes les ventes réalisées par le commerçant sur la PLATEFORME,
             en particulier là où MTGINTERFACE met en ligne des prix optimaux sur
             les produits du VENDEUR dans le cadre du rôle avec lequel ce dernier
-            a confiée à l'article XXXXX, se font directement entre le commerçant
-            et les acheteurs sur la PLATEFORME. En conséquence, MTGINTERFACE est
-            en aucun cas une partie contractuelle aux accords signés entre le
+            a confié à l'article 3, se font directement entre le commerçant et
+            les acheteurs sur la PLATEFORME. En conséquence, MTGINTERFACE est en
+            aucun cas une partie contractuelle aux accords signés entre le
             MARCHAND et les acheteurs sur la PLATEFORME, et le VENDEUR s'engage
             à respecter les dispositions législatives et réglementaires
             applicables dispositions et notamment celles visant la protection
@@ -116,7 +134,7 @@ const TermsOfUse = () => {
           </li>
         </ul>
         <h3>
-          4. Dépendance avec la technologie de la PLATEFORME Magic Card Market
+          5. Dépendance avec la technologie de la PLATEFORME Magic Card Market
         </h3>
         <ul>
           <li>
@@ -160,7 +178,7 @@ const TermsOfUse = () => {
           </li>
         </ul>
       </p>
-      <h2>5. FORCE MAJEURE</h2>
+      <h2>6. FORCE MAJEURE</h2>
       <p>
         Les événements de force majeure suspendront les obligations de
         MTGINTERFACE et des VENDEURS concernant les conditions d'utilisation.
@@ -169,7 +187,7 @@ const TermsOfUse = () => {
         par courrier recommandé avec accusé de réception envoyé à l'autre
         partie.
       </p>
-      <h2>6.Droit de rétractation</h2>
+      <h2>7.Droit de rétractation</h2>
       <p>
         En tant qu'utilisateur résidant dans un pays membre de l'Union
         européenne, vous avez le droit de vous rétracter de tout achat effectué
@@ -181,8 +199,7 @@ const TermsOfUse = () => {
         ce qui se produit en premier. Pour toute démarche de remboursement,
         merci de nous contacter à support@mtginterface.com.
       </p>
-      <h2>7. Divers </h2>
-
+      <h2>8. Divers </h2>
       <p>
         En cas de litige sur l'utilisation du SERVICE, le VENDEUR et
         MTGINTERFACE conviennent que le les données enregistrées sur les
@@ -217,7 +234,7 @@ const TermsOfUse = () => {
         sera considérée comem non écrite. Cela n'entraînera pas l'annulation des
         conditions d'utilisation dans leur intégralité.
       </p>
-      <h2>8. Application de la loi</h2>
+      <h2>9. Application de la loi</h2>
       <p>
         Les présentes conditions d'utilisation sont soumises à signature,
         interprétation et exécution en droit français. Tout litige entre
@@ -229,15 +246,15 @@ const TermsOfUse = () => {
       {/* EN */}
       <h1>Terms of Use</h1>
       <h2>Preambule</h2>
-
       <p>
         MTGINTERFACE offers a web service (hereinafter referred to as the «
         SERVICE ») aimed at helping professional merchants, be they private
         individuals or legal entities, (hereinafter referred to as the «
         MERCHANT(S) ») who wish to optimise the price of items they are offering
         for sale on the Magic Card Market Marketplace platform
-        (https://www.cardmarket.com/en/Magic).The terms and conditions of this
-        SERVICE are set out in these Terms and Conditions.
+        (https://www.cardmarket.com/en/Magic)(hereinafter referred to as the «
+        PLATFORM »).The terms and conditions of this SERVICE are set out in
+        these Terms and Conditions.
       </p>
       <p>
         Details regarding the MTGINTERFACE company are as follows: Tél : +336 13
@@ -269,6 +286,28 @@ const TermsOfUse = () => {
         MTGINTERFACE shall send any formal notice by any means of its choice,
         including by simple electronic mail (e-mail).
       </p>
+      {/* AJOUTER et traduire / intégrer */}
+      <p>
+        ARTICLE 4 – DESCRIPTION OF THE SELLERMANIA PRICING SERVICE The
+        SELLERMANIA SERVICE consists of providing the MERCHANT with a tool
+        enabling them to optimise the price of the products they wish to offer
+        on sale on the AMAZON website. This optimisation is performed using a
+        pricing strategy defined by the MERCHANT, amongst other things bearing
+        in mind the positioning they choose in relation to their competitors, of
+        the status of the products, the « feedback » they gain on the AMAZON
+        SITE, as well as the minimum price set by the MERCHANT below which they
+        do not wish to sell. The MERCHANT will monitor and check the suitability
+        of the optimum prices proposed by the SELLERMANIA system, and will make
+        any necessary adjustments to these proposals. They will then, under
+        their own responsibility, choose the products and prices that will be
+        ultimately put online for buyers on AMAZON, by clicking on the « push
+        online to Amazon » button. The prices will not appear on the Amazon
+        website unless this button is clicked. The MERCHANT will provide
+        SELLERMANIA with their AMAZON username and password, and authorise
+        SELLERMANIA to use them in order that it can change the MERCHANT’s
+        prices and put new prices online on his or her behalf
+      </p>
+
       <h2>3. LIABILITY</h2>
       <p>
         <h3>Principle</h3>
@@ -322,16 +361,16 @@ const TermsOfUse = () => {
             and Conditions.
           </li>
           <li>
-            f/ All sales made by the merchant on the AMAZON platform,
-            particularly where MTGINTERFACE puts optimum prices online on the
-            MERCHANT’s behalf as part of the role with which the latter has
-            entrusted it in Article 4, are made directly between the merchant
-            and the buyers on AMAZON. As a consequence, (i) MTGINTERFACE is
-            under no circumstances a contractual party to agreements signed
-            between the MERCHANT and the buyers on AMAZON, and (ii) The merchant
-            undertakes to respect the applicable legislative and regulatory
-            provisions and particularly those aimed at consumer protection and
-            mail order sales.
+            f/ All sales made by the merchant on the PLATFORM, particularly
+            where MTGINTERFACE puts optimum prices online on the MERCHANT’s
+            behalf as part of the role with which the latter has entrusted it in
+            Article 4, are made directly between the merchant and the buyers on
+            AMAZON. As a consequence, (i) MTGINTERFACE is under no circumstances
+            a contractual party to agreements signed between the MERCHANT and
+            the buyers on AMAZON, and (ii) The merchant undertakes to respect
+            the applicable legislative and regulatory provisions and
+            particularly those aimed at consumer protection and mail order
+            sales.
           </li>
         </ul>
         <h3>9.2 – Reliance on AMAZON third party technology</h3>
