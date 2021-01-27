@@ -31,6 +31,28 @@ const TermsOfUse = () => {
         ces conditions d'utilisation. Dans ce cas, "vous" et "votre" feront
         référence à cette entité.
       </p>
+      <p>
+        Le VENDEUR déclare par la présente:
+        <ul>
+          <li>
+            - qu'il est titulaire d'un "Compte professionnel" sur la PLATEFORME,
+            et qu'il a un nom d'utilisateur et un mot de passe lui accordant un
+            accès légal à la PLATEFORME. Notez s'il vous plaît que certaines
+            parties de ce SERVICE ne fonctionneront pas si le VENDEUR n'est pas
+            enregistré en tant que professionnel sur la PLATEFORME.
+          </li>
+          <li>
+            - qu'il a accepté les Conditions Générales sur la PLATEFORME,, et
+            qu'il a pleinement connaissance des règles régissant les ventes et
+            la fixation des prix telles que définies par la PLATEFORM précitée;
+          </li>
+          <li>
+            - qu'il comprend parfaitement ce qu'ils peut retirer de
+            l'utilisation du SERVICE proposé par MTGINTERFACE tel que défini
+            dans les présentes conditions d'utilisation
+          </li>
+        </ul>
+      </p>
       <h2>2. Durée / Annulation</h2>
       <h3>Durée</h3>
       <p>
@@ -170,11 +192,11 @@ const TermsOfUse = () => {
             informations relatives aux prix sont de par leur nature volatiles,
             et donc que les prix optimaux proposés dans le cadre de du SERVICE
             peuvent ne plus être à jour lorsque le VENDEUR met son prix en ligne
-            sur la PLATEFORME; - en cliquant sur le bouton «Lancer le Scrupt» ,
-            le VENDEUR assume la responsabilité des prix de vente en ligne. La
-            garantie et les limitations de responsabilité susmentionnées
-            constituent des facteurs essentiels et primordiaux des conditions
-            d'utilisation entre MTGINTERFACE et le VENDEUR.
+            sur la PLATEFORME; - en cliquant sur le bouton «Lancer» , le VENDEUR
+            assume la responsabilité des prix de vente en ligne. La garantie et
+            les limitations de responsabilité susmentionnées constituent des
+            facteurs essentiels et primordiaux des conditions d'utilisation
+            entre MTGINTERFACE et le VENDEUR.
           </li>
         </ul>
       </p>
@@ -271,6 +293,28 @@ const TermsOfUse = () => {
         authority to bind that entity to these Terms. In that case, “you” and
         “your” will refer to that entity.
       </p>
+      <p>
+        The MERCHANT does hereby declare:
+        <ul>
+          <li>
+            – that they are the holder of a « Professional » account on the
+            PLATFORM, and that they have a username and a password granting them
+            legal access to the PLATFORM. Please note that some parts of this
+            SERVICE will not work if the MERCHANT is not registered as a
+            Professional on the PLATFORM.
+          </li>
+          <li>
+            – that they have agreed to the General Conditions on the PLATFORM,
+            and that they are fully aware of the rules governing sales and the
+            setting of prices as set out by the aforementioned PLATFORM;
+          </li>
+          <li>
+            – that they fully understand what they can get from using the
+            SERVICE offered by MTGINTERFACE as set out in these terms and
+            conditions.
+          </li>
+        </ul>
+      </p>
       <h2>2. Duration / Cancellation</h2>
       <h3>Duration</h3>
       <p>
@@ -295,15 +339,16 @@ const TermsOfUse = () => {
         the positioning they choose in relation to market trends, to the
         language and condition of their product, or any discount they want to
         create. The MERCHANT will monitor and check the suitability of the
-        optimum prices proposed by the MTGINTERFACE system, and will make any
-        necessary adjustments to these proposals. They will then, under their
-        own responsibility, choose the products and prices that will be
-        ultimately put online for buyers on the PLATFORM, by clicking on the «
-        Launch » button. The prices will not appear on the PLATFORM website
-        unless this button is clicked. The MERCHANT will provide MTGINTERFACE
-        with their PLATFORM username and password, and authorise MTGINTERFACE to
-        use them in order that it can change the MERCHANT’s prices and put new
-        prices online on his or her behalf.
+        optimum prices proposed by the MTGINTERFACE system, may check any result
+        thanks to the "Test" button, and will make any necessary adjustments to
+        these proposals. They will then, under their own responsibility, choose
+        the products and prices that will be ultimately put online for buyers on
+        the PLATFORM, by clicking on the « Launch » button. The prices will not
+        appear on the PLATFORM website unless this button is clicked. The
+        MERCHANT will provide MTGINTERFACE with their PLATFORM username and
+        password, and authorise MTGINTERFACE to use them in order that it can
+        change the MERCHANT’s prices and put new prices online on his or her
+        behalf.
       </p>
       <h2>4. LIABILITY</h2>
       <p>
@@ -413,7 +458,6 @@ const TermsOfUse = () => {
           </li>
         </ul>
       </p>
-
       <h2>6. FORCE MAJEURE</h2>
       <p>
         Force majeure events shall suspend the obligations of the parties as
@@ -422,14 +466,12 @@ const TermsOfUse = () => {
         putting an end to the Terms and Conditions by registered post with
         return receipt sent to the other party.
       </p>
-
       <h2>7. Right of withdrawal</h2>
       <p>
         As a user residing in a member country of the European Union, you have
         the right to withdraw from any purchase made on MTGINTERFACE without
         giving a reason.
       </p>
-
       <p>
         However, you agree that your legal right of withdrawal will end within
         14 days or as soon as you start running a script, depending on what
