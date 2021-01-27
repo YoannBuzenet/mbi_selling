@@ -60,12 +60,12 @@ const TermsOfUse = () => {
         disponible pour chaque script, et fera tout ajustement nécessaire de ces
         propositions. Ils pourront alors, sous sous leur propre responsabilité,
         choisir les produits et les prix qui seront enfin mettre en ligne pour
-        les acheteurs sur la PLATEFORME, en cliquant sur le bouton «Lancer le
-        script ». Les nouveaux prix n'apparaîtront pas sur la PLATEFORME sauf si
-        vous cliquez sur ce bouton. Le VENDEUR fournira à MTGINTERFACE leur nom
-        d'utilisateur et mot de passe de la PLATEFORME, et autorisera
-        MTGINTERFACE à les utiliser afin de pouvoir modifier les prix du stock
-        du VENDEUR et mettre en ligne de nouveaux prix en son nom.
+        les acheteurs sur la PLATEFORME, en cliquant sur le bouton «Lancer». Les
+        nouveaux prix n'apparaîtront pas sur la PLATEFORME sauf si vous cliquez
+        sur ce bouton. Le VENDEUR fournira à MTGINTERFACE leur nom d'utilisateur
+        et mot de passe de la PLATEFORME, et autorisera MTGINTERFACE à les
+        utiliser afin de pouvoir modifier les prix du stock du VENDEUR et mettre
+        en ligne de nouveaux prix en son nom.
       </p>
       <h2>4. Limitation de responsabilité</h2>
       <p>
@@ -244,7 +244,7 @@ const TermsOfUse = () => {
         résoudre à l'amiable sera jugé par les tribunaux de Paris.
       </p>
       {/* EN */}
-      <h1>Terms of Use</h1>
+      <h1>Terms and Conditions</h1>
       <h2>Preambule</h2>
       <p>
         MTGINTERFACE offers a web service (hereinafter referred to as the «
@@ -286,29 +286,27 @@ const TermsOfUse = () => {
         MTGINTERFACE shall send any formal notice by any means of its choice,
         including by simple electronic mail (e-mail).
       </p>
-      {/* AJOUTER et traduire / intégrer */}
+      <h2>3.Description of the SERVICE of updating prices</h2>
       <p>
-        ARTICLE 4 – DESCRIPTION OF THE SELLERMANIA PRICING SERVICE The
-        SELLERMANIA SERVICE consists of providing the MERCHANT with a tool
+        The MTGINTERFACE SERVICE consists of providing the MERCHANT with a tool
         enabling them to optimise the price of the products they wish to offer
-        on sale on the AMAZON website. This optimisation is performed using a
-        pricing strategy defined by the MERCHANT, amongst other things bearing
-        in mind the positioning they choose in relation to their competitors, of
-        the status of the products, the « feedback » they gain on the AMAZON
-        SITE, as well as the minimum price set by the MERCHANT below which they
-        do not wish to sell. The MERCHANT will monitor and check the suitability
-        of the optimum prices proposed by the SELLERMANIA system, and will make
-        any necessary adjustments to these proposals. They will then, under
-        their own responsibility, choose the products and prices that will be
-        ultimately put online for buyers on AMAZON, by clicking on the « push
-        online to Amazon » button. The prices will not appear on the Amazon
-        website unless this button is clicked. The MERCHANT will provide
-        SELLERMANIA with their AMAZON username and password, and authorise
-        SELLERMANIA to use them in order that it can change the MERCHANT’s
-        prices and put new prices online on his or her behalf
+        on sale on the PLATFORM. This optimisation is performed using a pricing
+        strategy defined by the MERCHANT, amongst other things bearing in mind
+        the positioning they choose in relation to market trends, to the
+        language and condition of their product, or any discount they want to
+        create. The MERCHANT will monitor and check the suitability of the
+        optimum prices proposed by the MTGINTERFACE system, and will make any
+        necessary adjustments to these proposals. They will then, under their
+        own responsibility, choose the products and prices that will be
+        ultimately put online for buyers on the PLATFORM, by clicking on the «
+        Launch » button. The prices will not appear on the PLATFORM website
+        unless this button is clicked. The MERCHANT will provide MTGINTERFACE
+        with their PLATFORM username and password, and authorise MTGINTERFACE to
+        use them in order that it can change the MERCHANT’s prices and put new
+        prices online on his or her behalf.
       </p>
 
-      <h2>3. LIABILITY</h2>
+      <h2>4. LIABILITY</h2>
       <p>
         <h3>Principle</h3>
         <ul>
@@ -364,41 +362,42 @@ const TermsOfUse = () => {
             f/ All sales made by the merchant on the PLATFORM, particularly
             where MTGINTERFACE puts optimum prices online on the MERCHANT’s
             behalf as part of the role with which the latter has entrusted it in
-            Article 4, are made directly between the merchant and the buyers on
-            AMAZON. As a consequence, (i) MTGINTERFACE is under no circumstances
-            a contractual party to agreements signed between the MERCHANT and
-            the buyers on AMAZON, and (ii) The merchant undertakes to respect
-            the applicable legislative and regulatory provisions and
-            particularly those aimed at consumer protection and mail order
-            sales.
+            Article 3, are made directly between the merchant and the buyers on
+            AMAZON. As a consequence, MTGINTERFACE is under no circumstances a
+            contractual party to agreements signed between the MERCHANT and the
+            buyers on the PLATFORM, and The merchant undertakes to respect the
+            applicable legislative and regulatory provisions and particularly
+            those aimed at consumer protection and mail order sales.
           </li>
         </ul>
-        <h3>9.2 – Reliance on AMAZON third party technology</h3>
+        {/* là */}
+        <h3>9.2 – Reliance on the PLATFORM API third party technology</h3>
         <ul>
           <li>
             a/ The MERCHANT explicitly acknowledges that it is aware of and
-            agrees to: – the SERVICE relying on « web service » technology
-            developed by AMAZON and made available to Marketplace merchants. The
+            agrees to: – the SERVICE relying on « API » technology developed by
+            the PLATFORM and made available to Marketplace merchants. The
             MERCHANT undertakes only to use information obtained thanks to the
-            SERVICE with the aim of optimising their prices on AMAZON, in
-            accordance with these General Conditions and with the provisions of
-            the Terms and Conditions and the AMAZON Marketplace and Seller
-            Central Participation Agreements. – some changes made by AMAZON
-            could render the SERVICE obsolete, independently of the monitoring
-            and the desires of MTGINTERFACE, and that this latter may under no
-            circumstances be held responsible for developments governed by
-            AMAZON and their consequences, whether they arise with or without
-            warning and irrespective of the consequences of these changes.
+            SERVICE with the aim of optimising their prices on the PLATFORM, in
+            accordance with these Terms and Conditions and with the provisions
+            of the Terms and Conditions and the the PLATFORM Marketplace and
+            Seller Central Participation Agreements. – some changes made by the
+            PLATFORM could render the SERVICE obsolete, independently of the
+            monitoring and the desires of MTGINTERFACE, and that this latter may
+            under no circumstances be held responsible for developments governed
+            by the PLATFORM and their consequences, whether they arise with or
+            without warning and irrespective of the consequences of these
+            changes.
           </li>
           <li>
             b/ MTGINTERFACE acquits itself of all responsibility as to the
             integrity, exhaustiveness, precision, accuracy, and updating of
-            information and data provided by the SERVICE depending on AMAZON and
-            its software and databases. MTGINTERFACE holds no intellectual
-            property or other rights over AMAZON information and data. This
-            information and data remain the exclusive property of AMAZON, as is
-            explicitly acknowledged by the MERCHANT, who shall take this into
-            account in their usage.
+            information and data provided by the SERVICE depending on the
+            PLATFORM and its software and databases. MTGINTERFACE holds no
+            intellectual property or other rights over the PLATFORM information
+            and data. This information and data remain the exclusive property of
+            the PLATFORM, as is explicitly acknowledged by the MERCHANT, who
+            shall take this into account in their usage.
           </li>
           <li>
             c/ MTGINTERFACE shall make every effort available to it to make sure
@@ -407,11 +406,11 @@ const TermsOfUse = () => {
             information relating to prices are by their very nature volatile,
             and therefore that the optimum prices proposed as part of this
             SERVICE may no longer be up to date when the MERCHANT puts their
-            prices online on Amazon; – by clicking on the « Send to Amazon »
-            button, the MERCHANT takes responsibility for the prices the put
-            online The abovementioned guarantee and liability limitations
-            constitute essential and overriding factors of the TERMS AND
-            Conditions between MTGINTERFACE and the MERCHANT.
+            prices online on Amazon; – by clicking on the « Launch » button, the
+            MERCHANT takes responsibility for the prices the put online The
+            abovementioned guarantee and liability limitations constitute
+            essential and overriding factors of the TERMS AND Conditions between
+            MTGINTERFACE and the MERCHANT.
           </li>
         </ul>
       </p>
