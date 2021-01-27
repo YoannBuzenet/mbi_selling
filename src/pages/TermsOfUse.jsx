@@ -180,143 +180,77 @@ const TermsOfUse = () => {
           </li>
         </ul>
       </p>
-      <h2>6. FORCE MAJEURE</h2>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article6.title"
+          defaultMessage="6. FORCE MAJEURE"
+        />
+      </h2>
       <p>
-        Les événements de force majeure suspendront les obligations de
-        MTGINTERFACE et des VENDEURS concernant les conditions d'utilisation.
-        Cependant, si l'événement de force majeure se poursuit pendant plus de
-        deux (2) mois, chaque partie aura la possibilité de mettant fin aux CGV
-        par courrier recommandé avec accusé de réception envoyé à l'autre
-        partie.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article6.paragraph1"
+          defaultMessage="Force majeure events shall suspend the obligations of the parties as regards the Terms and Conditions. However, if the force majeure event continues for over two (2) months, each party will have the option of putting an end to the Terms and Conditions by registered post with return receipt sent to the other party."
+        />
       </p>
-      <h2>7.Droit de rétractation</h2>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article7.title"
+          defaultMessage="7. Right of withdrawal"
+        />
+      </h2>
       <p>
-        En tant qu'utilisateur résidant dans un pays membre de l'Union
-        européenne, vous avez le droit de vous rétracter de tout achat effectué
-        sur MTGINTERFACE sans donner de motif.
-      </p>
-      <p>
-        Vous acceptez toutefois que votre droit de rétractation légal prenne fin
-        dans 14 jours ou dès que vous commencez l'éxécution d'un script, selon
-        ce qui se produit en premier. Pour toute démarche de remboursement,
-        merci de nous contacter à support@mtginterface.com.
-      </p>
-      <h2>8. Divers </h2>
-      <p>
-        En cas de litige sur l'utilisation du SERVICE, le VENDEUR et
-        MTGINTERFACE conviennent que le les données enregistrées sur les
-        équipements MTGINTERFACE et notamment l'utilisation des noms
-        d'utilisateur et mots de passe privés du VENDEUR constituent une preuve
-        valide entre les parties. Il est explicitement convenu que toutes les
-        informations concernant le VENDEUR, notamment les données enregistrées
-        et les statistiques seront conservées et archivées par MTGINTERFACE à
-        des fins probantes.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article7.paragraph1"
+          defaultMessage="As a user residing in a member country of the European Union, you have the right to withdraw from any purchase made on MTGINTERFACE without giving a reason."
+        />
       </p>
       <p>
-        Les présentes conditions d'utilisation donnent l'intégralité obligations
-        des parties. Le fait que l'une ou l'autre des parties ne prenne avantage
-        de toute lacune ou de tout manquement à l'exécution de l'une de ses
-        obligations ou toute autre violation par l'autre partie de l'une de ses
-        les obligations envers les conditions d'utilisation ne sauraient être
-        interprétées comme une renonciation à l'obligation en question ou à
-        l'une des autres dispositions contenues dans les conditions
-        d'utilisation. De même, tout retard ou échec par l'une ou l'autre des
-        parties pour exercer les droits et prérogatives qui leur sont accordés
-        en vertu des présentes conditions d'utilisation ne doit pas être
-        interprété comme une renonciation à ces droits et prérogatives.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article7.paragraph2"
+          defaultMessage="However, you agree that your legal right of withdrawal will end within 14 days or as soon as you start running a script, depending on what happens first. For any reimbursement process, please contact us at support@mtginterface.com."
+        />
+      </p>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article8.title"
+          defaultMessage="8. Miscellaneous"
+        />
+      </h2>
+      <p>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article8.paragraph1"
+          defaultMessage="In the event of any disputes over the use of the SERVICE, the MERCHANT and MTGINTERFACE agree that the data saved on MTGINTERFACE equipment and particularly the use of the MERCHANT’s private usernames and passwords shall constitute valid proof between the parties. It is explicitly agreed that all the technical information regarding the MERCHANT, particularly saved data and statistics will be kept and archived by MTGINTERFACE for probative reasons."
+        />
       </p>
       <p>
-        Les présentes conditions d'utilisation constituent un ensemble complet
-        et exclusif des termes de l'accord conclu entre MTGINTERFACE et le
-        VENDEUR.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article8.paragraph2"
+          defaultMessage="These Terms and Conditions give the full obligations of the parties. The fact that either party does not take advantage of any shortcoming or any failure to perform any of its obligations or any other breach by the other party of any of its obligations under the Terms and Conditions shall not be interpreted as a waiver of the obligation in question or of any of the other provisions contained in the Terms and Conditions. Similarly, any delay or failure by either party to perform the rights and prerogatives granted to them under these Terms and Conditions shall not be interpreted as a waiver of these rights and prerogatives."
+        />
       </p>
       <p>
-        Dans le cas où l'une ou plusieurs des clauses des présentes conditions
-        d'utilisation seraientt déclarées nulles et non avenues, cette clause
-        sera considérée comem non écrite. Cela n'entraînera pas l'annulation des
-        conditions d'utilisation dans leur intégralité.
-      </p>
-      <h2>9. Application de la loi</h2>
-      <p>
-        Les présentes conditions d'utilisation sont soumises à signature,
-        interprétation et exécution en droit français. Tout litige entre
-        MTGINTERFACE et le VENDEUR relatif à l'existence, la validité,
-        l'interprétation ou l'exécution des conditions d'utilisation ou de l'une
-        quelconque de leurs clauses que les parties ne sont pas en mesure de
-        résoudre à l'amiable sera jugé par les tribunaux de Paris.
-      </p>
-      {/* EN */}
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      ---------------------------------------------------------
-      <h2>6. FORCE MAJEURE</h2>
-      <p>
-        Force majeure events shall suspend the obligations of the parties as
-        regards the Terms and Conditions. However, if the force majeure event
-        continues for over two (2) months, each party will have the option of
-        putting an end to the Terms and Conditions by registered post with
-        return receipt sent to the other party.
-      </p>
-      <h2>7. Right of withdrawal</h2>
-      <p>
-        As a user residing in a member country of the European Union, you have
-        the right to withdraw from any purchase made on MTGINTERFACE without
-        giving a reason.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article8.paragraph3"
+          defaultMessage="These Terms and Conditions constitute a full and exclusive whole of the terms of the agreement entered into between MTGINTERFACE and the MERCHANT."
+        />
       </p>
       <p>
-        However, you agree that your legal right of withdrawal will end within
-        14 days or as soon as you start running a script, depending on what
-        happens first. For any reimbursement process, please contact us at
-        support@mtginterface.com.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article8.paragraph4"
+          defaultMessage="In the event that any of the Terms and Conditions clauses are declared null and void, this clause shall be deemed not to have been written. This shall not lead to the cancellation of the Terms and Conditions in their entirety."
+        />
       </p>
-      <h2>7. MISCELLANEOUS</h2>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article9.title"
+          defaultMessage="9. Applicable law"
+        />
+      </h2>
       <p>
-        In the event of any disputes over the use of the SERVICE, the MERCHANT
-        and MTGINTERFACE agree that the data saved on MTGINTERFACE equipment and
-        particularly the use of the MERCHANT’s private usernames and passwords
-        shall constitute valid proof between the parties. It is explicitly
-        agreed that all the technical information regarding the MERCHANT,
-        particularly saved data and statistics will be kept and archived by
-        MTGINTERFACE for probative reasons.
-      </p>
-      <p>
-        These Terms and Conditions give the full obligations of the parties. The
-        fact that either party does not take advantage of any shortcoming or any
-        failure to perform any of its obligations or any other breach by the
-        other party of any of its obligations under the Terms and Conditions
-        shall not be interpreted as a waiver of the obligation in question or of
-        any of the other provisions contained in the Terms and Conditions.
-        Similarly, any delay or failure by either party to perform the rights
-        and prerogatives granted to them under these Terms and Conditions shall
-        not be interpreted as a waiver of these rights and prerogatives.
-      </p>
-      <p>
-        These Terms and Conditions constitute a full and exclusive whole of the
-        terms of the agreement entered into between MTGINTERFACE and the
-        MERCHANT.
-      </p>
-      <p>
-        In the event that any of the Terms and Conditions clauses are declared
-        null and void, this clause shall be deemed not to have been written.
-        This shall not lead to the cancellation of the Terms and Conditions in
-        their entirety.
-      </p>
-      <h2>8. – Applicable law</h2>
-      <p>
-        Competent jurisdiction These Terms and Conditions are subject to
-        signature, interpretation and performance under French law. Any dispute
-        between MTGINTERFACE and the MERCHANT relating to the existence,
-        validity, interpretation or performance of the Terms and Conditions or
-        of any of their clauses that the parties are unable to resolve amicably
-        shall be ruled by the Paris courts.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article9.paragraph1"
+          defaultMessage="Competent jurisdiction These Terms and Conditions are subject to signature, interpretation and performance under French law. Any dispute between MTGINTERFACE and the MERCHANT relating to the existence, validity, interpretation or performance of the Terms and Conditions or of any of their clauses that the parties are unable to resolve amicably shall be ruled by the Paris courts."
+        />
       </p>
     </>
   );
