@@ -305,7 +305,6 @@ const TermsOfUse = () => {
         use them in order that it can change the MERCHANT’s prices and put new
         prices online on his or her behalf.
       </p>
-
       <h2>4. LIABILITY</h2>
       <p>
         <h3>Principle</h3>
@@ -370,8 +369,8 @@ const TermsOfUse = () => {
             those aimed at consumer protection and mail order sales.
           </li>
         </ul>
-        {/* là */}
-        <h3>9.2 – Reliance on the PLATFORM API third party technology</h3>
+
+        <h2>5. Reliance on the PLATFORM API third party technology</h2>
         <ul>
           <li>
             a/ The MERCHANT explicitly acknowledges that it is aware of and
@@ -380,15 +379,15 @@ const TermsOfUse = () => {
             MERCHANT undertakes only to use information obtained thanks to the
             SERVICE with the aim of optimising their prices on the PLATFORM, in
             accordance with these Terms and Conditions and with the provisions
-            of the Terms and Conditions and the the PLATFORM Marketplace and
-            Seller Central Participation Agreements. – some changes made by the
-            PLATFORM could render the SERVICE obsolete, independently of the
-            monitoring and the desires of MTGINTERFACE, and that this latter may
-            under no circumstances be held responsible for developments governed
-            by the PLATFORM and their consequences, whether they arise with or
-            without warning and irrespective of the consequences of these
-            changes.
+            of the Terms and Conditions and the PLATFORM Marketplace– some
+            changes made by the PLATFORM could render the SERVICE obsolete,
+            independently of the monitoring and the desires of MTGINTERFACE, and
+            that this latter may under no circumstances be held responsible for
+            developments governed by the PLATFORM and their consequences,
+            whether they arise with or without warning and irrespective of the
+            consequences of these changes.
           </li>
+
           <li>
             b/ MTGINTERFACE acquits itself of all responsibility as to the
             integrity, exhaustiveness, precision, accuracy, and updating of
@@ -406,68 +405,74 @@ const TermsOfUse = () => {
             information relating to prices are by their very nature volatile,
             and therefore that the optimum prices proposed as part of this
             SERVICE may no longer be up to date when the MERCHANT puts their
-            prices online on Amazon; – by clicking on the « Launch » button, the
-            MERCHANT takes responsibility for the prices the put online The
-            abovementioned guarantee and liability limitations constitute
-            essential and overriding factors of the TERMS AND Conditions between
-            MTGINTERFACE and the MERCHANT.
+            prices online on the PLATFORM; – by clicking on the « Launch »
+            button, the MERCHANT takes responsibility for the prices the put
+            online The abovementioned guarantee and liability limitations
+            constitute essential and overriding factors of the TERMS AND
+            Conditions between MTGINTERFACE and the MERCHANT.
           </li>
         </ul>
       </p>
-      <h2>ARTICLE 10 – FORCE MAJEURE</h2>
+
+      <h2>6. FORCE MAJEURE</h2>
       <p>
-        Force majeure events shall suspend the obligations of the Parties as
+        Force majeure events shall suspend the obligations of the parties as
         regards the Terms and Conditions. However, if the force majeure event
         continues for over two (2) months, each party will have the option of
         putting an end to the Terms and Conditions by registered post with
         return receipt sent to the other party.
       </p>
-      <h2>Droit de rétractation</h2>
+
+      <h2>7. Right of withdrawal</h2>
       <p>
-        En tant qu'utilisateur résidant dans un pays membre de l'Union
-        européenne, vous avez le droit de vous rétracter de tout achat effectué
-        sur MTGINTERFACE sans donner de motif.
+        As a user residing in a member country of the European Union, you have
+        the right to withdraw from any purchase made on MTGINTERFACE without
+        giving a reason.
+      </p>
+
+      <p>
+        However, you agree that your legal right of withdrawal will end within
+        14 days or as soon as you start running a script, depending on what
+        happens first. For any reimbursement process, please contact us at
+        support@mtginterface.com.
+      </p>
+      <h2>7. MISCELLANEOUS</h2>
+      <p>
+        In the event of any disputes over the use of the SERVICE, the MERCHANT
+        and MTGINTERFACE agree that the data saved on MTGINTERFACE equipment and
+        particularly the use of the MERCHANT’s private usernames and passwords
+        shall constitute valid proof between the parties. It is explicitly
+        agreed that all the technical information regarding the MERCHANT,
+        particularly saved data and statistics will be kept and archived by
+        MTGINTERFACE for probative reasons.
       </p>
       <p>
-        Vous acceptez toutefois que votre droit de rétractation légal prenne fin
-        dans 14 jours ou dès que vous commencez l'éxécution d'un script, selon
-        ce qui se produit en premier. Pour toute démarche de remboursement,
-        merci de nous contacter à support@mtginterface.com.
+        These Terms and Conditions give the full obligations of the parties. The
+        fact that either party does not take advantage of any shortcoming or any
+        failure to perform any of its obligations or any other breach by the
+        other party of any of its obligations under the Terms and Conditions
+        shall not be interpreted as a waiver of the obligation in question or of
+        any of the other provisions contained in the Terms and Conditions.
+        Similarly, any delay or failure by either party to perform the rights
+        and prerogatives granted to them under these Terms and Conditions shall
+        not be interpreted as a waiver of these rights and prerogatives.
       </p>
-      <h2>ARTICLE 14- MISCELLANEOUS 14.1 </h2>
       <p>
-        {" "}
-        Agreement on proof In the event of any disputes over the use of the
-        SERVICE and/or the SITE, the MERCHANT and MTGINTERFACE agree that the
-        data saved on MTGINTERFACE equipment and particularly the use of the
-        MERCHANT’s private usernames and passwords shall constitute valid proof
-        between the parties. It is explicitly agreed that all the technical
-        information regarding the MERCHANT, particularly saved data and
-        statistics will be kept and archived by MTGINTERFACE for probative
-        reasons. 14.2 – Comprehensiveness These Terms and Conditions give the
-        full obligations of the parties. The fact that either party does not
-        take advantage of any shortcoming or any failure to perform any of its
-        obligations or any other breach by the other party of any of its
-        obligations under the Terms and Conditions shall not be interpreted as a
-        waiver of the obligation in question or of any of the other provisions
-        contained in the Terms and Conditions. Similarly, any delay or failure
-        by either party to perform the rights and prerogatives granted to them
-        under these Terms and Conditions shall not be interpreted as a waiver of
-        these rights and prerogatives. 14.3 – Contractual documents These Terms
-        and Conditions constitute a full and exclusive whole of the terms of the
-        agreement entered into between MTGINTERFACE and the MERCHANT. 14.4 –
-        Partial non-validity In the event that any of the Terms and Conditions
-        clauses are declared null and void, this clause shall be deemed not to
-        have been written. This shall not lead to the cancellation of the Terms
-        and Conditions in their entirety. In the event that the customer has
-        signed several Terms and Conditions in different countries, Terms and
-        Conditions as signed in the customer’s local country will prevail.
+        These Terms and Conditions constitute a full and exclusive whole of the
+        terms of the agreement entered into between MTGINTERFACE and the
+        MERCHANT.
       </p>
-      <h2>14.6 – Applicable law</h2>
+      <p>
+        In the event that any of the Terms and Conditions clauses are declared
+        null and void, this clause shall be deemed not to have been written.
+        This shall not lead to the cancellation of the Terms and Conditions in
+        their entirety.
+      </p>
+      <h2>8. – Applicable law</h2>
       <p>
         Competent jurisdiction These Terms and Conditions are subject to
         signature, interpretation and performance under French law. Any dispute
-        between SELLERMANIA and the MERCHANT relating to the existence,
+        between MTGINTERFACE and the MERCHANT relating to the existence,
         validity, interpretation or performance of the Terms and Conditions or
         of any of their clauses that the parties are unable to resolve amicably
         shall be ruled by the Paris courts.
