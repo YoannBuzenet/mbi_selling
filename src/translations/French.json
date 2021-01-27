@@ -54,6 +54,9 @@
   "app.myAccountPage.edition.success": "Votre compte a bien été mis à jour.",
   "app.myAccountPage.edition.failure": "Votre compte n'a pu être mis à jour. Merci de réessayer.",
 
+  "app.page.termsAndConditions.title": "Conditions d'utilisation",
+  "app.page.termsAndConditions.preambule": "Préambule",
+
   "app.LoginPage.title": "Connexion à l'application",
   "app.LoginPage.label.email": "Adresse Mail",
   "app.LoginPage.label.password": "Mot de passe",

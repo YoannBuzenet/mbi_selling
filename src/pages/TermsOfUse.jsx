@@ -1,10 +1,21 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const TermsOfUse = () => {
   return (
     <>
-      <h1>Conditions d'utilisation</h1>
-      <h2>Préambule</h2>
+      <h1>
+        <FormattedMessage
+          id="app.page.termsAndConditions.title"
+          defaultMessage="Terms of Use"
+        />
+      </h1>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.preambule"
+          defaultMessage="Preambule"
+        />
+      </h2>
       <p>
         MTGINTERFACE offre un service web (ci-après nommé le « SERVICE »)
         destiné à aider les vendeurs profesionnels, qu'ils soient privés ou via
@@ -266,8 +277,7 @@ const TermsOfUse = () => {
         résoudre à l'amiable sera jugé par les tribunaux de Paris.
       </p>
       {/* EN */}
-      <h1>Terms and Conditions</h1>
-      <h2>Preambule</h2>
+
       <p>
         MTGINTERFACE offers a web service (hereinafter referred to as the «
         SERVICE ») aimed at helping professional merchants, be they private
