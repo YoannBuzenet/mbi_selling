@@ -51,7 +51,6 @@ const TermsOfUse = () => {
 
       <h2>3. Limitation de responsabilité</h2>
       <p>
-        {/* FR */}
         <h3>Principes</h3>
         <ul>
           <li>
@@ -228,6 +227,9 @@ const TermsOfUse = () => {
         résoudre à l'amiable sera jugé par les tribunaux de Paris.
       </p>
       {/* EN */}
+      <h1>Terms of Use</h1>
+      <h2>Preambule</h2>
+
       <p>
         MTGINTERFACE offers a web service (hereinafter referred to as the «
         SERVICE ») aimed at helping professional merchants, be they private
@@ -242,6 +244,7 @@ const TermsOfUse = () => {
         64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place
         Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038
       </p>
+      <h2>1. Necessary conditions to access the SERVICE</h2>
       <p>
         You may use the SERVICE only if you are 18 years or older and capable of
         forming a binding contract with MTGINTERFACE, and not otherwise barred
@@ -251,16 +254,22 @@ const TermsOfUse = () => {
         authority to bind that entity to these Terms. In that case, “you” and
         “your” will refer to that entity.
       </p>
+      <h2>2. Duration / Cancellation</h2>
+      <h3>Duration</h3>
       <p>
         At the end of the initial subscription period, the Terms and Conditions
-        shall NOT be renewed automatically by tacit agreement. 6.2 –
-        Cancellation In the event that the MERCHANT fails to perform some or all
-        of their obligations under these Terms and Conditions, MTGINTERFACE may
-        cancel these Terms and Conditions as of right and at any time, with or
-        without formal notice being made to the MERCHANT to fulfil their
-        obligations. MTGINTERFACE shall send any formal notice by any means of
-        its choice, including by simple electronic mail (e-mail).
+        shall NOT be renewed automatically by tacit agreement
       </p>
+      <h3>Cancellation</h3>
+      <p>
+        In the event that the MERCHANT fails to perform some or all of their
+        obligations under these Terms and Conditions, MTGINTERFACE may cancel
+        these Terms and Conditions as of right and at any time, with or without
+        formal notice being made to the MERCHANT to fulfil their obligations.
+        MTGINTERFACE shall send any formal notice by any means of its choice,
+        including by simple electronic mail (e-mail).
+      </p>
+      <h2>3. LIABILITY</h2>
       <p>
         <h3>Principle</h3>
         <ul>
@@ -282,7 +291,7 @@ const TermsOfUse = () => {
           <li>
             c/ The MERCHANT explicitly agrees that MTGINTERFACE and/or its
             representatives have only limited liability (in accordance with
-            article 10.1 /b above) to it for (1) any indirect damages arising
+            article 3 /b above) to it for (1) any indirect damages arising
             through the poor performance or non-performance by MTGINTERFACE of
             its obligations by virtue of this document resulting in, but not
             limited to, any losses of profits or income and/or any damage
