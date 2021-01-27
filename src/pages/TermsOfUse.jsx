@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 const TermsOfUse = () => {
   return (
-    <div className="container">
+    <div className="container terms-and-conditions-page">
       <h1>
         <FormattedMessage
           id="app.page.termsAndConditions.title"
