@@ -30,77 +30,83 @@ const TermsOfUse = () => {
       </p>
       <h2>
         <FormattedMessage
-          id="app.page.termsAndConditions.preambuleArticle1Title"
+          id="app.page.termsAndConditions.article1Title"
           defaultMessage="1. Necessary conditions to access the SERVICE"
         />
       </h2>
       <p>
         <FormattedMessage
-          id="app.page.termsAndConditions.preambuleArticle1.paragraph1"
+          id="app.page.termsAndConditions.article1.paragraph1"
           defaultMessage="You may use the SERVICE only if you are 18 years or older and capable of forming a binding contract with MTGINTERFACE, and not otherwise barred from using the SERVICE under applicable law. If you are accessing and using the SERVICE on behalf of a company (such as your employer) or other legal entity, you represent and warrant that you have the authority to bind that entity to these Terms. In that case, “you” and “your” will refer to that entity."
         />
       </p>
       <p>
         <FormattedMessage
-          id="app.page.termsAndConditions.preambuleArticle1.paragraph2.beginning"
+          id="app.page.termsAndConditions.article1.paragraph2.beginning"
           defaultMessage="The MERCHANT does hereby declare:"
         />
         <ul>
           <li>
             <FormattedMessage
-              id="app.page.termsAndConditions.preambuleArticle1.paragraph2.case1"
+              id="app.page.termsAndConditions.article1.paragraph2.case1"
               defaultMessage="– that they are the holder of a « Professional » account on the PLATFORM, and that they have a username and a password granting them legal access to the PLATFORM. Please note that some parts of this SERVICE will not work if the MERCHANT is not registered as a Professional on the PLATFORM."
             />
           </li>
           <li>
             <FormattedMessage
-              id="app.page.termsAndConditions.preambuleArticle1.paragraph2.case2"
+              id="app.page.termsAndConditions.article1.paragraph2.case2"
               defaultMessage=" – that they have agreed to the General Conditions on the PLATFORM, and that they are fully aware of the rules governing sales and the setting of prices as set out by the aforementioned PLATFORM;"
             />
           </li>
           <li>
             <FormattedMessage
-              id="app.page.termsAndConditions.preambuleArticle1.paragraph2.case3"
+              id="app.page.termsAndConditions.article1.paragraph2.case3"
               defaultMessage="– that they fully understand what they can get from using the SERVICE offered by MTGINTERFACE as set out in these terms and conditions."
             />
           </li>
         </ul>
       </p>
-      <h2>2. Durée / Annulation</h2>
-      <h3>Durée</h3>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article2.title"
+          defaultMessage="2. Duration / Cancellation"
+        />
+      </h2>
+      <h3>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article2.subtitle1"
+          defaultMessage="Duration"
+        />
+      </h3>
       <p>
-        A la fin de la période d'abonnement, l'abonnement n'est PAS renouvelé
-        tacitement.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article2.subtitle1.paragraph1"
+          defaultMessage="Duration"
+        />
       </p>
-      <h3>Annulation</h3>
+      <h3>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article2.subtitle2"
+          defaultMessage="Cancellation"
+        />
+      </h3>
       <p>
-        Dans le cas où un VENDEUR ne respecterait pas une ou plusieurs de ses
-        obligations selon ces conditions d'utilisation, MTGINTERFACE se réserve
-        le droit d'annuler ces conditions d'utilisations à tout moment, avec ou
-        sans avis formel pour prévenir le VENDEUR de remplir ses obligations.
-        MTGINTERFACE pourra envoyer un avis formel par le biais de son choix,
-        notamment un simple message éléctronique (e-mail).
+        <FormattedMessage
+          id="app.page.termsAndConditions.article2.subtitle2.paragraph1"
+          defaultMessage="In the event that the MERCHANT fails to perform some or all of their obligations under these Terms and Conditions, MTGINTERFACE may cancel these Terms and Conditions as of right and at any time, with or without formal notice being made to the MERCHANT to fulfil their obligations. MTGINTERFACE shall send any formal notice by any means of its choice, including by simple electronic mail (e-mail)."
+        />
       </p>
-      <h2>3. Decription du SERVICE de modification des prix</h2>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article3.title"
+          defaultMessage="Cancellation"
+        />
+      </h2>
       <p>
-        Le SERVICE consiste à mettre à disposition du VENDEUR un outil leur
-        permettant d'optimiser le prix des produits qu'ils souhaitent proposer
-        en vente sur la PLATEFORME. Cette optimisation est effectuée à l'aide
-        d'un stratégie tarifaire définie par le VENDEUR, portant entre autres à
-        l'esprit le positionnement qu'ils choisissent par rapport aux tendances
-        de marché, par rapport aux soldes qu'ils veulent fixer sur tout ou
-        partie de leur stock, à l'état et la langue de leurs produits. Le
-        VENDEUR surveillera et vérifiera l'adéquation des prix optimaux proposés
-        par le système MTGINTERFACE, notamment grâce à la fonction de Test
-        disponible pour chaque script, et fera tout ajustement nécessaire de ces
-        propositions. Ils pourront alors, sous sous leur propre responsabilité,
-        choisir les produits et les prix qui seront enfin mettre en ligne pour
-        les acheteurs sur la PLATEFORME, en cliquant sur le bouton «Lancer». Les
-        nouveaux prix n'apparaîtront pas sur la PLATEFORME sauf si vous cliquez
-        sur ce bouton. Le VENDEUR fournira à MTGINTERFACE leur nom d'utilisateur
-        et mot de passe de la PLATEFORME, et autorisera MTGINTERFACE à les
-        utiliser afin de pouvoir modifier les prix du stock du VENDEUR et mettre
-        en ligne de nouveaux prix en son nom.
+        <FormattedMessage
+          id="app.page.termsAndConditions.article3.paragraph1"
+          defaultMessage="The MTGINTERFACE SERVICE consists of providing the MERCHANT with a tool enabling them to optimise the price of the products they wish to offer on sale on the PLATFORM. This optimisation is performed using a pricing strategy defined by the MERCHANT, amongst other things bearing in mind the positioning they choose in relation to market trends, to the language and condition of their product, or any discount they want to create. The MERCHANT will monitor and check the suitability of the optimum prices proposed by the MTGINTERFACE system, may check any result thanks to the 'Test' button, and will make any necessary adjustments to these proposals. They will then, under their own responsibility, choose the prices that will be ultimately put online for buyers on the PLATFORM, by clicking on the « Launch » button. The prices will not appear on the PLATFORM website unless this button is clicked. The MERCHANT will provide MTGINTERFACE with their PLATFORM username and password, and authorise MTGINTERFACE to use them in order that it can change the MERCHANT’s prices and put new prices online on his or her behalf."
+        />
       </p>
       <h2>4. Limitation de responsabilité</h2>
       <p>
@@ -280,41 +286,6 @@ const TermsOfUse = () => {
       </p>
       {/* EN */}
       ---------------------------------------------------------
-      <h2>2. Duration / Cancellation</h2>
-      <h3>Duration</h3>
-      <p>
-        At the end of the initial subscription period, the Terms and Conditions
-        shall NOT be renewed automatically by tacit agreement
-      </p>
-      <h3>Cancellation</h3>
-      <p>
-        In the event that the MERCHANT fails to perform some or all of their
-        obligations under these Terms and Conditions, MTGINTERFACE may cancel
-        these Terms and Conditions as of right and at any time, with or without
-        formal notice being made to the MERCHANT to fulfil their obligations.
-        MTGINTERFACE shall send any formal notice by any means of its choice,
-        including by simple electronic mail (e-mail).
-      </p>
-      <h2>3.Description of the SERVICE of updating prices</h2>
-      <p>
-        The MTGINTERFACE SERVICE consists of providing the MERCHANT with a tool
-        enabling them to optimise the price of the products they wish to offer
-        on sale on the PLATFORM. This optimisation is performed using a pricing
-        strategy defined by the MERCHANT, amongst other things bearing in mind
-        the positioning they choose in relation to market trends, to the
-        language and condition of their product, or any discount they want to
-        create. The MERCHANT will monitor and check the suitability of the
-        optimum prices proposed by the MTGINTERFACE system, may check any result
-        thanks to the "Test" button, and will make any necessary adjustments to
-        these proposals. They will then, under their own responsibility, choose
-        the products and prices that will be ultimately put online for buyers on
-        the PLATFORM, by clicking on the « Launch » button. The prices will not
-        appear on the PLATFORM website unless this button is clicked. The
-        MERCHANT will provide MTGINTERFACE with their PLATFORM username and
-        password, and authorise MTGINTERFACE to use them in order that it can
-        change the MERCHANT’s prices and put new prices online on his or her
-        behalf.
-      </p>
       <h2>4. LIABILITY</h2>
       <p>
         <h3>Principle</h3>
