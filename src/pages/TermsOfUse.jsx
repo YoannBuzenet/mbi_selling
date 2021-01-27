@@ -153,12 +153,12 @@ const TermsOfUse = () => {
             />
           </li>
         </ul>
-        <h3>
+        <h2>
           <FormattedMessage
             id="app.page.termsAndConditions.article5.title"
             defaultMessage="5. Reliance on the PLATFORM API third party technology"
           />
-        </h3>
+        </h2>
         <ul>
           <li>
             <FormattedMessage
