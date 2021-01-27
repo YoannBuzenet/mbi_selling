@@ -108,114 +108,75 @@ const TermsOfUse = () => {
           defaultMessage="The MTGINTERFACE SERVICE consists of providing the MERCHANT with a tool enabling them to optimise the price of the products they wish to offer on sale on the PLATFORM. This optimisation is performed using a pricing strategy defined by the MERCHANT, amongst other things bearing in mind the positioning they choose in relation to market trends, to the language and condition of their product, or any discount they want to create. The MERCHANT will monitor and check the suitability of the optimum prices proposed by the MTGINTERFACE system, may check any result thanks to the 'Test' button, and will make any necessary adjustments to these proposals. They will then, under their own responsibility, choose the prices that will be ultimately put online for buyers on the PLATFORM, by clicking on the « Launch » button. The prices will not appear on the PLATFORM website unless this button is clicked. The MERCHANT will provide MTGINTERFACE with their PLATFORM username and password, and authorise MTGINTERFACE to use them in order that it can change the MERCHANT’s prices and put new prices online on his or her behalf."
         />
       </p>
-      <h2>4. Limitation de responsabilité</h2>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.article4.title"
+          defaultMessage="4. LIABILITY"
+        />
+      </h2>
       <p>
-        <h3>Principes</h3>
         <ul>
           <li>
-            a/ Le VENDEUR reconnait explicitement et est d'accord avec le fait
-            que MTGINTERFACE a une simple obligation de moyens concernant ces
-            conditions d'utilisation.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article4.paragraph1"
+              defaultMessage="a/ The MERCHANT explicitly acknowledges and agrees that MTGINTERFACE has a simple due care obligation for all its obligations arising from the Terms and Conditions."
+            />
           </li>
           <li>
-            /b Sauf en cas de faute grave ou intentionnelle avérée, la
-            responsabilité globale de MTGINTERFACE envers le VENDEUR en vertu de
-            ces conditions d'utilisation, quels que soient les motifs
-            juridiques, peuvent ne pas, le cas échéant, dépasser les montants
-            déjà payés par le VENDEUR pour leur dernier paiement mensuel. En
-            outre, le VENDEUR ne peut réclamer une indemnité à cet égard si une
-            réclamation n'est pas faite par courrier recommandé avec accusé de
-            réception envoyé à MTGINTERFACE dans un délai d'un (1) semaine à
-            compter de la date à laquelle l'événement sous-jacent se produit.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article4.paragraph2"
+              defaultMessage="b/ Except in the event of proven gross or intentional misconduct, the overall liability of MTGINTERFACE to the MERCHANT by virtue of these Terms and Conditions, irrespective of the legal grounds may not, if applicable, exceed the amounts already paid by the MERCHANT for their last monthly payment. Furthermore, the MERCHANT may not claim any compensation in this regard if a claim is not made by registered post with return receipt sent to MTGINTERFACE within one (1) week as of the date when the underlying event happens."
+            />
           </li>
           <li>
-            c/ Le VENDEUR accepte explicitement que MTGINTERFACE et / ou ses les
-            représentants n'ont qu'une responsabilité limitée (conformément à
-            article 3/ b ci-dessus) pour (1) tout dommage indirect par la
-            mauvaise performance ou la non-performance de MTGINTERFACE de ses
-            obligations en vertu de ce document entraînant, mais non limité à,
-            toute perte de bénéfices ou de revenus et / ou tout dommage
-            résultant de l'impossibilité d'utiliser tout ou partie du SERVICE,
-            interruptions d'activité ou autre, même si MTGINTERFACE ou ses les
-            représentants ont été informés de la possibilité d'une telle
-            dommages, (2) tout service ou assistance non spécifiquement inclus
-            dans ces conditions d'utilisation, (3) tout dommage résultant,
-            directement ou indirectement, de l'inexactitude des informations
-            provenant du utilisation du SERVICE.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article4.paragraph3"
+              defaultMessage="c/ The MERCHANT explicitly agrees that MTGINTERFACE and/or its representatives have only limited liability (in accordance with article 3 /b above) to it for (1) any indirect damages arising through the poor performance or non-performance by MTGINTERFACE of its obligations by virtue of this document resulting in, but not limited to, any losses of profits or income and/or any damage arising from the impossibility of using all or part of the SERVICE, interruptions to business or other, even if MTGINTERFACE or its representatives have been informed of the possibility of such damage, (2) any service or assistance no specifically included in these Terms and Conditions, (3) any damages arising, directly or indirectly, from the inaccuracy of the information coming from the use of the SERVICE."
+            />
           </li>
           <li>
-            d / Le VENDEUR reconnaît être seul responsable des informations
-            qu'ils détient et / ou possède, ainsi que celles découlant de
-            l'utilisation du SERVICE, et assume l'entière responsabilité de
-            conserver cette information.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article4.paragraph4"
+              defaultMessage="d/ The MERCHANT acknowledges that they alone are responsible for the information they hold and/or own, as well as that arising from the use of the SERVICE, and assume sole responsibility for keeping such information."
+            />
           </li>
           <li>
-            e / Le VENDEUR reconnaît être seul responsable de prévoir et de
-            calculer les dommages qu'il est susceptible de subir en cas de
-            problème survenant dans l'exécution des conditions d'utilisation
-            dont les conditions (y compris les mesures financières) ont été
-            fixées en ce qui concerne les limitations de responsabilité et les
-            exemptions dont bénéficie MTGINTERFACE. En conséquence, le VENDEUR
-            reconnaît et accepte qu'il est de sa propre responsabilité de
-            s'assurer contre tous les risques et qu’il en est le seul juge au
-            regard de sa propre situation individuelle et selon les termes des
-            conditions d'utilisation.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article4.paragraph5"
+              defaultMessage="e/ The MERCHANT acknowledges that it alone is responsible for forecasting and calculating any damage it is liable to suffer in the event of any problem arising in the performance of the Terms and Conditions whose terms (including financial measures) have been set with regard to the liability limitations and exemptions enjoyed by MTGINTERFACE. As a consequence, the MERCHANT acknowledges and accepts that it is their own responsibility to insure themselves against all risks and that they alone deem appropriate with regard to their own individual situation and under the terms of the Terms and Conditions."
+            />
           </li>
           <li>
-            f / Toutes les ventes réalisées par le commerçant sur la PLATEFORME,
-            en particulier là où MTGINTERFACE met en ligne des prix optimaux sur
-            les produits du VENDEUR dans le cadre du rôle avec lequel ce dernier
-            a confié à l'article 3, se font directement entre le commerçant et
-            les acheteurs sur la PLATEFORME. En conséquence, MTGINTERFACE est en
-            aucun cas une partie contractuelle aux accords signés entre le
-            MARCHAND et les acheteurs sur la PLATEFORME, et le VENDEUR s'engage
-            à respecter les dispositions législatives et réglementaires
-            applicables dispositions et notamment celles visant la protection
-            des consommateurs et vente par correspondance.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article4.paragraph6"
+              defaultMessage="f/ All sales made by the merchant on the PLATFORM, particularly where MTGINTERFACE puts optimum prices online on the MERCHANT’s behalf as part of the role with which the latter has entrusted it in Article 3, are made directly between the merchant and the buyers on the PLATFORM. As a consequence, MTGINTERFACE is under no circumstances a contractual party to agreements signed between the MERCHANT and the buyers on the PLATFORM, and The merchant undertakes to respect the applicable legislative and regulatory provisions and particularly those aimed at consumer protection and mail order sales."
+            />
           </li>
         </ul>
         <h3>
-          5. Dépendance avec la technologie de la PLATEFORME Magic Card Market
+          <FormattedMessage
+            id="app.page.termsAndConditions.article5.title"
+            defaultMessage="5. Reliance on the PLATFORM API third party technology"
+          />
         </h3>
         <ul>
           <li>
-            a / Le VENDEUR reconnaît explicitement qu'il a connaissance et
-            reconnait que : - le SERVICE reposant sur la technologie «API»
-            développée par la PLATEFORME et mise à disposition des marchands de
-            la PLATEFORME. Le VENDEUR s'engage à n'utiliser que les informations
-            obtenues grâce au SERVICE dans le but d'optimiser ses prix sur la
-            PLATEFORME, en conformément aux présentes conditions d'utilisation
-            et aux dispositions des conditions générales de la PLATEFORME. -
-            certaines modifications apportées par la PLATEFORME pourraient
-            rendre le SERVICE obsolète, indépendamment de la surveillance et de
-            la désirs de MTGINTERFACE, et que cette dernière ne peut sous aucun
-            circonstances être tenue responsable des développements régis par la
-            PLATEFORME et leurs conséquences, qu'elles surviennent avec ou sans
-            avertissement et indépendamment des conséquences de ces changements.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article5.paragraph1"
+              defaultMessage="a/ The MERCHANT explicitly acknowledges that it is aware of and agrees that: – the SERVICE relying on « API » technology developed by the PLATFORM and made available to Marketplace merchants. The MERCHANT undertakes only to use information obtained thanks to the SERVICE with the aim of optimising their prices on the PLATFORM, in accordance with these Terms and Conditions and with the provisions of the Terms and Conditions and the PLATFORM Marketplace– some changes made by the PLATFORM could render the SERVICE obsolete, independently of the monitoring and the desires of MTGINTERFACE, and that this latter may under no circumstances be held responsible for developments governed by the PLATFORM and their consequences, whether they arise with or without warning and irrespective of the consequences of these changes."
+            />
           </li>
           <li>
-            b / MTGINTERFACE décline toute responsabilité quant à l'intégrité,
-            l'exhaustivité, la précision, l'exactitude et la mise à jour des
-            informations et données fournies par le SERVICE par le biais de la
-            PLATEFORME et ses logiciels et ses bases de données. MTGINTERFACE ne
-            détient aucune propriété intellectuelle ou autres droits sur les
-            informations et les données de la PLATEFORME. Les informations et
-            données restent la propriété exclusive de la PLATEFORME, en l'état
-            explicitement reconnu par le VENDEUR, qui en tiendra compte compte
-            dans leur utilisation.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article5.paragraph2"
+              defaultMessage="b/ MTGINTERFACE acquits itself of all responsibility as to the integrity, exhaustiveness, precision, accuracy, and updating of information and data provided by the SERVICE depending on the PLATFORM and its software and databases. MTGINTERFACE holds no intellectual property or other rights over the PLATFORM information and data. This information and data remain the exclusive property of the PLATFORM, as is explicitly acknowledged by the MERCHANT, who shall take this into account in their usage."
+            />
           </li>
           <li>
-            c / MTGINTERFACE mettra tout en œuvre pour s'assurer que le SERVICE
-            fournit les informations les plus récentes possibles. Cependant, le
-            VENDEUR reconnaît et accepte explicitement que: - le les
-            informations relatives aux prix sont de par leur nature volatiles,
-            et donc que les prix optimaux proposés dans le cadre de du SERVICE
-            peuvent ne plus être à jour lorsque le VENDEUR met son prix en ligne
-            sur la PLATEFORME; - en cliquant sur le bouton «Lancer» , le VENDEUR
-            assume la responsabilité des prix de vente en ligne. La garantie et
-            les limitations de responsabilité susmentionnées constituent des
-            facteurs essentiels et primordiaux des conditions d'utilisation
-            entre MTGINTERFACE et le VENDEUR.
+            <FormattedMessage
+              id="app.page.termsAndConditions.article5.paragraph3"
+              defaultMessage="c/ MTGINTERFACE shall make every effort available to it to make sure the SERVICE provides the most up-to-date possible information. However, the MERCHANT explicitly acknowledges and agrees that: – the information relating to prices are by their very nature volatile, and therefore that the optimum prices proposed as part of this SERVICE may no longer be up to date when the MERCHANT puts their prices online on the PLATFORM; – by clicking on the « Launch » button, the MERCHANT takes responsibility for the prices the put online The abovementioned guarantee and liability limitations constitute essential and overriding factors of the Terms and Conditions between MTGINTERFACE and the MERCHANT."
+            />
           </li>
         </ul>
       </p>
@@ -286,114 +247,16 @@ const TermsOfUse = () => {
       </p>
       {/* EN */}
       ---------------------------------------------------------
-      <h2>4. LIABILITY</h2>
-      <p>
-        <h3>Principle</h3>
-        <ul>
-          <li>
-            a/ The MERCHANT explicitly acknowledges and agrees that MTGINTERFACE
-            has a simple due care obligation for all its obligations arising
-            from the Terms and Conditions.
-          </li>
-          <li>
-            b/ Except in the event of proven gross or intentional misconduct,
-            the overall liability of MTGINTERFACE to the MERCHANT by virtue of
-            these Terms and Conditions, irrespective of the legal grounds may
-            not, if applicable, exceed the amounts already paid by the MERCHANT
-            for their last monthly payment. Furthermore, the MERCHANT may not
-            claim any compensation in this regard if a claim is not made by
-            registered post with return receipt sent to MTGINTERFACE within one
-            (1) week as of the date when the underlying event happens.
-          </li>
-          <li>
-            c/ The MERCHANT explicitly agrees that MTGINTERFACE and/or its
-            representatives have only limited liability (in accordance with
-            article 3 /b above) to it for (1) any indirect damages arising
-            through the poor performance or non-performance by MTGINTERFACE of
-            its obligations by virtue of this document resulting in, but not
-            limited to, any losses of profits or income and/or any damage
-            arising from the impossibility of using all or part of the SERVICE,
-            interruptions to business or other, even if MTGINTERFACE or its
-            representatives have been informed of the possibility of such
-            damage, (2) any service or assistance no specifically included in
-            these Terms and Conditions, (3) any damages arising, directly or
-            indirectly, from the inaccuracy of the information coming from the
-            use of the SERVICE.
-          </li>
-          <li>
-            d/ The MERCHANT acknowledges that they alone are responsible for the
-            information they hold and/or own, as well as that arising from the
-            use of the SERVICE, and assume sole responsibility for keeping such
-            information.
-          </li>
-          <li>
-            e/ The MERCHANT acknowledges that it alone is responsible for
-            forecasting and calculating any damage it is liable to suffer in the
-            event of any problem arising in the performance of the Terms and
-            Conditions whose terms (including financial measures) have been set
-            with regard to the liability limitations and exemptions enjoyed by
-            MTGINTERFACE. As a consequence, the MERCHANT acknowledges and
-            accepts that it is their own responsibility to insure themselves
-            against all risks and that they alone deem appropriate with regard
-            to their own individual situation and under the terms of the Terms
-            and Conditions.
-          </li>
-          <li>
-            f/ All sales made by the merchant on the PLATFORM, particularly
-            where MTGINTERFACE puts optimum prices online on the MERCHANT’s
-            behalf as part of the role with which the latter has entrusted it in
-            Article 3, are made directly between the merchant and the buyers on
-            AMAZON. As a consequence, MTGINTERFACE is under no circumstances a
-            contractual party to agreements signed between the MERCHANT and the
-            buyers on the PLATFORM, and The merchant undertakes to respect the
-            applicable legislative and regulatory provisions and particularly
-            those aimed at consumer protection and mail order sales.
-          </li>
-        </ul>
-
-        <h2>5. Reliance on the PLATFORM API third party technology</h2>
-        <ul>
-          <li>
-            a/ The MERCHANT explicitly acknowledges that it is aware of and
-            agrees to: – the SERVICE relying on « API » technology developed by
-            the PLATFORM and made available to Marketplace merchants. The
-            MERCHANT undertakes only to use information obtained thanks to the
-            SERVICE with the aim of optimising their prices on the PLATFORM, in
-            accordance with these Terms and Conditions and with the provisions
-            of the Terms and Conditions and the PLATFORM Marketplace– some
-            changes made by the PLATFORM could render the SERVICE obsolete,
-            independently of the monitoring and the desires of MTGINTERFACE, and
-            that this latter may under no circumstances be held responsible for
-            developments governed by the PLATFORM and their consequences,
-            whether they arise with or without warning and irrespective of the
-            consequences of these changes.
-          </li>
-
-          <li>
-            b/ MTGINTERFACE acquits itself of all responsibility as to the
-            integrity, exhaustiveness, precision, accuracy, and updating of
-            information and data provided by the SERVICE depending on the
-            PLATFORM and its software and databases. MTGINTERFACE holds no
-            intellectual property or other rights over the PLATFORM information
-            and data. This information and data remain the exclusive property of
-            the PLATFORM, as is explicitly acknowledged by the MERCHANT, who
-            shall take this into account in their usage.
-          </li>
-          <li>
-            c/ MTGINTERFACE shall make every effort available to it to make sure
-            the SERVICE provides the most up-to-date possible information.
-            However, the MERCHANT explicitly acknowledges and agrees that: – the
-            information relating to prices are by their very nature volatile,
-            and therefore that the optimum prices proposed as part of this
-            SERVICE may no longer be up to date when the MERCHANT puts their
-            prices online on the PLATFORM; – by clicking on the « Launch »
-            button, the MERCHANT takes responsibility for the prices the put
-            online The abovementioned guarantee and liability limitations
-            constitute essential and overriding factors of the TERMS AND
-            Conditions between MTGINTERFACE and the MERCHANT.
-          </li>
-        </ul>
-      </p>
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
+      ---------------------------------------------------------
       <h2>6. FORCE MAJEURE</h2>
       <p>
         Force majeure events shall suspend the obligations of the parties as
