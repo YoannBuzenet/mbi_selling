@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-container container">
           <div>
             <p>
-              <Link to="/buyingClauses">
+              <Link to="/terms-of-use">
                 <FormattedMessage
                   id="app.footer.legalClauses"
                   defaultMessage={`Legal Clauses`}
