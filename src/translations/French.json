@@ -56,6 +56,14 @@
 
   "app.page.termsAndConditions.title": "Conditions d'utilisation",
   "app.page.termsAndConditions.preambule": "Préambule",
+  "app.page.termsAndConditions.preambulePart1": "MTGINTERFACE offre un service web (ci-après nommé le « SERVICE ») destiné à aider les vendeurs profesionnels, qu'ils soient privés ou via leur entité légale, (ci-après nommé le « VENDEUR(S) ») qui veulent optimiser les prix de leurs produits à vendresur la place de marché the Magic Card Market Marketplace (https://www.cardmarket.com/en/Magic) (ci-après nommé la « PLATEFORME »). Les conditions d'utilisation du SERVICE sont précisés dans ces conditions d'utilisation.",
+  "app.page.termsAndConditions.preambulePart2": "Les informations légales regardant l'entreprise MTGINTERFACE sont les suivants : tél : +336 13 64 92 72 - Micro Entreprise MTGINTERFACE - Siège social : 9 Rue place Maréchal Foch, 56700 Hennebont, SIREN 804 965 101 00038",
+  "app.page.termsAndConditions.preambuleArticle1Title": "1. Conditions nécessaires pour accéder au SERVICE",
+  "app.page.termsAndConditions.preambuleArticle1.paragraph1": "Vous pouvez utiliser le SERVICE si et seulement si vous avez plus de 18 ans et êtes légalement apte de lier un contrat avec MTGINTERFACE, et pas sous interdiction de contracter. Si vous accédez au SERVICE sur ordre de votre entreprise (comme votre employeur par exemple) ou de toute autre entité juridique, vous représentez cette entité et garantissez avoir l'autorité et le droit légitime de lier contractuellement cette entité à ces conditions d'utilisation. Dans ce cas, \"vous\" et \"votre\" feront référence à cette entité.",
+  "app.page.termsAndConditions.preambuleArticle1.paragraph2.beginning": "Le VENDEUR déclare par la présente:",
+  "app.page.termsAndConditions.preambuleArticle1.paragraph2.case1": "- qu'il est titulaire d'un \"Compte professionnel\" sur la PLATEFORME, et qu'il a un nom d'utilisateur et un mot de passe lui accordant un accès légal à la PLATEFORME. Notez s'il vous plaît que certaines parties de ce SERVICE ne fonctionneront pas si le VENDEUR n'est pas enregistré en tant que professionnel sur la PLATEFORME.",
+  "app.page.termsAndConditions.preambuleArticle1.paragraph2.case2": "- qu'il a accepté les Conditions Générales sur la PLATEFORME, et qu'il a pleinement connaissance des règles régissant les ventes et la fixation des prix telles que définies par la PLATEFORM précitée;",
+  "app.page.termsAndConditions.preambuleArticle1.paragraph2.case3": "- qu'il comprend parfaitement ce qu'ils peut retirer de l'utilisation du SERVICE proposé par MTGINTERFACE tel que défini dans les présentes conditions d'utilisation",
 
   "app.LoginPage.title": "Connexion à l'application",
   "app.LoginPage.label.email": "Adresse Mail",

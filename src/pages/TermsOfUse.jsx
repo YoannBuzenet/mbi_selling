@@ -17,50 +17,52 @@ const TermsOfUse = () => {
         />
       </h2>
       <p>
-        MTGINTERFACE offre un service web (ci-après nommé le « SERVICE »)
-        destiné à aider les vendeurs profesionnels, qu'ils soient privés ou via
-        leur entité légale, (ci-après nommé le « VENDEUR(S) ») qui veulent
-        optimiser les prix de leurs produits à vendresur la place de marché the
-        Magic Card Market Marketplace (https://www.cardmarket.com/en/Magic)
-        (ci-après nommé la « PLATEFORME »). Les conditions d'utilisation du
-        SERVICE sont précisés dans ces conditions d'utilisation.
+        <FormattedMessage
+          id="app.page.termsAndConditions.preambulePart1"
+          defaultMessage="MTGINTERFACE offers a web service (hereinafter referred to as the « SERVICE ») aimed at helping professional merchants, be they private individuals or legal entities, (hereinafter referred to as the « MERCHANT(S) ») who wish to optimise the price of items they are offering for sale on the Magic Card Market Marketplace platform (https://www.cardmarket.com/en/Magic)(hereinafter referred to as the « PLATFORM »).The terms and conditions of this SERVICE are set out in these Terms and Conditions."
+        />
       </p>
       <p>
-        Les informations légales regardant l'entreprise MTGINTERFACE sont les
-        suivants : tél : +336 13 64 92 72 - Micro Entreprise MTGINTERFACE -
-        Siège social : 9 Rue place Maréchal Foch, 56700 Hennebont, SIREN 804 965
-        101 00038
+        <FormattedMessage
+          id="app.page.termsAndConditions.preambulePart2"
+          defaultMessage="Details regarding the MTGINTERFACE company are as follows: Tél : +336 13 64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038"
+        />
       </p>
-      <h2>1. Conditions nécessaires pour accéder au SERVICE</h2>
+      <h2>
+        <FormattedMessage
+          id="app.page.termsAndConditions.preambuleArticle1Title"
+          defaultMessage="1. Necessary conditions to access the SERVICE"
+        />
+      </h2>
       <p>
-        Vous pouvez utiliser le SERVICE si et seulement si vous avez plus de 18
-        ans et êtes légalement apte de lier un contrat avec MTGINTERFACE, et pas
-        sous interdiction de contracter. Si vous accédez au SERVICE sur ordre de
-        votre entreprise (comme votre employeur par exemple) ou de toute autre
-        entité juridique, vous représentez cette entité et garantissez avoir
-        l'autorité et le droit légitime de lier contractuellement cette entité à
-        ces conditions d'utilisation. Dans ce cas, "vous" et "votre" feront
-        référence à cette entité.
+        <FormattedMessage
+          id="app.page.termsAndConditions.preambuleArticle1.paragraph1"
+          defaultMessage="You may use the SERVICE only if you are 18 years or older and capable of forming a binding contract with MTGINTERFACE, and not otherwise barred from using the SERVICE under applicable law. If you are accessing and using the SERVICE on behalf of a company (such as your employer) or other legal entity, you represent and warrant that you have the authority to bind that entity to these Terms. In that case, “you” and “your” will refer to that entity."
+        />
       </p>
       <p>
-        Le VENDEUR déclare par la présente:
+        <FormattedMessage
+          id="app.page.termsAndConditions.preambuleArticle1.paragraph2.beginning"
+          defaultMessage="The MERCHANT does hereby declare:"
+        />
         <ul>
           <li>
-            - qu'il est titulaire d'un "Compte professionnel" sur la PLATEFORME,
-            et qu'il a un nom d'utilisateur et un mot de passe lui accordant un
-            accès légal à la PLATEFORME. Notez s'il vous plaît que certaines
-            parties de ce SERVICE ne fonctionneront pas si le VENDEUR n'est pas
-            enregistré en tant que professionnel sur la PLATEFORME.
+            <FormattedMessage
+              id="app.page.termsAndConditions.preambuleArticle1.paragraph2.case1"
+              defaultMessage="– that they are the holder of a « Professional » account on the PLATFORM, and that they have a username and a password granting them legal access to the PLATFORM. Please note that some parts of this SERVICE will not work if the MERCHANT is not registered as a Professional on the PLATFORM."
+            />
           </li>
           <li>
-            - qu'il a accepté les Conditions Générales sur la PLATEFORME,, et
-            qu'il a pleinement connaissance des règles régissant les ventes et
-            la fixation des prix telles que définies par la PLATEFORM précitée;
+            <FormattedMessage
+              id="app.page.termsAndConditions.preambuleArticle1.paragraph2.case2"
+              defaultMessage=" – that they have agreed to the General Conditions on the PLATFORM, and that they are fully aware of the rules governing sales and the setting of prices as set out by the aforementioned PLATFORM;"
+            />
           </li>
           <li>
-            - qu'il comprend parfaitement ce qu'ils peut retirer de
-            l'utilisation du SERVICE proposé par MTGINTERFACE tel que défini
-            dans les présentes conditions d'utilisation
+            <FormattedMessage
+              id="app.page.termsAndConditions.preambuleArticle1.paragraph2.case3"
+              defaultMessage="– that they fully understand what they can get from using the SERVICE offered by MTGINTERFACE as set out in these terms and conditions."
+            />
           </li>
         </ul>
       </p>
@@ -277,54 +279,7 @@ const TermsOfUse = () => {
         résoudre à l'amiable sera jugé par les tribunaux de Paris.
       </p>
       {/* EN */}
-
-      <p>
-        MTGINTERFACE offers a web service (hereinafter referred to as the «
-        SERVICE ») aimed at helping professional merchants, be they private
-        individuals or legal entities, (hereinafter referred to as the «
-        MERCHANT(S) ») who wish to optimise the price of items they are offering
-        for sale on the Magic Card Market Marketplace platform
-        (https://www.cardmarket.com/en/Magic)(hereinafter referred to as the «
-        PLATFORM »).The terms and conditions of this SERVICE are set out in
-        these Terms and Conditions.
-      </p>
-      <p>
-        Details regarding the MTGINTERFACE company are as follows: Tél : +336 13
-        64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place
-        Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038
-      </p>
-      <h2>1. Necessary conditions to access the SERVICE</h2>
-      <p>
-        You may use the SERVICE only if you are 18 years or older and capable of
-        forming a binding contract with MTGINTERFACE, and not otherwise barred
-        from using the SERVICE under applicable law. If you are accessing and
-        using the SERVICE on behalf of a company (such as your employer) or
-        other legal entity, you represent and warrant that you have the
-        authority to bind that entity to these Terms. In that case, “you” and
-        “your” will refer to that entity.
-      </p>
-      <p>
-        The MERCHANT does hereby declare:
-        <ul>
-          <li>
-            – that they are the holder of a « Professional » account on the
-            PLATFORM, and that they have a username and a password granting them
-            legal access to the PLATFORM. Please note that some parts of this
-            SERVICE will not work if the MERCHANT is not registered as a
-            Professional on the PLATFORM.
-          </li>
-          <li>
-            – that they have agreed to the General Conditions on the PLATFORM,
-            and that they are fully aware of the rules governing sales and the
-            setting of prices as set out by the aforementioned PLATFORM;
-          </li>
-          <li>
-            – that they fully understand what they can get from using the
-            SERVICE offered by MTGINTERFACE as set out in these terms and
-            conditions.
-          </li>
-        </ul>
-      </p>
+      ---------------------------------------------------------
       <h2>2. Duration / Cancellation</h2>
       <h3>Duration</h3>
       <p>
