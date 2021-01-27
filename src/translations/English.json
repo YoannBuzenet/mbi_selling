@@ -55,6 +55,9 @@
   "app.myAccountPage.edition.success": "Your account has been updated.",
   "app.myAccountPage.edition.failure": "Your account couldn't be updated. Please try again.",
 
+  "app.page.termsAndConditions.title": "Terms and Conditions",
+  "app.page.termsAndConditions.preambule": "Preambule",
+
   "app.LoginPage.title": "Log in",
   "app.LoginPage.label.email": "Mail Adress",
   "app.LoginPage.label.password": "Password",
