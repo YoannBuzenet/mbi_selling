@@ -91,7 +91,7 @@ router.post("/setNewPassword", async (req, res) => {
   // We need some data to trigger the challenge behaviour on MTGAPI : we get them on our own database.
   const shopDataMbiSelling = await db.User.findOne({
     where: {
-      email: usermail,
+      email: mail,
     },
   });
 
