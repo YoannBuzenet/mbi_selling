@@ -35,7 +35,7 @@ const ResetMail = () => {
           userInfos["token"] = token;
           userInfos["locale"] = currentLang.locale;
           axios
-            .post("/user/authentication/resetPassword", userInfos)
+            .post("/authentication/user/resetPassword", userInfos)
             .then((respServer) =>
               toast.success(
                 <FormattedMessage
