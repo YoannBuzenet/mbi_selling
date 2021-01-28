@@ -32,7 +32,7 @@ async function registerUserOnBothBackEnds(
   addressStreet,
   postalCode,
   town,
-  vat,
+  vat = null,
   languageUsed = "en-US"
 ) {
   const shopKeyCreated = createShopKey();
