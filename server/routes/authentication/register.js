@@ -1,12 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const { registerUser } = require("../../controllers/authController");
-const db = require("../../../models/index");
 const {
-  createPremadeScriptsForShop,
-} = require("../../controllers/shopController");
-const { sendEmail } = require("../../controllers/mailController");
-const { createShopKey } = require("../../services/utils");
+  registerUserOnBothBackEnds,
+} = require("../../controllers/authController");
+const db = require("../../../models/index");
 
 //TODO Add a google recapatcha v3 here
 
@@ -25,52 +22,15 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  const shopKeyCreated = createShopKey();
-
-  // console.log("get data from front");
-  let userCredentials = {
-    email: req.body.email,
-    password: req.body.password,
-    legalName: req.body.legalName,
-    addressStreet: req.body.addressStreet,
-    postalCode: req.body.postalCode,
-    town: req.body.town,
-    vat: req.body.vat,
-    languageUsed: req.body.languageUsed || "en-US",
-    shopKey: shopKeyCreated,
-  };
-
   try {
-    const didUserRegister = await registerUser(userCredentials);
-    console.log("didUserRegister", didUserRegister);
-    const shopIdOnMTGI = parseInt(
-      didUserRegister.data.shop["@id"].substring(7)
-    );
-
-    //register user in our DB too
-    const userCreated = await db.User.create({
-      idShop: shopIdOnMTGI,
-      email: req.body.email,
-      shopKey: shopKeyCreated,
-    });
-
-    // mail user
-    sendEmail(
-      "register",
-      userCreated.dataValues.id,
+    await registerUserOnBothBackEnds(
       req.body.email,
-      {
-        shop: {
-          legalName: req.body.legalName,
-        },
-      },
+      req.body.password,
+      req.body.legalName,
+      req.body.addressStreet,
+      req.body.postalCode,
+      req.body.town,
       req.body.languageUsed
-    );
-
-    // Create premade scripts for user
-    await createPremadeScriptsForShop(
-      shopIdOnMTGI,
-      req.body.languageUsed || "en-US"
     );
   } catch (error) {
     console.log("error during registering User", error);

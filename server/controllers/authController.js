@@ -3,8 +3,81 @@ const axios = require("axios");
 const {
   localeLangIDDictionnary,
 } = require("../../src/services/fullstackTranslations/genericTranslations");
+const { sendEmail } = require("../controllers/mailController");
+const {
+  createPremadeScriptsForShop,
+} = require("../controllers/shopController");
+const { createShopKey } = require("../services/utils");
+const db = require("../../models/index");
 
-async function registerUser(userCredentials) {
+async function registerOnThisBackEndFromMTGAPI(idShop) {
+  // retrieve shop data from MTG API
+  const shopData = await retrieveAsAdmin(
+    `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
+    "get"
+  );
+
+  // register user in our DB
+  const userCreated = await db.User.create({
+    idShop: idShop,
+    email: shopData.data.email,
+    shopKey: shopData.data.shopKey,
+  });
+}
+
+async function registerUserOnBothBackEnds(
+  email,
+  password,
+  legalName,
+  addressStreet,
+  postalCode,
+  town,
+  vat,
+  languageUsed = "en-US"
+) {
+  const shopKeyCreated = createShopKey();
+
+  let userCredentials = {
+    email,
+    password,
+    legalName,
+    addressStreet,
+    postalCode,
+    town,
+    vat,
+    languageUsed,
+    shopKey: shopKeyCreated,
+  };
+
+  const didUserRegister = await registerUserMTGAPI(userCredentials);
+  console.log("didUserRegister", didUserRegister);
+  const shopIdOnMTGI = parseInt(didUserRegister.data.shop["@id"].substring(7));
+
+  //register user in our DB too
+  const userCreated = await db.User.create({
+    idShop: shopIdOnMTGI,
+    email: req.body.email,
+    shopKey: shopKeyCreated,
+  });
+
+  // mail user
+  sendEmail(
+    "register",
+    userCreated.dataValues.id,
+    email,
+    {
+      shop: {
+        legalName: legalName,
+      },
+    },
+    languageUsed
+  );
+
+  // Create premade scripts for user
+  await createPremadeScriptsForShop(shopIdOnMTGI, languageUsed);
+}
+
+async function registerUserMTGAPI(userCredentials) {
   console.log("log as admin, registerShop on MTGAPI");
 
   const completeCredentials = buildRegisterObjectForBackEnd(userCredentials);
@@ -161,4 +234,7 @@ function buildRegisterObjectForBackEnd(initialCredentials) {
   return boilerPlateWithMinimalInfos;
 }
 
-module.exports = { registerUser };
+module.exports = {
+  registerUserOnBothBackEnds,
+  registerOnThisBackEndFromMTGAPI,
+};

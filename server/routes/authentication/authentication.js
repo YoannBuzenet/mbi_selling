@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 var axios = require("axios");
 const db = require("../../../models/index");
+const {
+  registerOnThisBackEndFromMTGAPI,
+} = require("../../controllers/authController");
 
 /* Login Route */
 router.post("/", async (req, res) => {
@@ -23,11 +26,12 @@ router.post("/", async (req, res) => {
       credentials
     );
 
+    //Yoann to uncomment after it works
     //if the login is an admin, we just log him without searching for scripts
-    if (loginOnMTGAPI.data.user.roles.includes("ROLE_ADMIN")) {
-      res.json(loginOnMTGAPI.data).status(200);
-      return;
-    }
+    // if (loginOnMTGAPI.data.user.roles.includes("ROLE_ADMIN")) {
+    //   res.json(loginOnMTGAPI.data).status(200);
+    //   return;
+    // }
 
     //checking if this user is registered on mbi_selling
     let shop = await db.User.findOne({
@@ -37,9 +41,19 @@ router.post("/", async (req, res) => {
     });
 
     if (shop === null) {
-      // TODO do we register him here ? - yoann
-      res.status(500).json("Shop doesn't exist on mbi_selling.");
-      return;
+      try {
+        // Register user here FROM data FROM MTGAPI
+        await registerOnThisBackEndFromMTGAPI(loginOnMTGAPI.data.shop.id);
+        shop = await db.User.findOne({
+          where: {
+            idShop: loginOnMTGAPI.data.shop.id,
+          },
+        });
+      } catch (e) {
+        console.log("error while registrating an user of the fly", e);
+        res.status(500).json("Shop doesn't exist on mbi_selling.");
+        return;
+      }
     }
     //Getting all scripts for this user and adding them to the API response
 
@@ -69,7 +83,7 @@ router.post("/", async (req, res) => {
 
     res.json(overloadedResponse);
   } catch (error) {
-    console.log(error);
+    console.log("error when logging", error);
     res.status(401).json("Access Denied.");
     return;
   }

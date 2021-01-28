@@ -927,7 +927,7 @@ async function testScriptPersistingStep(
 
     const shopData = await retrieveAsAdmin(
       `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
-      "GET"
+      "get"
     );
 
     sendEmail(
