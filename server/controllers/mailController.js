@@ -67,8 +67,8 @@ function getMailTitle(action, intl) {
     }
     case "mailForgotten": {
       mailTitle = intl.formatMessage({
-        id: "Reset your password",
-        defaultMessage: "mail.sending.title.passwordForgotten",
+        id: "mail.sending.title.passwordForgotten",
+        defaultMessage: "Reset your password",
       });
       break;
     }
@@ -227,7 +227,7 @@ async function sendEmail(
   const attachedPdf = getPDF(action, locale, idShop);
 
   ejs.renderFile(templatePath, templateData, (err, html) => {
-    if (err) console.log(err); // Handle error
+    if (err) console.log("error while sending mail", err); // Handle error
     // console.log(templateData);
     // console.log(templateData.user.customer.SellRequests);
     // console.log(template);
@@ -253,7 +253,7 @@ async function sendEmail(
     });
 
     transport.sendMail(mailOpts, (err, info) => {
-      if (err) console.log(err); //Handle Error
+      if (err) console.log("error while sending mail2", err); //Handle Error
       console.log(info);
       //TODO later: pass unlink behaviour in param
       // fs.unlink(
