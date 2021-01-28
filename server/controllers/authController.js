@@ -56,7 +56,7 @@ async function registerUserOnBothBackEnds(
   //register user in our DB too
   const userCreated = await db.User.create({
     idShop: shopIdOnMTGI,
-    email: req.body.email,
+    email: email,
     shopKey: shopKeyCreated,
   });
 
