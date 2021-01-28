@@ -25,7 +25,7 @@ const TermsOfUse = () => {
       <p>
         <FormattedMessage
           id="app.page.termsAndConditions.preambulePart2"
-          defaultMessage="Details regarding the MTGINTERFACE company are as follows: Tél : +336 13 64 92 72 - Micro Entreprise MTGINTERFACE - HeadQuarters : 9 Rue place Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038"
+          defaultMessage="Details regarding the MTGINTERFACE company are as follows: Yoann BUZENET,  Micro Entreprise MTGINTERFACE HeadQuarters : 9 Rue place Maréchal Foch, 56700 Hennebont, France, SIREN 804 965 101 00038, Tél : +336 13 64 92 72"
         />
       </p>
       <h2>
