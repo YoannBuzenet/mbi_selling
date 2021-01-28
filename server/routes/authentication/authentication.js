@@ -36,7 +36,8 @@ router.post("/", async (req, res) => {
       },
     });
 
-    if (!shop) {
+    if (shop === null) {
+      // TODO do we register him here ? - yoann
       res.status(500).json("Shop doesn't exist on mbi_selling.");
       return;
     }
