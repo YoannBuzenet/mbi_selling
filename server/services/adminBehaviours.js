@@ -16,10 +16,11 @@ async function retrieveAsAdmin(url, method, parameters) {
         Authorization: `Bearer ${servResp.data.token}`,
       },
     };
-    if (method !== "get") {
-      return axios[method](url, parameters, temporaryHeader);
-    } else {
+
+    if (method === "get") {
       return axios[method](url, temporaryHeader);
+    } else {
+      return axios[method](url, parameters, temporaryHeader);
     }
   } catch (error) {
     console.log("ERROR during admin login and retriving as admin", error);
