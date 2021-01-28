@@ -26,12 +26,11 @@ router.post("/", async (req, res) => {
       credentials
     );
 
-    //Yoann to uncomment after it works
-    //if the login is an admin, we just log him without searching for scripts
-    // if (loginOnMTGAPI.data.user.roles.includes("ROLE_ADMIN")) {
-    //   res.json(loginOnMTGAPI.data).status(200);
-    //   return;
-    // }
+    // if the login is an admin, we just log him without searching for scripts
+    if (loginOnMTGAPI.data.user.roles.includes("ROLE_ADMIN")) {
+      res.json(loginOnMTGAPI.data).status(200);
+      return;
+    }
 
     //checking if this user is registered on mbi_selling
     let shop = await db.User.findOne({
