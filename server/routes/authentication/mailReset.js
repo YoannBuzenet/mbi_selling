@@ -76,7 +76,7 @@ router.post("/resetPassword", async (req, res) => {
     .catch((e) => console.log("ERROR IN GOOGLE ASKING", e));
 });
 
-router.post("/setNewPassword", (req, res) => {
+router.post("/setNewPassword", async (req, res) => {
   console.log("resting password step 2");
   let googleToken = req.body.token;
   let { challenge, password, mail } = req.body;
@@ -87,7 +87,15 @@ router.post("/setNewPassword", (req, res) => {
     },
   };
 
-  axios
+  //get shopKey from mail here
+  // We need some data to trigger the challenge behaviour on MTGAPI : we get them on our own database.
+  const shopDataMbiSelling = await db.User.findOne({
+    where: {
+      email: usermail,
+    },
+  });
+
+  await axios
     .post(
       "https://www.google.com/recaptcha/api/siteverify?secret=" +
         process.env.SERVERSIDE_RECAPTCHA_KEY +
@@ -100,13 +108,15 @@ router.post("/setNewPassword", (req, res) => {
       if (googleResp.data.success) {
         //TO DO : RES 200 + NOTIF
         //PING MTGI API WITH THE NEW PASSWORD AND ALL INFOS
-        axios.post(process.env.REACT_APP_MTGAPI_URL + "/usermail/reset", {
-          shopId: process.env.REACT_APP_SHOP_ID,
-          shopKey: process.env.SHOPKEY,
-          challenge,
-          password,
-          mail,
-        });
+        axios
+          .post(process.env.REACT_APP_MTGAPI_URL + "/usermail/reset", {
+            shopId: shopDataMbiSelling.dataValues.idShop,
+            shopKey: shopDataMbiSelling.dataValues.shopKey,
+            challenge,
+            password,
+            mail,
+          })
+          .catch((e) => console.log("error in step 2 while contacting google"));
 
         res.status(200).json("Password has been updated.");
       } else {

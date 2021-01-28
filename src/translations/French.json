@@ -120,7 +120,7 @@
   "app.ResetMail.title": "Mot de passe oublié ?",
   "app.ResetMail.label.email": "Merci d'indiquer votre adresse mail :",
   "app.ResetMail.button.submit": "M'envoyer un lien par email",
-  "app.ResetMail.success": "Un email a été envoyé sur bvotre boîte mail.",
+  "app.ResetMail.success": "Un email a été envoyé sur votre boîte mail.",
   "app.ResetMail.failure": "Il y a eu une erreur. Merci de réessayer ultérieurement.",
 
   "app.setNewPassword.title": "Saisissez votre nouveau mot de passe",
