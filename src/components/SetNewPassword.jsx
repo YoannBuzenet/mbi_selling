@@ -37,7 +37,7 @@ const SetNewPassword = ({ match, history }) => {
             userInfos["token"] = token;
             userInfos["challenge"] = match.params?.challenge;
             axios
-              .post("/authentication/setNewPassword", userInfos)
+              .post("/user/authentication/setNewPassword", userInfos)
               .then((respServer) =>
                 toast.success(
                   <FormattedMessage
