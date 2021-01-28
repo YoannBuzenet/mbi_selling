@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
       req.body.addressStreet,
       req.body.postalCode,
       req.body.town,
+      req.body.vat || null,
       req.body.languageUsed
     );
   } catch (error) {
