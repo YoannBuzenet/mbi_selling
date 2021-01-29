@@ -4,17 +4,23 @@ import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunc
 import AuthContext from "../context/authContext";
 
 const PopInLaunchingConfirmation = () => {
-  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
+  const { setPopInLaunchingScriptInformations } = useContext(
+    PopInLaunchingConfirmationContext
+  );
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
+
+  const launchScript = () => {
+    console.log("launching script...");
+  };
 
   return (
     <div className="launchingPopInConfirmation">
       u sure ?
       <button
         type="button"
-        onClick={(e) => setIsPopInDisplayed(false)}
+        onClick={(e) => setPopInLaunchingScriptInformations("todo pass object")}
       ></button>
     </div>
   );
