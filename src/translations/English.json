@@ -205,6 +205,10 @@
   "app.subscribePage.button.duration.threeMonth": "Three Months",
   "app.subscribePage.toast.pleaseLoginOrRegister": "Please login to purchase a subscription !",
 
+  "app.popIn.confirmationLaunching": "Launch Script ?",
+  "app.popIn.confirmationLaunching.button.launch": "Launch",
+  "app.popIn.confirmationLaunching.button.cancel": "Cancel",
+
   "server.sendMail.welcomeEmail.title": "Welcome on {url} !",
   "server.sendMail.sellRequest.submitted": "Your sell request has been submitted !",
   "server.sendMail.sellRequest.cardsHaveBeenSent": "Your cards have been notified as sent.",

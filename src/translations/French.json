@@ -204,6 +204,10 @@
   "app.subscribePage.button.duration.threeMonth": "Trois mois",
   "app.subscribePage.toast.pleaseLoginOrRegister": "Merci de vous connecter pour vous abonner !",
 
+  "app.popIn.confirmationLaunching": "Lancer le script ?",
+  "app.popIn.confirmationLaunching.button.launch": "Lancer",
+  "app.popIn.confirmationLaunching.button.cancel": "Annuler",
+
   "server.sendMail.welcomeEmail.title": "Bienvenue sur {url} !",
   "server.sendMail.sellRequest.submitted": "Votre demande de rachat est enregistrée !",
   "server.sendMail.sellRequest.cardsHaveBeenSent": "Vos cartes ont été notées comme envoyées.",
