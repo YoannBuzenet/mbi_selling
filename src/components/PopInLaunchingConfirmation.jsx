@@ -6,15 +6,49 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const PopInLaunchingConfirmation = () => {
-  const { setPopInLaunchingScriptInformations } = useContext(
-    PopInLaunchingConfirmationContext
-  );
+  const {
+    popInLaunchingScriptInformations,
+    setPopInLaunchingScriptInformations,
+  } = useContext(PopInLaunchingConfirmationContext);
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
 
-  const launchScript = () => {
+  const launchScript = async () => {
     console.log("launching script...");
+
+    const payload = {
+      formats: popInLaunchingScriptInformations.formats,
+      isTest: popInLaunchingScriptInformations.isTest,
+      locale: popInLaunchingScriptInformations.locale,
+    };
+    // Launching the Real script request
+    axios
+      .post(
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        payload
+      )
+      .then((resp) => {
+        toast.success(
+          <FormattedMessage
+            id="createMyScript.launchReal.success"
+            defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
+          />
+        );
+
+        //Updating auth context with isRunning Info to 1
+        const authContextCopy = { ...authenticationInfos };
+        authContextCopy.userScripts[indexScript].isRunning = 1;
+        setAuthenticationInfos(authContextCopy);
+      })
+      .catch((error) =>
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.launchReal.failure"
+            defaultMessage="The MKM script could not be launched. Please try later, or contact us if the problem persists."
+          />
+        )
+      );
   };
 
   const useStyles = makeStyles((theme) => ({

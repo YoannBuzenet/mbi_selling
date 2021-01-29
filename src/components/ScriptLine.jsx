@@ -14,6 +14,7 @@ import AllDefinitionsContext from "../context/definitionsContext";
 import AuthContext from "../context/authContext";
 import MKMModalContext from "../context/mkmModalConnectionContext";
 import transparentDivContext from "../context/transparentDivContext";
+import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunchingScript";
 import AppLangContext from "../context/selectedAppLang";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -32,6 +33,10 @@ const ScriptLine = ({ script, history, index }) => {
   console.log("auth context from scriptline", authenticationInfos);
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
+
+  const { setPopInLaunchingScriptInformations } = useContext(
+    PopInLaunchingConfirmationContext
+  );
 
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
@@ -196,39 +201,13 @@ const ScriptLine = ({ script, history, index }) => {
       return;
     }
 
-    const payload = {
+    // Passing all relevant data to confirmation pop in through Context
+    setPopInLaunchingScriptInformations({
+      isDisplayed: true,
       formats: selectedFormats,
       isTest: false,
       locale: currentLang.locale,
-    };
-
-    // Launching the test script request
-    axios
-      .post(
-        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${script.id}`,
-        payload
-      )
-      .then((resp) => {
-        toast.success(
-          <FormattedMessage
-            id="createMyScript.launchReal.success"
-            defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
-          />
-        );
-
-        //Updating auth context with isRunning Info to 1
-        const authContextCopy = { ...authenticationInfos };
-        authContextCopy.userScripts[indexScript].isRunning = 1;
-        setAuthenticationInfos(authContextCopy);
-      })
-      .catch((error) =>
-        toast.error(
-          <FormattedMessage
-            id="createMyScript.launchReal.failure"
-            defaultMessage="The MKM script could not be launched. Please try later, or contact us if the problem persists."
-          />
-        )
-      );
+    });
   };
 
   const launchTest = () => {
