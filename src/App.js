@@ -27,6 +27,7 @@ import TimerScriptStatusCheck from "./context/timerScriptStatusCheck";
 import isResponsiveMenuDisplayedContext from "./context/menuDisplayedContext";
 import BlackDivContext from "./context/blackDivModalContext";
 import PaymentDivContext from "./context/paymentModalContext";
+import PopInConfirmationLaunchScriptContext from "./context/popInConfirmationLaunchingScript";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -152,6 +153,12 @@ function App() {
     "deactivated"
   );
 
+  //STATE - is Confirmation Launching Pop In Displayed ?
+  const [
+    isPopInConfirmationLaunching,
+    setIsPopInConfirmationLaunchingd,
+  ] = useState(false);
+
   //STATE - Global timer that checks script status
   const [checkStatusTimer, setCheckStatusTimer] = useState(null);
 
@@ -206,6 +213,12 @@ function App() {
   const contextMKMConnectionModal = {
     isMKMModalDisplayed: isMKMModalDisplayed,
     setIsMKMModalDisplayed: setIsMKMModalDisplayed,
+  };
+
+  //CONTEXT - Popin Launching Confirmation
+  const contextPopInLaunchingConfirmation = {
+    isPopInConfirmationLaunching: isPopInConfirmationLaunching,
+    setIsPopInConfirmationLaunchingd: setIsPopInConfirmationLaunchingd,
   };
 
   /******************************************/
@@ -354,121 +367,125 @@ function App() {
                   <isResponsiveMenuDisplayedContext.Provider
                     value={contextResponsiveMenuDisplayed}
                   >
-                    <BlackDivContext.Provider value={contextBlackDiv}>
-                      <PaymentDivContext.Provider value={contextStripeModal}>
-                        <Router>
-                          {isTransparentDivDisplayed && <TransparentDiv />}
+                    <PopInConfirmationLaunchScriptContext.Provider
+                      value={contextPopInLaunchingConfirmation}
+                    >
+                      <BlackDivContext.Provider value={contextBlackDiv}>
+                        <PaymentDivContext.Provider value={contextStripeModal}>
+                          <Router>
+                            {isTransparentDivDisplayed && <TransparentDiv />}
 
-                          {/* Absolute positioned components */}
-                          {isBlackDivModalDisplayed === "activated" && (
-                            <BlackDiv />
-                          )}
+                            {/* Absolute positioned components */}
+                            {isBlackDivModalDisplayed === "activated" && (
+                              <BlackDiv />
+                            )}
 
-                          {/* Burger menu */}
-                          {isResponsiveMenuDisplayed === "activated" && (
-                            <BurgerMenuCustomerComponentsWithRouter />
-                          )}
+                            {/* Burger menu */}
+                            {isResponsiveMenuDisplayed === "activated" && (
+                              <BurgerMenuCustomerComponentsWithRouter />
+                            )}
 
-                          <ToastContainer
-                            autoClose={3000}
-                            position="bottom-left"
-                            hideProgressBar={true}
-                          />
-                          <NavbarWithRouter />
+                            <ToastContainer
+                              autoClose={3000}
+                              position="bottom-left"
+                              hideProgressBar={true}
+                            />
+                            <NavbarWithRouter />
 
-                          {/* Stripe Payment Modal */}
-                          {paymentModalInformation.isDisplayed && (
-                            <CheckoutForm />
-                          )}
+                            {/* Stripe Payment Modal */}
+                            {paymentModalInformation.isDisplayed && (
+                              <CheckoutForm />
+                            )}
 
-                          <Footer />
-                          <Switch>
-                            <Route
-                              path="/login"
-                              render={({ match, history }) => (
-                                <LoginRenewOrLogOutContext.Provider
-                                  value={ContextloginLogOut}
-                                >
-                                  <LoginPage
+                            <Footer />
+                            <Switch>
+                              <Route
+                                path="/login"
+                                render={({ match, history }) => (
+                                  <LoginRenewOrLogOutContext.Provider
+                                    value={ContextloginLogOut}
+                                  >
+                                    <LoginPage
+                                      match={match}
+                                      history={history}
+                                      eraseAuthContext={eraseAuthContext}
+                                      renewJWTToken={renewJWTToken}
+                                      launchcheckStatusTimer={
+                                        launchcheckStatusTimer
+                                      }
+                                    />
+                                  </LoginRenewOrLogOutContext.Provider>
+                                )}
+                              />
+
+                              <Route
+                                path="/register"
+                                render={({ match, history }) => (
+                                  <LoginRenewOrLogOutContext.Provider
+                                    value={ContextloginLogOut}
+                                  >
+                                    <RegisterPage
+                                      match={match}
+                                      history={history}
+                                      eraseAuthContext={eraseAuthContext}
+                                      renewJWTToken={renewJWTToken}
+                                      launchcheckStatusTimer={
+                                        launchcheckStatusTimer
+                                      }
+                                    />
+                                  </LoginRenewOrLogOutContext.Provider>
+                                )}
+                              />
+
+                              <Route path="/subscribe" component={Subscribe} />
+                              <Route
+                                path="/terms-of-use"
+                                component={TermsOfUse}
+                              />
+
+                              <Route
+                                path="/usermail/reset"
+                                component={ResetMail}
+                              />
+                              <Route
+                                path="/usermail/setNewPassword/:challenge?"
+                                render={({ match, history }) => (
+                                  <SetNewPassword
                                     match={match}
                                     history={history}
-                                    eraseAuthContext={eraseAuthContext}
-                                    renewJWTToken={renewJWTToken}
-                                    launchcheckStatusTimer={
-                                      launchcheckStatusTimer
-                                    }
                                   />
-                                </LoginRenewOrLogOutContext.Provider>
-                              )}
-                            />
+                                )}
+                              />
 
-                            <Route
-                              path="/register"
-                              render={({ match, history }) => (
-                                <LoginRenewOrLogOutContext.Provider
-                                  value={ContextloginLogOut}
-                                >
-                                  <RegisterPage
-                                    match={match}
-                                    history={history}
-                                    eraseAuthContext={eraseAuthContext}
-                                    renewJWTToken={renewJWTToken}
-                                    launchcheckStatusTimer={
-                                      launchcheckStatusTimer
-                                    }
-                                  />
-                                </LoginRenewOrLogOutContext.Provider>
-                              )}
-                            />
-
-                            <Route path="/subscribe" component={Subscribe} />
-                            <Route
-                              path="/terms-of-use"
-                              component={TermsOfUse}
-                            />
-
-                            <Route
-                              path="/usermail/reset"
-                              component={ResetMail}
-                            />
-                            <Route
-                              path="/usermail/setNewPassword/:challenge?"
-                              render={({ match, history }) => (
-                                <SetNewPassword
-                                  match={match}
-                                  history={history}
-                                />
-                              )}
-                            />
-
-                            <LoggedRouteRender
-                              path="/my-scripts/"
-                              component={AllMyScripts}
-                            />
-                            <LoggedRouteRender
-                              path="/edit-script/:id"
-                              component={CreateMyScript}
-                            />
-                            <LoggedRouteRender
-                              path="/create-script"
-                              component={CreateMyScript}
-                            />
-                            <LoggedRouteRender
-                              path="/settings"
-                              component={Settings}
-                            />
-                            <LoggedRouteRender
-                              path="/my-invoices"
-                              component={MyInvoices}
-                            />
-                            <LoggedRouteRender
-                              path="/myAccount"
-                              component={MyAccountPage}
-                            />
-                          </Switch>
-                        </Router>
-                      </PaymentDivContext.Provider>
-                    </BlackDivContext.Provider>
+                              <LoggedRouteRender
+                                path="/my-scripts/"
+                                component={AllMyScripts}
+                              />
+                              <LoggedRouteRender
+                                path="/edit-script/:id"
+                                component={CreateMyScript}
+                              />
+                              <LoggedRouteRender
+                                path="/create-script"
+                                component={CreateMyScript}
+                              />
+                              <LoggedRouteRender
+                                path="/settings"
+                                component={Settings}
+                              />
+                              <LoggedRouteRender
+                                path="/my-invoices"
+                                component={MyInvoices}
+                              />
+                              <LoggedRouteRender
+                                path="/myAccount"
+                                component={MyAccountPage}
+                              />
+                            </Switch>
+                          </Router>
+                        </PaymentDivContext.Provider>
+                      </BlackDivContext.Provider>
+                    </PopInConfirmationLaunchScriptContext.Provider>
                   </isResponsiveMenuDisplayedContext.Provider>
                 </TimerScriptStatusCheck.Provider>
               </TransparentDivContext.Provider>
