@@ -18,7 +18,9 @@ const AllMyScripts = ({ history }) => {
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
 
-  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
+  const { setPopInLaunchingScriptInformations } = useContext(
+    PopInLaunchingConfirmationContext
+  );
 
   console.log("definitions", allDefinitions);
 

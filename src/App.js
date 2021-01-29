@@ -155,8 +155,8 @@ function App() {
 
   //STATE - is Confirmation Launching Pop In Displayed ?
   const [
-    isPopInConfirmationLaunching,
-    setIsPopInConfirmationLaunchingd,
+    popInLaunchingScriptInformations,
+    setPopInLaunchingScriptInformations,
   ] = useState(false);
 
   //STATE - Global timer that checks script status
@@ -217,8 +217,8 @@ function App() {
 
   //CONTEXT - Popin Launching Confirmation
   const contextPopInLaunchingConfirmation = {
-    isPopInConfirmationLaunching: isPopInConfirmationLaunching,
-    setIsPopInConfirmationLaunchingd: setIsPopInConfirmationLaunchingd,
+    popInLaunchingScriptInformations: popInLaunchingScriptInformations,
+    setPopInLaunchingScriptInformations: setPopInLaunchingScriptInformations,
   };
 
   /******************************************/
@@ -374,7 +374,7 @@ function App() {
                         <PaymentDivContext.Provider value={contextStripeModal}>
                           <Router>
                             {isTransparentDivDisplayed && <TransparentDiv />}
-                            {isPopInConfirmationLaunching && (
+                            {popInLaunchingScriptInformations.isDiplayed && (
                               <PopInConfirmationLaunchScriptContext />
                             )}
 

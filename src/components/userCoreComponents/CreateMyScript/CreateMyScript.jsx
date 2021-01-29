@@ -52,7 +52,9 @@ const CreateMyScript = ({ history }) => {
     setIsTransparentDivDisplayed,
   } = useContext(transparentDivContext);
 
-  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
+  const { setPopInLaunchingScriptInformations } = useContext(
+    PopInLaunchingConfirmationContext
+  );
 
   const intl = useIntl();
 
