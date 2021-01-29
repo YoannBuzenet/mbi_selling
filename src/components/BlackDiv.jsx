@@ -18,7 +18,9 @@ const BlackDiv = () => {
   // Payment Modal
   const { setPaymentModalInformation } = useContext(PaymentModalContext);
 
-  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
+  const { setPopInLaunchingScriptInformations } = useContext(
+    PopInLaunchingConfirmationContext
+  );
 
   //Responsive Menu control
   const { setIsResponsiveMenuDisplayed } = useContext(
@@ -29,7 +31,7 @@ const BlackDiv = () => {
     setIsResponsiveMenuDisplayed("deactivated");
     setIsBlackDivModalDisplayed("deactivated");
     setIsMKMModalDisplayed(false);
-    setIsPopInDisplayed(false);
+    setPopInLaunchingScriptInformations({ isDisplayed: false });
     setPaymentModalInformation({
       isDisplayed: false,
       amount: 0,
