@@ -40,11 +40,12 @@ router.post("/", async (req, res) => {
     });
 
     if (shop === null) {
+      console.log("accessing shop from api", loginOnMTGAPI.data.shop.baseLang);
       try {
         // Register user here FROM data FROM MTGAPI
         await registerOnThisBackEndFromMTGAPI(
           loginOnMTGAPI.data.shop.id,
-          loginOnMTGAPI.data.baseLang["@id"].substring(11)
+          loginOnMTGAPI.data.shop.baseLang.id
         );
         shop = await db.User.findOne({
           where: {
