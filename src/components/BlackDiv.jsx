@@ -3,6 +3,7 @@ import BlackDivContext from "../context/blackDivModalContext";
 import isResponsiveMenuDisplayedContext from "../context/menuDisplayedContext";
 import MKM_ModalContext from "../context/mkmModalConnectionContext";
 import PaymentModalContext from "../context/paymentModalContext";
+import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunchingScript";
 
 // The black Div is the modal we display behind each 'absolute positionned' elements on the window.
 // We give it the general ability to deactivate any absolute display by clicking on it.
@@ -17,6 +18,8 @@ const BlackDiv = () => {
   // Payment Modal
   const { setPaymentModalInformation } = useContext(PaymentModalContext);
 
+  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
+
   //Responsive Menu control
   const { setIsResponsiveMenuDisplayed } = useContext(
     isResponsiveMenuDisplayedContext
@@ -26,6 +29,7 @@ const BlackDiv = () => {
     setIsResponsiveMenuDisplayed("deactivated");
     setIsBlackDivModalDisplayed("deactivated");
     setIsMKMModalDisplayed(false);
+    setIsPopInDisplayed(false);
     setPaymentModalInformation({
       isDisplayed: false,
       amount: 0,

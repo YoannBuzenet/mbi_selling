@@ -12,6 +12,7 @@ import errorHandlingAPI from "../../../services/errorHandlingAPI";
 import MKMModalContext from "../../../context/mkmModalConnectionContext";
 import transparentDivContext from "../../../context/transparentDivContext";
 import appLangContext from "../../../context/selectedAppLang";
+import PopInLaunchingConfirmationContext from "../../../context/popInConfirmationLaunchingScript";
 
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,6 +51,8 @@ const CreateMyScript = ({ history }) => {
     isTransparentDivDisplayed,
     setIsTransparentDivDisplayed,
   } = useContext(transparentDivContext);
+
+  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
 
   const intl = useIntl();
 
