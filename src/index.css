@@ -672,6 +672,13 @@ div.createScriptButton {
   }
 }
 
+/************************************************
+*********POP IN LAUNCHING CONFIRMATION***********
+*************************************************/
+.launchingPopInConfirmation {
+  background-color: blue;
+}
+
 /********************************************
 *********TERMS AND CONDITIONS PAGE***********
 ********************************************/

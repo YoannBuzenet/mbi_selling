@@ -3,6 +3,7 @@ import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
 import "../super-responsive-table.css";
 import AuthContext from "../context/authContext";
 import AllDefinitionsContext from "../context/definitionsContext";
+import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunchingScript";
 import ScriptLine from "../components/ScriptLine";
 import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
@@ -16,6 +17,8 @@ const AllMyScripts = ({ history }) => {
   console.log("current auth context", authenticationInfos);
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
+
+  const { setIsPopInDisplayed } = useContext(PopInLaunchingConfirmationContext);
 
   console.log("definitions", allDefinitions);
 

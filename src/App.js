@@ -374,6 +374,9 @@ function App() {
                         <PaymentDivContext.Provider value={contextStripeModal}>
                           <Router>
                             {isTransparentDivDisplayed && <TransparentDiv />}
+                            {isPopInConfirmationLaunching && (
+                              <PopInConfirmationLaunchScriptContext />
+                            )}
 
                             {/* Absolute positioned components */}
                             {isBlackDivModalDisplayed === "activated" && (
