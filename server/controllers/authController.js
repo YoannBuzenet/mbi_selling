@@ -9,8 +9,11 @@ const {
 } = require("../controllers/shopController");
 const { createShopKey } = require("../services/utils");
 const db = require("../../models/index");
+const {
+  langIDLocaleDictionnary,
+} = require("../../src/services/fullstackTranslations/genericTranslations");
 
-async function registerOnThisBackEndFromMTGAPI(idShop) {
+async function registerOnThisBackEndFromMTGAPI(idShop, baseLangId) {
   // retrieve shop data from MTG API
   const shopData = await retrieveAsAdmin(
     `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
@@ -23,6 +26,12 @@ async function registerOnThisBackEndFromMTGAPI(idShop) {
     email: shopData.data.email,
     shopKey: shopData.data.shopKey,
   });
+
+  //Transforming baseLang ID into locale
+  const locale = langIDLocaleDictionnary[baseLangId];
+
+  // Create premade scripts for user
+  await createPremadeScriptsForShop(idShop, locale);
 }
 
 async function registerUserOnBothBackEnds(
