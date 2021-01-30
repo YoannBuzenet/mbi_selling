@@ -18,6 +18,7 @@ const formatsDefinition = require("./Entities/format");
 const invoicesHandling = require("./Entities/invoices");
 const userHandling = require("./Entities/user");
 const keywordsHandling = require("./Entities/keyword");
+const shop_paramsHandling = require("./Entities/shop_params");
 
 //Testing routes
 const testRoutes = require("./test");
@@ -34,6 +35,7 @@ router.use("/scriptExecution", scriptExecutionRoutes);
 router.use("/invoices", invoicesHandling);
 router.use("/users", userHandling);
 router.use("/keywords", keywordsHandling);
+router.use("/shop_params", shop_paramsHandling);
 
 //test purpose
 if (process.env.NODE_ENV === "development") {

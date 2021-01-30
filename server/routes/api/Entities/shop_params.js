@@ -94,12 +94,12 @@ router.put("/", async (req, res) => {
       percentPerPoorRegular: req.body.percentPerPoorRegular,
       percentPerSigned: req.body.percentPerSigned,
     });
-    res.status(200);
+    res.status(200).json("Shop params updated");
+    return;
   } catch (e) {
     res.status(500).json("Could not update shop params.");
+    return;
   }
-
-  return;
 });
 
 module.exports = router;
