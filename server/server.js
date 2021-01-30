@@ -18,6 +18,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const fs = require("fs");
+const axios = require("axios");
 
 const pathToViews = path.join(__dirname, "views");
 
@@ -26,6 +27,9 @@ app.set("view engine", "ejs");
 
 // Global variable
 global.__basedir = __dirname;
+
+// axios base URL
+axios.defaults.baseURL = process.env.REACT_APP_THIS_WEBSITE_URL;
 
 //Parse each call
 app.use(bodyParser.urlencoded({ extended: true }));

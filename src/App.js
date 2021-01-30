@@ -63,6 +63,9 @@ import PopInLaunchingConfirmation from "./components/PopInLaunchingConfirmation"
 // Loading stripe outside of the component to avoid recalculation in each render
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TEST_KEY);
 
+// Axios base URL
+Axios.defaults.baseURL = process.env.REACT_APP_THIS_WEBSITE_URL;
+
 function App() {
   // STATE Creating the Authentication state
   const [authenticationInfos, setAuthenticationInfos] = useState(
