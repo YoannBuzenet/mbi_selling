@@ -47,6 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       idShop: {
         type: DataTypes.INTEGER,
+        unique: true,
         validate: { isNumeric: true },
       },
       percentPerSigned: {

@@ -10,6 +10,7 @@ module.exports = {
       },
       idShop: {
         type: Sequelize.INTEGER,
+        unique: true,
       },
       percentPerSigned: {
         type: Sequelize.INTEGER,

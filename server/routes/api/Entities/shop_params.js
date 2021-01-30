@@ -64,9 +64,36 @@ router.put("/", async (req, res) => {
   }
 
   try {
-    // enregistrer ces shops params et renvoyer une putain de 200
-    // to do de la petite mif des familles qui mif la mif des shtroumpf de la mif
-    // yoann
+    await db.shop_params.upsert({
+      idShop: idShop,
+      percentPerExcellentFoil: req.body.percentPerExcellentFoil,
+      percentPerExcellentRegular: req.body.percentPerExcellentRegular,
+      percentPerGoodFoil: req.body.percentPerGoodFoil,
+      percentPerGoodRegular: req.body.percentPerGoodRegular,
+      percentPerLangEnglish: req.body.percentPerLangEnglish,
+      percentPerLangFrench: req.body.percentPerLangFrench,
+      percentPerLangGerman: req.body.percentPerLangGerman,
+      percentPerLangItalian: req.body.percentPerLangItalian,
+      percentPerLangJapanese: req.body.percentPerLangJapanese,
+      percentPerLangKorean: req.body.percentPerLangKorean,
+      percentPerLangPortuguese: req.body.percentPerLangPortuguese,
+      percentPerLangRussian: req.body.percentPerLangRussian,
+      percentPerLangSimplifiedChinese: req.body.percentPerLangSimplifiedChinese,
+      percentPerLangSpanish: req.body.percentPerLangSpanish,
+      percentPerLangTraditionalChinese:
+        req.body.percentPerLangTraditionalChinese,
+      percentPerLightPlayedFoil: req.body.percentPerLightPlayedFoil,
+      percentPerLightPlayedRegular: req.body.percentPerLightPlayedRegular,
+      percentPerMintFoil: req.body.percentPerMintFoil,
+      percentPerMintRegular: req.body.percentPerMintRegular,
+      percentPerNearMintFoil: req.body.percentPerNearMintFoil,
+      percentPerNearMintRegular: req.body.percentPerNearMintRegular,
+      percentPerPlayedFoil: req.body.percentPerPlayedFoil,
+      percentPerPlayedRegular: req.body.percentPerPlayedRegular,
+      percentPerPoorFoil: req.body.percentPerPoorFoil,
+      percentPerPoorRegular: req.body.percentPerPoorRegular,
+      percentPerSigned: req.body.percentPerSigned,
+    });
     res.status(200);
   } catch (e) {
     res.status(500).json("Could not update shop params.");

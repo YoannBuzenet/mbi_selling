@@ -62,7 +62,7 @@ const Settings = () => {
 
       const shopParams = { ...authenticationInfos.sellingShopParams };
 
-      axios.put(
+      await axios.put(
         "/api/shop_params?idShop=" + authenticationInfos.shop.id,
         shopParams
       );
