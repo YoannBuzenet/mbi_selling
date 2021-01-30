@@ -17,45 +17,7 @@ const Settings = () => {
 
   const [shouldStateBeSaved, setShouldStateBeSaved] = useState(false);
 
-  const [pageState, setPageState] = useState(() => {
-    if (authenticationInfos?.shop?.shopData?.PercentPerConditionFoils) {
-      return {
-        PercentPerConditionFoils: {
-          ...authenticationInfos.shop.shopData.PercentPerConditionFoils,
-        },
-        PercentPerConditions: {
-          ...authenticationInfos.shop.shopData.PercentPerConditions,
-        },
-        PercentPerLangs: {
-          ...authenticationInfos.shop.shopData.PercentPerLangs,
-        },
-      };
-    } else {
-      return {};
-    }
-  }, []);
-
-  useEffect(() => {
-    if (
-      authenticationInfos?.shop?.shopData?.PercentPerConditionFoils !==
-        undefined &&
-      !pageState.hasOwnProperty("PercentPerConditionFoils")
-    ) {
-      setPageState({
-        PercentPerConditionFoils: {
-          ...authenticationInfos.shop.shopData.PercentPerConditionFoils,
-        },
-        PercentPerConditions: {
-          ...authenticationInfos.shop.shopData.PercentPerConditions,
-        },
-        PercentPerLangs: {
-          ...authenticationInfos.shop.shopData.PercentPerLangs,
-        },
-      });
-    }
-  });
-
-  const handleChange = (event, category, idstate, key) => {
+  const handleChange = (event, key) => {
     let value;
     if (event.target.value === "") {
       value = "";
@@ -63,12 +25,13 @@ const Settings = () => {
       value = parseInt(event.target.value);
     }
 
-    let stateCopy = { ...pageState };
-    stateCopy[category][idstate][key] = value;
+    let stateCopy = { ...authenticationInfos };
+    stateCopy?.sellingShopParams?.[key] = value;
     setShouldStateBeSaved(true);
-    setPageState(stateCopy);
+    setAuthenticationInfos(stateCopy);
   };
 
+  // REWRITE
   //Browe each fields to check if it's filled or empty.
   //Return false if at least one of the fields is empty.
   const checkIfAllFieldsAreFilled = () => {
@@ -90,7 +53,7 @@ const Settings = () => {
     }
     return canStateBeSaved;
   };
-
+  // REWRITE
   const save = async () => {
     //Check if a param is empty, if yes, display error and return
     let shouldContinue = checkIfAllFieldsAreFilled();
@@ -277,16 +240,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "1",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerMintRegular")
                         }
                         value={
-                          pageState.PercentPerConditions?.["1"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerMintRegular
                         }
                       />
                       %
@@ -305,16 +263,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions?.["2"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerNearMintRegular
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "2",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerNearMintRegular")
                         }
                       />
                       %
@@ -333,16 +286,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions?.["3"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerExcellentRegular
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "3",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerExcellentRegular")
                         }
                       />
                       %
@@ -361,16 +309,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions?.["4"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerGoodRegular
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "4",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerGoodRegular")
                         }
                       />
                       %
@@ -389,16 +332,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions?.["5"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLightPlayedRegular
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "5",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerLightPlayedRegular")
                         }
                       />
                       %
@@ -417,16 +355,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions?.["6"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerPlayedRegular
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "6",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerPlayedRegular")
                         }
                       />
                       %
@@ -445,16 +378,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditions?.["7"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerPoorRegular
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditions",
-                            "7",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerPoorRegular")
                         }
                       />
                       %
@@ -503,17 +431,10 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["1"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerMintFoil
                         }
-                        onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "1",
-                            "percentPercondition"
-                          )
-                        }
+                        onChange={(e) => handleChange(e, "percentPerMintFoil")}
                       />
                       %
                     </Td>
@@ -531,16 +452,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["2"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerNearMintFoil
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "2",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerNearMintFoil")
                         }
                       />
                       %
@@ -559,16 +475,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["3"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerExcellentFoil
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "3",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerExcellentFoil")
                         }
                       />
                       %
@@ -587,17 +498,10 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["4"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerGoodFoil
                         }
-                        onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "4",
-                            "percentPercondition"
-                          )
-                        }
+                        onChange={(e) => handleChange(e, "percentPerGoodFoil")}
                       />
                       %
                     </Td>
@@ -615,16 +519,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["5"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLightPlayedFoil
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "5",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerLightPlayedFoil")
                         }
                       />
                       %
@@ -643,16 +542,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["6"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerPlayedFoil
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "6",
-                            "percentPercondition"
-                          )
+                          handleChange(e, "percentPerPlayedFoil")
                         }
                       />
                       %
@@ -671,17 +565,10 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerConditionFoils?.["7"]
-                            ?.percentPercondition
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerPoorFoil
                         }
-                        onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerConditionFoils",
-                            "7",
-                            "percentPercondition"
-                          )
-                        }
+                        onChange={(e) => handleChange(e, "percentPerPoorFoil")}
                       />
                       %
                     </Td>
@@ -729,15 +616,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["1"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangGerman
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "1",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangGerman")
                         }
                       />
                       %
@@ -756,15 +639,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["2"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangSpanish
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "2",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangSpanish")
                         }
                       />
                       %
@@ -783,15 +662,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["3"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangFrench
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "3",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangFrench")
                         }
                       />
                       %
@@ -810,15 +685,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["4"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangItalian
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "4",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangItalian")
                         }
                       />
                       %
@@ -837,15 +708,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["5"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangJapanese
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "5",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangJapanese")
                         }
                       />
                       %
@@ -864,15 +731,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["6"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangPortuguese
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "6",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangPortuguese")
                         }
                       />
                       %
@@ -891,15 +754,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["7"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangRussian
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "7",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangRussian")
                         }
                       />
                       %
@@ -918,15 +777,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["8"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangSimplifiedChinese
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "8",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangSimplifiedChinese")
                         }
                       />
                       %
@@ -945,15 +800,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["9"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangEnglish
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "9",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangEnglish")
                         }
                       />
                       %
@@ -972,15 +823,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["10"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangKorean
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "10",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangKorean")
                         }
                       />
                       %
@@ -999,15 +846,11 @@ const Settings = () => {
                         id="filled-required"
                         variant="outlined"
                         value={
-                          pageState.PercentPerLangs?.["11"]?.percentPerlanguage
+                          authenticationInfos?.sellingShopParams
+                            ?.percentPerLangTraditionalChinese
                         }
                         onChange={(e) =>
-                          handleChange(
-                            e,
-                            "PercentPerLangs",
-                            "11",
-                            "percentPerlanguage"
-                          )
+                          handleChange(e, "percentPerLangTraditionalChinese")
                         }
                       />
                       %

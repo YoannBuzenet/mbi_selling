@@ -226,6 +226,7 @@ function transformAuthContextIntoLocalStorageFormat(authContext) {
     },
     userScripts: authContext.userScripts,
     isSusbcribedUntil: authContext.isSubscribedUntil,
+    sellingShopParams: authContext.sellingShopParams,
   };
 
   window.localStorage.setItem(
