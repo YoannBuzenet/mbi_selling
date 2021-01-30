@@ -24,8 +24,12 @@ const Settings = () => {
       value = parseInt(event.target.value);
     }
 
+    if (isNaN(value)) {
+      value = 0;
+    }
+
     let stateCopy = { ...authenticationInfos };
-    stateCopy?.sellingShopParams?.[key] = value;
+    stateCopy.sellingShopParams[key] = value;
     setShouldStateBeSaved(true);
     setAuthenticationInfos(stateCopy);
   };
@@ -57,9 +61,6 @@ const Settings = () => {
     }
 
     try {
-      // yoann crer endpoint sur le back (put shop_params)
-      //PUT ONE OBJET TO OUR BELOVED BACK END
-
       const shopParams = { ...authenticationInfos.sellingShopParams };
 
       await axios.put(
@@ -71,7 +72,7 @@ const Settings = () => {
 
       //Update local storage
       authAPI.transformAuthContextIntoLocalStorageFormat({
-        ...stateCopy,
+        ...authenticationInfos,
       });
 
       toast.success(
