@@ -62,7 +62,7 @@ function getShopStock(shopInfo, idShop) {
               console.log("err", err);
               throw new Error("error while opening file", err);
             }
-            console.log("The file was saved!");
+            console.log("The gzip file was saved!");
 
             /* ******************* */
             //Read the file to get buffer
@@ -89,7 +89,7 @@ function getShopStock(shopInfo, idShop) {
                   const pathFileWithoutExtension =
                     "./shopStock/" + idShop + "/stock";
 
-                  console.log(fileUnzipped);
+                  console.log("file unzipped", fileUnzipped);
                   fs.writeFile(
                     pathFile,
                     fileUnzipped,
@@ -99,7 +99,7 @@ function getShopStock(shopInfo, idShop) {
                         console.log("error while writing file", err);
                         throw new Error("error while writing file", err);
                       }
-                      console.log("The file was saved!");
+                      console.log("The csv file was saved!");
                       /* ******************* */
                       // Deleting the gzip file
                       /* ******************* */
