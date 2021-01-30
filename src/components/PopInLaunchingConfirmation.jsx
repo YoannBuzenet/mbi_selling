@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunchingScript";
 import AuthContext from "../context/authContext";
+import BlackDivContext from "../context/blackDivModalContext";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const PopInLaunchingConfirmation = () => {
+  //Black Div control
+  const { setIsBlackDivModalDisplayed } = useContext(BlackDivContext);
+
+  //Pop in
   const {
     popInLaunchingScriptInformations,
     setPopInLaunchingScriptInformations,
   } = useContext(PopInLaunchingConfirmationContext);
+
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
@@ -25,7 +33,7 @@ const PopInLaunchingConfirmation = () => {
     // Launching the Real script request
     axios
       .post(
-        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
+        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${popInLaunchingScriptInformations.idScript}`,
         payload
       )
       .then((resp) => {
@@ -38,7 +46,9 @@ const PopInLaunchingConfirmation = () => {
 
         //Updating auth context with isRunning Info to 1
         const authContextCopy = { ...authenticationInfos };
-        authContextCopy.userScripts[indexScript].isRunning = 1;
+        authContextCopy.userScripts[
+          popInLaunchingScriptInformations.indexScript
+        ].isRunning = 1;
         setAuthenticationInfos(authContextCopy);
       })
       .catch((error) =>
@@ -76,7 +86,7 @@ const PopInLaunchingConfirmation = () => {
         color="primary"
         className={classes.confirmButton}
         size="large"
-        onClick={(e) => console.log("launching script then closing window")}
+        onClick={launchScript}
       >
         <FormattedMessage
           id="app.popIn.confirmationLaunching.button.launch"
@@ -88,9 +98,10 @@ const PopInLaunchingConfirmation = () => {
         color="primary"
         className={classes.cancelButton}
         size="large"
-        onClick={(e) =>
-          setPopInLaunchingScriptInformations({ isDisplayed: false })
-        }
+        onClick={(e) => {
+          setPopInLaunchingScriptInformations({ isDisplayed: false });
+          setIsBlackDivModalDisplayed("deactivated");
+        }}
       >
         <FormattedMessage
           id="app.popIn.confirmationLaunching.button.cancel"

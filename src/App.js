@@ -58,6 +58,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/payment/CheckoutForm";
 import MyInvoices from "./pages/MyInvoices";
 import MyAccountPage from "./pages/MyAccount";
+import PopInLaunchingConfirmation from "./components/PopInLaunchingConfirmation";
 
 // Loading stripe outside of the component to avoid recalculation in each render
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TEST_KEY);
@@ -374,8 +375,8 @@ function App() {
                         <PaymentDivContext.Provider value={contextStripeModal}>
                           <Router>
                             {isTransparentDivDisplayed && <TransparentDiv />}
-                            {popInLaunchingScriptInformations.isDiplayed && (
-                              <PopInConfirmationLaunchScriptContext />
+                            {popInLaunchingScriptInformations.isDisplayed && (
+                              <PopInLaunchingConfirmation />
                             )}
 
                             {/* Absolute positioned components */}

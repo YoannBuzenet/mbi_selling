@@ -17,11 +17,43 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "script_id",
       });
     }
+
     static markAsRunning(idScript) {
-      return Script.upsert({ id: idScript, isRunning: 1 });
+      return Script.findOne({
+        where: {
+          id: idScript,
+        },
+      }).then((script) =>
+        Script.upsert(
+          {
+            id: script.dataValues.id,
+            isRunning: 1,
+            name: script.dataValues.name,
+            willBeBasedOn: script.dataValues.willBeBasedOn,
+            keywordBehaviour: script.dataValues.keywordBehaviour,
+          },
+          { fields: ["isRunning"] }
+        )
+      );
     }
+
     static markAsNotRunning(idScript) {
-      return Script.upsert({ id: idScript, isRunning: 0 });
+      return Script.findOne({
+        where: {
+          id: idScript,
+        },
+      }).then((script) =>
+        Script.upsert(
+          {
+            id: script.dataValues.id,
+            isRunning: 0,
+            name: script.dataValues.name,
+            willBeBasedOn: script.dataValues.willBeBasedOn,
+            keywordBehaviour: script.dataValues.keywordBehaviour,
+          },
+          { fields: ["isRunning"] }
+        )
+      );
     }
     // Running these functions when creating a new shop, to give them pre made scripts
     static createCustomScript(

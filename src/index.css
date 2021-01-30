@@ -150,7 +150,7 @@ h1.front-title {
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 12;
   background-color: rgba(0, 0, 0);
   opacity: 0.5;
   animation: blackDivAppearing 0.5s;
@@ -676,7 +676,17 @@ div.createScriptButton {
 *********POP IN LAUNCHING CONFIRMATION***********
 *************************************************/
 .launchingPopInConfirmation {
-  background-color: blue;
+  position: absolute;
+  top: 50px;
+  background-color: #fff;
+  width: 151.9px;
+  height: 200px;
+  opacity: 1;
+  border-radius: 4px;
+  transition: opacity 0.25s, top 0.25s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  z-index: 17;
 }
 
 /********************************************
@@ -1094,7 +1104,7 @@ div.lang-select-applevel {
   transition: opacity 0.25s, top 0.25s;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   cursor: default;
-  z-index: 7;
+  z-index: 17;
 }
 
 .transition-on {

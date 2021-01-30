@@ -123,8 +123,13 @@ router.post("/", async (req, res) => {
 
   if (
     user.dataValues.isSubscribedUntil &&
-    new Date(user.dataValues.isSubscribedUntil) < new Date()
+    new Date(user.dataValues.isSubscribedUntil) < new Date() &&
+    // This last control allows to wait until the end of the day where user is subscribed
+    new Date(user.dataValues.isSubscribedUntil).getDay() < new Date().getDay()
   ) {
+    console.log(user.dataValues.isSubscribedUntil);
+    console.log(new Date(user.dataValues.isSubscribedUntil));
+    console.log(new Date());
     res.status(406).json("User is not subscribed.");
     return;
   }

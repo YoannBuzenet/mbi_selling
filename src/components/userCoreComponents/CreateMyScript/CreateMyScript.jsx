@@ -13,6 +13,7 @@ import MKMModalContext from "../../../context/mkmModalConnectionContext";
 import transparentDivContext from "../../../context/transparentDivContext";
 import appLangContext from "../../../context/selectedAppLang";
 import PopInLaunchingConfirmationContext from "../../../context/popInConfirmationLaunchingScript";
+import BlackDivContext from "../../../context/blackDivModalContext";
 
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -42,6 +43,9 @@ const CreateMyScript = ({ history }) => {
 
   //MKM Modal Control
   const { setIsMKMModalDisplayed } = useContext(MKMModalContext);
+
+  //Black Div control
+  const { setIsBlackDivModalDisplayed } = useContext(BlackDivContext);
 
   //App Lang
   const { currentLang } = useContext(appLangContext);
@@ -1126,12 +1130,16 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
+    setIsBlackDivModalDisplayed("activated");
+
     // Passing all relevant data to confirmation pop in through Context
     setPopInLaunchingScriptInformations({
       isDisplayed: true,
       formats: selectedFormats,
       isTest: false,
       locale: currentLang.locale,
+      idScript,
+      indexScript,
     });
   };
 
