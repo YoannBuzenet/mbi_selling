@@ -75,12 +75,19 @@ router.post("/", async (req, res) => {
       userScripts[i].dataValues.keywords = [...scriptKeywords];
     }
 
+    const userSellingShopParams = await db.shop_params.findOne({
+      where: {
+        idShop: loginOnMTGAPI.data.shop.id,
+      },
+    });
+
     // console.log("user scripts to be added :", userScripts);
     // console.log("shop.dataValues.isSubscribedUntil", shop.dataValues.isSubscribedUntil);
 
     const overloadedResponse = {
       ...loginOnMTGAPI.data,
       userScripts,
+      sellingShopParams: userSellingShopParams,
       isSubscribedUntil: shop.dataValues.isSubscribedUntil,
     };
 

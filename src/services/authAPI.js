@@ -200,6 +200,7 @@ function transformAPIdataIntoAppData(data) {
       sellRequests: data?.shop?.SellRequests,
     },
     userScripts: data?.userScripts || [],
+    sellingShopParams: data?.sellingShopParams || [],
     isSusbcribedUntil: data?.isSubscribedUntil || null,
   };
 }
