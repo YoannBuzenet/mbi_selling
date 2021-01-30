@@ -14,7 +14,6 @@ const Settings = () => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
-
   const [shouldStateBeSaved, setShouldStateBeSaved] = useState(false);
 
   const handleChange = (event, key) => {
@@ -31,28 +30,18 @@ const Settings = () => {
     setAuthenticationInfos(stateCopy);
   };
 
-  // REWRITE
   //Browe each fields to check if it's filled or empty.
   //Return false if at least one of the fields is empty.
   const checkIfAllFieldsAreFilled = () => {
     let canStateBeSaved = true;
-    for (const prop in pageState.PercentPerConditions) {
-      if (pageState.PercentPerConditions[prop].percentPercondition === "") {
-        canStateBeSaved = false;
-      }
-    }
-    for (const prop in pageState.PercentPerConditions) {
-      if (pageState.PercentPerConditionFoils[prop].percentPercondition === "") {
-        canStateBeSaved = false;
-      }
-    }
-    for (const prop in pageState.percentPerlanguage) {
-      if (pageState.PercentPerLangs[prop].PercentPerLangs === "") {
+    for (const prop in authenticationInfos.sellingShopParams) {
+      if (authenticationInfos.sellingShopParams[prop] === "") {
         canStateBeSaved = false;
       }
     }
     return canStateBeSaved;
   };
+
   // REWRITE
   const save = async () => {
     //Check if a param is empty, if yes, display error and return
@@ -68,69 +57,22 @@ const Settings = () => {
     }
 
     try {
-      for (const percentObj in pageState.PercentPerConditionFoils) {
-        axios.put(
-          process.env.REACT_APP_MTGAPI_URL +
-            "/percent_per_condition_foils/" +
-            pageState.PercentPerConditionFoils[percentObj].id,
-          {
-            percent:
-              pageState.PercentPerConditionFoils[percentObj]
-                .percentPercondition,
-          }
-        );
-      }
-      for (const percentObj in pageState.PercentPerConditions) {
-        axios.put(
-          process.env.REACT_APP_MTGAPI_URL +
-            "/percent_per_conditions/" +
-            pageState.PercentPerConditions[percentObj].id,
-          {
-            percent:
-              pageState.PercentPerConditions[percentObj].percentPercondition,
-          }
-        );
-      }
-      for (const percentObj in pageState.PercentPerLangs) {
-        axios.put(
-          process.env.REACT_APP_MTGAPI_URL +
-            "/percent_per_langs/" +
-            pageState.PercentPerLangs[percentObj].id,
-          {
-            percent: pageState.PercentPerLangs[percentObj].percentPerlanguage,
-          }
-        );
-      }
+      // yoann crer endpoint sur le back (put shop_params)
+      //PUT ONE OBJET TO OUR BELOVED BACK END
 
-      //Update authentication context
-      setAuthenticationInfos({
-        ...authenticationInfos,
-        shop: {
-          ...authenticationInfos.shop,
-          shopData: {
-            ...authenticationInfos.shop.shopData,
-            PercentPerConditionFoils: pageState.PercentPerConditionFoils,
-            PercentPerConditions: pageState.PercentPerConditions,
-            PercentPerLangs: pageState.PercentPerLangs,
-          },
-        },
-      });
+      const shopParams = { ...authenticationInfos.sellingShopParams };
+
+      axios.put(
+        "/api/shop_params?idShop=" + authenticationInfos.shop.id,
+        shopParams
+      );
+
+      setShouldStateBeSaved(false);
 
       //Update local storage
       authAPI.transformAuthContextIntoLocalStorageFormat({
-        ...authenticationInfos,
-        shop: {
-          ...authenticationInfos.shop,
-          shopData: {
-            ...authenticationInfos.shop.shopData,
-            PercentPerConditionFoils: pageState.PercentPerConditionFoils,
-            PercentPerConditions: pageState.PercentPerConditions,
-            PercentPerLangs: pageState.PercentPerLangs,
-          },
-        },
+        ...stateCopy,
       });
-
-      setShouldStateBeSaved(false);
 
       toast.success(
         <FormattedMessage
