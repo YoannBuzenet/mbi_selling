@@ -16,6 +16,7 @@ import MKMModalContext from "../context/mkmModalConnectionContext";
 import transparentDivContext from "../context/transparentDivContext";
 import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunchingScript";
 import AppLangContext from "../context/selectedAppLang";
+import BlackDivContext from "../context/blackDivModalContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import authAPI from "../services/authAPI";
@@ -33,6 +34,8 @@ const ScriptLine = ({ script, history, index }) => {
   console.log("auth context from scriptline", authenticationInfos);
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
+  //Black Div control
+  const { setIsBlackDivModalDisplayed } = useContext(BlackDivContext);
 
   const { setPopInLaunchingScriptInformations } = useContext(
     PopInLaunchingConfirmationContext
@@ -201,12 +204,16 @@ const ScriptLine = ({ script, history, index }) => {
       return;
     }
 
+    setIsBlackDivModalDisplayed("activated");
+
     // Passing all relevant data to confirmation pop in through Context
     setPopInLaunchingScriptInformations({
       isDisplayed: true,
       formats: selectedFormats,
       isTest: false,
       locale: currentLang.locale,
+      idScript: script.id,
+      indexScript,
     });
   };
 

@@ -11,6 +11,37 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       shop_params.belongsTo(models.User, { foreignKey: "idShop" });
     }
+    static createDefaultShopParams(idShop) {
+      return shop_params.create({
+        idShop,
+        percentPerSigned: 100,
+        percentPerMintRegular: 100,
+        percentPerNearMintRegular: 100,
+        percentPerExcellentRegular: 90,
+        percentPerGoodRegular: 80,
+        percentPerLightPlayedRegular: 70,
+        percentPerPlayedRegular: 65,
+        percentPerPoorRegular: 60,
+        percentPerMintFoil: 100,
+        percentPerNearMintFoil: 100,
+        percentPerExcellentFoil: 90,
+        percentPerGoodFoil: 80,
+        percentPerLightPlayedFoil: 70,
+        percentPerPlayedFoil: 65,
+        percentPerPoorFoil: 60,
+        percentPerLangGerman: 100,
+        percentPerLangSpanish: 100,
+        percentPerLangFrench: 100,
+        percentPerLangItalian: 100,
+        percentPerLangJapanese: 100,
+        percentPerLangPortuguese: 100,
+        percentPerLangRussian: 100,
+        percentPerLangSimplifiedChinese: 100,
+        percentPerLangEnglish: 100,
+        percentPerLangKorean: 100,
+        percentPerLangTraditionalChinese: 100,
+      });
+    }
   }
   shop_params.init(
     {

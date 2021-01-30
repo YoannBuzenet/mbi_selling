@@ -32,6 +32,9 @@ async function registerOnThisBackEndFromMTGAPI(idShop, baseLangId) {
 
   // Create premade scripts for user
   await createPremadeScriptsForShop(idShop, locale);
+
+  //Create premade shop param for user
+  await db.shop_params.createDefaultShopParams(idShop);
 }
 
 async function registerUserOnBothBackEnds(
@@ -84,6 +87,9 @@ async function registerUserOnBothBackEnds(
 
   // Create premade scripts for user
   await createPremadeScriptsForShop(shopIdOnMTGI, languageUsed);
+
+  //Create premade shop param for user
+  await db.shop_params.createDefaultShopParams(shopIdOnMTGI);
 }
 
 async function registerUserMTGAPI(userCredentials) {
