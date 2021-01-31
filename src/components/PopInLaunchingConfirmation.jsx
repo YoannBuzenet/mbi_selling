@@ -50,6 +50,8 @@ const PopInLaunchingConfirmation = () => {
           popInLaunchingScriptInformations.indexScript
         ].isRunning = 1;
         setAuthenticationInfos(authContextCopy);
+        setPopInLaunchingScriptInformations({ isDisplayed: false });
+        setIsBlackDivModalDisplayed("deactivated");
       })
       .catch((error) =>
         toast.error(
@@ -80,34 +82,41 @@ const PopInLaunchingConfirmation = () => {
 
   return (
     <div className="launchingPopInConfirmation">
-      u sure ?
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.confirmButton}
-        size="large"
-        onClick={launchScript}
-      >
+      <h3>
         <FormattedMessage
-          id="app.popIn.confirmationLaunching.button.launch"
-          defaultMessage="Launch"
+          id="app.popIn.confirmationLaunching"
+          defaultMessage="Launch Script ?"
         />
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.cancelButton}
-        size="large"
-        onClick={(e) => {
-          setPopInLaunchingScriptInformations({ isDisplayed: false });
-          setIsBlackDivModalDisplayed("deactivated");
-        }}
-      >
-        <FormattedMessage
-          id="app.popIn.confirmationLaunching.button.cancel"
-          defaultMessage="Cancel"
-        />
-      </Button>
+      </h3>
+      <div className="buttonContainer">
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.confirmButton}
+          size="large"
+          onClick={launchScript}
+        >
+          <FormattedMessage
+            id="app.popIn.confirmationLaunching.button.launch"
+            defaultMessage="Launch"
+          />
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.cancelButton}
+          size="large"
+          onClick={(e) => {
+            setPopInLaunchingScriptInformations({ isDisplayed: false });
+            setIsBlackDivModalDisplayed("deactivated");
+          }}
+        >
+          <FormattedMessage
+            id="app.popIn.confirmationLaunching.button.cancel"
+            defaultMessage="Cancel"
+          />
+        </Button>
+      </div>
     </div>
   );
 };
