@@ -34,6 +34,11 @@ function getTemplate(action, locale) {
       template = __basedir + "/mail_templates/" + locale + "/afterPayment.ejs";
       break;
     }
+    case "scriptHad0card": {
+      template =
+        __basedir + "/mail_templates/" + locale + "/scriptHad0card.ejs";
+      break;
+    }
     default: {
       throw new Error("Could not find corresponding template.");
     }
@@ -76,6 +81,13 @@ function getMailTitle(action, intl) {
       mailTitle = intl.formatMessage({
         id: "mail.sending.title.afterPayment",
         defaultMessage: "Payment received",
+      });
+      break;
+    }
+    case "scriptHad0card": {
+      mailTitle = intl.formatMessage({
+        id: "mail.sending.title.scriptHad0card",
+        defaultMessage: "Your script has been executed, but affected 0 card.",
       });
       break;
     }
@@ -140,6 +152,10 @@ function buildTemplateData(action, params, intl) {
       };
       break;
     }
+    case "scriptHad0card": {
+      templateData = {};
+      break;
+    }
     default: {
       throw new Error(
         "Could not find corresponding action for building templateData."
@@ -149,19 +165,19 @@ function buildTemplateData(action, params, intl) {
   return templateData;
 }
 
-function getPDF(action, locale, idShop) {
+function getPDF(action, locale, idShop, params) {
   let PDFData = [];
   switch (action) {
     case "summaryTestScript": {
       PDFData = [
         {
-          filename: createSummaryPDFName(idScript, idShop, isTest),
+          filename: createSummaryPDFName(params.idScript, idShop, isTest),
           path: path.join(
             __dirname,
             "../../PDF_storage/" +
               idShop +
               "/" +
-              createSummaryPDFName(idScript, idShop, isTest)
+              createSummaryPDFName(params.idScript, idShop, isTest)
           ),
         },
       ];
@@ -170,13 +186,28 @@ function getPDF(action, locale, idShop) {
     case "summaryRealScript": {
       PDFData = [
         {
-          filename: createSummaryPDFName(idScript, idShop, isTest),
+          filename: createSummaryPDFName(params.idScript, idShop, isTest),
           path: path.join(
             __dirname,
             "../../PDF_storage/" +
               idShop +
               "/" +
-              createSummaryPDFName(idScript, idShop, isTest)
+              createSummaryPDFName(params.idScript, idShop, isTest)
+          ),
+        },
+      ];
+      break;
+    }
+    case "scriptHad0card": {
+      PDFData = [
+        {
+          filename: createSummaryPDFName(params.idScript, idShop, false),
+          path: path.join(
+            __dirname,
+            "../../PDF_storage/" +
+              idShop +
+              "/" +
+              createSummaryPDFName(params.idScript, idShop, false)
           ),
         },
       ];
@@ -224,7 +255,7 @@ async function sendEmail(
 
   const templateData = buildTemplateData(action, params, intl);
 
-  const attachedPdf = getPDF(action, locale, idShop);
+  const attachedPdf = getPDF(action, locale, idShop, params);
 
   ejs.renderFile(templatePath, templateData, (err, html) => {
     if (err) console.log("error while sending mail", err); // Handle error

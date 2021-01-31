@@ -328,6 +328,7 @@
   "mail.sending.title.register": "Inscription sur mkmpriceupdater.com",
   "mail.sending.title.passwordForgotten": "Renouvellement du mot de passe",
   "mail.sending.title.afterPayment": "Paiement reçu",
+  "mail.sending.title.scriptHad0card": "Votre script a bien été éxécuté, mais a affecté 0 carte.",
 
   "subscribed.notSusbcribed.NeedToDoIt.text": "Vous devez vous abonner pour accéder à cette fonctionalité. Vous pouvez le faire {link}.",
   "subscribed.notSusbcribed.NeedToDoIt.link": "sur ce lien"
