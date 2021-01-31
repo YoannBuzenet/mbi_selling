@@ -337,6 +337,8 @@ function App() {
       isAuthenticated: false,
       user: { ...authenticationInfos.user, roles: [] },
     });
+    setIsBlackDivModalDisplayed("deactivated");
+    setPopInLaunchingScriptInformations({ isDisplayed: false });
     AuthAPI.logout();
   };
   const NavbarWithRouter = withRouter(Navbar);
