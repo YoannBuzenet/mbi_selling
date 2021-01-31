@@ -1,4 +1,3 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
 const axios = require("axios");
 const db = require("../../models/index");
 const { config } = require("../../config/configApp");
