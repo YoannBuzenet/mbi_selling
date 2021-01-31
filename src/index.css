@@ -677,9 +677,11 @@ div.createScriptButton {
 *************************************************/
 .launchingPopInConfirmation {
   position: absolute;
-  top: 50px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #fff;
-  width: 151.9px;
+  width: 300px;
   height: 200px;
   opacity: 1;
   border-radius: 4px;
@@ -687,6 +689,15 @@ div.createScriptButton {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   cursor: default;
   z-index: 17;
+}
+
+.launchingPopInConfirmation .buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.launchingPopInConfirmation .buttonContainer > button:first-child {
+  margin-right: 20px;
 }
 
 /********************************************
