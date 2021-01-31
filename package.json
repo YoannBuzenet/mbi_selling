@@ -53,7 +53,11 @@
     "db-reset": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
     "start:server": "NODE_ENV=development node server/server.js",
     "start:server:prod": "NODE_ENV=production node server/server.js",
-    "start:server:windows": "SET NODE_ENV=development& node server/server.js"
+    "start:server:windows": "SET NODE_ENV=development& node server/server.js",
+    "getMTGData:windows": "node server/CLI-scripts/getMTGdata.js",
+    "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js",
+    "getMTGData:linux": "node server/CLI-scripts/getMTGdata.js",
+    "getMTGPrices:linux": "node server/CLI-scripts/getMTGprices.js"
   },
   "eslintConfig": {
     "extends": "react-app"
