@@ -244,6 +244,7 @@
   "scriptLine.buttons.upToDate": "Ready",
   "scriptline.select.formats.title": "Formats",
   "scriptline.select.formats.mustHaveOneAtLeast": "Your script must at least target one format.",
+  "scriptline.select.formats.save.failed": "Save has failed. Please try later.",
 
   "createMyScript.title.scriptname": "Script Name",
   "createMyScript.buttons.save": "Save",

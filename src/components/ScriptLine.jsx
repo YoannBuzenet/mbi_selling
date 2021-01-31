@@ -117,6 +117,7 @@ const ScriptLine = ({ script, history, index }) => {
               "?idUser=" +
               authenticationInfos.user.id,
             {
+              name: script.name,
               formats: copySelectedFormatsUpToDate,
             }
           )
@@ -134,7 +135,12 @@ const ScriptLine = ({ script, history, index }) => {
           .catch((err) => {
             console.log(err);
             setAuthenticationInfos(copyAuthContext);
-            toast.error("Probleme dans la save A TRADUIRE");
+            toast.error(
+              <FormattedMessage
+                id="scriptline.select.formats.save.failed"
+                defaultMessage="Save has failed. Please try later."
+              />
+            );
           });
       }, WAIT_INTERVAL)
     );
