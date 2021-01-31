@@ -921,6 +921,7 @@ async function testScriptPersistingStep(
 
     await PDFGeneration.generatePDFFromPutRequest(
       put_request.dataValues.id,
+      idScript,
       locale,
       true
     );
@@ -934,7 +935,7 @@ async function testScriptPersistingStep(
       "summaryTestScript",
       idShop,
       shopData.data.email,
-      {},
+      { idScript },
       langIDLocaleDictionnary[shopData.data.baselang]
     );
   }
@@ -1009,6 +1010,15 @@ async function realScriptPersistingStep(
 
     // Marking Script as available
     await db.Script.markAsNotRunning(idScript);
+
+    await PDFGeneration.generatePDFFromPutRequest(
+      put_request.dataValues.id,
+      idScript,
+      locale,
+      false
+    );
+
+    sendEmail("scriptHad0card", idShop, shopData.email, { idScript }, locale);
 
     return;
   }
@@ -1395,6 +1405,7 @@ async function realScriptPersistingStep(
 
   await PDFGeneration.generatePDFFromPutRequest(
     put_request.dataValues.id,
+    idScript,
     locale,
     false
   );
@@ -1403,7 +1414,7 @@ async function realScriptPersistingStep(
     "summaryRealScript",
     idShop,
     shopData.data.email,
-    {},
+    { idScript },
     langIDLocaleDictionnary[shopData.data.baselang]
   );
 }

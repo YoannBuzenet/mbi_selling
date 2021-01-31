@@ -15,7 +15,7 @@ const genericTranslations = require("../../src/services/fullstackTranslations/ge
 
 async function generatePDFFromPutRequest(
   put_requestId,
-  // langLocale = "fr-FR",
+  idScript,
   langLocale = "en-US",
   isTestScript = true,
   printExplaination = false,
@@ -40,13 +40,12 @@ async function generatePDFFromPutRequest(
     },
   });
 
-  if (all_put_memories.rows.length === 0) {
-    throw new Error(
-      "This script has no put memory created. Can't generate a PDF from that."
-    );
-  }
-
-  const idScript = all_put_memories.rows[0].dataValues.idScript;
+  // Removed to be able to tell user if he launched a script that affected 0 cards
+  // if (all_put_memories.rows.length === 0) {
+  //   throw new Error(
+  //     "This script has no put memory created. Can't generate a PDF from that."
+  //   );
+  // }
 
   const currentScript = await db.Script.findOne({
     where: {
@@ -1001,22 +1000,12 @@ async function generatePDFFromPutRequest(
   if (isTestScript) {
     pdfPathName = path.join(
       folderPathWithUserId,
-      "/" +
-        createPDFName(
-          all_put_memories.rows[0].dataValues.idScript,
-          put_request.dataValues.idShop,
-          true
-        )
+      "/" + createSummaryPDFName(idScript, put_request.dataValues.idShop, true)
     );
   } else {
     pdfPathName = path.join(
       folderPathWithUserId,
-      "/" +
-        createPDFName(
-          all_put_memories.rows[0].dataValues.idScript,
-          put_request.dataValues.idShop,
-          false
-        )
+      "/" + createSummaryPDFName(idScript, put_request.dataValues.idShop, false)
     );
   }
   // pdf writing
