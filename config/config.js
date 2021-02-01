@@ -21,9 +21,9 @@ module.exports = {
     },
   },
   test: {
-    username: "root",
-    password: null,
-    database: "mbi_selling_database_test",
+    username: process.env.LOGIN_DB,
+    password: process.env.PWD_DB,
+    database: process.env.DB_TEST,
     host: "127.0.0.1",
     dialect: "mysql",
   },
