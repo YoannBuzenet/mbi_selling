@@ -1425,7 +1425,13 @@ async function realScriptPersistingStep(
 
   // if number of iterations is equal to counterNumberOfTimesMKMArrayWasEmpty, it means 0 cards have been sent to MKM
   if (numberOfIterations === counterNumberOfTimesMKMArrayWasEmpty) {
-    // yoann
+    sendEmail(
+      "scriptHad0card",
+      idShop,
+      shopData.data.email,
+      { idScript },
+      langIDLocaleDictionnary[shopData.data.baselang]
+    );
   } else {
     // Here, script went fine, as normal
     sendEmail(
