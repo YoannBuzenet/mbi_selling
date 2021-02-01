@@ -1055,6 +1055,8 @@ async function realScriptPersistingStep(
   // Defining on which price is based the put request
   const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
 
+  let counterNumberOfTimesMKMArrayWasEmpty = 0;
+
   for (let i = 0; i < numberOfIterations; i++) {
     // Working on a chunk of a 100 cards (MKM doesn't accept more)
     const chunkOfCards = await db.MkmProduct.findAll(relevantRequest, {
@@ -1312,90 +1314,95 @@ async function realScriptPersistingStep(
           );
         }
 
-        // yoann
-        // ici on check que l'array n'est pas vide arrayOfCardsForXML
-        // si elle est vide, on skip la phase suivante, et on incrémente le compteur
+        //Checking if there are currently cards to be sent to MKM - with the rules, sometimes it can be 0, but this will trigger an error from MKM.
+        // So we filter this case here.
+        if (
+          Array.isArray(arrayOfCardsForXML) &&
+          arrayOfCardsForXML.length > 0
+        ) {
+          /* ****************************************** */
+          /* ******* Sub Array 2 : cards for MKM ****** */
+          /* ****************************************** */
 
-        /* ****************************************** */
-        /* ******* Sub Array 2 : cards for MKM ****** */
-        /* ****************************************** */
-
-        // XML Creation
-        const XML_payload_Put_Request = mkmController.transformChunkOfCardsAndActionsIntoXML(
-          arrayOfCardsForXML
-        );
-
-        try {
-          await axios.put(
-            MkmAPI.URL_MKM_PUT_STOCK,
-            XML_payload_Put_Request,
-            axiosConfigMKMHeader
+          // XML Creation
+          const XML_payload_Put_Request = mkmController.transformChunkOfCardsAndActionsIntoXML(
+            arrayOfCardsForXML
           );
-        } catch (e) {
-          // In case failure, we record it in DB
-          // 1. in the current put_request
-          // 2. In put_memory for the last chunk
 
-          // 1.
-          const updatedPUT_request = await db.PUT_Request.findOne({
-            where: {
-              id: put_request.dataValues.id,
-            },
-          });
-
-          // console.log("e", e);
-          // console.log("e stringified", JSON.stringify(e));
-
-          await updatedPUT_request.update({
-            eventualMKM_ErrorMessage: e?.message || "mkm_error",
-            lastIterationNumberWhenMKM_ErrorHappened: i,
-          });
-
-          // 2.
-          for (let i = 0; i < arrayOfCardsForXML.length; i++) {
-            await db.put_memory.registerAsFailure(
-              idScript,
-              arrayOfCardsForXML[i],
-              arrayOfCardsForXML[i].action.idSnapShotCustomRule,
-              put_request.dataValues.id
-            );
-          }
-
-          // Stop script to avoid unnecessary computation
-          return;
-        }
-
-        // In case of success, we register updates in DB
-        for (let i = 0; i < arrayOfCardsForXML.length; i++) {
           try {
-            await db.put_memory.registerAsSuccess(
-              idScript,
-              arrayOfCardsForXML[i],
-              arrayOfCardsForXML[i].action.idSnapShotCustomRule,
-              put_request.dataValues.id,
-              generateBehaviourName(
-                arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
-                arrayOfCardsForXML[i].action.ruleType === 3,
-                arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
-                arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
-                arrayOfCardsForXML[i].action.customRule_behaviour_definition
-                  .dataValues.name,
-                arrayOfCardsForXML[i].action.ruleTypeId,
-                arrayOfCardsForXML[i].excludedVariousReason
-              )
+            await axios.put(
+              MkmAPI.URL_MKM_PUT_STOCK,
+              XML_payload_Put_Request,
+              axiosConfigMKMHeader
             );
           } catch (e) {
-            console.log("erreee", e);
-            console.log("cardss : ", card);
-          }
-        }
+            // In case failure, we record it in DB
+            // 1. in the current put_request
+            // 2. In put_memory for the last chunk
 
-        // We wait a bit before going to the next iteration to let the MKM API handle it.
-        utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
+            // 1.
+            const updatedPUT_request = await db.PUT_Request.findOne({
+              where: {
+                id: put_request.dataValues.id,
+              },
+            });
+
+            // console.log("e", e);
+            // console.log("e stringified", JSON.stringify(e));
+
+            await updatedPUT_request.update({
+              eventualMKM_ErrorMessage: e?.message || "mkm_error",
+              lastIterationNumberWhenMKM_ErrorHappened: i,
+            });
+
+            // 2.
+            for (let i = 0; i < arrayOfCardsForXML.length; i++) {
+              await db.put_memory.registerAsFailure(
+                idScript,
+                arrayOfCardsForXML[i],
+                arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+                put_request.dataValues.id
+              );
+            }
+
+            // Stop script to avoid unnecessary computation
+            return;
+          }
+
+          // In case of success, we register updates in DB
+          for (let i = 0; i < arrayOfCardsForXML.length; i++) {
+            try {
+              await db.put_memory.registerAsSuccess(
+                idScript,
+                arrayOfCardsForXML[i],
+                arrayOfCardsForXML[i].action.idSnapShotCustomRule,
+                put_request.dataValues.id,
+                generateBehaviourName(
+                  arrayOfCardsForXML[i].hasOwnProperty("priceShieldBlocked"),
+                  arrayOfCardsForXML[i].action.ruleType === 3,
+                  arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
+                  arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
+                  arrayOfCardsForXML[i].action.customRule_behaviour_definition
+                    .dataValues.name,
+                  arrayOfCardsForXML[i].action.ruleTypeId,
+                  arrayOfCardsForXML[i].excludedVariousReason
+                )
+              );
+            } catch (e) {
+              console.log("erreee", e);
+              console.log("cardss : ", card);
+            }
+          }
+
+          // We wait a bit before going to the next iteration to let the MKM API handle it.
+          utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
+        } else {
+          // if the array of cards to be sent to MKM was empty
+          counterNumberOfTimesMKMArrayWasEmpty += 1;
+        }
       }
     }
   }
-
   // Step End of Loop, nearly end of script
 
   // Marking PUT Request as successful
@@ -1409,9 +1416,6 @@ async function realScriptPersistingStep(
   // Marking Script as available
   await db.Script.markAsNotRunning(idScript);
 
-  // yoann
-  // Si le compteur est égal au nombre d'itération, cela signifie qu'on a envoyé 0 cartes sur MKM : c'est une erreur
-
   await PDFGeneration.generatePDFFromPutRequest(
     put_request.dataValues.id,
     idScript,
@@ -1419,13 +1423,19 @@ async function realScriptPersistingStep(
     false
   );
 
-  sendEmail(
-    "summaryRealScript",
-    idShop,
-    shopData.data.email,
-    { idScript },
-    langIDLocaleDictionnary[shopData.data.baselang]
-  );
+  // if number of iterations is equal to counterNumberOfTimesMKMArrayWasEmpty, it means 0 cards have been sent to MKM
+  if (numberOfIterations === counterNumberOfTimesMKMArrayWasEmpty) {
+    // yoann
+  } else {
+    // Here, script went fine, as normal
+    sendEmail(
+      "summaryRealScript",
+      idShop,
+      shopData.data.email,
+      { idScript },
+      langIDLocaleDictionnary[shopData.data.baselang]
+    );
+  }
 }
 
 /* In case of emergency, allows to rewind a put request */
