@@ -41,6 +41,7 @@
     "slugify": "^1.4.5",
     "status-indicator": "^1.0.9",
     "stripe": "^8.129.0",
+    "supertest": "^6.1.3",
     "xml2js": "^0.4.23"
   },
   "scripts": {
