@@ -1312,6 +1312,10 @@ async function realScriptPersistingStep(
           );
         }
 
+        // yoann
+        // ici on check que l'array n'est pas vide arrayOfCardsForXML
+        // si elle est vide, on skip la phase suivante, et on incrémente le compteur
+
         /* ****************************************** */
         /* ******* Sub Array 2 : cards for MKM ****** */
         /* ****************************************** */
@@ -1385,6 +1389,7 @@ async function realScriptPersistingStep(
             console.log("cardss : ", card);
           }
         }
+
         // We wait a bit before going to the next iteration to let the MKM API handle it.
         utils.sleep(parseInt(process.env.MKM_TIME_BETWEEN_LOOPS_ITERATIONS));
       }
@@ -1396,12 +1401,16 @@ async function realScriptPersistingStep(
   // Marking PUT Request as successful
   await db.PUT_Request.markAsFinishedSuccessfully(put_request.dataValues.id);
 
+  // If user modified its prices on MKM, his stock must be refreshed next time
   if (pricedBasedOn === "oldPrices") {
     const updateUser = await db.User.passStockAsShouldBeRefreshed(idShop);
   }
 
   // Marking Script as available
   await db.Script.markAsNotRunning(idScript);
+
+  // yoann
+  // Si le compteur est égal au nombre d'itération, cela signifie qu'on a envoyé 0 cartes sur MKM : c'est une erreur
 
   await PDFGeneration.generatePDFFromPutRequest(
     put_request.dataValues.id,
