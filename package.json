@@ -56,6 +56,11 @@
     "start:server:prod": "NODE_ENV=production node server/server.js",
     "start:server:prod:windows": "SET NODE_ENV=production& node server/server.js",
     "start:server:windows": "SET NODE_ENV=development& node server/server.js",
+    "create:db:prod:linux": "NODE_ENV=production sequelize db:create && npx sequelize-cli db:migrate",
+    "create:db:dev:linux": "NODE_ENV=development sequelize db:create && npx sequelize-cli db:migrate",
+    "create:db:test:linux": "NODE_ENV=test sequelize db:create && npx sequelize-cli db:migrate",
+    "create:db:test:windows": "SET NODE_ENV=test& sequelize db:create && npx sequelize-cli db:migrate",
+    "populate:db:test": "NODE_ENV=test & npx sequelize-cli db:seed:all",
     "getMTGData": "node server/CLI-scripts/getMTGdata.js",
     "getMTGPrices": "node server/CLI-scripts/getMTGprices.js"
   },
