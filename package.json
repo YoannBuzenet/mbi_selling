@@ -63,8 +63,10 @@
     "create:db:test:windows": "SET NODE_ENV=test& sequelize db:create && npx sequelize-cli db:migrate",
     "populate:db:test:linux": "NODE_ENV=test npx sequelize-cli db:seed:all",
     "populate:db:test:windows": "SET NODE_ENV=test & npx sequelize-cli db:seed:all",
-    "getMTGData": "node server/CLI-scripts/getMTGdata.js",
-    "getMTGPrices": "node server/CLI-scripts/getMTGprices.js"
+    "getMTGData:linux,": "NODE_ENV=production node server/CLI-scripts/getMTGdata.js",
+    "getMTGData:windows": "node server/CLI-scripts/getMTGdata.js",
+    "getMTGPrices:linux": "NODE_ENV=production node server/CLI-scripts/getMTGprices.js",
+    "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js"
   },
   "eslintConfig": {
     "extends": "react-app"
