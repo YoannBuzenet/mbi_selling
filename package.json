@@ -59,7 +59,7 @@
     "create:db:prod:linux": "NODE_ENV=production sequelize db:create && npx sequelize-cli db:migrate",
     "create:db:dev:linux": "NODE_ENV=development sequelize db:create && npx sequelize-cli db:migrate",
     "create:db:dev:windows": "SET NODE_ENV=development& sequelize db:create && npx sequelize-cli db:migrate",
-    "create:db:test:linux": "NODE_ENV=test sequelize db:create && npx sequelize-cli db:migrate",
+    "create:db:test:linux": "NODE_ENV=test sequelize db:create && NODE_ENV=test npx sequelize-cli db:migrate",
     "create:db:test:windows": "SET NODE_ENV=test& sequelize db:create && npx sequelize-cli db:migrate",
     "populate:db:test:linux": "NODE_ENV=test & npx sequelize-cli db:seed:all",
     "populate:db:test:windows": "SET NODE_ENV=test & npx sequelize-cli db:seed:all",
