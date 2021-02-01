@@ -475,9 +475,9 @@ async function generatePDFFromPutRequest(
           genericTranslations.pdfStructure.keywordTitle[langLocale] +
           snapshotKeywords.map((keyword, index) => {
             if (index !== 0) {
-              return " " + keyword.dataValues.name;
+              return " " + '"' + keyword.dataValues.name + '"';
             } else {
-              return keyword.dataValues.name;
+              return '"' + keyword.dataValues.name + '"';
             }
           }),
       },
