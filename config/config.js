@@ -13,7 +13,6 @@ module.exports = {
     database: process.env.DB_DEV,
     host: "127.0.0.1",
     dialect: "mysql",
-    use_env_variable: "DATABASE_URL_DEV",
     pool: {
       max: 50,
       min: 0,
@@ -30,11 +29,10 @@ module.exports = {
     use_env_variable: "NOM ENV VARIABLE",
   },
   production: {
-    username: "root",
-    password: "mbi_prod_db",
-    database: "mbi_selling_database_production",
+    username: process.env.LOGIN_DB,
+    password: process.env.PWD_DB,
+    database: process.env.DB_PROD,
     host: "127.0.0.1",
     dialect: "mysql",
-    use_env_variable: "DATABASE_URL_PROD",
   },
 };
