@@ -26,7 +26,6 @@ module.exports = {
     database: "mbi_selling_database_test",
     host: "127.0.0.1",
     dialect: "mysql",
-    use_env_variable: "NOM ENV VARIABLE",
   },
   production: {
     username: process.env.LOGIN_DB,
