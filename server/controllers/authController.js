@@ -15,10 +15,17 @@ const {
 
 async function registerOnThisBackEndFromMTGAPI(idShop, baseLangId) {
   // retrieve shop data from MTG API
-  const shopData = await retrieveAsAdmin(
-    `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
-    "get"
-  );
+  try {
+    const shopData = await retrieveAsAdmin(
+      `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
+      "get"
+    );
+  } catch (e) {
+    console.log("ERROR when getting data from MTGAPI", e);
+  }
+
+  console.log;
+  og("shop data yo", shopData);
 
   // register user in our DB
   const userCreated = await db.User.create({
