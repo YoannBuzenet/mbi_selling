@@ -8,7 +8,7 @@ module.exports = {
       [
         // Are missing : stat / end subscribing date
         {
-          idShop: 7,
+          idShop: 57,
           idInvoice: 1,
           userName: "utilisateur de test créé via Seed",
           userAddress: "5 rue des lilas",
