@@ -7,7 +7,7 @@ module.exports = {
     return await db.shop_params.bulkCreate(
       [
         {
-          idShop: 7,
+          idShop: 57,
           percentPerSigned: 100,
           percentPerMintRegular: 100,
           percentPerNearMintRegular: 100,

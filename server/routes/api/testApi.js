@@ -55,7 +55,7 @@ router.get("/GetAllMKMProductsForShop", async (req, res) => {
         },
       ],
       where: {
-        idShop: 7,
+        idShop: 57,
       },
     },
     {}
@@ -163,7 +163,7 @@ router.get("/tryModelMethod", async (req, res) => {
 router.get("/checkScriptUser", async (req, res) => {
   const script = await db.Script.findOne({
     where: {
-      idShop: 7,
+      idShop: 57,
     },
     include: [
       {
