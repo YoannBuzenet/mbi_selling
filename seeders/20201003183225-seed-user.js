@@ -19,7 +19,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          idShop: 7,
+          idShop: 57,
           shopKey: "seedTestShopKey2",
           email: "testaccount2@test.com",
           isSubscribedUntil: utils.createADateFromTodayAndAddMonths(15),
