@@ -21,7 +21,7 @@ const keywordsHandling = require("./Entities/keyword");
 const shop_paramsHandling = require("./Entities/shop_params");
 
 //Testing routes
-const testRoutes = require("./test");
+const testRoutes = require("./testApi.js");
 
 //Connecting to DB when arriving in /api
 const { connect } = require("../../../database/connect");
