@@ -9,7 +9,7 @@ const idShopTest = 7;
 const idScriptTest = 3;
 const isTest = false;
 const locale = "fr-FR"; // en-US
-// formats (array of integer) & JWT (with Bearer)
+const formats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 it("starts a script", async () => {
   const apiResp = await retrieveAsAdmin(
@@ -18,6 +18,17 @@ it("starts a script", async () => {
     {}
   );
   const shopData = apiResp.data;
+  const jwt = apiResp.config.headers.Authorization;
+
+  const scriptExecuted = await startScript(
+    idShopTest,
+    idScriptTest,
+    isTest,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
   expect(1 + 2).toEqual(3);
 });
