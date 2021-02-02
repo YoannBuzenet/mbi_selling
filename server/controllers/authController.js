@@ -20,11 +20,10 @@ async function registerOnThisBackEndFromMTGAPI(idShop, baseLangId) {
       `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
       "get"
     );
+    console.log("shop data yo", shopData);
   } catch (e) {
     console.log("ERROR when getting data from MTGAPI", e);
   }
-
-  console.log("shop data yo", shopData);
 
   // register user in our DB
   const userCreated = await db.User.create({
