@@ -1428,18 +1428,18 @@ async function realScriptPersistingStep(
     sendEmail(
       "scriptHad0card",
       idShop,
-      shopData.data.email,
+      shopData.email,
       { idScript },
-      langIDLocaleDictionnary[shopData.data.baselang]
+      langIDLocaleDictionnary[shopData.baseLang]
     );
   } else {
     // Here, script went fine, as normal
     sendEmail(
       "summaryRealScript",
       idShop,
-      shopData.data.email,
+      shopData.email,
       { idScript },
-      langIDLocaleDictionnary[shopData.data.baselang]
+      langIDLocaleDictionnary[shopData.baseLang]
     );
   }
 }
