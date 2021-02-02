@@ -48,7 +48,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:windows": "./node_modules/.bin/jest -u & SET NODE_ENV=test",
-    "test:linux": "./node_modules/.bin/jest -u NODE_ENV=test",
+    "test:linux": "NODE_ENV=test ./node_modules/.bin/jest -u",
     "eject": "react-scripts eject",
     "debug": "node server/server.js",
     "resetDBseed:test:windows": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all --debug",
