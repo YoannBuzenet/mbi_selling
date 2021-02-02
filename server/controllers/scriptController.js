@@ -937,7 +937,7 @@ async function testScriptPersistingStep(
       idShop,
       shopData.data.email,
       { idScript },
-      langIDLocaleDictionnary[shopData.data.baselang]
+      locale
     );
   }
 }
@@ -1425,13 +1425,7 @@ async function realScriptPersistingStep(
 
   // if number of iterations is equal to counterNumberOfTimesMKMArrayWasEmpty, it means 0 cards have been sent to MKM
   if (numberOfIterations === counterNumberOfTimesMKMArrayWasEmpty) {
-    sendEmail(
-      "scriptHad0card",
-      idShop,
-      shopData.email,
-      { idScript },
-      langIDLocaleDictionnary[shopData.baseLang]
-    );
+    sendEmail("scriptHad0card", idShop, shopData.email, { idScript }, locale);
   } else {
     // Here, script went fine, as normal
     sendEmail(
@@ -1439,7 +1433,7 @@ async function realScriptPersistingStep(
       idShop,
       shopData.email,
       { idScript },
-      langIDLocaleDictionnary[shopData.baseLang]
+      locale
     );
   }
 }
