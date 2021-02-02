@@ -17,7 +17,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        idShop: 7,
+        idShop: 57,
         name: "Le troisième script",
         createdAt: new Date(),
         updatedAt: new Date(),
