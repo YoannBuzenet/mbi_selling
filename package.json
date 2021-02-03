@@ -51,7 +51,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test:windows": "./node_modules/.bin/jest -u & SET NODE_ENV=test",
+    "test:windows": "./node_modules/.bin/jest -u --detectOpenHandles & SET NODE_ENV=test",
     "test:linux": "NODE_ENV=test ./node_modules/.bin/jest -u",
     "eject": "react-scripts eject",
     "debug": "node server/server.js",
@@ -60,6 +60,7 @@
     "resetDBswipe:dev:windows": "SET NODE_ENV=development&npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
     "start:server:dev:linux": "NODE_ENV=development node server/server.js",
     "start:server:dev:windows": "SET NODE_ENV=development& node server/server.js",
+    "start:server:test:windows": "SET NODE_ENV=test& node server/server.js",
     "start:server:prod:linux": "NODE_ENV=production node server/server.js",
     "start:server:prod:windows": "SET NODE_ENV=production& node server/server.js",
     "create:db:prod:linux": "NODE_ENV=production sequelize db:create && NODE_ENV=production npx sequelize-cli db:migrate",
@@ -69,12 +70,11 @@
     "create:db:test:windows": "SET NODE_ENV=test& sequelize db:create && npx sequelize-cli db:migrate",
     "seed:db-partial-seed:dev:windows": "npx sequelize-cli db:seed:all --seeders-path seedersMKMTest --debug",
     "seed:db:test:linux": "NODE_ENV=test npx sequelize-cli db:seed:all",
-    "seed:db:test:windows": "SET NODE_ENV=test & npx sequelize-cli db:seed:all",
+    "seed:db:test:windows": "SET NODE_ENV=test& npx sequelize-cli db:seed:all",
     "getMTGData:linux,": "NODE_ENV=production node server/CLI-scripts/getMTGdata.js",
     "getMTGData:windows": "node server/CLI-scripts/getMTGdata.js",
     "getMTGPrices:linux": "NODE_ENV=production node server/CLI-scripts/getMTGprices.js",
-    "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js",
-    "seedDBTest": "SET NODE_ENV=test& node server/CLI-scripts/seedTestDB.js"
+    "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js"
   },
   "eslintConfig": {
     "extends": "react-app"

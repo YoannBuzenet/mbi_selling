@@ -5,11 +5,12 @@ const csv = require("csvtojson");
 const db = require("../../models/index");
 const genericDataController = require("./genericDataController");
 const nodePath = require("path");
+const util = require("util");
 
 /* ********** */
 // Get MKM stock from user and save it in CSV file
 /* ********** */
-function getShopStock(shopInfo, idShop) {
+async function getShopStock(shopInfo, idShop) {
   const header = MkmAPI.buildOAuthHeader(
     "GET",
     MkmAPI.URL_MKM_GET_STOCK,
@@ -18,122 +19,124 @@ function getShopStock(shopInfo, idShop) {
     shopInfo.accessToken,
     shopInfo.accessSecret
   );
-
-  return axios
-    .get(MkmAPI.URL_MKM_GET_STOCK, {
+  try {
+    const mkmStock = await axios.get(MkmAPI.URL_MKM_GET_STOCK, {
       headers: {
         Authorization: header,
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36",
       },
-    })
-    .then((resp) => {
-      /* ******************* */
-      //Transform XML into JS object
-      /* ******************* */
-      var parseString = require("xml2js").parseString;
-      parseString(resp.data, function (err, result) {
-        console.log("xml is :", result);
-        /* ******************* */
-        //Transforming base 64 string into binary
-        /* ******************* */
-        var atob = require("atob");
-        // console.log("stock", result.response.stock[0]);
-
-        const binaryFile = atob(result.response.stock[0]);
-        // console.log("binary", binaryFile);
-
-        /* ******************* */
-        //Save the file
-        /* ******************* */
-
-        /* ******************* */
-        //Creating folder if it doesn't exist
-        /* ******************* */
-        if (!fs.existsSync("./shopStock/" + idShop)) {
-          fs.mkdirSync("./shopStock/" + idShop);
-        }
-
-        fs.writeFile(
-          "./shopStock/" + idShop + "/stock.gzip",
-          binaryFile,
-          { encoding: "binary" },
-          function (err) {
-            if (err) {
-              console.log("err", err);
-              throw new Error("error while opening file", err);
-            }
-            console.log("The gzip file was saved!");
-
-            /* ******************* */
-            //Read the file to get buffer
-            /* ******************* */
-
-            fs.readFile(
-              "./shopStock/" + idShop + "/stock.gzip",
-              (error, data) => {
-                if (error) {
-                  console.log("error while reading file", error);
-                  throw new Error("error while reading file", error);
-                }
-
-                /* ******************* */
-                //Transforming the GZIP into CSV
-                /* ******************* */
-                const zlib = require("zlib");
-                zlib.gunzip(data, (error, fileUnzipped) => {
-                  if (error) {
-                    console.log("error while unzipping file", error);
-                  }
-
-                  const pathFile = "./shopStock/" + idShop + "/stock.csv";
-                  const pathFileWithoutExtension =
-                    "./shopStock/" + idShop + "/stock";
-
-                  console.log("file unzipped", fileUnzipped);
-                  fs.writeFile(
-                    pathFile,
-                    fileUnzipped,
-                    { encoding: "binary" },
-                    function (err) {
-                      if (err) {
-                        console.log("error while writing file", err);
-                        throw new Error("error while writing file", err);
-                      }
-                      console.log("The csv file was saved!");
-                      /* ******************* */
-                      // Deleting the gzip file
-                      /* ******************* */
-                      fs.unlink(
-                        pathFileWithoutExtension + ".gzip",
-                        (err, success) => {
-                          if (err) {
-                            console.log("error while deleting file", err);
-                            throw new Error("error while deleting file", err);
-                          }
-                          console.log(
-                            "The GZIP was deleted! CSV is ready to be read in another function."
-                          );
-                          return true;
-                        }
-                      );
-                    }
-                  );
-                });
-              }
-            );
-          }
-        );
-      });
-    })
-    .catch((err) => {
-      console.log("error when logging to MKM", err);
-      throw new Error("error when logging to MKM", err);
     });
+    /* ******************* */
+    //Transform XML into JS object
+    /* ******************* */
+    var xml2js = require("xml2js");
+    parseStringPromise = util.promisify(xml2js.parseString);
+
+    const result = await parseStringPromise(mkmStock.data);
+    console.log("xml is :", result);
+    /* ******************* */
+    //Transforming base 64 string into binary
+    /* ******************* */
+    var atob = require("atob");
+    // console.log("stock", result.response.stock[0]);
+
+    const binaryFile = atob(result.response.stock[0]);
+    // console.log("binary", binaryFile);
+
+    /* ******************* */
+    // SAVING THE FILE
+    /* ******************* */
+
+    /* ******************* */
+    //Creating folder if it doesn't exist
+    /* ******************* */
+
+    if (!fs.existsSync("./shopStock/" + idShop)) {
+      fs.mkdirSync("./shopStock/" + idShop);
+    }
+    const writeFilePromisified = util.promisify(fs.writeFile);
+
+    try {
+      await writeFilePromisified(
+        "./shopStock/" + idShop + "/stock.gzip",
+        binaryFile,
+        { encoding: "binary" }
+      );
+    } catch (err) {
+      console.log("error while writing in file", err);
+      throw new Error("error while writing in file", err);
+    }
+
+    console.log("The gzip file was saved!");
+
+    /* ******************* */
+    //Read the file to get buffer
+    /* ******************* */
+
+    const readFilePromisified = util.promisify(fs.readFile);
+    let fileRead;
+
+    try {
+      fileRead = await readFilePromisified(
+        "./shopStock/" + idShop + "/stock.gzip"
+      );
+    } catch (error) {
+      console.log("error while reading file", error);
+      throw new Error("error while reading file", error);
+    }
+
+    /* ******************* */
+    //Transforming the GZIP into CSV
+    /* ******************* */
+
+    const zlib = require("zlib");
+    const gunzipPromisified = util.promisify(zlib.gunzip);
+    let fileUnzipped;
+    try {
+      fileUnzipped = await gunzipPromisified(fileRead);
+    } catch (error) {
+      console.log("error while unzipping file", error);
+    }
+
+    const pathFile = "./shopStock/" + idShop + "/stock.csv";
+    const pathFileWithoutExtension = "./shopStock/" + idShop + "/stock";
+
+    console.log("file unzipped", fileUnzipped);
+
+    try {
+      await writeFilePromisified(pathFile, fileUnzipped, {
+        encoding: "binary",
+      });
+    } catch (err) {
+      console.log("error while writing 2 in file", err);
+      throw new Error("error while writing 2 in file", err);
+    }
+    console.log("The csv file was saved!");
+
+    /* ******************* */
+    // Deleting the gzip file
+    /* ******************* */
+
+    const unlink = util.promisify(fs.unlink);
+    try {
+      unlink(pathFileWithoutExtension + ".gzip");
+    } catch (err) {
+      console.log("error while deleting file", err);
+      throw new Error("error while deleting file", err);
+    }
+    console.log(
+      "The GZIP was deleted! CSV is ready to be read in another function."
+    );
+    return true;
+  } catch (err) {
+    console.log("error when logging to MKM", err);
+    throw new Error("error when logging to MKM", err);
+  }
 }
 
 async function eraseShopStock(shopId) {
-  return await db.MkmProduct.destroy({
+  return db.MkmProduct.destroy({
     where: {
       idShop: shopId,
     },
@@ -141,7 +144,7 @@ async function eraseShopStock(shopId) {
 }
 
 async function registerStockFileIntoDB(shopId) {
-  const path = nodePath.join("./shopStock/", shopId, "/stock.csv");
+  const path = nodePath.join("./shopStock", "/" + shopId, "/stock.csv");
 
   //Parameters customized for our CSV : separator is ; and there are dots in columns names that we don't want to interpret
   await csv({ delimiter: ";", flatKeys: true })

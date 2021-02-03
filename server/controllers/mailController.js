@@ -171,13 +171,13 @@ function getPDF(action, locale, idShop, params) {
     case "summaryTestScript": {
       PDFData = [
         {
-          filename: createSummaryPDFName(params.idScript, idShop, isTest),
+          filename: createSummaryPDFName(params.idScript, idShop, true),
           path: path.join(
             __dirname,
             "../../PDF_storage/" +
               idShop +
               "/" +
-              createSummaryPDFName(params.idScript, idShop, isTest)
+              createSummaryPDFName(params.idScript, idShop, true)
           ),
         },
       ];
@@ -186,13 +186,13 @@ function getPDF(action, locale, idShop, params) {
     case "summaryRealScript": {
       PDFData = [
         {
-          filename: createSummaryPDFName(params.idScript, idShop, isTest),
+          filename: createSummaryPDFName(params.idScript, idShop, false),
           path: path.join(
             __dirname,
             "../../PDF_storage/" +
               idShop +
               "/" +
-              createSummaryPDFName(params.idScript, idShop, isTest)
+              createSummaryPDFName(params.idScript, idShop, false)
           ),
         },
       ];
@@ -286,6 +286,7 @@ async function sendEmail(
     transport.sendMail(mailOpts, (err, info) => {
       if (err) console.log("error while sending mail2", err); //Handle Error
       console.log(info);
+      console.log("sending mail...");
       //TODO later: pass unlink behaviour in param
       // fs.unlink(
       //   path.join(
