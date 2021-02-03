@@ -7,9 +7,16 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via NPM",
+      "name": "Launch Server NPM",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "debug"]
+      "runtimeArgs": ["run-script", "start:server:test:windows"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Test Script NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "test:windows"]
     }
   ]
 }

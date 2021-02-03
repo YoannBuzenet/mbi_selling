@@ -1229,7 +1229,7 @@ async function realScriptPersistingStep(
 
       // MKM Trends price particularity
       // On old price, this coefficient has already been applied
-      if (pricedBasedOn === "mkmTrends") {
+      if (pricedBasedOn === "mkmTrends" && action.ruleTypeId !== 3) {
         // We update the price depending on condition and language of the card, with shop params
         newPrice = priceUpdateAPI.calculatePriceWithLanguageAndConditionSpecifics(
           newPrice,
@@ -1269,7 +1269,7 @@ async function realScriptPersistingStep(
             !chunkOfCards[k].hasOwnProperty("error") &&
             !chunkOfCards[k].hasOwnProperty("priceShieldBlocked") &&
             !chunkOfCards[k].hasOwnProperty("excludedVariousReason") &&
-            action.ruleTypeId !== 3
+            chunkOfCards[k].action.ruleTypeId !== 3
           ) {
             //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
             arrayOfCardsForXML = [...arrayOfCardsForXML, chunkOfCards[k]];
