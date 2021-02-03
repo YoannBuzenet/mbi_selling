@@ -73,7 +73,8 @@
     "getMTGData:linux,": "NODE_ENV=production node server/CLI-scripts/getMTGdata.js",
     "getMTGData:windows": "node server/CLI-scripts/getMTGdata.js",
     "getMTGPrices:linux": "NODE_ENV=production node server/CLI-scripts/getMTGprices.js",
-    "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js"
+    "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js",
+    "seedDBTest": "SET NODE_ENV=test& node server/CLI-scripts/seedTestDB.js"
   },
   "eslintConfig": {
     "extends": "react-app"

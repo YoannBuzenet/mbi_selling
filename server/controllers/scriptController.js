@@ -150,6 +150,8 @@ async function startScript(
         console.log("error when trying to get shop data from mtgAPI", err)
       );
 
+    console.log("shopdataRequest", shopdataRequest);
+
     // Getting MKM stock and storing it in CSV
     try {
       await mkmController.getShopStock(shopdataRequest.data, idShop);
