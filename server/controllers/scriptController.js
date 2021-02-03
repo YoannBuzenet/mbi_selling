@@ -407,7 +407,7 @@ async function startScript(
     /* **************************************** */
 
     if (isTest) {
-      testScriptPersistingStep(
+      await testScriptPersistingStep(
         orderedCustoMRules,
         idShop,
         idScript,
@@ -417,7 +417,7 @@ async function startScript(
         formats
       );
     } else {
-      realScriptPersistingStep(
+      await realScriptPersistingStep(
         orderedCustoMRules,
         idShop,
         idScript,
