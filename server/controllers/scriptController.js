@@ -46,6 +46,8 @@ function generateBehaviourName(
   } else {
     if (ruleTypeId === 1) {
       return "Set Value";
+    } else if (ruleTypeId === 3) {
+      return "Excluded";
     } else {
       return behaviourBase;
     }
