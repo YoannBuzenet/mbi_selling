@@ -168,7 +168,7 @@ async function startScript(
     try {
       await mkmController.registerStockFileIntoDB(idShop);
     } catch (e) {
-      throw new Error(e);
+      throw new Error("error while registering in DB", e);
     }
   } else {
     console.log("We do NOT refresh the shop stock");

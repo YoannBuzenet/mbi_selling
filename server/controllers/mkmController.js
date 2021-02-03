@@ -4,6 +4,7 @@ const fs = require("fs");
 const csv = require("csvtojson");
 const db = require("../../models/index");
 const genericDataController = require("./genericDataController");
+const nodePath = require("path");
 
 /* ********** */
 // Get MKM stock from user and save it in CSV file
@@ -140,7 +141,7 @@ async function eraseShopStock(shopId) {
 }
 
 async function registerStockFileIntoDB(shopId) {
-  const path = "./shopStock/" + shopId + "/stock.csv";
+  const path = nodePath.join("./shopStock/", shopId, "/stock.csv");
 
   //Parameters customized for our CSV : separator is ; and there are dots in columns names that we don't want to interpret
   await csv({ delimiter: ";", flatKeys: true })

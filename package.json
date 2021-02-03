@@ -1,6 +1,9 @@
 {
   "name": "mbi_selling",
   "version": "1.0.0",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
