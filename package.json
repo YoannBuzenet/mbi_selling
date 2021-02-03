@@ -4,6 +4,7 @@
   "jest": {
     "testEnvironment": "node"
   },
+  "test": "test",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
