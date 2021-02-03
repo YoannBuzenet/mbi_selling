@@ -63,7 +63,7 @@ async function generatePDFFromPutRequest(
       },
       priceShieldBlocked: 0,
       behaviourChosen: {
-        [Op.notLike]: "Excluded",
+        [Op.notLike]: "%Excluded%",
       },
     },
   });
@@ -76,7 +76,7 @@ async function generatePDFFromPutRequest(
       },
       priceShieldBlocked: 0,
       behaviourChosen: {
-        [Op.notLike]: "Excluded",
+        [Op.notLike]: "%Excluded%",
       },
     },
   });
@@ -93,10 +93,14 @@ async function generatePDFFromPutRequest(
   const all_excluded_put_memories = await db.put_memory.findAndCountAll({
     where: {
       PUT_Request_id: put_requestId,
-      [Op.or]: {
-        behaviourChosen: ["Signed/Altered/Playset skipped", "Excluded"],
+      behaviourChosen: {
+        [Op.or]: {
+          [Op.like]: "%Signed%",
+          [Op.like]: "%Altered%",
+          [Op.like]: "%Playset%",
+          [Op.like]: "%Excluded%",
+        },
       },
-      // behaviourChosen: "Excluded",
     },
   });
 
