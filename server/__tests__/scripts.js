@@ -3,6 +3,7 @@ const { retrieveAsAdmin } = require("../services/adminBehaviours");
 const axios = require("axios");
 
 // Global variable
+// This doesnt work
 global.__basedir = __dirname;
 
 beforeAll(async () => {

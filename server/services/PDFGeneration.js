@@ -62,6 +62,9 @@ async function generatePDFFromPutRequest(
         [Op.gt]: Sequelize.col("oldPrice"),
       },
       priceShieldBlocked: 0,
+      behaviourChosen: {
+        [Op.notLike]: "Excluded",
+      },
     },
   });
 
@@ -72,6 +75,9 @@ async function generatePDFFromPutRequest(
         [Op.lt]: Sequelize.col("oldPrice"),
       },
       priceShieldBlocked: 0,
+      behaviourChosen: {
+        [Op.notLike]: "Excluded",
+      },
     },
   });
 
