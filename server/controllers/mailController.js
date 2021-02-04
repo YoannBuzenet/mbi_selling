@@ -272,7 +272,7 @@ async function sendEmail(
     from: process.env.MAIL_SENDING,
     to: shopMail,
     subject: mailTitle,
-    html: html,
+    html: htmlToSend,
     attachments: attachedPdf,
   };
 

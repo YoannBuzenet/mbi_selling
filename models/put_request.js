@@ -33,6 +33,12 @@ module.exports = (sequelize, DataTypes) => {
         had0MKMProducts: 1,
       });
     }
+    static getLastID() {
+      return PUT_Request.findAll({
+        limit: 1,
+        order: [["createdAt", "DESC"]],
+      });
+    }
   }
   PUT_Request.init(
     {

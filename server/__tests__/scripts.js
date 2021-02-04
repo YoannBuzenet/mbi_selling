@@ -1,9 +1,11 @@
 const { startScript } = require("../controllers/scriptController");
 const { retrieveAsAdmin } = require("../services/adminBehaviours");
 const axios = require("axios");
+const db = require("../../models/index");
 
 // Global variable
-// This doesnt work
+// This doesnt work : we need to pass the root of the app in this variable
+// However, it is not important : it just allows to find the right mail template. Without that, mail arrive empty, just with the PDF.
 global.__basedir = __dirname;
 
 beforeAll(async () => {
@@ -36,6 +38,17 @@ beforeAll(async () => {
   );
 });
 
-it("starts a script", async () => {
-  expect(1 + 2).toEqual(3);
+describe("First Script", () => {
+  it("checks the number of put memories", async () => {
+    return db.put_memory
+      .findAndCountAll({
+        where: {
+          PUT_Request_id: 1,
+        },
+      })
+      .then((put_memories) => {
+        // Each mkmproduct should generate a put memory. If it doesn't, something has been missed.
+        expect(put_memories.count).toEqual(10);
+      });
+  });
 });
