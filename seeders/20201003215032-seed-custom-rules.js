@@ -39,7 +39,7 @@ module.exports = {
           priceRangeFrom: 1,
           priceRangeTo: 2,
           priceRangeValueToSet: 2,
-          behaviourId: 2,
+          behaviourId: 8,
           mkmPriceGuideReference: 1,
           isForFoils: 0,
           isForSigned: 0,
