@@ -82,7 +82,7 @@ module.exports = {
           },
           {
             name: "roundDown5percents",
-            coefficient: -1.05,
+            coefficient: 1.05,
             type: "percent",
             sense: "down",
             createdAt: new Date(),
@@ -90,7 +90,7 @@ module.exports = {
           },
           {
             name: "roundDown10percents",
-            coefficient: -1.1,
+            coefficient: 1.1,
             type: "percent",
             sense: "down",
             createdAt: new Date(),
@@ -98,7 +98,7 @@ module.exports = {
           },
           {
             name: "roundDown15percents",
-            coefficient: -1.15,
+            coefficient: 1.15,
             type: "percent",
             sense: "down",
             createdAt: new Date(),
@@ -106,7 +106,7 @@ module.exports = {
           },
           {
             name: "roundDown20percents",
-            coefficient: -1.2,
+            coefficient: 1.2,
             type: "percent",
             sense: "down",
             createdAt: new Date(),
@@ -114,7 +114,7 @@ module.exports = {
           },
           {
             name: "roundDown30percents",
-            coefficient: -1.3,
+            coefficient: 1.3,
             type: "percent",
             sense: "down",
             createdAt: new Date(),
@@ -122,7 +122,7 @@ module.exports = {
           },
           {
             name: "roundDown50percents",
-            coefficient: -1.5,
+            coefficient: 1.5,
             type: "percent",
             sense: "down",
             createdAt: new Date(),

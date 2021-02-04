@@ -40,7 +40,7 @@ module.exports = {
           priceRangeTo: 2,
           priceRangeValueToSet: 2,
           behaviourId: 8,
-          mkmPriceGuideReference: 1,
+          mkmPriceGuideReference: 3,
           isForFoils: 0,
           isForSigned: 0,
           isForPlaysets: 0,
