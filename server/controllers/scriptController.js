@@ -935,7 +935,7 @@ async function testScriptPersistingStep(
       "get"
     );
 
-    sendEmail(
+    await sendEmail(
       "summaryTestScript",
       idShop,
       shopData.data.email,
@@ -1021,7 +1021,13 @@ async function realScriptPersistingStep(
       false
     );
 
-    sendEmail("scriptHad0card", idShop, shopData.email, { idScript }, locale);
+    await sendEmail(
+      "scriptHad0card",
+      idShop,
+      shopData.email,
+      { idScript },
+      locale
+    );
 
     return;
   }
@@ -1428,10 +1434,16 @@ async function realScriptPersistingStep(
 
   // if number of iterations is equal to counterNumberOfTimesMKMArrayWasEmpty, it means 0 cards have been sent to MKM
   if (numberOfIterations === counterNumberOfTimesMKMArrayWasEmpty) {
-    sendEmail("scriptHad0card", idShop, shopData.email, { idScript }, locale);
+    await sendEmail(
+      "scriptHad0card",
+      idShop,
+      shopData.email,
+      { idScript },
+      locale
+    );
   } else {
     // Here, script went fine, as normal
-    sendEmail(
+    await sendEmail(
       "summaryRealScript",
       idShop,
       shopData.email,
