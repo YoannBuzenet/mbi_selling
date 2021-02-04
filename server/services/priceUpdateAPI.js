@@ -185,7 +185,8 @@ function calculatePriceWithLanguageAndConditionSpecifics(
   } = require("../services/genericInfosAPI");
 
   const langName = langDefinition[cardLanguageId];
-  const langCoefficient = shopParams["percentPerLang" + langName];
+  const langNameWithoutSpace = langName.replace(/\s/g, "");
+  const langCoefficient = shopParams["percentPerLang" + langNameWithoutSpace];
 
   let conditionName = conditionDefinition[
     revertedDictionnaryConditionDefinition[cardConditionId]
