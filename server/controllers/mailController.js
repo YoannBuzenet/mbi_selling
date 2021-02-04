@@ -257,52 +257,41 @@ async function sendEmail(
 
   const attachedPdf = getPDF(action, locale, idShop, params);
 
-  ejs.renderFile(templatePath, templateData, (err, html) => {
-    if (err) console.log("error while sending mail", err); // Handle error
-    // console.log(templateData);
-    // console.log(templateData.user.customer.SellRequests);
-    // console.log(template);
-
-    console.log(`HTML: ${html}`);
-
-    let mailOpts = {
-      from: process.env.MAIL_SENDING,
-      to: shopMail,
-      subject: mailTitle,
-      html: html,
-      attachments: attachedPdf,
-    };
-
-    const transport = nodemailer.createTransport({
-      host: process.env.SMTP_NODEMAILER,
-      port: process.env.SMTP_PORT,
-      secure: true,
-      auth: {
-        user: process.env.AUTH_USER,
-        pass: process.env.AUTH_PASSWORD,
-      },
+  let htmlToSend;
+  try {
+    htmlToSend = await ejs.renderFile(templatePath, templateData, {
+      async: true,
     });
+  } catch (err) {
+    console.log("error while sending mail", err);
+  }
 
-    transport.sendMail(mailOpts, (err, info) => {
-      if (err) console.log("error while sending mail2", err); //Handle Error
-      console.log(info);
-      console.log("sending mail...");
-      //TODO later: pass unlink behaviour in param
-      // fs.unlink(
-      //   path.join(
-      //     __dirname,
-      //     "../../PDF_storage/" +
-      //       idShop +
-      //       "/" +
-      //       createPDFName(idScript, idShop, isTest)
-      //   ),
-      //   (err, info) => {
-      //     console.log("info une unlink", info);
-      //     console.log("err in unlink", err);
-      //   }
-      // );
-    });
+  console.log("html of the mail :", htmlToSend);
+
+  let mailOpts = {
+    from: process.env.MAIL_SENDING,
+    to: shopMail,
+    subject: mailTitle,
+    html: html,
+    attachments: attachedPdf,
+  };
+
+  const transport = nodemailer.createTransport({
+    host: process.env.SMTP_NODEMAILER,
+    port: process.env.SMTP_PORT,
+    secure: true,
+    auth: {
+      user: process.env.AUTH_USER,
+      pass: process.env.AUTH_PASSWORD,
+    },
   });
+
+  try {
+    const msgSent = await transport.sendMail(mailOpts);
+    console.log("mail info", msgSent);
+  } catch (e) {
+    console.log("errro while sending the mail", e);
+  }
 }
 
 module.exports = {
