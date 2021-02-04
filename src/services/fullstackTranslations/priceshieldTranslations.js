@@ -1,4 +1,10 @@
 const priceShieldReasons = {
+  0: {
+    "en-US":
+      "Price under 10 euros - Price can't be more than 100% cheaper than the MKM trend.",
+    "fr-FR":
+      "Prix en dessous de 10 euros - Le prix de vente ne peut être inférieur de plus de 100% à la tendance MKM.",
+  },
   1: {
     "en-US":
       "Price under 20 euros - Price can't be more than 40% cheaper than the MKM trend.",

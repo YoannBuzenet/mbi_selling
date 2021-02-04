@@ -133,11 +133,11 @@ module.exports = {
         },
         {
           idScript: 3,
-          ruleTypeId: 1,
+          ruleTypeId: 2,
           priceRangeFrom: 2,
           priceRangeTo: 3,
           priceRangeValueToSet: 2,
-          behaviourId: 1,
+          behaviourId: 3,
           mkmPriceGuideReference: 1,
           isForFoils: 1,
           isForSigned: 0,
