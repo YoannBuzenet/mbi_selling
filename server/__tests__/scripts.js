@@ -940,4 +940,110 @@ describe("First Script", () => {
         });
     });
   });
+  describe("Card, Article 179, idProduct 16229", () => {
+    it("should have a behaviour chosen of Excluded - Signed", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 179,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.behaviourChosen).toEqual(
+            "Excluded - Signed"
+          );
+        });
+    });
+
+    it("should have an isSigned : Yes", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 179,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.isSigned).toEqual(1);
+        });
+    });
+    it("should have an is playset : None", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 179,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.isPlayset).toEqual(0);
+        });
+    });
+    it("should have an amount of 11", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 179,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.amount).toEqual(11);
+        });
+    });
+  });
+  describe("Card, Article 180, idProduct 16229", () => {
+    it("should have a behaviour chosen of Excluded - Playset", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 180,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.behaviourChosen).toEqual(
+            "Excluded - Playset"
+          );
+        });
+    });
+
+    it("should have an isSigned : No", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 180,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.isSigned).toEqual(0);
+        });
+    });
+    it("should have an is playset : Yes", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 180,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.isPlayset).toEqual(1);
+        });
+    });
+    it("should have an amount of 14", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 180,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.amount).toEqual(14);
+        });
+    });
+  });
 });
