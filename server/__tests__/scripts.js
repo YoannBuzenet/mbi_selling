@@ -792,53 +792,55 @@ describe("First Script", () => {
         });
     });
   });
-  describe("Card, Article 9, idProduct 16483", () => {
-    it("should have an old price of 5", async () => {
+  describe("Card, Article 169, idProduct 16229", () => {
+    it("should have an old price of 300", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.oldPrice).toEqual(10);
+          expect(put_memory.dataValues.oldPrice).toEqual(300);
         });
     });
-    it("should have an new price of Null because was excluded", async () => {
+    it("should have an new price of 104.66", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.newPrice).toEqual(null);
+          expect(put_memory.dataValues.newPrice).toEqual(104.66);
         });
     });
-    it("should have a behaviour chosen of Excluded", async () => {
+    it("should have a behaviour chosen of Price Shield Blocked roundDown50percents", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.behaviourChosen).toEqual("Excluded");
+          expect(put_memory.dataValues.behaviourChosen).toEqual(
+            "Price Shield Blocked roundDown50percents"
+          );
         });
     });
-    it("should have a priceshield deactivated", async () => {
+    it("should have a priceshield activated", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
+          expect(put_memory.dataValues.priceShieldBlocked).toEqual(1);
         });
     });
     it("should have an id Script of 3", async () => {
@@ -846,35 +848,35 @@ describe("First Script", () => {
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.idScript).toEqual(3);
         });
     });
-    it("should have an id Product of 16483", async () => {
+    it("should have an id Product of 17851", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.idProduct).toEqual(16483);
+          expect(put_memory.dataValues.idProduct).toEqual(17851);
         });
     });
-    it("should have a lang : Portuguese (6)", async () => {
+    it("should have a lang : German (1)", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.lang).toEqual(6);
+          expect(put_memory.dataValues.lang).toEqual(1);
         });
     });
     it("should have isFoil : None", async () => {
@@ -882,11 +884,11 @@ describe("First Script", () => {
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.isFoil).toEqual(0);
+          expect(put_memory.dataValues.isFoil).toEqual(1);
         });
     });
     it("should have an isSigned : None", async () => {
@@ -894,7 +896,7 @@ describe("First Script", () => {
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
@@ -906,23 +908,23 @@ describe("First Script", () => {
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.isPlayset).toEqual(0);
         });
     });
-    it("should have an amount of 8", async () => {
+    it("should have an amount of 87", async () => {
       return db.put_memory
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.amount).toEqual(8);
+          expect(put_memory.dataValues.amount).toEqual(87);
         });
     });
     it("should have an put request id of 1", async () => {
@@ -930,7 +932,7 @@ describe("First Script", () => {
         .findOne({
           where: {
             PUT_Request_id: 1,
-            idArticle: 9,
+            idArticle: 169,
           },
         })
         .then((put_memory) => {
