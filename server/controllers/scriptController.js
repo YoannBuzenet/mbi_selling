@@ -474,6 +474,9 @@ async function testScriptPersistingStep(
   // Are we targeting, avoiding, or ignoring keywords ?
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
 
+  // Defining on which price is based the put request
+  const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
+
   // Relevant Sequelize request is built
   const relevantRequest = generateRelevantRequest(
     idShop,
