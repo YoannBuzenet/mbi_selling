@@ -141,7 +141,7 @@ module.exports = (sequelize, DataTypes) => {
         lang: card.language,
         isFoil: card.isFoil,
         isSigned: card.isSigned,
-        isPlayset: 0,
+        isPlayset: card.isPlayset,
         amount: card.amount,
         behaviourChosen: behaviourChosen,
         idCustomRuleUsed: idSnapShotCustomRule,

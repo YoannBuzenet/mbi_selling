@@ -348,7 +348,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // Should trigger priceshield on roundUp50percents (behaviour 6)
+        // Should trigger priceshield on roundDown50percents (behaviour 12)
         {
           idArticle: 169,
           idProduct: 17851,
@@ -373,7 +373,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-
+        // Should be Excluded because Signed
         {
           idArticle: 179,
           idProduct: 16229,
@@ -381,15 +381,15 @@ module.exports = {
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 150,
+          price: 0.8,
           language: 6,
           condition: "NM",
           isFoil: 0,
-          isSigned: 0,
+          isSigned: 1,
           isPlayset: 0,
           isAltered: 0,
           comments: "miiiii",
-          amount: 10,
+          amount: 11,
           onSale: 0,
           idCurrency: 1,
           productLegalityId: 3,
@@ -398,7 +398,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-
+        // Should be Excluded because Playset
         {
           idArticle: 180,
           idProduct: 16229,
@@ -406,7 +406,7 @@ module.exports = {
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 150,
+          price: 0.8,
           language: 6,
           condition: "NM",
           isFoil: 0,
@@ -414,7 +414,7 @@ module.exports = {
           isPlayset: 1,
           isAltered: 0,
           comments: "kkkkkk",
-          amount: 10,
+          amount: 14,
           onSale: 0,
           idCurrency: 1,
           productLegalityId: 3,
