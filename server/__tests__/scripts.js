@@ -1085,18 +1085,6 @@ describe("First Script Test", () => {
           expect(put_memory.dataValues.oldPrice).toEqual(10);
         });
     });
-    it("should have an new price of Null because was excluded", async () => {
-      return db.put_memory
-        .findOne({
-          where: {
-            PUT_Request_id: 2,
-            idArticle: 9,
-          },
-        })
-        .then((put_memory) => {
-          expect(put_memory.dataValues.newPrice).toEqual(null);
-        });
-    });
     it("should have a behaviour chosen of Excluded", async () => {
       return db.put_memory
         .findOne({
