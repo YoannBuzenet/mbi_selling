@@ -248,8 +248,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2 : this card should have +10%
-        //trend between 1 <= X <= 2
+        //Testing ruleTypeId 2 : this card should have +15%
         {
           idArticle: 10,
           idProduct: 16168,
@@ -274,8 +273,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +10%)
-        //trend between 1 <= X <= 2
+        //Testing ruleTypeId 2 : this card should do -10%
         {
           idArticle: 15,
           idProduct: 16168,
@@ -300,7 +298,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2 : this card should have +15%
+        // TO USE
         {
           idArticle: 158,
           idProduct: 16511,
@@ -325,7 +323,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 2 : this card should be blocked by Priceshield (trying to do +15%)
+        //Testing ruleTypeId 2 : this card should have ruletype 1 (set value)
         {
           idArticle: 159,
           idProduct: 16511,
@@ -333,15 +331,15 @@ module.exports = {
           localName: "ok",
           Exp: 5,
           expName: "ok",
-          price: 25,
-          language: 6,
-          condition: "LP",
-          isFoil: 0,
+          price: 7,
+          language: 11,
+          condition: "GD",
+          isFoil: 1,
           isSigned: 0,
           isPlayset: 0,
           isAltered: 0,
           comments: "it is a test",
-          amount: 10,
+          amount: 2,
           onSale: 0,
           idCurrency: 1,
           productLegalityId: 3,
