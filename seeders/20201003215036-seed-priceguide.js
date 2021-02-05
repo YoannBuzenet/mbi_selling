@@ -6,7 +6,6 @@ module.exports = {
 
     return await db.priceguide.bulkCreate(
       [
-        // This one is used to test 0 <= X <= 1 prices
         {
           idProduct: 16229,
           AvgSellPrice: 0.58,
@@ -25,7 +24,6 @@ module.exports = {
           foilAvg7: 1.33,
           foilAvg30: 1.34,
         },
-        // This one is used to test 1 <= X <= 2 prices
         {
           idProduct: 16168,
           AvgSellPrice: 1.12,
@@ -44,7 +42,6 @@ module.exports = {
           foilAvg7: 2.2,
           foilAvg30: 2.3,
         },
-        // This one is used to test 6 <= X <= 10 prices
         {
           idProduct: 16511,
           AvgSellPrice: 7,
@@ -63,7 +60,6 @@ module.exports = {
           foilAvg7: 12.7,
           foilAvg30: 12.8,
         },
-        // This one is used to test exclude behaviour
         {
           idProduct: 16483,
           AvgSellPrice: 1,
@@ -81,6 +77,24 @@ module.exports = {
           foilAvg1: 13,
           foilAvg7: 14,
           foilAvg30: 15,
+        },
+        {
+          idProduct: 17851,
+          AvgSellPrice: 80,
+          lowPrice: 70,
+          trendPrice: 80.15,
+          germanProLow: 30.12,
+          suggestedPrice: 40.78,
+          foilSell: 150.52,
+          foilLow: 130.24,
+          foilTrend: 140.2,
+          lowPriceEx: 70,
+          avg1: 90.53,
+          avg7: 90.75,
+          avg30: 80.98,
+          foilAvg1: 150.98,
+          foilAvg7: 160.2,
+          foilAvg30: 160.1,
         },
       ],
       {}
