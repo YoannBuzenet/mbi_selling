@@ -33,7 +33,7 @@ module.exports = {
           percentPerLangSimplifiedChinese: 77,
           percentPerLangEnglish: 88,
           percentPerLangKorean: 99,
-          percentPerLangTraditionalChinese: 33,
+          percentPerLangTraditionalChinese: 82,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

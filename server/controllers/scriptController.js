@@ -1231,7 +1231,7 @@ async function realScriptPersistingStep(
         }
       } else if (action.ruleTypeId === 3) {
         // We don't do anything here, as we will just register directly the card in DB without sending it to MKM.
-      } else if (action.ruleTypeId === -2) {
+      } else if (action === -2) {
         chunkOfCards[j].hasNoCustomRule = "No Custom Rule for this card.";
       }
 
