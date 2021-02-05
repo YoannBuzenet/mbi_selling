@@ -298,31 +298,6 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // TO USE
-        {
-          idArticle: 158,
-          idProduct: 16511,
-          englishName: "ok",
-          localName: "ok",
-          Exp: 5,
-          expName: "ok",
-          price: 6,
-          language: 3,
-          condition: "MT",
-          isFoil: 0,
-          isSigned: 0,
-          isPlayset: 0,
-          isAltered: 0,
-          comments: "why not",
-          amount: 10,
-          onSale: 0,
-          idCurrency: 1,
-          productLegalityId: 3,
-          currencyCode: "EUR",
-          idShop: 57,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
         //Testing ruleTypeId 2 : this card should have ruletype 1 (set value)
         {
           idArticle: 159,
@@ -348,8 +323,32 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 1 : this card should be set to 1
-        //trend between 0 <= X <= 1
+        // Should trigger priceshield on set value
+        {
+          idArticle: 160,
+          idProduct: 16511,
+          englishName: "ok",
+          localName: "ok",
+          Exp: 5,
+          expName: "ok",
+          price: 60,
+          language: 11,
+          condition: "GD",
+          isFoil: 1,
+          isSigned: 0,
+          isPlayset: 0,
+          isAltered: 0,
+          comments: "why not",
+          amount: 52,
+          onSale: 0,
+          idCurrency: 1,
+          productLegalityId: 3,
+          currencyCode: "EUR",
+          idShop: 57,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+
         {
           idArticle: 169,
           idProduct: 16229,
@@ -374,8 +373,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Testing ruleTypeId 1 : this card should be set blocked by the priceshield
-        //trend between 0 <= X <= 1
+
         {
           idArticle: 179,
           idProduct: 16229,
@@ -400,7 +398,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // Testing if playset is skipped in script
+
         {
           idArticle: 180,
           idProduct: 16229,
@@ -425,7 +423,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // Testing if signed card is skipped in script
+
         {
           idArticle: 181,
           idProduct: 16229,
@@ -450,7 +448,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // Testing if altered is skipped in script
+
         {
           idArticle: 182,
           idProduct: 16229,
