@@ -39,6 +39,11 @@ function getTemplate(action, locale) {
         __basedir + "/mail_templates/" + locale + "/scriptHad0card.ejs";
       break;
     }
+    case "testScriptHad0card": {
+      template =
+        __basedir + "/mail_templates/" + locale + "/testScriptHad0card.ejs";
+      break;
+    }
     default: {
       throw new Error("Could not find corresponding template.");
     }
@@ -88,6 +93,14 @@ function getMailTitle(action, intl) {
       mailTitle = intl.formatMessage({
         id: "mail.sending.title.scriptHad0card",
         defaultMessage: "Your script has been executed, but affected 0 card.",
+      });
+      break;
+    }
+    case "testScriptHad0card": {
+      mailTitle = intl.formatMessage({
+        id: "mail.sending.title.testScriptHad0card",
+        defaultMessage:
+          "Your test script has been executed, but affected 0 card.",
       });
       break;
     }
@@ -156,6 +169,10 @@ function buildTemplateData(action, params, intl) {
       templateData = {};
       break;
     }
+    case "testScriptHad0card": {
+      templateData = {};
+      break;
+    }
     default: {
       throw new Error(
         "Could not find corresponding action for building templateData."
@@ -199,6 +216,21 @@ function getPDF(action, locale, idShop, params) {
       break;
     }
     case "scriptHad0card": {
+      PDFData = [
+        {
+          filename: createSummaryPDFName(params.idScript, idShop, false),
+          path: path.join(
+            __dirname,
+            "../../PDF_storage/" +
+              idShop +
+              "/" +
+              createSummaryPDFName(params.idScript, idShop, false)
+          ),
+        },
+      ];
+      break;
+    }
+    case "testScriptHad0card": {
       PDFData = [
         {
           filename: createSummaryPDFName(params.idScript, idShop, false),

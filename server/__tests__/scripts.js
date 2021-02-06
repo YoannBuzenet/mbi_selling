@@ -1007,6 +1007,22 @@ describe("First Script Real", () => {
         });
     });
   });
+  describe("Card, Article 1820, idProduct 3200", () => {
+    it("should have a behaviour chosen of No Corresponding Priceguide", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 1820,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.behaviourChosen).toEqual(
+            "No Corresponding Priceguide"
+          );
+        });
+    });
+  });
 });
 
 describe("First Script Test", () => {

@@ -492,6 +492,11 @@ async function testScriptPersistingStep(
     {}
   );
 
+  const shopData = await retrieveAsAdmin(
+    `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
+    "get"
+  );
+
   // Saving by chunks
   const chunkSize = 100;
   const numberOfIterations = Math.ceil(numberOfCardsToHandle.count / chunkSize);
@@ -504,8 +509,6 @@ async function testScriptPersistingStep(
   if (numberOfCardsToHandle.count === 0) {
     console.log("No MKM Product on this test script.");
 
-    //TODO : mail qui explique que le stock contenait 0 cartes (reprendre le real script)
-
     // Marking PUT Request as successful
     await db.PUT_Request.markAsFinishedWith0MKMProducts(
       put_request.dataValues.id
@@ -513,6 +516,21 @@ async function testScriptPersistingStep(
 
     // Marking Script as available
     await db.Script.markAsNotRunning(idScript);
+
+    await PDFGeneration.generatePDFFromPutRequest(
+      put_request.dataValues.id,
+      idScript,
+      locale,
+      false
+    );
+
+    await sendEmail(
+      "testScriptHad0card",
+      idShop,
+      shopData.data.email,
+      { idScript },
+      locale
+    );
 
     return;
   }
@@ -953,11 +971,6 @@ async function testScriptPersistingStep(
       idScript,
       locale,
       true
-    );
-
-    const shopData = await retrieveAsAdmin(
-      `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShop}`,
-      "get"
     );
 
     await sendEmail(

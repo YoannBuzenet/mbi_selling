@@ -14,13 +14,6 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "OLD Launch Tests NPM",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "test:windows"]
-    }
-    {
-      "type": "node",
-      "request": "launch",
       "name": "Launch Test Script NPM",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run-script", "trigger:testScripts:windows"]
