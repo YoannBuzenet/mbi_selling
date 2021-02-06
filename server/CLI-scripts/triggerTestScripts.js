@@ -26,35 +26,71 @@ async function triggerTestScripts() {
   const shopData = apiResp.data;
   const jwt = apiResp.config.headers.Authorization;
 
-  const scriptExecuted = await startScript(
+  // Mkm Trends - Real
+  // const scriptExecuted = await startScript(
+  //   idShopTest,
+  //   idScriptTest,
+  //   isTest,
+  //   shopData,
+  //   locale,
+  //   formats,
+  //   jwt
+  // );
+
+  // // Mkm Trends - test
+  // const scriptTestExecuted = await startScript(
+  //   idShopTest,
+  //   idScriptTest,
+  //   true,
+  //   shopData,
+  //   locale,
+  //   formats,
+  //   jwt
+  // );
+
+  // // Old Price - test
+  // const scriptTestOldPriceExecuted = await startScript(
+  //   idShopTest,
+  //   4,
+  //   true,
+  //   shopData,
+  //   locale,
+  //   formats,
+  //   jwt
+  // );
+
+  // // Old Price - Real
+  // const scriptRealOldPriceExecuted = await startScript(
+  //   idShopTest,
+  //   4,
+  //   false,
+  //   shopData,
+  //   locale,
+  //   formats,
+  //   jwt
+  // );
+
+  // Script Targets Keywords
+  const scriptRealOldPriceTargetsKeywordsExecuted = await startScript(
     idShopTest,
-    idScriptTest,
-    isTest,
+    5,
+    false,
     shopData,
     locale,
     formats,
     jwt
   );
 
-  const scriptTestExecuted = await startScript(
-    idShopTest,
-    idScriptTest,
-    true,
-    shopData,
-    locale,
-    formats,
-    jwt
-  );
-
-  const scriptRealOldPriceExecuted = await startScript(
-    idShopTest,
-    4,
-    true,
-    shopData,
-    locale,
-    formats,
-    jwt
-  );
+  // Script Avoids Keywords
+  // const scriptRealOldPriceAvoidsKeywordsExecuted = await startScript(
+  //   idShopTest,
+  //   6,
+  //   false,
+  //   shopData,
+  //   locale,
+  //   formats,
+  //   jwt
+  // );
 }
 
 triggerTestScripts();
