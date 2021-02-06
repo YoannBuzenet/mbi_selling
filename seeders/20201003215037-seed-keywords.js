@@ -6,10 +6,21 @@ module.exports = {
 
     return await db.Keyword.bulkCreate(
       [
-        // Are missing : stat / end subscribing date
         {
           idScript: 3,
           name: "testKeyword",
+        },
+        {
+          idScript: 4,
+          name: "testSeedKeyword",
+        },
+        {
+          idScript: 5,
+          name: "testSeedKeyword Script 5",
+        },
+        {
+          idScript: 6,
+          name: "testSeedKeyword Script 6",
         },
       ],
       {}
