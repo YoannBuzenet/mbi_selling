@@ -2051,7 +2051,7 @@ describe("Script Old Price - Keyword : ignores", () => {
           expect(put_memory.dataValues.oldPrice).toEqual(10);
         });
     });
-    it("should have a behaviour chosen of Excluded", async () => {
+    it("should have a behaviour chosen of roundUp15percents", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2060,7 +2060,21 @@ describe("Script Old Price - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.behaviourChosen).toEqual("Excluded");
+          expect(put_memory.dataValues.behaviourChosen).toEqual(
+            "roundUp15percents"
+          );
+        });
+    });
+    it("should have an new price of 11.5", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 9,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.newPrice).toEqual(11.5);
         });
     });
     it("should have a priceshield deactivated", async () => {
@@ -2075,7 +2089,7 @@ describe("Script Old Price - Keyword : ignores", () => {
           expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
         });
     });
-    it("should have an id Script of 3", async () => {
+    it("should have an id Script of 4", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2084,7 +2098,7 @@ describe("Script Old Price - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.idScript).toEqual(3);
+          expect(put_memory.dataValues.idScript).toEqual(4);
         });
     });
     it("should have an id Product of 16483", async () => {
@@ -2173,7 +2187,7 @@ describe("Script Old Price - Keyword : ignores", () => {
     });
   });
 
-  // Testing ruletype 2 with behaviour +15% on OLD PRICE
+  // Testing ruletype 2 with behaviour SET VALUE
 
   describe("Card, Article 10, idProduct 16168", () => {
     it("should have an old price of 0.5", async () => {
@@ -2188,8 +2202,8 @@ describe("Script Old Price - Keyword : ignores", () => {
           expect(put_memory.dataValues.oldPrice).toEqual(0.5);
         });
     });
-    //bébé
-    it("should have an new price of .58", async () => {
+
+    it("should have an new price of 2", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2198,11 +2212,11 @@ describe("Script Old Price - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.newPrice).toEqual(0.58);
+          expect(put_memory.dataValues.newPrice).toEqual(2);
         });
     });
 
-    it("should have a behaviour chosen of roundUp15percents", async () => {
+    it("should have a behaviour chosen of Set Value", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2211,9 +2225,7 @@ describe("Script Old Price - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.behaviourChosen).toEqual(
-            "roundUp15percents"
-          );
+          expect(put_memory.dataValues.behaviourChosen).toEqual("Set Value");
         });
     });
 
@@ -2229,7 +2241,7 @@ describe("Script Old Price - Keyword : ignores", () => {
           expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
         });
     });
-    it("should have an id Script of 3", async () => {
+    it("should have an id Script of 4", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2238,7 +2250,7 @@ describe("Script Old Price - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.idScript).toEqual(3);
+          expect(put_memory.dataValues.idScript).toEqual(4);
         });
     });
     it("should have an id Product of 16168", async () => {
@@ -2323,6 +2335,155 @@ describe("Script Old Price - Keyword : ignores", () => {
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.PUT_Request_id).toEqual(3);
+        });
+    });
+  });
+
+  describe("Card, Article 182, idProduct 16229", () => {
+    it("should have an old price of 12", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 182,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.oldPrice).toEqual(12);
+        });
+    });
+
+    it("should have a behaviour chosen of Excluded", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 182,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.behaviourChosen).toEqual("Excluded");
+        });
+    });
+
+    it("should have a priceshield deactivated", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 182,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
+        });
+    });
+    it("should have an id Script of 4", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 182,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.idScript).toEqual(4);
+        });
+    });
+
+    it("should have a lang : 10", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 182,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.lang).toEqual(10);
+        });
+    });
+
+    it("should have an amount of 105", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 182,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.amount).toEqual(105);
+        });
+    });
+  });
+
+  // Behaviour 8 : Rounddown 10% (/1.1)
+  describe("Card, Article 15, idProduct 16168", () => {
+    it("should have an old price of 1.3", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 15,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.oldPrice).toEqual(1.3);
+        });
+    });
+
+    it("should have a behaviour chosen of roundDown10percents", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 15,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.behaviourChosen).toEqual(
+            "roundDown10percents"
+          );
+        });
+    });
+
+    // 1/3 / 1.11 rounded
+    it("should have an new price of 1.18", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 15,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.newPrice).toEqual(1.18);
+        });
+    });
+
+    it("should have a priceshield deactivated", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 15,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
+        });
+    });
+    it("should have an id Script of 4", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 15,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.idScript).toEqual(4);
         });
     });
   });

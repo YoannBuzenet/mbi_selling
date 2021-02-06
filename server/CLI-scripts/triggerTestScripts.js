@@ -36,25 +36,25 @@ async function triggerTestScripts() {
     jwt
   );
 
-  // const scriptTestExecuted = await startScript(
-  //   idShopTest,
-  //   idScriptTest,
-  //   true,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  const scriptTestExecuted = await startScript(
+    idShopTest,
+    idScriptTest,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
-  // const scriptRealOldPriceExecuted = await startScript(
-  //   idShopTest,
-  //   4,
-  //   true,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  const scriptRealOldPriceExecuted = await startScript(
+    idShopTest,
+    4,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 }
 
 triggerTestScripts();
