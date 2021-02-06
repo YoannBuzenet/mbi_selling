@@ -326,6 +326,7 @@ async function startScript(
       idShop: idShop,
       isReal: isTest ? 0 : 1,
       hasPriceBasedOn: scriptData.dataValues.willBeBasedOn,
+      keywordBehaviour: scriptData.dataValues.keywordBehaviour,
     });
 
     //Snapshot shop params for the current PUT Request
