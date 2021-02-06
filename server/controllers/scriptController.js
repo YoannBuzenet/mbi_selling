@@ -80,7 +80,7 @@ function generateRelevantRequest(
   if (keywordBehaviour === "targetsSpecifically") {
     requestObject.where.comments = { [dbOperator.or]: keywordList };
   } else if (keywordBehaviour === "avoidsSpecifically") {
-    requestObject.where.comments = { [dbOperator.not]: keywordList };
+    requestObject.where.comments = { [dbOperator.notIn]: keywordList };
   } else if (keywordBehaviour === "ignoresEverything") {
     // pass for now, as the request remains the same
   } else {
