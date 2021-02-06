@@ -44,6 +44,27 @@ module.exports = {
         //   createdAt: new Date(),
         //   updatedAt: new Date(),
         // },
+        // THIS PRODUCT LEGALITY HAS NO PRICEGUIDE ON PURPOSE
+        // To see if the script handle card withotu priceguide without crashing
+        {
+          idProduct: 3200,
+          idSet: 1,
+          isLegalCommander: 0,
+          isLegalDuel: 1,
+          isLegalLegacy: 0,
+          isLegalModern: 0,
+          isLegalVintage: 0,
+          isLegalPenny: 0,
+          isLegalPauper: 0,
+          isLegalHistoric: 0,
+          isLegalPioneer: 0,
+          isLegalBrawl: 0,
+          isLegalFuture: 0,
+          isLegalStandard: 0,
+          isLegalOldSchool: 0,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
         {
           idProduct: 101,
           idSet: 1,

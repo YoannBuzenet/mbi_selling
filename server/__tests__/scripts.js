@@ -10,7 +10,7 @@ describe("First Script Real", () => {
       })
       .then((put_memories) => {
         // Each mkmproduct should generate a put memory. If it doesn't, something has been missed.
-        expect(put_memories.count).toEqual(10);
+        expect(put_memories.count).toEqual(11);
       });
   });
 
@@ -1019,7 +1019,7 @@ describe("First Script Test", () => {
       })
       .then((put_memories) => {
         // Each mkmproduct should generate a put memory. If it doesn't, something has been missed.
-        expect(put_memories.count).toEqual(10);
+        expect(put_memories.count).toEqual(11);
       });
   });
 
@@ -2017,7 +2017,7 @@ describe("Script Old Price - Keyword : ignores", () => {
       })
       .then((put_memories) => {
         // Each mkmproduct should generate a put memory. If it doesn't, something has been missed.
-        expect(put_memories.count).toEqual(10);
+        expect(put_memories.count).toEqual(11);
       });
   });
 

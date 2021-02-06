@@ -585,6 +585,28 @@ async function testScriptPersistingStep(
         },
       });
 
+      if (priceguide === null) {
+        await db.put_memory.create({
+          idScript: idScript,
+          idProduct: card.idProduct,
+          idArticle: card.idArticle,
+          cardName: card.englishName,
+          priceShieldBlocked: 0,
+          oldPrice: card.price,
+          newPrice: card.price,
+          condition: transformConditionStringIntoInteger(card.condition),
+          lang: card.language,
+          isFoil: card.isFoil,
+          isSigned: card.isSigned,
+          isPlayset: 0,
+          amount: card.amount,
+          behaviourChosen: "No Priceguide for this productLegality",
+          idCustomRuleUsed: action.idSnapShotCustomRule,
+          PUT_Request_id: put_request.dataValues.id,
+        });
+        continue;
+      }
+
       const pricedBasedOn = put_request.dataValues.hasPriceBasedOn;
 
       let relevantTrend =
@@ -1109,10 +1131,14 @@ async function realScriptPersistingStep(
         },
       });
 
-      let relevantTrend =
-        card.isFoil === 0
-          ? priceguide.dataValues.trendPrice
-          : priceguide.dataValues.foilTrend;
+      let relevantTrend;
+
+      if (priceguide !== null) {
+        relevantTrend =
+          card.isFoil === 0
+            ? priceguide.dataValues.trendPrice
+            : priceguide.dataValues.foilTrend;
+      }
 
       let numberBaseToFindRelevantRule;
       if (pricedBasedOn === "mkmTrends") {
@@ -1236,6 +1262,8 @@ async function realScriptPersistingStep(
         // We don't do anything here, as we will just register directly the card in DB without sending it to MKM.
       } else if (action === -2) {
         chunkOfCards[j].hasNoCustomRule = "No Custom Rule for this card.";
+      } else if (action === "price undefined") {
+        chunkOfCards[j].hasNoPriceGuide = true;
       }
 
       // MKM Trends price particularity
@@ -1280,6 +1308,7 @@ async function realScriptPersistingStep(
             !chunkOfCards[k].hasOwnProperty("error") &&
             !chunkOfCards[k].hasOwnProperty("priceShieldBlocked") &&
             !chunkOfCards[k].hasOwnProperty("excludedVariousReason") &&
+            !chunkOfCards[k].hasOwnProperty("hasNoPriceGuide") &&
             chunkOfCards[k].action.ruleTypeId !== 3
           ) {
             //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
@@ -1312,7 +1341,7 @@ async function realScriptPersistingStep(
               "hasNoCustomRule"
             ),
             arrayOfCardsSkippedAndDirectToDB[i].action
-              .customRule_behaviour_definition.dataValues.name,
+              ?.customRule_behaviour_definition?.dataValues?.name,
             arrayOfCardsSkippedAndDirectToDB[i].action.ruleTypeId,
             arrayOfCardsSkippedAndDirectToDB[i].excludedVariousReason
           );
@@ -1394,8 +1423,8 @@ async function realScriptPersistingStep(
                   arrayOfCardsForXML[i].action.ruleType === 3,
                   arrayOfCardsForXML[i].hasOwnProperty("hasNoPriceGuide"),
                   arrayOfCardsForXML[i].hasOwnProperty("hasNoCustomRule"),
-                  arrayOfCardsForXML[i].action.customRule_behaviour_definition
-                    .dataValues.name,
+                  arrayOfCardsForXML[i].action?.customRule_behaviour_definition
+                    ?.dataValues?.name,
                   arrayOfCardsForXML[i].action.ruleTypeId,
                   arrayOfCardsForXML[i].excludedVariousReason
                 )

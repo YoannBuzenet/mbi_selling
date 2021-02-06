@@ -12,6 +12,8 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
     (Array.isArray(newArray) && newArray.length === 0)
   ) {
     return -2;
+  } else if (priceInput === undefined) {
+    return "price undefined";
   }
   // console.log("price input", priceInput);
   counter++;
