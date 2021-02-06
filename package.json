@@ -71,6 +71,7 @@
     "seed:db-partial-seed:dev:windows": "npx sequelize-cli db:seed:all --seeders-path seedersMKMTest --debug",
     "seed:db:test:linux": "NODE_ENV=test npx sequelize-cli db:seed:all",
     "seed:db:test:windows": "SET NODE_ENV=test& npx sequelize-cli db:seed:all",
+    "trigger:testScripts:windows": "SET NODE_ENV=test& node server/CLI-Scripts/triggerTestScripts.js",
     "getMTGData:linux,": "NODE_ENV=production node server/CLI-scripts/getMTGdata.js",
     "getMTGData:windows": "node server/CLI-scripts/getMTGdata.js",
     "getMTGPrices:linux": "NODE_ENV=production node server/CLI-scripts/getMTGprices.js",
