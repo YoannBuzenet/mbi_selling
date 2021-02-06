@@ -136,7 +136,7 @@ module.exports = (sequelize, DataTypes) => {
         priceShieldBlocked: card.hasOwnProperty("priceShieldBlocked") ? 1 : 0,
         priceShieldReason: card.priceShieldReason,
         oldPrice: card.price,
-        newPrice: card.newPrice,
+        newPrice: card.newPrice || null,
         condition: transformConditionStringIntoInteger(card.condition),
         lang: card.language,
         isFoil: card.isFoil,
