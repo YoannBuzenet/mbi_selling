@@ -29,6 +29,22 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        idShop: 57,
+        name: "Fifth Script to test Targeting Keyworkds",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "targetsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        idShop: 57,
+        name: "Sixth Script to test Avoiding Keyworkds",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
 
     // Trying to add a N to N data to script 3
