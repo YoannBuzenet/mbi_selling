@@ -2973,7 +2973,7 @@ describe("Script Avoids keywords", () => {
     return db.put_memory
       .findAndCountAll({
         where: {
-          PUT_Request_id: 5,
+          PUT_Request_id: 6,
         },
       })
       .then((put_memories) => {
