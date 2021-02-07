@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
       req.body.postalCode,
       req.body.town,
       req.body.vat || null,
-      req.body.languageUsed
+      req.body.languageUsed || "en-US"
     );
   } catch (error) {
     console.log("error during registering User", error);
