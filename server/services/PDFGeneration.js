@@ -994,7 +994,7 @@ async function generatePDFFromPutRequest(
   //Creating folder if it doesnt exist
   // sync, should be async, fine for now
   const folderPathWithUserId = path.join(
-    __dirname + "../../../PDF_Storage/" + put_request.dataValues.idShop
+    __dirname + "../../../PDF_storage/" + put_request.dataValues.idShop
   );
   if (!fs.existsSync(folderPathWithUserId)) {
     fs.mkdirSync(folderPathWithUserId);
