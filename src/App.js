@@ -51,6 +51,7 @@ import Settings from "./components/userCoreComponents/Settings/Settings";
 import Axios from "axios";
 import utils from "./services/utils";
 import BlackDiv from "./components/BlackDiv";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
@@ -379,6 +380,7 @@ function App() {
                       <BlackDivContext.Provider value={contextBlackDiv}>
                         <PaymentDivContext.Provider value={contextStripeModal}>
                           <Router>
+                            <ScrollToTop />
                             {isTransparentDivDisplayed && <TransparentDiv />}
                             {popInLaunchingScriptInformations.isDisplayed && (
                               <PopInLaunchingConfirmation />
