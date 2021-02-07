@@ -19,7 +19,7 @@ const TermsOfUse = () => {
       <p>
         <FormattedMessage
           id="app.page.termsAndConditions.preambulePart1"
-          defaultMessage="MTGINTERFACE offers a web service (hereinafter referred to as the « SERVICE ») aimed at helping professional merchants, be they private individuals or legal entities, (hereinafter referred to as the « MERCHANT(S) ») who wish to optimise the price of items they are offering for sale on the Magic Card Market Marketplace platform (https://www.cardmarket.com/en/Magic)(hereinafter referred to as the « PLATFORM »).The terms and conditions of this SERVICE are set out in these Terms and Conditions."
+          defaultMessage="MTGINTERFACE offers a web service (hereinafter referred to as the « SERVICE ») aimed at helping professional merchants, be they private individuals or legal entities, (hereinafter referred to as the « MERCHANT(S) ») who wish to optimise the price of items they are offering for sale on the Magic Card Market Marketplace platform (https://www.cardmarket.com)(hereinafter referred to as the « PLATFORM »).The terms and conditions of this SERVICE are set out in these Terms and Conditions."
         />
       </p>
       <p>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import isResponsiveMenuDisplayedContext from "../context/menuDisplayedContext";
 import BlackDivModalContext from "../context/blackDivModalContext";
+import { Menu } from "react-feather";
 
 const BurgerMenu = () => {
   //Black Div control
@@ -23,9 +24,11 @@ const BurgerMenu = () => {
   };
 
   return (
-    <div className="burger-menu" onClick={(event) => handleClick(event)}>
-      <img src="/pictures/burger-menu.png" alt="" />
-    </div>
+    <>
+      <div className="burger-menu" onClick={(event) => handleClick(event)}>
+        <Menu color="black" size={48} />
+      </div>
+    </>
   );
 };
 
