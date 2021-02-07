@@ -11,6 +11,9 @@
 # production
 /build
 
+# shop PDF storage
+/PDF_storage
+
 # misc
 .DS_Store
 .env
