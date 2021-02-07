@@ -921,7 +921,7 @@ div.lang-select-applevel {
   width: 30vw;
   right: 0;
   background-color: white;
-  z-index: 5;
+  z-index: 15;
 }
 
 .authenticated-menu {
