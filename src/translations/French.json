@@ -202,7 +202,7 @@
   "app.modal.payment.failureAfterSuccess": "Il y a eu une erreur après l'enregistrement du paiment. Merci de nous contacter.",
   "app.subscribePage.button.duration.oneMonth": "Un mois",
   "app.subscribePage.button.duration.threeMonth": "Trois mois",
-  "app.subscribePage.toast.pleaseLoginOrRegister": "Merci de vous connecter pour vous abonner !",
+  "app.subscribePage.toast.pleaseLoginOrRegister": "Merci de vous connecter ou de vous inscrire pour vous abonner !",
 
   "app.popIn.confirmationLaunching": "Lancer le script ?",
   "app.popIn.confirmationLaunching.button.launch": "Lancer",
