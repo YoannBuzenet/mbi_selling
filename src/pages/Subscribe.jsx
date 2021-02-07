@@ -54,7 +54,7 @@ const Subscribe = () => {
       id: "app.subscribePage.toast.pleaseLoginOrRegister",
       defaultMessage: "Please login or register to purchase a subscription !",
     }
-    // { link: "/register" }
+    // TODO : find how to insert JSX in intl.formatMessage { link: "/register" }
   );
 
   const handleSubscribe = (e, duration) => {
