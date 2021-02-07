@@ -83,11 +83,8 @@ const Navbar = ({ history }) => {
         <div className="container">
           <div className="menu-links-left">
             <a href="/" className="logo-shop-link">
-              <img src="/shopLogo.png" />
+              <img src="/pictures/logoM.svg" width="50px" />
             </a>
-            {/* <Link to="/" className="classic-links big-screen-info">
-              Fantasy Sphere
-            </Link> */}
           </div>
           {authenticationInfos.isAuthenticated ? (
             /////////////////////////
