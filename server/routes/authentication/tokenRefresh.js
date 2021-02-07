@@ -38,9 +38,16 @@ router.post("/", async (req, res) => {
 
     // console.log("user scripts to be added :", userScripts);
 
+    const userSellingShopParams = await db.shop_params.findOne({
+      where: {
+        idShop: refreskTokenOnMTGAPI.data.shop.id,
+      },
+    });
+
     const overloadedResponse = {
       ...refreskTokenOnMTGAPI.data,
       userScripts,
+      sellingShopParams: userSellingShopParams,
       isSubscribedUntil: shop.dataValues.isSubscribedUntil,
     };
 
