@@ -818,7 +818,6 @@ div.connect p {
 }
 
 .logo-shop-link {
-  margin-right: 30px;
 }
 
 .logo-shop-link:hover {
@@ -966,7 +965,7 @@ div.lang-select-applevel {
     align-items: center;
     cursor: pointer;
     width: 30px;
-    margin-right: 35px;
+    height: 40px;
   }
 
   .burger-menu img {
