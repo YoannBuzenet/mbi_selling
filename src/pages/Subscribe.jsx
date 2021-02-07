@@ -49,15 +49,18 @@ const Subscribe = () => {
     defaultMessage: "Three Months",
   });
 
-  const pleaseLoginOrregister = intl.formatMessage({
-    id: "app.subscribePage.toast.pleaseLoginOrRegister",
-    defaultMessage: "Please login to purchase a subscription !",
-  });
+  const pleaseLoginOrregister = intl.formatMessage(
+    {
+      id: "app.subscribePage.toast.pleaseLoginOrRegister",
+      defaultMessage: "Please login or register to purchase a subscription !",
+    }
+    // { link: "/register" }
+  );
 
   const handleSubscribe = (e, duration) => {
     //check if user is authenticated. if not, toast
     if (!authenticationInfos.isAuthenticated) {
-      toast.info(pleaseLoginOrregister);
+      toast.info(pleaseLoginOrregister, { autoClose: 4000 });
       return;
     }
 

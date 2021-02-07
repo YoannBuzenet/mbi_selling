@@ -203,7 +203,7 @@
   "app.modal.payment.failureAfterSuccess": "There has been an error after the payment did proceed. Please contact us.",
   "app.subscribePage.button.duration.oneMonth": "One Month",
   "app.subscribePage.button.duration.threeMonth": "Three Months",
-  "app.subscribePage.toast.pleaseLoginOrRegister": "Please login to purchase a subscription !",
+  "app.subscribePage.toast.pleaseLoginOrRegister": "Please login or register to purchase a subscription !",
 
   "app.popIn.confirmationLaunching": "Launch Script ?",
   "app.popIn.confirmationLaunching.button.launch": "Launch",
