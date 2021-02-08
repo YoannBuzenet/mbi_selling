@@ -3,6 +3,7 @@ import SelectAppLangContext from "../context/selectedAppLang";
 import config from "../services/config";
 
 const AppLangChoice = ({
+  isAuthenticated,
   top = "22",
   topArrowMenu = "8",
   marginLeft = "0",
@@ -27,6 +28,8 @@ const AppLangChoice = ({
     setAreFlagsDisplayed(!areFlagsDisplayed);
   };
 
+  const adjustesStyle = isAuthenticated ? { lineHeight: "61px" } : null;
+
   return (
     <>
       {areFlagsDisplayed && (
@@ -35,7 +38,7 @@ const AppLangChoice = ({
           onClick={(e) => handleClickDisplayFlags(e)}
         ></div>
       )}
-      <div className="current-app-lang">
+      <div className="current-app-lang" style={adjustesStyle}>
         <div
           className="current-lang-flag"
           style={{ top: top + "px", marginLeft: marginLeft + "px" }}

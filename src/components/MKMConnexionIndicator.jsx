@@ -22,8 +22,15 @@ const MKMConnexionIndicator = () => {
   } = useContext(TransparentDivContext);
 
   const connexionStatus = MKMAPI.mkmConnexionStateCalculator(
-    authenticationInfos?.shop?.ExpirationMkmToken || 121000
+    authenticationInfos?.shop?.ExpirationMkmToken
   );
+
+  console.log(
+    "duration of mkm token",
+    authenticationInfos?.shop?.ExpirationMkmToken
+  );
+
+  console.log("now", new Date());
 
   //MKM Modal Control
   const { isMKMModalDisplayed, setIsMKMModalDisplayed } = useContext(
