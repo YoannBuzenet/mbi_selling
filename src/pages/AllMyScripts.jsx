@@ -1,24 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
 import "../super-responsive-table.css";
 import AuthContext from "../context/authContext";
 import AllDefinitionsContext from "../context/definitionsContext";
-
-import ScriptLine from "../components/ScriptLine";
+import TutorialContext from "../context/tutorialContext";
 import { FormattedMessage } from "react-intl";
+import ScriptLine from "../components/ScriptLine";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { toast } from "react-toastify";
 
 const AllMyScripts = ({ history }) => {
   const { authenticationInfos, setAuthenticationInfos } = useContext(
     AuthContext
   );
 
+  const { tutorialContext, setTutorialContext } = useContext(TutorialContext);
+
   console.log("current auth context", authenticationInfos);
+  console.log("current tutorialContext context", tutorialContext);
+  console.log(
+    "check if trigger",
+    authenticationInfos?.shopLocalData?.hasAlreadyLogged === 0 &&
+      tutorialContext?.hadAllMyScriptsMessage !== 1
+  );
 
   const { allDefinitions } = useContext(AllDefinitionsContext);
 
-  console.log("definitions", allDefinitions);
+  useEffect(() => {
+    if (
+      authenticationInfos?.shopLocalData?.hasAlreadyLogged === 0 &&
+      tutorialContext?.hadAllMyScriptsMessage !== 1
+    ) {
+      toast.info(
+        <FormattedMessage
+          id="tutorial.allMyScripts"
+          defaultMessage="All your scripts are available here. We created some for you to check. You can edit them as you like."
+        />,
+        { autoClose: false }
+      );
+      setTutorialContext({ ...tutorialContext, hadAllMyScriptsMessage: 1 });
+    }
+  }, []);
 
   const useStyles = makeStyles((theme) => ({
     root: {

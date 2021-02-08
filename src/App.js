@@ -28,6 +28,7 @@ import isResponsiveMenuDisplayedContext from "./context/menuDisplayedContext";
 import BlackDivContext from "./context/blackDivModalContext";
 import PaymentDivContext from "./context/paymentModalContext";
 import PopInConfirmationLaunchScriptContext from "./context/popInConfirmationLaunchingScript";
+import TutorialContext from "./context/tutorialContext";
 
 //PAGES
 import LoginPage from "./pages/LoginPage";
@@ -158,6 +159,9 @@ function App() {
     "deactivated"
   );
 
+  //STATE - Where are we in the tutorial visit ?
+  const [tutorialContext, setTutorialContext] = useState({});
+
   //STATE - is Confirmation Launching Pop In Displayed ?
   const [
     popInLaunchingScriptInformations,
@@ -224,6 +228,12 @@ function App() {
   const contextPopInLaunchingConfirmation = {
     popInLaunchingScriptInformations: popInLaunchingScriptInformations,
     setPopInLaunchingScriptInformations: setPopInLaunchingScriptInformations,
+  };
+
+  //CONTEXT - Tutorial Context
+  const contextTutorialVisit = {
+    tutorialContext: tutorialContext,
+    setTutorialContext: setTutorialContext,
   };
 
   /******************************************/
@@ -378,121 +388,128 @@ function App() {
                     >
                       <BlackDivContext.Provider value={contextBlackDiv}>
                         <PaymentDivContext.Provider value={contextStripeModal}>
-                          <Router>
-                            <ScrollToTop />
-                            {isTransparentDivDisplayed && <TransparentDiv />}
-                            {popInLaunchingScriptInformations.isDisplayed && (
-                              <PopInLaunchingConfirmation />
-                            )}
+                          <TutorialContext.Provider
+                            value={contextTutorialVisit}
+                          >
+                            <Router>
+                              <ScrollToTop />
+                              {isTransparentDivDisplayed && <TransparentDiv />}
+                              {popInLaunchingScriptInformations.isDisplayed && (
+                                <PopInLaunchingConfirmation />
+                              )}
 
-                            {/* Absolute positioned components */}
-                            {isBlackDivModalDisplayed === "activated" && (
-                              <BlackDiv />
-                            )}
+                              {/* Absolute positioned components */}
+                              {isBlackDivModalDisplayed === "activated" && (
+                                <BlackDiv />
+                              )}
 
-                            {/* Burger menu */}
-                            {isResponsiveMenuDisplayed === "activated" && (
-                              <BurgerMenuCustomerComponentsWithRouter />
-                            )}
+                              {/* Burger menu */}
+                              {isResponsiveMenuDisplayed === "activated" && (
+                                <BurgerMenuCustomerComponentsWithRouter />
+                              )}
 
-                            <ToastContainer
-                              autoClose={3000}
-                              position="bottom-left"
-                              hideProgressBar={true}
-                            />
-                            <NavbarWithRouter />
+                              <ToastContainer
+                                autoClose={3000}
+                                position="bottom-left"
+                                hideProgressBar={true}
+                              />
+                              <NavbarWithRouter />
 
-                            {/* Stripe Payment Modal */}
-                            {paymentModalInformation.isDisplayed && (
-                              <CheckoutForm />
-                            )}
+                              {/* Stripe Payment Modal */}
+                              {paymentModalInformation.isDisplayed && (
+                                <CheckoutForm />
+                              )}
 
-                            <Footer />
-                            <Switch>
-                              <Route
-                                path="/login"
-                                render={({ match, history }) => (
-                                  <LoginRenewOrLogOutContext.Provider
-                                    value={ContextloginLogOut}
-                                  >
-                                    <LoginPage
+                              <Footer />
+                              <Switch>
+                                <Route
+                                  path="/login"
+                                  render={({ match, history }) => (
+                                    <LoginRenewOrLogOutContext.Provider
+                                      value={ContextloginLogOut}
+                                    >
+                                      <LoginPage
+                                        match={match}
+                                        history={history}
+                                        eraseAuthContext={eraseAuthContext}
+                                        renewJWTToken={renewJWTToken}
+                                        launchcheckStatusTimer={
+                                          launchcheckStatusTimer
+                                        }
+                                      />
+                                    </LoginRenewOrLogOutContext.Provider>
+                                  )}
+                                />
+
+                                <Route
+                                  path="/register"
+                                  render={({ match, history }) => (
+                                    <LoginRenewOrLogOutContext.Provider
+                                      value={ContextloginLogOut}
+                                    >
+                                      <RegisterPage
+                                        match={match}
+                                        history={history}
+                                        eraseAuthContext={eraseAuthContext}
+                                        renewJWTToken={renewJWTToken}
+                                        launchcheckStatusTimer={
+                                          launchcheckStatusTimer
+                                        }
+                                      />
+                                    </LoginRenewOrLogOutContext.Provider>
+                                  )}
+                                />
+
+                                <Route
+                                  path="/subscribe"
+                                  component={Subscribe}
+                                />
+                                <Route
+                                  path="/terms-of-use"
+                                  component={TermsOfUse}
+                                />
+
+                                <Route
+                                  path="/usermail/reset"
+                                  component={ResetMail}
+                                />
+                                <Route
+                                  path="/usermail/setNewPassword/:challenge?"
+                                  render={({ match, history }) => (
+                                    <SetNewPassword
                                       match={match}
                                       history={history}
-                                      eraseAuthContext={eraseAuthContext}
-                                      renewJWTToken={renewJWTToken}
-                                      launchcheckStatusTimer={
-                                        launchcheckStatusTimer
-                                      }
                                     />
-                                  </LoginRenewOrLogOutContext.Provider>
-                                )}
-                              />
+                                  )}
+                                />
 
-                              <Route
-                                path="/register"
-                                render={({ match, history }) => (
-                                  <LoginRenewOrLogOutContext.Provider
-                                    value={ContextloginLogOut}
-                                  >
-                                    <RegisterPage
-                                      match={match}
-                                      history={history}
-                                      eraseAuthContext={eraseAuthContext}
-                                      renewJWTToken={renewJWTToken}
-                                      launchcheckStatusTimer={
-                                        launchcheckStatusTimer
-                                      }
-                                    />
-                                  </LoginRenewOrLogOutContext.Provider>
-                                )}
-                              />
-
-                              <Route path="/subscribe" component={Subscribe} />
-                              <Route
-                                path="/terms-of-use"
-                                component={TermsOfUse}
-                              />
-
-                              <Route
-                                path="/usermail/reset"
-                                component={ResetMail}
-                              />
-                              <Route
-                                path="/usermail/setNewPassword/:challenge?"
-                                render={({ match, history }) => (
-                                  <SetNewPassword
-                                    match={match}
-                                    history={history}
-                                  />
-                                )}
-                              />
-
-                              <LoggedRouteRender
-                                path="/my-scripts/"
-                                component={AllMyScripts}
-                              />
-                              <LoggedRouteRender
-                                path="/edit-script/:id"
-                                component={CreateMyScript}
-                              />
-                              <LoggedRouteRender
-                                path="/create-script"
-                                component={CreateMyScript}
-                              />
-                              <LoggedRouteRender
-                                path="/settings"
-                                component={Settings}
-                              />
-                              <LoggedRouteRender
-                                path="/my-invoices"
-                                component={MyInvoices}
-                              />
-                              <LoggedRouteRender
-                                path="/myAccount"
-                                component={MyAccountPage}
-                              />
-                            </Switch>
-                          </Router>
+                                <LoggedRouteRender
+                                  path="/my-scripts/"
+                                  component={AllMyScripts}
+                                />
+                                <LoggedRouteRender
+                                  path="/edit-script/:id"
+                                  component={CreateMyScript}
+                                />
+                                <LoggedRouteRender
+                                  path="/create-script"
+                                  component={CreateMyScript}
+                                />
+                                <LoggedRouteRender
+                                  path="/settings"
+                                  component={Settings}
+                                />
+                                <LoggedRouteRender
+                                  path="/my-invoices"
+                                  component={MyInvoices}
+                                />
+                                <LoggedRouteRender
+                                  path="/myAccount"
+                                  component={MyAccountPage}
+                                />
+                              </Switch>
+                            </Router>
+                          </TutorialContext.Provider>
                         </PaymentDivContext.Provider>
                       </BlackDivContext.Provider>
                     </PopInConfirmationLaunchScriptContext.Provider>

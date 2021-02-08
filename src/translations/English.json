@@ -338,5 +338,7 @@
   "mail.sending.title.testScriptHad0card": "Your test script has been executed, but affected 0 card.",
 
   "subscribed.notSusbcribed.NeedToDoIt.text": "You need to subscribe to access this feature. You can do this {link}.",
-  "subscribed.notSusbcribed.NeedToDoIt.link": "here"
+  "subscribed.notSusbcribed.NeedToDoIt.link": "here",
+
+  "tutorial.allMyScripts": "All your scripts are available here. We created some for you to check. You can edit them as you like."
 }

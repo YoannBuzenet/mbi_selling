@@ -202,6 +202,7 @@ function transformAPIdataIntoAppData(data) {
     userScripts: data?.userScripts || [],
     sellingShopParams: data?.sellingShopParams || [],
     isSusbcribedUntil: data?.isSubscribedUntil || null,
+    shopLocalData: data?.shopLocalData || null,
   };
 }
 
@@ -227,6 +228,7 @@ function transformAuthContextIntoLocalStorageFormat(authContext) {
     userScripts: authContext.userScripts,
     isSusbcribedUntil: authContext.isSubscribedUntil,
     sellingShopParams: authContext.sellingShopParams,
+    shopLocalData: authContext.shopLocalData,
   };
 
   window.localStorage.setItem(
