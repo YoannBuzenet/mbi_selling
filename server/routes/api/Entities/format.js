@@ -6,7 +6,6 @@ const db = require("../../../../models/index");
 router.get("/getDefinitions", async (req, res) => {
   db.Format.findAll()
     .then((resp) => {
-      console.log(resp);
       res.status(200).json(resp);
     })
     .catch((error) => {
