@@ -26,6 +26,12 @@ const Footer = () => {
             <p>{/* <a href={`mailto:`}>{shopInfos.email}</a> */}</p>
           </div>
         </div>
+        <p className="footerBottom">
+          <FormattedMessage
+            id="app.footer.ByMTGInterface"
+            defaultMessage="MTG-Interface © 2021 All rights reserved."
+          />
+        </p>
       </footer>
     </>
   );
