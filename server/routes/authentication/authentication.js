@@ -89,9 +89,17 @@ router.post("/", async (req, res) => {
       userScripts,
       sellingShopParams: userSellingShopParams,
       isSubscribedUntil: shop.dataValues.isSubscribedUntil,
+      shopLocalData: {
+        hasAlreadyLogged: shop.dataValues.hasAlreadyConnected,
+      },
     };
 
     res.json(overloadedResponse);
+
+    if (shop.dataValues.hasAlreadyConnected === 0) {
+      await db.User.markAsHasConnected(shop);
+    }
+    return;
   } catch (error) {
     console.log("error when logging", error);
     res.status(401).json("Access Denied.");

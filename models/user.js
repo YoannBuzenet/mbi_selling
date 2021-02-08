@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
       if (userToUpdate) {
-        return Invoice.upsert({
+        return User.upsert({
           id: idUser.dataValues.id,
           isSubscribedUntil: idUser.dataValues.isSubscribedUntil,
           temporarySecret: idUser.dataValues.temporarySecret,
@@ -43,11 +43,14 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
       if (userToUpdate) {
-        return Invoice.upsert({
+        return User.upsert({
           id: idUser.dataValues.id,
-          isSubscribedUntil: idUser.dataValues.isSubscribedUntil,
-          temporarySecret: idUser.dataValues.temporarySecret,
-          temporaryLastProductPaid: idUser.dataValues.temporaryLastProductPaid,
+          email: userToUpdate.dataValues.email,
+          shopKey: userToUpdate.dataValues.shopKey,
+          isSubscribedUntil: userToUpdate.dataValues.isSubscribedUntil,
+          temporarySecret: userToUpdate.dataValues.temporarySecret,
+          temporaryLastProductPaid:
+            userToUpdate.dataValues.temporaryLastProductPaid,
           shouldHaveStockDataRefreshed: 0,
         });
       } else {
@@ -55,6 +58,19 @@ module.exports = (sequelize, DataTypes) => {
           "Error while trying to update an user : could not find it."
         );
       }
+    }
+    static async markAsHasConnected(user) {
+      return User.upsert({
+        id: user.dataValues.id,
+        email: user.dataValues.email,
+        shopKey: user.dataValues.shopKey,
+        isSubscribedUntil: user.dataValues.isSubscribedUntil,
+        temporarySecret: user.dataValues.temporarySecret,
+        temporaryLastProductPaid: user.dataValues.temporaryLastProductPaid,
+        shouldHaveStockDataRefreshed:
+          user.dataValues.shouldHaveStockDataRefreshed,
+        hasAlreadyConnected: 1,
+      });
     }
   }
   User.init(
@@ -82,6 +98,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       shouldHaveStockDataRefreshed: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      hasAlreadyConnected: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
