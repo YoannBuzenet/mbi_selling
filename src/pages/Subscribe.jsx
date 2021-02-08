@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import blackDivContext from "../context/blackDivModalContext";
 import paymentModalContext from "../context/paymentModalContext";
 import AuthContext from "../context/authContext";
+import { Link } from "react-router-dom";
 
 const Subscribe = () => {
   const { setIsBlackDivModalDisplayed } = useContext(blackDivContext);
@@ -49,18 +50,34 @@ const Subscribe = () => {
     defaultMessage: "Three Months",
   });
 
-  const pleaseLoginOrregister = intl.formatMessage(
-    {
-      id: "app.subscribePage.toast.pleaseLoginOrRegister",
-      defaultMessage: "Please login or register to purchase a subscription !",
-    }
-    // TODO : find how to insert JSX in intl.formatMessage { link: "/register" }
-  );
-
   const handleSubscribe = (e, duration) => {
     //check if user is authenticated. if not, toast
     if (!authenticationInfos.isAuthenticated) {
-      toast.info(pleaseLoginOrregister, { autoClose: 4000 });
+      toast.info(
+        <FormattedMessage
+          id="app.subscribePage.toast.pleaseLoginOrRegister"
+          defaultMessage="Please {loginLink} or {registerLink} to purchase a subscription !"
+          values={{
+            loginLink: (
+              <Link to="/login">
+                <FormattedMessage
+                  id="subscribed.notSusbcribed.message.login"
+                  defaultMessage="login"
+                />
+              </Link>
+            ),
+            registerLink: (
+              <Link to="/register">
+                <FormattedMessage
+                  id="subscribed.notSusbcribed.message.register"
+                  defaultMessage="register"
+                />
+              </Link>
+            ),
+          }}
+        />,
+        { autoClose: 4000 }
+      );
       return;
     }
 
