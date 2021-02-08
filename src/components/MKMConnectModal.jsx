@@ -58,7 +58,7 @@ const MKMConnectModal = () => {
     authAPI
       .refreshTokenAndInfos(authenticationInfos.refresh_token)
       .then((resp) => {
-        if (resp.data.shop.ExpirationMkmToken > new Date().getTime() / 1000) {
+        if (resp.data.shop.ExpirationMkmToken * 1000 > new Date().getTime()) {
           //Connection did succeed
           const authenticationInfoCopy = { ...authenticationInfos };
           authenticationInfoCopy.shop.ExpirationMkmToken =

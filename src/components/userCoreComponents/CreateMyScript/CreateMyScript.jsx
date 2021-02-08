@@ -916,7 +916,7 @@ const CreateMyScript = ({ history }) => {
           toast.error(
             <FormattedMessage
               id="createMyScript.script.select.keywordBehaviour.delete.failure.toast"
-              defaultMessage="This keyword could not be deleted. Please try later."
+              defaultMessage="This MKM comment could not be deleted. Please try later."
             />
           );
         });
@@ -1225,7 +1225,7 @@ const CreateMyScript = ({ history }) => {
 
   const keywordAddLabel = intl.formatMessage({
     id: "createMyScript.script.select.keywordBehaviour.add.form.label",
-    defaultMessage: "Add a keyword",
+    defaultMessage: "Add a MKM comment",
   });
 
   return (
@@ -1387,7 +1387,7 @@ const CreateMyScript = ({ history }) => {
             <p>
               <FormattedMessage
                 id="createMyScript.script.select.keywordBehaviour.title"
-                defaultMessage="Keywords : "
+                defaultMessage="MKM comment : "
               />
             </p>
             <FormControl className={classes.formControl}>
@@ -1415,7 +1415,7 @@ const CreateMyScript = ({ history }) => {
                 <div className="chipsPlaceHolderNoKeywords">
                   <FormattedMessage
                     id="createMyScript.script.select.keywordChips.placeholder.noKeywords"
-                    defaultMessage="No keywords were added."
+                    defaultMessage="No MKM comment were added."
                   />
                 </div>
               )}
