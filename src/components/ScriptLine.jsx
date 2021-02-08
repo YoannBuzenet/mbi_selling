@@ -290,7 +290,8 @@ const ScriptLine = ({ script, history, index }) => {
           <FormattedMessage
             id="createMyScript.launchTest.success"
             defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
-          />
+          />,
+          { autoClose: 5000 }
         );
 
         //Updating auth context with isRunning Info to 1
