@@ -12,9 +12,6 @@ const {
   premadeScriptTitles,
 } = require("../../src/services/fullstackTranslations/genericTranslations");
 
-// Yoann
-// WE NEED SHOP BASELANG HERE
-
 // -10% on foil standard
 async function createPreMadeScripts10PercentsFoilStandard(
   idShop,
