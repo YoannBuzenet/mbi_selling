@@ -107,6 +107,16 @@ const MKMConnectModal = () => {
         boxShadow: "none",
       },
     },
+    refreshButton: {
+      marginLeft: "15px",
+      marginTop: "30px",
+      backgroundColor: "rgb(0, 230, 64)",
+      "&:hover": {
+        backgroundColor: "#26a65b",
+        borderColor: "#26a65b",
+        boxShadow: "none",
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -137,7 +147,7 @@ const MKMConnectModal = () => {
           </p>
           <Button
             variant="contained"
-            className={classes.Sync}
+            className={classes.refreshButton}
             onClick={(e) => setIsConnectedAnDisplayingConnectionText(true)}
           >
             <FormattedMessage
