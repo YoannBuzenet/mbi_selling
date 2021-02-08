@@ -219,7 +219,7 @@ const TermsOfUse = () => {
       <p>
         <FormattedMessage
           id="app.page.termsAndConditions.article8.paragraph1"
-          defaultMessage="In the event of any disputes over the use of the SERVICE, the MERCHANT and MTGINTERFACE agree that the data saved on MTGINTERFACE equipment and particularly the use of the MERCHANT’s private usernames and passwords shall constitute valid proof between the parties. It is explicitly agreed that all the technical information regarding the MERCHANT, particularly saved data and statistics will be kept and archived by MTGINTERFACE for probative reasons."
+          defaultMessage="In the event of any disputes over the use of the SERVICE, the MERCHANT and MTGINTERFACE agree that the data saved on MTGINTERFACE equipment and particularly the use of the MERCHANT’s private identification token, API access given by the PLATFORM to the MERCHANT, usernames and passwords shall constitute valid proof between the parties. It is explicitly agreed that all the technical information regarding the MERCHANT, particularly saved data and statistics will be kept and archived by MTGINTERFACE for probative reasons."
         />
       </p>
       <p>
