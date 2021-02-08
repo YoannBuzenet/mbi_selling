@@ -817,7 +817,7 @@ div.connect p {
   color: white;
 }
 
-.logo-shop-link {
+.logo-shop-link img {
 }
 
 .logo-shop-link:hover {
@@ -843,13 +843,14 @@ div.connect p {
 }
 
 .margin-bottom {
-  margin-bottom: 7rem;
+  margin-bottom: 9rem;
 }
 
 .current-app-lang {
   position: relative;
   width: 40px;
   outline: none;
+  line-height: 61px;
 }
 
 .flag-drop-down {
