@@ -162,6 +162,7 @@
 .scriptNameEdition {
   background-color: white;
   margin-left: 20px;
+  width: 350px;
 }
 
 .scriptNameEdition input.MuiInputBase-input.MuiOutlinedInput-input {
