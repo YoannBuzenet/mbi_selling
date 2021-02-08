@@ -128,7 +128,12 @@ const MKMConnectModal = () => {
               month="long"
               day="2-digit"
             />
-            <FormattedTime value={new Date(1459832991883)} />
+            <span> </span>
+            <FormattedTime
+              value={
+                new Date(authenticationInfos?.shop?.ExpirationMkmToken * 1000)
+              }
+            />
           </p>
           <Button
             variant="contained"
