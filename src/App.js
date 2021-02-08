@@ -89,7 +89,7 @@ function App() {
       //Renew JWT token + setTimeout
       renewJWTToken();
       //launch the check status setInterval that will poke API
-      launchcheckStatusTimer();
+      launchcheckStatusTimer(authenticationInfos?.user?.id);
     }
   }, []);
 
@@ -292,8 +292,7 @@ function App() {
     };
   }
 
-  const launchcheckStatusTimer = () => {
-    const userID = authenticationInfos?.user?.id;
+  const launchcheckStatusTimer = (userID) => {
     if (userID === undefined) {
       console.error("user ID is not defined in script update function");
     }

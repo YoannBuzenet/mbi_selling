@@ -27,11 +27,24 @@ const AllMyScripts = ({ history }) => {
       },
     },
     createScriptButton: {
-      backgroundColor: "rgb(0, 177, 106)",
+      backgroundColor: "rgb(28, 100, 242)",
+      textTransform: "none",
+      paddingLeft: "3.5rem",
+      paddingRight: "3.5rem",
+      paddingTop: "1.5rem",
+      paddingBottom: "1.5rem",
+      fontSize: "1.8rem",
+      fontWeight: "500",
+      border: "1px solid transparent",
+      color: "rgb(255, 255, 255)",
+      cursor: "pointer",
+      borderRadius: "6px",
+      textDecoration: "none",
       "&:hover": {
-        background: "rgb(123, 239, 178)",
+        background: "rgba(63, 131, 248, 0.8)",
+        transition: "background-color 0.5s",
       },
-      width: "182px",
+      width: "202px",
     },
     formControl: {
       margin: theme.spacing(1),
@@ -54,7 +67,6 @@ const AllMyScripts = ({ history }) => {
       <div className="createScriptButton marginHeight20px">
         <Button
           variant="contained"
-          color="primary"
           className={classes.createScriptButton}
           size="large"
           onClick={(e) => history.push("/create-script")}
