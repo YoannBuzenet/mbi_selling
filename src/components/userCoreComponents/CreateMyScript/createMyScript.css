@@ -92,6 +92,10 @@
   overflow: scroll;
 }
 
+.keywordAdder > .MuiFormControl-root.MuiTextField-root {
+  width: 140px;
+}
+
 .behaviourSelect {
   display: flex;
   justify-content: center;
@@ -255,10 +259,18 @@ button.button-second-navbar {
   right: -5px;
 }
 
+p.from {
+  margin-left: 120px;
+}
+
 .fromToText {
   display: inline-block;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.helperTextCustomRules {
+  font-size: 12px;
 }
 
 div.inputValueNumber {
