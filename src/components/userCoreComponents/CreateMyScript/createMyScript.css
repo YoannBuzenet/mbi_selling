@@ -9,7 +9,7 @@
 **************************/
 
 .create-my-script-container {
-  margin-top: 370px;
+  margin-top: 363px;
 }
 
 .second-menu-scripts {
@@ -159,6 +159,10 @@
   align-items: center;
 }
 
+.column-definitions .columnTitles {
+  font-size: 2rem;
+}
+
 .scriptNameEdition {
   background-color: white;
   margin-left: 20px;
@@ -202,6 +206,14 @@ button.button-second-navbar {
 .parts-container > .left-part,
 .parts-container > .right-part {
   width: 50%;
+}
+
+.parts-container > .left-part {
+  background-color: #d5dbe2;
+}
+
+.parts-container > .right-part {
+  background-color: #d2e4d3;
 }
 
 .left-part > .left-schema,

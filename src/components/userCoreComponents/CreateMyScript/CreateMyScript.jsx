@@ -1498,13 +1498,13 @@ const CreateMyScript = ({ history }) => {
           </div>
         </div>
         <div className="column-definitions">
-          <p>
+          <p className="columnTitles">
             <FormattedMessage
               id="createMyScript.columnTitles.regular"
               defaultMessage="Regular"
             />
           </p>
-          <p>
+          <p className="columnTitles">
             <FormattedMessage
               id="createMyScript.columnTitles.foil"
               defaultMessage="Foil"
