@@ -337,5 +337,7 @@
   "mail.sending.title.testScriptHad0card": "Votre script de test a bien été éxécuté, mais a affecté 0 carte.",
 
   "subscribed.notSusbcribed.NeedToDoIt.text": "Vous devez vous abonner pour accéder à cette fonctionalité. Vous pouvez le faire {link}.",
-  "subscribed.notSusbcribed.NeedToDoIt.link": "sur ce lien"
+  "subscribed.notSusbcribed.NeedToDoIt.link": "sur ce lien",
+
+  "tutorial.allMyScripts": "Tous les scripts sont disponibles ici; Nous en avons créés quelques uns pour vous donner une idée. Vous pouvez les modifier à volonté."
 }

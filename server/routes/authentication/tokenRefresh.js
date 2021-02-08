@@ -49,6 +49,9 @@ router.post("/", async (req, res) => {
       userScripts,
       sellingShopParams: userSellingShopParams,
       isSubscribedUntil: shop.dataValues.isSubscribedUntil,
+      shopLocalData: {
+        hasAlreadyLogged: shop.dataValues.hasAlreadyConnected,
+      },
     };
 
     res.json(overloadedResponse);
