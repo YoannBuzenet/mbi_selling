@@ -56,10 +56,6 @@ const Navbar = ({ history }) => {
     );
   };
 
-  const adjustestyle = authenticationInfos.isAuthenticated
-    ? { lineHeight: "61px" }
-    : null;
-
   const useStyles = makeStyles((theme) => ({
     mkmConnected: {
       color: "green",
@@ -79,7 +75,7 @@ const Navbar = ({ history }) => {
           onClick={() => setToggleMenu(!toggleMenu)}
         ></div>
       )}
-      <nav className="navbar" style={adjustestyle}>
+      <nav className="navbar">
         <div className="container">
           <div className="menu-links-left">
             <a href="/" className="logo-shop-link">
