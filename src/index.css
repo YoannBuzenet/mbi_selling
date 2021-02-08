@@ -1206,6 +1206,11 @@ status-indicator {
   text-decoration: underline;
 }
 
+.footerBottom {
+  text-align: center;
+  color: rgb(159, 166, 178);
+}
+
 @media only screen and (max-width: 1000px) {
   .footer {
     height: 200px;

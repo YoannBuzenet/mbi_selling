@@ -801,44 +801,36 @@
     *********FOOTER***********
     **************************/
 
-    .footer {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      height: 100px;
-      border-top: 1px solid lightgrey;
-      background-color: var(--background-color);
-      z-index: 1;
-    }
+    /**********************/
+/********Footer*******/
+/**********************/
 
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-    }
+footer {
+  background-color: rgb(249, 250, 251);
+  color: rgb(159, 166, 178);
+  padding-bottom: 6rem;
+}
+footer > div {
+  border-top: 1px solid rgba(210, 214, 220, 0.5);
+}
 
-    .footer a {
-      text-decoration: none;
-      color: black;
-    }
+footer span {
+  font-size: 1.8rem;
+}
 
-    .footer a:hover {
-      text-decoration: underline;
-    }
+.footerContent {
+  padding-top: 20px;
+  text-align: center;
+}
+.footerContent a {
+  color : rgb(28, 100, 242);
+}
 
-    @media only screen and (max-width: 1000px) {
-      .footer {
-        height: 200px;
-      }
-    }
-    @media only screen and (max-width: 850px) {
-      .footer {
-        height: 300px;
-      }
-      .footer-container {
-        flex-direction: column;
-      }
-    }
+@media only screen and (max-width: 1400px) {
+  footer span {
+    font-size: 1.4rem;
+  }
+}
 
     </style>
   </head>
@@ -1058,20 +1050,14 @@
         </div>
       </main>
 
-          <!-- <Footer> -->
-        <!-- <footer class="footer">
-          <div class="footer-container container">
-            <div>
-              <p>
-                <a href="/buyingClauses">d</a>
-              </p>
-            </div>
-            <div>
-              <p class="small-text"></p>
-            </div>
-          </div>
-        </footer> -->
-        <!-- </Footer> -->
+    <footer>
+      <div class="container">
+        <div class="footerContent">
+          <p id="footer.allRightReserved">MTG-Interface © 2021 All rights reserved.</p>
+          <p><a href="https://www.mtginterface.com" target="_blank">www.mtginterface.com</a></p>
+        </div>
+      </div>
+    </footer>
 
     
     <script type="text/javascript">
@@ -1364,6 +1350,10 @@
           "en-US": "To learn more",
           "fr-FR": "Pour en savoir plus",
         },
+        "footer.allRightReserved": {
+          "en-US": "MTG-Interface © 2021 All rights reserved.",
+          "fr-FR": "MTG-Interface © 2021 Tous droits réservés.",
+        },
       };
 
        function translateHomePage(language="en-US"){
@@ -1421,6 +1411,9 @@
         
         // Liner 5
         document.getElementById("fifthLinerCatchPhrase").textContent=translations["fifthLinerCatchPhrase"][language];
+
+        // Footer
+        document.getElementById("footer.allRightReserved").textContent=translations["footer.allRightReserved"][language];
       };
 
      
