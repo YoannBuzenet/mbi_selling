@@ -102,7 +102,7 @@ const CreateMyScript = ({ history }) => {
     {
       value: "mkmTrends",
       id: "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends",
-      default: "MKM trend",
+      default: "MKM Data",
     },
     {
       value: "oldPrices",
@@ -1270,7 +1270,9 @@ const CreateMyScript = ({ history }) => {
               onClick={launchTest}
               disabled={
                 authenticationInfos?.userScripts?.[indexScript]?.isRunning ===
-                  1 || false
+                  1 ||
+                scriptMustBeSaved ||
+                false
               }
             >
               <FormattedMessage
@@ -1289,7 +1291,9 @@ const CreateMyScript = ({ history }) => {
               onClick={launchScript}
               disabled={
                 authenticationInfos?.userScripts?.[indexScript]?.isRunning ===
-                  1 || false
+                  1 ||
+                scriptMustBeSaved ||
+                false
               }
             >
               <FormattedMessage
