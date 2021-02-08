@@ -11,6 +11,7 @@ module.exports = {
     username: process.env.LOGIN_DB,
     password: process.env.PWD_DB,
     database: process.env.DB_DEV,
+    logging: false,
     host: "127.0.0.1",
     dialect: "mysql",
     pool: {
@@ -26,6 +27,7 @@ module.exports = {
     database: process.env.DB_TEST,
     host: "127.0.0.1",
     dialect: "mysql",
+    logging: false,
   },
   production: {
     username: process.env.LOGIN_DB,

@@ -7,7 +7,6 @@ router.get("/getDefinitions", async (req, res) => {
   db.customRule_behaviour_definition
     .findAll()
     .then((resp) => {
-      console.log(resp);
       res.status(200).json(resp);
     })
     .catch((error) => {
