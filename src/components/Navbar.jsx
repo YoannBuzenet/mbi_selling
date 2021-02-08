@@ -81,6 +81,10 @@ const Navbar = ({ history }) => {
             <a href="/" className="logo-shop-link">
               <img src="/pictures/logoM.svg" width="50px" />
             </a>
+            <FormattedMessage
+              id="app.navbar.byMTGInterface"
+              defaultMessage="by MTG Interface"
+            />
           </div>
           {authenticationInfos.isAuthenticated ? (
             /////////////////////////
@@ -198,6 +202,7 @@ const Navbar = ({ history }) => {
                   marginLeft="10"
                   lineHeightSelectAppLang="25"
                   topSelectAppLangFlags="42"
+                  isAuthenticated={true}
                 />
               </div>
             </div>
@@ -235,7 +240,7 @@ const Navbar = ({ history }) => {
                   />
                 </Link>
 
-                <AppLangChoice />
+                <AppLangChoice isAuthenticated={false} />
               </div>
             </div>
           )}

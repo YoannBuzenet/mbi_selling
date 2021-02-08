@@ -853,6 +853,7 @@
           <a href="/" class="logo-shop-link">
             <img src="/pictures/logoM.svg" />
           </a>
+          <span id="menu.navbar.byMTGInterface">by MTG Interface</span>
         </div>
         <div class="not-connected-options">
             <div class="burger-menu burgerMenuHomePage" id="burgerMenuImageResponsive">
@@ -1227,6 +1228,10 @@
           "en-US": "MKM Price Updater",
           "fr-FR": "Modifiez vos prix sur MKM",
         },
+        "menu.navbar.byMTGInterface": {
+          "en-US": "by MTG Interface",
+          "fr-FR": "par MTG Interface",
+        },
         "menu.navbar.subscribe": {
           "en-US": "Subscribe",
           "fr-FR": "Tarifs",
@@ -1367,6 +1372,7 @@
         document.title = translations["document.title"][language];
 
         //  Menu
+        document.getElementById("menu.navbar.byMTGInterface").textContent=translations["menu.navbar.byMTGInterface"][language];
         document.getElementById("menu.navbar.subscribe").textContent=translations["menu.navbar.subscribe"][language];
         document.getElementById("menu.navbar.register").textContent=translations["menu.navbar.register"][language];
         document.getElementById("menu.navbar.connect").textContent=translations["menu.navbar.connect"][language];

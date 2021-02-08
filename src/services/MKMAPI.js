@@ -246,6 +246,10 @@ function AddCardsToStock(XMLObject, header) {
 
 //Result can be : Connected, JustConnected, SoonToUnlog, JustSoonToUnlog, Unlogged, JustUnlogged
 function mkmConnexionStateCalculator(expirationToken) {
+  if (expirationToken === undefined || expirationToken === null) {
+    return "Unlogged";
+  }
+
   const timeStampOfNow = new Date().getTime();
   const timeLeftInMilliSeconds = expirationToken * 1000 - timeStampOfNow;
 
@@ -274,7 +278,7 @@ function mkmConnexionStateCalculator(expirationToken) {
     return "JustSoonToUnlog";
   }
   //Below 0 and above -2 minutes
-  else if (timeLeftInMilliSeconds < 0 && timeLeftInMilliSeconds < -120000) {
+  else if (timeLeftInMilliSeconds < 0 && timeLeftInMilliSeconds > -120000) {
     return "JustUnlogged";
   } else {
     return "Unlogged";

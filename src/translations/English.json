@@ -35,6 +35,7 @@
   "app.navbar.my-scripts": "My Scripts",
   "app.navbar.subscribe": "Subscribe",
   "app.navbar.invoices": "My invoices",
+  "app.navbar.byMTGInterface": "by MTG Interface",
 
   "app.footer.legalClauses": "Legal Clauses",
 

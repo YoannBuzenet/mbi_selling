@@ -34,6 +34,7 @@
   "app.navbar.my-scripts": "Mes Scripts",
   "app.navbar.subscribe": "Tarifs",
   "app.navbar.invoices": "Mes factures",
+  "app.navbar.byMTGInterface": "par MTG Interface",
 
   "app.footer.legalClauses": "Mentions Légales",
 
@@ -261,7 +262,7 @@
   "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices": "Mes prix actuels",
   "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText": "Les nouveaux prix seront basés par rapport à vos prix existants. Exemple : +10% sur vos prix actuels. Cela ne s'applique qu'aux règles où vous avez sélectionné 'Créer Opération'.",
   "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText": "Les nouveaux prix seront fixés par rapport aux tendances MKM. Exemple : +10% par rapport à la tendance MKM. Cela ne s'applique qu'aux règles où vous avez sélectionné 'Créer Opération'.",
-  "createMyScript.script.select.keywordBehaviour.title": "Mots clefs : ",
+  "createMyScript.script.select.keywordBehaviour.title": "Commentaire MKM : ",
   "createMyScript.script.select.keywordBehaviourPossibilities.ignores": "Ignore",
   "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically": "Cible uniquement",
   "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically": "Evite",
