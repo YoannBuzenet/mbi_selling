@@ -300,7 +300,7 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
         "</idArticle><idLanguage>" +
         MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.lang) +
         "</idLanguage><comments>" +
-        "" + // to do Handle comments in put memory
+        currentValue.comments +
         "</comments><count>" +
         currentValue.amount +
         "</count><price>" +

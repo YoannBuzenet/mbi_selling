@@ -67,6 +67,9 @@ module.exports = {
       amount: {
         type: Sequelize.INTEGER,
       },
+      comments: {
+        type: Sequelize.STRING,
+      },
       behaviourChosen: {
         type: Sequelize.STRING,
       },
