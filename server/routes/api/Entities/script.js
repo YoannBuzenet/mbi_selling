@@ -209,6 +209,9 @@ router.patch("/:id", async (req, res) => {
   if (req.body.willBeBasedOn !== undefined) {
     existingScript.willBeBasedOn = req.body.willBeBasedOn;
   }
+  if (req.body.keywordBehaviour !== undefined) {
+    existingScript.keywordBehaviour = req.body.keywordBehaviour;
+  }
 
   //Check if we are setting formats from the script
   if (req.body.formats) {
