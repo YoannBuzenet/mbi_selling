@@ -898,6 +898,7 @@ const CreateMyScript = ({ history }) => {
   };
 
   const handleDeleteChip = (chipToDelete) => () => {
+    setScriptMustbeSaved(true);
     const arrayCopy = [...chipData];
 
     setChipData((chips) =>
