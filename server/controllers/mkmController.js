@@ -300,8 +300,8 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
         "</idArticle><idLanguage>" +
         MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.lang) +
         "</idLanguage><comments>" +
-        cardComment;
-      "</comments><count>" +
+        cardComment +
+        "</comments><count>" +
         currentValue.amount +
         "</count><price>" +
         priceForSale +
