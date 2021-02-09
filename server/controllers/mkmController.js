@@ -291,6 +291,8 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
       //We choose the old price on purpose because we are rewinding an older put request
       const priceForSale = currentValue.oldPrice;
       const isFoilBool = currentValue.isFoil === 0 ? "false" : "true";
+      const cardComment =
+        currentValue.comments === 0 ? "" : currentValue.comments;
 
       const article =
         "<article> <idArticle>" +
@@ -298,8 +300,7 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
         "</idArticle><idLanguage>" +
         MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.lang) +
         "</idLanguage><comments>" +
-        "" +
-        currentValue.comments;
+        cardComment;
       "</comments><count>" +
         currentValue.amount +
         "</count><price>" +
