@@ -1257,7 +1257,7 @@ const CreateMyScript = ({ history }) => {
             onClick={(e) => saveScriptAndCustomRules(e)}
             className={"button-second-navbar " + classes.saveButton}
             size="large"
-            disable={!scriptMustBeSaved}
+            disabled={!scriptMustBeSaved}
           >
             <FormattedMessage
               id="createMyScript.buttons.save"
