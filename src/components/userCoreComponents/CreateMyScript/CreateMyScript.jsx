@@ -661,6 +661,7 @@ const CreateMyScript = ({ history }) => {
               name: scriptName,
               formats: selectedFormats,
               willBeBasedOn: pricesAreBasedOn,
+              keywordBehaviour: keywordBehaviour,
             }
           );
           console.log("data arrived : ", scriptCreated);
@@ -679,7 +680,7 @@ const CreateMyScript = ({ history }) => {
           return;
         }
       } else {
-        //WE PATCH THE SCRIPT NAME
+        //WE PATCH THE SCRIPT
         axios
           .patch(
             "/api/script/" +
@@ -690,6 +691,7 @@ const CreateMyScript = ({ history }) => {
               name: scriptName,
               formats: selectedFormats,
               willBeBasedOn: pricesAreBasedOn,
+              keywordBehaviour: keywordBehaviour,
             }
           )
           .catch((err) => {
