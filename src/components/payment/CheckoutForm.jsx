@@ -138,8 +138,14 @@ const CheckoutForm = () => {
 
   return (
     <div className="absolutePopIn">
-      <h2>{paymentModalInformation.title}</h2>
-
+      <div className="titlePayment">
+        <p className="productName">{paymentModalInformation.title}</p>
+        {paymentModalInformation.articleName === "OneMonthSubscription" ? (
+          <p className="productPrice">29€</p>
+        ) : (
+          <p className="productPrice">70€</p>
+        )}
+      </div>
       <form onSubmit={handleSubmit}>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
         <div className="generalSalesConditions">

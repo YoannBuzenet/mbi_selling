@@ -5,11 +5,11 @@ function calculateAmount(productName) {
     case "OneMonthSubscription": {
       // amount is in cents
       // amountToReturn = 3900;
-      amountToReturn = 3900;
+      amountToReturn = 2900;
       break;
     }
     case "ThreeMonthSubscription": {
-      amountToReturn = 2900;
+      amountToReturn = 7000;
       break;
     }
     default: {
