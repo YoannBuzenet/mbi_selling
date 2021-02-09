@@ -41,7 +41,8 @@ const PopInLaunchingConfirmation = () => {
           <FormattedMessage
             id="createMyScript.launchReal.success"
             defaultMessage="The MKM script has been launched. Once it's done, you will receive a summary by mail."
-          />
+          />,
+          { autoClose: 10000 }
         );
 
         //Updating auth context with isRunning Info to 1
@@ -58,7 +59,8 @@ const PopInLaunchingConfirmation = () => {
           <FormattedMessage
             id="createMyScript.launchReal.failure"
             defaultMessage="The MKM script could not be launched. Please try later, or contact us if the problem persists."
-          />
+          />,
+          { autoClose: 10000 }
         )
       );
   };
