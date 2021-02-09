@@ -24,11 +24,15 @@ module.exports = (sequelize, DataTypes) => {
       });
       if (userToUpdate) {
         return User.upsert({
-          id: idUser.dataValues.id,
-          isSubscribedUntil: idUser.dataValues.isSubscribedUntil,
-          temporarySecret: idUser.dataValues.temporarySecret,
-          temporaryLastProductPaid: idUser.dataValues.temporaryLastProductPaid,
+          id: userToUpdate.dataValues.id,
+          email: userToUpdate.dataValues.email,
+          shopKey: userToUpdate.dataValues.shopKey,
+          isSubscribedUntil: userToUpdate.dataValues.isSubscribedUntil,
+          temporarySecret: userToUpdate.dataValues.temporarySecret,
+          temporaryLastProductPaid:
+            userToUpdate.dataValues.temporaryLastProductPaid,
           shouldHaveStockDataRefreshed: 1,
+          hasAlreadyConnected: userToUpdate.dataValues.hasAlreadyConnected,
         });
       } else {
         console.error(
@@ -44,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       if (userToUpdate) {
         return User.upsert({
-          id: idUser.dataValues.id,
+          id: idUser,
           email: userToUpdate.dataValues.email,
           shopKey: userToUpdate.dataValues.shopKey,
           isSubscribedUntil: userToUpdate.dataValues.isSubscribedUntil,
@@ -52,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
           temporaryLastProductPaid:
             userToUpdate.dataValues.temporaryLastProductPaid,
           shouldHaveStockDataRefreshed: 0,
+          hasAlreadyConnected: userToUpdate.dataValues.hasAlreadyConnected,
         });
       } else {
         console.error(
