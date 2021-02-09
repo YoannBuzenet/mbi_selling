@@ -817,7 +817,13 @@ const CreateMyScript = ({ history }) => {
           });
           localStorageUserData.userScripts = [
             ...authenticationInfos.userScripts,
-            { id: scriptId, name: scriptName, formats: selectedFormats },
+            {
+              id: scriptId,
+              name: scriptName,
+              formats: selectedFormats,
+              keywordBehaviour,
+              willBeBasedOn,
+            },
           ];
         }
         //Refreshing only the relevant one in state
@@ -828,9 +834,19 @@ const CreateMyScript = ({ history }) => {
           authenticationInfos.userScripts[
             indexScriptToUpdate
           ].name = scriptName;
+
+          authenticationInfos.userScripts[
+            indexScriptToUpdate
+          ].keywordBehaviour = keywordBehaviour;
+
+          authenticationInfos.userScripts[
+            indexScriptToUpdate
+          ].willBeBasedOn = willBeBasedOn;
+
           authenticationInfos.userScripts[
             indexScriptToUpdate
           ].formats = selectedFormats;
+
           setAuthenticationInfos({ ...authenticationInfos });
           localStorageUserData.userScripts = authenticationInfos.userScripts;
         }
