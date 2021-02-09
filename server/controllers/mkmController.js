@@ -250,7 +250,7 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
       const priceForSale = currentValue.newPrice;
       const isFoilBool = currentValue.isFoil === 0 ? "false" : "true";
       const cardComment =
-        currentValue.comments === 0 ? "" : currentValue.comments;
+        currentValue.comments === "0" ? "" : currentValue.comments;
 
       const article =
         "<article> <idArticle>" +
