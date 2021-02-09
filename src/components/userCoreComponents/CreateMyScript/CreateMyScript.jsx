@@ -113,7 +113,7 @@ const CreateMyScript = ({ history }) => {
 
   const keywordBehaviourPossibilities = [
     {
-      value: "ignores",
+      value: "ignoresEverything",
       id: "createMyScript.script.select.keywordBehaviourPossibilities.ignores",
       default: "Ignores",
     },
@@ -137,7 +137,7 @@ const CreateMyScript = ({ history }) => {
   // Exemple of chip item :  { key: 0, label: "Angular" }
   const [chipData, setChipData] = React.useState([]);
 
-  const [keywordBehaviour, setKeywordBehaviour] = useState("ignores");
+  const [keywordBehaviour, setKeywordBehaviour] = useState("ignoresEverything");
   const [keywordName, setKeywordName] = useState("");
 
   const handleSelectBehaviour = (event) => {
@@ -1482,7 +1482,7 @@ const CreateMyScript = ({ history }) => {
             </div>
           </div>
           <div className="keywordHelper">
-            {keywordBehaviour === "ignores" && (
+            {keywordBehaviour === "ignoresEverything" && (
               <div className="helperContainer">
                 <div className="svgContainer">
                   <InfoIcon />
