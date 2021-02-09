@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           idShop: idShop,
         },
       });
-      if (userToUpdate) {
+      if (userToUpdate !== null) {
         return User.upsert({
           id: userToUpdate.dataValues.id,
           email: userToUpdate.dataValues.email,
@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
         });
       } else {
         console.error(
-          "Error while trying to update an user : could not find it."
+          "Error while trying to update an user : could not find it. iShop :",
+          idShop
         );
       }
     }
@@ -46,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
           id: idUser,
         },
       });
-      if (userToUpdate) {
+      if (userToUpdate !== null) {
         return User.upsert({
           id: idUser,
           email: userToUpdate.dataValues.email,
@@ -60,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         });
       } else {
         console.error(
-          "Error while trying to update an user : could not find it."
+          "Error while trying to update an user and remove stock should be refreshed: could not find it."
         );
       }
     }
