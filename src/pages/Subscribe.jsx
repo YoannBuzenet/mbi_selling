@@ -61,7 +61,7 @@ const Subscribe = () => {
             loginLink: (
               <Link to="/login">
                 <FormattedMessage
-                  id="subscribed.notSusbcribed.message.login"
+                  id="app.subscribePage.toast.notSusbcribed.message.login"
                   defaultMessage="login"
                 />
               </Link>
@@ -69,7 +69,7 @@ const Subscribe = () => {
             registerLink: (
               <Link to="/register">
                 <FormattedMessage
-                  id="subscribed.notSusbcribed.message.register"
+                  id="app.subscribePage.toast.message.register"
                   defaultMessage="register"
                 />
               </Link>
