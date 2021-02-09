@@ -142,6 +142,7 @@ const CreateMyScript = ({ history }) => {
 
   const handleSelectBehaviour = (event) => {
     const { value } = event.target;
+    setScriptMustbeSaved(true);
     setKeywordBehaviour(value);
   };
 
