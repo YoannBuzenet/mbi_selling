@@ -387,7 +387,7 @@ const ScriptLine = ({ script, history, index }) => {
           className={classes.testButton}
           size="large"
           onClick={launchTest}
-          disabled={script.isRunning === 1}
+          disabled={script.isRunning === 1 || savingState !== null}
         >
           <FormattedMessage
             id="scriptLine.buttons.test"
@@ -402,7 +402,7 @@ const ScriptLine = ({ script, history, index }) => {
           className={classes.launchButton}
           size="large"
           onClick={launchScript}
-          disabled={script.isRunning === 1}
+          disabled={script.isRunning === 1 || savingState !== null}
         >
           <FormattedMessage
             id="scriptLine.buttons.launch"
