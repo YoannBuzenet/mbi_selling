@@ -116,7 +116,7 @@ const Subscribe = () => {
 
           <div className="planSubscribing">
             <p className="price">
-              <span className="number">39</span>
+              <span className="number">29</span>
               <span className="currency">€</span>
             </p>
             <p className="explaination">
@@ -173,13 +173,19 @@ const Subscribe = () => {
 
           <div className="planSubscribing">
             <p className="price">
-              <span className="number">29</span>
+              <span className="number">70</span>
               <span className="currency">€</span>
             </p>
             <p className="explaination">
               <FormattedMessage
                 id="app.subscribePage.threeMonths"
                 defaultMessage="Three Month"
+              />
+            </p>
+            <p className="explainationSlogan">
+              <FormattedMessage
+                id="app.subscribePage.threeMonths.explaination"
+                defaultMessage="Or 23,34€/month"
               />
             </p>
             {/* <p className="explainationSlogan">

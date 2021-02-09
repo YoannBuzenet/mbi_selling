@@ -117,6 +117,7 @@
   "app.subscribePage.PDFSummaryOfEachModification": "PDF summary of each modification",
   "app.subscribePage.oneMonths.slogan": "Just refresh your prices",
   "app.subscribePage.threeMonths.slogan": "Get competitive on the long run",
+  "app.subscribePage.threeMonths.explaination": "Or 23,34€/month",
 
   "app.loginOutdated.toast.failure": "You are not connected anymore. Please log again.",
 

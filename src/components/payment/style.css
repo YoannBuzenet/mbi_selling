@@ -6,7 +6,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 420px;
-  height: 220px;
+  height: 240px;
   border-radius: 6px;
   background-color: #fdfdfd;
 }
@@ -32,6 +32,20 @@
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+.titlePayment {
+  display: flex;
+}
+.titlePayment .productName {
+  width: 70%;
+  text-align: left;
+  padding-left: 50px;
+  font-size: 2rem;
+}
+.titlePayment .productPrice {
+  width: 70%;
+  font-size: 2rem;
 }
 
 .absolutePopIn form {
