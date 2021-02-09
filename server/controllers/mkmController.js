@@ -249,6 +249,8 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
     (accumulator, currentValue) => {
       const priceForSale = currentValue.newPrice;
       const isFoilBool = currentValue.isFoil === 0 ? "false" : "true";
+      const cardComment =
+        currentValue.comments === 0 ? "" : currentValue.comments;
 
       const article =
         "<article> <idArticle>" +
@@ -256,7 +258,7 @@ function transformChunkOfCardsAndActionsIntoXML(ArrayOfCardActionObjects) {
         "</idArticle><idLanguage>" +
         MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.language) +
         "</idLanguage><comments>" +
-        "" + //Optional comment to post
+        cardComment +
         "</comments><count>" +
         currentValue.amount +
         "</count><price>" +
@@ -291,8 +293,6 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
       //We choose the old price on purpose because we are rewinding an older put request
       const priceForSale = currentValue.oldPrice;
       const isFoilBool = currentValue.isFoil === 0 ? "false" : "true";
-      const cardComment =
-        currentValue.comments === 0 ? "" : currentValue.comments;
 
       const article =
         "<article> <idArticle>" +
@@ -300,7 +300,7 @@ function transformChunkOfCardsFromPutMemoryForRewindIntoXML(
         "</idArticle><idLanguage>" +
         MkmAPI.translateMTG_APILangIDIntoMKMLangId(currentValue.lang) +
         "</idLanguage><comments>" +
-        cardComment +
+        "" + // to do Handle comments in put memory
         "</comments><count>" +
         currentValue.amount +
         "</count><price>" +
