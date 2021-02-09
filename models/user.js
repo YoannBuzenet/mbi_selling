@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Order, { foreignKey: "idShop" });
       User.hasMany(models.Invoice, { foreignKey: "idShop" });
     }
-    static async passStockAsShouldBeRefreshed(idUser) {
+    static async passStockAsShouldBeRefreshed(idShop) {
       const userToUpdate = await User.findOne({
         where: {
-          id: idUser,
+          idShop: idShop,
         },
       });
       if (userToUpdate) {
