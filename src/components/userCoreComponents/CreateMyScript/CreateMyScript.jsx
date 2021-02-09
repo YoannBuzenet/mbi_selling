@@ -325,6 +325,7 @@ const CreateMyScript = ({ history }) => {
               key: keyword.id,
             }))
           );
+          setKeywordBehaviour(resp.data.keywordBehaviour);
           setSelectedFormats(
             resp.data.scriptFormats.map((format) => format.id)
           );
@@ -822,7 +823,7 @@ const CreateMyScript = ({ history }) => {
               name: scriptName,
               formats: selectedFormats,
               keywordBehaviour,
-              willBeBasedOn,
+              willBeBasedOn: pricesAreBasedOn,
             },
           ];
         }
@@ -841,7 +842,7 @@ const CreateMyScript = ({ history }) => {
 
           authenticationInfos.userScripts[
             indexScriptToUpdate
-          ].willBeBasedOn = willBeBasedOn;
+          ].willBeBasedOn = pricesAreBasedOn;
 
           authenticationInfos.userScripts[
             indexScriptToUpdate
