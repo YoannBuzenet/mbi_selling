@@ -185,7 +185,9 @@ router.post("/subscribe", async (req, res) => {
         },
       });
 
-      res.json("User Subscription Updated").status(200);
+      res
+        .json({ userIsSubscribedUntil: dateWithSubscriptionAdded })
+        .status(200);
       return;
     } catch (error) {
       console.log("error during subscription", error);

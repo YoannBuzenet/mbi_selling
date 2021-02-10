@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import CSSLoaderDualRing from "../loaders/CSSLoaderDualRing";
 import Checkbox from "@material-ui/core/Checkbox";
 import { Link } from "react-router-dom";
+import authAPI from "../../services/authAPI";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -111,6 +112,11 @@ const CheckoutForm = () => {
             idShop: authenticationInfos.shop.id,
           })
           .then((resp) => {
+            // Passing subscribe info into context + local storage
+            const authContextCopy = { ...authenticationInfos };
+            authContextCopy.isSubscribedUntil = resp.data.userIsSubscribedUntil;
+            setAuthenticationInfos(authContextCopy);
+            authAPI.transformAuthContextIntoLocalStorageFormat(authContextCopy);
             toast.success(
               <FormattedMessage
                 id="app.modal.payment.success"
