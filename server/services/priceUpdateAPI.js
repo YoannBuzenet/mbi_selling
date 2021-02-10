@@ -145,7 +145,7 @@ function roundDownNumber(number, coefficient) {
   return number - (number % coefficient);
 }
 function roundUpNumber(number, coefficient) {
-  const multiplier = math.ceil(number / coefficient);
+  const multiplier = Math.ceil(number / coefficient);
   return coefficient * multiplier;
 }
 
