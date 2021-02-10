@@ -116,6 +116,11 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  if (req.body.keywordBehaviour === undefined) {
+    res.status(406).json("keywordBehaviour is mandatory.");
+    return;
+  }
+
   //Check that the requester is who he sayts he is OR is admin
   const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
     req.headers.authorization,
@@ -132,6 +137,7 @@ router.post("/", async (req, res) => {
       name: req.body.name,
       idShop: req.query.idUser,
       willBeBasedOn: req.body.willBeBasedOn,
+      keywordBehaviour: req.body.keywordBehaviour,
     });
 
     if (req.body.formats) {
