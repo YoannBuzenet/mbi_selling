@@ -226,7 +226,7 @@ function transformAuthContextIntoLocalStorageFormat(authContext) {
       ...authContext.shop,
     },
     userScripts: authContext.userScripts,
-    isSusbcribedUntil: authContext.isSubscribedUntil,
+    isSusbcribedUntil: authContext.isSusbcribedUntil,
     sellingShopParams: authContext.sellingShopParams,
     shopLocalData: authContext.shopLocalData,
   };

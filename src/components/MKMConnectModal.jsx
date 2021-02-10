@@ -63,8 +63,10 @@ const MKMConnectModal = () => {
           const authenticationInfoCopy = { ...authenticationInfos };
           authenticationInfoCopy.shop.ExpirationMkmToken =
             resp.data.shop.ExpirationMkmToken;
+
           authenticationInfoCopy.isSusbcribedUntil =
             resp.data.isSubscribedUntil;
+
           setAuthenticationInfos(authenticationInfoCopy);
           authAPI.transformAuthContextIntoLocalStorageFormat(
             authenticationInfoCopy
