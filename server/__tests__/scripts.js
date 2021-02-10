@@ -1023,9 +1023,23 @@ describe("First Script Real", () => {
         });
     });
   });
+  describe("Card, Article 181, idProduct 107", () => {
+    it("should have a price of 123.75", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 1,
+            idArticle: 181,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.newPrice).toEqual(123.75);
+        });
+    });
+  });
 });
 
-describe("First Script Test", () => {
+describe("Second Put request, Script 3 Test", () => {
   it("checks the number of put memories", async () => {
     return db.put_memory
       .findAndCountAll({
@@ -2484,6 +2498,20 @@ describe("Script Old Price Test - Keyword : ignores", () => {
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.idScript).toEqual(4);
+        });
+    });
+  });
+  describe("Card, Article 181, idProduct 107", () => {
+    it("should have a price of 123.75", async () => {
+      return db.put_memory
+        .findOne({
+          where: {
+            PUT_Request_id: 3,
+            idArticle: 181,
+          },
+        })
+        .then((put_memory) => {
+          expect(put_memory.dataValues.newPrice).toEqual(190);
         });
     });
   });

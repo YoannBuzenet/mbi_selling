@@ -1324,6 +1324,7 @@ async function realScriptPersistingStep(
             !chunkOfCards[k].hasOwnProperty("priceShieldBlocked") &&
             !chunkOfCards[k].hasOwnProperty("excludedVariousReason") &&
             !chunkOfCards[k].hasOwnProperty("hasNoPriceGuide") &&
+            !chunkOfCards[k].hasOwnProperty("hasNoCustomRule") &&
             chunkOfCards[k].action.ruleTypeId !== 3
           ) {
             //There are no errors, no priceshield mention, and we are not using ruleType that exclude the cards : it can go to XML
