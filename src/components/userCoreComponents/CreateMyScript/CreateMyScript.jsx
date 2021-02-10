@@ -339,6 +339,9 @@ const CreateMyScript = ({ history }) => {
       console.log("on trigger le use Effect en creation");
       setCustomRulesGlobalState(defaultCreationState);
       setScriptName(defaultScriptName);
+      setPricesAreBasedOn("mkmTrends");
+      setChipData([]);
+      setKeywordBehaviour("ignoresEverything");
     }
   }, [history.location.pathname]);
 
