@@ -1259,21 +1259,13 @@ const CreateMyScript = ({ history }) => {
         <div className="parts-container">
           <div className="left-part">
             <div className="second-menu-scripts">
-              <p style={{ margin: "0 20px" }}>
-                <FormattedMessage
-                  id="createMyScript.title.scriptname"
-                  defaultMessage="Script Name"
-                />
-              </p>
-              <TextField
-                id="outlined-from"
-                variant="outlined"
-                name={"priceRangeValueToSet"}
-                onChange={handleChangeScriptName}
-                className="scriptNameEdition"
-                value={scriptName}
-              />
-              <div className="buttons-right-menu">
+              {isCreationOrEditionMode === "Creation" && (
+                <h2 className="main-title">Create a Script</h2>
+              )}
+              {isCreationOrEditionMode === "Edition" && (
+                <h2 className="main-title">Script n°{idScript}</h2>
+              )}
+              <div className="main-buttons-menu">
                 <Button
                   variant="contained"
                   color="primary"
@@ -1330,35 +1322,50 @@ const CreateMyScript = ({ history }) => {
                     />
                   </Button>
                 )}
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-checkbox-label">
-                    {formatSelectTitle}
-                  </InputLabel>
-                  <Select
-                    labelId="demo-mutiple-checkbox-label"
-                    id="demo-mutiple-checkbox"
-                    multiple
-                    value={[]}
-                    onChange={handleChangeSelect}
-                    input={<Input />}
-                    renderValue={(selected) => selected.join(", ")}
-                    MenuProps={MenuProps}
-                  >
-                    {allDefinitions.allFormats.map((format) => (
-                      <MenuItem key={format.id} value={format.id}>
-                        <Checkbox
-                          size="medium"
-                          checked={selectedFormats.indexOf(format.id) > -1}
-                        />
-                        <ListItemText
-                          primary={format.name}
-                          className="format-select"
-                        />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
               </div>
+              <p style={{ margin: "0 20px" }}>
+                <FormattedMessage
+                  id="createMyScript.title.scriptname"
+                  defaultMessage="Script Name"
+                />
+              </p>
+              <TextField
+                id="outlined-from"
+                variant="outlined"
+                name={"priceRangeValueToSet"}
+                onChange={handleChangeScriptName}
+                className="scriptNameEdition"
+                value={scriptName}
+              />
+
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-mutiple-checkbox-label">
+                  {formatSelectTitle}
+                </InputLabel>
+                <Select
+                  labelId="demo-mutiple-checkbox-label"
+                  id="demo-mutiple-checkbox"
+                  multiple
+                  value={[]}
+                  onChange={handleChangeSelect}
+                  input={<Input />}
+                  renderValue={(selected) => selected.join(", ")}
+                  MenuProps={MenuProps}
+                >
+                  {allDefinitions.allFormats.map((format) => (
+                    <MenuItem key={format.id} value={format.id}>
+                      <Checkbox
+                        size="medium"
+                        checked={selectedFormats.indexOf(format.id) > -1}
+                      />
+                      <ListItemText
+                        primary={format.name}
+                        className="format-select"
+                      />
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               <div className="isBasedOnChoice">
                 <div className="basedOnSelection">
                   <p>
@@ -1388,7 +1395,7 @@ const CreateMyScript = ({ history }) => {
                     </Select>
                   </FormControl>
                 </div>
-                <div className="basedOnHelperText">
+                {/* <div className="basedOnHelperText">
                   {pricesAreBasedOn === "mkmTrends" && (
                     <div className="helperContainer">
                       <div className="svgContainer">
@@ -1415,7 +1422,7 @@ const CreateMyScript = ({ history }) => {
                       </p>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
               <div className="keywordSelection">
                 <div className="behaviourSelect">
@@ -1489,7 +1496,7 @@ const CreateMyScript = ({ history }) => {
                     </IconButton>
                   </div>
                 </div>
-                <div className="keywordHelper">
+                {/* <div className="keywordHelper">
                   {keywordBehaviour === "ignoresEverything" && (
                     <div className="helperContainer">
                       <div className="svgContainer">
@@ -1529,7 +1536,7 @@ const CreateMyScript = ({ history }) => {
                       </p>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
