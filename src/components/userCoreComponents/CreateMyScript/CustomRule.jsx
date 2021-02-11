@@ -157,32 +157,6 @@ const CustomRule = ({
                 value={rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""}
               />
               <p className="fromToText">€</p>
-              {scriptIsBasedOn === "mkmTrends" && FoilOrRegular === "foil" && (
-                <p className="helperTextCustomRules">
-                  <FormattedMessage
-                    id="customRules.helpertext.basedOnFoilMKMTrends"
-                    defaultMessage="based on MKM Foil Trends"
-                  />
-                </p>
-              )}
-
-              {scriptIsBasedOn === "mkmTrends" && FoilOrRegular === "regular" && (
-                <p className="helperTextCustomRules">
-                  <FormattedMessage
-                    id="customRules.helpertext.basedOnRegularMKMTrends"
-                    defaultMessage="based on MKM trend"
-                  />
-                </p>
-              )}
-
-              {scriptIsBasedOn === "oldPrices" && (
-                <p className="helperTextCustomRules">
-                  <FormattedMessage
-                    id="customRules.helpertext.basedOnCurrentPrices"
-                    defaultMessage="based on your current prices"
-                  />
-                </p>
-              )}
               <div className="ruleType-choice">
                 <div>
                   {Array.isArray(allDefinitions.ruleTypes) && (
