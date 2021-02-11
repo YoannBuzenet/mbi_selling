@@ -1255,296 +1255,286 @@ const CreateMyScript = ({ history }) => {
 
   return (
     <>
-      <div className="second-menu-scripts">
-        <p style={{ margin: "0 20px" }}>
-          <FormattedMessage
-            id="createMyScript.title.scriptname"
-            defaultMessage="Script Name"
-          />
-        </p>
-        <TextField
-          id="outlined-from"
-          variant="outlined"
-          name={"priceRangeValueToSet"}
-          onChange={handleChangeScriptName}
-          className="scriptNameEdition"
-          value={scriptName}
-        />
-        <div className="buttons-right-menu">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => saveScriptAndCustomRules(e)}
-            className={"button-second-navbar " + classes.saveButton}
-            size="large"
-            disabled={!scriptMustBeSaved}
-          >
-            <FormattedMessage
-              id="createMyScript.buttons.save"
-              defaultMessage="Save"
-            />
-          </Button>
-
-          {/* This button only displays if script has an ID */}
-          {Boolean(idScript) && (
-            <Button
-              variant="contained"
-              color="primary"
-              className={"button-second-navbar " + classes.testButton}
-              size="large"
-              onClick={launchTest}
-              disabled={
-                authenticationInfos?.userScripts?.[indexScript]?.isRunning ===
-                  1 ||
-                scriptMustBeSaved ||
-                false
-              }
-            >
-              <FormattedMessage
-                id="createMyScript.buttons.test"
-                defaultMessage="Test"
-              />
-            </Button>
-          )}
-          {/* This button only displays if script has an ID */}
-          {Boolean(idScript) && (
-            <Button
-              variant="contained"
-              color="primary"
-              className={"button-second-navbar " + classes.launchButton}
-              size="large"
-              onClick={launchScript}
-              disabled={
-                authenticationInfos?.userScripts?.[indexScript]?.isRunning ===
-                  1 ||
-                scriptMustBeSaved ||
-                false
-              }
-            >
-              <FormattedMessage
-                id="createMyScript.buttons.launch"
-                defaultMessage="Lancer"
-              />
-            </Button>
-          )}
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-mutiple-checkbox-label">
-              {formatSelectTitle}
-            </InputLabel>
-            <Select
-              labelId="demo-mutiple-checkbox-label"
-              id="demo-mutiple-checkbox"
-              multiple
-              value={[]}
-              onChange={handleChangeSelect}
-              input={<Input />}
-              renderValue={(selected) => selected.join(", ")}
-              MenuProps={MenuProps}
-            >
-              {allDefinitions.allFormats.map((format) => (
-                <MenuItem key={format.id} value={format.id}>
-                  <Checkbox
-                    size="medium"
-                    checked={selectedFormats.indexOf(format.id) > -1}
-                  />
-                  <ListItemText
-                    primary={format.name}
-                    className="format-select"
-                  />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-        <div className="isBasedOnChoice">
-          <div className="basedOnSelection">
-            <p>
-              <FormattedMessage
-                id="createMyScript.script.select.pricesAreBasedOn.label"
-                defaultMessage="Base the new prices on : "
-              />
-            </p>
-            <FormControl className={classes.formControl}>
-              <Select
-                labelId="price-based-on-select-label"
-                id="price-based-on-select"
-                value={pricesAreBasedOn}
-                onChange={handlePricedBasedOn}
-                MenuProps={{ disableScrollLock: true }}
-              >
-                {pricedBasedOnPossibilities.map((pricedBasedOnPossibility) => (
-                  <MenuItem value={pricedBasedOnPossibility.value}>
-                    <FormattedMessage
-                      id={pricedBasedOnPossibility.id}
-                      defaultMessage={pricedBasedOnPossibility.default}
-                    />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <div className="basedOnHelperText">
-            {pricesAreBasedOn === "mkmTrends" && (
-              <div className="helperContainer">
-                <div className="svgContainer">
-                  <InfoIcon />
-                </div>
-                <p>
-                  <FormattedMessage
-                    id="createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText"
-                    defaultMessage="New prices will be based on MKM trends. Example : +10% on MKM trend. This only applies to rules where you chose 'Create operation'."
-                  />
-                </p>
-              </div>
-            )}
-            {pricesAreBasedOn === "oldPrices" && (
-              <div className="helperContainer">
-                <div className="svgContainer">
-                  <InfoIcon />
-                </div>
-                <p>
-                  <FormattedMessage
-                    id="createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText"
-                    defaultMessage="New prices will be based on your current prices. Example : +10% on your current prices. This only applies to rules where you chose 'Create operation'."
-                  />
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="keywordSelection">
-          <div className="behaviourSelect">
-            <p>
-              <FormattedMessage
-                id="createMyScript.script.select.keywordBehaviour.title"
-                defaultMessage="MKM comment : "
-              />
-            </p>
-            <FormControl className={classes.formControl}>
-              <Select
-                labelId="keyword-behaviour-select-label"
-                id="keyword-behaviour-select"
-                value={keywordBehaviour}
-                onChange={handleSelectBehaviour}
-                MenuProps={{ disableScrollLock: true }}
-              >
-                {keywordBehaviourPossibilities.map((possibility) => (
-                  <MenuItem value={possibility.value}>
-                    <FormattedMessage
-                      id={possibility.id}
-                      defaultMessage={possibility.default}
-                    />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <div className="keywordList">
-            <Paper component="ul" className={classes.root}>
-              {chipData.length === 0 && (
-                <div className="chipsPlaceHolderNoKeywords">
-                  <FormattedMessage
-                    id="createMyScript.script.select.keywordChips.placeholder.noKeywords"
-                    defaultMessage="No MKM comment were added."
-                  />
-                </div>
-              )}
-              {chipData.map((data) => {
-                let icon;
-                // Icon can be set as non deletable - see doc
-                return (
-                  <li key={data.key}>
-                    <Chip
-                      icon={icon}
-                      label={data.label}
-                      onDelete={handleDeleteChip(data)}
-                      className={classes.chip}
-                    />
-                  </li>
-                );
-              })}
-            </Paper>
-          </div>
-          <div className="keywordAdder">
-            <TextField
-              id="keywordNametextfield"
-              label={keywordAddLabel}
-              value={keywordName}
-              onChange={handleWriteKeywordName}
-            />
-            <div className="keywordAdderContainer">
-              <IconButton
-                aria-label="add"
-                disabled={keywordName.length === 0}
-                onClick={(e) => handleAddKeyword(e, keywordName)}
-              >
-                <AddCircleIcon
-                  color={keywordName.length === 0 ? "" : "primary"}
-                />
-              </IconButton>
-            </div>
-          </div>
-          <div className="keywordHelper">
-            {keywordBehaviour === "ignoresEverything" && (
-              <div className="helperContainer">
-                <div className="svgContainer">
-                  <InfoIcon />
-                </div>
-                <p>
-                  <FormattedMessage
-                    id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.ignore"
-                    defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script IGNORES these comments."
-                  />
-                </p>
-              </div>
-            )}
-            {keywordBehaviour === "targetsSpecifically" && (
-              <div className="helperContainer">
-                <div className="svgContainer">
-                  <InfoIcon />
-                </div>
-                <p>
-                  <FormattedMessage
-                    id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.targets"
-                    defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script TARGETS ONLY cards with these comments."
-                  />
-                </p>
-              </div>
-            )}
-            {keywordBehaviour === "avoidsSpecifically" && (
-              <div className="helperContainer">
-                <div className="svgContainer">
-                  <InfoIcon />
-                </div>
-                <p>
-                  <FormattedMessage
-                    id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.avoid"
-                    defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script AVOIDS cards with these comments."
-                  />
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="column-definitions">
-          <p className="columnTitles">
-            <FormattedMessage
-              id="createMyScript.columnTitles.regular"
-              defaultMessage="Regular"
-            />
-          </p>
-          <p className="columnTitles">
-            <FormattedMessage
-              id="createMyScript.columnTitles.foil"
-              defaultMessage="Foil"
-            />
-          </p>
-        </div>
-      </div>
       <div className="create-my-script-container">
         <div className="parts-container">
           <div className="left-part">
-            <div className="left-schema">
+            <div className="second-menu-scripts">
+              <p style={{ margin: "0 20px" }}>
+                <FormattedMessage
+                  id="createMyScript.title.scriptname"
+                  defaultMessage="Script Name"
+                />
+              </p>
+              <TextField
+                id="outlined-from"
+                variant="outlined"
+                name={"priceRangeValueToSet"}
+                onChange={handleChangeScriptName}
+                className="scriptNameEdition"
+                value={scriptName}
+              />
+              <div className="buttons-right-menu">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => saveScriptAndCustomRules(e)}
+                  className={"button-second-navbar " + classes.saveButton}
+                  size="large"
+                  disabled={!scriptMustBeSaved}
+                >
+                  <FormattedMessage
+                    id="createMyScript.buttons.save"
+                    defaultMessage="Save"
+                  />
+                </Button>
+
+                {/* This button only displays if script has an ID */}
+                {Boolean(idScript) && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={"button-second-navbar " + classes.testButton}
+                    size="large"
+                    onClick={launchTest}
+                    disabled={
+                      authenticationInfos?.userScripts?.[indexScript]
+                        ?.isRunning === 1 ||
+                      scriptMustBeSaved ||
+                      false
+                    }
+                  >
+                    <FormattedMessage
+                      id="createMyScript.buttons.test"
+                      defaultMessage="Test"
+                    />
+                  </Button>
+                )}
+                {/* This button only displays if script has an ID */}
+                {Boolean(idScript) && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={"button-second-navbar " + classes.launchButton}
+                    size="large"
+                    onClick={launchScript}
+                    disabled={
+                      authenticationInfos?.userScripts?.[indexScript]
+                        ?.isRunning === 1 ||
+                      scriptMustBeSaved ||
+                      false
+                    }
+                  >
+                    <FormattedMessage
+                      id="createMyScript.buttons.launch"
+                      defaultMessage="Lancer"
+                    />
+                  </Button>
+                )}
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-mutiple-checkbox-label">
+                    {formatSelectTitle}
+                  </InputLabel>
+                  <Select
+                    labelId="demo-mutiple-checkbox-label"
+                    id="demo-mutiple-checkbox"
+                    multiple
+                    value={[]}
+                    onChange={handleChangeSelect}
+                    input={<Input />}
+                    renderValue={(selected) => selected.join(", ")}
+                    MenuProps={MenuProps}
+                  >
+                    {allDefinitions.allFormats.map((format) => (
+                      <MenuItem key={format.id} value={format.id}>
+                        <Checkbox
+                          size="medium"
+                          checked={selectedFormats.indexOf(format.id) > -1}
+                        />
+                        <ListItemText
+                          primary={format.name}
+                          className="format-select"
+                        />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="isBasedOnChoice">
+                <div className="basedOnSelection">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.script.select.pricesAreBasedOn.label"
+                      defaultMessage="Base the new prices on : "
+                    />
+                  </p>
+                  <FormControl className={classes.formControl}>
+                    <Select
+                      labelId="price-based-on-select-label"
+                      id="price-based-on-select"
+                      value={pricesAreBasedOn}
+                      onChange={handlePricedBasedOn}
+                      MenuProps={{ disableScrollLock: true }}
+                    >
+                      {pricedBasedOnPossibilities.map(
+                        (pricedBasedOnPossibility) => (
+                          <MenuItem value={pricedBasedOnPossibility.value}>
+                            <FormattedMessage
+                              id={pricedBasedOnPossibility.id}
+                              defaultMessage={pricedBasedOnPossibility.default}
+                            />
+                          </MenuItem>
+                        )
+                      )}
+                    </Select>
+                  </FormControl>
+                </div>
+                <div className="basedOnHelperText">
+                  {pricesAreBasedOn === "mkmTrends" && (
+                    <div className="helperContainer">
+                      <div className="svgContainer">
+                        <InfoIcon />
+                      </div>
+                      <p>
+                        <FormattedMessage
+                          id="createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText"
+                          defaultMessage="New prices will be based on MKM trends. Example : +10% on MKM trend. This only applies to rules where you chose 'Create operation'."
+                        />
+                      </p>
+                    </div>
+                  )}
+                  {pricesAreBasedOn === "oldPrices" && (
+                    <div className="helperContainer">
+                      <div className="svgContainer">
+                        <InfoIcon />
+                      </div>
+                      <p>
+                        <FormattedMessage
+                          id="createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText"
+                          defaultMessage="New prices will be based on your current prices. Example : +10% on your current prices. This only applies to rules where you chose 'Create operation'."
+                        />
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="keywordSelection">
+                <div className="behaviourSelect">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.script.select.keywordBehaviour.title"
+                      defaultMessage="MKM comment : "
+                    />
+                  </p>
+                  <FormControl className={classes.formControl}>
+                    <Select
+                      labelId="keyword-behaviour-select-label"
+                      id="keyword-behaviour-select"
+                      value={keywordBehaviour}
+                      onChange={handleSelectBehaviour}
+                      MenuProps={{ disableScrollLock: true }}
+                    >
+                      {keywordBehaviourPossibilities.map((possibility) => (
+                        <MenuItem value={possibility.value}>
+                          <FormattedMessage
+                            id={possibility.id}
+                            defaultMessage={possibility.default}
+                          />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+                <div className="keywordList">
+                  <Paper component="ul" className={classes.root}>
+                    {chipData.length === 0 && (
+                      <div className="chipsPlaceHolderNoKeywords">
+                        <FormattedMessage
+                          id="createMyScript.script.select.keywordChips.placeholder.noKeywords"
+                          defaultMessage="No MKM comment were added."
+                        />
+                      </div>
+                    )}
+                    {chipData.map((data) => {
+                      let icon;
+                      // Icon can be set as non deletable - see doc
+                      return (
+                        <li key={data.key}>
+                          <Chip
+                            icon={icon}
+                            label={data.label}
+                            onDelete={handleDeleteChip(data)}
+                            className={classes.chip}
+                          />
+                        </li>
+                      );
+                    })}
+                  </Paper>
+                </div>
+                <div className="keywordAdder">
+                  <TextField
+                    id="keywordNametextfield"
+                    label={keywordAddLabel}
+                    value={keywordName}
+                    onChange={handleWriteKeywordName}
+                  />
+                  <div className="keywordAdderContainer">
+                    <IconButton
+                      aria-label="add"
+                      disabled={keywordName.length === 0}
+                      onClick={(e) => handleAddKeyword(e, keywordName)}
+                    >
+                      <AddCircleIcon
+                        color={keywordName.length === 0 ? "" : "primary"}
+                      />
+                    </IconButton>
+                  </div>
+                </div>
+                <div className="keywordHelper">
+                  {keywordBehaviour === "ignoresEverything" && (
+                    <div className="helperContainer">
+                      <div className="svgContainer">
+                        <InfoIcon />
+                      </div>
+                      <p>
+                        <FormattedMessage
+                          id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.ignore"
+                          defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script IGNORES these comments."
+                        />
+                      </p>
+                    </div>
+                  )}
+                  {keywordBehaviour === "targetsSpecifically" && (
+                    <div className="helperContainer">
+                      <div className="svgContainer">
+                        <InfoIcon />
+                      </div>
+                      <p>
+                        <FormattedMessage
+                          id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.targets"
+                          defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script TARGETS ONLY cards with these comments."
+                        />
+                      </p>
+                    </div>
+                  )}
+                  {keywordBehaviour === "avoidsSpecifically" && (
+                    <div className="helperContainer">
+                      <div className="svgContainer">
+                        <InfoIcon />
+                      </div>
+                      <p>
+                        <FormattedMessage
+                          id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.avoid"
+                          defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script AVOIDS cards with these comments."
+                        />
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="right-part">
+            <div className="regular-rules-schema">
               <AddRuleButton
                 position={0}
                 FoilOrRegular="regular"
@@ -1570,9 +1560,7 @@ const CreateMyScript = ({ history }) => {
                   );
                 })}
             </div>
-          </div>
-          <div className="right-part">
-            <div className="right-schema">
+            <div className="foil-rules-schema">
               <AddRuleButton
                 position={0}
                 FoilOrRegular="foil"
