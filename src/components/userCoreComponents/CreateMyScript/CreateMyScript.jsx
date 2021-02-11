@@ -1218,7 +1218,7 @@ const CreateMyScript = ({ history }) => {
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
+      minWidth: 150,
       maxWidth: 300,
     },
     selectEmpty: {
@@ -1344,7 +1344,9 @@ const CreateMyScript = ({ history }) => {
               </div>
               <div className="partContainer formatSelection">
                 <div className="part-title">
-                  <p>Format Selection</p>
+                  <p>
+                    Format Selection<span> ({selectedFormats.length})</span>
+                  </p>
                 </div>
                 <div className="partForm">
                   <FormControl className={classes.formControl}>
