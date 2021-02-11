@@ -259,7 +259,7 @@
   "createMyScript.columnTitles.foil": "Foil",
   "createMyScript.genericRules.title": "Regles génériques",
   "createMyScript.script.title.defaultName": "Nouveau Script",
-  "createMyScript.script.select.pricesAreBasedOn.label": "Baser les nouveaux prix sur : ",
+  "createMyScript.script.select.pricesAreBasedOn.label": "Calculer les nouveaux prix à partir de : ",
   "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends": "Les données MKM",
   "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices": "Mes prix actuels",
   "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText": "Les nouveaux prix seront basés par rapport à vos prix existants. Exemple : +10% sur vos prix actuels. Cela ne s'applique qu'aux règles où vous avez sélectionné 'Créer Opération'.",

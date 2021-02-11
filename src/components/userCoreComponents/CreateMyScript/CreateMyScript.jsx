@@ -30,6 +30,9 @@ import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
@@ -1201,6 +1204,7 @@ const CreateMyScript = ({ history }) => {
         width: "25ch",
       },
     },
+    radioFormControl: {},
     chip: {
       margin: theme.spacing(0.5),
     },
@@ -1250,6 +1254,15 @@ const CreateMyScript = ({ history }) => {
   const keywordAddLabel = intl.formatMessage({
     id: "createMyScript.script.select.keywordBehaviour.add.form.label",
     defaultMessage: "Add a MKM comment",
+  });
+
+  const translatedMkmTrendsBehaviour = intl.formatMessage({
+    id: "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends",
+    defaultMessage: "The MKM Data",
+  });
+  const translatedOldPricesBehaviour = intl.formatMessage({
+    id: "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices",
+    defaultMessage: "My current prices",
   });
 
   return (
@@ -1385,12 +1398,34 @@ const CreateMyScript = ({ history }) => {
                     <p>
                       <FormattedMessage
                         id="createMyScript.script.select.pricesAreBasedOn.label"
-                        defaultMessage="Base the new prices on : "
+                        defaultMessage="Calculate the new prices from : "
                       />
                     </p>
                   </div>
                   <div className="partForm">
-                    <FormControl className={classes.formControl}>
+                    <RadioGroup
+                      row
+                      aria-label="position"
+                      name="position"
+                      defaultValue={pricesAreBasedOn}
+                      className={classes.radioFormControl}
+                    >
+                      <FormControlLabel
+                        value="mkmTrends"
+                        control={<Radio color="primary" />}
+                        label={translatedMkmTrendsBehaviour}
+                        onChange={handlePricedBasedOn}
+                        labelPlacement="start"
+                      />
+                      <FormControlLabel
+                        value="oldPrices"
+                        control={<Radio color="primary" />}
+                        label={translatedOldPricesBehaviour}
+                        labelPlacement="start"
+                        onChange={handlePricedBasedOn}
+                      />
+                    </RadioGroup>
+                    {/* <FormControl className={classes.formControl}>
                       <Select
                         labelId="price-based-on-select-label"
                         id="price-based-on-select"
@@ -1411,7 +1446,7 @@ const CreateMyScript = ({ history }) => {
                           )
                         )}
                       </Select>
-                    </FormControl>
+                    </FormControl> */}
                   </div>
                 </div>
                 {/* <div className="basedOnHelperText">
