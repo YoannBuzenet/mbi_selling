@@ -1322,7 +1322,7 @@ const CreateMyScript = ({ history }) => {
                   </Button>
                 )}
               </div>
-              <div className="nameSelection">
+              <div className="partContainer nameSelection">
                 <div className="part-title">
                   <p>
                     <FormattedMessage
@@ -1331,50 +1331,54 @@ const CreateMyScript = ({ history }) => {
                     />
                   </p>
                 </div>
-                <TextField
-                  id="outlined-from"
-                  variant="outlined"
-                  name={"priceRangeValueToSet"}
-                  onChange={handleChangeScriptName}
-                  className="scriptNameEdition"
-                  value={scriptName}
-                />
+                <div className="partForm">
+                  <TextField
+                    id="outlined-from"
+                    variant="outlined"
+                    name={"priceRangeValueToSet"}
+                    onChange={handleChangeScriptName}
+                    className="scriptNameEdition"
+                    value={scriptName}
+                  />
+                </div>
               </div>
-              <div className="formatSelection">
+              <div className="partContainer formatSelection">
                 <div className="part-title">
                   <p>Format Selection</p>
                 </div>
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-checkbox-label">
-                    {formatSelectTitle}
-                  </InputLabel>
-                  <Select
-                    labelId="demo-mutiple-checkbox-label"
-                    id="demo-mutiple-checkbox"
-                    multiple
-                    value={[]}
-                    onChange={handleChangeSelect}
-                    input={<Input />}
-                    renderValue={(selected) => selected.join(", ")}
-                    MenuProps={MenuProps}
-                  >
-                    {allDefinitions.allFormats.map((format) => (
-                      <MenuItem key={format.id} value={format.id}>
-                        <Checkbox
-                          size="medium"
-                          checked={selectedFormats.indexOf(format.id) > -1}
-                        />
-                        <ListItemText
-                          primary={format.name}
-                          className="format-select"
-                        />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                <div className="partForm">
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-mutiple-checkbox-label">
+                      {formatSelectTitle}
+                    </InputLabel>
+                    <Select
+                      labelId="demo-mutiple-checkbox-label"
+                      id="demo-mutiple-checkbox"
+                      multiple
+                      value={[]}
+                      onChange={handleChangeSelect}
+                      input={<Input />}
+                      renderValue={(selected) => selected.join(", ")}
+                      MenuProps={MenuProps}
+                    >
+                      {allDefinitions.allFormats.map((format) => (
+                        <MenuItem key={format.id} value={format.id}>
+                          <Checkbox
+                            size="medium"
+                            checked={selectedFormats.indexOf(format.id) > -1}
+                          />
+                          <ListItemText
+                            primary={format.name}
+                            className="format-select"
+                          />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
               </div>
-              <div className="isBasedOnChoice">
-                <div className="basedOnSelection">
+              <div className="partContainer isBasedOnChoice">
+                <div className="partContainer basedOnSelection">
                   <div className="part-title">
                     <p>
                       <FormattedMessage
@@ -1383,27 +1387,30 @@ const CreateMyScript = ({ history }) => {
                       />
                     </p>
                   </div>
-
-                  <FormControl className={classes.formControl}>
-                    <Select
-                      labelId="price-based-on-select-label"
-                      id="price-based-on-select"
-                      value={pricesAreBasedOn}
-                      onChange={handlePricedBasedOn}
-                      MenuProps={{ disableScrollLock: true }}
-                    >
-                      {pricedBasedOnPossibilities.map(
-                        (pricedBasedOnPossibility) => (
-                          <MenuItem value={pricedBasedOnPossibility.value}>
-                            <FormattedMessage
-                              id={pricedBasedOnPossibility.id}
-                              defaultMessage={pricedBasedOnPossibility.default}
-                            />
-                          </MenuItem>
-                        )
-                      )}
-                    </Select>
-                  </FormControl>
+                  <div className="partForm">
+                    <FormControl className={classes.formControl}>
+                      <Select
+                        labelId="price-based-on-select-label"
+                        id="price-based-on-select"
+                        value={pricesAreBasedOn}
+                        onChange={handlePricedBasedOn}
+                        MenuProps={{ disableScrollLock: true }}
+                      >
+                        {pricedBasedOnPossibilities.map(
+                          (pricedBasedOnPossibility) => (
+                            <MenuItem value={pricedBasedOnPossibility.value}>
+                              <FormattedMessage
+                                id={pricedBasedOnPossibility.id}
+                                defaultMessage={
+                                  pricedBasedOnPossibility.default
+                                }
+                              />
+                            </MenuItem>
+                          )
+                        )}
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
                 {/* <div className="basedOnHelperText">
                   {pricesAreBasedOn === "mkmTrends" && (
@@ -1434,8 +1441,8 @@ const CreateMyScript = ({ history }) => {
                   )}
                 </div> */}
               </div>
-              <div className="keywordSelection">
-                <div className="behaviourSelect">
+              <div className="partContainer keywordSelection">
+                <div className="partContainer behaviourSelect">
                   <div className="part-title">
                     <p>
                       <FormattedMessage
@@ -1444,24 +1451,26 @@ const CreateMyScript = ({ history }) => {
                       />
                     </p>
                   </div>
-                  <FormControl className={classes.formControl}>
-                    <Select
-                      labelId="keyword-behaviour-select-label"
-                      id="keyword-behaviour-select"
-                      value={keywordBehaviour}
-                      onChange={handleSelectBehaviour}
-                      MenuProps={{ disableScrollLock: true }}
-                    >
-                      {keywordBehaviourPossibilities.map((possibility) => (
-                        <MenuItem value={possibility.value}>
-                          <FormattedMessage
-                            id={possibility.id}
-                            defaultMessage={possibility.default}
-                          />
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
+                  <div className="partForm">
+                    <FormControl className={classes.formControl}>
+                      <Select
+                        labelId="keyword-behaviour-select-label"
+                        id="keyword-behaviour-select"
+                        value={keywordBehaviour}
+                        onChange={handleSelectBehaviour}
+                        MenuProps={{ disableScrollLock: true }}
+                      >
+                        {keywordBehaviourPossibilities.map((possibility) => (
+                          <MenuItem value={possibility.value}>
+                            <FormattedMessage
+                              id={possibility.id}
+                              defaultMessage={possibility.default}
+                            />
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
                 <div className="keywordList">
                   <Paper component="ul" className={classes.root}>
