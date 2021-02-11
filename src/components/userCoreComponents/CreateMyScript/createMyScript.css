@@ -211,6 +211,7 @@ button.button-second-navbar {
 }
 .parts-container > .left-part {
   width: 30%;
+  height: 1000px;
   background-color: white;
   box-shadow: 1px 1px 1px black;
 }
@@ -240,6 +241,10 @@ button.button-second-navbar {
   width: 80%;
   margin: 0 auto;
 }
+.right-part .sectionTitle p {
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
 .ruleContainer {
   position: relative;
@@ -247,20 +252,26 @@ button.button-second-navbar {
   margin: 0 auto;
   width: 80%;
   max-height: 50px;
-  border-radius: 5px;
-  background-color: rgba(228, 233, 237, 1);
-  box-shadow: 1px 1px 1px black;
+  background-color: white;
 }
 
 .ruleContainer:hover {
-  background-color: rgba(218, 223, 225, 1);
-  box-shadow: 2px 2px 1px black;
+  background-color: rgb(232, 236, 238);
 }
 
 .ruleContainer .ruleMainBody {
   display: flex;
   justify-content: start;
   align-items: center;
+}
+
+.hidden-rule-adder {
+  height: 0;
+  transition: height 1s;
+}
+
+.display-rule-adder {
+  height: 50px;
 }
 
 .deleteButton {
@@ -321,6 +332,12 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 /** BELOW RULE **/
 /* ************ */
 
+.asideRule {
+  position: absolute;
+  right: -40px;
+  top: -5px;
+}
+
 .twoBlocksContainer {
   display: flex;
   justify-content: center;
@@ -330,21 +347,21 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 .twoBlocksContainer .div1left {
   width: 50%;
   height: 50px;
-  border-right: 1px solid blue;
+  /* border-right: 1px solid blue; */
 }
 
 .twoBlocksContainer .div2right {
   width: 50%;
   height: 50px;
-  border-left: 1px solid blue;
+  /* border-left: 1px solid blue; */
 }
 
 .twoBlocksContainer .div1left.hasErrors {
-  border-right: 2px solid red;
+  /* border-right: 2px solid red; */
 }
 
 .twoBlocksContainer .div2right.hasErrors {
-  border-left: 2px solid red;
+  /* border-left: 2px solid red; */
 }
 
 button.onSeparatedDivButton {
@@ -353,7 +370,7 @@ button.onSeparatedDivButton {
   z-index: 3;
 }
 
-.whiteDivFillMuiIcon {
+/* .whiteDivFillMuiIcon {
   position: absolute;
   background-color: white;
   border-radius: 50%;
@@ -361,7 +378,7 @@ button.onSeparatedDivButton {
   z-index: 2;
   height: 10px;
   width: 10px;
-}
+} */
 
 /********************/
 /*********MUI*******/
