@@ -259,7 +259,7 @@ button.button-second-navbar {
 
 .ruleContainer {
   position: relative;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
   width: 80%;
   /* max-height: 57px; */
@@ -316,7 +316,11 @@ div.inputValueNumber {
 }
 
 .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl {
-  border-radius: 0;
+  border-radius: 3px;
+}
+
+.ruleContainer .MuiOutlinedInput-input {
+  padding: 10px 10 px;
 }
 
 input.MuiInputBase-input.MuiOutlinedInput-input {
