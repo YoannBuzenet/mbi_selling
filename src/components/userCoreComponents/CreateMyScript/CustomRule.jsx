@@ -87,6 +87,16 @@ const CustomRule = ({
     classNameSecondDiv = "div2right hasErrors";
   }
 
+  let borderRuleContainer;
+  if (index === 0) {
+    borderRuleContainer = { border: "1px solid black" };
+  } else {
+    borderRuleContainer = {
+      borderRight: "1px solid black",
+      borderLeft: "1px solid black",
+      borderBottom: "1px solid black",
+    };
+  }
   /* ****************** */
   /* ***TRANSLATIONS*** */
   /* ****************** */
@@ -109,7 +119,7 @@ const CustomRule = ({
     <>
       <Zoom in={isZoomed}>
         <Typography>
-          <div className="ruleContainer">
+          <div className="ruleContainer" style={borderRuleContainer}>
             <div className="deleteButton">
               <IconButton
                 onClick={(e) => {
