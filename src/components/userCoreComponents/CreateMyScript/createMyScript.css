@@ -9,18 +9,9 @@
 **************************/
 
 .create-my-script-container {
-  margin-top: 363px;
 }
 
 .second-menu-scripts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 67px;
-  height: 61px;
-  width: 100%;
-  background-color: #f9f9f9;
   z-index: 5;
   border-top: 1px solid black;
 }
@@ -68,28 +59,13 @@
 }
 
 .isBasedOnChoice {
-  position: fixed;
-  top: 122px;
-  height: 80px;
   width: 100%;
-  background-color: #f9f9f9;
-  z-index: 5;
   border-top: 1px solid black;
   box-shadow: 1px 1px 1px black;
-  display: flex;
-  justify-content: center;
 }
 .keywordSelection {
-  position: fixed;
-  top: 202px;
-  height: 100px;
   width: 100%;
   border-top: 1px solid black;
-  background-color: #f9f9f9;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  overflow: scroll;
 }
 
 .keywordAdder > .MuiFormControl-root.MuiTextField-root {
@@ -150,10 +126,6 @@
 }
 
 .column-definitions {
-  position: fixed;
-  top: 302px;
-  height: 60px;
-  width: 100%;
   background-color: #f9f9f9;
   z-index: 5;
   border-top: 1px solid black;
@@ -206,22 +178,23 @@ button.button-second-navbar {
   display: flex;
   justify-content: center;
 }
+.parts-container > .left-part {
+  width: 30%;
+  background-color: white;
+}
 
-.parts-container > .left-part,
 .parts-container > .right-part {
-  width: 50%;
+  width: 70%;
 }
 
 .parts-container > .left-part {
-  background-color: #d5dbe2;
 }
 
 .parts-container > .right-part {
-  background-color: #d2e4d3;
 }
 
-.left-part > .left-schema,
-.right-part > .right-schema {
+.left-part > .regular-rules-schema,
+.right-part > .foil-rules-schema {
   width: 80%;
   margin: auto;
 }
