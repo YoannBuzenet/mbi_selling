@@ -13,7 +13,6 @@
 
 .second-menu-scripts {
   z-index: 5;
-  border-top: 1px solid black;
 }
 
 .basedOnSelection {
@@ -60,12 +59,9 @@
 
 .isBasedOnChoice {
   width: 100%;
-  border-top: 1px solid black;
-  box-shadow: 1px 1px 1px black;
 }
 .keywordSelection {
   width: 100%;
-  border-top: 1px solid black;
 }
 
 .keywordAdder > .MuiFormControl-root.MuiTextField-root {
@@ -128,7 +124,6 @@
 .column-definitions {
   background-color: #f9f9f9;
   z-index: 5;
-  border-top: 1px solid black;
   box-shadow: 1px 1px 1px black;
   display: flex;
   justify-content: center;
@@ -181,6 +176,7 @@ button.button-second-navbar {
 .parts-container > .left-part {
   width: 30%;
   background-color: white;
+  box-shadow: 1px 1px 1px black;
 }
 
 .parts-container > .right-part {

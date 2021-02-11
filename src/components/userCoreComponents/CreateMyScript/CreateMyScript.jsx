@@ -1535,6 +1535,7 @@ const CreateMyScript = ({ history }) => {
           </div>
           <div className="right-part">
             <div className="regular-rules-schema">
+              <p>REGULAR</p>
               <AddRuleButton
                 position={0}
                 FoilOrRegular="regular"
@@ -1561,6 +1562,7 @@ const CreateMyScript = ({ history }) => {
                 })}
             </div>
             <div className="foil-rules-schema">
+              <p>FOIL</p>
               <AddRuleButton
                 position={0}
                 FoilOrRegular="foil"
