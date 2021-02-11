@@ -1668,7 +1668,9 @@ const CreateMyScript = ({ history }) => {
           </div>
           <div className="right-part">
             <div className="regular-rules-schema">
-              <p>REGULAR</p>
+              <div className="sectionTitle">
+                <p>REGULAR CARDS</p>
+              </div>
               <AddRuleButton
                 position={0}
                 FoilOrRegular="regular"
@@ -1695,7 +1697,9 @@ const CreateMyScript = ({ history }) => {
                 })}
             </div>
             <div className="foil-rules-schema">
-              <p>FOIL</p>
+              <div className="sectionTitle">
+                <p>FOIL CARDS</p>
+              </div>
               <AddRuleButton
                 position={0}
                 FoilOrRegular="foil"
