@@ -1337,43 +1337,47 @@ const CreateMyScript = ({ history }) => {
                 className="scriptNameEdition"
                 value={scriptName}
               />
-
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-mutiple-checkbox-label">
-                  {formatSelectTitle}
-                </InputLabel>
-                <Select
-                  labelId="demo-mutiple-checkbox-label"
-                  id="demo-mutiple-checkbox"
-                  multiple
-                  value={[]}
-                  onChange={handleChangeSelect}
-                  input={<Input />}
-                  renderValue={(selected) => selected.join(", ")}
-                  MenuProps={MenuProps}
-                >
-                  {allDefinitions.allFormats.map((format) => (
-                    <MenuItem key={format.id} value={format.id}>
-                      <Checkbox
-                        size="medium"
-                        checked={selectedFormats.indexOf(format.id) > -1}
-                      />
-                      <ListItemText
-                        primary={format.name}
-                        className="format-select"
-                      />
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <div className="formatSelection">
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-mutiple-checkbox-label">
+                    {formatSelectTitle}
+                  </InputLabel>
+                  <Select
+                    labelId="demo-mutiple-checkbox-label"
+                    id="demo-mutiple-checkbox"
+                    multiple
+                    value={[]}
+                    onChange={handleChangeSelect}
+                    input={<Input />}
+                    renderValue={(selected) => selected.join(", ")}
+                    MenuProps={MenuProps}
+                  >
+                    {allDefinitions.allFormats.map((format) => (
+                      <MenuItem key={format.id} value={format.id}>
+                        <Checkbox
+                          size="medium"
+                          checked={selectedFormats.indexOf(format.id) > -1}
+                        />
+                        <ListItemText
+                          primary={format.name}
+                          className="format-select"
+                        />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
               <div className="isBasedOnChoice">
                 <div className="basedOnSelection">
-                  <p>
-                    <FormattedMessage
-                      id="createMyScript.script.select.pricesAreBasedOn.label"
-                      defaultMessage="Base the new prices on : "
-                    />
-                  </p>
+                  <div className="part-title">
+                    <p>
+                      <FormattedMessage
+                        id="createMyScript.script.select.pricesAreBasedOn.label"
+                        defaultMessage="Base the new prices on : "
+                      />
+                    </p>
+                  </div>
+
                   <FormControl className={classes.formControl}>
                     <Select
                       labelId="price-based-on-select-label"
