@@ -1659,6 +1659,14 @@ const CreateMyScript = ({ history }) => {
               </div>
               <div className="regularRulesContainer">
                 {Array.isArray(customRulesGlobalState.regular) &&
+                  customRulesGlobalState.regular.length === 0 && (
+                    <AddRuleButton
+                      position={0}
+                      FoilOrRegular="regular"
+                      handleClick={addACustomRule}
+                    />
+                  )}
+                {Array.isArray(customRulesGlobalState.regular) &&
                   customRulesGlobalState.regular.map((rule, index) => {
                     // console.log(rule);
                     return (
@@ -1705,6 +1713,14 @@ const CreateMyScript = ({ history }) => {
                 )}
               </div>
               <div className="foilRulesContainer">
+                {Array.isArray(customRulesGlobalState.foil) &&
+                  customRulesGlobalState.foil.length === 0 && (
+                    <AddRuleButton
+                      position={0}
+                      FoilOrRegular="foil"
+                      handleClick={addACustomRule}
+                    />
+                  )}
                 {Array.isArray(customRulesGlobalState.foil) &&
                   customRulesGlobalState.foil.map((rule, index) => {
                     // console.log("foil rule", rule);
