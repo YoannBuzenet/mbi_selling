@@ -1264,6 +1264,20 @@ const CreateMyScript = ({ history }) => {
     id: "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices",
     defaultMessage: "My current prices",
   });
+  const ignoreEveryKeyWordBehaviour = intl.formatMessage({
+    id: "createMyScript.script.select.keywordBehaviourPossibilities.ignores",
+    defaultMessage: "Ignore",
+  });
+  const targetSpecificallyBehaviour = intl.formatMessage({
+    id:
+      "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically",
+    defaultMessage: "Target Only",
+  });
+  const avoidSpecificallyBehaviour = intl.formatMessage({
+    id:
+      "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically",
+    defaultMessage: "Avoid Specifically",
+  });
 
   return (
     <>
@@ -1272,10 +1286,21 @@ const CreateMyScript = ({ history }) => {
           <div className="left-part">
             <div className="second-menu-scripts">
               {isCreationOrEditionMode === "Creation" && (
-                <h2 className="main-title">Create a Script</h2>
+                <h2 className="main-title">
+                  <FormattedMessage
+                    id="createMyScript.title.createAScript"
+                    defaultMessage="Create a Script"
+                  />
+                </h2>
               )}
               {isCreationOrEditionMode === "Edition" && (
-                <h2 className="main-title">Script n°{idScript}</h2>
+                <h2 className="main-title">
+                  <FormattedMessage
+                    id="createMyScript.title.scriptNumber"
+                    defaultMessage="Script n°"
+                  />
+                  {idScript}
+                </h2>
               )}
               <div className="main-buttons-menu">
                 <Button
@@ -1358,7 +1383,11 @@ const CreateMyScript = ({ history }) => {
               <div className="partContainer formatSelection">
                 <div className="part-title">
                   <p>
-                    Format Selection<span> ({selectedFormats.length})</span>
+                    <FormattedMessage
+                      id="createMyScript.script.title.formatSelection"
+                      defaultMessage="Format Selection"
+                    />
+                    <span> ({selectedFormats.length})</span>
                   </p>
                 </div>
                 <div className="partForm">
@@ -1489,7 +1518,7 @@ const CreateMyScript = ({ history }) => {
                     </p>
                   </div>
                   <div className="partForm">
-                    <FormControl className={classes.formControl}>
+                    {/* <FormControl className={classes.formControl}>
                       <Select
                         labelId="keyword-behaviour-select-label"
                         id="keyword-behaviour-select"
@@ -1506,15 +1535,44 @@ const CreateMyScript = ({ history }) => {
                           </MenuItem>
                         ))}
                       </Select>
-                    </FormControl>
+                    </FormControl> */}
+                    <RadioGroup
+                      row
+                      aria-label="position"
+                      name="position"
+                      defaultValue={keywordBehaviour}
+                      className={classes.radioFormControl}
+                    >
+                      <FormControlLabel
+                        value="ignoresEverything"
+                        control={<Radio color="primary" />}
+                        label={ignoreEveryKeyWordBehaviour}
+                        onChange={handleSelectBehaviour}
+                        labelPlacement="start"
+                      />
+                      <FormControlLabel
+                        value="targetsSpecifically"
+                        control={<Radio color="primary" />}
+                        label={targetSpecificallyBehaviour}
+                        labelPlacement="start"
+                        onChange={handleSelectBehaviour}
+                      />
+                      <FormControlLabel
+                        value="avoidsSpecifically"
+                        control={<Radio color="primary" />}
+                        label={avoidSpecificallyBehaviour}
+                        labelPlacement="start"
+                        onChange={handleSelectBehaviour}
+                      />
+                    </RadioGroup>
                   </div>
                 </div>
                 <div className="keywordList">
                   <div className="part-title">
                     <p>
                       <FormattedMessage
-                        id="createMyScript.script.select.keywordBehaviour.title"
-                        defaultMessage="MKM comment : "
+                        id="createMyScript.script.select.keywordBehaviour.listOfComments.title"
+                        defaultMessage="List of MKM Comments : "
                       />
                     </p>
                   </div>
