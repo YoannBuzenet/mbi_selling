@@ -11,6 +11,9 @@
 .create-my-script-container {
 }
 
+.left-part .main-title {
+  margin-top: 20px;
+}
 .second-menu-scripts {
   z-index: 5;
 }
@@ -145,7 +148,7 @@
   text-align: left;
 }
 
-.buttons-right-menu {
+.main-buttons-menu {
   margin-left: 50px;
   display: flex;
   max-height: 30px;
