@@ -50,7 +50,7 @@
 .keywordAdder [data-shrink="false"] {
   font-size: 14px;
 }
-.formatSelection .part-title {
+.formatSelection div.part-title {
   margin-top: 20px;
 }
 
@@ -63,6 +63,22 @@
 }
 
 .keywordAdder .MuiInputBase-input {
+  font-size: 14px;
+}
+
+.basedOnSelection .partForm {
+  display: flex;
+  justify-content: center;
+}
+.basedOnSelection .partForm .MuiFormGroup-row {
+  width: 300px;
+  flex-direction: column;
+}
+.basedOnSelection .partForm .MuiFormGroup-row label {
+  display: block;
+  text-align: left;
+}
+.basedOnSelection .partForm .MuiTypography-root {
   font-size: 14px;
 }
 
