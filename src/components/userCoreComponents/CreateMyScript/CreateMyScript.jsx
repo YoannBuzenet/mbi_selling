@@ -1644,7 +1644,7 @@ const CreateMyScript = ({ history }) => {
                   <span className="helperTextCustomRules">
                     <FormattedMessage
                       id="customRules.helpertext.basedOnRegularMKMTrends"
-                      defaultMessage="based on MKM trend"
+                      defaultMessage="based on MKM trend price"
                     />
                   </span>
                 )}
@@ -1699,7 +1699,7 @@ const CreateMyScript = ({ history }) => {
                   <span className="helperTextCustomRules">
                     <FormattedMessage
                       id="customRules.helpertext.basedOnFoilMKMTrends"
-                      defaultMessage="based on MKM Foil Trends"
+                      defaultMessage="based on MKM Foil Trends price"
                     />
                   </span>
                 )}
