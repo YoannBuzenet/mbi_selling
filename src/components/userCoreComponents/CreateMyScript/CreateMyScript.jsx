@@ -1669,13 +1669,9 @@ const CreateMyScript = ({ history }) => {
           <div className="right-part">
             <div className="regular-rules-schema">
               <div className="sectionTitle">
-                <p>REGULAR CARDS</p>
+                <p>REGULAR RULES</p>
               </div>
-              <AddRuleButton
-                position={0}
-                FoilOrRegular="regular"
-                handleClick={addACustomRule}
-              />
+
               {Array.isArray(customRulesGlobalState.regular) &&
                 customRulesGlobalState.regular.map((rule, index) => {
                   // console.log(rule);
@@ -1698,13 +1694,8 @@ const CreateMyScript = ({ history }) => {
             </div>
             <div className="foil-rules-schema">
               <div className="sectionTitle">
-                <p>FOIL CARDS</p>
+                <p>FOIL RULES</p>
               </div>
-              <AddRuleButton
-                position={0}
-                FoilOrRegular="foil"
-                handleClick={addACustomRule}
-              />
               {Array.isArray(customRulesGlobalState.foil) &&
                 customRulesGlobalState.foil.map((rule, index) => {
                   // console.log("foil rule", rule);

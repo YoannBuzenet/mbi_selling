@@ -366,28 +366,33 @@ const CustomRule = ({
                 )}
               </ul>
             </div>
-          </div>
-          <div className="belowRule-CTA">
-            {/* Colored Link between rules */}
-            {index !== parentArrayLength - 1 && (
-              <div className="twoBlocksContainer">
-                <div className={classNameFirstDiv}></div>
-                <div className={classNameSecondDiv}></div>
-                <AddRuleButton
-                  position={index + 1}
-                  FoilOrRegular={FoilOrRegular}
-                  handleClick={addACustomRule}
-                  classToAdd="onSeparatedDivButton"
-                />
-              </div>
-            )}
-            {index === parentArrayLength - 1 && (
-              <AddRuleButton
-                position={index + 1}
-                FoilOrRegular={FoilOrRegular}
-                handleClick={addACustomRule}
-              />
-            )}
+            <div className="asideRule hidden-rule-adder">
+              {/* Colored Link between rules */}
+              {/* Rules with colored link */}
+              {index !== parentArrayLength - 1 && (
+                <div className="twoBlocksContainer">
+                  <div className={classNameFirstDiv}></div>
+                  <div className={classNameSecondDiv}></div>
+                  <AddRuleButton
+                    position={index + 1}
+                    FoilOrRegular={FoilOrRegular}
+                    handleClick={addACustomRule}
+                    classToAdd="onSeparatedDivButton"
+                  />
+                </div>
+              )}
+              {/* Rules without colored link */}
+              {index === parentArrayLength - 1 && (
+                <div className="twoBlocksContainer">
+                  <AddRuleButton
+                    position={index + 1}
+                    FoilOrRegular={FoilOrRegular}
+                    handleClick={addACustomRule}
+                    classToAdd="onSeparatedDivButton"
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </Typography>
       </Zoom>
