@@ -101,39 +101,6 @@ const CreateMyScript = ({ history }) => {
     defaultMessage: "My new Script",
   });
 
-  const pricedBasedOnPossibilities = [
-    {
-      value: "mkmTrends",
-      id: "createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends",
-      default: "MKM Data",
-    },
-    {
-      value: "oldPrices",
-      id: "createMyScript.script.select.pricedBasedOnPossibilities.oldPrices",
-      default: "My current prices",
-    },
-  ];
-
-  const keywordBehaviourPossibilities = [
-    {
-      value: "ignoresEverything",
-      id: "createMyScript.script.select.keywordBehaviourPossibilities.ignores",
-      default: "Ignores",
-    },
-    {
-      value: "targetsSpecifically",
-      id:
-        "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically",
-      default: "Targets only",
-    },
-    {
-      value: "avoidsSpecifically",
-      id:
-        "createMyScript.script.select.keywordBehaviourPossibilities.avoidsSpecifically",
-      default: "Avoid specifically",
-    },
-  ];
-
   const defaultScriptName = translatedDefaultScriptName;
 
   // Keyword default state
@@ -1669,52 +1636,95 @@ const CreateMyScript = ({ history }) => {
           <div className="right-part">
             <div className="regular-rules-schema">
               <div className="sectionTitle">
-                <p>REGULAR RULES</p>
-              </div>
-
-              {Array.isArray(customRulesGlobalState.regular) &&
-                customRulesGlobalState.regular.map((rule, index) => {
-                  // console.log(rule);
-                  return (
-                    <CustomRule
-                      rule={rule}
-                      index={index}
-                      parentArrayLength={customRulesGlobalState.regular.length}
-                      FoilOrRegular="regular"
-                      addACustomRule={addACustomRule}
-                      deleteACustomRule={deleteACustomRule}
-                      key={
-                        "" + rule.id + "" + rule.temporaryId + "" + "regular"
-                      }
-                      updateACustomRule={updateACustomRule}
-                      scriptIsBasedOn={pricesAreBasedOn}
+                <p>
+                  REGULAR RULES
+                  <span> ({customRulesGlobalState.regular.length})</span>
+                </p>
+                {pricesAreBasedOn === "mkmTrends" && (
+                  <span className="helperTextCustomRules">
+                    <FormattedMessage
+                      id="customRules.helpertext.basedOnRegularMKMTrends"
+                      defaultMessage="based on MKM trend"
                     />
-                  );
-                })}
+                  </span>
+                )}
+                {pricesAreBasedOn === "oldPrices" && (
+                  <span className="helperTextCustomRules">
+                    <FormattedMessage
+                      id="customRules.helpertext.basedOnCurrentPrices"
+                      defaultMessage="based on your current prices"
+                    />
+                  </span>
+                )}
+              </div>
+              <div className="regularRulesContainer">
+                {Array.isArray(customRulesGlobalState.regular) &&
+                  customRulesGlobalState.regular.map((rule, index) => {
+                    // console.log(rule);
+                    return (
+                      <CustomRule
+                        rule={rule}
+                        index={index}
+                        parentArrayLength={
+                          customRulesGlobalState.regular.length
+                        }
+                        FoilOrRegular="regular"
+                        addACustomRule={addACustomRule}
+                        deleteACustomRule={deleteACustomRule}
+                        key={
+                          "" + rule.id + "" + rule.temporaryId + "" + "regular"
+                        }
+                        updateACustomRule={updateACustomRule}
+                        scriptIsBasedOn={pricesAreBasedOn}
+                      />
+                    );
+                  })}
+              </div>
             </div>
             <div className="foil-rules-schema">
               <div className="sectionTitle">
-                <p>FOIL RULES</p>
-              </div>
-              {Array.isArray(customRulesGlobalState.foil) &&
-                customRulesGlobalState.foil.map((rule, index) => {
-                  // console.log("foil rule", rule);
-                  return (
-                    <CustomRule
-                      rule={rule}
-                      index={index}
-                      parentArrayLength={customRulesGlobalState.foil.length}
-                      FoilOrRegular="foil"
-                      addACustomRule={addACustomRule}
-                      deleteACustomRule={deleteACustomRule}
-                      key={
-                        "" + rule.id + "" + rule.temporaryId + "" + "regular"
-                      }
-                      updateACustomRule={updateACustomRule}
-                      scriptIsBasedOn={pricesAreBasedOn}
+                <p>
+                  FOIL RULES
+                  <span> ({customRulesGlobalState.foil.length})</span>
+                </p>
+                {pricesAreBasedOn === "mkmTrends" && (
+                  <span className="helperTextCustomRules">
+                    <FormattedMessage
+                      id="customRules.helpertext.basedOnFoilMKMTrends"
+                      defaultMessage="based on MKM Foil Trends"
                     />
-                  );
-                })}
+                  </span>
+                )}
+                {pricesAreBasedOn === "oldPrices" && (
+                  <span className="helperTextCustomRules">
+                    <FormattedMessage
+                      id="customRules.helpertext.basedOnCurrentPrices"
+                      defaultMessage="based on your current prices"
+                    />
+                  </span>
+                )}
+              </div>
+              <div className="foilRulesContainer">
+                {Array.isArray(customRulesGlobalState.foil) &&
+                  customRulesGlobalState.foil.map((rule, index) => {
+                    // console.log("foil rule", rule);
+                    return (
+                      <CustomRule
+                        rule={rule}
+                        index={index}
+                        parentArrayLength={customRulesGlobalState.foil.length}
+                        FoilOrRegular="foil"
+                        addACustomRule={addACustomRule}
+                        deleteACustomRule={deleteACustomRule}
+                        key={
+                          "" + rule.id + "" + rule.temporaryId + "" + "regular"
+                        }
+                        updateACustomRule={updateACustomRule}
+                        scriptIsBasedOn={pricesAreBasedOn}
+                      />
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>
