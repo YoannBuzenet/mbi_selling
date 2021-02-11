@@ -46,8 +46,24 @@
 .formatSelection .partForm {
   height: 40.87px;
 }
+.partForm [data-shrink="false"],
+.keywordAdder [data-shrink="false"] {
+  font-size: 14px;
+}
 .formatSelection .part-title {
   margin-top: 20px;
+}
+
+.partForm .MuiInputBase-input {
+  font-size: 14px;
+}
+
+.partForm .MuiChip-label {
+  font-size: 14px;
+}
+
+.keywordAdder .MuiInputBase-input {
+  font-size: 14px;
 }
 
 .basedOnHelperText svg {
@@ -87,6 +103,10 @@
 .keywordAdder .keywordAdderContainer {
   max-height: 50px;
   align-self: center;
+}
+
+.keywordAdder svg.MuiSvgIcon-root {
+  font-size: 3rem;
 }
 
 .partForm {
