@@ -82,6 +82,23 @@
   font-size: 14px;
 }
 
+.behaviourSelect .partForm {
+  display: flex;
+  justify-content: center;
+}
+
+.behaviourSelect .partForm .MuiFormGroup-row {
+  width: 300px;
+  flex-direction: column;
+}
+.behaviourSelect .partForm .MuiFormGroup-row label {
+  display: block;
+  text-align: left;
+}
+.behaviourSelect .partForm .MuiTypography-root {
+  font-size: 14px;
+}
+
 .basedOnHelperText svg {
   width: 100px;
   font-size: 30px;
@@ -89,7 +106,7 @@
 }
 
 .keywordAdder > .MuiFormControl-root.MuiTextField-root {
-  width: 140px;
+  width: 220px;
 }
 
 .behaviourSelect {
