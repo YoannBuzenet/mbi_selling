@@ -46,6 +46,9 @@
 .formatSelection .partForm {
   height: 40.87px;
 }
+.formatSelection .part-title {
+  margin-top: 20px;
+}
 
 .basedOnHelperText svg {
   width: 100px;
@@ -60,6 +63,15 @@
 .behaviourSelect {
   display: flex;
   justify-content: center;
+}
+
+.keywordList .partForm {
+  display: flex;
+  justify-content: center;
+}
+
+.keywordList .partForm .MuiPaper-root {
+  width: 50%;
 }
 
 .chipsPlaceHolderNoKeywords {

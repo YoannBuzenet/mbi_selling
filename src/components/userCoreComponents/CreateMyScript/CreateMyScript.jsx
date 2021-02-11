@@ -1473,30 +1473,40 @@ const CreateMyScript = ({ history }) => {
                   </div>
                 </div>
                 <div className="keywordList">
-                  <Paper component="ul" className={classes.root}>
-                    {chipData.length === 0 && (
-                      <div className="chipsPlaceHolderNoKeywords">
-                        <FormattedMessage
-                          id="createMyScript.script.select.keywordChips.placeholder.noKeywords"
-                          defaultMessage="No MKM comment were added."
-                        />
-                      </div>
-                    )}
-                    {chipData.map((data) => {
-                      let icon;
-                      // Icon can be set as non deletable - see doc
-                      return (
-                        <li key={data.key}>
-                          <Chip
-                            icon={icon}
-                            label={data.label}
-                            onDelete={handleDeleteChip(data)}
-                            className={classes.chip}
+                  <div className="part-title">
+                    <p>
+                      <FormattedMessage
+                        id="createMyScript.script.select.keywordBehaviour.title"
+                        defaultMessage="MKM comment : "
+                      />
+                    </p>
+                  </div>
+                  <div className="partForm">
+                    <Paper component="ul" className={classes.root}>
+                      {chipData.length === 0 && (
+                        <div className="chipsPlaceHolderNoKeywords">
+                          <FormattedMessage
+                            id="createMyScript.script.select.keywordChips.placeholder.noKeywords"
+                            defaultMessage="No MKM comment were added."
                           />
-                        </li>
-                      );
-                    })}
-                  </Paper>
+                        </div>
+                      )}
+                      {chipData.map((data) => {
+                        let icon;
+                        // Icon can be set as non deletable - see doc
+                        return (
+                          <li key={data.key}>
+                            <Chip
+                              icon={icon}
+                              label={data.label}
+                              onDelete={handleDeleteChip(data)}
+                              className={classes.chip}
+                            />
+                          </li>
+                        );
+                      })}
+                    </Paper>
+                  </div>
                 </div>
                 <div className="keywordAdder">
                   <TextField
