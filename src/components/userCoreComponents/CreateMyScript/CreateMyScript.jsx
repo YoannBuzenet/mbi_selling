@@ -1220,7 +1220,6 @@ const CreateMyScript = ({ history }) => {
       margin: theme.spacing(1),
       minWidth: 120,
       maxWidth: 300,
-      marginTop: 25,
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
@@ -1323,21 +1322,28 @@ const CreateMyScript = ({ history }) => {
                   </Button>
                 )}
               </div>
-              <p style={{ margin: "0 20px" }}>
-                <FormattedMessage
-                  id="createMyScript.title.scriptname"
-                  defaultMessage="Script Name"
+              <div className="nameSelection">
+                <div className="part-title">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.title.scriptname"
+                      defaultMessage="Script Name"
+                    />
+                  </p>
+                </div>
+                <TextField
+                  id="outlined-from"
+                  variant="outlined"
+                  name={"priceRangeValueToSet"}
+                  onChange={handleChangeScriptName}
+                  className="scriptNameEdition"
+                  value={scriptName}
                 />
-              </p>
-              <TextField
-                id="outlined-from"
-                variant="outlined"
-                name={"priceRangeValueToSet"}
-                onChange={handleChangeScriptName}
-                className="scriptNameEdition"
-                value={scriptName}
-              />
+              </div>
               <div className="formatSelection">
+                <div className="part-title">
+                  <p>Format Selection</p>
+                </div>
                 <FormControl className={classes.formControl}>
                   <InputLabel id="demo-mutiple-checkbox-label">
                     {formatSelectTitle}
@@ -1430,12 +1436,14 @@ const CreateMyScript = ({ history }) => {
               </div>
               <div className="keywordSelection">
                 <div className="behaviourSelect">
-                  <p>
-                    <FormattedMessage
-                      id="createMyScript.script.select.keywordBehaviour.title"
-                      defaultMessage="MKM comment : "
-                    />
-                  </p>
+                  <div className="part-title">
+                    <p>
+                      <FormattedMessage
+                        id="createMyScript.script.select.keywordBehaviour.title"
+                        defaultMessage="MKM comment : "
+                      />
+                    </p>
+                  </div>
                   <FormControl className={classes.formControl}>
                     <Select
                       labelId="keyword-behaviour-select-label"

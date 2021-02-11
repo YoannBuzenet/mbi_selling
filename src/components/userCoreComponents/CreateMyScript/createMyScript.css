@@ -23,11 +23,6 @@
   justify-content: center;
 }
 
-.basedOnSelection p {
-  margin-top: 25px;
-  margin-right: 20px;
-}
-
 .basedOnHelperText {
 }
 
@@ -41,15 +36,18 @@
   justify-content: space-between;
 }
 
-.basedOnHelperText p {
-  text-align: left;
-  font-size: 14px;
-  margin: 0;
-}
-
 .svgContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.nameSelection {
+  display: flex;
+  justify-content: center;
+}
+.formatSelection {
+  display: flex;
   justify-content: center;
 }
 
@@ -75,7 +73,6 @@
   justify-content: center;
 }
 .behaviourSelect p {
-  margin-top: 25px;
 }
 .keywordList {
 }
@@ -96,12 +93,6 @@
 }
 
 .keywordHelper {
-}
-
-.keywordHelper p {
-  text-align: left;
-  font-size: 14px;
-  margin: 0;
 }
 
 .keywordHelper > div {
