@@ -25,7 +25,25 @@ const CustomRule = ({
   updateACustomRule,
   scriptIsBasedOn,
 }) => {
-  const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+  //TODO UNCOMMENT AFTER DESIGN IS FINISHED
+  // const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+
+  const allDefinitions = {
+    ruleBehaviours: [
+      { id: "0", name: "roundUp30percents" },
+      { id: "1", name: "roundDown100" },
+    ],
+    priceGuidePossibilities: [
+      { id: "2", name: "foilAvg30" },
+      { id: "3", name: "germanProLow" },
+    ],
+    ruleTypes: [
+      { id: "4", name: "setValue" },
+      { id: "5", name: "operationsApplying" },
+      { id: "5", name: "exclude" },
+    ],
+  };
+
   // console.log("definitions from the rule level", allDefinitions);
 
   const { currentLang } = useContext(SelectAppLangContext);
