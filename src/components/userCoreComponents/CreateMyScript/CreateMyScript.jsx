@@ -574,6 +574,9 @@ const CreateMyScript = ({ history }) => {
           } else {
             arrayOfCustomRules[i].hasIncoherentFollowingPrices = false;
           }
+        } else {
+          // If the last rule had a problem and was removed, the new last rule works OK, so we remove any error that might have been set.
+          arrayOfCustomRules[i].hasIncoherentFollowingPrices = false;
         }
       }
       // console.log("treated array", arrayOfCustomRules);
