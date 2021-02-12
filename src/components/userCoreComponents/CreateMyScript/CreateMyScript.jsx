@@ -1637,7 +1637,10 @@ const CreateMyScript = ({ history }) => {
             <div className="regular-rules-schema">
               <div className="sectionTitle">
                 <p>
-                  REGULAR RULES
+                  <FormattedMessage
+                    id="customRules.regularRules.title"
+                    defaultMessage="REGULAR RULES"
+                  />
                   <span> ({customRulesGlobalState.regular.length})</span>
                 </p>
                 {pricesAreBasedOn === "mkmTrends" && (
@@ -1692,7 +1695,10 @@ const CreateMyScript = ({ history }) => {
             <div className="foil-rules-schema">
               <div className="sectionTitle">
                 <p>
-                  FOIL RULES
+                  <FormattedMessage
+                    id="customRules.foilRules.title"
+                    defaultMessage="FOIL RULES"
+                  />
                   <span> ({customRulesGlobalState.foil.length})</span>
                 </p>
                 {pricesAreBasedOn === "mkmTrends" && (

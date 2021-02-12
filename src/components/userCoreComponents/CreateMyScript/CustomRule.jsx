@@ -25,24 +25,24 @@ const CustomRule = ({
   updateACustomRule,
   scriptIsBasedOn,
 }) => {
-  //TODO UNCOMMENT AFTER DESIGN IS FINISHED
-  // const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+  const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
 
-  const allDefinitions = {
-    ruleBehaviours: [
-      { id: "0", name: "roundUp30percents" },
-      { id: "1", name: "roundDown100" },
-    ],
-    priceGuidePossibilities: [
-      { id: "2", name: "foilAvg30" },
-      { id: "3", name: "germanProLow" },
-    ],
-    ruleTypes: [
-      { id: "4", name: "setValue" },
-      { id: "5", name: "operationsApplying" },
-      { id: "5", name: "exclude" },
-    ],
-  };
+  // Uncomment to test design without server (with npm start) to feed custom rules
+  // const allDefinitions = {
+  //   ruleBehaviours: [
+  //     { id: "0", name: "roundUp30percents" },
+  //     { id: "1", name: "roundDown100" },
+  //   ],
+  //   priceGuidePossibilities: [
+  //     { id: "2", name: "foilAvg30" },
+  //     { id: "3", name: "germanProLow" },
+  //   ],
+  //   ruleTypes: [
+  //     { id: "4", name: "setValue" },
+  //     { id: "5", name: "operationsApplying" },
+  //     { id: "5", name: "exclude" },
+  //   ],
+  // };
 
   // console.log("definitions from the rule level", allDefinitions);
 
@@ -64,7 +64,14 @@ const CustomRule = ({
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: "230px",
+      minWidth: "280px",
+      maxWidth: "280px",
+      backgroundColor: "white",
+    },
+    formControlAction: {
+      margin: theme.spacing(1),
+      minWidth: scriptIsBasedOn === "mkmTrends" ? "190px" : "220px",
+      maxWidth: scriptIsBasedOn === "mkmTrends" ? "190px" : "220px",
       backgroundColor: "white",
     },
     selectEmpty: {
@@ -190,7 +197,7 @@ const CustomRule = ({
                 {Array.isArray(allDefinitions.ruleTypes) && (
                   <FormControl
                     variant="outlined"
-                    className={classes.formControl}
+                    className={classes.formControlAction}
                   >
                     <InputLabel id="demo-simple-select-outlined-label">
                       {userChoice}
