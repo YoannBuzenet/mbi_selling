@@ -324,6 +324,8 @@
   "customRules.price.errorRule.priceFromShouldInferiortoPriceTo": "Le prix de départ de cette règle doit être inférieur au prix d'arrivée.",
   "customRules.price.errorRule.firstRuleMustStartAt0euros": "La première règle doit commencer à 0 euro.",
   "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "Cette règle attend un prix de vente.",
+  "customRules.regularRules.title": "REGLES REGULAR",
+  "customRules.foilRules.title": "REGLES FOIL",
 
   "settings.save.check.error.missingField": "L'un des champs n'a pas été rempli.",
   "settings.save.success": "Vos paramètres ont bien été mis à jour.",

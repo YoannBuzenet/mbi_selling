@@ -295,10 +295,11 @@ button.button-second-navbar {
 .deleteButton {
   position: absolute;
   top: 25px;
-  right: 10px;
+  right: 5px;
 }
 
 p.from {
+  padding-left: 10px;
   margin-left: 30px;
 }
 
