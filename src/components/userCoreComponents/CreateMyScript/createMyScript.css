@@ -265,11 +265,12 @@ button.button-second-navbar {
   width: 80%;
   /* max-height: 57px; */
   background-color: white;
-  border-radius: 2px;
+  border-radius: 3px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 
 .ruleContainer:hover {
-  background-color: rgb(232, 236, 238);
+  background-color: rgb(243 246 247);
 }
 
 .ruleContainer .ruleMainBody {

@@ -318,7 +318,7 @@
   "customRules.select.title.mkmPossibilityToChoose": "Which MKM price ?",
   "customRules.select.title.behaviour": "Rule to apply",
   "customRules.helpertext.basedOnRegularMKMTrends": "based on MKM trend price",
-  "customRules.helpertext.basedOnFoilMKMTrends": "based on MKM Foil Trends price",
+  "customRules.helpertext.basedOnFoilMKMTrends": "based on MKM Foil Trend price",
   "customRules.helpertext.basedOnCurrentPrices": "based on your current prices",
   "customRules.price.errorRule.twoPricesMustBeIndicated": "Both prices of a rule should be filled in.",
   "customRules.price.errorRule.priceshouldBeCoherentWithNextRule": "Price of this rule is not coherent with the next rule price.",

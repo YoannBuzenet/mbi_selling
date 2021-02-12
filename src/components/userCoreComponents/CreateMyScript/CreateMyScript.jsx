@@ -1699,7 +1699,7 @@ const CreateMyScript = ({ history }) => {
                   <span className="helperTextCustomRules">
                     <FormattedMessage
                       id="customRules.helpertext.basedOnFoilMKMTrends"
-                      defaultMessage="based on MKM Foil Trends price"
+                      defaultMessage="based on MKM Foil Trend price"
                     />
                   </span>
                 )}
