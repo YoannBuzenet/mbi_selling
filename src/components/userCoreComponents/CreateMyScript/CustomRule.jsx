@@ -64,7 +64,7 @@ const CustomRule = ({
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: "480px",
+      minWidth: "200px",
       backgroundColor: "white",
     },
     selectEmpty: {
@@ -187,132 +187,96 @@ const CustomRule = ({
               />
               <p className="fromToText">€</p>
               <div className="ruleType-choice">
-                <div>
-                  {Array.isArray(allDefinitions.ruleTypes) && (
-                    <FormControl
-                      variant="outlined"
-                      className={classes.formControl}
+                {Array.isArray(allDefinitions.ruleTypes) && (
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      {userChoice}
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      onChange={(e) => handleChange(e)}
+                      name="ruleTypeId"
+                      value={rule.ruleTypeId || 1}
+                      label="TestToTranslate"
+                      labelWidth="100px"
+                      MenuProps={{ disableScrollLock: true }}
                     >
-                      <InputLabel id="demo-simple-select-outlined-label">
-                        {userChoice}
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        onChange={(e) => handleChange(e)}
-                        name="ruleTypeId"
-                        value={rule.ruleTypeId || 1}
-                        label="TestToTranslate"
-                        labelWidth="100px"
-                        MenuProps={{ disableScrollLock: true }}
-                      >
-                        {allDefinitions.ruleTypes.map((ruleType) => (
-                          <MenuItem
-                            value={ruleType.id}
-                            className={classes.menuItem}
-                          >
-                            {
-                              config?.ruleTypesDictionnary?.[
-                                currentLang.locale
-                              ]?.[ruleType.name]
-                            }
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  )}
+                      {allDefinitions.ruleTypes.map((ruleType) => (
+                        <MenuItem
+                          value={ruleType.id}
+                          className={classes.menuItem}
+                        >
+                          {
+                            config?.ruleTypesDictionnary?.[
+                              currentLang.locale
+                            ]?.[ruleType.name]
+                          }
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
 
-                  {rule.ruleTypeId === 1 && (
-                    <div className="setValueFixPrice">
-                      <p className="fromToText">
-                        <FormattedMessage
-                          id="customRules.price.setFixedPrice.SellFor"
-                          defaultMessage="Sell for"
-                        />
-                      </p>
-
-                      <TextField
-                        id="outlined-from"
-                        defaultValue=""
-                        variant="outlined"
-                        name={"priceRangeValueToSet"}
-                        onChange={(e) => handleChange(e)}
-                        className="inputValueNumber"
-                        value={
-                          rule.priceRangeFrom !== undefined
-                            ? rule.priceRangeValueToSet
-                            : ""
-                        }
+                {rule.ruleTypeId === 1 && (
+                  <div className="setValueFixPrice">
+                    <p className="fromToText">
+                      <FormattedMessage
+                        id="customRules.price.setFixedPrice.SellFor"
+                        defaultMessage="Sell for"
                       />
-                      <p className="fromToText">€</p>
-                    </div>
-                  )}
+                    </p>
 
-                  {rule.ruleTypeId === 2 && (
-                    <div>
-                      {Array.isArray(allDefinitions.priceGuidePossibilities) &&
-                        scriptIsBasedOn === "mkmTrends" && (
-                          <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                          >
-                            <InputLabel id="demo-simple-select-outlined-label-2">
-                              {userMKMChoice}
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-outlined-label-2"
-                              id="demo-simple-select-outlined-2"
-                              onChange={(e) => handleChange(e)}
-                              name="mkmPriceGuideReference"
-                              value={rule.mkmPriceGuideReference || 1}
-                              label="TestToTranslate"
-                              MenuProps={{ disableScrollLock: true }}
-                            >
-                              {allDefinitions.priceGuidePossibilities.map(
-                                (priceGuidePossibility) => (
-                                  <MenuItem
-                                    value={priceGuidePossibility.id}
-                                    className={classes.menuItem}
-                                  >
-                                    {
-                                      config?.mkmPriceGuideDictionnary?.[
-                                        currentLang.locale
-                                      ]?.[priceGuidePossibility.name]
-                                    }
-                                  </MenuItem>
-                                )
-                              )}
-                            </Select>
-                          </FormControl>
-                        )}
+                    <TextField
+                      id="outlined-from"
+                      defaultValue=""
+                      variant="outlined"
+                      name={"priceRangeValueToSet"}
+                      onChange={(e) => handleChange(e)}
+                      className="inputValueNumber"
+                      value={
+                        rule.priceRangeFrom !== undefined
+                          ? rule.priceRangeValueToSet
+                          : ""
+                      }
+                    />
+                    <p className="fromToText">€</p>
+                  </div>
+                )}
 
-                      {Array.isArray(allDefinitions.ruleBehaviours) && (
+                {rule.ruleTypeId === 2 && (
+                  <>
+                    {Array.isArray(allDefinitions.priceGuidePossibilities) &&
+                      scriptIsBasedOn === "mkmTrends" && (
                         <FormControl
                           variant="outlined"
                           className={classes.formControl}
                         >
-                          <InputLabel id="demo-simple-select-outlined-label-3">
-                            {userBehaviourChoice}
+                          <InputLabel id="demo-simple-select-outlined-label-2">
+                            {userMKMChoice}
                           </InputLabel>
                           <Select
-                            labelId="demo-simple-select-outlined-label-3"
-                            id="demo-simple-select-outlined-3"
+                            labelId="demo-simple-select-outlined-label-2"
+                            id="demo-simple-select-outlined-2"
                             onChange={(e) => handleChange(e)}
-                            name="behaviourId"
-                            value={rule.behaviourId || 1}
+                            name="mkmPriceGuideReference"
+                            value={rule.mkmPriceGuideReference || 1}
                             label="TestToTranslate"
                             MenuProps={{ disableScrollLock: true }}
                           >
-                            {allDefinitions.ruleBehaviours.map(
-                              (ruleBehaviour) => (
+                            {allDefinitions.priceGuidePossibilities.map(
+                              (priceGuidePossibility) => (
                                 <MenuItem
-                                  value={ruleBehaviour.id}
+                                  value={priceGuidePossibility.id}
                                   className={classes.menuItem}
                                 >
                                   {
-                                    config?.BehaviourDictionnary?.[
+                                    config?.mkmPriceGuideDictionnary?.[
                                       currentLang.locale
-                                    ]?.[ruleBehaviour.name]
+                                    ]?.[priceGuidePossibility.name]
                                   }
                                 </MenuItem>
                               )
@@ -320,9 +284,43 @@ const CustomRule = ({
                           </Select>
                         </FormControl>
                       )}
-                    </div>
-                  )}
-                </div>
+
+                    {Array.isArray(allDefinitions.ruleBehaviours) && (
+                      <FormControl
+                        variant="outlined"
+                        className={classes.formControl}
+                      >
+                        <InputLabel id="demo-simple-select-outlined-label-3">
+                          {userBehaviourChoice}
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-outlined-label-3"
+                          id="demo-simple-select-outlined-3"
+                          onChange={(e) => handleChange(e)}
+                          name="behaviourId"
+                          value={rule.behaviourId || 1}
+                          label="TestToTranslate"
+                          MenuProps={{ disableScrollLock: true }}
+                        >
+                          {allDefinitions.ruleBehaviours.map(
+                            (ruleBehaviour) => (
+                              <MenuItem
+                                value={ruleBehaviour.id}
+                                className={classes.menuItem}
+                              >
+                                {
+                                  config?.BehaviourDictionnary?.[
+                                    currentLang.locale
+                                  ]?.[ruleBehaviour.name]
+                                }
+                              </MenuItem>
+                            )
+                          )}
+                        </Select>
+                      </FormControl>
+                    )}
+                  </>
+                )}
               </div>
             </div>
             <div className="error-custom-rule">
