@@ -88,16 +88,16 @@ const CustomRule = ({
   }
 
   let borderRuleContainer;
-  if (index === 0) {
-    borderRuleContainer = { border: "1px solid black" };
-  } else {
-    // borderRuleContainer = {
-    //   borderRight: "1px solid black",
-    //   borderLeft: "1px solid black",
-    //   borderBottom: "1px solid black",
-    // };
-    borderRuleContainer = { border: "1px solid black" };
-  }
+  // if (index === 0) {
+  //   borderRuleContainer = { border: "1px solid black" };
+  // } else {
+  //   // borderRuleContainer = {
+  //   //   borderRight: "1px solid black",
+  //   //   borderLeft: "1px solid black",
+  //   //   borderBottom: "1px solid black",
+  //   // };
+  //   borderRuleContainer = { border: "1px solid black" };
+  // }
   /* ****************** */
   /* ***TRANSLATIONS*** */
   /* ****************** */
