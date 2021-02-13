@@ -760,7 +760,9 @@ const CreateMyScript = ({ history }) => {
 
         const respServ = await Promise.all([...regularRules, ...foilRules]);
 
+        /* ********************** */
         // Save the keywords here
+        /* ********************** */
         const chipsCopy = [...chipData];
         for (let i = 0; i < chipsCopy.length; i++) {
           if (chipsCopy[i].hasOwnProperty("temporaryKey")) {

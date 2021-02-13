@@ -160,7 +160,9 @@ router.post("/", async (req, res) => {
     }
     if (req.body.rarities) {
       console.log("they are rarities to set", req.body.rarities);
-      await newScript.setRarities(req.body.rarities);
+      for (let i = 0; i < req.body.rarities.length; i++) {
+        await newScript.createRarity({ name: req.body.rarities[i].name });
+      }
     }
 
     await newScript.save();

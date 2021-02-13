@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       PUT_Request.hasMany(models.snapshot_custom_rules, {
         foreignKey: "PUT_Request_id",
       });
+      PUT_Request.hasMany(models.snapshot_rarity, {
+        foreignKey: "PUT_Request_id",
+      });
       PUT_Request.hasOne(models.snapshot_params, {
         foreignKey: "PUT_Request_id",
       });
