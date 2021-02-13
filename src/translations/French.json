@@ -282,7 +282,7 @@
   "createMyScript.script.select.keywordBehaviour.helpertext.explaination.ignore": "Vous pouvez filtrer les cartes affectées par le script en les ciblant via leur commentaire MKM. Actuellement, le script IGNORE ces commentaires.",
   "createMyScript.script.select.keywordBehaviour.helpertext.explaination.targets": "Vous pouvez filtrer les cartes affectées par le script en les ciblant via leur commentaire MKM. Actuellement, le script CIBLE UNIQUEMENT les cartes avec les mot clefs que vous avez indiqués.",
   "createMyScript.script.select.keywordBehaviour.helpertext.explaination.avoid": "Vous pouvez filtrer les cartes affectées par le script en les ciblant via leur commentaire MKM. Actuellement, le script EVITE les cartes avec les mot clefs que vous avez indiqués.",
-  "createMyScript.rarity.title": "Raretés ciblées",
+  "createMyScript.rarity.title": "Raretés modifiées",
   "createMyScript.rarity.mythic": "Mythique",
   "createMyScript.rarity.rare": "Rare",
   "createMyScript.rarity.uncommon": "Peu Commune",

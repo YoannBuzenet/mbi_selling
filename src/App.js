@@ -519,10 +519,10 @@ function App() {
                                     path="/create-script"
                                     component={CreateMyScript}
                                   />
-                                  {/* <Route
-                                  path="/create-script2"
-                                  component={CreateMyScript}
-                                /> */}
+                                  <Route
+                                    path="/create-script2"
+                                    component={CreateMyScript}
+                                  />
                                   <LoggedRouteRender
                                     path="/settings"
                                     component={Settings}

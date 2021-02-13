@@ -34,6 +34,8 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormGroup from "@material-ui/core/FormGroup";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
@@ -244,6 +246,13 @@ const CreateMyScript = ({ history }) => {
   const [scriptMustBeSaved, setScriptMustbeSaved] = useState(
     isCreationOrEditionMode === "Creation" ? true : false
   );
+
+  const [raritiesUsed, setRaritiesUsed] = useState({
+    mythic: true,
+    rare: true,
+    uncommon: true,
+    common: true,
+  });
 
   //This value is kept in state for creation mode, where we will need to set it before sending our rules.
   //With this we have this potential ID always in the same variable.
@@ -932,6 +941,11 @@ const CreateMyScript = ({ history }) => {
   const handleChangeScriptName = (event) => {
     setScriptMustbeSaved(true);
     setScriptName(event.target.value);
+  };
+
+  const handleChangeRaritiesUsed = (e, rarity) => {
+    setScriptMustbeSaved(true);
+    setRaritiesUsed({ ...raritiesUsed, [rarity]: !raritiesUsed[rarity] });
   };
 
   const handleChangeSelect = (event) => {
@@ -1625,13 +1639,62 @@ const CreateMyScript = ({ history }) => {
                   <p>
                     <FormattedMessage
                       id="createMyScript.rarity.title"
-                      defaultMessage="Targeted rarities"
+                      defaultMessage="Rarities affected"
                     />
                   </p>
                 </div>
                 <div className="partForm">
                   {/* yoann */}
+                  {/* state : { rarityUn : true, raritydeux : false} */}
                   {/* Rarity filter here : 4 checkbox */}
+                  {/* https://material-ui.com/components/checkboxes/ */}
+                  <FormGroup aria-label="position" row>
+                    <FormControlLabel
+                      value="top"
+                      control={
+                        <Checkbox
+                          color="primary"
+                          checked={raritiesUsed.mythic}
+                        />
+                      }
+                      label="Top"
+                      labelPlacement="top"
+                      onChange={(e) => handleChangeRaritiesUsed(e, "mythic")}
+                    />
+                    <FormControlLabel
+                      value="start"
+                      control={
+                        <Checkbox color="primary" checked={raritiesUsed.rare} />
+                      }
+                      label="Start"
+                      labelPlacement="start"
+                      onChange={(e) => handleChangeRaritiesUsed(e, "rare")}
+                    />
+                    <FormControlLabel
+                      value="bottom"
+                      control={
+                        <Checkbox
+                          color="primary"
+                          checked={raritiesUsed.uncommon}
+                        />
+                      }
+                      label="Bottom"
+                      labelPlacement="bottom"
+                      onChange={(e) => handleChangeRaritiesUsed(e, "uncommon")}
+                    />
+                    <FormControlLabel
+                      value="end"
+                      control={
+                        <Checkbox
+                          color="primary"
+                          checked={raritiesUsed.common}
+                        />
+                      }
+                      label="End"
+                      labelPlacement="end"
+                      onChange={(e) => handleChangeRaritiesUsed(e, "common")}
+                    />
+                  </FormGroup>
                 </div>
               </div>
             </div>
