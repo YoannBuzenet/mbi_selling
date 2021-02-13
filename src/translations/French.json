@@ -212,6 +212,8 @@
   "app.popIn.confirmationLaunching": "Lancer le script ?",
   "app.popIn.confirmationLaunching.button.launch": "Lancer",
   "app.popIn.confirmationLaunching.button.cancel": "Annuler",
+  "app.popIn.confirmationTest": "Lancer le script de test ?",
+  "app.popIn.confirmationLaunching.button.test": "Tester",
 
   "server.sendMail.welcomeEmail.title": "Bienvenue sur {url} !",
   "server.sendMail.sellRequest.submitted": "Votre demande de rachat est enregistrée !",

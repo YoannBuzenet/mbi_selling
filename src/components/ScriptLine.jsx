@@ -15,6 +15,7 @@ import AuthContext from "../context/authContext";
 import MKMModalContext from "../context/mkmModalConnectionContext";
 import transparentDivContext from "../context/transparentDivContext";
 import PopInLaunchingConfirmationContext from "../context/popInConfirmationLaunchingScript";
+import PopInTestConfirmationContext from "../context/popInConfirmationTestScript";
 import AppLangContext from "../context/selectedAppLang";
 import BlackDivContext from "../context/blackDivModalContext";
 import axios from "axios";
@@ -39,6 +40,9 @@ const ScriptLine = ({ script, history, index }) => {
 
   const { setPopInLaunchingScriptInformations } = useContext(
     PopInLaunchingConfirmationContext
+  );
+  const { setPopInTestScriptInformations } = useContext(
+    PopInTestConfirmationContext
   );
 
   //MKM Modal Control
@@ -273,40 +277,15 @@ const ScriptLine = ({ script, history, index }) => {
       return;
     }
 
-    const payload = {
+    // Launching test Confirmation Pop-in
+    setPopInTestScriptInformations({
+      isDisplayed: true,
       formats: selectedFormats,
       isTest: true,
       locale: currentLang.locale,
-    };
-
-    // Launching the test script request
-    axios
-      .post(
-        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${script.id}`,
-        payload
-      )
-      .then((resp) => {
-        toast.success(
-          <FormattedMessage
-            id="createMyScript.launchTest.success"
-            defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
-          />,
-          { autoClose: 5000 }
-        );
-
-        //Updating auth context with isRunning Info to 1
-        const authContextCopy = { ...authenticationInfos };
-        authContextCopy.userScripts[indexScript].isRunning = 1;
-        setAuthenticationInfos(authContextCopy);
-      })
-      .catch((error) =>
-        toast.error(
-          <FormattedMessage
-            id="createMyScript.launchTest.failure"
-            defaultMessage="The test script could not be launched. Please try later, or contact us if the problem persists."
-          />
-        )
-      );
+      idScript: script.id,
+      indexScript,
+    });
   };
 
   const useStyles = makeStyles((theme) => ({

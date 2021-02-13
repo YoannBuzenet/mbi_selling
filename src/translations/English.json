@@ -213,6 +213,8 @@
   "app.popIn.confirmationLaunching": "Launch Script ?",
   "app.popIn.confirmationLaunching.button.launch": "Launch",
   "app.popIn.confirmationLaunching.button.cancel": "Cancel",
+  "app.popIn.confirmationTest": "Launch Test Script ?",
+  "app.popIn.confirmationLaunching.button.test": "Test it",
 
   "server.sendMail.welcomeEmail.title": "Welcome on {url} !",
   "server.sendMail.sellRequest.submitted": "Your sell request has been submitted !",
