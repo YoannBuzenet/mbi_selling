@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Script.hasMany(models.Custom_Rule, { foreignKey: "id" });
       Script.hasMany(models.Keyword, { foreignKey: "idScript" });
+      Script.hasMany(models.Rarity, { foreignKey: "idScript" });
       Script.belongsTo(models.User, { foreignKey: "idShop" });
       Script.belongsToMany(models.Format, {
         through: models.ScriptsFormats,

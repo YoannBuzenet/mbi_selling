@@ -33,7 +33,7 @@ router.get("/getByUserId", async (req, res) => {
     where: {
       idShop: req.query.idUser,
     },
-    include: db.Keyword,
+    include: [db.Keyword, db.Rarity, db.Format],
   });
 
   res.status(200).json(userScripts);
@@ -82,7 +82,13 @@ router.get("/getById/:id", async (req, res) => {
 
   const scriptFormats = await userScripts.getFormats();
 
-  const finalReponse = { ...userScripts.dataValues, scriptFormats };
+  const scriptRarities = await userScripts.getRarities();
+
+  const finalReponse = {
+    ...userScripts.dataValues,
+    scriptFormats,
+    scriptRarities,
+  };
 
   res.status(200).json(finalReponse);
   return;
@@ -107,17 +113,22 @@ router.post("/", async (req, res) => {
   }
 
   if (req.body.name === undefined) {
-    res.status(406).json("Script Name is mandatory.");
+    res.status(406).json("name param is mandatory.");
     return;
   }
 
   if (req.body.willBeBasedOn === undefined) {
-    res.status(406).json("willBeBasedOn is mandatory.");
+    res.status(406).json("willBeBasedOn param is mandatory.");
     return;
   }
 
   if (req.body.keywordBehaviour === undefined) {
-    res.status(406).json("keywordBehaviour is mandatory.");
+    res.status(406).json("keywordBehaviour param is mandatory.");
+    return;
+  }
+
+  if (req.body.rarities === undefined) {
+    res.status(406).json("rarities param is mandatory.");
     return;
   }
 
@@ -141,10 +152,15 @@ router.post("/", async (req, res) => {
     });
 
     if (req.body.formats) {
-      console.log("they are formats to set");
+      console.log("they are formats to set", req.body.formats);
       await newScript.setFormats(req.body.formats);
-      newScript.save();
     }
+    if (req.body.rarities) {
+      console.log("they are rarities to set", req.body.rarities);
+      await newScript.setRarities(req.body.rarities);
+    }
+
+    await newScript.save();
 
     console.log(newScript);
     res.status(200).json(newScript);
@@ -223,6 +239,11 @@ router.patch("/:id", async (req, res) => {
   if (req.body.formats) {
     console.log("they are formats to set");
     existingScript.setFormats(req.body.formats);
+  }
+
+  if (req.body.rarities) {
+    console.log("they are rarities to set");
+    existingScript.setRarities(req.body.rarities);
   }
 
   existingScript
