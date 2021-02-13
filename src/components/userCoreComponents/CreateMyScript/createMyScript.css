@@ -8,37 +8,18 @@
 *****CREATE SCRIPT*********
 **************************/
 
-.create-my-script-container {
-  margin-top: 363px;
+.left-part .main-title {
+  margin-top: 20px;
 }
-
 .second-menu-scripts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 67px;
-  height: 61px;
-  width: 100%;
-  background-color: #f9f9f9;
   z-index: 5;
-  border-top: 1px solid black;
 }
 
 .basedOnSelection {
   display: flex;
   justify-content: center;
-  width: 50%;
 }
 
-.basedOnSelection p {
-  margin-top: 25px;
-  margin-right: 20px;
-}
-
-.basedOnHelperText {
-  width: 50%;
-}
 .basedOnHelperText > div {
   margin-top: 2px;
   width: 60%;
@@ -49,16 +30,73 @@
   justify-content: space-between;
 }
 
-.basedOnHelperText p {
-  text-align: left;
-  font-size: 14px;
-  margin: 0;
-}
-
 .svgContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.partContainer {
+  display: flex;
+  flex-direction: column;
+}
+.formatSelection .MuiFormControl-root {
+  margin-top: -20px;
+}
+.formatSelection .partForm {
+  height: 40.87px;
+}
+.partForm [data-shrink="false"],
+.keywordAdder [data-shrink="false"] {
+  font-size: 14px;
+}
+.formatSelection div.part-title {
+  margin-top: 20px;
+}
+
+.partForm .MuiInputBase-input {
+  font-size: 14px;
+}
+
+.partForm .MuiChip-label {
+  font-size: 14px;
+}
+
+.keywordAdder .MuiInputBase-input {
+  font-size: 14px;
+}
+
+.basedOnSelection .partForm {
+  display: flex;
+  justify-content: center;
+}
+.basedOnSelection .partForm .MuiFormGroup-row {
+  width: 300px;
+  flex-direction: column;
+}
+.basedOnSelection .partForm .MuiFormGroup-row label {
+  display: block;
+  text-align: left;
+}
+.basedOnSelection .partForm .MuiTypography-root {
+  font-size: 14px;
+}
+
+.behaviourSelect .partForm {
+  display: flex;
+  justify-content: center;
+}
+
+.behaviourSelect .partForm .MuiFormGroup-row {
+  width: 300px;
+  flex-direction: column;
+}
+.behaviourSelect .partForm .MuiFormGroup-row label {
+  display: block;
+  text-align: left;
+}
+.behaviourSelect .partForm .MuiTypography-root {
+  font-size: 14px;
 }
 
 .basedOnHelperText svg {
@@ -67,45 +105,22 @@
   color: #fda400;
 }
 
-.isBasedOnChoice {
-  position: fixed;
-  top: 122px;
-  height: 80px;
-  width: 100%;
-  background-color: #f9f9f9;
-  z-index: 5;
-  border-top: 1px solid black;
-  box-shadow: 1px 1px 1px black;
-  display: flex;
-  justify-content: center;
-}
-.keywordSelection {
-  position: fixed;
-  top: 202px;
-  height: 100px;
-  width: 100%;
-  border-top: 1px solid black;
-  background-color: #f9f9f9;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  overflow: scroll;
-}
-
 .keywordAdder > .MuiFormControl-root.MuiTextField-root {
-  width: 140px;
+  width: 220px;
 }
 
 .behaviourSelect {
   display: flex;
   justify-content: center;
-  width: 30%;
 }
-.behaviourSelect p {
-  margin-top: 25px;
+
+.keywordList .partForm {
+  display: flex;
+  justify-content: center;
 }
-.keywordList {
-  width: 30%;
+
+.keywordList .partForm .MuiPaper-root {
+  width: 50%;
 }
 
 .chipsPlaceHolderNoKeywords {
@@ -114,7 +129,6 @@
   font-size: 14px;
 }
 .keywordAdder {
-  width: 15%;
   display: flex;
   justify-content: center;
 }
@@ -124,16 +138,13 @@
   align-self: center;
 }
 
-.keywordHelper {
-  width: 25%;
+.keywordAdder svg.MuiSvgIcon-root {
+  font-size: 3rem;
 }
 
-.keywordHelper p {
-  text-align: left;
-  font-size: 14px;
-  margin: 0;
+.partForm {
+  width: 100%;
 }
-
 .keywordHelper > div {
   margin-top: 2px;
   padding: 8px;
@@ -150,13 +161,8 @@
 }
 
 .column-definitions {
-  position: fixed;
-  top: 302px;
-  height: 60px;
-  width: 100%;
   background-color: #f9f9f9;
   z-index: 5;
-  border-top: 1px solid black;
   box-shadow: 1px 1px 1px black;
   display: flex;
   justify-content: center;
@@ -178,15 +184,12 @@
   text-align: left;
 }
 
-.buttons-right-menu {
-  margin-left: 50px;
+.main-buttons-menu {
   display: flex;
   max-height: 30px;
   align-items: center;
-}
-
-.buttons-right-menu div.MuiFormControl-root {
-  margin-left: 30px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 label + .MuiInput-formControl {
@@ -206,24 +209,49 @@ button.button-second-navbar {
   display: flex;
   justify-content: center;
 }
-
-.parts-container > .left-part,
-.parts-container > .right-part {
-  width: 50%;
-}
-
 .parts-container > .left-part {
-  background-color: #d5dbe2;
+  width: 30%;
+  height: 1000px;
+  background-color: white;
+  box-shadow: 1px 1px 1px black;
 }
 
 .parts-container > .right-part {
-  background-color: #d2e4d3;
+  width: 70%;
 }
 
-.left-part > .left-schema,
-.right-part > .right-schema {
+.left-part .part-title {
+  width: 100%;
+  margin: 0 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.left-part .part-title p {
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.right-part .sectionTitle {
+  text-align: left;
   width: 80%;
-  margin: auto;
+  margin: 0 auto;
+}
+.right-part .sectionTitle p {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+.helperTextCustomRules {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.regularRulesContainer,
+.foilRulesContainer {
+  margin-top: 20px;
 }
 
 /* *** */
@@ -232,35 +260,47 @@ button.button-second-navbar {
 
 .ruleContainer {
   position: relative;
-  border: 1px solid black;
-  margin: 0 auto;
-  width: 500px;
-  min-height: 100px;
-  border-radius: 5px;
-  background-color: rgba(228, 233, 237, 1);
-  box-shadow: 1px 1px 1px black;
+  /* border: 1px solid black; */
+  margin: 5px auto 0;
+  width: 80%;
+  /* max-height: 57px; */
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 
 .ruleContainer:hover {
-  background-color: rgba(218, 223, 225, 1);
-  box-shadow: 2px 2px 1px black;
+  background-color: rgb(243 246 247);
 }
 
-.ruleContainer .top-zone {
-  margin-top: 10px;
+.ruleContainer .ruleMainBody {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  padding: 10px;
+}
+.ruleContainer .ruleMainBody p {
+  margin: 0;
+}
+
+.hidden-rule-adder {
+  height: 0;
+  transition: height 1s;
+}
+
+.display-rule-adder {
+  height: 50px;
 }
 
 .deleteButton {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: 25px;
+  right: 5px;
 }
 
 p.from {
-  margin-left: 120px;
+  padding-left: 10px;
+  margin-left: 30px;
 }
 
 .fromToText {
@@ -274,8 +314,24 @@ p.from {
 }
 
 div.inputValueNumber {
-  width: 60px;
+  width: 70px;
   background-color: white;
+  margin: 0 5px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl {
+  border-radius: 3px;
+}
+
+.ruleContainer .MuiOutlinedInput-input {
+  padding: 10px 10 px;
+}
+
+.ruleType-choice {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0 20px;
 }
 
 input.MuiInputBase-input.MuiOutlinedInput-input {
@@ -295,7 +351,7 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 
 .error-custom-rule p,
 .error-custom-rule ul {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .error-rule-explaination {
@@ -311,6 +367,12 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 /** BELOW RULE **/
 /* ************ */
 
+.asideRule {
+  position: absolute;
+  right: -40px;
+  top: 3px;
+}
+
 .twoBlocksContainer {
   display: flex;
   justify-content: center;
@@ -320,33 +382,30 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 .twoBlocksContainer .div1left {
   width: 50%;
   height: 50px;
-  border-right: 1px solid blue;
+  /* border-right: 1px solid blue; */
 }
 
 .twoBlocksContainer .div2right {
   width: 50%;
   height: 50px;
-  border-left: 1px solid blue;
+  /* border-left: 1px solid blue; */
 }
 
 .twoBlocksContainer .div1left.hasErrors {
-  border-right: 2px solid red;
+  /* border-right: 2px solid red; */
 }
 
 .twoBlocksContainer .div2right.hasErrors {
-  border-left: 2px solid red;
+  /* border-left: 2px solid red; */
 }
 
 button.onSeparatedDivButton {
   position: absolute;
-  top: 3px;
+  top: 20px;
   z-index: 3;
 }
 
-.ruleType-choice {
-}
-
-.whiteDivFillMuiIcon {
+/* .whiteDivFillMuiIcon {
   position: absolute;
   background-color: white;
   border-radius: 50%;
@@ -354,7 +413,7 @@ button.onSeparatedDivButton {
   z-index: 2;
   height: 10px;
   width: 10px;
-}
+} */
 
 /********************/
 /*********MUI*******/

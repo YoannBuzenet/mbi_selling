@@ -26,6 +26,24 @@ const CustomRule = ({
   scriptIsBasedOn,
 }) => {
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
+
+  // Uncomment to test design without server (with npm start) to feed custom rules
+  // const allDefinitions = {
+  //   ruleBehaviours: [
+  //     { id: "0", name: "roundUp30percents" },
+  //     { id: "1", name: "roundDown100" },
+  //   ],
+  //   priceGuidePossibilities: [
+  //     { id: "2", name: "foilAvg30" },
+  //     { id: "3", name: "germanProLow" },
+  //   ],
+  //   ruleTypes: [
+  //     { id: "4", name: "setValue" },
+  //     { id: "5", name: "operationsApplying" },
+  //     { id: "5", name: "exclude" },
+  //   ],
+  // };
+
   // console.log("definitions from the rule level", allDefinitions);
 
   const { currentLang } = useContext(SelectAppLangContext);
@@ -46,7 +64,14 @@ const CustomRule = ({
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: "480px",
+      minWidth: "280px",
+      maxWidth: "280px",
+      backgroundColor: "white",
+    },
+    formControlAction: {
+      margin: theme.spacing(1),
+      minWidth: scriptIsBasedOn === "mkmTrends" ? "190px" : "220px",
+      maxWidth: scriptIsBasedOn === "mkmTrends" ? "190px" : "220px",
       backgroundColor: "white",
     },
     selectEmpty: {
@@ -87,6 +112,17 @@ const CustomRule = ({
     classNameSecondDiv = "div2right hasErrors";
   }
 
+  let borderRuleContainer;
+  // if (index === 0) {
+  //   borderRuleContainer = { border: "1px solid black" };
+  // } else {
+  //   // borderRuleContainer = {
+  //   //   borderRight: "1px solid black",
+  //   //   borderLeft: "1px solid black",
+  //   //   borderBottom: "1px solid black",
+  //   // };
+  //   borderRuleContainer = { border: "1px solid black" };
+  // }
   /* ****************** */
   /* ***TRANSLATIONS*** */
   /* ****************** */
@@ -109,7 +145,7 @@ const CustomRule = ({
     <>
       <Zoom in={isZoomed}>
         <Typography>
-          <div className="ruleContainer">
+          <div className="ruleContainer" style={borderRuleContainer}>
             <div className="deleteButton">
               <IconButton
                 onClick={(e) => {
@@ -123,7 +159,7 @@ const CustomRule = ({
                 <HighlightOffIcon color="secondary" />
               </IconButton>
             </div>
-            <div className="top-zone">
+            <div className="ruleMainBody">
               <p className="fromToText from">
                 <FormattedMessage
                   id="customRules.price.from"
@@ -157,39 +193,11 @@ const CustomRule = ({
                 value={rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""}
               />
               <p className="fromToText">€</p>
-              {scriptIsBasedOn === "mkmTrends" && FoilOrRegular === "foil" && (
-                <p className="helperTextCustomRules">
-                  <FormattedMessage
-                    id="customRules.helpertext.basedOnFoilMKMTrends"
-                    defaultMessage="based on MKM Foil Trends"
-                  />
-                </p>
-              )}
-
-              {scriptIsBasedOn === "mkmTrends" && FoilOrRegular === "regular" && (
-                <p className="helperTextCustomRules">
-                  <FormattedMessage
-                    id="customRules.helpertext.basedOnRegularMKMTrends"
-                    defaultMessage="based on MKM trend"
-                  />
-                </p>
-              )}
-
-              {scriptIsBasedOn === "oldPrices" && (
-                <p className="helperTextCustomRules">
-                  <FormattedMessage
-                    id="customRules.helpertext.basedOnCurrentPrices"
-                    defaultMessage="based on your current prices"
-                  />
-                </p>
-              )}
-            </div>
-            <div className="ruleType-choice">
-              <div>
+              <div className="ruleType-choice">
                 {Array.isArray(allDefinitions.ruleTypes) && (
                   <FormControl
                     variant="outlined"
-                    className={classes.formControl}
+                    className={classes.formControlAction}
                   >
                     <InputLabel id="demo-simple-select-outlined-label">
                       {userChoice}
@@ -247,7 +255,7 @@ const CustomRule = ({
                 )}
 
                 {rule.ruleTypeId === 2 && (
-                  <div>
+                  <>
                     {Array.isArray(allDefinitions.priceGuidePossibilities) &&
                       scriptIsBasedOn === "mkmTrends" && (
                         <FormControl
@@ -318,7 +326,7 @@ const CustomRule = ({
                         </Select>
                       </FormControl>
                     )}
-                  </div>
+                  </>
                 )}
               </div>
             </div>
@@ -366,28 +374,33 @@ const CustomRule = ({
                 )}
               </ul>
             </div>
-          </div>
-          <div className="belowRule-CTA">
-            {/* Colored Link between rules */}
-            {index !== parentArrayLength - 1 && (
-              <div className="twoBlocksContainer">
-                <div className={classNameFirstDiv}></div>
-                <div className={classNameSecondDiv}></div>
-                <AddRuleButton
-                  position={index + 1}
-                  FoilOrRegular={FoilOrRegular}
-                  handleClick={addACustomRule}
-                  classToAdd="onSeparatedDivButton"
-                />
-              </div>
-            )}
-            {index === parentArrayLength - 1 && (
-              <AddRuleButton
-                position={index + 1}
-                FoilOrRegular={FoilOrRegular}
-                handleClick={addACustomRule}
-              />
-            )}
+            <div className="asideRule hidden-rule-adder">
+              {/* Colored Link between rules */}
+              {/* Rules with colored link */}
+              {index !== parentArrayLength - 1 && (
+                <div className="twoBlocksContainer">
+                  <div className={classNameFirstDiv}></div>
+                  <div className={classNameSecondDiv}></div>
+                  <AddRuleButton
+                    position={index + 1}
+                    FoilOrRegular={FoilOrRegular}
+                    handleClick={addACustomRule}
+                    classToAdd="onSeparatedDivButton"
+                  />
+                </div>
+              )}
+              {/* Rules without colored link */}
+              {index === parentArrayLength - 1 && (
+                <div className="twoBlocksContainer">
+                  <AddRuleButton
+                    position={index + 1}
+                    FoilOrRegular={FoilOrRegular}
+                    handleClick={addACustomRule}
+                    classToAdd="onSeparatedDivButton"
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </Typography>
       </Zoom>
