@@ -329,7 +329,7 @@ div.inputValueNumber {
 
 .ruleType-choice {
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   width: 100%;
   padding: 0 20px;
 }
@@ -340,6 +340,7 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 }
 
 .setValueFixPrice {
+  margin-left: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
