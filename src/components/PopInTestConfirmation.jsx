@@ -90,6 +90,12 @@ const PopInTestConfirmation = () => {
           defaultMessage="Launch Test Script ?"
         />
       </h3>
+      <p className="explainationScript">
+        <FormattedMessage
+          id="app.popIn.confirmationTest.explaination"
+          defaultMessage="A test version of this script will be launched. It is a simulation and will not affect your stock on MKM. Process needs between few minutes and some hours, depending on the size of your stock, and the number of people using the website. You will receive an email at the end of the process."
+        />
+      </p>
       <div className="buttonContainer">
         <Button
           variant="contained"

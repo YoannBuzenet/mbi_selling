@@ -213,7 +213,9 @@
   "app.popIn.confirmationLaunching": "Launch Script ?",
   "app.popIn.confirmationLaunching.button.launch": "Launch",
   "app.popIn.confirmationLaunching.button.cancel": "Cancel",
+  "app.popIn.confirmationLaunching.explaination": "Your script will be launched. Process needs between few minutes and some hours, depending on the size of your stock, and the number of people using the website. You will receive an email at the end of the process.",
   "app.popIn.confirmationTest": "Launch Test Script ?",
+  "app.popIn.confirmationTest.explaination": "A test version of this script will be launched. It is a simulation and will not affect your stock on MKM. Process needs between few minutes and some hours, depending on the size of your stock, and the number of people using the website. You will receive an email at the end of the process.",
   "app.popIn.confirmationLaunching.button.test": "Test it",
 
   "server.sendMail.welcomeEmail.title": "Welcome on {url} !",

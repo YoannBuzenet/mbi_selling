@@ -681,14 +681,19 @@ div.createScriptButton {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 250px;
   opacity: 1;
   border-radius: 4px;
   transition: opacity 0.25s, top 0.25s;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   cursor: default;
   z-index: 17;
+}
+.launchingPopInConfirmation p {
+  font-size: 14px;
+  padding: 0 2rem 1rem;
+  text-align: left;
 }
 
 .launchingPopInConfirmation .buttonContainer {

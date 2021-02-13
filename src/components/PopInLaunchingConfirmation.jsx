@@ -90,6 +90,12 @@ const PopInLaunchingConfirmation = () => {
           defaultMessage="Launch Script ?"
         />
       </h3>
+      <p className="explainationScript">
+        <FormattedMessage
+          id="app.popIn.confirmationLaunching.explaination"
+          defaultMessage="Your script will be launched. Process needs between few minutes and some hours, depending on the size of your stock, and the number of people using the website. You will receive an email at the end of the process."
+        />
+      </p>
       <div className="buttonContainer">
         <Button
           variant="contained"

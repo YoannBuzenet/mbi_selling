@@ -212,7 +212,9 @@
   "app.popIn.confirmationLaunching": "Lancer le script ?",
   "app.popIn.confirmationLaunching.button.launch": "Lancer",
   "app.popIn.confirmationLaunching.button.cancel": "Annuler",
+  "app.popIn.confirmationLaunching.explaination": "Le script sera exécuté. Le process prends entre plusieurs minutes et plusieurs heures, en fonction de la taille de votre stock, et du nombre de personnes qui utilisent le site. Vous recevrez un mail à la fin du process.",
   "app.popIn.confirmationTest": "Lancer le script de test ?",
+  "app.popIn.confirmationTest.explaination": "Un script de test sera executé : celui-ci est une simulation et n'affecte pas votre stock en ligne. Le process prends entre plusieurs minutes et plusieurs heures, en fonction de la taille de votre stock, et du nombre de personnes qui utilisent le site. Vous recevrez un mail à la fin du process.",
   "app.popIn.confirmationLaunching.button.test": "Tester",
 
   "server.sendMail.welcomeEmail.title": "Bienvenue sur {url} !",
