@@ -12,7 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Rarity.init(
-    { idScript: DataTypes.INTEGER, name: DataTypes.STRING },
+    {
+      idScript: DataTypes.INTEGER,
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["common", "uncommon", "rare", "mythic"]],
+            msg:
+              "Value of Rarity prop must be common, uncommon, rare, or mythic string.",
+          },
+        },
+      },
+    },
     {
       sequelize,
       modelName: "Rarity",
