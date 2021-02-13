@@ -1620,6 +1620,20 @@ const CreateMyScript = ({ history }) => {
                   )}
                 </div> */}
               </div>
+              <div className="partContainer rarityFilter">
+                <div className="part-title">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.rarity.title"
+                      defaultMessage="Targeted rarities"
+                    />
+                  </p>
+                </div>
+                <div className="partForm">
+                  {/* yoann */}
+                  {/* Rarity filter here : 4 checkbox */}
+                </div>
+              </div>
             </div>
           </div>
           <div className="right-part">
