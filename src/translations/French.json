@@ -318,7 +318,7 @@
   "customRules.price.to": "A",
   "customRules.select.title.userChoice": "Que faire ?",
   "customRules.price.setFixedPrice.SellFor": "Vendre à",
-  "customRules.select.title.mkmPossibilityToChoose": "Quel prix MKM ?",
+  "customRules.select.title.mkmPossibilityToChoose": "Baser le nouveau prix sur",
   "customRules.select.title.behaviour": "Quelle règle appliquer ?",
   "customRules.helpertext.basedOnRegularMKMTrends": "basé sur le prix de la Tendance MKM",
   "customRules.helpertext.basedOnFoilMKMTrends": "basé sur le prix de la Tendance Foil MKM",

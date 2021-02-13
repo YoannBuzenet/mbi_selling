@@ -319,7 +319,7 @@
   "customRules.price.to": "To",
   "customRules.select.title.userChoice": "Do",
   "customRules.price.setFixedPrice.SellFor": "Sell For",
-  "customRules.select.title.mkmPossibilityToChoose": "Which MKM price ?",
+  "customRules.select.title.mkmPossibilityToChoose": "Base the new price on",
   "customRules.select.title.behaviour": "Rule to apply",
   "customRules.helpertext.basedOnRegularMKMTrends": "based on MKM trend price",
   "customRules.helpertext.basedOnFoilMKMTrends": "based on MKM Foil Trend price",

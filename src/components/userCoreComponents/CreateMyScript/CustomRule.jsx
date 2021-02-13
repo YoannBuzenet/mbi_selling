@@ -134,7 +134,7 @@ const CustomRule = ({
   });
   const userMKMChoice = intl.formatMessage({
     id: "customRules.select.title.mkmPossibilityToChoose",
-    defaultMessage: "Which MKM price ?",
+    defaultMessage: "Base the new price on",
   });
   const userBehaviourChoice = intl.formatMessage({
     id: "customRules.select.title.behaviour",
