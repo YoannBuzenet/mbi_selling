@@ -227,6 +227,16 @@ router.patch("/:id", async (req, res) => {
     return;
   }
 
+  if (req.body.rarities === undefined) {
+    res.status(406).json("rarities param is mandatory.");
+    return;
+  }
+
+  if (!Array.isArray(req.body.rarities)) {
+    res.status(406).json("rarities param must be an array.");
+    return;
+  }
+
   /* ********************* */
   /* *****PROCESS******** */
   /* ******************* */
@@ -248,7 +258,13 @@ router.patch("/:id", async (req, res) => {
 
   if (req.body.rarities) {
     console.log("they are rarities to set");
-    existingScript.setRarities(req.body.rarities);
+    for (let i = 0; i < req.body.rarities.length; i++) {
+      const rarity = await db.Rarity.findOne({
+        where: { id: req.body.rarities[i].id, idScript: req.params.id },
+      });
+      rarity.name = req.body.rarities[i].name;
+      rarity.save();
+    }
   }
 
   existingScript
