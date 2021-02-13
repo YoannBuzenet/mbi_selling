@@ -1134,6 +1134,10 @@ div.lang-select-applevel {
   margin: 0;
   line-height: 22px;
 }
+
+.MKM_modal_Connection p {
+  margin-top: 20px;
+}
 .MKM_modal_Connection p.notConnectedToMKMReminder {
   margin-bottom: 10px;
   margin-top: 10px;

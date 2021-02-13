@@ -295,7 +295,7 @@ button.button-second-navbar {
 .deleteButton {
   position: absolute;
   top: 25px;
-  right: 5px;
+  right: 1px;
 }
 
 p.from {

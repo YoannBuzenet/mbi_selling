@@ -398,6 +398,7 @@ const CreateMyScript = ({ history }) => {
   ]);
 
   const addACustomRule = (position, FoilOrRegular) => {
+    setScriptMustbeSaved(true);
     customRulesGlobalState[FoilOrRegular].splice(position, 0, {
       name: "created programatically",
       wasCreatedHere: true,
@@ -416,6 +417,7 @@ const CreateMyScript = ({ history }) => {
   };
 
   const deleteACustomRule = (position, FoilOrRegular) => {
+    setScriptMustbeSaved(true);
     console.log(
       "deleting custom rules at position",
       position,
@@ -462,6 +464,7 @@ const CreateMyScript = ({ history }) => {
   };
 
   const updateACustomRule = (event, position, FoilOrRegular) => {
+    setScriptMustbeSaved(true);
     let mutatedState = { ...customRulesGlobalState };
     const { name } = event.target;
     let { value } = event.target;
