@@ -39,9 +39,11 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
           resp.data.legalities[i].cards.isonlineonly === 0
         ) {
           console.log("idProduct:", resp.data.legalities[i].cards.mcmid);
+          console.log("card:", resp.data.legalities[i].cards);
           await db.productLegalities.upsert(
             {
               idProduct: resp.data.legalities[i].cards.mcmid,
+              rarity: resp.data.legalities[i].cards.rarity,
               [`isLegal${config.formatDefinition[idFormat]}`]: 1,
               updatedAt: Date.now(),
             },

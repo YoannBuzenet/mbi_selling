@@ -73,6 +73,7 @@
     "trigger:testScripts:windows": "SET NODE_ENV=test& node server/CLI-scripts/triggerTestScripts.js",
     "trigger:testScripts:linux": "NODE_ENV=test node server/CLI-scripts/triggerTestScripts.js",
     "getMTGData:linux": "NODE_ENV=production node server/CLI-scripts/getMTGdata.js",
+    "getMTGData:windows:test": "SET NODE_ENV=test&node server/CLI-scripts/getMTGdata.js",
     "getMTGData:windows": "node server/CLI-scripts/getMTGdata.js",
     "getMTGPrices:linux": "NODE_ENV=production node server/CLI-scripts/getMTGprices.js",
     "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js",
