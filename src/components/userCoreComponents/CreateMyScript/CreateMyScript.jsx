@@ -1387,6 +1387,7 @@ const CreateMyScript = ({ history }) => {
                       aria-label="position"
                       name="position"
                       defaultValue={pricesAreBasedOn}
+                      value={pricesAreBasedOn}
                       className={classes.radioFormControl}
                     >
                       <FormControlLabel
