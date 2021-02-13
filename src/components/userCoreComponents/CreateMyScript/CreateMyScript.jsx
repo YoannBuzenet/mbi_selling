@@ -13,6 +13,7 @@ import MKMModalContext from "../../../context/mkmModalConnectionContext";
 import transparentDivContext from "../../../context/transparentDivContext";
 import appLangContext from "../../../context/selectedAppLang";
 import PopInLaunchingConfirmationContext from "../../../context/popInConfirmationLaunchingScript";
+import PopInTestConfirmationContext from "../../../context/popInConfirmationTestScript";
 import BlackDivContext from "../../../context/blackDivModalContext";
 
 import TextField from "@material-ui/core/TextField";
@@ -61,6 +62,9 @@ const CreateMyScript = ({ history }) => {
 
   const { setPopInLaunchingScriptInformations } = useContext(
     PopInLaunchingConfirmationContext
+  );
+  const { setPopInTestScriptInformations } = useContext(
+    PopInTestConfirmationContext
   );
 
   const intl = useIntl();
@@ -1021,41 +1025,17 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    const payload = {
+    setIsBlackDivModalDisplayed("activated");
+
+    // Passing all relevant data to confirmation pop in through Context
+    setPopInTestScriptInformations({
+      isDisplayed: true,
       formats: selectedFormats,
       isTest: true,
       locale: currentLang.locale,
-    };
-
-    // Launching the test script request
-    axios
-      .post(
-        `/api/scriptExecution?idShop=${authenticationInfos.shop.id}&idScript=${idScript}`,
-        payload
-      )
-      .then((resp) => {
-        toast.success(
-          <FormattedMessage
-            id="createMyScript.launchTest.success"
-            defaultMessage="The test script has been launched. Once it's done, you will receive a summary by mail."
-          />,
-          { autoClose: 5000 }
-        );
-
-        //Updating auth context with isRunning Info to 1
-        const authContextCopy = { ...authenticationInfos };
-        authContextCopy.userScripts[indexScript].isRunning = 1;
-        setAuthenticationInfos(authContextCopy);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        toast.error(
-          <FormattedMessage
-            id="createMyScript.launchTest.failure"
-            defaultMessage="The test script could not be launched. Please try later, or contact us if the problem persists."
-          />
-        );
-      });
+      idScript,
+      indexScript,
+    });
   };
 
   const launchScript = () => {

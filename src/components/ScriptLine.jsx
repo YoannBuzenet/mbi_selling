@@ -277,6 +277,8 @@ const ScriptLine = ({ script, history, index }) => {
       return;
     }
 
+    setIsBlackDivModalDisplayed("activated");
+
     // Launching test Confirmation Pop-in
     setPopInTestScriptInformations({
       isDisplayed: true,
