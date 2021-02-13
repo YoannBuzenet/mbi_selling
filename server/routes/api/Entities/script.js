@@ -131,7 +131,10 @@ router.post("/", async (req, res) => {
     res.status(406).json("rarities param is mandatory.");
     return;
   }
-
+  if (!Array.isArray(req.body.rarities)) {
+    res.status(406).json("rarities param must be an array.");
+    return;
+  }
   //Check that the requester is who he sayts he is OR is admin
   const userHasRightToAccess = await securityCheckAPI.checkIfUserIsThisOneOrAdmin(
     req.headers.authorization,
