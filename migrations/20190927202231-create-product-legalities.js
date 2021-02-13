@@ -54,6 +54,9 @@ module.exports = {
       isLegalOldSchool: {
         type: Sequelize.INTEGER,
       },
+      rarity: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -73,6 +73,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: { isNumeric: true },
       },
+      rarity: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["rare", "uncommon", "common", "mythic"]],
+            msg:
+              "Value of Rarity prop must be rare, uncommon, common or mythic string.",
+          },
+        },
+      },
     },
     {
       sequelize,
