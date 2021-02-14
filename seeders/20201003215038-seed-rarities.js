@@ -76,7 +76,7 @@ module.exports = {
         },
         {
           idScript: 7,
-          name: "rare",
+          name: "mythic",
         },
       ],
       {}

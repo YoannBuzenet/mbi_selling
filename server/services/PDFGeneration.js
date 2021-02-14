@@ -991,6 +991,11 @@ async function generatePDFFromPutRequest(
 
   var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
 
+  const pathPdfStorageFolder = __dirname + "../../../PDF_storage";
+  if (!fs.existsSync(pathPdfStorageFolder)) {
+    fs.mkdirSync(pathPdfStorageFolder);
+  }
+
   //Creating folder if it doesnt exist
   // sync, should be async, fine for now
   const folderPathWithUserId = path.join(

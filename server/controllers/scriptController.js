@@ -68,7 +68,10 @@ function generateRelevantRequest(
       {
         model: dbObject.productLegalities,
         where: {
-          [dbOperator.or]: { ...formatFilter, ...raritiesList },
+          [dbOperator.or]: formatFilter,
+          rarity: {
+            [dbOperator.or]: raritiesList,
+          },
         },
       },
     ],
@@ -501,10 +504,7 @@ async function testScriptPersistingStep(
 
   let organizedRarities = [];
   for (let i = 0; i < allRaritiesUsed.length; i++) {
-    organizedRarities = [
-      ...organizedRarities,
-      { name: allRaritiesUsed[i].name },
-    ];
+    organizedRarities = [...organizedRarities, allRaritiesUsed[i].name];
   }
 
   // Are we targeting, avoiding, or ignoring keywords ?
@@ -1070,10 +1070,7 @@ async function realScriptPersistingStep(
 
   let organizedRarities = [];
   for (let i = 0; i < allRaritiesUsed.length; i++) {
-    organizedRarities = [
-      ...organizedRarities,
-      { name: allRaritiesUsed[i].name },
-    ];
+    organizedRarities = [...organizedRarities, allRaritiesUsed[i].name];
   }
 
   // Relevant Sequelize request is built
