@@ -849,7 +849,12 @@ const CreateMyScript = ({ history }) => {
             ...authenticationInfos,
             userScripts: [
               ...authenticationInfos.userScripts,
-              { id: scriptId, name: scriptName, formats: selectedFormats },
+              {
+                id: scriptId,
+                name: scriptName,
+                formats: selectedFormats,
+                rarities: raritiesUsed,
+              },
             ],
           });
           localStorageUserData.userScripts = [
@@ -883,6 +888,10 @@ const CreateMyScript = ({ history }) => {
           authenticationInfos.userScripts[
             indexScriptToUpdate
           ].formats = selectedFormats;
+
+          authenticationInfos.userScripts[
+            indexScriptToUpdate
+          ].rarities = raritiesUsed;
 
           setAuthenticationInfos({ ...authenticationInfos });
           localStorageUserData.userScripts = authenticationInfos.userScripts;
@@ -1047,6 +1056,21 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
+    if (
+      raritiesUsed.mythic === false &&
+      raritiesUsed.rare === false &&
+      raritiesUsed.uncommon === false &&
+      raritiesUsed.common === false
+    ) {
+      toast.error(
+        <FormattedMessage
+          id="scriptline.select.rarities.mustHaveOneAtLeast"
+          defaultMessage="Your script must at least process one card rarity."
+        />
+      );
+      return;
+    }
+
     //Is user Subscribed to our service ?
 
     if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
@@ -1127,6 +1151,21 @@ const CreateMyScript = ({ history }) => {
         <FormattedMessage
           id="scriptline.select.formats.mustHaveOneAtLeast"
           defaultMessage="Your script must at least target one format."
+        />
+      );
+      return;
+    }
+
+    if (
+      raritiesUsed.mythic === false &&
+      raritiesUsed.rare === false &&
+      raritiesUsed.uncommon === false &&
+      raritiesUsed.common === false
+    ) {
+      toast.error(
+        <FormattedMessage
+          id="scriptline.select.rarities.mustHaveOneAtLeast"
+          defaultMessage="Your script must at least process one card rarity."
         />
       );
       return;

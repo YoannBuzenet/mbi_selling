@@ -252,6 +252,7 @@
   "scriptLine.buttons.upToDate": "Prêt",
   "scriptline.select.formats.title": "Formats",
   "scriptline.select.formats.mustHaveOneAtLeast": "Votre script doit comporter un format au moins.",
+  "scriptline.select.rarities.mustHaveOneAtLeast": "Votre script doit comporter une rareté au moins.",
   "scriptline.select.formats.save.failed": "La sauvegarde a échoué. Merci de réessayer ultérieurement.",
 
   "createMyScript.title.createAScript": "Créer un script",
