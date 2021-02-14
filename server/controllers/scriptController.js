@@ -417,7 +417,13 @@ async function startScript(
       },
     });
 
-    // yoann
+    for (let i = 0; i < allRaritiesForThatScript.length; i++) {
+      snapshotRarity = await db.snapshot_rarity.create({
+        idScript: idScript,
+        name: allRaritiesForThatScript[i].dataValues.name,
+        PUT_Request_id: put_request.dataValues.id,
+      });
+    }
 
     /* **************************************** */
     /* ********** Persistence Layer ***********/
