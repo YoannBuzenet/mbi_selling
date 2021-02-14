@@ -160,17 +160,26 @@
   color: #fda400;
 }
 
-.column-definitions {
-  background-color: #f9f9f9;
-  z-index: 5;
-  box-shadow: 1px 1px 1px black;
+.partForm.raritiesCheck .MuiFormGroup-root.MuiFormGroup-row {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: start;
 }
 
-.column-definitions .columnTitles {
-  font-size: 2rem;
+.partForm.raritiesCheck
+  .MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1 {
+  font-size: 14px;
+}
+
+.checkboxContainer {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  margin: auto;
+}
+
+.checkboxContainer label {
+  width: 300px;
 }
 
 .scriptNameEdition {

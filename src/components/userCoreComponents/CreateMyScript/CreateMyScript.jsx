@@ -1248,6 +1248,23 @@ const CreateMyScript = ({ history }) => {
     defaultMessage: "Avoid Specifically",
   });
 
+  const translatedLabelMythic = intl.formatMessage({
+    id: "createMyScript.rarity.mythic",
+    defaultMessage: "Mythic",
+  });
+  const translatedLabelRare = intl.formatMessage({
+    id: "createMyScript.rarity.rare",
+    defaultMessage: "Rare",
+  });
+  const translatedLabelUncommon = intl.formatMessage({
+    id: "createMyScript.rarity.uncommon",
+    defaultMessage: "Uncommon",
+  });
+  const translatedLabelCommon = intl.formatMessage({
+    id: "createMyScript.rarity.common",
+    defaultMessage: "Common",
+  });
+
   return (
     <>
       <div className="create-my-script-container">
@@ -1643,57 +1660,66 @@ const CreateMyScript = ({ history }) => {
                     />
                   </p>
                 </div>
-                <div className="partForm">
+                <div className="partForm raritiesCheck">
                   {/* yoann */}
                   {/* state : { rarityUn : true, raritydeux : false} */}
                   {/* Rarity filter here : 4 checkbox */}
                   {/* https://material-ui.com/components/checkboxes/ */}
                   <FormGroup aria-label="position" row>
-                    <FormControlLabel
-                      value="top"
-                      control={
-                        <Checkbox
-                          color="primary"
-                          checked={raritiesUsed.mythic}
-                        />
-                      }
-                      label="Top"
-                      labelPlacement="top"
-                      onChange={(e) => handleChangeRaritiesUsed(e, "mythic")}
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={
-                        <Checkbox color="primary" checked={raritiesUsed.rare} />
-                      }
-                      label="Start"
-                      labelPlacement="start"
-                      onChange={(e) => handleChangeRaritiesUsed(e, "rare")}
-                    />
-                    <FormControlLabel
-                      value="bottom"
-                      control={
-                        <Checkbox
-                          color="primary"
-                          checked={raritiesUsed.uncommon}
-                        />
-                      }
-                      label="Bottom"
-                      labelPlacement="bottom"
-                      onChange={(e) => handleChangeRaritiesUsed(e, "uncommon")}
-                    />
-                    <FormControlLabel
-                      value="end"
-                      control={
-                        <Checkbox
-                          color="primary"
-                          checked={raritiesUsed.common}
-                        />
-                      }
-                      label="End"
-                      labelPlacement="end"
-                      onChange={(e) => handleChangeRaritiesUsed(e, "common")}
-                    />
+                    <div className="checkboxContainer">
+                      <FormControlLabel
+                        value="top"
+                        control={
+                          <Checkbox
+                            color="primary"
+                            checked={raritiesUsed.mythic}
+                          />
+                        }
+                        label={translatedLabelMythic}
+                        labelPlacement="end"
+                        onChange={(e) => handleChangeRaritiesUsed(e, "mythic")}
+                      />
+                      <FormControlLabel
+                        value="start"
+                        control={
+                          <Checkbox
+                            color="primary"
+                            checked={raritiesUsed.rare}
+                          />
+                        }
+                        label={translatedLabelRare}
+                        labelPlacement="end"
+                        onChange={(e) => handleChangeRaritiesUsed(e, "rare")}
+                      />
+                    </div>
+                    <div className="checkboxContainer">
+                      <FormControlLabel
+                        value="bottom"
+                        control={
+                          <Checkbox
+                            color="primary"
+                            checked={raritiesUsed.uncommon}
+                          />
+                        }
+                        label={translatedLabelUncommon}
+                        labelPlacement="end"
+                        onChange={(e) =>
+                          handleChangeRaritiesUsed(e, "uncommon")
+                        }
+                      />
+                      <FormControlLabel
+                        value="end"
+                        control={
+                          <Checkbox
+                            color="primary"
+                            checked={raritiesUsed.common}
+                          />
+                        }
+                        label={translatedLabelCommon}
+                        labelPlacement="end"
+                        onChange={(e) => handleChangeRaritiesUsed(e, "common")}
+                      />
+                    </div>
                   </FormGroup>
                 </div>
               </div>
