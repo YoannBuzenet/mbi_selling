@@ -107,6 +107,13 @@ router.post("/", async (req, res) => {
     return;
   }
 
+  // Checking if script have at leas one rarity
+  const rarities = scriptToCheck.getRarities();
+  if (rarities === null) {
+    res.status(406).json("Script must have at least one rarity.");
+    return;
+  }
+
   /* ************************************************** */
   /* ****** Checking if the user is subscribed ******** */
   /* ************************************************** */
