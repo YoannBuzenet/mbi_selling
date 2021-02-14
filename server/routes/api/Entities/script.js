@@ -260,7 +260,7 @@ router.patch("/:id", async (req, res) => {
     console.log("they are rarities to set");
     for (let i = 0; i < req.body.rarities.length; i++) {
       const rarity = await db.Rarity.findOne({
-        where: { id: req.body.rarities[i].id, idScript: req.params.id },
+        where: { name: req.body.rarities[i].name, idScript: req.params.id },
       });
       rarity.name = req.body.rarities[i].name;
       rarity.save();

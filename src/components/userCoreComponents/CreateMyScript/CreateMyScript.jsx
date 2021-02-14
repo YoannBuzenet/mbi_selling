@@ -630,6 +630,17 @@ const CreateMyScript = ({ history }) => {
     setPricesAreBasedOn(value);
   };
 
+  const transformRarityStateObjectIntoArrayofObjects = (stateObject) => {
+    let finalArray = [];
+    for (const rarity in stateObject) {
+      if (stateObject[rarity]) {
+        finalArray = [...finalArray, { name: rarity }];
+      } else {
+        continue;
+      }
+    }
+  };
+
   const saveScriptAndCustomRules = async () => {
     if (canStateBeSaved(customRulesGlobalState) === false) {
       toast.error(
@@ -656,6 +667,9 @@ const CreateMyScript = ({ history }) => {
               formats: selectedFormats,
               willBeBasedOn: pricesAreBasedOn,
               keywordBehaviour: keywordBehaviour,
+              rarities: transformRarityStateObjectIntoArrayofObjects(
+                raritiesUsed
+              ),
             }
           );
           console.log("data arrived : ", scriptCreated);
@@ -686,6 +700,9 @@ const CreateMyScript = ({ history }) => {
               formats: selectedFormats,
               willBeBasedOn: pricesAreBasedOn,
               keywordBehaviour: keywordBehaviour,
+              rarities: transformRarityStateObjectIntoArrayofObjects(
+                raritiesUsed
+              ),
             }
           )
           .catch((err) => {
@@ -1656,7 +1673,7 @@ const CreateMyScript = ({ history }) => {
                   <p>
                     <FormattedMessage
                       id="createMyScript.rarity.title"
-                      defaultMessage="Rarities affected"
+                      defaultMessage="Rarities processed"
                     />
                   </p>
                 </div>

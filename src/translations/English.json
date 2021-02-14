@@ -282,7 +282,7 @@
   "createMyScript.script.select.keywordBehaviour.helpertext.explaination.ignore": "You can filter the cards affected by the script via their MKM comments. Currently, this script IGNORES these comments.",
   "createMyScript.script.select.keywordBehaviour.helpertext.explaination.targets": "You can filter the cards affected by the script via their MKM comments. Currently, this script TARGETS ONLY cards with these comments.",
   "createMyScript.script.select.keywordBehaviour.helpertext.explaination.avoid": "You can filter the cards affected by the script via their MKM comments. Currently, this script AVOIDS cards with these comments.",
-  "createMyScript.rarity.title": "Rarities affected",
+  "createMyScript.rarity.title": "Rarities processed",
   "createMyScript.rarity.mythic": "Mythic",
   "createMyScript.rarity.rare": "Rare",
   "createMyScript.rarity.uncommon": "Uncommon",
