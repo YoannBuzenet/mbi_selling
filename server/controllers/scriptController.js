@@ -491,6 +491,15 @@ async function testScriptPersistingStep(
 
   const filteredKeywords = allKeywordsUsed.map((keyword) => keyword.name);
 
+  /* RARITY FILTER */
+  const allRaritiesUsed = await db.snapshot_rarity.findAll({
+    where: {
+      PUT_Request_id: put_request.dataValues.id,
+    },
+  });
+
+  // yoann, préparer le bon format pour le passer dans la requete sequelize (ce sera Op.Or)
+
   // Are we targeting, avoiding, or ignoring keywords ?
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
 
