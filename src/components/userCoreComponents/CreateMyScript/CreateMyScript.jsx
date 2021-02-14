@@ -300,6 +300,9 @@ const CreateMyScript = ({ history }) => {
         )
         .then((resp) => {
           console.log("pass script name in state");
+          setRaritiesUsed(
+            transformArrayOfRaritiesIntoStateObject(resp.data.scriptRarities)
+          );
           setPricesAreBasedOn(resp.data.willBeBasedOn);
           setScriptName(resp.data.name);
           setChipData(
@@ -628,6 +631,25 @@ const CreateMyScript = ({ history }) => {
     setScriptMustbeSaved(true);
     const { value } = event.target;
     setPricesAreBasedOn(value);
+  };
+
+  const transformArrayOfRaritiesIntoStateObject = (arrayOfRarities) => {
+    console.log("array of rarities received", arrayOfRarities);
+
+    const initialState = {
+      mythic: false,
+      rare: false,
+      uncommon: false,
+      common: false,
+    };
+
+    // parse array, update object, return object
+
+    for (let i = 0; i < arrayOfRarities.length; i++) {
+      initialState[arrayOfRarities[i].name] = true;
+    }
+
+    return initialState;
   };
 
   const transformRarityStateObjectIntoArrayofObjects = (stateObject) => {
@@ -1681,10 +1703,6 @@ const CreateMyScript = ({ history }) => {
                   </p>
                 </div>
                 <div className="partForm raritiesCheck">
-                  {/* yoann */}
-                  {/* state : { rarityUn : true, raritydeux : false} */}
-                  {/* Rarity filter here : 4 checkbox */}
-                  {/* https://material-ui.com/components/checkboxes/ */}
                   <FormGroup aria-label="position" row>
                     <div className="checkboxContainer">
                       <FormControlLabel
