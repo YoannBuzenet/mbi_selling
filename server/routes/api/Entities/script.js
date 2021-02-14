@@ -279,10 +279,13 @@ router.patch("/:id", async (req, res) => {
       where: { idScript: req.params.id },
     });
     for (let i = 0; i < existingRarities.length; i++) {
-      // yoann
-      // checker que celle qui existe en DB existe bien dans l'array reçue
-      // sinon, delete
-      // ne doit plus exister(destroy) ?
+      const isRarityInPayload =
+        req.body.rarities.filter(
+          (rarityInPayload) => rarityInPayload.name === existingRarities[i].name
+        ).length === 1;
+      if (!isRarityInPayload) {
+        existingRarities[i].destroy();
+      }
     }
   }
 
