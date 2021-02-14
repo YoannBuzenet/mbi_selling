@@ -60,14 +60,15 @@ function generateRelevantRequest(
   dbOperator,
   formatFilter,
   keywordBehaviour,
-  keywordList
+  keywordList,
+  raritiesList
 ) {
   const requestObject = {
     include: [
       {
         model: dbObject.productLegalities,
         where: {
-          [dbOperator.or]: formatFilter,
+          [dbOperator.or]: { ...formatFilter, ...raritiesList },
         },
       },
     ],
@@ -498,7 +499,10 @@ async function testScriptPersistingStep(
     },
   });
 
-  // yoann, préparer le bon format pour le passer dans la requete sequelize (ce sera Op.Or)
+  let organizedRarities = {};
+  for (let i = 0; i < allRaritiesUsed.length; i++) {
+    organizedRarities.name = allRaritiesUsed[i].name;
+  }
 
   // Are we targeting, avoiding, or ignoring keywords ?
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
@@ -513,7 +517,8 @@ async function testScriptPersistingStep(
     Op,
     formatFilter,
     put_request_keyword_behaviour,
-    filteredKeywords
+    filteredKeywords,
+    organizedRarities
   );
 
   const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
@@ -1053,6 +1058,18 @@ async function realScriptPersistingStep(
   // Are we targeting, avoiding, or ignoring keywords ?
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
 
+  /* RARITY FILTER */
+  const allRaritiesUsed = await db.snapshot_rarity.findAll({
+    where: {
+      PUT_Request_id: put_request.dataValues.id,
+    },
+  });
+
+  let organizedRarities = {};
+  for (let i = 0; i < allRaritiesUsed.length; i++) {
+    organizedRarities.name = allRaritiesUsed[i].name;
+  }
+
   // Relevant Sequelize request is built
   const relevantRequest = generateRelevantRequest(
     idShop,
@@ -1060,7 +1077,8 @@ async function realScriptPersistingStep(
     Op,
     formatFilter,
     put_request_keyword_behaviour,
-    filteredKeywords
+    filteredKeywords,
+    organizedRarities
   );
 
   // console.log("format filter", formatFilter);
