@@ -258,12 +258,31 @@ router.patch("/:id", async (req, res) => {
 
   if (req.body.rarities) {
     console.log("they are rarities to set");
+    // For each received rarity, we check if it exists already or not.
+    // If it exist already, we let it
+    // If it doesn't exist, we create it
     for (let i = 0; i < req.body.rarities.length; i++) {
       const rarity = await db.Rarity.findOne({
         where: { name: req.body.rarities[i].name, idScript: req.params.id },
       });
-      rarity.name = req.body.rarities[i].name;
-      rarity.save();
+      if (!rarity) {
+        db.Rarity.create({
+          name: req.body.rarities[i].name,
+          idScript: req.params.id,
+        });
+      }
+    }
+
+    // Check to see if there are some rarities to delete
+    // One reRarity already existing in DB but not in the payload should be deleted
+    const existingRarities = await db.Rarity.findAll({
+      where: { idScript: req.params.id },
+    });
+    for (let i = 0; i < existingRarities.length; i++) {
+      // yoann
+      // checker que celle qui existe en DB existe bien dans l'array reçue
+      // sinon, delete
+      // ne doit plus exister(destroy) ?
     }
   }
 
