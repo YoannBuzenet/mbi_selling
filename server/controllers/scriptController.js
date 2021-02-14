@@ -408,6 +408,18 @@ async function startScript(
     }
 
     /* **************************************** */
+    /* ********** Snapshot Rarities  ***********/
+    /* **************************************** */
+
+    const allRaritiesForThatScript = await db.Rarity.findAll({
+      where: {
+        idScript: idScript,
+      },
+    });
+
+    // yoann
+
+    /* **************************************** */
     /* ********** Persistence Layer ***********/
     /* **************************************** */
 
