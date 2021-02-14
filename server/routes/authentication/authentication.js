@@ -74,7 +74,7 @@ router.post("/", async (req, res) => {
       const scriptKeywords = await userScripts[i].getKeywords();
       userScripts[i].dataValues.keywords = [...scriptKeywords];
       //Adding rarities
-      const scriptRarities = await userScripts[i].getrarities();
+      const scriptRarities = await userScripts[i].getRarities();
       userScripts[i].dataValues.rarities = [...scriptRarities];
     }
 
