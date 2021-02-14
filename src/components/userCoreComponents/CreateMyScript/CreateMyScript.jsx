@@ -631,6 +631,8 @@ const CreateMyScript = ({ history }) => {
   };
 
   const transformRarityStateObjectIntoArrayofObjects = (stateObject) => {
+    console.log("in fonction to format, received param", stateObject);
+
     let finalArray = [];
     for (const rarity in stateObject) {
       if (stateObject[rarity]) {
@@ -639,6 +641,7 @@ const CreateMyScript = ({ history }) => {
         continue;
       }
     }
+    return finalArray;
   };
 
   const saveScriptAndCustomRules = async () => {
