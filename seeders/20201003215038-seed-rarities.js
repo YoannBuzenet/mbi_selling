@@ -11,7 +11,35 @@ module.exports = {
           name: "common",
         },
         {
+          idScript: 3,
+          name: "rare",
+        },
+        {
+          idScript: 3,
+          name: "uncommon",
+        },
+        {
+          idScript: 3,
+          name: "mythic",
+        },
+        {
           idScript: 4,
+          name: "common",
+        },
+        {
+          idScript: 4,
+          name: "rare",
+        },
+        {
+          idScript: 4,
+          name: "uncommon",
+        },
+        {
+          idScript: 4,
+          name: "mythic",
+        },
+        {
+          idScript: 5,
           name: "common",
         },
         {
@@ -19,8 +47,28 @@ module.exports = {
           name: "rare",
         },
         {
+          idScript: 5,
+          name: "uncommon",
+        },
+        {
+          idScript: 5,
+          name: "mythic",
+        },
+        {
+          idScript: 6,
+          name: "common",
+        },
+        {
+          idScript: 6,
+          name: "rare",
+        },
+        {
           idScript: 6,
           name: "uncommon",
+        },
+        {
+          idScript: 6,
+          name: "mythic",
         },
       ],
       {}
