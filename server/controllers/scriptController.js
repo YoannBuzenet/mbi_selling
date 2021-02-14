@@ -499,9 +499,12 @@ async function testScriptPersistingStep(
     },
   });
 
-  let organizedRarities = {};
+  let organizedRarities = [];
   for (let i = 0; i < allRaritiesUsed.length; i++) {
-    organizedRarities.name = allRaritiesUsed[i].name;
+    organizedRarities = [
+      ...organizedRarities,
+      { name: allRaritiesUsed[i].name },
+    ];
   }
 
   // Are we targeting, avoiding, or ignoring keywords ?
