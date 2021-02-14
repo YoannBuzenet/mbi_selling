@@ -87,7 +87,7 @@ router.get("/getById/:id", async (req, res) => {
   const finalReponse = {
     ...userScripts.dataValues,
     scriptFormats,
-    scriptRarities,
+    rarities: scriptRarities,
   };
 
   res.status(200).json(finalReponse);

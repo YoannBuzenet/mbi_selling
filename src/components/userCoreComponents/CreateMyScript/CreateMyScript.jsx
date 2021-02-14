@@ -301,7 +301,7 @@ const CreateMyScript = ({ history }) => {
         .then((resp) => {
           console.log("pass script name in state");
           setRaritiesUsed(
-            transformArrayOfRaritiesIntoStateObject(resp.data.scriptRarities)
+            transformArrayOfRaritiesIntoStateObject(resp.data.rarities)
           );
           setPricesAreBasedOn(resp.data.willBeBasedOn);
           setScriptName(resp.data.name);
@@ -865,6 +865,7 @@ const CreateMyScript = ({ history }) => {
               formats: selectedFormats,
               keywordBehaviour,
               willBeBasedOn: pricesAreBasedOn,
+              rarities: raritiesUsed,
             },
           ];
         }

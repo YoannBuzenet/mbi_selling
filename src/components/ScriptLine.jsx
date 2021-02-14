@@ -197,6 +197,21 @@ const ScriptLine = ({ script, history, index }) => {
       return;
     }
 
+    if (
+      script.rarities.mythic === false &&
+      script.rarities.rare === false &&
+      script.rarities.uncommon === false &&
+      script.rarities.common === false
+    ) {
+      toast.error(
+        <FormattedMessage
+          id="scriptline.select.rarities.mustHaveOneAtLeast"
+          defaultMessage="Your script must at least process one card rarity."
+        />
+      );
+      return;
+    }
+
     //Check if user is connected to MKM
     if (
       !MKMAPI.isUserConnectedToMKM(
@@ -255,6 +270,21 @@ const ScriptLine = ({ script, history, index }) => {
         <FormattedMessage
           id="scriptline.select.formats.mustHaveOneAtLeast"
           defaultMessage="Your script must at least target one format."
+        />
+      );
+      return;
+    }
+
+    if (
+      script.rarities.mythic === false &&
+      script.rarities.rare === false &&
+      script.rarities.uncommon === false &&
+      script.rarities.common === false
+    ) {
+      toast.error(
+        <FormattedMessage
+          id="scriptline.select.rarities.mustHaveOneAtLeast"
+          defaultMessage="Your script must at least process one card rarity."
         />
       );
       return;
