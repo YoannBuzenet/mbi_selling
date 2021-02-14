@@ -73,6 +73,9 @@ router.post("/", async (req, res) => {
       //Adding keywords
       const scriptKeywords = await userScripts[i].getKeywords();
       userScripts[i].dataValues.keywords = [...scriptKeywords];
+      //Adding rarities
+      const scriptRarities = await userScripts[i].getrarities();
+      userScripts[i].dataValues.rarities = [...scriptRarities];
     }
 
     const userSellingShopParams = await db.shop_params.findOne({
