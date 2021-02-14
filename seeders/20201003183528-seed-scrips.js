@@ -45,6 +45,14 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        idShop: 57,
+        name: "7th script to test rarities",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
 
     // Trying to add a N to N data to script 3

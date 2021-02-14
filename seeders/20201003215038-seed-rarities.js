@@ -70,6 +70,14 @@ module.exports = {
           idScript: 6,
           name: "mythic",
         },
+        {
+          idScript: 7,
+          name: "common",
+        },
+        {
+          idScript: 7,
+          name: "rare",
+        },
       ],
       {}
     );
