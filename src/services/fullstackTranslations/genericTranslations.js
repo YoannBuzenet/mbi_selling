@@ -133,22 +133,22 @@ const pdfStructure = {
     ["fr-FR"]: "Formats concernés : ",
   },
   rarityUsed: {
-    ["en-US"]: "Rarity targeted",
-    ["fr-FR"]: "Raretés ciblées",
+    ["en-US"]: "Rarity targeted : ",
+    ["fr-FR"]: "Raretés ciblées : ",
   },
-  rarityMythic: {
+  mythic: {
     ["en-US"]: "Mythic",
     ["fr-FR"]: "Mythique",
   },
-  rarityRare: {
+  rare: {
     ["en-US"]: "Rare",
     ["fr-FR"]: "Rare",
   },
-  rarityUncommon: {
+  uncommon: {
     ["en-US"]: "Uncommon",
     ["fr-FR"]: "Peu Commune",
   },
-  rarityCommon: {
+  common: {
     ["en-US"]: "Common",
     ["fr-FR"]: "Commune",
   },

@@ -175,6 +175,15 @@ async function generatePDFFromPutRequest(
 
   const putRequestKeywordBehaviour = put_request.dataValues.keywordBehaviour;
 
+  /* **************************** */
+  /* Getting snapshot rarities */
+  /* **************************** */
+  const snapshotRarities = await db.snapshot_rarity.findAll({
+    where: {
+      PUT_Request_id: put_requestId,
+    },
+  });
+
   // https://pdfmake.github.io/docs/document-definition-object/tables/
   // http://pdfmake.org/playground.html
 
@@ -415,6 +424,10 @@ async function generatePDFFromPutRequest(
     return arrayWithAllData;
   }
 
+  /* *************************** */
+  /* ******* TEMPLATE ********** */
+  /* *************************** */
+
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
     pageMargins: [40, 60, 40, 80],
@@ -488,6 +501,25 @@ async function generatePDFFromPutRequest(
               return " " + '"' + keyword.dataValues.name + '"';
             } else {
               return '"' + keyword.dataValues.name + '"';
+            }
+          }),
+      },
+      { text: " " },
+      {
+        text:
+          genericTranslations.pdfStructure.rarityUsed[langLocale] +
+          snapshotRarities.map((rarity, index) => {
+            if (index !== 0) {
+              return (
+                " " +
+                genericTranslations.pdfStructure[rarity.dataValues.name][
+                  langLocale
+                ]
+              );
+            } else {
+              return genericTranslations.pdfStructure[rarity.dataValues.name][
+                langLocale
+              ];
             }
           }),
       },
