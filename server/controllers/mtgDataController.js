@@ -34,18 +34,21 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
         console.log("go");
 
         if (
-          resp.data.legalities[i].status === "Legal" &&
           typeof resp.data.legalities[i].cards.mcmid === "number" &&
           resp.data.legalities[i].cards.isonlineonly === 0
         ) {
           console.log("idProduct:", resp.data.legalities[i].cards.mcmid);
           console.log("card:", resp.data.legalities[i].cards);
+
+          const isCardLegal =
+            resp.data.legalities[i].status === "Legal" ? 1 : 0;
+
           await db.productLegalities.upsert(
             {
               idProduct: resp.data.legalities[i].cards.mcmid,
               rarity: resp.data.legalities[i].cards.rarity,
-              [`isLegal${config.formatDefinition[idFormat]}`]: 1,
-              expansion: resp.data.legalities[i].cards.edition.mcmname,
+              [`isLegal${config.formatDefinition[idFormat]}`]: isCardLegal,
+              expansion: resp.data.legalities[i]?.cards?.edition?.mcmname || "",
               updatedAt: Date.now(),
             },
             {
@@ -56,7 +59,7 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
             }
           );
         } else {
-          console.log("card not legal");
+          console.log("card doesnt have any mcmId or is online only");
         }
       }
     })
