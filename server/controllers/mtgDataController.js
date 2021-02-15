@@ -45,6 +45,7 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
               idProduct: resp.data.legalities[i].cards.mcmid,
               rarity: resp.data.legalities[i].cards.rarity,
               [`isLegal${config.formatDefinition[idFormat]}`]: 1,
+              expansion: resp.data.legalities[i].cards.edition.mcmname,
               updatedAt: Date.now(),
             },
             {

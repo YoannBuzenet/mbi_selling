@@ -57,6 +57,9 @@ module.exports = {
       rarity: {
         type: Sequelize.STRING,
       },
+      expansion: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
