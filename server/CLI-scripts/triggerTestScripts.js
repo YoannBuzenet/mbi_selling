@@ -102,6 +102,17 @@ async function triggerTestScripts() {
     formats,
     jwt
   );
+
+  // Script with rarities
+  const scriptRealOldPriceMissingRaritiesOnlyrareExecuted = await startScript(
+    idShopTest,
+    8,
+    false,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 }
 
 triggerTestScripts();

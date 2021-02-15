@@ -3009,3 +3009,33 @@ describe("Script Avoids keywords", () => {
       });
   });
 });
+
+// SCRIPT 7 TESTING RARITIES
+
+describe("Script with rarity filters : mythic and common", () => {
+  it("checks the number of put memories : should be 5", async () => {
+    return db.put_memory
+      .findAndCountAll({
+        where: {
+          PUT_Request_id: 7,
+        },
+      })
+      .then((put_memories) => {
+        expect(put_memories.count).toEqual(5);
+      });
+  });
+});
+
+describe("Script with rarity filters : only rares", () => {
+  it("checks the number of put memories : should be 6", async () => {
+    return db.put_memory
+      .findAndCountAll({
+        where: {
+          PUT_Request_id: 8,
+        },
+      })
+      .then((put_memories) => {
+        expect(put_memories.count).toEqual(6);
+      });
+  });
+});

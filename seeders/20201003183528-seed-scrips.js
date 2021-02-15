@@ -47,7 +47,15 @@ module.exports = {
       },
       {
         idShop: 57,
-        name: "7th script to test rarities",
+        name: "7th script to test rarities on common/mythic",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        idShop: 57,
+        name: "8th script to test rarities on rare only",
         willBeBasedOn: "oldPrices",
         keywordBehaviour: "avoidsSpecifically",
         createdAt: new Date(),
