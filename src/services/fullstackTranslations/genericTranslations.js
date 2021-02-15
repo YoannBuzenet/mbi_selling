@@ -132,6 +132,26 @@ const pdfStructure = {
     ["en-US"]: "Affected formats : ",
     ["fr-FR"]: "Formats concernés : ",
   },
+  rarityUsed: {
+    ["en-US"]: "Rarity targeted",
+    ["fr-FR"]: "Raretés ciblées",
+  },
+  rarityMythic: {
+    ["en-US"]: "Mythic",
+    ["fr-FR"]: "Mythique",
+  },
+  rarityRare: {
+    ["en-US"]: "Rare",
+    ["fr-FR"]: "Rare",
+  },
+  rarityUncommon: {
+    ["en-US"]: "Uncommon",
+    ["fr-FR"]: "Peu Commune",
+  },
+  rarityCommon: {
+    ["en-US"]: "Common",
+    ["fr-FR"]: "Commune",
+  },
   cardsConcernedByScript: {
     ["en-US"]: "Cards affected by the script",
     ["fr-FR"]: "Cartes concernées par le script ",
