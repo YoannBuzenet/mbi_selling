@@ -26,71 +26,71 @@ async function triggerTestScripts() {
   const shopData = apiResp.data;
   const jwt = apiResp.config.headers.Authorization;
 
-  // // Mkm Trends - Real
-  // const scriptExecuted = await startScript(
-  //   idShopTest,
-  //   idScriptTest,
-  //   isTest,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  // Mkm Trends - Real
+  const scriptExecuted = await startScript(
+    idShopTest,
+    idScriptTest,
+    isTest,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
-  // // Mkm Trends - test
-  // const scriptTestExecuted = await startScript(
-  //   idShopTest,
-  //   idScriptTest,
-  //   true,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  // Mkm Trends - test
+  const scriptTestExecuted = await startScript(
+    idShopTest,
+    idScriptTest,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
-  // // Old Price - test
-  // const scriptTestOldPriceExecuted = await startScript(
-  //   idShopTest,
-  //   4,
-  //   true,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  // Old Price - test
+  const scriptTestOldPriceExecuted = await startScript(
+    idShopTest,
+    4,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
-  // // Old Price - Real
-  // const scriptRealOldPriceExecuted = await startScript(
-  //   idShopTest,
-  //   4,
-  //   false,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  // Old Price - Real
+  const scriptRealOldPriceExecuted = await startScript(
+    idShopTest,
+    4,
+    false,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
-  // // Script Targets Keywords
-  // const scriptRealOldPriceTargetsKeywordsExecuted = await startScript(
-  //   idShopTest,
-  //   5,
-  //   false,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  // Script Targets Keywords
+  const scriptRealOldPriceTargetsKeywordsExecuted = await startScript(
+    idShopTest,
+    5,
+    false,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
-  // // Script Avoids Keywords
-  // const scriptRealOldPriceAvoidsKeywordsExecuted = await startScript(
-  //   idShopTest,
-  //   6,
-  //   false,
-  //   shopData,
-  //   locale,
-  //   formats,
-  //   jwt
-  // );
+  // Script Avoids Keywords
+  const scriptRealOldPriceAvoidsKeywordsExecuted = await startScript(
+    idShopTest,
+    6,
+    false,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 
   // Script with rarities
   const scriptRealOldPriceMissingRaritiesExecuted = await startScript(
