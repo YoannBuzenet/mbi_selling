@@ -7,6 +7,7 @@ const {
   customRulesMinus5PercentOnKeywordsCards,
   customRulesMinus5PercentOnModernAbove30euros,
   customRulesPlus5PercentOnModernAbove30euros,
+  create4RaritiesForScript,
 } = require("../services/sampleData/shopCreation");
 const {
   premadeScriptTitles,
@@ -33,6 +34,12 @@ async function createPreMadeScripts10PercentsFoilStandard(
     customRules10percentsFoilStandard(newScript.dataValues.id),
     {}
   );
+
+  await queryInterface.bulkInsert(
+    "Rarity",
+    create4RaritiesForScript(newScript.dataValues.id),
+    {}
+  );
 }
 // +10% on foil standard
 async function createPreMadeScriptsIncrease10PercentsFoilStandard(
@@ -54,6 +61,12 @@ async function createPreMadeScriptsIncrease10PercentsFoilStandard(
   await queryInterface.bulkInsert(
     "Custom_Rules",
     customRulesPlus10percentsFoilStandard(newScript.dataValues.id),
+    {}
+  );
+
+  await queryInterface.bulkInsert(
+    "Rarity",
+    create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
 }
@@ -78,6 +91,12 @@ async function createPreMadeScripts10PercentsUPONMKMALLStandard(
   await queryInterface.bulkInsert(
     "Custom_Rules",
     customRules10percentsUPonMKMTrendsStandard(newScript.dataValues.id),
+    {}
+  );
+
+  await queryInterface.bulkInsert(
+    "Rarity",
+    create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
 }
@@ -110,6 +129,12 @@ async function createPreMadeScriptsMinus5PercentOnKeywordsCards(
     customRulesMinus5PercentOnKeywordsCards(newScript.dataValues.id),
     {}
   );
+
+  await queryInterface.bulkInsert(
+    "Rarity",
+    create4RaritiesForScript(newScript.dataValues.id),
+    {}
+  );
 }
 // -5% sur les cartes Modern > 30 euros
 async function createPreMadeScriptsMinus5PercentOnModernAbove30euros(
@@ -133,6 +158,12 @@ async function createPreMadeScriptsMinus5PercentOnModernAbove30euros(
     customRulesMinus5PercentOnModernAbove30euros(newScript.dataValues.id),
     {}
   );
+
+  await queryInterface.bulkInsert(
+    "Rarity",
+    create4RaritiesForScript(newScript.dataValues.id),
+    {}
+  );
 }
 // +5% sur keyword bien précis
 async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
@@ -153,6 +184,12 @@ async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
   await queryInterface.bulkInsert(
     "Custom_Rules",
     customRulesPlus5PercentOnModernAbove30euros(newScript.dataValues.id),
+    {}
+  );
+
+  await queryInterface.bulkInsert(
+    "Rarity",
+    create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
 }

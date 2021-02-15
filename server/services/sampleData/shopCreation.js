@@ -306,6 +306,25 @@ const customRulesPlus5PercentOnModernAbove30euros = (scriptID) => [
   },
 ];
 
+const create4RaritiesForScript = (scriptID) => [
+  {
+    idScript: scriptID,
+    name: "mythic",
+  },
+  {
+    idScript: scriptID,
+    name: "rare",
+  },
+  {
+    idScript: scriptID,
+    name: "uncommon",
+  },
+  {
+    idScript: scriptID,
+    name: "common",
+  },
+];
+
 module.exports = {
   customRules10percentsFoilStandard,
   customRulesPlus10percentsFoilStandard,
@@ -313,4 +332,5 @@ module.exports = {
   customRulesMinus5PercentOnKeywordsCards,
   customRulesMinus5PercentOnModernAbove30euros,
   customRulesPlus5PercentOnModernAbove30euros,
+  create4RaritiesForScript,
 };

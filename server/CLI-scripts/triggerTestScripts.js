@@ -107,7 +107,7 @@ async function triggerTestScripts() {
   const scriptRealOldPriceMissingRaritiesOnlyrareExecuted = await startScript(
     idShopTest,
     8,
-    false,
+    true,
     shopData,
     locale,
     formats,
