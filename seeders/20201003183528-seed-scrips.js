@@ -61,6 +61,22 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        idShop: 57,
+        name: "9th script to test expansions filter",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        idShop: 57,
+        name: "10th script to test expansions filter AND rarity combined",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
 
     // Trying to add a N to N data to script 3

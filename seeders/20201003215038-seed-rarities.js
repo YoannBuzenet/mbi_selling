@@ -82,6 +82,10 @@ module.exports = {
           idScript: 8,
           name: "rare",
         },
+        {
+          idScript: 10,
+          name: "rare",
+        },
       ],
       {}
     );
