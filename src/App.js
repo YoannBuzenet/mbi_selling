@@ -59,6 +59,11 @@ import utils from "./services/utils";
 import BlackDiv from "./components/BlackDiv";
 import ScrollToTop from "./components/ScrollToTop";
 
+// Prime React
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";

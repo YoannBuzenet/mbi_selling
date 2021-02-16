@@ -16,6 +16,7 @@ import PopInLaunchingConfirmationContext from "../../../context/popInConfirmatio
 import PopInTestConfirmationContext from "../../../context/popInConfirmationTestScript";
 import BlackDivContext from "../../../context/blackDivModalContext";
 
+// Material UI
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -36,6 +37,9 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
+
+// Prime React
+import { MultiSelect } from "primereact/multiselect";
 
 import { FormattedMessage, useIntl } from "react-intl";
 import MKMAPI from "../../../services/MKMAPI";
@@ -1348,6 +1352,14 @@ const CreateMyScript = ({ history }) => {
     id: "createMyScript.rarity.common",
     defaultMessage: "Common",
   });
+  const translatedplaceholderExpansionsMultiSelect = intl.formatMessage({
+    id: "createMyScript.script.select.expansions.placeholder",
+    defaultMessage: "Choose sets...",
+  });
+  const translatedXSetsSelectedExpansionsMultiSelect = intl.formatMessage({
+    id: "createMyScript.script.select.expansions.numberOfSetsSelected",
+    defaultMessage: "{0} sets selected",
+  });
 
   return (
     <>
@@ -1801,6 +1813,31 @@ const CreateMyScript = ({ history }) => {
                       />
                     </div>
                   </FormGroup>
+                </div>
+              </div>
+              <div className="partContainer expansionSelection">
+                <div className="part-title">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.script.setSelection.title"
+                      defaultMessage="Filter by set"
+                    />
+                  </p>
+                </div>
+                <div className="partForm">
+                  <MultiSelect
+                    value={expansionsSelected}
+                    options={allDefinitions.allMKMSets}
+                    onChange={(e) => setExpansionsSelected(e.value)}
+                    optionLabel="mcmname"
+                    optionValue="mcmname"
+                    filter
+                    placeholder={translatedplaceholderExpansionsMultiSelect}
+                    style={{ width: "300px" }}
+                    selectedItemsLabel={
+                      translatedXSetsSelectedExpansionsMultiSelect
+                    }
+                  />
                 </div>
               </div>
             </div>
