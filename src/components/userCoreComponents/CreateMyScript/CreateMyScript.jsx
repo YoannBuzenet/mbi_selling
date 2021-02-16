@@ -701,6 +701,7 @@ const CreateMyScript = ({ history }) => {
               rarities: transformRarityStateObjectIntoArrayofObjects(
                 raritiesUsed
               ),
+              expansions: expansionsSelected,
             }
           );
           console.log("data arrived : ", scriptCreated);
@@ -734,6 +735,7 @@ const CreateMyScript = ({ history }) => {
               rarities: transformRarityStateObjectIntoArrayofObjects(
                 raritiesUsed
               ),
+              expansions: expansionsSelected,
             }
           )
           .catch((err) => {
