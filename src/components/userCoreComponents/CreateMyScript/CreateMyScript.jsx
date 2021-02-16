@@ -310,6 +310,9 @@ const CreateMyScript = ({ history }) => {
             transformArrayOfRaritiesIntoStateObject(resp.data.rarities)
           );
           setPricesAreBasedOn(resp.data.willBeBasedOn);
+          setExpansionsSelected(
+            resp.data.expansions.map((expansion) => expansion.name)
+          );
           setScriptName(resp.data.name);
           setChipData(
             resp.data.Keywords.map((keyword) => ({
@@ -1830,7 +1833,10 @@ const CreateMyScript = ({ history }) => {
                   <MultiSelect
                     value={expansionsSelected}
                     options={allDefinitions.allMKMSets}
-                    onChange={(e) => setExpansionsSelected(e.value)}
+                    onChange={(e) => {
+                      setScriptMustbeSaved(true);
+                      setExpansionsSelected(e.value);
+                    }}
                     optionLabel="mcmname"
                     optionValue="mcmname"
                     filter

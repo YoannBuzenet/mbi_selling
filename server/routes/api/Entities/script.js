@@ -84,10 +84,13 @@ router.get("/getById/:id", async (req, res) => {
 
   const scriptRarities = await userScripts.getRarities();
 
+  const scriptExpansions = await userScripts.getExpansions();
+
   const finalReponse = {
     ...userScripts.dataValues,
     scriptFormats,
     rarities: scriptRarities,
+    expansions: scriptExpansions,
   };
 
   res.status(200).json(finalReponse);
@@ -131,8 +134,19 @@ router.post("/", async (req, res) => {
     res.status(406).json("rarities param is mandatory.");
     return;
   }
+
+  if (req.body.expansions === undefined) {
+    res.status(406).json("expansions param is mandatory.");
+    return;
+  }
+
   if (!Array.isArray(req.body.rarities)) {
     res.status(406).json("rarities param must be an array.");
+    return;
+  }
+
+  if (!Array.isArray(req.body.expansions)) {
+    res.status(406).json("expansions param must be an array.");
     return;
   }
   //Check that the requester is who he sayts he is OR is admin
@@ -162,6 +176,12 @@ router.post("/", async (req, res) => {
       console.log("they are rarities to set", req.body.rarities);
       for (let i = 0; i < req.body.rarities.length; i++) {
         await newScript.createRarity({ name: req.body.rarities[i].name });
+      }
+    }
+    if (req.body.expansions) {
+      console.log("they are rarities to set", req.body.expansions);
+      for (let i = 0; i < req.body.expansions.length; i++) {
+        await newScript.createExpansion({ name: req.body.expansions[i] });
       }
     }
 
@@ -231,9 +251,17 @@ router.patch("/:id", async (req, res) => {
     res.status(406).json("rarities param is mandatory.");
     return;
   }
+  if (req.body.expansions === undefined) {
+    res.status(406).json("expansions param is mandatory.");
+    return;
+  }
 
   if (!Array.isArray(req.body.rarities)) {
     res.status(406).json("rarities param must be an array.");
+    return;
+  }
+  if (!Array.isArray(req.body.expansions)) {
+    res.status(406).json("expansions param must be an array.");
     return;
   }
 
@@ -285,6 +313,40 @@ router.patch("/:id", async (req, res) => {
         ).length === 1;
       if (!isRarityInPayload) {
         existingRarities[i].destroy();
+      }
+    }
+  }
+
+  if (req.body.expansions) {
+    console.log("they are expansions to set");
+    // For each received rarity, we check if it exists already or not.
+    // If it exist already, we let it
+    // If it doesn't exist, we create it
+    for (let i = 0; i < req.body.expansions.length; i++) {
+      const expansion = await db.Expansion.findOne({
+        where: { name: req.body.expansions[i], idScript: req.params.id },
+      });
+      if (!expansion) {
+        db.Expansion.create({
+          name: req.body.expansions[i],
+          idScript: req.params.id,
+        });
+      }
+    }
+
+    // Check to see if there are some rarities to delete
+    // One reRarity already existing in DB but not in the payload should be deleted
+    const existingExpansions = await db.Expansion.findAll({
+      where: { idScript: req.params.id },
+    });
+    for (let i = 0; i < existingExpansions.length; i++) {
+      const isExpansionInPayload =
+        req.body.expansions.filter(
+          (expansionInPayload) =>
+            expansionInPayload === existingExpansions[i].name
+        ).length === 1;
+      if (!isExpansionInPayload) {
+        existingExpansions[i].destroy();
       }
     }
   }
