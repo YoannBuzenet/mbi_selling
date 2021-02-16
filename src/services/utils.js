@@ -14,7 +14,18 @@ function transformArrayIntoDictionnaryWithKey(array, key = "id") {
   return dictionnaryToReturn;
 }
 
+function compareBySetName(a, b) {
+  if (a.mcmname < b.mcmname) {
+    return -1;
+  }
+  if (a.mcmname > b.mcmname) {
+    return 1;
+  }
+  return 0;
+}
+
 module.exports = {
   capitalizeFirstLetter,
   transformArrayIntoDictionnaryWithKey,
+  compareBySetName,
 };

@@ -28,6 +28,7 @@
     "mysql2": "^2.2.5",
     "nodemailer": "^6.4.11",
     "pdfmake": "^0.1.68",
+    "primereact": "^6.0.2",
     "react": "^16.13.1",
     "react-content-loader": "^5.1.2",
     "react-device-detect": "^1.13.1",

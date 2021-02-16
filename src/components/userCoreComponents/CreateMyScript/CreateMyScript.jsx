@@ -254,6 +254,8 @@ const CreateMyScript = ({ history }) => {
     common: true,
   });
 
+  const [expansionsSelected, setExpansionsSelected] = useState([]);
+
   //This value is kept in state for creation mode, where we will need to set it before sending our rules.
   //With this we have this potential ID always in the same variable.
   const [idScript, setIdScript] = useState(match?.params?.id);

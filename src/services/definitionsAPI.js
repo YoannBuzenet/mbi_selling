@@ -25,9 +25,15 @@ function getFormatsDefinitions() {
 function getMKMSets() {
   return axios.get(`${process.env.REACT_APP_MTGAPI_URL}/sets`).then((resp) => {
     const sets = resp.data["hydra:member"].filter(
-      (set) => set.mcmname !== null && set.mcmname.match(/promo/) === null
+      (set) =>
+        set.mcmname !== null &&
+        set.mcmname.match(/promo/) === null &&
+        set.mcmname.match(/Promo/) === null
     );
-    return sets;
+
+    const sortedMCMSets = sets.sort(utils.compareBySetName);
+
+    return sortedMCMSets;
   });
 }
 
