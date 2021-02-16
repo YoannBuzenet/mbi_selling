@@ -152,6 +152,10 @@ const pdfStructure = {
     ["en-US"]: "Common",
     ["fr-FR"]: "Commune",
   },
+  targetedExpansions: {
+    ["en-US"]: "Targeted Expansions",
+    ["fr-FR"]: "Editions visées",
+  },
   cardsConcernedByScript: {
     ["en-US"]: "Cards affected by the script",
     ["fr-FR"]: "Cartes concernées par le script ",
