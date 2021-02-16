@@ -61,7 +61,8 @@ function generateRelevantRequest(
   formatFilter,
   keywordBehaviour,
   keywordList,
-  raritiesList
+  raritiesList,
+  expansionList
 ) {
   const requestObject = {
     include: [
@@ -89,6 +90,12 @@ function generateRelevantRequest(
     // pass for now, as the request remains the same
   } else {
     throw new Error("Unmatched keyword behaviour.");
+  }
+
+  if (Array.isArray(expansionList) && expansionList.length > 0) {
+    requestObject.include[0].where.expansion = {
+      [dbOperator.or]: expansionList,
+    };
   }
 
   return requestObject;
@@ -525,6 +532,15 @@ async function testScriptPersistingStep(
     organizedRarities = [...organizedRarities, allRaritiesUsed[i].name];
   }
 
+  /* EXPANSION FILTER */
+  const allExpansionsUsed = await db.snapshot_expansion.findAll({
+    where: {
+      PUT_Request_id: put_request.dataValues.id,
+    },
+  });
+
+  const expansionList = allExpansionsUsed.map((expansion) => expansion.name);
+
   // Are we targeting, avoiding, or ignoring keywords ?
   const put_request_keyword_behaviour = put_request.dataValues.keywordBehaviour;
 
@@ -539,7 +555,8 @@ async function testScriptPersistingStep(
     formatFilter,
     put_request_keyword_behaviour,
     filteredKeywords,
-    organizedRarities
+    organizedRarities,
+    expansionList
   );
 
   const numberOfCardsToHandle = await db.MkmProduct.findAndCountAll(
@@ -1091,6 +1108,15 @@ async function realScriptPersistingStep(
     organizedRarities = [...organizedRarities, allRaritiesUsed[i].name];
   }
 
+  /* EXPANSION FILTER */
+  const allExpansionsUsed = await db.snapshot_expansion.findAll({
+    where: {
+      PUT_Request_id: put_request.dataValues.id,
+    },
+  });
+
+  const expansionList = allExpansionsUsed.map((expansion) => expansion.name);
+
   // Relevant Sequelize request is built
   const relevantRequest = generateRelevantRequest(
     idShop,
@@ -1099,7 +1125,8 @@ async function realScriptPersistingStep(
     formatFilter,
     put_request_keyword_behaviour,
     filteredKeywords,
-    organizedRarities
+    organizedRarities,
+    expansionList
   );
 
   // console.log("format filter", formatFilter);
