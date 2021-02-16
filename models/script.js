@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Script.hasMany(models.Custom_Rule, { foreignKey: "id" });
       Script.hasMany(models.Keyword, { foreignKey: "idScript" });
       Script.hasMany(models.Rarity, { foreignKey: "idScript" });
+      Script.hasMany(models.Expansion, { foreignKey: "idScript" });
       Script.belongsTo(models.User, { foreignKey: "idShop" });
       Script.belongsToMany(models.Format, {
         through: models.ScriptsFormats,
