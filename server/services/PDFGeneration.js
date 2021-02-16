@@ -184,6 +184,15 @@ async function generatePDFFromPutRequest(
     },
   });
 
+  /* **************************** */
+  /* Getting snapshot expansions */
+  /* **************************** */
+  const snapshotExpansions = await db.snapshot_expansion.findAll({
+    where: {
+      PUT_Request_id: put_requestId,
+    },
+  });
+
   // https://pdfmake.github.io/docs/document-definition-object/tables/
   // http://pdfmake.org/playground.html
 
@@ -520,6 +529,19 @@ async function generatePDFFromPutRequest(
               return genericTranslations.pdfStructure[rarity.dataValues.name][
                 langLocale
               ];
+            }
+          }),
+      },
+      { text: " " },
+      { text: " " },
+      {
+        text:
+          genericTranslations.pdfStructure.targetedExpansions[langLocale] +
+          snapshotExpansions.map((expansion, index) => {
+            if (index !== 0) {
+              return " " + expansion.dataValues.name;
+            } else {
+              return expansion.dataValues.name;
             }
           }),
       },
