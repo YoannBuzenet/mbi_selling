@@ -422,7 +422,7 @@ module.exports = {
           isLegalStandard: 0,
           isLegalOldSchool: 1,
           rarity: "rare",
-          expansion: "Fallen Empires",
+          expansion: "Invasion",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

@@ -118,7 +118,7 @@ async function triggerTestScripts() {
   const scriptRealOldPriceExpansionFilterExecuted = await startScript(
     idShopTest,
     9,
-    true,
+    false,
     shopData,
     locale,
     formats,

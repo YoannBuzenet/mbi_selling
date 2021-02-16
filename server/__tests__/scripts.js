@@ -3040,7 +3040,7 @@ describe("Script with rarity filters : only rares", () => {
   });
 });
 describe("Script with Expansion filters : only Invasion & Tenth Edition", () => {
-  it("checks the number of put memories : should be 4", async () => {
+  it("checks the number of put memories : should be 5", async () => {
     return db.put_memory
       .findAndCountAll({
         where: {
@@ -3048,12 +3048,12 @@ describe("Script with Expansion filters : only Invasion & Tenth Edition", () => 
         },
       })
       .then((put_memories) => {
-        expect(put_memories.count).toEqual(4);
+        expect(put_memories.count).toEqual(5);
       });
   });
 });
 describe("Script with expansion/rarity filters : only rares WITHIN Fallen Empires and Invasion expansions", () => {
-  it("checks the number of put memories : should be 6", async () => {
+  it("checks the number of put memories : should be 4", async () => {
     return db.put_memory
       .findAndCountAll({
         where: {
@@ -3061,7 +3061,7 @@ describe("Script with expansion/rarity filters : only rares WITHIN Fallen Empire
         },
       })
       .then((put_memories) => {
-        expect(put_memories.count).toEqual(6);
+        expect(put_memories.count).toEqual(4);
       });
   });
 });
