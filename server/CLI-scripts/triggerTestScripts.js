@@ -113,6 +113,28 @@ async function triggerTestScripts() {
     formats,
     jwt
   );
+
+  // Script with expansion filter
+  const scriptRealOldPriceExpansionFilterExecuted = await startScript(
+    idShopTest,
+    9,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
+
+  // Script with expansion AND rarities combined
+  const scriptRealOldPriceExpansionAndRarityFilterExecuted = await startScript(
+    idShopTest,
+    10,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 }
 
 triggerTestScripts();

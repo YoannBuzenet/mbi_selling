@@ -20,7 +20,7 @@ module.exports = {
         },
         {
           idScript: 10,
-          name: "Tenth Edition",
+          name: "Fallen Empires",
         },
       ],
       {}
