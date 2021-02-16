@@ -533,17 +533,20 @@ async function generatePDFFromPutRequest(
           }),
       },
       { text: " " },
-      { text: " " },
       {
         text:
-          genericTranslations.pdfStructure.targetedExpansions[langLocale] +
-          snapshotExpansions.map((expansion, index) => {
-            if (index !== 0) {
-              return " " + expansion.dataValues.name;
-            } else {
-              return expansion.dataValues.name;
-            }
-          }),
+          snapshotExpansions.length > 0
+            ? genericTranslations.pdfStructure.targetedExpansions[langLocale] +
+              snapshotExpansions.map((expansion, index) => {
+                if (index !== 0) {
+                  return " " + expansion.dataValues.name;
+                } else {
+                  return expansion.dataValues.name;
+                }
+              })
+            : genericTranslations.pdfStructure.targetedExpansionsNone[
+                langLocale
+              ],
       },
       { text: " " },
       { text: " " },
