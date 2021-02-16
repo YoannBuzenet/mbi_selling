@@ -1,9 +1,14 @@
 const axios = require("axios");
 const db = require("../../models/index");
 const { config } = require("../../config/configApp");
+const { refreshTokenOnServer } = require("../controllers/authController");
+const { sleep } = require("../services/utils");
+
+// Axios base URL
+axios.defaults.baseURL = process.env.REACT_APP_THIS_WEBSITE_URL;
 
 //Getting all formats from API
-async function getAllFormatDefinition(jwt) {
+async function getAllFormatDefinition(jwt, refreshToken) {
   axios.defaults.headers["Authorization"] = jwt;
   await axios
     .get(process.env.REACT_APP_MTGAPI_URL + "/formats")
@@ -12,17 +17,24 @@ async function getAllFormatDefinition(jwt) {
       //On each formats we are going to ask all the cards
 
       for (let i = 1; i <= resp.data["hydra:totalItems"]; i++) {
+        // Reseting JWT every 5 formats to make it lasts until the end
+        if (i % 5 === 0) {
+          await refreshTokenOnServer(refreshToken);
+        }
+
         console.log("iteration AVANT FUNCTION", i);
-        let dataToClear = await getAllMcmIdAndLegalitiesFromOneFormat(jwt, i);
+        let dataToClear = await getAllMcmIdAndLegalitiesFromOneFormat(i);
         console.log("iteration APRES FUNCTION", i);
         dataToClear = null;
+
+        // we wait to let MTGAPI empty the serv RAM with fpm
+        await sleep(6000);
       }
     });
 }
 
 //Function is async to ask one set after another
-async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
-  axios.defaults.headers["Authorization"] = jwt;
+async function getAllMcmIdAndLegalitiesFromOneFormat(idFormat) {
   console.log("starting function");
 
   return await axios
@@ -67,10 +79,6 @@ async function getAllMcmIdAndLegalitiesFromOneFormat(jwt, idFormat) {
       console.log("we're in error");
       console.log("Here is the error", error);
     });
-}
-
-async function addIdSetToProductLegalities() {
-  //ajouter le set au productLegality dictionnary
 }
 
 module.exports = {

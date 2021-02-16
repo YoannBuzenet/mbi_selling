@@ -57,16 +57,16 @@ router.post("/", async (req, res) => {
       ...refreskTokenOnMTGAPI.data,
       userScripts,
       sellingShopParams: userSellingShopParams,
-      isSubscribedUntil: shop.dataValues.isSubscribedUntil,
+      isSubscribedUntil: shop?.isSubscribedUntil,
       shopLocalData: {
-        hasAlreadyLogged: shop.dataValues.hasAlreadyConnected,
+        hasAlreadyLogged: shop?.dataValues?.hasAlreadyConnected,
       },
     };
 
     res.json(overloadedResponse);
   } catch (error) {
     console.log("error when adding data to refresh token", error);
-    res.status(401).json(error);
+    res.status(500).json(error);
     return;
   }
 });

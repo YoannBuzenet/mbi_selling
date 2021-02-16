@@ -102,23 +102,27 @@ function App() {
     const allRuleBehaviours = definitionsAPI.getCustomRuleRuleBehaviourDefinitions();
     const allPriceGuidePossibilities = definitionsAPI.getPriceGuideDefinitions();
     const allFormats = definitionsAPI.getFormatsDefinitions();
+    const allMKMSets = definitionsAPI.getMKMSets();
     Promise.all([
       allRuleTypes,
       allRuleBehaviours,
       allPriceGuidePossibilities,
       allFormats,
+      allMKMSets,
     ]).then(
       ([
         allRuleTypes,
         allRuleBehaviours,
         allPriceGuidePossibilities,
         allFormats,
+        allMKMSets,
       ]) => {
         setAllDefinitions({
           ruleTypes: allRuleTypes,
           ruleBehaviours: allRuleBehaviours,
           priceGuidePossibilities: allPriceGuidePossibilities,
           allFormats: allFormats,
+          allMKMSets: allMKMSets,
         });
       }
     );

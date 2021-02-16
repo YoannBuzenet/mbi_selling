@@ -2,6 +2,9 @@ const { getAllFormatDefinition } = require("../controllers/mtgDataController");
 
 const axios = require("axios");
 
+// axios base URL
+axios.defaults.baseURL = process.env.REACT_APP_THIS_WEBSITE_URL;
+
 async function getMTGData() {
   if (process.env.LOG_SHOP_ADMIN === undefined) {
     throw new Error(

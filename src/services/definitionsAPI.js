@@ -22,6 +22,15 @@ function getFormatsDefinitions() {
   return axios.get("/api/formats/getDefinitions").then((resp) => resp.data);
 }
 
+function getMKMSets() {
+  return axios.get(`${process.env.REACT_APP_MTGAPI_URL}/sets`).then((resp) => {
+    const sets = resp.data["hydra:member"].filter(
+      (set) => set.mcmname !== null && set.mcmname.match(/promo/) === null
+    );
+    return sets;
+  });
+}
+
 function getFormatsAndReturnHashtable() {
   // console.log("is this function being called ?");
   return axios
@@ -48,4 +57,5 @@ module.exports = {
   getPriceGuideDefinitions,
   getFormatsDefinitions,
   getFormatsAndReturnHashtable,
+  getMKMSets,
 };

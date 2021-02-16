@@ -23,12 +23,25 @@ router.get("/", async (req, res) => {
     return;
   }
 
+  // If JWT was an admin one, we create our own login to get a valid refresh token and corresponding JWT.
+
+  const credentials = {
+    email: process.env.LOG_SHOP_ADMIN,
+    password: process.env.LOG_SHOP_PWD,
+  };
+  const servResp = await axios.post(
+    `${process.env.REACT_APP_MTGAPI_URL}/login`,
+    credentials
+  );
+
+  const { token, refresh_token } = servResp.data;
+
   const {
     getAllFormatDefinition,
   } = require("../../controllers/mtgDataController");
 
   // Getting all formats and all productLegality for it
-  await getAllFormatDefinition(req.headers.authorization);
+  await getAllFormatDefinition(token, refresh_token);
 
   res.json("Core MTG data dictionnary has been updated.");
 });

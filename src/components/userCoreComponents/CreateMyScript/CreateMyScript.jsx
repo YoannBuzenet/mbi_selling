@@ -100,7 +100,7 @@ const CreateMyScript = ({ history }) => {
   console.log("ARE WE IN MODE CREATION OR EDITION ?", isCreationOrEditionMode);
 
   const { allDefinitions, setAllDefinitions } = useContext(DefinitionContext);
-  // console.log("definitions", allDefinitions);
+  console.log("definitions", allDefinitions);
 
   const translatedDefaultScriptName = intl.formatMessage({
     id: "createMyScript.script.title.defaultName",

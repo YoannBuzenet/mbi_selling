@@ -6,6 +6,7 @@ export default React.createContext({
     allRuleBehaviours: [],
     allPriceGuidePossibilities: [],
     allFormats: [],
+    allMKMSets: [],
   },
   setAllDefinitions: (value) => {},
 });
