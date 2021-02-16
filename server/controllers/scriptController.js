@@ -430,6 +430,24 @@ async function startScript(
     }
 
     /* **************************************** */
+    /* ********** Snapshot Expansions  ***********/
+    /* **************************************** */
+
+    const allExpansionsForThatScript = await db.Expansion.findAll({
+      where: {
+        idScript: idScript,
+      },
+    });
+
+    for (let i = 0; i < allExpansionsForThatScript.length; i++) {
+      snapshotRarity = await db.snapshot_expansion.create({
+        idScript: idScript,
+        name: allExpansionsForThatScript[i].dataValues.name,
+        PUT_Request_id: put_request.dataValues.id,
+      });
+    }
+
+    /* **************************************** */
     /* ********** Persistence Layer ***********/
     /* **************************************** */
 

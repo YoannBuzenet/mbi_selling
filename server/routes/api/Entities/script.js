@@ -319,7 +319,7 @@ router.patch("/:id", async (req, res) => {
 
   if (req.body.expansions) {
     console.log("they are expansions to set");
-    // For each received rarity, we check if it exists already or not.
+    // For each received expansion, we check if it exists already or not.
     // If it exist already, we let it
     // If it doesn't exist, we create it
     for (let i = 0; i < req.body.expansions.length; i++) {
@@ -334,8 +334,8 @@ router.patch("/:id", async (req, res) => {
       }
     }
 
-    // Check to see if there are some rarities to delete
-    // One reRarity already existing in DB but not in the payload should be deleted
+    // Check to see if there are some expansions to delete
+    // One expansion already existing in DB but not in the payload should be deleted
     const existingExpansions = await db.Expansion.findAll({
       where: { idScript: req.params.id },
     });
