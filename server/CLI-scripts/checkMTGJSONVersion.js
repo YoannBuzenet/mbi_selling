@@ -2,6 +2,7 @@ const { sendEmail } = require("../controllers/mailController");
 const axios = require("axios");
 const util = require("util");
 const fs = require("fs");
+const path = require("path");
 
 async function pingMTGJSON() {
   const mtgJsonMetaData = await axios.get(
@@ -13,38 +14,42 @@ async function pingMTGJSON() {
   const writeFilePromisified = util.promisify(fs.writeFile);
   const readFilePromisified = util.promisify(fs.readFile);
 
-  if (!fs.existsSync(`${process.cwd}/MTGJson`)) {
-    fs.mkdirSync(`${process.cwd}/MTGJson`);
+  if (!fs.existsSync(`${process.cwd()}/MTGJson`)) {
+    fs.mkdirSync(`${process.cwd()}/MTGJson`);
   }
 
-  // continue here
-
   try {
-    fileRead = await readFilePromisified(
-      "./shopStock/" + idShop + "/stock.gzip"
-    );
+    const pathToRead = path.join(process.cwd(), "MTGJson", "MetaData.json");
+
+    let fileRead = fs.readFileSync(pathToRead);
+    fileRead = JSON.parse(fileRead);
+
+    const storedVersionOfMTGJSON = fileRead?.data?.version;
+
+    if (mtgJsonVersion !== storedVersionOfMTGJSON) {
+      // mail yoann avec les 2 versions et la date
+      console.log("dates are differents");
+    } else {
+      // skip
+      console.log("dates are the same");
+    }
   } catch (error) {
-    console.log("error while reading file", error);
-    throw new Error("error while reading file", error);
+    console.log("error while reading MTG JSON file", error);
   }
 
   try {
-    await writeFilePromisified(pathFile, fileUnzipped, {
-      encoding: "binary",
-    });
-  } catch (err) {
-    console.log("error while writing 2 in file", err);
-    throw new Error("error while writing 2 in file", err);
-  }
+    const pathToWrite = path.join(process.cwd(), "MTGJson", "MetaData.json");
 
-  console.log("mtgJsonVersion", mtgJsonVersion);
-  console.log("cwd", process.cwd());
-  console.log("dirname", __dirname);
-  // compare it with existing one
-  // open the file if it exist
-  //          Diff : mail
-  //          same : skip
-  // stock value, create path if it doesnt exist (mtgjsonMetaData.json)
+    await writeFilePromisified(
+      pathToWrite,
+      JSON.stringify(mtgJsonMetaData.data),
+      {
+        encoding: "binary",
+      }
+    );
+  } catch (err) {
+    console.log("error while writing MTG JSON in file", err);
+  }
 }
 
 pingMTGJSON();
