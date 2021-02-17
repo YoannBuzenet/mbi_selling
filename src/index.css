@@ -502,9 +502,6 @@ div.connecting-button {
 *******RESET MAIL PAGE******
 **************************/
 
-div.reset-password {
-}
-
 form.reset-password-form {
   margin-top: 2rem;
 }
@@ -714,9 +711,6 @@ div.createScriptButton {
 *******REGISTER PAGE*******
 **************************/
 
-.container.my-account {
-}
-
 .RegisterLoader {
   margin-top: 30px;
 }
@@ -902,12 +896,6 @@ div.connect p {
 
 .toggle-menu-links:hover {
   color: white;
-}
-
-.logo-shop-link img {
-}
-
-.logo-shop-link:hover {
 }
 
 .menu-links-left {
