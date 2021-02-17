@@ -80,13 +80,13 @@ module.exports = {
     ]);
 
     // Trying to add a N to N data to script 3
-    const script3 = await db.Script.findOne({
-      where: {
-        id: 3,
-      },
-    });
+    // const script3 = await db.Script.findOne({
+    //   where: {
+    //     id: 3,
+    //   },
+    // });
 
-    return script3.setFormats([1, 4]);
+    // return script3.setFormats([1, 4]);
   },
 
   down: async (queryInterface, Sequelize) => {

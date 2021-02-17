@@ -69,7 +69,6 @@ function generateRelevantRequest(
       {
         model: dbObject.productLegalities,
         where: {
-          [dbOperator.or]: formatFilter,
           rarity: {
             [dbOperator.or]: raritiesList,
           },
@@ -96,6 +95,9 @@ function generateRelevantRequest(
     requestObject.include[0].where.expansion = {
       [dbOperator.or]: expansionList,
     };
+  }
+  if (Object.keys(formatFilter).length > 0) {
+    requestObject.include[0].where[dbOperator.or] = formatFilter;
   }
 
   return requestObject;

@@ -1,5 +1,6 @@
 const { getAllPrices } = require("../controllers/priceGuideController");
 const axios = require("axios");
+const path = require("path");
 const result = require("dotenv").config({
   path: path.resolve(process.cwd(), "./.env.local"),
 });

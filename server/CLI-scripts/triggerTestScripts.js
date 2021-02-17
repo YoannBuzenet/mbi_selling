@@ -1,10 +1,12 @@
 const { startScript } = require("../controllers/scriptController");
 const { retrieveAsAdmin } = require("../services/adminBehaviours");
 const axios = require("axios");
+const path = require("path");
 const result = require("dotenv").config({
   path: path.resolve(process.cwd(), "./.env.local"),
 });
 if (result.error) {
+  console.log(process.cwd());
   throw result.error;
 }
 
@@ -22,7 +24,8 @@ async function triggerTestScripts() {
   const idScriptTest = 3;
   const isTest = false;
   const locale = "fr-FR"; // en-US
-  const formats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  // const formats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const formats = [];
 
   const apiResp = await retrieveAsAdmin(
     `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShopTest}`,
