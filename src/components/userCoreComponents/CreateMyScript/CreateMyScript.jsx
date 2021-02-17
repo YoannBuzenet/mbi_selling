@@ -1547,58 +1547,8 @@ const CreateMyScript = ({ history }) => {
                         onChange={handlePricedBasedOn}
                       />
                     </RadioGroup>
-                    {/* <FormControl className={classes.formControl}>
-                      <Select
-                        labelId="price-based-on-select-label"
-                        id="price-based-on-select"
-                        value={pricesAreBasedOn}
-                        onChange={handlePricedBasedOn}
-                        MenuProps={{ disableScrollLock: true }}
-                      >
-                        {pricedBasedOnPossibilities.map(
-                          (pricedBasedOnPossibility) => (
-                            <MenuItem value={pricedBasedOnPossibility.value}>
-                              <FormattedMessage
-                                id={pricedBasedOnPossibility.id}
-                                defaultMessage={
-                                  pricedBasedOnPossibility.default
-                                }
-                              />
-                            </MenuItem>
-                          )
-                        )}
-                      </Select>
-                    </FormControl> */}
                   </div>
                 </div>
-                {/* <div className="basedOnHelperText">
-                  {pricesAreBasedOn === "mkmTrends" && (
-                    <div className="helperContainer">
-                      <div className="svgContainer">
-                        <InfoIcon />
-                      </div>
-                      <p>
-                        <FormattedMessage
-                          id="createMyScript.script.select.pricedBasedOnPossibilities.mkmTrends.helperText"
-                          defaultMessage="New prices will be based on MKM trends. Example : +10% on MKM trend. This only applies to rules where you chose 'Create operation'."
-                        />
-                      </p>
-                    </div>
-                  )}
-                  {pricesAreBasedOn === "oldPrices" && (
-                    <div className="helperContainer">
-                      <div className="svgContainer">
-                        <InfoIcon />
-                      </div>
-                      <p>
-                        <FormattedMessage
-                          id="createMyScript.script.select.pricedBasedOnPossibilities.oldPrices.helperText"
-                          defaultMessage="New prices will be based on your current prices. Example : +10% on your current prices. This only applies to rules where you chose 'Create operation'."
-                        />
-                      </p>
-                    </div>
-                  )}
-                </div> */}
               </div>
               <div className="partContainer keywordSelection">
                 <div className="partContainer behaviourSelect">
@@ -1611,24 +1561,6 @@ const CreateMyScript = ({ history }) => {
                     </p>
                   </div>
                   <div className="partForm">
-                    {/* <FormControl className={classes.formControl}>
-                      <Select
-                        labelId="keyword-behaviour-select-label"
-                        id="keyword-behaviour-select"
-                        value={keywordBehaviour}
-                        onChange={handleSelectBehaviour}
-                        MenuProps={{ disableScrollLock: true }}
-                      >
-                        {keywordBehaviourPossibilities.map((possibility) => (
-                          <MenuItem value={possibility.value}>
-                            <FormattedMessage
-                              id={possibility.id}
-                              defaultMessage={possibility.default}
-                            />
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl> */}
                     <RadioGroup
                       row
                       aria-label="position"
@@ -1715,47 +1647,6 @@ const CreateMyScript = ({ history }) => {
                     </IconButton>
                   </div>
                 </div>
-                {/* <div className="keywordHelper">
-                  {keywordBehaviour === "ignoresEverything" && (
-                    <div className="helperContainer">
-                      <div className="svgContainer">
-                        <InfoIcon />
-                      </div>
-                      <p>
-                        <FormattedMessage
-                          id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.ignore"
-                          defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script IGNORES these comments."
-                        />
-                      </p>
-                    </div>
-                  )}
-                  {keywordBehaviour === "targetsSpecifically" && (
-                    <div className="helperContainer">
-                      <div className="svgContainer">
-                        <InfoIcon />
-                      </div>
-                      <p>
-                        <FormattedMessage
-                          id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.targets"
-                          defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script TARGETS ONLY cards with these comments."
-                        />
-                      </p>
-                    </div>
-                  )}
-                  {keywordBehaviour === "avoidsSpecifically" && (
-                    <div className="helperContainer">
-                      <div className="svgContainer">
-                        <InfoIcon />
-                      </div>
-                      <p>
-                        <FormattedMessage
-                          id="createMyScript.script.select.keywordBehaviour.helpertext.explaination.avoid"
-                          defaultMessage="You can filter the cards affected by the script via their MKM comments. Currently, this script AVOIDS cards with these comments."
-                        />
-                      </p>
-                    </div>
-                  )}
-                </div> */}
               </div>
               <div className="partContainer rarityFilter">
                 <div className="part-title">
