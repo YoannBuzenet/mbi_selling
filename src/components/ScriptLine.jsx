@@ -185,18 +185,6 @@ const ScriptLine = ({ script, history, index }) => {
       return;
     }
 
-    // number of formats check : more than 0 mandatory
-    // this check is done in real & test script in ScriptLine and Create My Script
-    if (selectedFormats.length === 0) {
-      toast.error(
-        <FormattedMessage
-          id="scriptline.select.formats.mustHaveOneAtLeast"
-          defaultMessage="Your script must at least target one format."
-        />
-      );
-      return;
-    }
-
     if (
       script.rarities.mythic === false &&
       script.rarities.rare === false &&
@@ -258,18 +246,6 @@ const ScriptLine = ({ script, history, index }) => {
               </Link>
             ),
           }}
-        />
-      );
-      return;
-    }
-
-    // number of formats check : more than 0 mandatory
-    // this check is done in real & test script in ScriptLine and Create My Script
-    if (selectedFormats.length === 0) {
-      toast.error(
-        <FormattedMessage
-          id="scriptline.select.formats.mustHaveOneAtLeast"
-          defaultMessage="Your script must at least target one format."
         />
       );
       return;
