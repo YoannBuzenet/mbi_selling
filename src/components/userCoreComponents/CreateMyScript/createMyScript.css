@@ -220,7 +220,7 @@ button.button-second-navbar {
 }
 .parts-container > .left-part {
   width: 30%;
-  height: 1000px;
+  height: 100%;
   background-color: white;
   box-shadow: 1px 1px 1px black;
 }
@@ -239,6 +239,17 @@ button.button-second-navbar {
 .left-part .part-title p {
   font-size: 1.5rem;
   text-align: left;
+}
+
+.genericRules .genericList {
+  margin-top: 5px;
+  text-align: left;
+  margin-left: 12rem;
+  width: 350px;
+}
+
+.genericRules .genericList li {
+  font-size: 14px;
 }
 
 .right-part .sectionTitle {

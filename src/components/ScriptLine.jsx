@@ -326,23 +326,23 @@ const ScriptLine = ({ script, history, index }) => {
         margin: theme.spacing(1),
       },
     },
-    saveButton: {
-      backgroundColor: "rgb(0, 177, 106)",
+    testButton: {
+      backgroundColor: "rgb(28, 100, 4242)",
       "&:hover": {
-        background: "rgb(123, 239, 178)",
+        background: "rgba(63, 131, 248, 0.8)",
       },
     },
 
     launchButton: {
-      backgroundColor: "rgb(247, 202, 24)",
+      backgroundColor: "#FF546D",
       "&:hover": {
         background: "rgb(250, 216, 89)",
       },
     },
     seeButton: {
-      backgroundColor: "rgb(149, 165, 166)",
+      backgroundColor: "#AAA9BC",
       "&:hover": {
-        background: "rgb(103, 128, 159)",
+        background: "#EEEDFF",
       },
       width: "82px",
     },

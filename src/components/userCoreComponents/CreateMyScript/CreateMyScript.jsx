@@ -1848,6 +1848,44 @@ const CreateMyScript = ({ history }) => {
                   />
                 </div>
               </div>
+              <div className="partContainer genericRules">
+                <div className="part-title">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.genericRules.title"
+                      defaultMessage="Generic Rules"
+                    />
+                  </p>
+                </div>
+                <div className="partForm">
+                  <ul className="genericList">
+                    <li>
+                      <FormattedMessage
+                        id="createMyScript.genericRules.signedCardAreNotTreated"
+                        defaultMessage="Signed cards are not processed."
+                      />
+                    </li>
+                    <li>
+                      <FormattedMessage
+                        id="createMyScript.genericRules.alteredCardAreNotTreated"
+                        defaultMessage="Altered cards are not processed."
+                      />
+                    </li>
+                    <li>
+                      <FormattedMessage
+                        id="createMyScript.genericRules.playsetsAreNotTreated"
+                        defaultMessage="Playsets are not processed."
+                      />
+                    </li>
+                    <li>
+                      <FormattedMessage
+                        id="createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated"
+                        defaultMessage="Cards with superior prices to these mentionned here are not processed."
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div className="right-part">
@@ -1966,38 +2004,6 @@ const CreateMyScript = ({ history }) => {
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <p>
-            <FormattedMessage
-              id="createMyScript.genericRules.title"
-              defaultMessage="Generic Rules"
-            />
-          </p>
-          <p>
-            <FormattedMessage
-              id="createMyScript.genericRules.signedCardAreNotTreated"
-              defaultMessage="Signed cards are not processed."
-            />
-          </p>
-          <p>
-            <FormattedMessage
-              id="createMyScript.genericRules.alteredCardAreNotTreated"
-              defaultMessage="Altered cards are not processed."
-            />
-          </p>
-          <p>
-            <FormattedMessage
-              id="createMyScript.genericRules.playsetsAreNotTreated"
-              defaultMessage="Playsets are not processed."
-            />
-          </p>
-          <p>
-            <FormattedMessage
-              id="createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated"
-              defaultMessage="Cards with superior prices to these mentionned here are not processed."
-            />
-          </p>
         </div>
       </div>
     </>

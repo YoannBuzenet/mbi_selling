@@ -58,11 +58,6 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  if (req.body.formats.length === 0) {
-    res.status(406).json("There must be at least one format.");
-    return;
-  }
-
   //Dictionnary of formats ID
   const allFormats = await db.Format.findAll();
   const reducer = (accumulator, currentValue) => [
@@ -71,13 +66,13 @@ router.post("/", async (req, res) => {
   ];
   const arrayOfFormatId = allFormats.reduce(reducer, []);
 
-  // console.log("arrayOfFormatId", arrayOfFormatId);
-
   //Does the formats passed in payload exist ? Let's check'em !
-  for (let i = 0; i < req.body.formats.length; i++) {
-    if (!arrayOfFormatId.includes(req.body.formats[i])) {
-      res.status(406).json(`Formats n°${req.body.formats[i]} doesn't exist.`);
-      return;
+  if (Array.isArray(req.body.formats)) {
+    for (let i = 0; i < req.body.formats.length; i++) {
+      if (!arrayOfFormatId.includes(req.body.formats[i])) {
+        res.status(406).json(`Formats n°${req.body.formats[i]} doesn't exist.`);
+        return;
+      }
     }
   }
 
@@ -104,13 +99,6 @@ router.post("/", async (req, res) => {
     res
       .status(401)
       .json("Script doesnt exist, or you don't have access to it.");
-    return;
-  }
-
-  // Checking if script have at leas one rarity
-  const rarities = scriptToCheck.getRarities();
-  if (rarities === null) {
-    res.status(406).json("Script must have at least one rarity.");
     return;
   }
 

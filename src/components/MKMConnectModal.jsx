@@ -98,21 +98,23 @@ const MKMConnectModal = () => {
       },
     },
     logMKM: {
-      backgroundColor: "rgb(232, 126, 4)",
+      backgroundColor: "rgb(28, 100, 4242)",
       "&:hover": {
-        backgroundColor: "#f9bf3b",
+        backgroundColor: "rgba(63, 131, 248, 0.8)",
         borderColor: "#0062cc",
         boxShadow: "none",
       },
+      color: "white",
     },
     Sync: {
       marginLeft: "15px",
-      backgroundColor: "rgb(0, 230, 64)",
+      backgroundColor: "rgb(28, 100, 4242)",
       "&:hover": {
-        backgroundColor: "#26a65b",
+        backgroundColor: "rgba(63, 131, 248, 0.8)",
         borderColor: "#26a65b",
         boxShadow: "none",
       },
+      color: "white",
     },
     refreshButton: {
       marginLeft: "15px",
