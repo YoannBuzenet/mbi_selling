@@ -353,10 +353,14 @@ const ScriptLine = ({ script, history, index }) => {
 
   return (
     <Tr>
-      <Td className="all-my-scripts-link-to-script">
+      <Td className="all-my-scripts-link-to-script fullWidthResponsiveButtonReponsiveTable">
         <Link to={"/edit-script/" + script.id}>{script.name}</Link>
       </Td>
-      <Td className={isMobile && "marginHeight20px"}>
+      <Td
+        className={
+          isMobile && "marginHeight20px fullWidthResponsiveButtonReponsiveTable"
+        }
+      >
         <Button
           variant="contained"
           color="primary"
@@ -370,7 +374,11 @@ const ScriptLine = ({ script, history, index }) => {
           />
         </Button>
       </Td>
-      <Td className={isMobile && "marginHeight20px"}>
+      <Td
+        className={
+          isMobile && "marginHeight20px fullWidthResponsiveButtonReponsiveTable"
+        }
+      >
         <Button
           variant="contained"
           color="primary"
@@ -385,7 +393,11 @@ const ScriptLine = ({ script, history, index }) => {
           />
         </Button>
       </Td>
-      <Td className={isMobile && "marginHeight20px"}>
+      <Td
+        className={
+          isMobile && "marginHeight20px fullWidthResponsiveButtonReponsiveTable"
+        }
+      >
         <Button
           variant="contained"
           color="primary"

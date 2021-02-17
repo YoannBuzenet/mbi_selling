@@ -597,6 +597,36 @@ div.createScriptButton {
   margin: 20px 0;
 }
 
+@media only screen and (max-width: 650px) {
+  .all-my-scripts tbody tr {
+    height: 250px;
+  }
+  td.pivoted {
+    margin-bottom: 10px;
+  }
+  div.createScriptButton {
+    position: static;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .marginHeight20px {
+    margin: 0;
+  }
+  table.responsiveTable tbody tr td.fullWidthResponsiveButtonReponsiveTable {
+    padding-left: 0 !important;
+    width: 100%;
+    text-align: center !important;
+  }
+
+  table.responsiveTable
+    tbody
+    tr
+    td.fullWidthResponsiveButtonReponsiveTable
+    .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge {
+    width: 70%;
+  }
+}
+
 /**************************
 *******SUBSCRIBE PAGE******
 **************************/
