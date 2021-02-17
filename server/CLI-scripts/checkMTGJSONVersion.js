@@ -1,8 +1,14 @@
-const { sendEmail } = require("../controllers/mailController");
 const axios = require("axios");
 const util = require("util");
 const fs = require("fs");
 const path = require("path");
+const nodemailer = require("nodemailer");
+const result = require("dotenv").config({
+  path: path.resolve(process.cwd(), "./.env.local"),
+});
+if (result.error) {
+  throw result.error;
+}
 
 async function pingMTGJSON() {
   const mtgJsonMetaData = await axios.get(
@@ -29,8 +35,29 @@ async function pingMTGJSON() {
     if (mtgJsonVersion !== storedVersionOfMTGJSON) {
       // mail yoann avec les 2 versions et la date
       console.log("dates are differents");
+
+      let mailOpts = {
+        from: process.env.MAIL_SENDING,
+        to: "ybuzenet@gmail.com",
+        subject: "MTGJSON version has changed",
+        html: `<h1>Hi Yoann,</h1><p>MTGJSON data has changed and needs to be updated. Version is now ${mtgJsonVersion} instead of ${storedVersionOfMTGJSON}.</p>`,
+        attachments: [],
+      };
+
+      const transport = nodemailer.createTransport({
+        host: process.env.SMTP_NODEMAILER,
+        port: process.env.SMTP_PORT,
+        secure: true,
+        auth: {
+          user: process.env.AUTH_USER,
+          pass: process.env.AUTH_PASSWORD,
+        },
+      });
+
+      const msgSent = await transport.sendMail(mailOpts);
+      console.log("message sent : ", msgSent);
     } else {
-      // skip
+      // If version is the same as stored, we skip.
       console.log("dates are the same");
     }
   } catch (error) {
