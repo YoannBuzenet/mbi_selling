@@ -243,7 +243,7 @@
   "app.error403.toast.failure": "Vous n'avez pas accès à cette ressource.",
   "app.error500.toast.failure": "Une erreur est survenue. Merci de réeesayer plus tard.",
 
-  "scriptLine.buttons.see": "Voir",
+  "scriptLine.buttons.edit": "Modifier",
   "scriptLine.buttons.test": "Tester",
   "scriptLine.buttons.launch": "Lancer",
   "scriptLine.buttons.saving": "Sauvegarde...",

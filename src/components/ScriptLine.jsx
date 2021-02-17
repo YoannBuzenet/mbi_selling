@@ -388,7 +388,10 @@ const ScriptLine = ({ script, history, index }) => {
           size="large"
           onClick={(e) => history.push("/edit-script/" + script.id)}
         >
-          <FormattedMessage id="scriptLine.buttons.see" defaultMessage="See" />
+          <FormattedMessage
+            id="scriptLine.buttons.edit"
+            defaultMessage="Edit"
+          />
         </Button>
       </Td>
       <Td className={isMobile && "marginHeight20px"}>
@@ -421,7 +424,7 @@ const ScriptLine = ({ script, history, index }) => {
           />
         </Button>
       </Td>
-      <Td>
+      {/* <Td>
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-mutiple-checkbox-label">
             {formatSelectTitle}
@@ -447,7 +450,7 @@ const ScriptLine = ({ script, history, index }) => {
             ))}
           </Select>
         </FormControl>
-      </Td>
+      </Td> */}
       <Td className={isMobile && "marginHeight20px"}>
         <ScriptStatusCalculator
           isScriptRunning={script.isRunning}

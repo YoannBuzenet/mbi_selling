@@ -52,11 +52,11 @@ const AllMyScripts = ({ history }) => {
     createScriptButton: {
       backgroundColor: "rgb(28, 100, 242)",
       textTransform: "none",
-      paddingLeft: "3.5rem",
-      paddingRight: "3.5rem",
-      paddingTop: "1.5rem",
-      paddingBottom: "1.5rem",
-      fontSize: "1.8rem",
+      paddingLeft: "3rem",
+      paddingRight: "3rem",
+      paddingTop: "1rem",
+      paddingBottom: "1rem",
+      fontSize: "1.7rem",
       fontWeight: "500",
       border: "1px solid transparent",
       color: "rgb(255, 255, 255)",
@@ -67,7 +67,6 @@ const AllMyScripts = ({ history }) => {
         background: "rgba(63, 131, 248, 0.8)",
         transition: "background-color 0.5s",
       },
-      width: "202px",
     },
     formControl: {
       margin: theme.spacing(1),
@@ -108,12 +107,12 @@ const AllMyScripts = ({ history }) => {
               <Th></Th>
               <Th></Th>
               <Th></Th>
-              <Th>
+              {/* <Th>
                 <FormattedMessage
                   id="allMyScripts.formats"
                   defaultMessage="Formats"
                 />
-              </Th>
+              </Th> */}
               <Th>
                 <FormattedMessage
                   id="allMyScripts.status"
@@ -123,13 +122,18 @@ const AllMyScripts = ({ history }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {authenticationInfos.userScripts.map((script, index) => {
-              return (
-                <>
-                  <ScriptLine script={script} history={history} index={index} />
-                </>
-              );
-            })}
+            {Array.isArray(authenticationInfos?.userScripts) &&
+              authenticationInfos.userScripts.map((script, index) => {
+                return (
+                  <>
+                    <ScriptLine
+                      script={script}
+                      history={history}
+                      index={index}
+                    />
+                  </>
+                );
+              })}
           </Tbody>
         </Table>
       </div>

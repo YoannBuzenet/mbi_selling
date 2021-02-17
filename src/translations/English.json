@@ -244,7 +244,7 @@
   "app.error403.toast.failure": "You don't have access to this ressource.",
   "app.error500.toast.failure": "There has been an error. Please try again later.",
 
-  "scriptLine.buttons.see": "See",
+  "scriptLine.buttons.edit": "Edit",
   "scriptLine.buttons.test": "Test",
   "scriptLine.buttons.launch": "Launch",
   "scriptLine.buttons.saving": "Saving...",
