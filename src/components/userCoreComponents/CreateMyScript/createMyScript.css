@@ -274,6 +274,31 @@ button.button-second-navbar {
   margin-top: 20px;
 }
 
+@media only screen and (max-width: 968px) {
+  .parts-container {
+    flex-direction: column;
+  }
+
+  .parts-container > .left-part {
+    width: 100%;
+  }
+
+  .parts-container > .right-part {
+    width: 100%;
+  }
+
+  .rule-container .ruleMainBody {
+    flex-direction: column;
+  }
+
+  .scriptNameEdition {
+    width: 250px;
+  }
+
+  .genericRules .genericList {
+    margin-left: 0;
+  }
+}
 /* *** */
 /* RULE */
 /* *** */

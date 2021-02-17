@@ -599,7 +599,7 @@ div.createScriptButton {
 
 @media only screen and (max-width: 650px) {
   .all-my-scripts tbody tr {
-    height: 250px;
+    min-height: 250px;
   }
   td.pivoted {
     margin-bottom: 10px;
