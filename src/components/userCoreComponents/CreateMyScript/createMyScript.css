@@ -292,7 +292,12 @@ button.button-second-navbar {
   }
 
   .genericRules .genericList {
-    margin-left: 0;
+    margin-left: 20px;
+    width: 330px;
+  }
+
+  .checkboxContainer {
+    margin-left: 50px;
   }
 }
 /* *** */

@@ -5,6 +5,7 @@ import AddRuleButton from "./AddRuleButton";
 import CustomRule from "./CustomRule";
 import { toast } from "react-toastify";
 import { matchPath } from "react-router";
+import { isMobile } from "react-device-detect";
 
 import AuthContext from "../../../context/authContext";
 import DefinitionContext from "../../../context/definitionsContext";
@@ -1484,6 +1485,34 @@ const CreateMyScript = ({ history }) => {
                   </FormControl>
                 </div>
               </div>
+              <div className="partContainer expansionSelection">
+                <div className="part-title">
+                  <p>
+                    <FormattedMessage
+                      id="createMyScript.script.setSelection.title"
+                      defaultMessage="Filter by set"
+                    />
+                  </p>
+                </div>
+                <div className="partForm">
+                  <MultiSelect
+                    value={expansionsSelected}
+                    options={allDefinitions.allMKMSets}
+                    onChange={(e) => {
+                      setScriptMustbeSaved(true);
+                      setExpansionsSelected(e.value);
+                    }}
+                    optionLabel="mcmname"
+                    optionValue="mcmname"
+                    filter
+                    placeholder={translatedplaceholderExpansionsMultiSelect}
+                    style={{ width: isMobile ? "250px" : "300px" }}
+                    selectedItemsLabel={
+                      translatedXSetsSelectedExpansionsMultiSelect
+                    }
+                  />
+                </div>
+              </div>
               <div className="partContainer isBasedOnChoice">
                 <div className="partContainer basedOnSelection">
                   <div className="part-title">
@@ -1794,34 +1823,6 @@ const CreateMyScript = ({ history }) => {
                       />
                     </div>
                   </FormGroup>
-                </div>
-              </div>
-              <div className="partContainer expansionSelection">
-                <div className="part-title">
-                  <p>
-                    <FormattedMessage
-                      id="createMyScript.script.setSelection.title"
-                      defaultMessage="Filter by set"
-                    />
-                  </p>
-                </div>
-                <div className="partForm">
-                  <MultiSelect
-                    value={expansionsSelected}
-                    options={allDefinitions.allMKMSets}
-                    onChange={(e) => {
-                      setScriptMustbeSaved(true);
-                      setExpansionsSelected(e.value);
-                    }}
-                    optionLabel="mcmname"
-                    optionValue="mcmname"
-                    filter
-                    placeholder={translatedplaceholderExpansionsMultiSelect}
-                    style={{ width: "300px" }}
-                    selectedItemsLabel={
-                      translatedXSetsSelectedExpansionsMultiSelect
-                    }
-                  />
                 </div>
               </div>
               <div className="partContainer genericRules">
