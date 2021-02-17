@@ -1,4 +1,10 @@
 const { getAllFormatDefinition } = require("../controllers/mtgDataController");
+const result = require("dotenv").config({
+  path: path.resolve(process.cwd(), "./.env.local"),
+});
+if (result.error) {
+  throw result.error;
+}
 
 const axios = require("axios");
 

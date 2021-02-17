@@ -1,6 +1,12 @@
 const { startScript } = require("../controllers/scriptController");
 const { retrieveAsAdmin } = require("../services/adminBehaviours");
 const axios = require("axios");
+const result = require("dotenv").config({
+  path: path.resolve(process.cwd(), "./.env.local"),
+});
+if (result.error) {
+  throw result.error;
+}
 
 // Global variable
 // This doesnt work : we need to pass the root of the app in this variable

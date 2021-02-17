@@ -1,5 +1,11 @@
 const { getAllPrices } = require("../controllers/priceGuideController");
 const axios = require("axios");
+const result = require("dotenv").config({
+  path: path.resolve(process.cwd(), "./.env.local"),
+});
+if (result.error) {
+  throw result.error;
+}
 
 async function getMTGPrices() {
   if (process.env.LOG_SHOP_ADMIN === undefined) {

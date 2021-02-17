@@ -18,7 +18,6 @@ async function pingMTGJSON() {
   const mtgJsonVersion = mtgJsonMetaData.data.data.version;
 
   const writeFilePromisified = util.promisify(fs.writeFile);
-  const readFilePromisified = util.promisify(fs.readFile);
 
   if (!fs.existsSync(`${process.cwd()}/MTGJson`)) {
     fs.mkdirSync(`${process.cwd()}/MTGJson`);
@@ -80,3 +79,7 @@ async function pingMTGJSON() {
 }
 
 pingMTGJSON();
+
+module.exports = {
+  pingMTGJSON,
+};
