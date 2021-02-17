@@ -287,10 +287,6 @@ button.button-second-navbar {
     width: 100%;
   }
 
-  .ruleContainer .ruleMainBody {
-    flex-direction: column;
-  }
-
   .scriptNameEdition {
     width: 250px;
   }
@@ -410,6 +406,23 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 }
 
 @media only screen and (max-width: 968px) {
+  .ruleType-choice {
+    flex-direction: column;
+  }
+
+  .ruleType-choice > .MuiFormControl-root {
+    max-width: 220px;
+    min-width: 220px;
+  }
+
+  .ruleContainer .ruleMainBody {
+    flex-direction: column;
+  }
+
+  .setValueFixPrice {
+    margin-left: 0;
+  }
+
   .deleteButton {
     top: 5px;
   }
