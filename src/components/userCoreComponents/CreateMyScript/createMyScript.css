@@ -287,7 +287,7 @@ button.button-second-navbar {
     width: 100%;
   }
 
-  .rule-container .ruleMainBody {
+  .ruleContainer .ruleMainBody {
     flex-direction: column;
   }
 
@@ -409,6 +409,12 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
   padding-top: 10px;
 }
 
+@media only screen and (max-width: 968px) {
+  .deleteButton {
+    top: 5px;
+  }
+}
+
 /* ************ */
 /** BELOW RULE **/
 /* ************ */
@@ -460,6 +466,25 @@ button.onSeparatedDivButton {
   height: 10px;
   width: 10px;
 } */
+
+@media only screen and (max-width: 968px) {
+  .asideRule {
+    position: static;
+  }
+
+  .hidden-rule-adder {
+    height: 80px;
+  }
+
+  .twoBlocksContainer .div1left,
+  .twoBlocksContainer .div2right {
+    display: none;
+  }
+
+  button.onSeparatedDivButton {
+    position: static;
+  }
+}
 
 /********************/
 /*********MUI*******/
