@@ -788,6 +788,13 @@ div.createScriptButton {
   text-align: left;
 }
 
+@media only screen and (max-width: 968px) {
+  .terms-and-conditions-page {
+    max-width: 80%;
+    text-align: left;
+  }
+}
+
 /**************************
 *********NAVBAR***********
 **************************/
