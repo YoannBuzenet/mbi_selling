@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const db = require("../models/index");
 
-    return await db.Keyword.bulkCreate(
+    return await db.ScriptsFormats.bulkCreate(
       [
         {
           idScript: 11,
@@ -30,7 +30,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Invoice", null, {});
+    return queryInterface.bulkDelete("ScriptsFormats", null, {});
     /**
      * Add commands to revert seed here.
      *

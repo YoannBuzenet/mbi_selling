@@ -42,7 +42,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Invoice", null, {});
+    return queryInterface.bulkDelete("Keyword", null, {});
     /**
      * Add commands to revert seed here.
      *
