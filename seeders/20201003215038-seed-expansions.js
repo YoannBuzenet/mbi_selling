@@ -22,6 +22,10 @@ module.exports = {
           idScript: 10,
           name: "Fallen Empires",
         },
+        {
+          idScript: 12,
+          name: "Fallen Empires",
+        },
       ],
       {}
     );

@@ -22,6 +22,10 @@ module.exports = {
           idScript: 6,
           name: "testSeedKeyword Script 6",
         },
+        {
+          idScript: 12,
+          name: "kkkkkk",
+        },
       ],
       {}
     );

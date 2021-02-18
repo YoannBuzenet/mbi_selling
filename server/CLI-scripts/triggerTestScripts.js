@@ -156,6 +156,17 @@ async function triggerTestScripts() {
     formatsForTesting,
     jwt
   );
+
+  // Script with format filter + rarity filter + expansion filter + keywords
+  const scriptRealOldPriceALLFiltersExecuted = await startScript(
+    idShopTest,
+    12,
+    true,
+    shopData,
+    locale,
+    formatsForTesting,
+    jwt
+  );
 }
 
 triggerTestScripts();

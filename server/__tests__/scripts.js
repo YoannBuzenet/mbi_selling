@@ -3079,3 +3079,17 @@ describe("Script with format filters : only format Pioneer and Future", () => {
       });
   });
 });
+
+describe("Script with ALL FILTERS filters", () => {
+  it("checks the number of put memories : should be 2", async () => {
+    return db.put_memory
+      .findAndCountAll({
+        where: {
+          PUT_Request_id: 11,
+        },
+      })
+      .then((put_memories) => {
+        expect(put_memories.count).toEqual(2);
+      });
+  });
+});
