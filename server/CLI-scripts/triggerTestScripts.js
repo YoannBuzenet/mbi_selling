@@ -147,7 +147,7 @@ async function triggerTestScripts() {
   );
 
   // Script with format filter
-  const scriptRealOldPriceExpansionAndRarityFilterExecuted = await startScript(
+  const scriptRealOldPriceFormatFilterExecuted = await startScript(
     idShopTest,
     11,
     true,

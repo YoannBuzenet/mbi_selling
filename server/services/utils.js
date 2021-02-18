@@ -181,6 +181,10 @@ function createShopKey() {
   return "mbi_selling_" + makeid(10);
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function getFormatsAndReturnHashtable() {
   // console.log("is this function being called ?");
   return axios
@@ -189,7 +193,7 @@ function getFormatsAndReturnHashtable() {
       // console.log("formats def resp", resp);
       let hashmapToreturn = {};
       for (let i = 0; i < resp.data.length; i++) {
-        hashmapToreturn[resp.data[i].id] = utils.capitalizeFirstLetter(
+        hashmapToreturn[resp.data[i].id] = capitalizeFirstLetter(
           resp.data[i].name
         );
       }
