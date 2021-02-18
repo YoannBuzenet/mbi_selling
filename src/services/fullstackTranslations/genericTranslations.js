@@ -134,7 +134,7 @@ const pdfStructure = {
   },
   targetedFormatsNone: {
     ["en-US"]: "Affected formats : None in particular",
-    ["fr-FR"]: "Formats concernés : Aucune en particulier",
+    ["fr-FR"]: "Formats concernés : Aucun en particulier",
   },
   rarityUsed: {
     ["en-US"]: "Rarity targeted : ",
