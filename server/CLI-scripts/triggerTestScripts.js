@@ -26,6 +26,7 @@ async function triggerTestScripts() {
   const locale = "fr-FR"; // en-US
   // const formats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const formats = [];
+  const formatsForTesting = [9, 11];
 
   const apiResp = await retrieveAsAdmin(
     `${process.env.REACT_APP_MTGAPI_URL}/shops/${idShopTest}`,
@@ -142,6 +143,17 @@ async function triggerTestScripts() {
     shopData,
     locale,
     formats,
+    jwt
+  );
+
+  // Script with format filter
+  const scriptRealOldPriceExpansionAndRarityFilterExecuted = await startScript(
+    idShopTest,
+    11,
+    true,
+    shopData,
+    locale,
+    formatsForTesting,
     jwt
   );
 }

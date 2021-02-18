@@ -77,6 +77,14 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        idShop: 57,
+        name: "11th script to test format filter",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
 
     // Trying to add a N to N data to script 3

@@ -1488,6 +1488,7 @@ const CreateMyScript = ({ history }) => {
                       id="createMyScript.script.setSelection.title"
                       defaultMessage="Filter by set"
                     />
+                    <span> ({expansionsSelected.length})</span>
                   </p>
                 </div>
                 <div className="partForm">
