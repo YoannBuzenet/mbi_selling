@@ -167,6 +167,17 @@ async function triggerTestScripts() {
     formatsForTesting,
     jwt
   );
+
+  // Script with only custom rules in Foil, none in regular, to show it can work
+  const scriptRealOldPriceOnlyFoilCustomRulesExecuted = await startScript(
+    idShopTest,
+    13,
+    true,
+    shopData,
+    locale,
+    formats,
+    jwt
+  );
 }
 
 triggerTestScripts();

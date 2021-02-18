@@ -94,6 +94,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        idShop: 57,
+        name:
+          "13th script testing if script can be launched with no rules in one of the two categories",
+        willBeBasedOn: "oldPrices",
+        keywordBehaviour: "avoidsSpecifically",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
 
     // Trying to add a N to N data to script 3
