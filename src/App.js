@@ -142,6 +142,7 @@ function App() {
     allRuleBehaviours: [],
     allPriceGuidePossibilities: [],
     allFormats: [],
+    allMKMSets: [],
   });
 
   //STATE - is MKM Connection Modal Displayed ?
