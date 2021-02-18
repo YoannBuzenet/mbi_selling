@@ -478,19 +478,23 @@ async function generatePDFFromPutRequest(
       { text: " " },
       {
         text:
-          genericTranslations.pdfStructure.usedFormats[langLocale] +
-          usedFormats.map((formatFromSequelize, index) => {
-            if (index !== 0) {
-              return (
-                " " +
-                utils.capitalizeFirstLetter(formatFromSequelize.dataValues.name)
-              );
-            } else {
-              return utils.capitalizeFirstLetter(
-                formatFromSequelize.dataValues.name
-              );
-            }
-          }),
+          usedFormats.length > 0
+            ? genericTranslations.pdfStructure.usedFormats[langLocale] +
+              usedFormats.map((formatFromSequelize, index) => {
+                if (index !== 0) {
+                  return (
+                    " " +
+                    utils.capitalizeFirstLetter(
+                      formatFromSequelize.dataValues.name
+                    )
+                  );
+                } else {
+                  return utils.capitalizeFirstLetter(
+                    formatFromSequelize.dataValues.name
+                  );
+                }
+              })
+            : genericTranslations.pdfStructure.targetedFormatsNone[langLocale],
       },
       { text: " " },
       {
