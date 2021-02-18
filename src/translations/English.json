@@ -263,6 +263,8 @@
   "createMyScript.buttons.test": "Test",
   "createMyScript.buttons.launch": "Launch",
   "createMyScript.select.formats.title": "Formats",
+  "createMyScript.select.formats.placeholder": "Choose formats...",
+  "createMyScript.script.select.formats.numberOfSetsSelected": "{0} formats selected",
   "createMyScript.columnTitles.regular": "Regular",
   "createMyScript.columnTitles.foil": "Foil",
   "createMyScript.script.title.defaultName": "My new Script",

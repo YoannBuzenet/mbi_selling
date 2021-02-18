@@ -1342,6 +1342,14 @@ const CreateMyScript = ({ history }) => {
     id: "createMyScript.script.select.expansions.numberOfSetsSelected",
     defaultMessage: "{0} sets selected",
   });
+  const translatedPlaceholderSelectedFormatMultiSelect = intl.formatMessage({
+    id: "createMyScript.select.formats.placeholder",
+    defaultMessage: "Choose formats...",
+  });
+  const translatedXSetsSelectedFormatMultiSelect = intl.formatMessage({
+    id: "createMyScript.script.select.formats.numberOfSetsSelected",
+    defaultMessage: "{0} formats selected",
+  });
 
   return (
     <>
@@ -1455,34 +1463,22 @@ const CreateMyScript = ({ history }) => {
                   </p>
                 </div>
                 <div className="partForm">
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-mutiple-checkbox-label">
-                      {formatSelectTitle}
-                    </InputLabel>
-                    <Select
-                      labelId="demo-mutiple-checkbox-label"
-                      id="demo-mutiple-checkbox"
-                      multiple
-                      value={[]}
-                      onChange={handleChangeSelect}
-                      input={<Input />}
-                      renderValue={(selected) => selected.join(", ")}
-                      MenuProps={MenuProps}
-                    >
-                      {allDefinitions.allFormats.map((format) => (
-                        <MenuItem key={format.id} value={format.id}>
-                          <Checkbox
-                            size="medium"
-                            checked={selectedFormats.indexOf(format.id) > -1}
-                          />
-                          <ListItemText
-                            primary={format.name}
-                            className="format-select"
-                          />
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
+                  <MultiSelect
+                    value={selectedFormats}
+                    options={allDefinitions.allFormats}
+                    onChange={(e) => {
+                      setScriptMustbeSaved(true);
+                      setSelectedFormats(e.value);
+                    }}
+                    optionLabel="name"
+                    optionValue="id"
+                    filter
+                    placeholder={translatedPlaceholderSelectedFormatMultiSelect}
+                    style={{ width: isMobile ? "250px" : "300px" }}
+                    selectedItemsLabel={
+                      translatedXSetsSelectedFormatMultiSelect
+                    }
+                  />
                 </div>
               </div>
               <div className="partContainer expansionSelection">

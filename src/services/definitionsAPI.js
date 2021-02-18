@@ -19,7 +19,11 @@ function getPriceGuideDefinitions() {
     .then((resp) => resp.data);
 }
 function getFormatsDefinitions() {
-  return axios.get("/api/formats/getDefinitions").then((resp) => resp.data);
+  return axios.get("/api/formats/getDefinitions").then((resp) =>
+    resp.data.map((format) => {
+      return { ...format, name: utils.capitalizeFirstLetter(format.name) };
+    })
+  );
 }
 
 function getMKMSets() {
@@ -37,31 +41,10 @@ function getMKMSets() {
   });
 }
 
-function getFormatsAndReturnHashtable() {
-  // console.log("is this function being called ?");
-  return axios
-    .get("/api/formats/getDefinitions")
-    .then((resp) => {
-      // console.log("formats def resp", resp);
-      let hashmapToreturn = {};
-      for (let i = 0; i < resp.data.length; i++) {
-        hashmapToreturn[resp.data[i].id] = utils.capitalizeFirstLetter(
-          resp.data[i].name
-        );
-      }
-      // console.log("hashtable to return", hashmapToreturn);
-      return hashmapToreturn;
-    })
-    .catch((err) =>
-      console.log("error when trying to access formats from this api", err)
-    );
-}
-
-module.exports = {
+export default {
   getCustomRuleRuleTypeDefinitions,
   getCustomRuleRuleBehaviourDefinitions,
   getPriceGuideDefinitions,
   getFormatsDefinitions,
-  getFormatsAndReturnHashtable,
   getMKMSets,
 };

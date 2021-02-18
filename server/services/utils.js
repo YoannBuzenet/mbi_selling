@@ -1,4 +1,5 @@
 const db = require("../../models/index");
+const axios = require("axios");
 
 //Returns an object ready to be passed in state
 function prepareStateFromArrayOfRules(arrayOfCustomRules) {
@@ -180,6 +181,26 @@ function createShopKey() {
   return "mbi_selling_" + makeid(10);
 }
 
+function getFormatsAndReturnHashtable() {
+  // console.log("is this function being called ?");
+  return axios
+    .get("/api/formats/getDefinitions")
+    .then((resp) => {
+      // console.log("formats def resp", resp);
+      let hashmapToreturn = {};
+      for (let i = 0; i < resp.data.length; i++) {
+        hashmapToreturn[resp.data[i].id] = utils.capitalizeFirstLetter(
+          resp.data[i].name
+        );
+      }
+      // console.log("hashtable to return", hashmapToreturn);
+      return hashmapToreturn;
+    })
+    .catch((err) =>
+      console.log("error when trying to access formats from this api", err)
+    );
+}
+
 module.exports = {
   prepareStateFromArrayOfRules,
   snapshotShopParams,
@@ -192,4 +213,5 @@ module.exports = {
   addMonthsToADate,
   compareByCardName,
   createShopKey,
+  getFormatsAndReturnHashtable,
 };

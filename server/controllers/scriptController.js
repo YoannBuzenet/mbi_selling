@@ -3,7 +3,6 @@ const Op = Sequelize.Op;
 const db = require("../../models/index");
 const axios = require("axios");
 const mkmController = require("./mkmController");
-const definitionsAPI = require("../../src/services/definitionsAPI");
 const { prepareStateFromArrayOfRules } = require("../services/utils");
 const utils = require("../services/utils");
 const customRulesController = require("./customRulesController");
@@ -505,7 +504,7 @@ async function testScriptPersistingStep(
 
   /* FORMAT FILTER */
   //Building format dictionnary as a hashmap
-  const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
+  const formatDictionnary = await utils.getFormatsAndReturnHashtable();
 
   let formatFilter = {};
 
@@ -1077,7 +1076,7 @@ async function realScriptPersistingStep(
   // Counting the number of cards concerned by this script
 
   //Building format dictionnary as a hashmap
-  const formatDictionnary = await definitionsAPI.getFormatsAndReturnHashtable();
+  const formatDictionnary = await utils.getFormatsAndReturnHashtable();
 
   /* FORMAT FILTER */
   let formatFilter = {};

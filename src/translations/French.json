@@ -262,6 +262,8 @@
   "createMyScript.buttons.test": "Tester",
   "createMyScript.buttons.launch": "Lancer",
   "createMyScript.select.formats.title": "Formats",
+  "createMyScript.select.formats.placeholder": "Choisir un format",
+  "createMyScript.script.select.formats.numberOfSetsSelected": "{0} formats sélectionnés",
   "createMyScript.columnTitles.regular": "Regular",
   "createMyScript.columnTitles.foil": "Foil",
   "createMyScript.genericRules.title": "Regles génériques",
