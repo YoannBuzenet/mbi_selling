@@ -1,8 +1,8 @@
 const db = require("../../models/index");
 const queryInterface = db.sequelize.getQueryInterface();
 const {
-  customRules10percentsFoilStandard,
-  customRulesPlus10percentsFoilStandard,
+  customRulesPlus10percentsBeyondToDeathBetween50centsAnd20euros,
+  customRulesDecrease10PercentsBTD,
   customRules10percentsUPonMKMTrendsStandard,
   customRulesMinus5PercentOnKeywordsCards,
   customRulesMinus5PercentOnModernAbove30euros,
@@ -13,25 +13,28 @@ const {
   premadeScriptTitles,
 } = require("../../src/services/fullstackTranslations/genericTranslations");
 
-// -10% on foil standard
-async function createPreMadeScripts10PercentsFoilStandard(
+async function createPreMadeScripts10PercentsAboveTrendsBTD(
   idShop,
   shopLang = "fr-FR"
 ) {
-  //-10% standard Foil
   const newScript = await db.Script.createCustomScript(
-    premadeScriptTitles.createPreMadeScripts10PercentsFoilStandard[shopLang],
+    premadeScriptTitles
+      .customRulesPlus10percentsBeyondToDeathBetween50centsAnd20euros[shopLang],
     idShop,
-    "oldPrices"
+    "mkmTrends"
   );
 
-  // set formats
-  newScript.setFormats([12]);
+  await db.Expansion.create({
+    name: "Theros Beyond Death",
+    idScript: newScript.dataValues.id,
+  });
 
   // Create custom rules for this script
   await queryInterface.bulkInsert(
     "Custom_Rules",
-    customRules10percentsFoilStandard(newScript.dataValues.id),
+    customRulesPlus10percentsBeyondToDeathBetween50centsAnd20euros(
+      newScript.dataValues.id
+    ),
     {}
   );
 
@@ -41,28 +44,28 @@ async function createPreMadeScripts10PercentsFoilStandard(
     {}
   );
 }
-// +10% on foil standard
-async function createPreMadeScriptsIncrease10PercentsFoilStandard(
+
+async function createPreMadeScriptsDecrease10PercentsOnBTD(
   idShop,
   shopLang = "fr-FR"
 ) {
   const newScript = await db.Script.createCustomScript(
-    premadeScriptTitles.createPreMadeScriptsIncrease10PercentsFoilStandard[
-      shopLang
-    ],
+    premadeScriptTitles.customRulesDecrease10PercentsOnBTD[shopLang],
     idShop,
     "oldPrices"
   );
 
-  // set formats
-  newScript.setFormats([12]);
-
   // Create custom rules for this script
   await queryInterface.bulkInsert(
     "Custom_Rules",
-    customRulesPlus10percentsFoilStandard(newScript.dataValues.id),
+    customRulesDecrease10PercentsBTD(newScript.dataValues.id),
     {}
   );
+
+  await db.Expansion.create({
+    name: "Theros Beyond Death",
+    idScript: newScript.dataValues.id,
+  });
 
   await queryInterface.bulkInsert(
     "rarities",
@@ -195,8 +198,8 @@ async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
 }
 
 async function createPremadeScriptsForShop(idShop, shopLang = "fr-FR") {
-  await createPreMadeScripts10PercentsFoilStandard(idShop, shopLang);
-  await createPreMadeScriptsIncrease10PercentsFoilStandard(idShop, shopLang);
+  await createPreMadeScripts10PercentsAboveTrendsBTD(idShop, shopLang);
+  await createPreMadeScriptsDecrease10PercentsOnBTD(idShop, shopLang);
   await createPreMadeScripts10PercentsUPONMKMALLStandard(idShop, shopLang);
   await createPreMadeScriptsMinus5PercentOnKeywordsCards(idShop, shopLang);
   await createPreMadeScriptsMinus5PercentOnModernAbove30euros(idShop, shopLang);
@@ -207,8 +210,8 @@ async function createPremadeScriptsForShop(idShop, shopLang = "fr-FR") {
 }
 
 module.exports = {
-  createPreMadeScripts10PercentsFoilStandard,
-  createPreMadeScriptsIncrease10PercentsFoilStandard,
+  createPreMadeScripts10PercentsAboveTrendsBTD,
+  createPreMadeScriptsDecrease10PercentsOnBTD,
   createPreMadeScripts10PercentsUPONMKMALLStandard,
   createPreMadeScriptsMinus5PercentOnKeywordsCards,
   createPreMadeScriptsMinus5PercentOnModernAbove30euros,

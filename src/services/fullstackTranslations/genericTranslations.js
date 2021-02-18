@@ -333,6 +333,18 @@ const premadeScriptTitles = {
     "en-US": "+5% on Modern for all cards above 30 euros",
     "fr-FR": "+5% sur toutes les cartes du Modern au dessus de 30 euros",
   },
+  customRulesPlus10percentsBeyondToDeathBetween50centsAnd20euros: {
+    "en-US":
+      "+10% above Trend on Theros Beyond To Death for cards between 50 cents and 20 euros",
+    "fr-FR":
+      "+10% par rapport à la trend sur Theros Beyond To Death pour les cartes entre 50 centimes et 20 euros",
+  },
+  customRulesDecrease10PercentsOnBTD: {
+    "en-US":
+      "-10% on current price Theros Beyond To Death for cards between 50 cents and 20 euros",
+    "fr-FR":
+      "-10% par rapport à nos prix actuels sur Theros Beyond To Death pour les cartes entre 50 centimes et 20 euros",
+  },
 };
 
 module.exports = {
