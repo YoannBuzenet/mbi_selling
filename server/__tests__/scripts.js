@@ -3085,7 +3085,7 @@ describe("Script with ALL FILTERS filters", () => {
     return db.put_memory
       .findAndCountAll({
         where: {
-          PUT_Request_id: 11,
+          PUT_Request_id: 12,
         },
       })
       .then((put_memories) => {
