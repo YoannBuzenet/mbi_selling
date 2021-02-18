@@ -40,6 +40,8 @@
   "app.footer.legalClauses": "Legal Clauses",
   "app.footer.ByMTGInterface": "MTG-Interface © 2021 All rights reserved.",
 
+  "app.burgerMenu.createScript": "Create a Script",
+  "app.burgerMenu.allMyScripts": "My Scripts",
   "app.burgerMenu.subscribe": "Subscribe",
   "app.burgerMenu.register": "Register",
   "app.burgerMenu.login": "Log in",

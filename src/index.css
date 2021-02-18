@@ -993,7 +993,7 @@ div.lang-select-applevel {
   position: fixed;
   top: 8rem;
   bottom: 0;
-  height: 45vh;
+  height: 70vh;
   width: 30vw;
   right: 0;
   background-color: white;
@@ -1071,7 +1071,7 @@ div.lang-select-applevel {
 }
 @media only screen and (max-width: 850px) {
   .responsive_menu {
-    width: 40vw;
+    width: 65vw;
   }
   .responsive_menu {
     animation-duration: 0.25s;
@@ -1096,7 +1096,7 @@ div.lang-select-applevel {
 }
 @media only screen and (max-width: 550px) {
   .responsive_menu {
-    width: 50vw;
+    width: 75vw;
   }
   .responsive_menu {
     animation-duration: 0.25s;
@@ -1105,7 +1105,7 @@ div.lang-select-applevel {
 }
 @media only screen and (max-width: 500px) {
   .responsive_menu {
-    width: 60vw;
+    width: 85vw;
     animation-duration: 0.25s;
     animation-name: slidein500;
   }
@@ -1117,7 +1117,7 @@ div.lang-select-applevel {
   .responsive_menu {
     animation-duration: 0.25s;
     animation-name: slidein500;
-    height: 55vh;
+    height: 80vh;
   }
 }
 

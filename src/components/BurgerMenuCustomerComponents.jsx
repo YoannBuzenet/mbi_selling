@@ -77,6 +77,30 @@ const BurgerMenuCustomerComponents = ({ history }) => {
             <ul className="">
               <Link
                 className="classic_links_responsive"
+                to="/my-scripts"
+                onClick={(event) => closeMenu(event)}
+              >
+                <li>
+                  <FormattedMessage
+                    id="app.burgerMenu.allMyScripts"
+                    defaultMessage={`"My Scripts"`}
+                  />
+                </li>
+              </Link>
+              <Link
+                className="classic_links_responsive"
+                to="/create-script"
+                onClick={(event) => closeMenu(event)}
+              >
+                <li>
+                  <FormattedMessage
+                    id="app.burgerMenu.createScript"
+                    defaultMessage={`Create a Script`}
+                  />
+                </li>
+              </Link>
+              <Link
+                className="classic_links_responsive"
                 to="/subscribe"
                 onClick={(event) => closeMenu(event)}
               >
@@ -89,7 +113,7 @@ const BurgerMenuCustomerComponents = ({ history }) => {
               </Link>
 
               <Link
-                className="toggle-classic_links_responsive-links"
+                className="classic_links_responsive"
                 to="/my-invoices"
                 onClick={(event) => closeMenu(event)}
               >
