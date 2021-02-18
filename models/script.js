@@ -62,13 +62,13 @@ module.exports = (sequelize, DataTypes) => {
       scriptName,
       idShop,
       pricedBasedOn,
-      keywordbehaviour = "ignoresEverything"
+      keywordBehaviour = "ignoresEverything"
     ) {
       return Script.create({
         name: scriptName,
         idShop,
         willBeBasedOn: pricedBasedOn,
-        keywordBehaviour: keywordbehaviour,
+        keywordBehaviour: keywordBehaviour,
       });
     }
   }

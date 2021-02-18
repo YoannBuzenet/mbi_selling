@@ -1563,6 +1563,7 @@ const CreateMyScript = ({ history }) => {
                       aria-label="position"
                       name="position"
                       defaultValue={keywordBehaviour}
+                      value={keywordBehaviour}
                       className={classes.radioFormControl}
                     >
                       <FormControlLabel
