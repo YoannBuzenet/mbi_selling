@@ -82,7 +82,8 @@
     "getMTGPrices:windows": "node server/CLI-scripts/getMTGprices.js",
     "test:suite:populate:windows": "SET NODE_ENV=test& npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all& node server/CLI-Scripts/triggerTestScripts.js",
     "test:suite:populate:linux": "NODE_ENV=test npx sequelize-cli db:migrate:undo:all && NODE_ENV=test npx sequelize-cli db:migrate && NODE_ENV=test npx sequelize-cli db:seed:all& NODE_ENV=test node server/CLI-Scripts/triggerTestScripts.js & NODE_ENV=test ./node_modules/.bin/jest -u",
-    "check:MTGJSON:version:windows": "node server/CLI-scripts/checkMTGJSONVersion.js"
+    "check:MTGJSON:version": "node server/CLI-scripts/checkMTGJSONVersion.js",
+    "launch:crons": "node server/CLI-scripts/CRON-setup.js"
   },
   "eslintConfig": {
     "extends": "react-app"
