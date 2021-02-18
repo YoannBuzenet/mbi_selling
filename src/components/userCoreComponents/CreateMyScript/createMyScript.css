@@ -299,6 +299,10 @@ button.button-second-navbar {
   .checkboxContainer {
     margin-left: 50px;
   }
+
+  .keywordList .partForm .MuiPaper-root {
+    width: 70%;
+  }
 }
 /* *** */
 /* RULE */
@@ -413,6 +417,7 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 @media only screen and (max-width: 968px) {
   .ruleType-choice {
     flex-direction: column;
+    align-items: center;
   }
 
   .ruleType-choice > .MuiFormControl-root {
