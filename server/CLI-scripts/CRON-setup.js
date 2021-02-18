@@ -12,7 +12,8 @@ async function launchCrons() {
 
   // Eventually launch here renew MTG Price
 
-  job.start();
+  // cron launch
+  dailyMTGJSOnCheck.start();
 }
 
 launchCrons();
