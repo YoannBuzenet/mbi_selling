@@ -36,7 +36,7 @@ async function createPreMadeScripts10PercentsFoilStandard(
   );
 
   await queryInterface.bulkInsert(
-    "Rarity",
+    "rarities",
     create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
@@ -65,7 +65,7 @@ async function createPreMadeScriptsIncrease10PercentsFoilStandard(
   );
 
   await queryInterface.bulkInsert(
-    "Rarity",
+    "rarities",
     create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
@@ -95,7 +95,7 @@ async function createPreMadeScripts10PercentsUPONMKMALLStandard(
   );
 
   await queryInterface.bulkInsert(
-    "Rarity",
+    "rarities",
     create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
@@ -131,7 +131,7 @@ async function createPreMadeScriptsMinus5PercentOnKeywordsCards(
   );
 
   await queryInterface.bulkInsert(
-    "Rarity",
+    "rarities",
     create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
@@ -160,7 +160,7 @@ async function createPreMadeScriptsMinus5PercentOnModernAbove30euros(
   );
 
   await queryInterface.bulkInsert(
-    "Rarity",
+    "rarities",
     create4RaritiesForScript(newScript.dataValues.id),
     {}
   );
@@ -188,7 +188,7 @@ async function createPreMadeScriptsIncrease5PercentOnModernAbove30euros(
   );
 
   await queryInterface.bulkInsert(
-    "Rarity",
+    "rarities",
     create4RaritiesForScript(newScript.dataValues.id),
     {}
   );

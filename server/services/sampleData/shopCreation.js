@@ -310,18 +310,26 @@ const create4RaritiesForScript = (scriptID) => [
   {
     idScript: scriptID,
     name: "mythic",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     idScript: scriptID,
     name: "rare",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     idScript: scriptID,
     name: "uncommon",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     idScript: scriptID,
     name: "common",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
 ];
 
