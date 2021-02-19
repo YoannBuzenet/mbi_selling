@@ -160,39 +160,43 @@ const CustomRule = ({
               </IconButton>
             </div>
             <div className="ruleMainBody">
-              <p className="fromToText from">
-                <FormattedMessage
-                  id="customRules.price.from"
-                  defaultMessage="From"
+              <div className="priceRange">
+                <p className="fromToText from">
+                  <FormattedMessage
+                    id="customRules.price.from"
+                    defaultMessage="From"
+                  />
+                </p>
+                <TextField
+                  id="outlined-from"
+                  defaultValue=""
+                  variant="outlined"
+                  name={"priceRangeFrom"}
+                  onChange={(e) => handleChange(e)}
+                  className="inputValueNumber"
+                  value={
+                    rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
+                  }
                 />
-              </p>
-              <TextField
-                id="outlined-from"
-                defaultValue=""
-                variant="outlined"
-                name={"priceRangeFrom"}
-                onChange={(e) => handleChange(e)}
-                className="inputValueNumber"
-                value={
-                  rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
-                }
-              />
-              <p className="fromToText">
-                <FormattedMessage
-                  id="customRules.price.to"
-                  defaultMessage="To"
+                <p className="fromToText">
+                  <FormattedMessage
+                    id="customRules.price.to"
+                    defaultMessage="To"
+                  />
+                </p>
+                <TextField
+                  id="outlined-from"
+                  defaultValue=""
+                  variant="outlined"
+                  name={"priceRangeTo"}
+                  onChange={(e) => handleChange(e)}
+                  className="inputValueNumber"
+                  value={
+                    rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""
+                  }
                 />
-              </p>
-              <TextField
-                id="outlined-from"
-                defaultValue=""
-                variant="outlined"
-                name={"priceRangeTo"}
-                onChange={(e) => handleChange(e)}
-                className="inputValueNumber"
-                value={rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""}
-              />
-              <p className="fromToText">€</p>
+                <p className="fromToText">€</p>
+              </div>
               <div className="ruleType-choice">
                 {Array.isArray(allDefinitions.ruleTypes) && (
                   <FormControl

@@ -274,6 +274,12 @@ button.button-second-navbar {
   margin-top: 20px;
 }
 
+@media only screen and (max-width: 1750px) {
+  .genericRules .genericList {
+    margin-left: 12%;
+  }
+}
+
 @media only screen and (max-width: 968px) {
   .parts-container {
     flex-direction: column;
@@ -292,12 +298,12 @@ button.button-second-navbar {
   }
 
   .genericRules .genericList {
-    margin-left: 20px;
+    margin: 20px auto;
     width: 330px;
   }
 
   .checkboxContainer {
-    margin-left: 50px;
+    margin-left: auto;
   }
 
   .keywordList .partForm .MuiPaper-root {
@@ -331,6 +337,12 @@ button.button-second-navbar {
 }
 .ruleContainer .ruleMainBody p {
   margin: 0;
+}
+
+.ruleContainer .priceRange {
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 .hidden-rule-adder {
@@ -381,7 +393,7 @@ div.inputValueNumber {
   display: flex;
   justify-content: start;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 5px;
 }
 
 input.MuiInputBase-input.MuiOutlinedInput-input {
@@ -414,6 +426,28 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
   padding-top: 10px;
 }
 
+@media only screen and (max-width: 1850px) {
+  .ruleContainer .ruleMainBody {
+    display: flex;
+    justify-content: start;
+    padding: 10px;
+    flex-direction: column;
+  }
+  .ruleContainer .priceRange {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 1480px) {
+  .ruleType-choice {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ruleContainer .priceRange {
+    width: auto;
+  }
+}
+
 @media only screen and (max-width: 968px) {
   .ruleType-choice {
     flex-direction: column;
@@ -435,6 +469,10 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
 
   .deleteButton {
     top: 5px;
+  }
+  .ruleContainer .priceRange {
+    margin: 20px auto;
+    width: auto;
   }
 }
 
