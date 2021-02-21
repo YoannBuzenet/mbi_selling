@@ -610,27 +610,51 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [300, "auto"],
+          widths: [300, "auto", 10],
           body: [
             [
               genericTranslations.pdfStructure.cardsSetAtHigherPrice[
                 langLocale
               ],
               all_higher_price_put_memories.count,
+              {
+                svg:
+                  '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></g></svg>',
+                width: 20,
+                height: 17,
+              },
             ],
             [
               genericTranslations.pdfStructure.cardsSetAtLowerPrice[langLocale],
               all_lower_price_put_memories.count,
+              {
+                svg:
+                  '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10"/><path d="M17 7v10H7"/></g></svg>',
+                width: 20,
+                height: 17,
+              },
             ],
             [
               genericTranslations.pdfStructure.cardsBlockedByPriceShield[
                 langLocale
               ],
               all_priceShield_blocked_put_memories.count,
+              {
+                svg:
+                  '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3l-8 3v7c0 6 8 10 8 10z"/></g></svg>',
+                width: 20,
+                height: 17,
+              },
             ],
             [
               genericTranslations.pdfStructure.cardsExcluded[langLocale],
               all_excluded_put_memories.count,
+              {
+                svg:
+                  '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></g></svg>',
+                width: 20,
+                height: 17,
+              },
             ],
           ],
         },
@@ -949,10 +973,21 @@ async function generatePDFFromPutRequest(
         pageBreak: "after",
       },
       {
-        text: genericTranslations.pdfStructure.cardsSetAtHigherPrice[
-          langLocale
-        ].toUpperCase(),
+        text:
+          genericTranslations.pdfStructure.cardsSetAtHigherPrice[
+            langLocale
+          ].toUpperCase() +
+          " (" +
+          all_higher_price_put_memories.count +
+          ")",
         style: "pageTitle",
+      },
+      {
+        svg:
+          '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></g></svg>',
+        width: 40,
+        height: 34,
+        absolutePosition: { x: 450, y: 55 },
       },
       {
         table: {
@@ -1013,10 +1048,21 @@ async function generatePDFFromPutRequest(
         pageBreak: "after",
       },
       {
-        text: genericTranslations.pdfStructure.cardsSetAtLowerPrice[
-          langLocale
-        ].toUpperCase(),
+        text:
+          genericTranslations.pdfStructure.cardsSetAtLowerPrice[
+            langLocale
+          ].toUpperCase() +
+          " (" +
+          all_lower_price_put_memories.count +
+          ")",
         style: "pageTitle",
+      },
+      {
+        svg:
+          '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10"/><path d="M17 7v10H7"/></g></svg>',
+        width: 40,
+        height: 34,
+        absolutePosition: { x: 450, y: 55 },
       },
       {
         table: {
@@ -1077,10 +1123,21 @@ async function generatePDFFromPutRequest(
         pageBreak: "after",
       },
       {
-        text: genericTranslations.pdfStructure.cardsBlockedByPriceShield[
-          langLocale
-        ].toUpperCase(),
+        text:
+          genericTranslations.pdfStructure.cardsBlockedByPriceShield[
+            langLocale
+          ].toUpperCase() +
+          " (" +
+          all_priceShield_blocked_put_memories.count +
+          ")",
         style: "pageTitle",
+      },
+      {
+        svg:
+          '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3l-8 3v7c0 6 8 10 8 10z"/></g></svg>',
+        width: 40,
+        height: 34,
+        absolutePosition: { x: 450, y: 55 },
       },
       {
         table: {
@@ -1144,10 +1201,21 @@ async function generatePDFFromPutRequest(
       // *** EXCLUDED CARDS *** //
       // ********************** //
       {
-        text: genericTranslations.pdfStructure.cardsExcluded[
-          langLocale
-        ].toUpperCase(),
+        text:
+          genericTranslations.pdfStructure.cardsExcluded[
+            langLocale
+          ].toUpperCase() +
+          " (" +
+          all_excluded_put_memories.count +
+          ")",
         style: "pageTitle",
+      },
+      {
+        svg:
+          '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></g></svg>',
+        width: 40,
+        height: 34,
+        absolutePosition: { x: 450, y: 55 },
       },
       {
         table: {

@@ -262,8 +262,8 @@ const pdfStructure = {
     ["fr-FR"]: "Prix fixé",
   },
   mkmAction: {
-    ["en-US"]: "Action on MKM Price",
-    ["fr-FR"]: "Action sur prix MKM",
+    ["en-US"]: "Action",
+    ["fr-FR"]: "Action",
   },
   basedOn: {
     ["en-US"]: "Based on",
