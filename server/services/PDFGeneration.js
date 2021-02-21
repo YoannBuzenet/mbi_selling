@@ -482,14 +482,33 @@ async function generatePDFFromPutRequest(
         style: "subTitle",
       },
       { text: " " },
-      { text: moment().format(translation.FormatDate[langLocale]) },
       {
-        text:
-          genericTranslations.pdfStructure.reference[langLocale] +
-          put_requestId,
+        table: {
+          headerRows: 1,
+          widths: [200, 200],
+          body: [
+            [
+              {
+                text: genericTranslations.pdfStructure.reference[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              { text: put_requestId, style: "mainInfoPutRequest" },
+            ],
+            [
+              { text: "dddd".toUpperCase(), style: "titleMainInfoPutRequest" },
+              {
+                text: moment().format(translation.FormatDate[langLocale]),
+                style: "mainInfoPutRequest",
+              },
+            ],
+          ],
+        },
+        layout: "noBorders",
+        style: "MainInfoTable",
       },
       { text: " " },
-      // test table
       {
         table: {
           headerRows: 1,
