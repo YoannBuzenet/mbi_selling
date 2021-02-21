@@ -654,12 +654,36 @@ async function generatePDFFromPutRequest(
           widths: [50, 50, 50, 50, 120, 120],
           body: [
             [
-              genericTranslations.pdfStructure.from[langLocale],
-              genericTranslations.pdfStructure.to[langLocale],
-              genericTranslations.pdfStructure.action[langLocale],
-              genericTranslations.pdfStructure.valueSet[langLocale],
-              genericTranslations.pdfStructure.mkmAction[langLocale],
-              genericTranslations.pdfStructure.basedOn[langLocale],
+              {
+                text: genericTranslations.pdfStructure.from[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.to[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.action[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.valueSet[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.mkmAction[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.basedOn[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
             ],
             ...orderedSnapshotCustomRules.regular.map((rule) => {
               return [
@@ -699,12 +723,36 @@ async function generatePDFFromPutRequest(
           widths: [50, 50, 50, 50, 120, 120],
           body: [
             [
-              genericTranslations.pdfStructure.from[langLocale],
-              genericTranslations.pdfStructure.to[langLocale],
-              genericTranslations.pdfStructure.action[langLocale],
-              genericTranslations.pdfStructure.valueSet[langLocale],
-              genericTranslations.pdfStructure.mkmAction[langLocale],
-              genericTranslations.pdfStructure.basedOn[langLocale],
+              {
+                text: genericTranslations.pdfStructure.from[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.to[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.action[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.valueSet[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.mkmAction[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.basedOn[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
             ],
             ...orderedSnapshotCustomRules.foil.map((rule) => {
               return [
@@ -886,15 +934,48 @@ async function generatePDFFromPutRequest(
           widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
-              genericTranslations.pdfStructure.cardName[langLocale],
-              genericTranslations.pdfStructure.foil[langLocale],
-              genericTranslations.pdfStructure.condition[langLocale],
-              genericTranslations.pdfStructure.language[langLocale],
-              genericTranslations.pdfStructure.oldPrice[langLocale],
-              genericTranslations.pdfStructure.newPrice[langLocale],
-              genericTranslations.pdfStructure.priceTrend[langLocale],
-              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idArticle",
+              {
+                text: genericTranslations.pdfStructure.cardName[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.foil[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.condition[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.language[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.oldPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.newPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.priceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text:
+                  genericTranslations.pdfStructure.foilPriceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              { text: "idArticle", fillColor: "#1c64f2", alignment: "center" },
             ],
             ...generateLineHigherPriceCard(
               all_higher_price_put_memories,
@@ -917,15 +998,48 @@ async function generatePDFFromPutRequest(
           widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
-              genericTranslations.pdfStructure.cardName[langLocale],
-              genericTranslations.pdfStructure.foil[langLocale],
-              genericTranslations.pdfStructure.condition[langLocale],
-              genericTranslations.pdfStructure.language[langLocale],
-              genericTranslations.pdfStructure.oldPrice[langLocale],
-              genericTranslations.pdfStructure.newPrice[langLocale],
-              genericTranslations.pdfStructure.priceTrend[langLocale],
-              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idArticle",
+              {
+                text: genericTranslations.pdfStructure.cardName[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.foil[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.condition[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.language[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.oldPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.newPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.priceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text:
+                  genericTranslations.pdfStructure.foilPriceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              { text: "idArticle", fillColor: "#1c64f2", alignment: "center" },
             ],
             ...generateLineLowerPriceCard(
               all_lower_price_put_memories,
@@ -948,15 +1062,48 @@ async function generatePDFFromPutRequest(
           widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
-              genericTranslations.pdfStructure.cardName[langLocale],
-              genericTranslations.pdfStructure.foil[langLocale],
-              genericTranslations.pdfStructure.condition[langLocale],
-              genericTranslations.pdfStructure.language[langLocale],
-              genericTranslations.pdfStructure.oldPrice[langLocale],
-              genericTranslations.pdfStructure.newPrice[langLocale],
-              genericTranslations.pdfStructure.priceTrend[langLocale],
-              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idArticle",
+              {
+                text: genericTranslations.pdfStructure.cardName[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.foil[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.condition[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.language[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.oldPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.newPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.priceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text:
+                  genericTranslations.pdfStructure.foilPriceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              { text: "idArticle", fillColor: "#1c64f2", alignment: "center" },
             ],
             ...generateLineBlockedPriceCard(
               all_priceShield_blocked_put_memories,
@@ -982,15 +1129,48 @@ async function generatePDFFromPutRequest(
           widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
-              genericTranslations.pdfStructure.cardName[langLocale],
-              genericTranslations.pdfStructure.foil[langLocale],
-              genericTranslations.pdfStructure.condition[langLocale],
-              genericTranslations.pdfStructure.language[langLocale],
-              genericTranslations.pdfStructure.oldPrice[langLocale],
-              genericTranslations.pdfStructure.newPrice[langLocale],
-              genericTranslations.pdfStructure.priceTrend[langLocale],
-              genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idArticle",
+              {
+                text: genericTranslations.pdfStructure.cardName[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.foil[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.condition[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.language[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.oldPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.newPrice[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.priceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text:
+                  genericTranslations.pdfStructure.foilPriceTrend[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              { text: "idArticle", fillColor: "#1c64f2", alignment: "center" },
             ],
             ...generateLineExcludedCard(
               all_excluded_put_memories,
@@ -1037,10 +1217,13 @@ async function generatePDFFromPutRequest(
         fontSize: 15,
         margin: [0, 15, 0, 15],
       },
-      bigTableHigherPrice: { margin: [40, 0, 0, 0], fontSize: 10 },
-      bigTableLowerPrice: { margin: [40, 0, 0, 0], fontSize: 10 },
-      bigTablePricehieldBlockedCards: { margin: [60, 0, 0, 0], fontSize: 8 },
-      bigTableExcludedCards: { margin: [40, 0, 0, 0], fontSize: 10 },
+      bigTableHigherPrice: {
+        margin: [40, 10, 0, 0],
+        fontSize: 10,
+      },
+      bigTableLowerPrice: { margin: [40, 10, 0, 0], fontSize: 10 },
+      bigTablePricehieldBlockedCards: { margin: [60, 10, 0, 0], fontSize: 8 },
+      bigTableExcludedCards: { margin: [40, 10, 0, 0], fontSize: 10 },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
