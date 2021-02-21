@@ -832,17 +832,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [
-            70,
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-          ],
+          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
               genericTranslations.pdfStructure.cardName[langLocale],
@@ -873,17 +863,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [
-            70,
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-          ],
+          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
               genericTranslations.pdfStructure.cardName[langLocale],
@@ -914,17 +894,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [
-            70,
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-          ],
+          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
               genericTranslations.pdfStructure.cardName[langLocale],
@@ -958,17 +928,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [
-            70,
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-            "auto",
-          ],
+          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
           body: [
             [
               genericTranslations.pdfStructure.cardName[langLocale],
