@@ -711,8 +711,8 @@ async function generatePDFFromPutRequest(
             ],
             ...orderedSnapshotCustomRules.regular.map((rule) => {
               return [
-                rule.priceRangeFrom,
-                rule.priceRangeTo,
+                { text: rule.priceRangeFrom, style: "alignRight" },
+                { text: rule.priceRangeTo, style: "alignRight" },
                 {
                   text:
                     genericTranslations.ruleTypesDictionnary[langLocale][
@@ -792,8 +792,8 @@ async function generatePDFFromPutRequest(
             ],
             ...orderedSnapshotCustomRules.foil.map((rule) => {
               return [
-                rule.priceRangeFrom,
-                rule.priceRangeTo,
+                { text: rule.priceRangeFrom, style: "alignRight" },
+                { text: rule.priceRangeTo, style: "alignRight" },
                 {
                   text:
                     genericTranslations.ruleTypesDictionnary[langLocale][
