@@ -665,10 +665,16 @@ async function generatePDFFromPutRequest(
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
-                genericTranslations.ruleTypesDictionnary[langLocale][
-                  ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
-                ],
-                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "",
+                {
+                  text:
+                    genericTranslations.ruleTypesDictionnary[langLocale][
+                      ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
+                    ],
+                  style: "actionTitle",
+                },
+                rule.ruleTypeId === 1
+                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
+                  : "",
                 rule.ruleTypeId === 2
                   ? genericTranslations.BehaviourDictionnary[langLocale][
                       customRulesBehaviourDictionnary[rule.behaviourId].name
@@ -704,10 +710,16 @@ async function generatePDFFromPutRequest(
               return [
                 rule.priceRangeFrom,
                 rule.priceRangeTo,
-                genericTranslations.ruleTypesDictionnary[langLocale][
-                  ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
-                ],
-                rule.ruleTypeId === 1 ? rule.priceRangeValueToSet : "",
+                {
+                  text:
+                    genericTranslations.ruleTypesDictionnary[langLocale][
+                      ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
+                    ],
+                  style: "actionTitle",
+                },
+                rule.ruleTypeId === 1
+                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
+                  : "",
                 rule.ruleTypeId === 2
                   ? customRulesBehaviourDictionnary[rule.behaviourId].name
                   : "",
@@ -1005,6 +1017,9 @@ async function generatePDFFromPutRequest(
       },
       recapTable: {
         margin: [100, 0, 50, 0],
+      },
+      actionTitle: {
+        fontSize: 11,
       },
       alignRight: {
         alignment: "right",
