@@ -174,8 +174,12 @@ const pdfStructure = {
     },
   },
   reference: {
-    ["en-US"]: "Reference : ",
-    ["fr-FR"]: "Référence : ",
+    ["en-US"]: "Reference ",
+    ["fr-FR"]: "Référence ",
+  },
+  date: {
+    ["en-US"]: "Date ",
+    ["fr-FR"]: "Date ",
   },
   usedFormats: {
     ["en-US"]: "Affected formats",

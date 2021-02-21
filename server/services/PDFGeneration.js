@@ -477,7 +477,9 @@ async function generatePDFFromPutRequest(
       { text: " " },
       {
         text: isTestScript
-          ? genericTranslations.pdfStructure.testProcedure[langLocale]
+          ? genericTranslations.pdfStructure.testProcedure[
+              langLocale
+            ].toUpperCase()
           : " ",
         style: "subTitle",
       },
@@ -497,7 +499,12 @@ async function generatePDFFromPutRequest(
               { text: put_requestId, style: "mainInfoPutRequest" },
             ],
             [
-              { text: "dddd".toUpperCase(), style: "titleMainInfoPutRequest" },
+              {
+                text: genericTranslations.pdfStructure.date[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
               {
                 text: moment().format(translation.FormatDate[langLocale]),
                 style: "mainInfoPutRequest",
@@ -624,6 +631,7 @@ async function generatePDFFromPutRequest(
       // },
       {
         text: genericTranslations.pdfStructure.summary[langLocale],
+        alignment: "center",
       },
       { text: " " },
       {
@@ -1303,6 +1311,7 @@ async function generatePDFFromPutRequest(
       },
       subTitle: {
         alignment: "center",
+        margin: [0, 20, 0, 20],
       },
       sentenceRecapWithNumber: {
         alignment: "right",
@@ -1317,7 +1326,7 @@ async function generatePDFFromPutRequest(
       alignRight: {
         alignment: "right",
       },
-      MainInfoTable: { margin: [0, 10, 0, 10] },
+      MainInfoTable: { margin: [100, 10, 0, 10] },
       customRulesTable: {
         margin: [20, 0, 50, 0],
       },
