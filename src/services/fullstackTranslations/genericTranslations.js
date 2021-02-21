@@ -68,6 +68,43 @@ const BehaviourDictionnary = {
   },
 };
 
+const algoDictionnary = {
+  ["en-US"]: {
+    AvgSellPrice: "Average Selling Price",
+    lowPrice: "Regular Low Price",
+    trendPrice: "Trend Price",
+    germanProLow: "German Pro Low",
+    suggestedPrice: "MKM Suggested Price",
+    foilSell: "Foil Selling Price",
+    foilLow: "Foil Low",
+    foilTrend: "Foil trend Price",
+    lowPriceEx: "Foil Low Ex",
+    avg1: "Average Price 1 day",
+    avg7: "Average Price 7 days",
+    avg30: "Average Price 30 days",
+    foilAvg1: "Foil Average Price 1 day",
+    foilAvg7: "Foil Average Price 7 days",
+    foilAvg30: "Foil Average Price 30 days",
+  },
+  ["fr-FR"]: {
+    AvgSellPrice: "Prix de vente moyen",
+    lowPrice: "Prix bas",
+    trendPrice: "Prix Tendance",
+    germanProLow: "Prix bas Allemand Pro",
+    suggestedPrice: "Prix suggéré par MKM",
+    foilSell: "Prix de vente Foil",
+    foilLow: "Prix bas Foil",
+    foilTrend: "Tendance Foil",
+    lowPriceEx: "Prix bas Regular Exc",
+    avg1: "Prix de vente moyen sur 1 jour",
+    avg7: "Prix de vente moyen sur 7 jours",
+    avg30: "Prix de vente moyen sur 30 jours",
+    foilAvg1: "Prix de vente Foil moyen sur 1 jour",
+    foilAvg7: "Prix de vente Foil moyen sur 7 jours",
+    foilAvg30: "Prix de vente Foil moyen sur 30 jours",
+  },
+};
+
 const ruleTypesDictionnary = {
   ["en-US"]: {
     setValue: "Set Value",
@@ -367,4 +404,5 @@ module.exports = {
   langIDLocaleDictionnary,
   localeLangIDDictionnary,
   premadeScriptTitles,
+  algoDictionnary,
 };

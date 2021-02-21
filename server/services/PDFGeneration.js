@@ -465,11 +465,11 @@ async function generatePDFFromPutRequest(
   var docDefinition = {
     pageMargins: [40, 60, 40, 80],
     content: [
-      { text: " " },
-      { text: " " },
-      { text: " " },
-      { text: " " },
-      { text: " " },
+      {
+        image: path.join(__basedir, "assets", "pdf_header.png"),
+        width: 600,
+        height: 150,
+      },
       {
         text: genericTranslations.pdfStructure.pdfTitle[langLocale] + idScript,
         style: "mainTitle",
@@ -705,7 +705,14 @@ async function generatePDFFromPutRequest(
                     ]
                   : "",
                 rule.ruleTypeId === 2
-                  ? mkmPricesGuideDictionnary[rule.mkmPriceGuideReference].name
+                  ? {
+                      text:
+                        genericTranslations.algoDictionnary[langLocale][
+                          mkmPricesGuideDictionnary[rule.mkmPriceGuideReference]
+                            .name
+                        ],
+                      fontSize: 11,
+                    }
                   : "",
               ];
             }),
@@ -769,10 +776,19 @@ async function generatePDFFromPutRequest(
                   ? { text: rule.priceRangeValueToSet, style: "alignRight" }
                   : "",
                 rule.ruleTypeId === 2
-                  ? customRulesBehaviourDictionnary[rule.behaviourId].name
+                  ? genericTranslations.BehaviourDictionnary[langLocale][
+                      customRulesBehaviourDictionnary[rule.behaviourId].name
+                    ]
                   : "",
                 rule.ruleTypeId === 2
-                  ? mkmPricesGuideDictionnary[rule.mkmPriceGuideReference].name
+                  ? {
+                      text:
+                        genericTranslations.algoDictionnary[langLocale][
+                          mkmPricesGuideDictionnary[rule.mkmPriceGuideReference]
+                            .name
+                        ],
+                      fontSize: 11,
+                    }
                   : "",
               ];
             }),
