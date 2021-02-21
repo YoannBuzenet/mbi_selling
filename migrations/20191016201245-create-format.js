@@ -89,6 +89,16 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
           },
+          {
+            name: "premodern",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
+          {
+            name: "gladiator",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
         ]);
       });
   },

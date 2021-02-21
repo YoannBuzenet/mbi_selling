@@ -54,6 +54,12 @@ module.exports = {
       isLegalOldSchool: {
         type: Sequelize.INTEGER,
       },
+      isLegalPremodern: {
+        type: Sequelize.INTEGER,
+      },
+      isLegalGladiator: {
+        type: Sequelize.INTEGER,
+      },
       rarity: {
         type: Sequelize.STRING,
       },

@@ -16,6 +16,8 @@ config.formatDefinition = {
   11: "Future",
   12: "Standard",
   13: "OldSchool",
+  14: "PreModern",
+  15: "Gladiator",
 };
 
 module.exports = { config };
