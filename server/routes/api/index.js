@@ -38,7 +38,7 @@ router.use("/keywords", keywordsHandling);
 router.use("/shop_params", shop_paramsHandling);
 
 //test purpose
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
   router.use("/test", testRoutes);
 }
 

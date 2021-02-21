@@ -40,13 +40,6 @@ async function generatePDFFromPutRequest(
     },
   });
 
-  // Removed to be able to tell user if he launched a script that affected 0 cards
-  // if (all_put_memories.rows.length === 0) {
-  //   throw new Error(
-  //     "This script has no put memory created. Can't generate a PDF from that."
-  //   );
-  // }
-
   const currentScript = await db.Script.findOne({
     where: {
       id: idScript,
@@ -266,11 +259,11 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice,
-            sortedData[i].newPrice,
-            sortedData[i].regularCardsTrend,
-            sortedData[i].foilCardsTrend,
-            sortedData[i].idArticle,
+            { text: sortedData[i].oldPrice, style: "alignRight" },
+            { text: sortedData[i].newPrice, style: "alignRight" },
+            { text: sortedData[i].regularCardsTrend, style: "alignRight" },
+            { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+            { text: sortedData[i].idArticle, style: "alignRight" },
           ],
         ];
       }
@@ -322,11 +315,11 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice,
-            sortedData[i].newPrice,
-            sortedData[i].regularCardsTrend,
-            sortedData[i].foilCardsTrend,
-            sortedData[i].idArticle,
+            { text: sortedData[i].oldPrice, style: "alignRight" },
+            { text: sortedData[i].newPrice, style: "alignRight" },
+            { text: sortedData[i].regularCardsTrend, style: "alignRight" },
+            { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+            { text: sortedData[i].idArticle, style: "alignRight" },
           ],
         ];
       }
@@ -349,11 +342,11 @@ async function generatePDFFromPutRequest(
             : genericTranslations.pdfStructure.no[langLocale],
           utilsServer.conditionDefinition[sortedData[i].condition],
           utilsServer.langDefinition[sortedData[i].lang],
-          sortedData[i].oldPrice,
-          sortedData[i].newPrice,
-          sortedData[i].regularCardsTrend,
-          sortedData[i].foilCardsTrend,
-          sortedData[i].idArticle,
+          { text: sortedData[i].oldPrice, style: "alignRight" },
+          { text: sortedData[i].newPrice, style: "alignRight" },
+          { text: sortedData[i].regularCardsTrend, style: "alignRight" },
+          { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+          { text: sortedData[i].idArticle, style: "alignRight" },
         ],
 
         [
@@ -413,11 +406,11 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice,
-            sortedData[i].newPrice,
-            sortedData[i].regularCardsTrend,
-            sortedData[i].foilCardsTrend,
-            sortedData[i].idArticle,
+            { text: sortedData[i].oldPrice, style: "alignRight" },
+            { text: sortedData[i].newPrice, style: "alignRight" },
+            { text: sortedData[i].regularCardsTrend, style: "alignRight" },
+            { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+            { text: sortedData[i].idArticle, style: "alignRight" },
           ],
         ];
       }
@@ -429,6 +422,44 @@ async function generatePDFFromPutRequest(
   /* *************************** */
   /* ******* TEMPLATE ********** */
   /* *************************** */
+
+  function displayFormatsUsed(formatsUsed) {
+    if (formatsUsed.length > 0) {
+      return formatsUsed.map((formatFromSequelize, index) => {
+        if (index !== 0) {
+          return (
+            " " +
+            utils.capitalizeFirstLetter(formatFromSequelize.dataValues.name)
+          );
+        } else {
+          return utils.capitalizeFirstLetter(
+            formatFromSequelize.dataValues.name
+          );
+        }
+      });
+    } else {
+      return genericTranslations.pdfStructure.targetedFormatsNone[langLocale];
+    }
+  }
+
+  function displayExpansionsUsed(listOfExpansions) {
+    if (listOfExpansions.length > 0) {
+      return (
+        genericTranslations.pdfStructure.targetedExpansions[langLocale] +
+        listOfExpansions.map((expansion, index) => {
+          if (index !== 0) {
+            return " " + expansion.dataValues.name;
+          } else {
+            return expansion.dataValues.name;
+          }
+        })
+      );
+    } else {
+      return genericTranslations.pdfStructure.targetedExpansionsNone[
+        langLocale
+      ];
+    }
+  }
 
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
@@ -458,94 +489,102 @@ async function generatePDFFromPutRequest(
           put_requestId,
       },
       { text: " " },
+      // test table
       {
-        text:
-          hasPricedBasedOn === "mkmTrends"
-            ? genericTranslations.pdfStructure.hasPriceBasedOnMKMTrends[
-                langLocale
-              ]
-            : genericTranslations.pdfStructure.hasPriceBasedOnOldPrices[
-                langLocale
-              ],
-      },
-      { text: " " },
-      {
-        text:
-          usedFormats.length > 0
-            ? genericTranslations.pdfStructure.usedFormats[langLocale] +
-              usedFormats.map((formatFromSequelize, index) => {
+        table: {
+          headerRows: 1,
+          widths: [200, 200],
+          body: [
+            [
+              {
+                text: genericTranslations.pdfStructure.hasPriceBasedOn[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              hasPricedBasedOn === "mkmTrends"
+                ? {
+                    text:
+                      genericTranslations.pdfStructure.MKMTrends[langLocale],
+                    style: "mainInfoPutRequest",
+                  }
+                : {
+                    text:
+                      genericTranslations.pdfStructure.oldPrices[langLocale],
+                    style: "mainInfoPutRequest",
+                  },
+            ],
+            [
+              {
+                text: genericTranslations.pdfStructure.usedFormats[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              displayFormatsUsed(usedFormats),
+            ],
+            [
+              {
+                text: genericTranslations.pdfStructure.keywordBehaviourTitle[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              genericTranslations.pdfStructure.keywordBehaviour[
+                putRequestKeywordBehaviour
+              ][langLocale],
+            ],
+            [
+              {
+                text: genericTranslations.pdfStructure.keywordTitle[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              snapshotKeywords.map((keyword, index) => {
+                if (index !== 0) {
+                  return " " + '"' + keyword.dataValues.name + '"';
+                } else {
+                  return '"' + keyword.dataValues.name + '"';
+                }
+              }),
+            ],
+            [
+              {
+                text: genericTranslations.pdfStructure.rarityUsed[
+                  langLocale
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              snapshotRarities.map((rarity, index) => {
                 if (index !== 0) {
                   return (
                     " " +
-                    utils.capitalizeFirstLetter(
-                      formatFromSequelize.dataValues.name
-                    )
+                    genericTranslations.pdfStructure[rarity.dataValues.name][
+                      langLocale
+                    ]
                   );
                 } else {
-                  return utils.capitalizeFirstLetter(
-                    formatFromSequelize.dataValues.name
-                  );
+                  return genericTranslations.pdfStructure[
+                    rarity.dataValues.name
+                  ][langLocale];
                 }
-              })
-            : genericTranslations.pdfStructure.targetedFormatsNone[langLocale],
-      },
-      { text: " " },
-      {
-        text:
-          genericTranslations.pdfStructure.keywordBehaviourTitle[langLocale] +
-          " " +
-          genericTranslations.pdfStructure.keywordBehaviour[
-            putRequestKeywordBehaviour
-          ][langLocale],
-      },
-      { text: " " },
-      {
-        text:
-          genericTranslations.pdfStructure.keywordTitle[langLocale] +
-          snapshotKeywords.map((keyword, index) => {
-            if (index !== 0) {
-              return " " + '"' + keyword.dataValues.name + '"';
-            } else {
-              return '"' + keyword.dataValues.name + '"';
-            }
-          }),
-      },
-      { text: " " },
-      {
-        text:
-          genericTranslations.pdfStructure.rarityUsed[langLocale] +
-          snapshotRarities.map((rarity, index) => {
-            if (index !== 0) {
-              return (
-                " " +
-                genericTranslations.pdfStructure[rarity.dataValues.name][
+              }),
+            ],
+            [
+              {
+                text: genericTranslations.pdfStructure.targetedExpansions[
                   langLocale
-                ]
-              );
-            } else {
-              return genericTranslations.pdfStructure[rarity.dataValues.name][
-                langLocale
-              ];
-            }
-          }),
+                ].toUpperCase(),
+                style: "titleMainInfoPutRequest",
+              },
+              displayExpansionsUsed(snapshotExpansions),
+            ],
+          ],
+        },
+        layout: "noBorders",
+        style: "MainInfoTable",
       },
-      { text: " " },
-      {
-        text:
-          snapshotExpansions.length > 0
-            ? genericTranslations.pdfStructure.targetedExpansions[langLocale] +
-              snapshotExpansions.map((expansion, index) => {
-                if (index !== 0) {
-                  return " " + expansion.dataValues.name;
-                } else {
-                  return expansion.dataValues.name;
-                }
-              })
-            : genericTranslations.pdfStructure.targetedExpansionsNone[
-                langLocale
-              ],
-      },
-      { text: " " },
       { text: " " },
       { text: " " },
       // {
@@ -955,7 +994,7 @@ async function generatePDFFromPutRequest(
     styles: {
       mainTitle: {
         alignment: "center",
-        fontSize: 20,
+        fontSize: 30,
       },
       subTitle: {
         alignment: "center",
@@ -967,6 +1006,10 @@ async function generatePDFFromPutRequest(
       recapTable: {
         margin: [100, 0, 50, 0],
       },
+      alignRight: {
+        alignment: "right",
+      },
+      MainInfoTable: { margin: [0, 10, 0, 10] },
       customRulesTable: {
         margin: [20, 0, 50, 0],
       },
@@ -979,10 +1022,10 @@ async function generatePDFFromPutRequest(
         fontSize: 15,
         margin: [0, 15, 0, 15],
       },
-      bigTableHigherPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
-      bigTableLowerPrice: { margin: [0, 0, 0, 0], fontSize: 10 },
-      bigTablePricehieldBlockedCards: { margin: [10, 0, 0, 0], fontSize: 8 },
-      bigTableExcludedCards: { margin: [0, 0, 0, 0], fontSize: 10 },
+      bigTableHigherPrice: { margin: [40, 0, 0, 0], fontSize: 10 },
+      bigTableLowerPrice: { margin: [40, 0, 0, 0], fontSize: 10 },
+      bigTablePricehieldBlockedCards: { margin: [60, 0, 0, 0], fontSize: 8 },
+      bigTableExcludedCards: { margin: [40, 0, 0, 0], fontSize: 10 },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
@@ -991,6 +1034,10 @@ async function generatePDFFromPutRequest(
         alignment: "center",
         fontSize: 10,
       },
+      titleMainInfoPutRequest: {
+        bold: true,
+      },
+      mainInfoPutRequest: {},
     },
   };
   var options;

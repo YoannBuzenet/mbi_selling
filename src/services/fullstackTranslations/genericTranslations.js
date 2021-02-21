@@ -94,21 +94,33 @@ const pdfStructure = {
     ["en-US"]: "Test procedure",
     ["fr-FR"]: "Procédure de test",
   },
+  hasPriceBasedOn: {
+    ["en-US"]: "Prices based on",
+    ["fr-FR"]: "Prix basés sur",
+  },
+  MKMTrends: {
+    ["en-US"]: "MKM Trends",
+    ["fr-FR"]: "Tendances MKM",
+  },
+  oldPrices: {
+    ["en-US"]: "Current shop prices",
+    ["fr-FR"]: "Prix boutique actuels",
+  },
   hasPriceBasedOnMKMTrends: {
     ["en-US"]: "Prices based on : MKM Trends",
     ["fr-FR"]: "Prix basés sur : Tendances MKM",
   },
   hasPriceBasedOnOldPrices: {
-    ["en-US"]: "Prices based on : Already existing shop prices",
-    ["fr-FR"]: "Prix basés sur :  Prix boutique existants",
+    ["en-US"]: "Prices based on : Current shop prices",
+    ["fr-FR"]: "Prix basés sur :  Prix boutique actuels",
   },
   keywordTitle: {
-    ["en-US"]: "Keywords used : ",
-    "fr-FR": "Mot clefs utilisés : ",
+    ["en-US"]: "Keywords used ",
+    "fr-FR": "Mot clefs utilisés ",
   },
   keywordBehaviourTitle: {
-    ["en-US"]: "Keyword use : ",
-    "fr-FR": "Utilisation des mots clefs : ",
+    ["en-US"]: "Keyword use ",
+    "fr-FR": "Utilisation des mots clefs ",
   },
   keywordBehaviour: {
     targetsSpecifically: {
@@ -129,16 +141,16 @@ const pdfStructure = {
     ["fr-FR"]: "Référence : ",
   },
   usedFormats: {
-    ["en-US"]: "Affected formats : ",
-    ["fr-FR"]: "Formats concernés : ",
+    ["en-US"]: "Affected formats",
+    ["fr-FR"]: "Formats concernés",
   },
   targetedFormatsNone: {
-    ["en-US"]: "Affected formats : None in particular",
-    ["fr-FR"]: "Formats concernés : Aucun en particulier",
+    ["en-US"]: "None in particular",
+    ["fr-FR"]: "Aucun en particulier",
   },
   rarityUsed: {
-    ["en-US"]: "Rarity targeted : ",
-    ["fr-FR"]: "Raretés ciblées : ",
+    ["en-US"]: "Rarity targeted",
+    ["fr-FR"]: "Raretés ciblées",
   },
   mythic: {
     ["en-US"]: "Mythic",
@@ -157,12 +169,12 @@ const pdfStructure = {
     ["fr-FR"]: "Commune",
   },
   targetedExpansions: {
-    ["en-US"]: "Targeted Expansions : ",
-    ["fr-FR"]: "Editions visées : ",
+    ["en-US"]: "Targeted Expansions",
+    ["fr-FR"]: "Editions visées",
   },
   targetedExpansionsNone: {
-    ["en-US"]: "Targeted Expansions : None in particular",
-    ["fr-FR"]: "Editions visées : Aucune en particulier",
+    ["en-US"]: "None in particular",
+    ["fr-FR"]: "Aucune en particulier",
   },
   cardsConcernedByScript: {
     ["en-US"]: "Cards affected by the script",
