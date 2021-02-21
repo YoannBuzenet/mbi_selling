@@ -245,6 +245,10 @@ const pdfStructure = {
     ["en-US"]: "Regular Cards",
     ["fr-FR"]: "Cartes Regular",
   },
+  noRegularRules: {
+    ["en-US"]: "No rules were planned for Regular cards.",
+    ["fr-FR"]: "Il n'y a pas de règles pour les cartes Regular.",
+  },
   from: {
     ["en-US"]: "From",
     ["fr-FR"]: "De",
@@ -272,6 +276,10 @@ const pdfStructure = {
   foilCards: {
     ["en-US"]: "Foil cards",
     ["fr-FR"]: "Cartes Foil",
+  },
+  noRegularRules: {
+    ["en-US"]: "No rules were planned for Foil cards.",
+    ["fr-FR"]: "Il n'y a pas de règles pour les cartes Foils.",
   },
   parameters: {
     ["en-US"]: "Parameters",
