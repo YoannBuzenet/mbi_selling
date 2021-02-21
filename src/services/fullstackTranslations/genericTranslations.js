@@ -293,8 +293,8 @@ const pdfStructure = {
     ["fr-FR"]: "Prix Tendance",
   },
   foilPriceTrend: {
-    ["en-US"]: "Foil Price Trend",
-    ["fr-FR"]: "Prix Tendance Foil",
+    ["en-US"]: "Foil Trend",
+    ["fr-FR"]: "Tendance Foil",
   },
   yes: {
     ["en-US"]: "Yes",
