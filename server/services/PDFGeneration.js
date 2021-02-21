@@ -246,7 +246,6 @@ async function generatePDFFromPutRequest(
             sortedData[i].newPrice,
             sortedData[i].regularCardsTrend,
             sortedData[i].foilCardsTrend,
-            sortedData[i].idProduct,
             sortedData[i].idArticle,
           ],
           [
@@ -271,7 +270,6 @@ async function generatePDFFromPutRequest(
             sortedData[i].newPrice,
             sortedData[i].regularCardsTrend,
             sortedData[i].foilCardsTrend,
-            sortedData[i].idProduct,
             sortedData[i].idArticle,
           ],
         ];
@@ -303,7 +301,6 @@ async function generatePDFFromPutRequest(
             sortedData[i].newPrice,
             sortedData[i].regularCardsTrend,
             sortedData[i].foilCardsTrend,
-            sortedData[i].idProduct,
             sortedData[i].idArticle,
           ],
           [
@@ -329,7 +326,6 @@ async function generatePDFFromPutRequest(
             sortedData[i].newPrice,
             sortedData[i].regularCardsTrend,
             sortedData[i].foilCardsTrend,
-            sortedData[i].idProduct,
             sortedData[i].idArticle,
           ],
         ];
@@ -357,7 +353,6 @@ async function generatePDFFromPutRequest(
           sortedData[i].newPrice,
           sortedData[i].regularCardsTrend,
           sortedData[i].foilCardsTrend,
-          sortedData[i].idProduct,
           sortedData[i].idArticle,
         ],
 
@@ -397,7 +392,6 @@ async function generatePDFFromPutRequest(
             sortedData[i].newPrice,
             sortedData[i].regularCardsTrend,
             sortedData[i].foilCardsTrend,
-            sortedData[i].idProduct,
             sortedData[i].idArticle,
           ],
           [
@@ -423,7 +417,6 @@ async function generatePDFFromPutRequest(
             sortedData[i].newPrice,
             sortedData[i].regularCardsTrend,
             sortedData[i].foilCardsTrend,
-            sortedData[i].idProduct,
             sortedData[i].idArticle,
           ],
         ];
@@ -849,7 +842,6 @@ async function generatePDFFromPutRequest(
             "auto",
             "auto",
             "auto",
-            "auto",
           ],
           body: [
             [
@@ -861,7 +853,6 @@ async function generatePDFFromPutRequest(
               genericTranslations.pdfStructure.newPrice[langLocale],
               genericTranslations.pdfStructure.priceTrend[langLocale],
               genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idProduct",
               "idArticle",
             ],
             ...generateLineHigherPriceCard(
@@ -892,7 +883,6 @@ async function generatePDFFromPutRequest(
             "auto",
             "auto",
             "auto",
-            "auto",
           ],
           body: [
             [
@@ -904,7 +894,6 @@ async function generatePDFFromPutRequest(
               genericTranslations.pdfStructure.newPrice[langLocale],
               genericTranslations.pdfStructure.priceTrend[langLocale],
               genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idProduct",
               "idArticle",
             ],
             ...generateLineLowerPriceCard(
@@ -935,7 +924,6 @@ async function generatePDFFromPutRequest(
             "auto",
             "auto",
             "auto",
-            "auto",
           ],
           body: [
             [
@@ -947,7 +935,6 @@ async function generatePDFFromPutRequest(
               genericTranslations.pdfStructure.newPrice[langLocale],
               genericTranslations.pdfStructure.priceTrend[langLocale],
               genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idProduct",
               "idArticle",
             ],
             ...generateLineBlockedPriceCard(
@@ -981,7 +968,6 @@ async function generatePDFFromPutRequest(
             "auto",
             "auto",
             "auto",
-            "auto",
           ],
           body: [
             [
@@ -993,7 +979,6 @@ async function generatePDFFromPutRequest(
               genericTranslations.pdfStructure.newPrice[langLocale],
               genericTranslations.pdfStructure.priceTrend[langLocale],
               genericTranslations.pdfStructure.foilPriceTrend[langLocale],
-              "idProduct",
               "idArticle",
             ],
             ...generateLineExcludedCard(
