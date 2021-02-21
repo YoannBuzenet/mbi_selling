@@ -286,7 +286,7 @@ const pdfStructure = {
   },
   yes: {
     ["en-US"]: "Yes",
-    ["fr-FR"]: "No",
+    ["fr-FR"]: "Oui",
   },
   no: { ["en-US"]: "No", ["fr-FR"]: "Non" },
 };
