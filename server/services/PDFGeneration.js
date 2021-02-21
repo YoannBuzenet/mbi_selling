@@ -707,10 +707,15 @@ async function generatePDFFromPutRequest(
                 rule.ruleTypeId === 2
                   ? {
                       text:
-                        genericTranslations.algoDictionnary[langLocale][
-                          mkmPricesGuideDictionnary[rule.mkmPriceGuideReference]
-                            .name
-                        ],
+                        hasPricedBasedOn === "mkmTrends"
+                          ? genericTranslations.algoDictionnary[langLocale][
+                              mkmPricesGuideDictionnary[
+                                rule.mkmPriceGuideReference
+                              ].name
+                            ]
+                          : genericTranslations.pdfStructure.oldPrice[
+                              langLocale
+                            ],
                       fontSize: 11,
                     }
                   : "",
@@ -783,10 +788,15 @@ async function generatePDFFromPutRequest(
                 rule.ruleTypeId === 2
                   ? {
                       text:
-                        genericTranslations.algoDictionnary[langLocale][
-                          mkmPricesGuideDictionnary[rule.mkmPriceGuideReference]
-                            .name
-                        ],
+                        hasPricedBasedOn === "mkmTrends"
+                          ? genericTranslations.algoDictionnary[langLocale][
+                              mkmPricesGuideDictionnary[
+                                rule.mkmPriceGuideReference
+                              ].name
+                            ]
+                          : genericTranslations.pdfStructure.oldPrice[
+                              langLocale
+                            ],
                       fontSize: 11,
                     }
                   : "",
