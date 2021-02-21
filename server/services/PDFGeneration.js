@@ -555,22 +555,22 @@ async function generatePDFFromPutRequest(
       { text: " " },
       { text: " " },
       { text: " " },
-      {
-        table: {
-          headerRows: 1,
-          widths: [300, "auto"],
-          body: [
-            [
-              genericTranslations.pdfStructure.cardsConcernedByScript[
-                langLocale
-              ],
-              all_put_memories.count,
-            ],
-          ],
-        },
-        layout: "noBorders",
-        style: "recapTable",
-      },
+      // {
+      //   table: {
+      //     headerRows: 1,
+      //     widths: [300, "auto"],
+      //     body: [
+      //       [
+      //         genericTranslations.pdfStructure.cardsConcernedByScript[
+      //           langLocale
+      //         ],
+      //         all_put_memories.count,
+      //       ],
+      //     ],
+      //   },
+      //   layout: "noBorders",
+      //   style: "recapTable",
+      // },
       {
         text: genericTranslations.pdfStructure.summary[langLocale],
       },
