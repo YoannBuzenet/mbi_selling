@@ -461,6 +461,181 @@ async function generatePDFFromPutRequest(
     }
   }
 
+  function displayRegularRules(orderedSnapshotCustomRulesRegular) {
+    if (orderedSnapshotCustomRulesRegular.length > 0) {
+      return {
+        table: {
+          headerRows: 1,
+          widths: [50, 50, 50, 50, 120, 120],
+          body: [
+            [
+              {
+                text: genericTranslations.pdfStructure.from[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.to[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.action[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.valueSet[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.mkmAction[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.basedOn[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+            ],
+            ...orderedSnapshotCustomRulesRegular.map((rule) => {
+              return [
+                { text: rule.priceRangeFrom, style: "alignRight" },
+                { text: rule.priceRangeTo, style: "alignRight" },
+                {
+                  text:
+                    genericTranslations.ruleTypesDictionnary[langLocale][
+                      ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
+                    ],
+                  style: "actionTitle",
+                },
+                rule.ruleTypeId === 1
+                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
+                  : "",
+                rule.ruleTypeId === 2
+                  ? genericTranslations.BehaviourDictionnary[langLocale][
+                      customRulesBehaviourDictionnary[rule.behaviourId].name
+                    ]
+                  : "",
+                rule.ruleTypeId === 2
+                  ? {
+                      text:
+                        hasPricedBasedOn === "mkmTrends"
+                          ? genericTranslations.algoDictionnary[langLocale][
+                              mkmPricesGuideDictionnary[
+                                rule.mkmPriceGuideReference
+                              ].name
+                            ]
+                          : genericTranslations.pdfStructure.oldPrice[
+                              langLocale
+                            ],
+                      fontSize: 11,
+                    }
+                  : "",
+              ];
+            }),
+          ],
+        },
+        style: "customRulesTable",
+      };
+    } else {
+      return {
+        text: genericTranslations.pdfStructure.noRegularRules[langLocale],
+        alignment: "center",
+      };
+    }
+  }
+
+  function displayFoilRules(orderedSnapshotCustomRulesFoil) {
+    if (orderedSnapshotCustomRulesFoil.length > 0) {
+      return {
+        table: {
+          headerRows: 1,
+          widths: [50, 50, 50, 50, 120, 120],
+          body: [
+            [
+              {
+                text: genericTranslations.pdfStructure.from[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.to[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.action[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.valueSet[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.mkmAction[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+              {
+                text: genericTranslations.pdfStructure.basedOn[langLocale],
+                fillColor: "#1c64f2",
+                alignment: "center",
+              },
+            ],
+            ...orderedSnapshotCustomRulesFoil.map((rule) => {
+              return [
+                { text: rule.priceRangeFrom, style: "alignRight" },
+                { text: rule.priceRangeTo, style: "alignRight" },
+                {
+                  text:
+                    genericTranslations.ruleTypesDictionnary[langLocale][
+                      ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
+                    ],
+                  style: "actionTitle",
+                },
+                rule.ruleTypeId === 1
+                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
+                  : "",
+                rule.ruleTypeId === 2
+                  ? genericTranslations.BehaviourDictionnary[langLocale][
+                      customRulesBehaviourDictionnary[rule.behaviourId].name
+                    ]
+                  : "",
+                rule.ruleTypeId === 2
+                  ? {
+                      text:
+                        hasPricedBasedOn === "mkmTrends"
+                          ? genericTranslations.algoDictionnary[langLocale][
+                              mkmPricesGuideDictionnary[
+                                rule.mkmPriceGuideReference
+                              ].name
+                            ]
+                          : genericTranslations.pdfStructure.oldPrice[
+                              langLocale
+                            ],
+                      fontSize: 11,
+                    }
+                  : "",
+              ];
+            }),
+          ],
+        },
+        style: "customRulesTable",
+        pageBreak: "after",
+      };
+    } else {
+      return {
+        text: genericTranslations.pdfStructure.noFoilRules[langLocale],
+        alignment: "center",
+      };
+    }
+  }
+
   var printer = new PdfPrinter(fonts);
   var docDefinition = {
     pageMargins: [40, 60, 40, 80],
@@ -699,165 +874,12 @@ async function generatePDFFromPutRequest(
         text: genericTranslations.pdfStructure.regularCards[langLocale],
         style: "tableTitle",
       },
-      {
-        table: {
-          headerRows: 1,
-          widths: [50, 50, 50, 50, 120, 120],
-          body: [
-            [
-              {
-                text: genericTranslations.pdfStructure.from[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.to[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.action[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.valueSet[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.mkmAction[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.basedOn[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-            ],
-            ...orderedSnapshotCustomRules.regular.map((rule) => {
-              return [
-                { text: rule.priceRangeFrom, style: "alignRight" },
-                { text: rule.priceRangeTo, style: "alignRight" },
-                {
-                  text:
-                    genericTranslations.ruleTypesDictionnary[langLocale][
-                      ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
-                    ],
-                  style: "actionTitle",
-                },
-                rule.ruleTypeId === 1
-                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
-                  : "",
-                rule.ruleTypeId === 2
-                  ? genericTranslations.BehaviourDictionnary[langLocale][
-                      customRulesBehaviourDictionnary[rule.behaviourId].name
-                    ]
-                  : "",
-                rule.ruleTypeId === 2
-                  ? {
-                      text:
-                        hasPricedBasedOn === "mkmTrends"
-                          ? genericTranslations.algoDictionnary[langLocale][
-                              mkmPricesGuideDictionnary[
-                                rule.mkmPriceGuideReference
-                              ].name
-                            ]
-                          : genericTranslations.pdfStructure.oldPrice[
-                              langLocale
-                            ],
-                      fontSize: 11,
-                    }
-                  : "",
-              ];
-            }),
-          ],
-        },
-        style: "customRulesTable",
-      },
+      displayRegularRules(orderedSnapshotCustomRules.regular),
       {
         text: genericTranslations.pdfStructure.foilCards[langLocale],
         style: "tableTitle",
       },
-      {
-        table: {
-          headerRows: 1,
-          widths: [50, 50, 50, 50, 120, 120],
-          body: [
-            [
-              {
-                text: genericTranslations.pdfStructure.from[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.to[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.action[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.valueSet[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.mkmAction[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-              {
-                text: genericTranslations.pdfStructure.basedOn[langLocale],
-                fillColor: "#1c64f2",
-                alignment: "center",
-              },
-            ],
-            ...orderedSnapshotCustomRules.foil.map((rule) => {
-              return [
-                { text: rule.priceRangeFrom, style: "alignRight" },
-                { text: rule.priceRangeTo, style: "alignRight" },
-                {
-                  text:
-                    genericTranslations.ruleTypesDictionnary[langLocale][
-                      ruleTypesDefinitionsDictionnary[rule.ruleTypeId].name
-                    ],
-                  style: "actionTitle",
-                },
-                rule.ruleTypeId === 1
-                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
-                  : "",
-                rule.ruleTypeId === 2
-                  ? genericTranslations.BehaviourDictionnary[langLocale][
-                      customRulesBehaviourDictionnary[rule.behaviourId].name
-                    ]
-                  : "",
-                rule.ruleTypeId === 2
-                  ? {
-                      text:
-                        hasPricedBasedOn === "mkmTrends"
-                          ? genericTranslations.algoDictionnary[langLocale][
-                              mkmPricesGuideDictionnary[
-                                rule.mkmPriceGuideReference
-                              ].name
-                            ]
-                          : genericTranslations.pdfStructure.oldPrice[
-                              langLocale
-                            ],
-                      fontSize: 11,
-                    }
-                  : "",
-              ];
-            }),
-          ],
-        },
-        style: "customRulesTable",
-        pageBreak: "after",
-      },
+      displayFoilRules(orderedSnapshotCustomRules.foil),
       {
         text: genericTranslations.pdfStructure.parameters[langLocale],
         style: "pageTitle",

@@ -281,7 +281,7 @@ const pdfStructure = {
     ["en-US"]: "Foil cards",
     ["fr-FR"]: "Cartes Foil",
   },
-  noRegularRules: {
+  noFoilRules: {
     ["en-US"]: "No rules were planned for Foil cards.",
     ["fr-FR"]: "Il n'y a pas de règles pour les cartes Foils.",
   },
