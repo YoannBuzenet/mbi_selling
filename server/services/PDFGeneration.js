@@ -898,31 +898,62 @@ async function generatePDFFromPutRequest(
           body: [
             [
               "Mint",
-              snapshotShopParams.dataValues.percentPerMintRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerMintRegular + " %",
+                alignment: "right",
+              },
             ],
             [
               "Near Mint",
-              snapshotShopParams.dataValues.percentPerNearMintRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerNearMintRegular +
+                  " %",
+                alignment: "right",
+              },
             ],
             [
               "Excellent",
-              snapshotShopParams.dataValues.percentPerExcellentRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerExcellentRegular +
+                  " %",
+                alignment: "right",
+              },
             ],
             [
               "Good",
-              snapshotShopParams.dataValues.percentPerGoodRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerGoodRegular + " %",
+                alignment: "right",
+              },
             ],
             [
               "Light-Played",
-              snapshotShopParams.dataValues.percentPerLightPlayedRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLightPlayedRegular +
+                  " %",
+                alignment: "right",
+              },
             ],
             [
               "Played",
-              snapshotShopParams.dataValues.percentPerPlayedRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerPlayedRegular + " %",
+                alignment: "right",
+              },
             ],
             [
               "Poor",
-              snapshotShopParams.dataValues.percentPerPoorRegular + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerPoorRegular + " %",
+                alignment: "right",
+              },
             ],
           ],
         },
@@ -938,25 +969,59 @@ async function generatePDFFromPutRequest(
           headerRows: 1,
           widths: [300, "auto"],
           body: [
-            ["Mint", snapshotShopParams.dataValues.percentPerMintFoil + " %"],
+            [
+              "Mint",
+              {
+                text: snapshotShopParams.dataValues.percentPerMintFoil + " %",
+                alignment: "right",
+              },
+            ],
             [
               "Near Mint",
-              snapshotShopParams.dataValues.percentPerNearMintFoil + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerNearMintFoil + " %",
+                alignment: "right",
+              },
             ],
             [
               "Excellent",
-              snapshotShopParams.dataValues.percentPerExcellentFoil + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerExcellentFoil + " %",
+                alignment: "right",
+              },
             ],
-            ["Good", snapshotShopParams.dataValues.percentPerGoodFoil + " %"],
+            [
+              "Good",
+              {
+                text: snapshotShopParams.dataValues.percentPerGoodFoil + " %",
+                alignment: "right",
+              },
+            ],
             [
               "Light-Played",
-              snapshotShopParams.dataValues.percentPerLightPlayedFoil + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLightPlayedFoil +
+                  " %",
+                alignment: "right",
+              },
             ],
             [
               "Played",
-              snapshotShopParams.dataValues.percentPerPlayedFoil + " %",
+              {
+                text: snapshotShopParams.dataValues.percentPerPlayedFoil + " %",
+                alignment: "right",
+              },
             ],
-            ["Poor", snapshotShopParams.dataValues.percentPerPoorFoil + " %"],
+            [
+              "Poor",
+              {
+                text: snapshotShopParams.dataValues.percentPerPoorFoil + " %",
+                alignment: "right",
+              },
+            ],
           ],
         },
         style: "recapTable",
@@ -972,49 +1037,90 @@ async function generatePDFFromPutRequest(
           body: [
             [
               genericTranslations.pdfStructure.german[langLocale],
-              snapshotShopParams.dataValues.percentPerLangGerman + " %",
+              {
+                text: snapshotShopParams.dataValues.percentPerLangGerman + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.spanish[langLocale],
-              snapshotShopParams.dataValues.percentPerLangSpanish + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLangSpanish + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.french[langLocale],
-              snapshotShopParams.dataValues.percentPerLangFrench + " %",
+              {
+                text: snapshotShopParams.dataValues.percentPerLangFrench + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.italian[langLocale],
-              snapshotShopParams.dataValues.percentPerLangItalian + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLangItalian + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.japanese[langLocale],
-              snapshotShopParams.dataValues.percentPerLangJapanese + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLangJapanese + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.portuguese[langLocale],
-              snapshotShopParams.dataValues.percentPerLangPortuguese + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLangPortuguese + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.russian[langLocale],
-              snapshotShopParams.dataValues.percentPerLangRussian + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLangRussian + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.simplifiedChinese[langLocale],
-              snapshotShopParams.dataValues.percentPerLangSimplifiedChinese +
-                " %",
+              {
+                text:
+                  snapshotShopParams.dataValues
+                    .percentPerLangSimplifiedChinese + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.english[langLocale],
-              snapshotShopParams.dataValues.percentPerLangEnglish + " %",
+              {
+                text:
+                  snapshotShopParams.dataValues.percentPerLangEnglish + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.korean[langLocale],
-              snapshotShopParams.dataValues.percentPerLangKorean + " %",
+              {
+                text: snapshotShopParams.dataValues.percentPerLangKorean + " %",
+                alignment: "right",
+              },
             ],
             [
               genericTranslations.pdfStructure.traditionalChinese[langLocale],
-              snapshotShopParams.dataValues.percentPerLangTraditionalChinese +
-                " %",
+              {
+                text:
+                  snapshotShopParams.dataValues
+                    .percentPerLangTraditionalChinese + " %",
+                alignment: "right",
+              },
             ],
           ],
         },
@@ -1041,7 +1147,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
           body: [
             [
               {
@@ -1116,7 +1222,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
           body: [
             [
               {
@@ -1191,7 +1297,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
           body: [
             [
               {
@@ -1269,7 +1375,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [70, "auto", "auto", "auto", 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
           body: [
             [
               {
@@ -1362,12 +1468,12 @@ async function generatePDFFromPutRequest(
         margin: [0, 15, 0, 15],
       },
       bigTableHigherPrice: {
-        margin: [40, 10, 0, 0],
+        margin: [30, 20, 0, 0],
         fontSize: 10,
       },
-      bigTableLowerPrice: { margin: [40, 10, 0, 0], fontSize: 10 },
-      bigTablePricehieldBlockedCards: { margin: [60, 10, 0, 0], fontSize: 8 },
-      bigTableExcludedCards: { margin: [40, 10, 0, 0], fontSize: 10 },
+      bigTableLowerPrice: { margin: [30, 20, 0, 0], fontSize: 10 },
+      bigTablePricehieldBlockedCards: { margin: [30, 20, 0, 0], fontSize: 10 },
+      bigTableExcludedCards: { margin: [30, 20, 0, 0], fontSize: 10 },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
