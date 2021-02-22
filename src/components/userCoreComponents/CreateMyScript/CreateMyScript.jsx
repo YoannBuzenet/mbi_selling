@@ -684,6 +684,20 @@ const CreateMyScript = ({ history }) => {
           defaultMessage="There seems to be an error among the rules. Please check them."
         />
       );
+
+      if (
+        customRulesGlobalState.foil.length +
+          customRulesGlobalState.regular.length ===
+        0
+      ) {
+        toast.error(
+          <FormattedMessage
+            id="createMyScript.launchScript.failure.customRulesatLeast1"
+            defaultMessage="The script must at least have one rule."
+          />
+        );
+        return;
+      }
     } else {
       /* **************************************** */
       /* ***** STEP 1 : SCRIPT INFO HANDLING **** */
@@ -1058,6 +1072,20 @@ const CreateMyScript = ({ history }) => {
     }
 
     if (
+      customRulesGlobalState.foil.length +
+        customRulesGlobalState.regular.length ===
+      0
+    ) {
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.launchScript.failure.customRulesatLeast1"
+          defaultMessage="The script must at least have one rule."
+        />
+      );
+      return;
+    }
+
+    if (
       raritiesUsed.mythic === false &&
       raritiesUsed.rare === false &&
       raritiesUsed.uncommon === false &&
@@ -1140,6 +1168,20 @@ const CreateMyScript = ({ history }) => {
         <FormattedMessage
           id="createMyScript.checkStateCoherence.failure"
           defaultMessage="There seems to be an error among the rules. Please check them."
+        />
+      );
+      return;
+    }
+
+    if (
+      customRulesGlobalState.foil.length +
+        customRulesGlobalState.regular.length ===
+      0
+    ) {
+      toast.error(
+        <FormattedMessage
+          id="createMyScript.launchScript.failure.customRulesatLeast1"
+          defaultMessage="The script must at least have one rule."
         />
       );
       return;

@@ -301,6 +301,7 @@
   "createMyScript.genericRules.cardsWithSuperiorPriceAreNotTreated": "Les cartes aux prix supérieur aux prix mentionnés ne sont pas traitées.",
   "createMyScript.checkMKMConnection.failture": "Vous n'êtes pas connecté à MKM. Merci de vous y connecter afin de pouvoir lancer le script.",
   "createMyScript.checkStateCoherence.failure": "Il semble y avoir une erreur au sein des règles. Merci de vérifier à nouveau.",
+  "createMyScript.launchScript.failure.customRulesatLeast1": "Le script doit avoir une règle.",
   "createMyScript.launchTest.success": "Le script de test a été lancé. Une fois terminé, vous recevrez un récapitulatif par mail.",
   "createMyScript.launchTest.failure": "Le script n'a pas pu être lancé. Merci de réessayer ultérieurement. Si le problème persiste, n'hésitez pas à nous contacter.",
   "createMyScript.scriptMustBeSaved": "Merci de sauvegarder le script avant de le lancer.",
