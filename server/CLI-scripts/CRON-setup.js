@@ -3,7 +3,7 @@ const { pingMTGJSON } = require("./checkMTGJSONVersion");
 
 async function launchCrons() {
   var dailyMTGJSOnCheck = new CronJob(
-    "0 0 * * *",
+    "0 8 * * *",
     pingMTGJSON,
     null,
     true,
