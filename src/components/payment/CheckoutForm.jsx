@@ -117,6 +117,7 @@ const CheckoutForm = () => {
             authContextCopy.isSubscribedUntil = resp.data.userIsSubscribedUntil;
             setAuthenticationInfos(authContextCopy);
             authAPI.transformAuthContextIntoLocalStorageFormat(authContextCopy);
+            setPaymentModalInformation({ isDisplayed: false });
             toast.success(
               <FormattedMessage
                 id="app.modal.payment.success"
