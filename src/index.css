@@ -485,6 +485,10 @@ div.connecting-button {
   text-decoration: underline;
 }
 
+.field {
+  margin-top: 20px;
+}
+
 @media only screen and (max-width: 1000px) {
   .field-form input,
   .login-form input,
