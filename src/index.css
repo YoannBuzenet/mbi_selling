@@ -514,6 +514,28 @@ form.reset-password-form button {
 }
 
 /**************************
+***** PRICESHIELD PAGE ****
+**************************/
+
+.priceShield {
+  max-width: 50%;
+}
+.priceShield .priceShieldPicture {
+  text-align: center;
+  max-width: 250px;
+}
+
+.priceShield .explainations {
+  text-align: left;
+}
+
+@media only screen and (max-width: 968px) {
+  .priceShield {
+    max-width: 80%;
+  }
+}
+
+/**************************
 ******ALL MY SCRIPTS*******
 **************************/
 

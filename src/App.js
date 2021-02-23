@@ -68,6 +68,7 @@ import "primeicons/primeicons.css";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/payment/CheckoutForm";
+import PriceShield from "./pages/PriceShield";
 
 // Loading stripe outside of the component to avoid recalculation in each render
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TEST_KEY);
@@ -501,6 +502,10 @@ function App() {
                                   <Route
                                     path="/terms-of-use"
                                     component={TermsOfUse}
+                                  />
+                                  <Route
+                                    path="/priceShield"
+                                    component={PriceShield}
                                   />
 
                                   <Route

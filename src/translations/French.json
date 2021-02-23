@@ -199,6 +199,18 @@
   "app.RegisterPage.accountCreation.mailAlreadyTaken.toast.failure": "Cet email est déjà pris. Merci d'en choisir un autre.",
   "app.RegisterPage.accountCreation.toast.failure": "Une erreur est survenue. Merci de réessayer.",
 
+  "app.page.priceShield.title": "Price Shield",
+  "app.page.priceShield.FirstExplaination": "Chaque fois qu'un prix est modifié, il est contrôlé par le Price Shield d'abord.",
+  "app.page.priceShield.firstUlTitle": "Le Price Shield vérifie : ",
+  "app.page.priceShield.firstUlFirstLi": "La tendance actuelle sur MKM (foil ou non)",
+  "app.page.priceShield.firstUlSecondLi": "Votre prix actuel",
+  "app.page.priceShield.firstUlThirdLi": "Le nouveau prix à fixer",
+  "app.page.priceShield.secondUl": "Le Price Shield bloque ensuite :",
+  "app.page.priceShield.secondUlFirstLi": "Si le nouveau prix est trop en dessous de la tendance actuelle",
+  "app.page.priceShield.secondUlSecondLi": "Si le nouveau prix est trop éloigné de votre prix actuel",
+  "app.page.afterUlFirstP": "Le Price Shield est une manière centraliser de protéger les cartes très spécifiques et exotiques. Il ne peut être désactivé.",
+  "app.page.afterUlSecondP": "Chaque prix bloqué par le price Shield vous sera expliqué dans le récapitulatif que vous recevrez après un script. De cette façon, vous pouvez toujours le mettre à jour manuellement si vous le souhaitez.",
+
   "app.modal.payment.button.pay": "Payer",
   "app.modal.payment.success": "Votre paiement a bien été enregistré. Vous êtes abonné.",
   "app.modal.generalConditions.checkIn.firstPart": "J'accepte les ",

@@ -93,8 +93,13 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
     ) {
       return { result: false, reason: 3 };
     }
-    //If the card is worth more than 10 euros and variation rate is more than 40%
-    else if (newPrice < oldPrice && oldPrice >= 10 && variationRate > 40) {
+    //If the card is worth more than 10 euros and less than 20 euros and variation rate is more than 40%
+    else if (
+      newPrice < oldPrice &&
+      oldPrice >= 10 &&
+      oldPrice <= 20 &&
+      variationRate > 40
+    ) {
       return { result: false, reason: 4 };
     }
     //If the card is worth more than 20 euros and the variation rate is more than 60%

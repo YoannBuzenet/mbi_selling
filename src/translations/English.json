@@ -199,6 +199,18 @@
   "app.RegisterPage.accountCreation.toast.success": "Your account has been created.",
   "app.RegisterPage.accountCreation.mailAlreadyTaken.toast.failure": "This email is already taken. Please choose another one.",
   "app.RegisterPage.accountCreation.toast.failure": "An error has occured. Please try again.",
+  "app.page.priceShield.secondUlFirstLi": "If the new price is too low below the market trend",
+  "app.page.priceShield.secondUlSecondLi": "If the price is too far from your former price",
+  "app.page.afterUlFirstP": "The Price Shield is the way to protect specific prices on exotic cards and staples. It cannot be deactivated.",
+  "app.page.afterUlSecondP": "Each price blocked by the Price Shield will be explained in the summary you receive at the end of your script. This way, you can still update it yourself if you want to.",
+
+  "app.page.priceShield.title": "Price Shield",
+  "app.page.priceShield.FirstExplaination": "Each time a new price is to be set by your script, we check it through the Price Shield.",
+  "app.page.priceShield.firstUlTitle": "The Price Shield looks at :",
+  "app.page.priceShield.firstUlFirstLi": "The current trend of the product on MKM (foil and regular)",
+  "app.page.priceShield.firstUlSecondLi": "Your current price",
+  "app.page.priceShield.firstUlThirdLi": "The new price that is going to be set",
+  "app.page.priceShield.secondUl": "The Price Shield then blocks :",
 
   "app.modal.payment.button.pay": "Pay",
   "app.modal.payment.success": "Your paiment has been received. Your are now subscribed.",
