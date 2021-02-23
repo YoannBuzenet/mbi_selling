@@ -22,7 +22,14 @@ const Footer = () => {
             <p className="small-text"></p>
           </div>
           <div>
-            <p>{/* <a href={`tel:${shopInfos.tel}`}>{shopInfos.tel}</a> */}</p>
+            <p>
+              <Link to="/priceShield">
+                <FormattedMessage
+                  id="app.footer.priceShield"
+                  defaultMessage={`Price Shield`}
+                />
+              </Link>
+            </p>
             <p>{/* <a href={`mailto:`}>{shopInfos.email}</a> */}</p>
           </div>
         </div>
