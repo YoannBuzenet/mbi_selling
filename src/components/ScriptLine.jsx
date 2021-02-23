@@ -165,7 +165,7 @@ const ScriptLine = ({ script, history, index }) => {
   };
 
   const launchScript = () => {
-    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSubscribedUntil)) {
       toast.error(
         <FormattedMessage
           id="subscribed.notSusbcribed.NeedToDoIt.text"
@@ -231,7 +231,7 @@ const ScriptLine = ({ script, history, index }) => {
   };
 
   const launchTest = () => {
-    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSubscribedUntil)) {
       toast.error(
         <FormattedMessage
           id="subscribed.notSusbcribed.NeedToDoIt.text"

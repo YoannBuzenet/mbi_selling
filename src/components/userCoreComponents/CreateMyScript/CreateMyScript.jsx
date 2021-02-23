@@ -1102,7 +1102,7 @@ const CreateMyScript = ({ history }) => {
 
     //Is user Subscribed to our service ?
 
-    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSubscribedUntil)) {
       toast.error(
         <FormattedMessage
           id="subscribed.notSusbcribed.NeedToDoIt.text"
@@ -1202,7 +1202,7 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
-    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSusbcribedUntil)) {
+    if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSubscribedUntil)) {
       toast.error(
         <FormattedMessage
           id="subscribed.notSusbcribed.NeedToDoIt.text"

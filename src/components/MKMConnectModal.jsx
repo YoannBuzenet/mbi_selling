@@ -64,7 +64,7 @@ const MKMConnectModal = () => {
           authenticationInfoCopy.shop.ExpirationMkmToken =
             resp.data.shop.ExpirationMkmToken;
 
-          authenticationInfoCopy.isSusbcribedUntil =
+          authenticationInfoCopy.isSubscribedUntil =
             resp.data.isSubscribedUntil;
 
           setAuthenticationInfos(authenticationInfoCopy);

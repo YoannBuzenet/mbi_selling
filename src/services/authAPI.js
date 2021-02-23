@@ -201,7 +201,7 @@ function transformAPIdataIntoAppData(data) {
     },
     userScripts: data?.userScripts || [],
     sellingShopParams: data?.sellingShopParams || [],
-    isSusbcribedUntil: data?.isSubscribedUntil || null,
+    isSubscribedUntil: data?.isSubscribedUntil || null,
     shopLocalData: data?.shopLocalData || null,
   };
 }
@@ -226,7 +226,7 @@ function transformAuthContextIntoLocalStorageFormat(authContext) {
       ...authContext.shop,
     },
     userScripts: authContext.userScripts,
-    isSusbcribedUntil: authContext.isSusbcribedUntil,
+    isSubscribedUntil: authContext.isSubscribedUntil,
     sellingShopParams: authContext.sellingShopParams,
     shopLocalData: authContext.shopLocalData,
   };
