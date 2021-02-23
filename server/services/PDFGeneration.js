@@ -641,7 +641,7 @@ async function generatePDFFromPutRequest(
     pageMargins: [40, 60, 40, 80],
     content: [
       {
-        image: path.join(__dirname, "pdf_header.png"),
+        image: path.join(__dirname, "..", "assets", "pdf_header.png"),
         width: 600,
         height: 150,
       },
