@@ -77,6 +77,15 @@ const PriceShield = () => {
           />
         </p>
       </div>
+      <div>
+        <h3>
+          <FormattedMessage
+            id="app.page.summaryExample"
+            defaultMessage="Example of summary received by mail"
+          />
+        </h3>
+      </div>
+      <img src="/pictures/pdfSummary.png" width="400px" />
     </div>
   );
 };

@@ -203,6 +203,7 @@
   "app.page.priceShield.secondUlSecondLi": "If the price is too far from your former price",
   "app.page.afterUlFirstP": "The Price Shield is the way to protect specific prices on exotic cards and staples. It cannot be deactivated.",
   "app.page.afterUlSecondP": "Each price blocked by the Price Shield will be explained in the summary you receive at the end of your script. This way, you can still update it yourself if you want to.",
+  "app.page.summaryExample": "Example of summary received by mail",
 
   "app.page.priceShield.title": "Price Shield",
   "app.page.priceShield.FirstExplaination": "Each time a new price is to be set by your script, we check it through the Price Shield.",
