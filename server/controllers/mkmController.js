@@ -182,13 +182,17 @@ async function registerStockFileIntoDB(shopId) {
               arrayOfCards[i].Language
             ),
             condition: arrayOfCards[i].Condition, //string condition short name (MT, LP...)
-            isFoil: arrayOfCards[i]["Foil?"] || 0,
-            isSigned: arrayOfCards[i]["Signed?"] || 0,
-            isPlayset: arrayOfCards[i]["Playset?"] || 0,
-            isAltered: arrayOfCards[i]["Altered?"] || 0,
-            comments: arrayOfCards[i].Comments || 0,
-            amount: arrayOfCards[i].Amount,
-            onSale: arrayOfCards[i].onSale,
+            isFoil: removeEmptyStringOrReturnZero(arrayOfCards[i]["Foil?"]),
+            isSigned: removeEmptyStringOrReturnZero(arrayOfCards[i]["Signed?"]),
+            isPlayset: removeEmptyStringOrReturnZero(
+              arrayOfCards[i]["Playset?"]
+            ),
+            isAltered: removeEmptyStringOrReturnZero(
+              arrayOfCards[i]["Altered?"]
+            ),
+            comments: arrayOfCards[i].Comments,
+            amount: removeEmptyStringOrReturnZero(arrayOfCards[i].Amount),
+            onSale: removeEmptyStringOrReturnZero(arrayOfCards[i].onSale),
             idCurrency: arrayOfCards[i].idCurrency,
             currencyCode: arrayOfCards[i]["Currency Code"],
             idShop: shopId,
@@ -209,6 +213,16 @@ async function registerStockFileIntoDB(shopId) {
         console.log("upserted line :", upsertedLine);
       }
     });
+}
+
+function removeEmptyStringOrReturnZero(input) {
+  if (input === "" || input === undefined) {
+    return 0;
+  } else if (isNaN(parseInt(input))) {
+    return 0;
+  } else {
+    return input;
+  }
 }
 
 // MKM Doc

@@ -67,7 +67,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       idCurrency: {
         type: DataTypes.INTEGER,
-        validate: { isNumeric: true },
       },
       currencyCode: DataTypes.STRING,
       idShop: {
