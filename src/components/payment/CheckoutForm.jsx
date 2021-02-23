@@ -5,11 +5,11 @@ import "./style.css";
 import blackDivContext from "../../context/blackDivModalContext";
 import paymentModalContext from "../../context/paymentModalContext";
 import AuthContext from "../../context/authContext";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { toast } from "react-toastify";
 import CSSLoaderDualRing from "../loaders/CSSLoaderDualRing";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Link } from "react-router-dom";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import authAPI from "../../services/authAPI";
 
 const CARD_ELEMENT_OPTIONS = {
@@ -118,6 +118,7 @@ const CheckoutForm = () => {
             setAuthenticationInfos(authContextCopy);
             authAPI.transformAuthContextIntoLocalStorageFormat(authContextCopy);
             setPaymentModalInformation({ isDisplayed: false });
+            setIsBlackDivModalDisplayed("deactivated");
             toast.success(
               <FormattedMessage
                 id="app.modal.payment.success"
@@ -143,6 +144,13 @@ const CheckoutForm = () => {
     setHasReadGeneralSalesConditions(!hasReadGeneralSalesConditions);
   };
 
+  const intl = useIntl();
+
+  const translatedLabel = intl.formatMessage({
+    id: "app.modal.generalConditions.checkIn.firstPart",
+    defaultMessage: "I have read and accepted the ",
+  });
+
   return (
     <div className="absolutePopIn">
       <div className="titlePayment">
@@ -156,15 +164,16 @@ const CheckoutForm = () => {
       <form onSubmit={handleSubmit}>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
         <div className="generalSalesConditions">
-          <Checkbox
-            checked={hasReadGeneralSalesConditions}
-            onChange={handleChange}
-            size="medium"
-            color="primary"
-          />
-          <FormattedMessage
-            id="app.modal.generalConditions.checkIn.firstPart"
-            defaultMessage="I have read and accepted the "
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={hasReadGeneralSalesConditions}
+                onChange={handleChange}
+                size="medium"
+                color="primary"
+              />
+            }
+            label={translatedLabel}
           />
           <a href="/terms-of-use" target="_blank">
             <FormattedMessage

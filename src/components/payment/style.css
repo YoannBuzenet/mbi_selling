@@ -57,8 +57,20 @@
   color: #6b7c93;
   font-weight: 300;
   letter-spacing: 0.025em;
+}
+.generalSalesConditions {
   margin-top: 16px;
-  display: block;
+}
+.generalSalesConditions label.MuiFormControlLabel-root {
+  margin-right: 5px;
+}
+
+.generalSalesConditions
+  .MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1 {
+  font-size: 16px;
+  color: black;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 .absolutePopIn button {
