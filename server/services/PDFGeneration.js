@@ -351,12 +351,20 @@ async function generatePDFFromPutRequest(
 
         [
           {
-            colSpan: 10,
+            colSpan: 9,
             text:
               priceshieldTranslations.priceShieldReasons[
                 sortedData[i].priceShieldReason
               ][langLocale],
           },
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
         ],
       ];
     }
@@ -446,13 +454,13 @@ async function generatePDFFromPutRequest(
     if (listOfExpansions.length > 0) {
       return (
         genericTranslations.pdfStructure.targetedExpansions[langLocale] +
-        listOfExpansions.map((expansion, index) => {
+        listOfExpansions.reduce((accumulator, expansion, index) => {
           if (index !== 0) {
-            return " " + expansion.dataValues.name;
+            return accumulator + " " + expansion.dataValues.name;
           } else {
-            return expansion.dataValues.name;
+            return accumulator + expansion.dataValues.name;
           }
-        })
+        }, "")
       );
     } else {
       return genericTranslations.pdfStructure.targetedExpansionsNone[
@@ -722,7 +730,7 @@ async function generatePDFFromPutRequest(
                 ].toUpperCase(),
                 style: "titleMainInfoPutRequest",
               },
-              displayFormatsUsed(usedFormats),
+              { text: displayFormatsUsed(usedFormats) },
             ],
             [
               {
@@ -742,13 +750,17 @@ async function generatePDFFromPutRequest(
                 ].toUpperCase(),
                 style: "titleMainInfoPutRequest",
               },
-              snapshotKeywords.map((keyword, index) => {
-                if (index !== 0) {
-                  return " " + '"' + keyword.dataValues.name + '"';
-                } else {
-                  return '"' + keyword.dataValues.name + '"';
-                }
-              }),
+              {
+                text: snapshotKeywords.reduce((accumulator, keyword, index) => {
+                  if (index !== 0) {
+                    return (
+                      accumulator + " " + '"' + keyword.dataValues.name + '"'
+                    );
+                  } else {
+                    return accumulator + '"' + keyword.dataValues.name + '"';
+                  }
+                }, ""),
+              },
             ],
             [
               {
@@ -757,20 +769,23 @@ async function generatePDFFromPutRequest(
                 ].toUpperCase(),
                 style: "titleMainInfoPutRequest",
               },
-              snapshotRarities.map((rarity, index) => {
-                if (index !== 0) {
-                  return (
-                    " " +
-                    genericTranslations.pdfStructure[rarity.dataValues.name][
-                      langLocale
-                    ]
-                  );
-                } else {
-                  return genericTranslations.pdfStructure[
-                    rarity.dataValues.name
-                  ][langLocale];
-                }
-              }),
+              {
+                text: snapshotRarities.reduce((accumulator, rarity, index) => {
+                  if (index !== 0) {
+                    return (
+                      accumulator +
+                      " " +
+                      genericTranslations.pdfStructure[rarity.dataValues.name][
+                        langLocale
+                      ]
+                    );
+                  } else {
+                    return genericTranslations.pdfStructure[
+                      rarity.dataValues.name
+                    ][langLocale];
+                  }
+                }, ""),
+              },
             ],
             [
               {
@@ -779,7 +794,7 @@ async function generatePDFFromPutRequest(
                 ].toUpperCase(),
                 style: "titleMainInfoPutRequest",
               },
-              displayExpansionsUsed(snapshotExpansions),
+              { text: displayExpansionsUsed(snapshotExpansions) },
             ],
           ],
         },
