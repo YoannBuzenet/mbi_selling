@@ -773,9 +773,27 @@
       max-width: 350px;
     }
 
-    .fifth-liner img {
-        width : 80%;
+    .fifth-liner p {
+      color: rgb(75, 85, 99);
+      margin : 2rem auto 1rem;
+      font-size: 2rem;
+      max-width: 768px;
+      line-height: 2.6rem;
     }
+
+    .priceShieldLink {
+      text-decoration: none;
+    }
+    .priceShieldLink:hover {
+      text-decoration: underline;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .fifth-liner img {
+          width : 80%;
+      }
+    }
+
     
       
 
@@ -1077,9 +1095,8 @@ footer span {
             <div class="container">
               <img src="/pictures/priceshield.png"/>
               <h3 class="punchline" id="fifthLinerPunchline">Update in confidence</h3>
-              <p id="fourthLineExplaination">
-                Our Price Shield algorithm checks your price is coherent before updating it. It understands exotic cards, staples, signed and altered.
-              </p>
+              <p id="fifthLineExplaination">What about foil Japanese cards ? Foil Russian ? Our Price Shield algorithm checks if your price is coherent before updating it. It understands exotic cards, staples, signed and altered.</p>
+              <p><a href="/priceShield" id="priceShieldLink" class="priceShieldLink">See More</a></p>
         </div>
       </div>
         <div class="sixth-liner">
@@ -1395,12 +1412,8 @@ footer span {
           "fr-FR": "Modifiez vos prix selon vos souhaits, par tranche de prix, par édition, par rareté, par commentaire MKM et par format. MKM Price Updater est un outil facile à prendre en main qui vous permet de mettre en place des opérations commerciales ciblées sur toute ou partie de votre stock de cartes Magic. Augmentez et réduisez à volonté.",
         },
         "fourthLinerPunchline": {
-          "en-US": "Build",
-          "fr-FR": "Modifiez en toute confiance",
-        },
-        "fourthLineExplaination": {
-          "en-US": "Our Price Shield algorithm checks your price and blocks anything being too far from market price. It understands exotic cards, staples, signed and altered.",
-          "fr-FR": "Notre algorithme Price Shield vérifie la cohérence de vos prix de vente et bloque tout prix trop éloigné du marché. Il comprends les cartes exotiques, les staples, les cartes signées ou altérées.",
+          "en-US": "",
+          "fr-FR": "",
         },
         "fourthLinerSellingPoint1": {
           "en-US": "Update by Price Range",
@@ -1451,16 +1464,24 @@ footer span {
           "fr-FR": "",
         },
         "fifthLinerPunchline" : {
-            "en-US": "Update in confidence",
+          "en-US": "Update in confidence",
           "fr-FR": "Modifiez en toute confiance",
         },
         "fifthLinerCatchPhrase": {
           "en-US": "To learn more",
           "fr-FR": "Pour en savoir plus",
         },
+        "priceShieldLink" : {
+          "en-US": "See More",
+          "fr-FR": "En savoir plus",
+        },
         "sixthLinerPunchline" : {
           "en-US": "Features",
           "fr-FR": "Fonctionnalités",
+        },
+        "fifthLineExplaination": {
+          "en-US": "What about foil Japanese cards ? Foil Russian ? Our Price Shield algorithm checks your price and blocks anything being too far from market price. It understands exotic cards, staples, signed and altered.",
+          "fr-FR": "Comment gérer les cartes très rares et très chères, comme le foil Japonais ? Notre algorithme Price Shield vérifie la cohérence de vos prix de vente et bloque tout prix trop éloigné du marché. Il comprends les cartes exotiques, les staples, les cartes signées ou altérées.",
         },
         "footer.allRightReserved": {
           "en-US": "MTG-Interface © 2021 All rights reserved.",
@@ -1506,8 +1527,6 @@ footer span {
         document.getElementById("liner2MainSellingArgument").textContent=translations["liner2MainSellingArgument"][language];
 
         // Liner 4
-        document.getElementById("fourthLinerPunchline").textContent=translations["fourthLinerPunchline"][language];
-        document.getElementById("fourthLineExplaination").textContent=translations["fourthLineExplaination"][language];
         document.getElementById("fourthLinerSellingPoint1").textContent=translations["fourthLinerSellingPoint1"][language];
         document.getElementById("fourthLinerSellingPoint2").textContent=translations["fourthLinerSellingPoint2"][language];
         document.getElementById("fourthLinerSellingPoint3").textContent=translations["fourthLinerSellingPoint3"][language];
@@ -1524,6 +1543,8 @@ footer span {
         // Liner 5
         document.getElementById("fifthLinerCatchPhrase").textContent=translations["fifthLinerCatchPhrase"][language];
         document.getElementById("fifthLinerPunchline").textContent=translations["fifthLinerPunchline"][language];
+        document.getElementById("fifthLineExplaination").textContent=translations["fifthLineExplaination"][language];
+        document.getElementById("priceShieldLink").textContent=translations["priceShieldLink"][language];
 
         // Footer
         document.getElementById("footer.allRightReserved").textContent=translations["footer.allRightReserved"][language];
