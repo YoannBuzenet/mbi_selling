@@ -643,7 +643,7 @@
       position: absolute;
       width: 1000px;
       left: 50%;
-      top: 120%;
+      top: 125%;
       transform: translate(-50%, -50%);
       border: 1px solid rgba(210, 214, 220, 0.5);
     }
@@ -689,8 +689,8 @@
     .fourth-liner {
       background-color: #161e2e;
       color: white;
-      height: 600px;
-      padding-top: 35rem;
+      height: 300px;
+      padding-top: 20rem;
       padding-bottom: 30rem;
     }
 
@@ -761,13 +761,104 @@
     }
 
     /***FIFTH LINER ***/
-
     .fifth-liner {
+      text-align:center;
+      margin : 8rem auto;
+    }
+    .fifth-liner .punchline  {
+      margin: 2rem auto auto;
+    }
+    @media only screen and (max-width: 768px) {
+      img {
+        width : 80%;
+      }
+    }
+    
+
+    /***SIXTH LINER ***/
+    .sixth-liner {
+      background-color: #161e2e;
+      color: white;
+      height: 300px;
+      padding-top: 8rem;
+      padding-bottom: 30rem;
+    }
+
+    .sixth-liner p {
+      font-size: 2rem;
+      text-align: center;
+      width: 70%;
+      margin: 1rem auto;
+    }
+
+    .sixth-liner .tick-box {
+      margin-left: 156px;
+      margin-right: 156px;
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .tick-box > div {
+      width: 30%;
+    }
+
+    .tick-box > div > div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 10px;
+    }
+
+    .iconCheck {
+      margin-right: 10px;
+    }
+
+    .sixth-liner h3.punchline {
+      margin: 0;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      .sixth-liner .tick-box {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    @media only screen and (max-width: 1024px) {
+      .sixth-liner {
+        padding-top: 25rem;
+      }
+      .sixth-liner .tick-box {
+        justify-content: space-around;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .sixth-liner {
+        padding-top: 10rem;
+        height: auto;
+        padding-bottom: 5rem;
+      }
+      .sixth-liner .tick-box {
+        flex-direction: column;
+        align-items: center;
+      }
+      .tick-box > div {
+        width: 50%;
+      }
+    }
+
+    /***SEVENTH LINER ***/
+
+    .seventh-liner {
       padding: 5rem 0;
       background-color: rgb(249, 250, 251);
     }
 
-    .fifth-liner > div {
+    .seventh-liner > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -775,23 +866,23 @@
       margin: 0 auto;
     }
 
-    .fifth-liner a.CTA-button {
+    .seventh-liner a.CTA-button {
       margin-top: 0;
     }
 
-    .fifth-liner p {
+    .seventh-liner p {
       font-size: 2.8rem;
       font-weight: 700;
     }
 
     @media only screen and (max-width: 1400px) {
-      .fifth-liner > div {
+      .seventh-liner > div {
         flex-direction: column;
         text-align: left;
       }
     }
     @media only screen and (max-width: 768px) {
-      .fifth-liner p {
+      .seventh-liner p {
         text-align: center;
       }
     }
@@ -800,10 +891,6 @@
     /**************************
     *********FOOTER***********
     **************************/
-
-    /**********************/
-/********Footer*******/
-/**********************/
 
 footer {
   background-color: rgb(249, 250, 251);
@@ -977,10 +1064,20 @@ footer span {
         </div>
         <div class="fourth-liner">
           <div class="container">
-            <h3 class="punchline" id="fourthLinerPunchline">Update in confidence</h3>
-            <p id="fourthLineExplaination">
-              Our Price Shield algorithm checks your price is coherent before updating it. It understands exotic cards, staples, signed and altered.
-            </p>
+          </div>
+        </div>
+        <div class="fifth-liner">
+            <div class="container">
+              <img src="/pictures/priceshield.png"/>
+              <h3 class="punchline" id="fifthLinerPunchline">Update in confidence</h3>
+              <p id="fourthLineExplaination">
+                Our Price Shield algorithm checks your price is coherent before updating it. It understands exotic cards, staples, signed and altered.
+              </p>
+        </div>
+      </div>
+        <div class="sixth-liner">
+          <div class="container">
+            <h3 class="punchline" id="sixthLinerPunchline">Features</h3>
             <div class="tick-box">
               <div>
                 <!-- ✓   -->
@@ -1040,7 +1137,7 @@ footer span {
             </div>
           </div>
         </div>
-        <div class="fifth-liner">
+         <div class="seventh-liner">
           <div>
             <div class="container">
               <p id="fifthLinerCatchPhrase">To learn more</p>
@@ -1291,7 +1388,7 @@ footer span {
           "fr-FR": "Modifiez vos prix selon vos souhaits, par tranche de prix, par édition, par rareté, par commentaire MKM et par format. MKM Price Updater est un outil facile à prendre en main qui vous permet de mettre en place des opérations commerciales ciblées sur toute ou partie de votre stock de cartes Magic. Augmentez et réduisez à volonté.",
         },
         "fourthLinerPunchline": {
-          "en-US": "Update in confidence",
+          "en-US": "Build",
           "fr-FR": "Modifiez en toute confiance",
         },
         "fourthLineExplaination": {
@@ -1346,9 +1443,17 @@ footer span {
           "en-US": "",
           "fr-FR": "",
         },
+        "fifthLinerPunchline" : {
+            "en-US": "Update in confidence",
+          "fr-FR": "Modifiez en toute confiance",
+        },
         "fifthLinerCatchPhrase": {
           "en-US": "To learn more",
           "fr-FR": "Pour en savoir plus",
+        },
+        "sixthLinerPunchline" : {
+          "en-US": "Features",
+          "fr-FR": "Fonctionnalités",
         },
         "footer.allRightReserved": {
           "en-US": "MTG-Interface © 2021 All rights reserved.",
@@ -1411,6 +1516,7 @@ footer span {
         
         // Liner 5
         document.getElementById("fifthLinerCatchPhrase").textContent=translations["fifthLinerCatchPhrase"][language];
+        document.getElementById("fifthLinerPunchline").textContent=translations["fifthLinerPunchline"][language];
 
         // Footer
         document.getElementById("footer.allRightReserved").textContent=translations["footer.allRightReserved"][language];
