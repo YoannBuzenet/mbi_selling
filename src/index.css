@@ -533,6 +533,10 @@ form.reset-password-form button {
   text-align: left;
 }
 
+.priceShieldDetailsIntroduction {
+  font-style: italic;
+}
+
 @media only screen and (max-width: 968px) {
   .priceShield {
     max-width: 80%;

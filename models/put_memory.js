@@ -189,7 +189,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       priceShieldReason: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         validate: { isNumeric: true },
       },
       condition: {

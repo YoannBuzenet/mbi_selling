@@ -1509,10 +1509,7 @@ async function generatePDFFromPutRequest(
 
   const pathPdfStorageFolder = path.join(__dirname, "..", "..", "PDF_storage");
 
-  console.log("PUTE", fs.existsSync(pathPdfStorageFolder));
-
   if (!fs.existsSync(pathPdfStorageFolder)) {
-    console.log("CREATING IT YES");
     fs.mkdirSync(pathPdfStorageFolder);
   }
 

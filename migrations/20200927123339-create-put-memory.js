@@ -40,7 +40,7 @@ module.exports = {
         validate: { isNumeric: true },
       },
       priceShieldReason: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         validate: { isNumeric: true },
       },
       oldPrice: {

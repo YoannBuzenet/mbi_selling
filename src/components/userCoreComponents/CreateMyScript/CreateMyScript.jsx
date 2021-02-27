@@ -1347,12 +1347,12 @@ const CreateMyScript = ({ history }) => {
   });
   const ignoreEveryKeyWordBehaviour = intl.formatMessage({
     id: "createMyScript.script.select.keywordBehaviourPossibilities.ignores",
-    defaultMessage: "Ignore",
+    defaultMessage: "Ignores Specifically",
   });
   const targetSpecificallyBehaviour = intl.formatMessage({
     id:
       "createMyScript.script.select.keywordBehaviourPossibilities.targetsSpecifically",
-    defaultMessage: "Target Only",
+    defaultMessage: "Targets these only",
   });
   const avoidSpecificallyBehaviour = intl.formatMessage({
     id:
@@ -1595,7 +1595,7 @@ const CreateMyScript = ({ history }) => {
                     <p>
                       <FormattedMessage
                         id="createMyScript.script.select.keywordBehaviour.title"
-                        defaultMessage="MKM comment : "
+                        defaultMessage="About MKM comments : "
                       />
                     </p>
                   </div>

@@ -1,7 +1,31 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { FormattedMessage } from "react-intl";
 
 const PriceShield = () => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(25),
+      fontWeight: theme.typography.fontWeightRegular,
+      fontFamily: ["Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif"],
+    },
+    explaination: {
+      fontSize: theme.typography.pxToRem(25),
+      fontWeight: theme.typography.fontWeightRegular,
+      fontFamily: ["Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif"],
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div className="container priceShield">
       <img src="/pictures/priceshield.png" className="priceShieldPicture" />
@@ -44,10 +68,16 @@ const PriceShield = () => {
             />
           </li>
         </ul>
+        <h2>
+          <FormattedMessage
+            id="app.page.priceShield.h2Title"
+            defaultMessage="How does it work ?"
+          />
+        </h2>
         <p>
           <FormattedMessage
             id="app.page.priceShield.secondUl"
-            defaultMessage="The Price Shield then blocks :"
+            defaultMessage="The Price Shield blocks :"
           />
         </p>
         <ul>
@@ -64,6 +94,50 @@ const PriceShield = () => {
             />
           </li>
         </ul>
+
+        {/* Price Shield Details */}
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>
+              <FormattedMessage
+                id="app.page.priceShield.SeeDetails"
+                defaultMessage="See Details"
+              />
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography className={classes.explaination}>
+              <p className="priceShieldDetailsIntroduction">
+                Le Price Shield vérifie d'abord la{" "}
+                <strong>condition de la carte avant tout</strong>. Si elle est
+                Mint, elle ne sera pas traitée de la même façon qu'une carte
+                played.
+              </p>
+              <p>Si la carte est Mint/Near Mint / Excellent : </p>
+              <ul>
+                <li>
+                  Une carte dont le prix de vente est inférieur à 10 euros ne
+                  peut avoir un prix de vente{" "}
+                </li>
+                <li>ddffd</li>
+                <li>ddffd</li>
+                <li>ddffd</li>
+              </ul>
+              <p>Si la carte est Good/ light Played / Played / Poor : </p>
+              <ul>
+                <li>ddffd</li>
+                <li>ddffd</li>
+                <li>ddffd</li>
+                <li>ddffd</li>
+              </ul>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+
         <p>
           <FormattedMessage
             id="app.page.afterUlFirstP"

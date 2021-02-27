@@ -64,35 +64,51 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
   /* ***************************** */
 
   if (conditionId <= 3) {
-    if (oldPrice < 10 && newPrice < priceTrend && variationRateTrend > 100) {
-      //If card is under 10€ and new price is more than 100% under the trend
+    ///////////////////////////
+    // MKM TRENDS CHECK
+    ///////////////////////////
+    if (oldPrice < 5 && newPrice < priceTrend && variationRateTrend >= 50) {
+      //If card is under 5€ and new price is more than 50% under the trend
+      return { result: false, reason: 0.5 };
+    } else if (
+      oldPrice >= 5 &&
+      oldPrice < 10 &&
+      newPrice < priceTrend &&
+      variationRateTrend >= 30
+    ) {
+      //If card is between 5 and 10€ and new price is more than 30% under the trend
       return { result: false, reason: 0 };
     } else if (
       oldPrice >= 10 &&
       oldPrice < 20 &&
       newPrice < priceTrend &&
-      variationRateTrend > 40
+      variationRateTrend > 20
     ) {
-      //If card is under 20€ and new price is more than 40% under the trend
+      //If card is under 20€ and new price is more than 20% under the trend
       return { result: false, reason: 1 };
     }
-    //If card is under 50€ and new price is more than 30% under the trend
+    //If card is between 20 and 50€ and new price is more than 10% under the trend
     else if (
       oldPrice >= 20 &&
       oldPrice < 50 &&
       newPrice < priceTrend &&
-      variationRateTrend > 30
+      variationRateTrend > 10
     ) {
       return { result: false, reason: 2 };
     }
-    //If card is above 50€ and new price is more than 20% under the trend
-    else if (
-      oldPrice > 50 &&
-      newPrice < priceTrend &&
-      variationRateTrend > 20
-    ) {
+    //If card is above 50€ and new price is more than 5% under the trend
+    else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 5) {
       return { result: false, reason: 3 };
     }
+    ///////////////////////////
+    // ABSOLUTE VARIATION CHECK
+    ///////////////////////////
+
+    // Under 10 euros, variation Rate can't be higher than 60%.
+    else if (oldPrice <= 10 && newPrice < oldPrice && variationRate > 60) {
+      return { result: false, reason: 3.5 };
+    }
+
     //If the card is worth more than 10 euros and less than 20 euros and variation rate is more than 40%
     else if (
       newPrice < oldPrice &&
@@ -102,15 +118,15 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
     ) {
       return { result: false, reason: 4 };
     }
-    //If the card is worth more than 20 euros and the variation rate is more than 60%
-    else if (oldPrice >= 20 && newPrice < oldPrice && variationRate > 60) {
+    //If the card is worth more than 20 euros and the variation rate is more than 30%
+    else if (oldPrice >= 20 && newPrice < oldPrice && variationRate > 30) {
       return { result: false, reason: 5 };
     } else {
       return { result: true };
     }
   }
   /* ***************************** */
-  // Good, Light Played, Played, Good
+  // Good, Light Played, Played, Poor
   /* ***************************** */
   else if (conditionId > 3 && conditionId <= 7) {
     if (oldPrice < 20 && newPrice < priceTrend && variationRateTrend > 80) {
