@@ -47,23 +47,35 @@ const priceShieldReasons = {
     "fr-FR":
       "Prix au dessus de 20 euros - Le taux de variation entre l'ancien et le nouveau prix ne peut être supérieur à 30%.",
   },
+  5.5: {
+    "en-US":
+      "Price under 10 euros - Price can't be more than 80% cheaper than the MKM trend on used cards.",
+    "fr-FR":
+      "Prix en dessous de 10 euros - Le prix de vente ne peut être inférieur de plus de 80% à la tendance MKM sur les cartes usées.",
+  },
+  5.75: {
+    "en-US":
+      "Price between 10 and 20 euros - Price can't be more than 60% cheaper than the MKM trend on used cards.",
+    "fr-FR":
+      "Prix entre 10 et 20 euros - Le prix de vente ne peut être inférieur de plus de 60% à la tendance MKM sur les cartes usées.",
+  },
   6: {
     "en-US":
-      "Price under 20 euros - Price can't be more than 80% cheaper than the MKM trend on used cards.",
+      "Price under 20 euros - Price can't be more than 50% cheaper than the MKM trend on used cards.",
     "fr-FR":
-      "Prix en dessous de 20 euros - Le prix de vente ne peut être inférieur de plus de 80% à la tendance MKM sur les cartes usées.",
+      "Prix en dessous de 20 euros - Le prix de vente ne peut être inférieur de plus de 50% à la tendance MKM sur les cartes usées.",
   },
   7: {
     "en-US":
-      "Price under 50 euros - Price can't be more than 60% cheaper than the MKM trend on used cards.",
+      "Price under 50 euros - Price can't be more than 40% cheaper than the MKM trend on used cards.",
     "fr-FR":
-      "Prix en dessous de 50 euros - Le prix de vente ne peut être inférieur de plus de 60% à la tendance MKM sur les cartes usées.",
+      "Prix en dessous de 50 euros - Le prix de vente ne peut être inférieur de plus de 40% à la tendance MKM sur les cartes usées.",
   },
   8: {
     "en-US":
-      "Price above 50 euros - Price can't be more than 40% cheaper than the MKM trend on used cards.",
+      "Price above 50 euros - Price can't be more than 20% cheaper than the MKM trend on used cards.",
     "fr-FR":
-      "Prix en dessous de 40 euros - Le prix de vente ne peut être inférieur de plus de 40% à la tendance MKM sur les cartes usées.",
+      "Prix en dessous de 40 euros - Le prix de vente ne peut être inférieur de plus de 20% à la tendance MKM sur les cartes usées.",
   },
   9: {
     "en-US":
