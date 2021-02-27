@@ -160,10 +160,31 @@ const PriceShield = () => {
               </ul>
               <p>Si la carte est Good/ light Played / Played / Poor : </p>
               <ul>
-                <li>ddffd</li>
-                <li>ddffd</li>
-                <li>ddffd</li>
-                <li>ddffd</li>
+                <li>
+                  Une carte "usée" dont le prix de vente est inférieur à 10
+                  euros ne peut avoir un prix de vente 80% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte "usée" dont le prix de vente est compris entre 10 et
+                  20 euros ne peut avoir un prix de vente 60% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte "usée" dont le prix de vente est compris entre 20 et
+                  30 euros ne peut avoir un prix de vente 50% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte "usée" dont le prix de vente est compris entre 30 et
+                  50 euros ne peut avoir un prix de vente 40% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte "usée" dont le prix de vente est supérieur à 50
+                  euros ne peut avoir un prix de vente 20% inférieur à son
+                  ancien prix de vente.
+                </li>
               </ul>
             </Typography>
           </AccordionDetails>
