@@ -120,12 +120,43 @@ const PriceShield = () => {
               <p>Si la carte est Mint/Near Mint / Excellent : </p>
               <ul>
                 <li>
-                  Une carte dont le prix de vente est inférieur à 10 euros ne
-                  peut avoir un prix de vente{" "}
+                  Une carte dont le prix de vente est inférieur à 5 euros ne
+                  peut avoir un prix de vente 50% inférieur à la tendance.
                 </li>
-                <li>ddffd</li>
-                <li>ddffd</li>
-                <li>ddffd</li>
+                <li>
+                  Une carte dont le prix de vente est compris entre 5 et 10
+                  euros ne peut avoir un prix de vente 30% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte dont le prix de vente est compris entre 10 et 20
+                  euros ne peut avoir un prix de vente 20% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte dont le prix de vente est compris entre 20 et 50
+                  euros ne peut avoir un prix de vente 10% inférieur à la
+                  tendance.
+                </li>
+                <li>
+                  Une carte dont le prix de vente est supérieur à 50 euros ne
+                  peut avoir un prix de vente 5% inférieur à la tendance.
+                </li>
+                <li>
+                  Une carte dont le prix de vente est inférieur à 10 euros ne
+                  peut avoir un prix de vente 60% inférieur à son ancien prix de
+                  vente.
+                </li>
+                <li>
+                  Une carte dont le prix de vente est compris entre 10 et 20
+                  euros ne peut avoir un prix de vente 40% inférieur à son
+                  ancien prix de vente.
+                </li>
+                <li>
+                  Une carte dont le prix de vente est supérieur à 20 euros ne
+                  peut avoir un prix de vente 30% inférieur à son ancien prix de
+                  vente.
+                </li>
               </ul>
               <p>Si la carte est Good/ light Played / Played / Poor : </p>
               <ul>
