@@ -456,7 +456,7 @@ async function generatePDFFromPutRequest(
         genericTranslations.pdfStructure.targetedExpansions[langLocale] +
         listOfExpansions.reduce((accumulator, expansion, index) => {
           if (index !== 0) {
-            return accumulator + " " + expansion.dataValues.name;
+            return accumulator + ", " + expansion.dataValues.name;
           } else {
             return accumulator + expansion.dataValues.name;
           }
@@ -510,8 +510,8 @@ async function generatePDFFromPutRequest(
             ],
             ...orderedSnapshotCustomRulesRegular.map((rule) => {
               return [
-                { text: rule.priceRangeFrom, style: "alignRight" },
-                { text: rule.priceRangeTo, style: "alignRight" },
+                { text: rule.priceRangeFrom + " €", style: "alignRight" },
+                { text: rule.priceRangeTo + " €", style: "alignRight" },
                 {
                   text:
                     genericTranslations.ruleTypesDictionnary[langLocale][
@@ -597,8 +597,8 @@ async function generatePDFFromPutRequest(
             ],
             ...orderedSnapshotCustomRulesFoil.map((rule) => {
               return [
-                { text: rule.priceRangeFrom, style: "alignRight" },
-                { text: rule.priceRangeTo, style: "alignRight" },
+                { text: rule.priceRangeFrom + " €", style: "alignRight" },
+                { text: rule.priceRangeTo + " €", style: "alignRight" },
                 {
                   text:
                     genericTranslations.ruleTypesDictionnary[langLocale][
@@ -651,7 +651,7 @@ async function generatePDFFromPutRequest(
       {
         image: path.join(__dirname, "..", "assets", "pdf_header.png"),
         width: 600,
-        height: 150,
+        height: 120,
       },
       {
         text: genericTranslations.pdfStructure.pdfTitle[langLocale] + idScript,
@@ -752,7 +752,7 @@ async function generatePDFFromPutRequest(
                 text: snapshotKeywords.reduce((accumulator, keyword, index) => {
                   if (index !== 0) {
                     return (
-                      accumulator + " " + '"' + keyword.dataValues.name + '"'
+                      accumulator + ", " + '"' + keyword.dataValues.name + '"'
                     );
                   } else {
                     return accumulator + '"' + keyword.dataValues.name + '"';
@@ -772,7 +772,7 @@ async function generatePDFFromPutRequest(
                   if (index !== 0) {
                     return (
                       accumulator +
-                      " " +
+                      ", " +
                       genericTranslations.pdfStructure[rarity.dataValues.name][
                         langLocale
                       ]
@@ -860,6 +860,9 @@ async function generatePDFFromPutRequest(
         style: "recapTable",
         pageBreak: "after",
       },
+      ////////////////////////////
+      // SUMMARY OF RULES
+      ////////////////////////////
       {
         text: genericTranslations.pdfStructure.summaryOfUsedRules[
           langLocale
@@ -879,7 +882,6 @@ async function generatePDFFromPutRequest(
       {
         text: genericTranslations.pdfStructure.parameters[langLocale],
         style: "pageTitle",
-        pageBreak: "after",
       },
       {
         text:
@@ -1124,6 +1126,9 @@ async function generatePDFFromPutRequest(
         style: "recapTable",
         pageBreak: "after",
       },
+      ////////////////////////////
+      // CARDS SET AT HIGHER PRICE
+      ////////////////////////////
       {
         text:
           genericTranslations.pdfStructure.cardsSetAtHigherPrice[
@@ -1139,7 +1144,7 @@ async function generatePDFFromPutRequest(
           '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></g></svg>',
         width: 40,
         height: 34,
-        absolutePosition: { x: 450, y: 55 },
+        absolutePosition: { x: 510, y: 55 },
       },
       {
         table: {
@@ -1214,7 +1219,7 @@ async function generatePDFFromPutRequest(
           '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10"/><path d="M17 7v10H7"/></g></svg>',
         width: 40,
         height: 34,
-        absolutePosition: { x: 450, y: 55 },
+        absolutePosition: { x: 510, y: 55 },
       },
       {
         table: {
@@ -1289,7 +1294,7 @@ async function generatePDFFromPutRequest(
           '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3l-8 3v7c0 6 8 10 8 10z"/></g></svg>',
         width: 40,
         height: 34,
-        absolutePosition: { x: 450, y: 55 },
+        absolutePosition: { x: 510, y: 55 },
       },
       {
         table: {
@@ -1367,7 +1372,7 @@ async function generatePDFFromPutRequest(
           '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></g></svg>',
         width: 40,
         height: 34,
-        absolutePosition: { x: 450, y: 55 },
+        absolutePosition: { x: 510, y: 55 },
       },
       {
         table: {
@@ -1425,7 +1430,6 @@ async function generatePDFFromPutRequest(
           ],
         },
         style: "bigTableExcludedCards",
-        pageBreak: "after",
       },
     ],
     footer: generateFooter,
