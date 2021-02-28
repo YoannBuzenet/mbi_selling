@@ -141,6 +141,17 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-direction: column;
+      }
+
+      .menu-links-left p {
+        margin-top: -10px;
+        font-size: 14px;
+      }
+
+      .menu-links-left p a {
+        text-decoration: none;
+        color: black;
       }
 
       .navbar {
@@ -956,9 +967,9 @@ footer span {
       <div class="container">
         <div class="menu-links-left">
           <a href="/" class="logo-shop-link">
-            <img src="/pictures/logoM.svg" />
+            <img src="/pictures/logoMPU.svg" />
           </a>
-          <span id="menu.navbar.byMTGInterface">by MTG Interface</span>
+            <p id="menu.navbar.byMTGInterface"><a href="/" className="logo-shop-link">by MTG Interface</a></p>
         </div>
         <div class="not-connected-options">
             <div class="burger-menu burgerMenuHomePage" id="burgerMenuImageResponsive">
