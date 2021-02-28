@@ -181,19 +181,22 @@ const PriceShield = () => {
               </p>
               <ul>
                 <li>
-                  Une carte dont le prix de vente est inférieur à 10 euros ne
-                  peut avoir un prix de vente 60% inférieur à son ancien prix de
-                  vente.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.oldPrice.rule1"
+                    defaultMessage="A card whose sale price is less than 10 euros cannot have a sale price 60% lower than its old sale price."
+                  />
                 </li>
                 <li>
-                  Une carte dont le prix de vente est compris entre 10 et 20
-                  euros ne peut avoir un prix de vente 40% inférieur à son
-                  ancien prix de vente.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.oldPrice.rule2"
+                    defaultMessage="A card whose sale price is between 10 and 20 euros cannot have a sale price 40% lower than its old sale price."
+                  />
                 </li>
                 <li>
-                  Une carte dont le prix de vente est supérieur à 20 euros ne
-                  peut avoir un prix de vente 30% inférieur à son ancien prix de
-                  vente.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.oldPrice.rule3"
+                    defaultMessage="A card whose sale price is greater than 20 euros cannot be may have a sale price 30% lower than its old price of sale."
+                  />
                 </li>
               </ul>
               <h4>Good/Light Played /Played /Poor : </h4>
