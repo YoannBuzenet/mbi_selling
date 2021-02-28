@@ -777,6 +777,11 @@ async function testScriptPersistingStep(
             );
           }
 
+          /* MKM minimum selling price is 0.02€. */
+          if (newPrice < 0.02) {
+            newPrice = 0.02;
+          }
+
           //After price was defined, we pass it into the price shield
           const priceShieldTest = priceUpdateAPI.priceShieldAllows(
             card.price,
@@ -938,6 +943,11 @@ async function testScriptPersistingStep(
               card.isFoil,
               snapShop_Shop_Param.dataValues
             );
+          }
+
+          /* MKM minimum selling price is 0.02€. */
+          if (newPrice < 0.02) {
+            newPrice = 0.02;
           }
 
           //After price was defined, we pass it into the price shield
@@ -1386,6 +1396,11 @@ async function realScriptPersistingStep(
           card.isFoil,
           snapShop_Shop_Param.dataValues
         );
+      }
+
+      /* MKM minimum selling price is 0.02€. */
+      if (newPrice < 0.02) {
+        newPrice = 0.02;
       }
 
       //Setting the price and keeping track of it
