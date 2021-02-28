@@ -144,14 +144,8 @@ const PriceShield = () => {
               <ul>
                 <li>
                   <FormattedMessage
-                    id="app.page.priceShield.details.Mint.trend.rule1"
-                    defaultMessage="A card whose sale price is less than 5 euros cannot be may have a sale price 50% below trend."
-                  />
-                </li>
-                <li>
-                  <FormattedMessage
                     id="app.page.priceShield.details.Mint.trend.rule2"
-                    defaultMessage="A card whose sale price is between 5 and 10 euros cannot have a sale price 30% lower than the trend."
+                    defaultMessage="A card whose sale price is under 10 euros cannot have a sale price 30% lower than the trend."
                   />
                 </li>
                 <li>

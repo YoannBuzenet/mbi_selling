@@ -67,16 +67,8 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
     ///////////////////////////
     // MKM TRENDS CHECK
     ///////////////////////////
-    if (oldPrice < 5 && newPrice < priceTrend && variationRateTrend >= 50) {
-      //If card is under 5€ and new price is more than 50% under the trend
-      return { result: false, reason: 0.5 };
-    } else if (
-      oldPrice >= 5 &&
-      oldPrice < 10 &&
-      newPrice < priceTrend &&
-      variationRateTrend >= 30
-    ) {
-      //If card is between 5 and 10€ and new price is more than 30% under the trend
+    if (oldPrice < 10 && newPrice < priceTrend && variationRateTrend >= 30) {
+      //If card is under 10€ and new price is more than 30% under the trend
       return { result: false, reason: 0 };
     } else if (
       oldPrice >= 10 &&
