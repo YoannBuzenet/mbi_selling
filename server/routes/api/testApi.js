@@ -86,8 +86,8 @@ router.post("/GetCardsWithFormatPayload", async (req, res) => {
 });
 
 router.get("/generatePDFTest", async (req, res) => {
-  // await PDFGeneration.generatePDFFromPutRequest(1, 3, "fr-FR");
-  await PDFGeneration.generatePDFFromPutRequest(1, 3, "en-US");
+  await PDFGeneration.generatePDFFromPutRequest(1, 3, "fr-FR");
+  // await PDFGeneration.generatePDFFromPutRequest(1, 3, "en-US");
 
   res.status(200).json("PDF créé !");
 });

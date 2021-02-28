@@ -241,7 +241,9 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice.toFixed(2) + " €",
+            sortedData[i].oldPrice
+              ? sortedData[i].oldPrice.toFixed(2) + " €"
+              : sortedData[i].oldPrice,
             sortedData[i].newPrice
               ? sortedData[i].newPrice.toFixed(2) + " €"
               : sortedData[i].newPrice,
@@ -272,7 +274,9 @@ async function generatePDFFromPutRequest(
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
             {
-              text: sortedData[i].oldPrice.toFixed(2) + " €",
+              text: sortedData[i].oldPrice
+                ? sortedData[i].oldPrice.toFixed(2) + " €"
+                : sortedData[i].oldPrice,
               style: "alignRight",
             },
             {
@@ -320,7 +324,9 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice.toFixed(2) + " €",
+            sortedData[i].oldPrice
+              ? sortedData[i].oldPrice.toFixed(2) + " €"
+              : sortedData[i].oldPrice,
             sortedData[i].newPrice
               ? sortedData[i].newPrice.toFixed(2) + " €"
               : sortedData[i].newPrice,
@@ -352,7 +358,9 @@ async function generatePDFFromPutRequest(
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
             {
-              text: sortedData[i].oldPrice.toFixed(2) + " €",
+              text: sortedData[i].oldPrice
+                ? sortedData[i].oldPrice.toFixed(2) + " €"
+                : sortedData[i].oldPrice,
               style: "alignRight",
             },
             {
@@ -397,7 +405,9 @@ async function generatePDFFromPutRequest(
           utilsServer.conditionDefinition[sortedData[i].condition],
           utilsServer.langDefinition[sortedData[i].lang],
           {
-            text: sortedData[i].oldPrice.toFixed(2) + " €",
+            text: sortedData[i].oldPrice
+              ? sortedData[i].oldPrice.toFixed(2) + " €"
+              : sortedData[i].oldPrice,
             style: "alignRight",
           },
           {
@@ -461,7 +471,9 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice.toFixed(2) + " €",
+            sortedData[i].oldPrice
+              ? sortedData[i].oldPrice.toFixed(2) + " €"
+              : sortedData[i].oldPrice,
             sortedData[i].newPrice
               ? sortedData[i].newPrice.toFixed(2) + " €"
               : sortedData[i].newPrice,
@@ -493,7 +505,9 @@ async function generatePDFFromPutRequest(
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
             {
-              text: sortedData[i].oldPrice.toFixed(2) + " €",
+              text: sortedData[i].oldPrice
+                ? sortedData[i].oldPrice.toFixed(2) + " €"
+                : sortedData[i].oldPrice,
               style: "alignRight",
             },
             {
@@ -1281,7 +1295,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 45, 45, "auto"],
           body: [
             [
               {
@@ -1356,7 +1370,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 45, 45, "auto"],
           body: [
             [
               {
@@ -1431,7 +1445,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 45, 45, "auto"],
           body: [
             [
               {
@@ -1509,7 +1523,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 45, 45, "auto"],
           body: [
             [
               {
