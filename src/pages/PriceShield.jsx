@@ -111,49 +111,74 @@ const PriceShield = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={classes.explaination}>
-              <h3>Détails</h3>
+              <h3>
+                <FormattedMessage
+                  id="app.page.priceShield.details"
+                  defaultMessage="Details"
+                />
+              </h3>
               <p>
-                Deux comparaisons ont lieu pour chaque carte : une avec la
-                tendance MKM (foil ou non en fonction de la carte), et enfin une
-                entre le prix actuel de la carte et son nouveau prix potentiel.
-                Nous mesurons ainsi le taux de variation entre le nouveau prix
-                et la tendance, et le taux de variation entre l'ancien prix et
-                le nouveau prix.
+                <FormattedMessage
+                  id="app.page.priceShield.details.FirstParagraph"
+                  defaultMessage="Two comparisons take place for each card: one with the MKM trend (foil or not depending on the card), and finally one between the current price of the card and its potential new price. We thus measure the rate of change between the new price and the trend, and the rate of change between the old price and the new price."
+                />
               </p>
               <p className="priceShieldDetailsIntroduction">
-                Le Price Shield vérifie d'abord la{" "}
-                <strong>condition de la carte avant tout</strong>. Si elle est
-                Mint, elle ne sera pas traitée de la même façon qu'une carte
-                played.
+                <FormattedMessage
+                  id="app.page.priceShield.details.secondParagraph"
+                  defaultMessage="The Price Shield first checks the condition of the card. If it is Mint, it will not be treated the same as a played card."
+                />
               </p>
-              <h4>Mint/Near Mint/Excellent : </h4>
-              <p className="categorySubtitle">Comparaison avec la tendance</p>
+              <h4>
+                <FormattedMessage
+                  id="app.page.priceShield.details.MintNearMintExcTitle"
+                  defaultMessage="Mint/Near Mint/Excellent :"
+                />
+              </h4>
+              <p className="categorySubtitle">
+                <FormattedMessage
+                  id="app.page.priceShield.details.comparisonWithTrend"
+                  defaultMessage="Comparison with trend"
+                />
+              </p>
               <ul>
                 <li>
-                  Une carte dont le prix de vente est inférieur à 5 euros ne
-                  peut avoir un prix de vente 50% inférieur à la tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.trend.rule1"
+                    defaultMessage="A card whose sale price is less than 5 euros cannot be may have a sale price 50% below trend."
+                  />
                 </li>
                 <li>
-                  Une carte dont le prix de vente est compris entre 5 et 10
-                  euros ne peut avoir un prix de vente 30% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.trend.rule2"
+                    defaultMessage="A card whose sale price is between 5 and 10 euros cannot have a sale price 30% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte dont le prix de vente est compris entre 10 et 20
-                  euros ne peut avoir un prix de vente 20% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.trend.rule3"
+                    defaultMessage="A card whose sale price is between 5 and 10 euros cannot have a sale price 30% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte dont le prix de vente est compris entre 20 et 50
-                  euros ne peut avoir un prix de vente 15% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.trend.rule4"
+                    defaultMessage="A card whose sale price is between 20 and 50 euros cannot have a sale price 15% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte dont le prix de vente est supérieur à 50 euros ne
-                  peut avoir un prix de vente 10% inférieur à la tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.Mint.trend.rule5"
+                    defaultMessage="A card whose sale price is greater than 50 euros cannot be may have a sale price 10% lower than the trend."
+                  />
                 </li>
               </ul>
-              <p className="categorySubtitle">Comparaison avec l'ancien prix</p>
+              <p className="categorySubtitle">
+                <FormattedMessage
+                  id="app.page.priceShield.details.comparisonWithOldPrice"
+                  defaultMessage="Comparison with the old price"
+                />
+              </p>
               <ul>
                 <li>
                   Une carte dont le prix de vente est inférieur à 10 euros ne
@@ -203,7 +228,7 @@ const PriceShield = () => {
               <p className="categorySubtitle">Comparaison avec l'ancien prix</p>
               <ul>
                 <li>
-                  Une carte "usée" dont le prix de vente est supérieur à 20
+                  Une carte "usée" dont le prix de vente est supérieur à 10
                   euros ne peut avoir un prix de vente 60% inférieur à son
                   ancien prix de vente.
                 </li>

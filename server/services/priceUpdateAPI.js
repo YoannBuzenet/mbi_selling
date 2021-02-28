@@ -175,8 +175,8 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
     ///////////////////////////
     // ABSOLUTE VARIATION CHECK
     ///////////////////////////
-    //If the card is worth more than 20 euros and the variation rate is more than 60%
-    else if (oldPrice >= 20 && newPrice < oldPrice && variationRate > 60) {
+    //If the card is worth more than 10 euros and the variation rate is more than 60%
+    else if (oldPrice >= 10 && newPrice < oldPrice && variationRate > 60) {
       return { result: false, reason: 9 };
     } else {
       return { result: true };
