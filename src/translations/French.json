@@ -225,6 +225,13 @@
   "app.page.priceShield.details.Mint.oldPrice.rule1": "Une carte dont le prix de vente est inférieur à 10 euros ne peut avoir un prix de vente 60% inférieur à son ancien prix de vente.",
   "app.page.priceShield.details.Mint.oldPrice.rule2": "Une carte dont le prix de vente est compris entre 10 et 20 euros ne peut avoir un prix de vente 40% inférieur à son ancien prix de vente.",
   "app.page.priceShield.details.Mint.oldPrice.rule3": "Une carte dont le prix de vente est supérieur à 20 euros ne peut avoir un prix de vente 30% inférieur à son ancien prix de vente.",
+  "app.page.priceShield.details.GoodLightPlayedPlayedPoorTitle": "Good/Light Played /Played /Poor :",
+  "app.page.priceShield.details.used.trend.rule1": "Une carte 'usée' dont le prix de vente est inférieur à 10 euros ne peut avoir un prix de vente 80% inférieur à la tendance.",
+  "app.page.priceShield.details.used.trend.rule2": "Une carte 'usée' dont le prix de vente est compris entre 10 et 20 euros ne peut avoir un prix de vente 60% inférieur à la tendance.",
+  "app.page.priceShield.details.used.trend.rule3": "Une carte 'usée' dont le prix de vente est compris entre 20 et 30 euros ne peut avoir un prix de vente 50% inférieur à la tendance.",
+  "app.page.priceShield.details.used.trend.rule4": "Une carte 'usée' dont le prix de vente est compris entre 30 et 50 euros ne peut avoir un prix de vente 40% inférieur à la tendance.",
+  "app.page.priceShield.details.used.trend.rule5": "Une carte 'usée' dont le prix de vente est supérieur à 50 euros ne peut avoir un prix de vente 30% inférieur à la tendance.",
+  "app.page.priceShield.details.used.oldPrice.rule1": " Une carte 'usée' dont le prix de vente est supérieur à 10 euros ne peut avoir un prix de vente 60% inférieur à son ancien prix de vente.",
 
   "app.page.afterUlFirstP": "Le Price Shield est une manière centralisée de protéger les cartes très spécifiques et exotiques. Il ne peut être désactivé.",
   "app.page.afterUlSecondP": "Chaque prix bloqué par le price Shield vous sera expliqué dans le récapitulatif que vous recevrez après un script. De cette façon, vous pouvez toujours le mettre à jour manuellement si vous le souhaitez.",

@@ -199,41 +199,62 @@ const PriceShield = () => {
                   />
                 </li>
               </ul>
-              <h4>Good/Light Played /Played /Poor : </h4>
-              <p className="categorySubtitle">Comparaison avec la tendance</p>
+              <h4>
+                <FormattedMessage
+                  id="app.page.priceShield.details.GoodLightPlayedPlayedPoorTitle"
+                  defaultMessage="Good/Light Played /Played /Poor :"
+                />
+              </h4>
+              <p className="categorySubtitle">
+                <FormattedMessage
+                  id="app.page.priceShield.details.comparisonWithTrend"
+                  defaultMessage="Comparison with trend"
+                />
+              </p>
               <ul>
                 <li>
-                  Une carte "usée" dont le prix de vente est inférieur à 10
-                  euros ne peut avoir un prix de vente 80% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.used.trend.rule1"
+                    defaultMessage="A 'used' card whose selling price is less than 10 euros cannot have a sale price 80% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte "usée" dont le prix de vente est compris entre 10 et
-                  20 euros ne peut avoir un prix de vente 60% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.used.trend.rule2"
+                    defaultMessage="A 'used' card whose sale price is between 10 and 20 euros cannot have a sale price 60% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte "usée" dont le prix de vente est compris entre 20 et
-                  30 euros ne peut avoir un prix de vente 50% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.used.trend.rule3"
+                    defaultMessage="A 'used' card whose sale price is between 20 and 30 euros cannot have a sale price 50% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte "usée" dont le prix de vente est compris entre 30 et
-                  50 euros ne peut avoir un prix de vente 40% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.used.trend.rule4"
+                    defaultMessage="A 'used' card whose sale price is between 20 and 30 euros cannot have a sale price 50% lower than the trend."
+                  />
                 </li>
                 <li>
-                  Une carte "usée" dont le prix de vente est supérieur à 50
-                  euros ne peut avoir un prix de vente 30% inférieur à la
-                  tendance.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.used.trend.rule5"
+                    defaultMessage="A 'used' card whose sale price is greater than 50 euros cannot have a sale price 30% lower than the trend."
+                  />
                 </li>
               </ul>
-              <p className="categorySubtitle">Comparaison avec l'ancien prix</p>
+              <p className="categorySubtitle">
+                <FormattedMessage
+                  id="app.page.priceShield.details.comparisonWithOldPrice"
+                  defaultMessage="Comparison with the old price"
+                />
+              </p>
               <ul>
                 <li>
-                  Une carte "usée" dont le prix de vente est supérieur à 10
-                  euros ne peut avoir un prix de vente 60% inférieur à son
-                  ancien prix de vente.
+                  <FormattedMessage
+                    id="app.page.priceShield.details.used.oldPrice.rule1"
+                    defaultMessage="A 'used' card whose sale price is greater than 10 euros cannot have a sale price 60% lower than its old sale price."
+                  />
                 </li>
               </ul>
             </Typography>
