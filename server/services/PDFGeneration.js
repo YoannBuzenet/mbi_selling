@@ -657,7 +657,6 @@ async function generatePDFFromPutRequest(
         text: genericTranslations.pdfStructure.pdfTitle[langLocale] + idScript,
         style: "mainTitle",
       },
-      { text: " " },
       {
         text: isTestScript
           ? genericTranslations.pdfStructure.testProcedure[
@@ -698,7 +697,6 @@ async function generatePDFFromPutRequest(
         layout: "noBorders",
         style: "MainInfoTable",
       },
-      { text: " " },
       {
         table: {
           headerRows: 1,
@@ -802,23 +800,6 @@ async function generatePDFFromPutRequest(
         style: "MainInfoTable",
       },
       { text: " " },
-      { text: " " },
-      // {
-      //   table: {
-      //     headerRows: 1,
-      //     widths: [300, "auto"],
-      //     body: [
-      //       [
-      //         genericTranslations.pdfStructure.cardsConcernedByScript[
-      //           langLocale
-      //         ],
-      //         all_put_memories.count,
-      //       ],
-      //     ],
-      //   },
-      //   layout: "noBorders",
-      //   style: "recapTable",
-      // },
       {
         text: genericTranslations.pdfStructure.summary[langLocale],
         alignment: "center",
@@ -898,6 +879,7 @@ async function generatePDFFromPutRequest(
       {
         text: genericTranslations.pdfStructure.parameters[langLocale],
         style: "pageTitle",
+        pageBreak: "after",
       },
       {
         text:
