@@ -13,15 +13,15 @@ const priceShieldReasons = {
   },
   2: {
     "en-US":
-      "Price between 20 and 50 euros - Price can't be more than 10% cheaper than the MKM trend.",
+      "Price between 20 and 50 euros - Price can't be more than 15% cheaper than the MKM trend.",
     "fr-FR":
-      "Prix entre 20 et 50 euros - Le prix de vente ne peut être inférieur de plus de 10% à la tendance MKM.",
+      "Prix entre 20 et 50 euros - Le prix de vente ne peut être inférieur de plus de 15% à la tendance MKM.",
   },
   3: {
     "en-US":
-      "Price above 50 euros - Price can't be more than 5% cheaper than the MKM trend.",
+      "Price above 50 euros - Price can't be more than 10% cheaper than the MKM trend.",
     "fr-FR":
-      "Prix au dessus de 50 euros - Le prix de vente ne peut être inférieur de plus de 5% à la tendance MKM.",
+      "Prix au dessus de 50 euros - Le prix de vente ne peut être inférieur de plus de 10% à la tendance MKM.",
   },
   3.5: {
     "en-US":
@@ -67,15 +67,15 @@ const priceShieldReasons = {
   },
   8: {
     "en-US":
-      "Price above 50 euros - Price can't be more than 20% cheaper than the MKM trend on used cards.",
+      "Price above 50 euros - Price can't be more than 30% cheaper than the MKM trend on used cards.",
     "fr-FR":
-      "Prix en dessous de 40 euros - Le prix de vente ne peut être inférieur de plus de 20% à la tendance MKM sur les cartes usées.",
+      "Prix au dessus de 40 euros - Le prix de vente ne peut être inférieur de plus de 30% à la tendance MKM sur les cartes usées.",
   },
   9: {
     "en-US":
-      "Variation Rate between old price and new price can't be higher than 60%.",
+      "Price above 10 euros - Variation Rate between old price and new price can't be higher than 60%.",
     "fr-FR":
-      "Le taux de variation entre l'ancien et le nouveau prix ne peut être supérieur à 60%.",
+      "Prix au dessus de 10 euros - Le taux de variation entre l'ancien et le nouveau prix ne peut être supérieur à 60%.",
   },
 };
 

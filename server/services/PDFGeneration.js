@@ -13,6 +13,12 @@ const utilsServer = require("../services/utils");
 const priceshieldTranslations = require("../../src/services/fullstackTranslations/priceshieldTranslations");
 const genericTranslations = require("../../src/services/fullstackTranslations/genericTranslations");
 
+// Adding this function because we will be counting decimals, to be sure to not round something unvoluntarily
+Number.prototype.countDecimals = function () {
+  if (Math.floor(this.valueOf()) === this.valueOf()) return 0;
+  return this.toString().split(".")[1].length || 0;
+};
+
 async function generatePDFFromPutRequest(
   put_requestId,
   idScript,
@@ -235,10 +241,16 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice,
-            sortedData[i].newPrice,
-            sortedData[i].regularCardsTrend,
-            sortedData[i].foilCardsTrend,
+            sortedData[i].oldPrice.toFixed(2) + " €",
+            sortedData[i].newPrice
+              ? sortedData[i].newPrice.toFixed(2) + " €"
+              : sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend
+              ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+              : sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend
+              ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+              : sortedData[i].foilCardsTrend,
             sortedData[i].idArticle,
           ],
           [
@@ -259,10 +271,28 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            { text: sortedData[i].oldPrice, style: "alignRight" },
-            { text: sortedData[i].newPrice, style: "alignRight" },
-            { text: sortedData[i].regularCardsTrend, style: "alignRight" },
-            { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+            {
+              text: sortedData[i].oldPrice.toFixed(2) + " €",
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].newPrice
+                ? sortedData[i].newPrice.toFixed(2) + " €"
+                : sortedData[i].newPrice,
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].regularCardsTrend
+                ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+                : sortedData[i].regularCardsTrend,
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].foilCardsTrend
+                ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+                : sortedData[i].foilCardsTrend,
+              style: "alignRight",
+            },
             { text: sortedData[i].idArticle, style: "alignRight" },
           ],
         ];
@@ -290,10 +320,16 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice,
-            sortedData[i].newPrice,
-            sortedData[i].regularCardsTrend,
-            sortedData[i].foilCardsTrend,
+            sortedData[i].oldPrice.toFixed(2) + " €",
+            sortedData[i].newPrice
+              ? sortedData[i].newPrice.toFixed(2) + " €"
+              : sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend
+              ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+              : sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend
+              ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+              : sortedData[i].foilCardsTrend,
             sortedData[i].idArticle,
           ],
           [
@@ -315,10 +351,28 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            { text: sortedData[i].oldPrice, style: "alignRight" },
-            { text: sortedData[i].newPrice, style: "alignRight" },
-            { text: sortedData[i].regularCardsTrend, style: "alignRight" },
-            { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+            {
+              text: sortedData[i].oldPrice.toFixed(2) + " €",
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].newPrice
+                ? sortedData[i].newPrice.toFixed(2) + " €"
+                : sortedData[i].newPrice,
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].regularCardsTrend
+                ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+                : sortedData[i].regularCardsTrend,
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].foilCardsTrend
+                ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+                : sortedData[i].foilCardsTrend,
+              style: "alignRight",
+            },
             { text: sortedData[i].idArticle, style: "alignRight" },
           ],
         ];
@@ -342,10 +396,28 @@ async function generatePDFFromPutRequest(
             : genericTranslations.pdfStructure.no[langLocale],
           utilsServer.conditionDefinition[sortedData[i].condition],
           utilsServer.langDefinition[sortedData[i].lang],
-          { text: sortedData[i].oldPrice, style: "alignRight" },
-          { text: sortedData[i].newPrice, style: "alignRight" },
-          { text: sortedData[i].regularCardsTrend, style: "alignRight" },
-          { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+          {
+            text: sortedData[i].oldPrice.toFixed(2) + " €",
+            style: "alignRight",
+          },
+          {
+            text: sortedData[i].newPrice
+              ? sortedData[i].newPrice.toFixed(2) + " €"
+              : sortedData[i].newPrice,
+            style: "alignRight",
+          },
+          {
+            text: sortedData[i].regularCardsTrend
+              ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+              : sortedData[i].regularCardsTrend,
+            style: "alignRight",
+          },
+          {
+            text: sortedData[i].foilCardsTrend
+              ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+              : sortedData[i].foilCardsTrend,
+            style: "alignRight",
+          },
           { text: sortedData[i].idArticle, style: "alignRight" },
         ],
 
@@ -389,10 +461,16 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            sortedData[i].oldPrice,
-            sortedData[i].newPrice,
-            sortedData[i].regularCardsTrend,
-            sortedData[i].foilCardsTrend,
+            sortedData[i].oldPrice.toFixed(2) + " €",
+            sortedData[i].newPrice
+              ? sortedData[i].newPrice.toFixed(2) + " €"
+              : sortedData[i].newPrice,
+            sortedData[i].regularCardsTrend
+              ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+              : sortedData[i].regularCardsTrend,
+            sortedData[i].foilCardsTrend
+              ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+              : sortedData[i].foilCardsTrend,
             sortedData[i].idArticle,
           ],
           [
@@ -414,10 +492,28 @@ async function generatePDFFromPutRequest(
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
             utilsServer.langDefinition[sortedData[i].lang],
-            { text: sortedData[i].oldPrice, style: "alignRight" },
-            { text: sortedData[i].newPrice, style: "alignRight" },
-            { text: sortedData[i].regularCardsTrend, style: "alignRight" },
-            { text: sortedData[i].foilCardsTrend, style: "alignRight" },
+            {
+              text: sortedData[i].oldPrice.toFixed(2) + " €",
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].newPrice
+                ? sortedData[i].newPrice.toFixed(2) + " €"
+                : sortedData[i].newPrice,
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].regularCardsTrend
+                ? sortedData[i].regularCardsTrend.toFixed(2) + " €"
+                : sortedData[i].regularCardsTrend,
+              style: "alignRight",
+            },
+            {
+              text: sortedData[i].foilCardsTrend
+                ? sortedData[i].foilCardsTrend.toFixed(2) + " €"
+                : sortedData[i].foilCardsTrend,
+              style: "alignRight",
+            },
             { text: sortedData[i].idArticle, style: "alignRight" },
           ],
         ];
@@ -510,8 +606,20 @@ async function generatePDFFromPutRequest(
             ],
             ...orderedSnapshotCustomRulesRegular.map((rule) => {
               return [
-                { text: rule.priceRangeFrom + " €", style: "alignRight" },
-                { text: rule.priceRangeTo + " €", style: "alignRight" },
+                {
+                  text:
+                    rule.priceRangeFrom.countDecimals() < 2
+                      ? rule.priceRangeFrom.toFixed(2) + " €"
+                      : rule.priceRangeFrom,
+                  style: "alignRight",
+                },
+                {
+                  text:
+                    rule.priceRangeTo.countDecimals() < 2
+                      ? rule.priceRangeTo.toFixed(2) + " €"
+                      : rule.priceRangeTo,
+                  style: "alignRight",
+                },
                 {
                   text:
                     genericTranslations.ruleTypesDictionnary[langLocale][
@@ -520,7 +628,13 @@ async function generatePDFFromPutRequest(
                   style: "actionTitle",
                 },
                 rule.ruleTypeId === 1
-                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
+                  ? {
+                      text:
+                        rule.priceRangeValueToSet.countDecimals() < 2
+                          ? rule.priceRangeValueToSet.toFixed(2) + " €"
+                          : rule.priceRangeValueToSet,
+                      style: "alignRight",
+                    }
                   : "",
                 rule.ruleTypeId === 2
                   ? genericTranslations.BehaviourDictionnary[langLocale][
@@ -597,8 +711,20 @@ async function generatePDFFromPutRequest(
             ],
             ...orderedSnapshotCustomRulesFoil.map((rule) => {
               return [
-                { text: rule.priceRangeFrom + " €", style: "alignRight" },
-                { text: rule.priceRangeTo + " €", style: "alignRight" },
+                {
+                  text:
+                    rule.priceRangeFrom.countDecimals() < 2
+                      ? rule.priceRangeFrom.toFixed(2) + " €"
+                      : rule.priceRangeFrom,
+                  style: "alignRight",
+                },
+                {
+                  text:
+                    rule.priceRangeTo.countDecimals() < 2
+                      ? rule.priceRangeTo.toFixed(2) + " €"
+                      : rule.priceRangeTo,
+                  style: "alignRight",
+                },
                 {
                   text:
                     genericTranslations.ruleTypesDictionnary[langLocale][
@@ -607,7 +733,13 @@ async function generatePDFFromPutRequest(
                   style: "actionTitle",
                 },
                 rule.ruleTypeId === 1
-                  ? { text: rule.priceRangeValueToSet, style: "alignRight" }
+                  ? {
+                      text:
+                        rule.priceRangeValueToSet.countDecimals() < 2
+                          ? rule.priceRangeValueToSet.toFixed(2) + " €"
+                          : rule.priceRangeValueToSet,
+                      style: "alignRight",
+                    }
                   : "",
                 rule.ruleTypeId === 2
                   ? genericTranslations.BehaviourDictionnary[langLocale][
@@ -1149,7 +1281,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
           body: [
             [
               {
@@ -1224,7 +1356,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
           body: [
             [
               {
@@ -1299,7 +1431,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
           body: [
             [
               {
@@ -1377,7 +1509,7 @@ async function generatePDFFromPutRequest(
       {
         table: {
           headerRows: 1,
-          widths: [80, "auto", "auto", 90, 30, 30, 30, 30, "auto"],
+          widths: [80, "auto", "auto", 90, 40, 40, 40, 40, "auto"],
           body: [
             [
               {
@@ -1469,12 +1601,12 @@ async function generatePDFFromPutRequest(
         margin: [0, 15, 0, 15],
       },
       bigTableHigherPrice: {
-        margin: [30, 20, 0, 0],
+        margin: [15, 20, 0, 0],
         fontSize: 10,
       },
-      bigTableLowerPrice: { margin: [30, 20, 0, 0], fontSize: 10 },
-      bigTablePricehieldBlockedCards: { margin: [30, 20, 0, 0], fontSize: 10 },
-      bigTableExcludedCards: { margin: [30, 20, 0, 0], fontSize: 10 },
+      bigTableLowerPrice: { margin: [15, 20, 0, 0], fontSize: 10 },
+      bigTablePricehieldBlockedCards: { margin: [15, 20, 0, 0], fontSize: 10 },
+      bigTableExcludedCards: { margin: [15, 20, 0, 0], fontSize: 10 },
       footer: {
         alignment: "center",
         margin: [0, 0, 0, 10],
