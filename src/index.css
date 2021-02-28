@@ -936,6 +936,12 @@ div.connect p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+}
+
+.menu-links-left p {
+  margin-top: -10px;
+  font-size: 14px;
 }
 
 .navbar {

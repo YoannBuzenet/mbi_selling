@@ -227,7 +227,7 @@ const PriceShield = () => {
                 <li>
                   <FormattedMessage
                     id="app.page.priceShield.details.used.trend.rule3"
-                    defaultMessage="A 'used' card whose sale price is between 20 and 30 euros cannot have a sale price 50% lower than the trend."
+                    defaultMessage="A 'used' card whose sale price is between 10 and 20 euros cannot have a sale price 50% lower than the trend."
                   />
                 </li>
                 <li>

@@ -79,12 +79,14 @@ const Navbar = ({ history }) => {
         <div className="container">
           <div className="menu-links-left">
             <a href="/" className="logo-shop-link">
-              <img src="/pictures/logoM.svg" width="50px" />
+              <img src="/pictures/logoMPU.svg" width="60px" />
             </a>
-            <FormattedMessage
-              id="app.navbar.byMTGInterface"
-              defaultMessage="by MTG Interface"
-            />
+            <p>
+              <FormattedMessage
+                id="app.navbar.byMTGInterface"
+                defaultMessage="by MTG Interface"
+              />
+            </p>
           </div>
           {authenticationInfos.isAuthenticated ? (
             /////////////////////////

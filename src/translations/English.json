@@ -222,7 +222,7 @@
   "app.page.priceShield.details.comparisonWithTrend": "Comparison with trend",
   "app.page.priceShield.details.Mint.trend.rule1": "A card whose sale price is less than 5 euros cannot be may have a sale price 50% below trend.",
   "app.page.priceShield.details.Mint.trend.rule2": "A card whose sale price is between 5 and 10 euros cannot have a sale price 30% lower than the trend.",
-  "app.page.priceShield.details.Mint.trend.rule3": "A card whose sale price is between 5 and 10 euros cannot have a sale price 30% lower than the trend.",
+  "app.page.priceShield.details.Mint.trend.rule3": "A 'used' card whose sale price is between 10 and 20 euros cannot have a sale price 50% lower than the trend.",
   "app.page.priceShield.details.Mint.trend.rule4": "A card whose sale price is between 20 and 50 euros cannot have a sale price 15% lower than the trend.",
   "app.page.priceShield.details.Mint.trend.rule5": "A card whose sale price is greater than 50 euros cannot be may have a sale price 10% lower than the trend.",
   "app.page.priceShield.details.comparisonWithOldPrice": "Comparison with the old price",
