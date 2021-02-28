@@ -533,6 +533,10 @@ form.reset-password-form button {
   text-align: left;
 }
 
+.explainations .categorySubtitle {
+  font-style: italic;
+}
+
 .priceShieldDetailsIntroduction {
   font-style: italic;
 }

@@ -77,7 +77,7 @@ const PriceShield = () => {
         <p>
           <FormattedMessage
             id="app.page.priceShield.secondUl"
-            defaultMessage="The Price Shield blocks :"
+            defaultMessage="The Price Shield blocks each card where the price could be judged as too low."
           />
         </p>
         <ul>
@@ -105,19 +105,29 @@ const PriceShield = () => {
             <Typography className={classes.heading}>
               <FormattedMessage
                 id="app.page.priceShield.SeeDetails"
-                defaultMessage="See Details"
+                defaultMessage="See calculation details"
               />
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={classes.explaination}>
+              <h3>Détails</h3>
+              <p>
+                Deux comparaisons ont lieu pour chaque carte : une avec la
+                tendance MKM (foil ou non en fonction de la carte), et enfin une
+                entre le prix actuel de la carte et son nouveau prix potentiel.
+                Nous mesurons ainsi le taux de variation entre le nouveau prix
+                et la tendance, et le taux de variation entre l'ancien prix et
+                le nouveau prix.
+              </p>
               <p className="priceShieldDetailsIntroduction">
                 Le Price Shield vérifie d'abord la{" "}
                 <strong>condition de la carte avant tout</strong>. Si elle est
                 Mint, elle ne sera pas traitée de la même façon qu'une carte
                 played.
               </p>
-              <p>Si la carte est Mint/Near Mint / Excellent : </p>
+              <h4>Mint/Near Mint/Excellent : </h4>
+              <p className="categorySubtitle">Comparaison avec la tendance</p>
               <ul>
                 <li>
                   Une carte dont le prix de vente est inférieur à 5 euros ne
@@ -135,13 +145,16 @@ const PriceShield = () => {
                 </li>
                 <li>
                   Une carte dont le prix de vente est compris entre 20 et 50
-                  euros ne peut avoir un prix de vente 10% inférieur à la
+                  euros ne peut avoir un prix de vente 15% inférieur à la
                   tendance.
                 </li>
                 <li>
                   Une carte dont le prix de vente est supérieur à 50 euros ne
-                  peut avoir un prix de vente 5% inférieur à la tendance.
+                  peut avoir un prix de vente 10% inférieur à la tendance.
                 </li>
+              </ul>
+              <p className="categorySubtitle">Comparaison avec l'ancien prix</p>
+              <ul>
                 <li>
                   Une carte dont le prix de vente est inférieur à 10 euros ne
                   peut avoir un prix de vente 60% inférieur à son ancien prix de
@@ -158,7 +171,8 @@ const PriceShield = () => {
                   vente.
                 </li>
               </ul>
-              <p>Si la carte est Good/ light Played / Played / Poor : </p>
+              <h4>Good/Light Played /Played /Poor : </h4>
+              <p className="categorySubtitle">Comparaison avec la tendance</p>
               <ul>
                 <li>
                   Une carte "usée" dont le prix de vente est inférieur à 10
@@ -182,7 +196,15 @@ const PriceShield = () => {
                 </li>
                 <li>
                   Une carte "usée" dont le prix de vente est supérieur à 50
-                  euros ne peut avoir un prix de vente 20% inférieur à son
+                  euros ne peut avoir un prix de vente 30% inférieur à la
+                  tendance.
+                </li>
+              </ul>
+              <p className="categorySubtitle">Comparaison avec l'ancien prix</p>
+              <ul>
+                <li>
+                  Une carte "usée" dont le prix de vente est supérieur à 20
+                  euros ne peut avoir un prix de vente 60% inférieur à son
                   ancien prix de vente.
                 </li>
               </ul>

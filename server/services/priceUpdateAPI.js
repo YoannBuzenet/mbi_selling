@@ -87,17 +87,21 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
       //If card is under 20€ and new price is more than 20% under the trend
       return { result: false, reason: 1 };
     }
-    //If card is between 20 and 50€ and new price is more than 10% under the trend
+    //If card is between 20 and 50€ and new price is more than 15% under the trend
     else if (
       oldPrice >= 20 &&
       oldPrice < 50 &&
       newPrice < priceTrend &&
-      variationRateTrend > 10
+      variationRateTrend > 15
     ) {
       return { result: false, reason: 2 };
     }
-    //If card is above 50€ and new price is more than 5% under the trend
-    else if (oldPrice > 50 && newPrice < priceTrend && variationRateTrend > 5) {
+    //If card is above 50€ and new price is more than 10% under the trend
+    else if (
+      oldPrice > 50 &&
+      newPrice < priceTrend &&
+      variationRateTrend > 10
+    ) {
       return { result: false, reason: 3 };
     }
     ///////////////////////////
@@ -160,11 +164,11 @@ function priceShieldAllows(oldPrice, newPrice, priceTrend, cardCondition) {
     ) {
       return { result: false, reason: 7 };
     }
-    //If card is above 50€ and new price is more than 20% under the trend
+    //If card is above 50€ and new price is more than 30% under the trend
     else if (
       oldPrice > 50 &&
       newPrice < priceTrend &&
-      variationRateTrend > 20
+      variationRateTrend > 30
     ) {
       return { result: false, reason: 8 };
     }
