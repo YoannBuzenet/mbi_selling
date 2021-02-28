@@ -944,6 +944,11 @@ div.connect p {
   font-size: 14px;
 }
 
+.menu-links-left p a {
+  text-decoration: none;
+  color: black;
+}
+
 .navbar {
   position: fixed;
   top: 0;

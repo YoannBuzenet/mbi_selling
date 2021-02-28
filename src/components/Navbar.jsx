@@ -82,10 +82,12 @@ const Navbar = ({ history }) => {
               <img src="/pictures/logoMPU.svg" width="60px" />
             </a>
             <p>
-              <FormattedMessage
-                id="app.navbar.byMTGInterface"
-                defaultMessage="by MTG Interface"
-              />
+              <a href="/" className="logo-shop-link">
+                <FormattedMessage
+                  id="app.navbar.byMTGInterface"
+                  defaultMessage="by MTG Interface"
+                />
+              </a>
             </p>
           </div>
           {authenticationInfos.isAuthenticated ? (
