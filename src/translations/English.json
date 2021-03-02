@@ -379,8 +379,8 @@
   "customRules.price.errorRule.priceFromShouldInferiortoPriceTo": "'From' Price must be inferior to 'To' price.",
   "customRules.price.errorRule.firstRuleMustStartAt0euros": "First Rule must start at 0 euro.",
   "customRules.price.errorRule.setFixedValueMustHaveASellingPrice": "This rule expects a selling price.",
-  "customRules.regularRules.title": "REGULAR RULES",
-  "customRules.foilRules.title": "FOIL RULES",
+  "customRules.regularRules.title": "RULES FOR REGULAR CARDS",
+  "customRules.foilRules.title": "RULES FOR FOIL CARDS",
 
   "settings.save.check.error.missingField": "One of the fields seems to be missing.",
   "settings.save.success": "Your settings have been updated.",

@@ -1796,6 +1796,7 @@ const CreateMyScript = ({ history }) => {
               </div>
             </div>
           </div>
+          {/* RULES */}
           <div className="right-part">
             <div className="regular-rules-schema">
               <div className="sectionTitle">
