@@ -348,6 +348,8 @@
   "createMyScript.saving.failure": "Il y a eu un problème lors de la sauvegarde. Merci de nous contacter si le problème persiste.",
   "createMyScript.creating.failure": "Il y a eu une erreur lors de la sauvegarde.",
   "createMyScript.AddaRule": "Ajouter une règle",
+  "createMyScript.rule.included": "Inclus",
+  "createMyScript.rule.excluded": "Exclu",
 
   "allMyScripts.title": "Mes Scripts",
   "allMyScripts.formats": "Formats",

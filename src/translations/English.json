@@ -348,6 +348,8 @@
   "createMyScript.saving.failure": "There has been an error while saving. Please contact us if the problem persists.",
   "createMyScript.creating.failure": "There has been an error while creating the script.",
   "createMyScript.AddaRule": "Add a Rule",
+  "createMyScript.rule.included": "Included",
+  "createMyScript.rule.excluded": "Excluded",
 
   "allMyScripts.title": "My Scripts",
   "allMyScripts.formats": "Formats",

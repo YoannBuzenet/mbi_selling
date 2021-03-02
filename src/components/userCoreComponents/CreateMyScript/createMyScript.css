@@ -380,6 +380,9 @@ div.inputValueNumber {
   background-color: white;
   margin: 0 5px;
 }
+.inputNumberFromContainer {
+  position: relative;
+}
 
 .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl {
   border-radius: 3px;
@@ -474,6 +477,19 @@ input.MuiInputBase-input.MuiOutlinedInput-input {
     margin: 20px auto;
     width: auto;
   }
+}
+
+/* ******************* */
+/** INCLUDED/EXCLUDED **/
+/* ******************* */
+.includedContainer {
+  left: 25px;
+  font-size: 13px;
+  position: absolute;
+  top: 35px;
+  font-style: italic;
+  z-index: 3;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 /* ************ */

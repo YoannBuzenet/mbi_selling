@@ -14,6 +14,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import { FormattedMessage, useIntl } from "react-intl";
+import IncludedExcluded from "./IncludedExcluded";
 
 const CustomRule = ({
   rule,
@@ -167,34 +168,42 @@ const CustomRule = ({
                     defaultMessage="From"
                   />
                 </p>
-                <TextField
-                  id="outlined-from"
-                  defaultValue=""
-                  variant="outlined"
-                  name={"priceRangeFrom"}
-                  onChange={(e) => handleChange(e)}
-                  className="inputValueNumber"
-                  value={
-                    rule.priceRangeFrom !== undefined ? rule.priceRangeFrom : ""
-                  }
-                />
+                <div className="inputNumberFromContainer">
+                  <TextField
+                    id="outlined-from"
+                    defaultValue=""
+                    variant="outlined"
+                    name={"priceRangeFrom"}
+                    onChange={(e) => handleChange(e)}
+                    className="inputValueNumber"
+                    value={
+                      rule.priceRangeFrom !== undefined
+                        ? rule.priceRangeFrom
+                        : ""
+                    }
+                  />
+                  <IncludedExcluded position="incl." />
+                </div>
                 <p className="fromToText">
                   <FormattedMessage
                     id="customRules.price.to"
                     defaultMessage="To"
                   />
                 </p>
-                <TextField
-                  id="outlined-from"
-                  defaultValue=""
-                  variant="outlined"
-                  name={"priceRangeTo"}
-                  onChange={(e) => handleChange(e)}
-                  className="inputValueNumber"
-                  value={
-                    rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""
-                  }
-                />
+                <div className="inputNumberFromContainer">
+                  <TextField
+                    id="outlined-from"
+                    defaultValue=""
+                    variant="outlined"
+                    name={"priceRangeTo"}
+                    onChange={(e) => handleChange(e)}
+                    className="inputValueNumber"
+                    value={
+                      rule.priceRangeTo !== undefined ? rule.priceRangeTo : ""
+                    }
+                  />
+                  <IncludedExcluded position="excl." />
+                </div>
                 <p className="fromToText">€</p>
               </div>
               <div className="ruleType-choice">

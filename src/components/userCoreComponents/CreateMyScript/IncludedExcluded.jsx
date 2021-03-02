@@ -1,7 +1,7 @@
 import React from "react";
 
-const IncludedExcluded = ({ classToUse }) => {
-  return <>Included / Excluded</>;
+const IncludedExcluded = ({ position }) => {
+  return <div className="includedContainer">{position}</div>;
 };
 
 export default IncludedExcluded;
