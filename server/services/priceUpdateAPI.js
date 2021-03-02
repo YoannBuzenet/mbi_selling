@@ -5,6 +5,10 @@ const {
 } = require("../controllers/genericDataController");
 
 function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
+  // currentPointer[0] -> FROM;
+  // currentPointer[1] -> TO;
+  // currentPointer[2] -> RULE NUMBER;
+
   // console.log("beginning of function", arrayOfPriceRanges);
   let newArray = [...arrayOfPriceRanges];
   if (
@@ -21,7 +25,7 @@ function findTheRightPriceRange(arrayOfPriceRanges, priceInput, counter = 0) {
   let currentPointer = newArray[middleArrayIndex];
   // console.log("current pointer", currentPointer);
 
-  if (priceInput >= currentPointer[0] && priceInput <= currentPointer[1]) {
+  if (priceInput >= currentPointer[0] && priceInput < currentPointer[1]) {
     return currentPointer[2];
   }
 
