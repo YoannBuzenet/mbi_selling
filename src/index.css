@@ -486,7 +486,32 @@ div.connecting-button {
 }
 
 .field {
+  text-align: left;
+  width: 30%;
+  margin: auto;
   margin-top: 20px;
+}
+
+.field label {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.739);
+}
+
+.field input {
+  margin: 0.5rem auto;
+  display: block;
+  border-radius: var(--border-radius-form-field);
+  border: 1px solid lightgrey;
+  padding: 1.8rem;
+  font-size: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.field input::placeholder {
+  font-size: 14px;
+  text-align: left;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -759,7 +784,6 @@ div.createScriptButton {
 /**************************
 ********MY ACCOUNT*******
 **************************/
-.my-account input,
 .my-account textarea {
   margin: 0.5rem auto;
   display: block;

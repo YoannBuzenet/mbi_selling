@@ -99,7 +99,7 @@ const LoginPage = ({
       <h1 className="front-title">
         <FormattedMessage id="app.LoginPage.title" defaultMessage={`Connect`} />
       </h1>
-      <div className="login-page">
+      <div className="login-page container">
         <div>
           <form action="" onSubmit={handleSubmit} className="login-form">
             <Field
