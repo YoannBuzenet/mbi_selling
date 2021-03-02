@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import "./createMyScript.css";
 import axios from "axios";
-import AddRuleButton from "./AddRuleButton";
+import PlainTextAddRuleButton from "./PlainTextAddRuleButton";
 import CustomRule from "./CustomRule";
 import { toast } from "react-toastify";
 import { matchPath } from "react-router";
@@ -21,14 +21,7 @@ import BlackDivContext from "../../../context/blackDivModalContext";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
-import Input from "@material-ui/core/Input";
-import InfoIcon from "@material-ui/icons/Info";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
@@ -36,7 +29,6 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 
 // Prime React
@@ -127,110 +119,111 @@ const CreateMyScript = ({ history }) => {
     setKeywordBehaviour(value);
   };
 
+  // Empty state by default
   const defaultCreationState = {
     regular: [
-      {
-        temporaryId: 485,
-        priceRangeFrom: 0,
-        priceRangeTo: 1,
-        ruleTypeId: 2,
-        behaviourId: 13,
-        isForFoils: 0,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 16,
-        priceRangeFrom: 1,
-        priceRangeTo: 10,
-        ruleTypeId: 2,
-        behaviourId: 14,
-        isForFoils: 0,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 17,
-        priceRangeFrom: 10,
-        priceRangeTo: 30,
-        ruleTypeId: 2,
-        behaviourId: 15,
-        isForFoils: 0,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 18,
-        priceRangeFrom: 30,
-        priceRangeTo: 100,
-        ruleTypeId: 2,
-        behaviourId: 16,
-        isForFoils: 0,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 19,
-        priceRangeFrom: 100,
-        priceRangeTo: 500,
-        ruleTypeId: 2,
-        behaviourId: 19,
-        isForFoils: 0,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
+      // {
+      //   temporaryId: 485,
+      //   priceRangeFrom: 0,
+      //   priceRangeTo: 1,
+      //   ruleTypeId: 2,
+      //   behaviourId: 13,
+      //   isForFoils: 0,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 16,
+      //   priceRangeFrom: 1,
+      //   priceRangeTo: 10,
+      //   ruleTypeId: 2,
+      //   behaviourId: 14,
+      //   isForFoils: 0,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 17,
+      //   priceRangeFrom: 10,
+      //   priceRangeTo: 30,
+      //   ruleTypeId: 2,
+      //   behaviourId: 15,
+      //   isForFoils: 0,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 18,
+      //   priceRangeFrom: 30,
+      //   priceRangeTo: 100,
+      //   ruleTypeId: 2,
+      //   behaviourId: 16,
+      //   isForFoils: 0,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 19,
+      //   priceRangeFrom: 100,
+      //   priceRangeTo: 500,
+      //   ruleTypeId: 2,
+      //   behaviourId: 19,
+      //   isForFoils: 0,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
     ],
     foil: [
-      {
-        temporaryId: 486,
-        priceRangeFrom: 0,
-        priceRangeTo: 1,
-        ruleTypeId: 2,
-        behaviourId: 13,
-        isForFoils: 1,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 20,
-        priceRangeFrom: 1,
-        priceRangeTo: 10,
-        ruleTypeId: 2,
-        behaviourId: 14,
-        isForFoils: 1,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 21,
-        priceRangeFrom: 10,
-        priceRangeTo: 30,
-        ruleTypeId: 2,
-        behaviourId: 15,
-        isForFoils: 1,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 22,
-        priceRangeFrom: 30,
-        priceRangeTo: 100,
-        ruleTypeId: 2,
-        behaviourId: 16,
-        isForFoils: 1,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
-      {
-        temporaryId: 23,
-        priceRangeFrom: 100,
-        priceRangeTo: 500,
-        ruleTypeId: 2,
-        behaviourId: 19,
-        isForFoils: 1,
-        isForSigned: 0,
-        isForPlaysets: 0,
-      },
+      // {
+      //   temporaryId: 486,
+      //   priceRangeFrom: 0,
+      //   priceRangeTo: 1,
+      //   ruleTypeId: 2,
+      //   behaviourId: 13,
+      //   isForFoils: 1,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 20,
+      //   priceRangeFrom: 1,
+      //   priceRangeTo: 10,
+      //   ruleTypeId: 2,
+      //   behaviourId: 14,
+      //   isForFoils: 1,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 21,
+      //   priceRangeFrom: 10,
+      //   priceRangeTo: 30,
+      //   ruleTypeId: 2,
+      //   behaviourId: 15,
+      //   isForFoils: 1,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 22,
+      //   priceRangeFrom: 30,
+      //   priceRangeTo: 100,
+      //   ruleTypeId: 2,
+      //   behaviourId: 16,
+      //   isForFoils: 1,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
+      // {
+      //   temporaryId: 23,
+      //   priceRangeFrom: 100,
+      //   priceRangeTo: 500,
+      //   ruleTypeId: 2,
+      //   behaviourId: 19,
+      //   isForFoils: 1,
+      //   isForSigned: 0,
+      //   isForPlaysets: 0,
+      // },
     ],
   };
 
@@ -1827,7 +1820,7 @@ const CreateMyScript = ({ history }) => {
               <div className="regularRulesContainer">
                 {Array.isArray(customRulesGlobalState.regular) &&
                   customRulesGlobalState.regular.length === 0 && (
-                    <AddRuleButton
+                    <PlainTextAddRuleButton
                       position={0}
                       FoilOrRegular="regular"
                       handleClick={addACustomRule}
@@ -1885,7 +1878,7 @@ const CreateMyScript = ({ history }) => {
               <div className="foilRulesContainer">
                 {Array.isArray(customRulesGlobalState.foil) &&
                   customRulesGlobalState.foil.length === 0 && (
-                    <AddRuleButton
+                    <PlainTextAddRuleButton
                       position={0}
                       FoilOrRegular="foil"
                       handleClick={addACustomRule}

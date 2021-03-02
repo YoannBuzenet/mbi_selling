@@ -186,8 +186,8 @@
   "app.RegisterPage.label.telephone": "Téléphone",
   "app.RegisterPage.label.adress": "Adresse *",
   "app.RegisterPage.label.town": "Ville *",
-  "app.RegisterPage.label.VAT": "TVA (si applicable)",
-  "app.RegisterPage.placeholder.VAT": "TVA (si applicable)",
+  "app.RegisterPage.label.VAT": "Numéro de TVA (si applicable)",
+  "app.RegisterPage.placeholder.VAT": "Numéro de TVA (si applicable)",
   "app.RegisterPage.placeholder.mail": "Adresse mail...",
   "app.RegisterPage.placeholder.password": "Mot de passe",
   "app.RegisterPage.placeholder.firstName": "Prénom",
@@ -347,6 +347,7 @@
   "createMyScript.saving.success": "Votre script a été sauvegardé.",
   "createMyScript.saving.failure": "Il y a eu un problème lors de la sauvegarde. Merci de nous contacter si le problème persiste.",
   "createMyScript.creating.failure": "Il y a eu une erreur lors de la sauvegarde.",
+  "createMyScript.AddaRule": "Ajouter une règle",
 
   "allMyScripts.title": "Mes Scripts",
   "allMyScripts.formats": "Formats",
