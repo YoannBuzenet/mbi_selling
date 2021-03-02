@@ -89,9 +89,9 @@ const CreateMyScript = ({ history }) => {
       return [];
       //They're updated thanks to an useEffect
     }
-    //If we are in creation mode, starting value is all formats
+    //If we are in creation mode, starting value is NO formats
     else if (!match?.params?.id) {
-      return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+      return [];
     }
   });
 
