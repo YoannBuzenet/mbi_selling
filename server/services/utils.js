@@ -108,17 +108,17 @@ function getRelevantDateForUpdateSubscribe(date) {
 
 //DEFINED LANGUAGE ID
 const langDefinition = {
-  1: "German",
-  2: "Spanish",
-  3: "French",
-  4: "Italian",
-  5: "Japanese",
-  6: "Portuguese",
-  7: "Russian",
-  8: "Simplified Chinese",
-  9: "English",
-  10: "Korean",
-  11: "Traditional Chinese",
+  1: { "en-US": "German", "fr-FR": "Allemand" },
+  2: { "en-US": "Spanish", "fr-FR": "Espagnol" },
+  3: { "en-US": "French", "fr-FR": "Français" },
+  4: { "en-US": "Italian", "fr-FR": "Italien" },
+  5: { "en-US": "Japanese", "fr-FR": "Japonais" },
+  6: { "en-US": "Portuguese", "fr-FR": "Portugais" },
+  7: { "en-US": "Russian", "fr-FR": "Russe" },
+  8: { "en-US": "Simplified Chinese", "fr-FR": "Chi S." },
+  9: { "en-US": "English", "fr-FR": "Anglais" },
+  10: { "en-US": "Korean", "fr-FR": "Coréen" },
+  11: { "en-US": "Traditional Chinese", "fr-FR": "Chi T." },
 };
 
 const conditionDefinition = {

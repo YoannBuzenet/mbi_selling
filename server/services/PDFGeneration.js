@@ -240,7 +240,7 @@ async function generatePDFFromPutRequest(
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
-            utilsServer.langDefinition[sortedData[i].lang],
+            utilsServer.langDefinition[sortedData[i].lang][langLocale],
             sortedData[i].oldPrice
               ? sortedData[i].oldPrice.toFixed(2) + " €"
               : sortedData[i].oldPrice,
@@ -272,7 +272,7 @@ async function generatePDFFromPutRequest(
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
-            utilsServer.langDefinition[sortedData[i].lang],
+            utilsServer.langDefinition[sortedData[i].lang][langLocale],
             {
               text: sortedData[i].oldPrice
                 ? sortedData[i].oldPrice.toFixed(2) + " €"
@@ -323,7 +323,7 @@ async function generatePDFFromPutRequest(
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
-            utilsServer.langDefinition[sortedData[i].lang],
+            utilsServer.langDefinition[sortedData[i].lang][langLocale],
             sortedData[i].oldPrice
               ? sortedData[i].oldPrice.toFixed(2) + " €"
               : sortedData[i].oldPrice,
@@ -356,7 +356,7 @@ async function generatePDFFromPutRequest(
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
-            utilsServer.langDefinition[sortedData[i].lang],
+            utilsServer.langDefinition[sortedData[i].lang][langLocale],
             {
               text: sortedData[i].oldPrice
                 ? sortedData[i].oldPrice.toFixed(2) + " €"
@@ -403,7 +403,7 @@ async function generatePDFFromPutRequest(
             ? genericTranslations.pdfStructure.yes[langLocale]
             : genericTranslations.pdfStructure.no[langLocale],
           utilsServer.conditionDefinition[sortedData[i].condition],
-          utilsServer.langDefinition[sortedData[i].lang],
+          utilsServer.langDefinition[sortedData[i].lang][langLocale],
           {
             text: sortedData[i].oldPrice
               ? sortedData[i].oldPrice.toFixed(2) + " €"
@@ -470,7 +470,7 @@ async function generatePDFFromPutRequest(
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
-            utilsServer.langDefinition[sortedData[i].lang],
+            utilsServer.langDefinition[sortedData[i].lang][langLocale],
             sortedData[i].oldPrice
               ? sortedData[i].oldPrice.toFixed(2) + " €"
               : sortedData[i].oldPrice,
@@ -503,7 +503,7 @@ async function generatePDFFromPutRequest(
               ? genericTranslations.pdfStructure.yes[langLocale]
               : genericTranslations.pdfStructure.no[langLocale],
             utilsServer.conditionDefinition[sortedData[i].condition],
-            utilsServer.langDefinition[sortedData[i].lang],
+            utilsServer.langDefinition[sortedData[i].lang][langLocale],
             {
               text: sortedData[i].oldPrice
                 ? sortedData[i].oldPrice.toFixed(2) + " €"
