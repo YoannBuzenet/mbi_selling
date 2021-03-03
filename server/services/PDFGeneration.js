@@ -24,8 +24,7 @@ async function generatePDFFromPutRequest(
   idScript,
   langLocale = "en-US",
   isTestScript = true,
-  printExplaination = false,
-  hasPricedBasedOn = "mkmTrends"
+  printExplaination = false
 ) {
   // The PDF was supposed to print a line of explaination for each line of data. This feature has been stopped without being finished.
   // If you wish to pass printExplaination parameter to true, just finish the function that generate translated text with relevant data for each line.
@@ -39,6 +38,8 @@ async function generatePDFFromPutRequest(
       id: put_requestId,
     },
   });
+
+  const hasPricedBasedOn = put_request.dataValues.hasPricedBasedOn;
 
   const all_put_memories = await db.put_memory.findAndCountAll({
     where: {
