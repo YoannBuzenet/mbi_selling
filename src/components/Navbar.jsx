@@ -77,19 +77,36 @@ const Navbar = ({ history }) => {
       )}
       <nav className="navbar">
         <div className="container">
-          <div className="menu-links-left">
-            <a href="/" className="logo-shop-link">
-              <img src="/pictures/logoMPU.svg" width="60px" />
-            </a>
-            <p>
+          {!authenticationInfos.isAuthenticated && (
+            <div className="menu-links-left">
               <a href="/" className="logo-shop-link">
-                <FormattedMessage
-                  id="app.navbar.byMTGInterface"
-                  defaultMessage="by MTG Interface"
-                />
+                <img src="/pictures/logoMPU.svg" width="60px" />
               </a>
-            </p>
-          </div>
+              <p>
+                <a href="/" className="logo-shop-link">
+                  <FormattedMessage
+                    id="app.navbar.byMTGInterface"
+                    defaultMessage="by MTG Interface"
+                  />
+                </a>
+              </p>
+            </div>
+          )}
+          {authenticationInfos.isAuthenticated && (
+            <div className="menu-links-left">
+              <Link to="/my-scripts/">
+                <img src="/pictures/logoMPU.svg" width="60px" />
+              </Link>
+              <p>
+                <Link to="/my-scripts/" className="logo-shop-link">
+                  <FormattedMessage
+                    id="app.navbar.byMTGInterface"
+                    defaultMessage="by MTG Interface"
+                  />
+                </Link>
+              </p>
+            </div>
+          )}
           {authenticationInfos.isAuthenticated ? (
             /////////////////////////
             // Authenticated Menu
