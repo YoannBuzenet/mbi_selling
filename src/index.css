@@ -516,11 +516,15 @@ div.connecting-button {
 
 @media only screen and (max-width: 1000px) {
   .field-form input,
-  .login-form input,
   .my-account textarea {
     width: 80%;
     font-size: 1.8rem;
   }
+
+  .field {
+    width: 80%;
+  }
+
   .connecting-button {
     padding: 2rem;
     font-size: 1.4rem;
@@ -800,7 +804,6 @@ div.createScriptButton {
 }
 
 @media only screen and (max-width: 1000px) {
-  .my-account input,
   .my-account textarea {
     width: 80%;
   }
