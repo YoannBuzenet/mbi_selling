@@ -283,12 +283,45 @@ const CustomRule = ({
                             id="demo-simple-select-outlined-2"
                             onChange={(e) => handleChange(e)}
                             name="mkmPriceGuideReference"
-                            value={rule.mkmPriceGuideReference || 1}
+                            value={
+                              FoilOrRegular === "regular"
+                                ? rule.mkmPriceGuideReference || 1
+                                : rule.mkmPriceGuideReference || 6
+                            }
                             label="TestToTranslate"
                             MenuProps={{ disableScrollLock: true }}
                           >
-                            {allDefinitions.priceGuidePossibilities.map(
-                              (priceGuidePossibility) => (
+                            {/* Filtering price guide possibilities if the rule is regular or foil */}
+                            {allDefinitions.priceGuidePossibilities
+                              .filter((priceGuidePossibility) => {
+                                if (FoilOrRegular === "regular") {
+                                  return (
+                                    priceGuidePossibility.name ===
+                                      "AvgSellPrice" ||
+                                    priceGuidePossibility.name === "lowPrice" ||
+                                    priceGuidePossibility.name ===
+                                      "trendPrice" ||
+                                    priceGuidePossibility.name ===
+                                      "germanProLow" ||
+                                    priceGuidePossibility.name ===
+                                      "suggestedPrice" ||
+                                    priceGuidePossibility.name === "avg1" ||
+                                    priceGuidePossibility.name === "avg7" ||
+                                    priceGuidePossibility.name === "avg30"
+                                  );
+                                } else {
+                                  return (
+                                    priceGuidePossibility.name === "foilSell" ||
+                                    priceGuidePossibility.name === "foilLow" ||
+                                    priceGuidePossibility.name ===
+                                      "foilTrend" ||
+                                    priceGuidePossibility.name === "foilAvg1" ||
+                                    priceGuidePossibility.name === "foilAvg7" ||
+                                    priceGuidePossibility.name === "foilAvg30"
+                                  );
+                                }
+                              })
+                              .map((priceGuidePossibility) => (
                                 <MenuItem
                                   value={priceGuidePossibility.id}
                                   className={classes.menuItem}
@@ -299,8 +332,7 @@ const CustomRule = ({
                                     ]?.[priceGuidePossibility.name]
                                   }
                                 </MenuItem>
-                              )
-                            )}
+                              ))}
                           </Select>
                         </FormControl>
                       )}
