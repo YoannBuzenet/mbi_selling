@@ -328,11 +328,7 @@ function App() {
   }
 
   const launchcheckStatusTimer = (userID) => {
-    if (userID === undefined) {
-      console.error("user ID is not defined in script update function");
-    }
-
-    const checkScriptStatus = async () => {
+    const checkScriptStatus = async (userID) => {
       // Getting updated script from the Express API
       const userScripts = await Axios.get(
         `/api/script/getByUserId?idUser=${userID}`
@@ -356,13 +352,17 @@ function App() {
       setAuthenticationInfos(authContextCopy);
     };
 
-    //Singleton - we want only one timer to run while user is logged
-    if (checkStatusTimer === null) {
-      setCheckStatusTimer(
-        setInterval(() => {
-          checkScriptStatus();
-        }, parseInt(process.env.REACT_APP_TIME_STATUS_CHECK))
-      );
+    if (userID === undefined) {
+      console.error("user ID is not defined in script update function");
+    } else {
+      //Singleton - we want only one timer to run while user is logged
+      if (checkStatusTimer === null) {
+        setCheckStatusTimer(
+          setInterval(() => {
+            checkScriptStatus(userID);
+          }, parseInt(process.env.REACT_APP_TIME_STATUS_CHECK))
+        );
+      }
     }
   };
 
