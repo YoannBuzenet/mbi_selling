@@ -187,7 +187,7 @@ describe("First Script Real", () => {
         });
     });
 
-    it("should have a behaviour chosen of roundUp15percents", async () => {
+    it("should have a behaviour chosen of Price Shield Blocked roundUp15percents", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -197,12 +197,12 @@ describe("First Script Real", () => {
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.behaviourChosen).toEqual(
-            "roundUp15percents"
+            "Price Shield Blocked roundUp15percents"
           );
         });
     });
 
-    it("should have a priceshield deactivated", async () => {
+    it("should have a priceshield activated", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -211,7 +211,7 @@ describe("First Script Real", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
+          expect(put_memory.dataValues.priceShieldBlocked).toEqual(1);
         });
     });
     it("should have an id Script of 3", async () => {
@@ -324,7 +324,7 @@ describe("First Script Real", () => {
           expect(put_memory.dataValues.oldPrice).toEqual(1.3);
         });
     });
-    it("should have an new price of 0.72", async () => {
+    it("should have an new price of 0.73", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -336,7 +336,7 @@ describe("First Script Real", () => {
           expect(put_memory.dataValues.newPrice).toEqual(0.73);
         });
     });
-    it("should have a behaviour chosen of roundDown10percents", async () => {
+    it("should have a behaviour chosen of Price Shield Blocked roundDown10percents", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -346,11 +346,11 @@ describe("First Script Real", () => {
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.behaviourChosen).toEqual(
-            "roundDown10percents"
+            "Price Shield Blocked roundDown10percents"
           );
         });
     });
-    it("should have a priceshield deactivated", async () => {
+    it("should have a priceshield activated", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -359,7 +359,7 @@ describe("First Script Real", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
+          expect(put_memory.dataValues.priceShieldBlocked).toEqual(1);
         });
     });
     it("should have an id Script of 3", async () => {
@@ -1364,7 +1364,7 @@ describe("Second Put request, Script 3 Test", () => {
           expect(put_memory.dataValues.newPrice).toEqual(0.73);
         });
     });
-    it("should have a behaviour chosen of roundDown10percents", async () => {
+    it("should have a behaviour chosen of Price Shield Blocked roundDown10percents", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -1374,11 +1374,11 @@ describe("Second Put request, Script 3 Test", () => {
         })
         .then((put_memory) => {
           expect(put_memory.dataValues.behaviourChosen).toEqual(
-            "roundDown10percents"
+            "Price Shield Blocked roundDown10percents"
           );
         });
     });
-    it("should have a priceshield deactivated", async () => {
+    it("should have a priceshield activated", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -1387,7 +1387,7 @@ describe("Second Put request, Script 3 Test", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.priceShieldBlocked).toEqual(0);
+          expect(put_memory.dataValues.priceShieldBlocked).toEqual(1);
         });
     });
     it("should have an id Script of 3", async () => {
@@ -2065,7 +2065,7 @@ describe("Script Old Price Test - Keyword : ignores", () => {
           expect(put_memory.dataValues.oldPrice).toEqual(10);
         });
     });
-    it("should have a behaviour chosen of roundUp15percents", async () => {
+    it("should have a behaviour chosen of Excluded", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2074,12 +2074,10 @@ describe("Script Old Price Test - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.behaviourChosen).toEqual(
-            "roundUp15percents"
-          );
+          expect(put_memory.dataValues.behaviourChosen).toEqual("Excluded");
         });
     });
-    it("should have an new price of 11.5", async () => {
+    it("should have an new price of 10", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2088,7 +2086,7 @@ describe("Script Old Price Test - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.newPrice).toEqual(11.5);
+          expect(put_memory.dataValues.newPrice).toEqual(10);
         });
     });
     it("should have a priceshield deactivated", async () => {
@@ -2544,7 +2542,7 @@ describe("Script Old Price REAL - Keyword : ignores", () => {
           expect(put_memory.dataValues.oldPrice).toEqual(10);
         });
     });
-    it("should have a behaviour chosen of roundUp15percents", async () => {
+    it("should have a behaviour chosen of Excluded", async () => {
       return db.put_memory
         .findOne({
           where: {
@@ -2553,23 +2551,10 @@ describe("Script Old Price REAL - Keyword : ignores", () => {
           },
         })
         .then((put_memory) => {
-          expect(put_memory.dataValues.behaviourChosen).toEqual(
-            "roundUp15percents"
-          );
+          expect(put_memory.dataValues.behaviourChosen).toEqual("Excluded");
         });
     });
-    it("should have an new price of 11.5", async () => {
-      return db.put_memory
-        .findOne({
-          where: {
-            PUT_Request_id: 4,
-            idArticle: 9,
-          },
-        })
-        .then((put_memory) => {
-          expect(put_memory.dataValues.newPrice).toEqual(11.5);
-        });
-    });
+
     it("should have a priceshield deactivated", async () => {
       return db.put_memory
         .findOne({
