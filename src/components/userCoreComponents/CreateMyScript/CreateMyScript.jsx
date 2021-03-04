@@ -1289,9 +1289,15 @@ const CreateMyScript = ({ history }) => {
       },
     },
     launchButton: {
-      backgroundColor: "rgb(247, 202, 24)",
+      backgroundColor: "#FF546D",
       "&:hover": {
         background: "rgb(250, 216, 89)",
+      },
+    },
+    testButton: {
+      backgroundColor: "rgb(28, 100, 4242)",
+      "&:hover": {
+        background: "rgba(63, 131, 248, 0.8)",
       },
     },
     formControl: {
