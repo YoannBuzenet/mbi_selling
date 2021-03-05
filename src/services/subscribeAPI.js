@@ -12,9 +12,6 @@ function isUserSubscribed(dateString) {
   ).getTime();
 
   const today = new Date(new Date().setHours(0, 0, 0, 0)).getTime();
-  console.log("subscription date", endSubscribingDate);
-  console.log("today", today);
-  console.log("comparison", today <= endSubscribingDate);
 
   return today <= endSubscribingDate;
 }

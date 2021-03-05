@@ -563,16 +563,13 @@ async function generatePDFFromPutRequest(
 
   function displayExpansionsUsed(listOfExpansions) {
     if (listOfExpansions.length > 0) {
-      return (
-        genericTranslations.pdfStructure.targetedExpansions[langLocale] +
-        listOfExpansions.reduce((accumulator, expansion, index) => {
-          if (index !== 0) {
-            return accumulator + ", " + expansion.dataValues.name;
-          } else {
-            return accumulator + expansion.dataValues.name;
-          }
-        }, "")
-      );
+      return listOfExpansions.reduce((accumulator, expansion, index) => {
+        if (index !== 0) {
+          return accumulator + ", " + expansion.dataValues.name;
+        } else {
+          return accumulator + expansion.dataValues.name;
+        }
+      }, "");
     } else {
       return genericTranslations.pdfStructure.targetedExpansionsNone[
         langLocale
