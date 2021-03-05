@@ -6,9 +6,9 @@ function isUserSubscribed(dateString) {
   const myDate = dateString.split("-");
 
   const endSubscribingDate = new Date(
-    myDate[2],
-    myDate[0] - 1,
-    myDate[1]
+    myDate[0],
+    myDate[1],
+    myDate[2] - 1
   ).getTime();
 
   const today = new Date().getTime();
