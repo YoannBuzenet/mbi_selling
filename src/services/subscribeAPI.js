@@ -17,7 +17,9 @@ function isUserSubscribed(dateString) {
 
   const today = new Date().getTime();
 
-  return today <= endSubscribingDate;
+  return (
+    today <= endSubscribingDate && endSubscribingDate.getDay() < today.getDay()
+  );
 }
 
 module.exports = {
