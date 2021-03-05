@@ -787,6 +787,7 @@ async function generatePDFFromPutRequest(
       return {
         text: genericTranslations.pdfStructure.noFoilRules[langLocale],
         alignment: "center",
+        pageBreak: "after",
       };
     }
   }
