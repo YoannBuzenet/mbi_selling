@@ -1195,6 +1195,11 @@ const CreateMyScript = ({ history }) => {
       return;
     }
 
+    console.log(
+      "is user subscribed ?",
+      subscribeAPI.isUserSubscribed(authenticationInfos.isSubscribedUntil)
+    );
+
     if (!subscribeAPI.isUserSubscribed(authenticationInfos.isSubscribedUntil)) {
       toast.error(
         <FormattedMessage
