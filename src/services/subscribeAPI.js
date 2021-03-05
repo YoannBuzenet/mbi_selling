@@ -7,8 +7,8 @@ function isUserSubscribed(dateString) {
 
   const endSubscribingDate = new Date(
     myDate[0],
-    myDate[1],
-    myDate[2] - 1
+    myDate[1] - 1,
+    myDate[2]
   ).getTime();
 
   console.log("subscription date", endSubscribingDate);
