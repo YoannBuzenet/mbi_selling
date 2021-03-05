@@ -11,15 +11,12 @@ function isUserSubscribed(dateString) {
     myDate[2]
   ).getTime();
 
+  const today = new Date().setHours(0, 0, 0, 0).getTime();
   console.log("subscription date", endSubscribingDate);
   console.log("today", new Date().getTime());
   console.log("comparison", today <= endSubscribingDate);
 
-  const today = new Date().getTime();
-
-  return (
-    today <= endSubscribingDate && endSubscribingDate.getDay() < today.getDay()
-  );
+  return today <= endSubscribingDate;
 }
 
 module.exports = {
